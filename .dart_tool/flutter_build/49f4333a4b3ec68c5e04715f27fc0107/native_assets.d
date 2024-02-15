@@ -1,0 +1,1 @@
+ /Users/muhammadfuzail/Desktop/Bussines_Owner\ with\ riverpod/bussines_owner/.dart_tool/flutter_build/49f4333a4b3ec68c5e04715f27fc0107/native_assets.yaml: 

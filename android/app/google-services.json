@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "173625792324",
+    "project_id": "jazalla-project",
+    "storage_bucket": "jazalla-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:173625792324:android:7aeeb2f2d6387d2de6e911",
+        "android_client_info": {
+          "package_name": "com.example.bussines_owner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "173625792324-b1pada3631duj0shcrovbgrjqf46m0j2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCzAq6biDBCg5HSOXtgOZ-lCU3PYCtsXQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "173625792324-b1pada3631duj0shcrovbgrjqf46m0j2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "173625792324-6k6al1bs39k29m0c6ceep89lsrr1r3fl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.jazalla"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
