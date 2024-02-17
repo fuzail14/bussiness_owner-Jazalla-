@@ -11,6 +11,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import '../../../../Constants/Global/GlobalList/global_lists.dart';
+import '../../../../Constants/constants.dart';
 import '../../../../Data/Api Resp/api_response.dart';
 import '../../../../Widgets/CustomButton/custom_button.dart';
 import '../../../../Widgets/Loader/loader.dart';
@@ -21,16 +23,249 @@ class TendersView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(tendersProvider.notifier);
     final state = ref.watch(tendersProvider);
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
     return Scaffold(
+      endDrawer: Drawer(
+        child: ListView(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6),
+                gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [Color(0xff29b8eb), Color(0xff7634fc)],
+                ),
+              ),
+              child: Theme(
+                data: Theme.of(context).copyWith(
+                  dividerColor: Colors.transparent,
+                  expansionTileTheme: ExpansionTileThemeData(
+                    backgroundColor: Colors.transparent,
+                  ),
+                ),
+                child: ExpansionTile(
+                  title: Text(
+                    'Providers',
+                    style: GoogleFonts.quicksand(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w600,
+                        color: whiteColor),
+                  ),
+                  trailing: Icon(
+                    Icons.add,
+                    color: whiteColor,
+                  ),
+                  children: buildBusinessProvidersFilter(controller, state),
+                ),
+              ),
+            ),
+            20.ph,
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6),
+                gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [Color(0xff29b8eb), Color(0xff7634fc)],
+                ),
+              ),
+              child: Theme(
+                data: Theme.of(context).copyWith(
+                  dividerColor: Colors.transparent,
+                  expansionTileTheme: ExpansionTileThemeData(
+                    backgroundColor: Colors.transparent,
+                  ),
+                ),
+                child: ExpansionTile(
+                  title: Text(
+                    'Sort By',
+                    style: GoogleFonts.quicksand(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w600,
+                        color: whiteColor),
+                  ),
+                  trailing: Icon(
+                    Icons.add,
+                    color: whiteColor,
+                  ),
+                  children: buildSortFilter(controller, state),
+                ),
+                // ListTile(
+                //   title: Text(
+                //     'Sort By',
+                //     style: GoogleFonts.quicksand(
+                //         fontSize: 12.sp,
+                //         fontWeight: FontWeight.w600,
+                //         color: whiteColor),
+                //   ),
+                //   trailing: Icon(
+                //     Icons.sort,
+                //     color: whiteColor,
+                //   ),
+                //   onTap: () {
+                //     showCustomCupertinoDialog(
+                //       context: context,
+                //       dialogTitle: 'Filter',
+                //       actions: controller.getDialogActions(context, ref),
+                //     );
+                //   },
+                // ),
+              ),
+            ),
+            20.ph,
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6),
+                gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [Color(0xff29b8eb), Color(0xff7634fc)],
+                ),
+              ),
+              child: Theme(
+                data: Theme.of(context).copyWith(
+                  dividerColor: Colors.transparent,
+                  expansionTileTheme: ExpansionTileThemeData(
+                    backgroundColor: Colors.transparent,
+                  ),
+                ),
+                child: ExpansionTile(
+                  iconColor: whiteColor,
+                  collapsedIconColor: whiteColor,
+                  backgroundColor: Colors.transparent,
+                  title: Text(
+                    'Business Activities Filter',
+                    style: GoogleFonts.quicksand(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w600,
+                        color: whiteColor),
+                  ),
+                  children: buildBusinessActivitiesFilter(controller, state),
+                ),
+              ),
+            ),
+            20.ph,
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6),
+                gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [Color(0xff29b8eb), Color(0xff7634fc)],
+                ),
+              ),
+              child: Theme(
+                data: Theme.of(context).copyWith(
+                  dividerColor: Colors.transparent,
+                  expansionTileTheme: ExpansionTileThemeData(
+                    backgroundColor: Colors.transparent,
+                  ),
+                ),
+                child: ExpansionTile(
+                  iconColor: Colors.white,
+                  collapsedIconColor: whiteColor,
+                  backgroundColor: Colors.transparent,
+                  title: Text(
+                    'Industries Filter',
+                    style: GoogleFonts.quicksand(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w600,
+                        color: whiteColor),
+                  ),
+                  children: buildIndustriesFilter(controller, state),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+
+      key: _scaffoldKey,
+
       //backgroundColor: HexColor('#F5F5F5'),
       backgroundColor: Colors.white,
       appBar: MyAppBar(
-        title: 'Tenders',
-        size: 50.h,
-      ),
+          title: 'Tenders',
+          size: 50.h,
+          showBell: false,
+          filterOnPressed: () {
+            _scaffoldKey.currentState?.openEndDrawer();
+          }),
 
       body: Column(
         children: [
+          26.ph,
+          Row(
+            children: [
+              Container(
+                width: 281.w,
+                height: 36.h,
+                padding: EdgeInsets.only(left: 20).r,
+                margin: EdgeInsets.only(left: 26).r,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(30.0),
+                    border: Border.all(color: HexColor('#DEDEDE'))),
+                child: TextField(
+                  // onChanged: (value) => controller.debounce(
+                  //   () async {
+                  //     print('ab aya');
+                  //     if (value == '') {
+                  //       print('please enter something');
+                  //     } else {
+                  //       print('idhr aya');
+                  //       controller.bussinesCommunitySearchApi(query: value);
+                  //     }
+                  //   },
+                  // ),
+                  onChanged: (query) {
+                    // controller.debounce(() {
+                    //   controller.bussinesCommunitySearchApi(query: query);
+                    // });
+                  },
+                  decoration: InputDecoration(
+                    hintText: "What are you looking for?",
+                    hintStyle: TextStyle(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w300,
+                        color: HexColor('#75788D')),
+                    suffixIcon: GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        padding: EdgeInsets.only(right: 22).r,
+                        width: 22.w,
+                        height: 21.h,
+                        child: SvgPicture.asset(
+                          'assets/images/search.svg',
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+              10.pw,
+              IconButton(
+                  onPressed: () {
+                    // controller.BussinesCommunitiesViewApi(
+                    //     bearerToken: state.person.Bearer);
+                  },
+                  icon: const Icon(
+                    Icons.refresh,
+                    color: blueColor,
+                  )
+
+                  // SvgPicture.asset(
+                  //   'assets/images/filter.svg',
+                  //   height: 20,
+                  //   width: 40,
+                  // )
+                  ),
+            ],
+          ),
           if (state.responseStatus == Status.loading)
             const Loader()
           else if (state.responseStatus == Status.completed)
@@ -411,4 +646,284 @@ class TendersView extends ConsumerWidget {
       ),
     );
   }
+}
+
+List<Widget> buildBusinessActivitiesFilter(
+    TendersController controller, TendersState state) {
+  return [
+    Container(
+      width: double.infinity,
+      // height: 437,
+      padding: EdgeInsets.only(left: 30, top: 19, bottom: 20, right: 20),
+
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(14),
+          color: HexColor('#FFFFFF'),
+          border: Border.all(color: HexColor('#7F7F8A4D'))),
+      child: Wrap(
+        spacing: 8.0, // Gap between adjacent chips.
+        runSpacing: 4.0, // Gap between lines.
+        children: businessSectors.map((sector) {
+          int index = businessSectors.indexOf(sector);
+          bool isSelected = sector['isChecked'];
+
+          return GestureDetector(
+              onTap: () {
+                // Unselect all other buttons
+                for (var s in businessSectors) {
+                  s['isChecked'] = false;
+                }
+                // Select the tapped button
+                sector['isChecked'] = true;
+
+                // Trigger the API call with the selected sector's ID
+                // controller
+                //     .companyBussinesIsic4mainActivityFilterApi(sector['id']);
+              },
+              child: buttonForFilter(sector['main_activity_name'], isSelected)
+              //  Container(
+              //   margin: EdgeInsets.only(
+              //     top: 10,
+              //   ),
+              //   decoration: BoxDecoration(
+              //     shape: BoxShape.rectangle,
+              //     borderRadius: BorderRadius.circular(6),
+              //     border: Border.all(color: Color(0xffD9D9D9)),
+              //     color: isSelected ? Color(0xff23C2EA) : Colors.white,
+              //   ),
+              //   height: 33,
+              //   //width: 120,
+              //   child: Center(
+              //     child: AutoSizeText(
+              //       sector['main_activity_name'],
+              //       maxLines: 1,
+              //       textAlign: TextAlign.center,
+              //       style: GoogleFonts.montserrat(
+              //           fontSize: 10,
+              //           fontWeight: FontWeight.w400,
+              //           color: Color(0xff454544)),
+              //     ),
+              //   ),
+              // ),
+              );
+        }).toList(),
+      ),
+    ),
+  ];
+}
+
+List<Widget> buildIndustriesFilter(
+    TendersController controller, TendersState state) {
+  return [
+    Container(
+      width: double.infinity,
+      // height: 437,
+      padding: EdgeInsets.only(left: 30, top: 19, bottom: 20, right: 20),
+
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(14),
+          color: HexColor('#FFFFFF'),
+          border: Border.all(color: HexColor('#7F7F8A4D'))),
+      child: Wrap(
+        spacing: 8.0, // Gap between adjacent chips.
+        runSpacing: 4.0, // Gap between lines.
+        children: industriesFilter.map((sector) {
+          int index = industriesFilter.indexOf(sector);
+          bool isSelected = sector['isChecked'];
+
+          return GestureDetector(
+              onTap: () {
+                // Unselect all other buttons
+                for (var s in industriesFilter) {
+                  s['isChecked'] = false;
+                }
+                // Select the tapped button
+                sector['isChecked'] = true;
+
+                // Trigger the API call with the selected sector's ID
+                // controller.companyBussinesIndustryFilterApi(sector['id']);
+              },
+              child: buttonForFilter(sector['name'], isSelected)
+              // Container(
+              //   margin: EdgeInsets.only(
+              //     top: 10,
+              //   ),
+              //   decoration: BoxDecoration(
+              //     shape: BoxShape.rectangle,
+              //     borderRadius: BorderRadius.circular(6),
+              //     border: Border.all(color: Color(0xffD9D9D9)),
+              //     color: isSelected ? Color(0xff23C2EA) : Colors.white,
+              //   ),
+              //   height: 33,
+              //   //width: 120,
+              //   child: Center(
+              //     child: AutoSizeText(
+              //       sector['name'],
+              //       maxLines: 1,
+              //       textAlign: TextAlign.center,
+              //       style: GoogleFonts.montserrat(
+              //           fontSize: 10,
+              //           fontWeight: FontWeight.w400,
+              //           color: Color(0xff454544)),
+              //     ),
+              //   ),
+              // ),
+              );
+        }).toList(),
+      ),
+    ),
+  ];
+}
+
+List<Widget> buildBusinessProvidersFilter(
+    TendersController controller, TendersState state) {
+  return [
+    Container(
+      width: double.infinity,
+      // height: 437,
+      padding: EdgeInsets.only(left: 30, top: 19, bottom: 20, right: 20),
+
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(14),
+          color: HexColor('#FFFFFF'),
+          border: Border.all(color: HexColor('#7F7F8A4D'))),
+      child: Wrap(
+        spacing: 8.0,
+        runSpacing: 4.0,
+        children: controller.businessProviders.map((sector) {
+          int index = controller.businessProviders.indexOf(sector);
+          bool isSelected = sector['isChecked'];
+
+          return GestureDetector(
+              onTap: () {
+                // Unselect all other buttons
+                for (var s in controller.businessProviders) {
+                  s['isChecked'] = false;
+                }
+                // Select the tapped button
+                sector['isChecked'] = true;
+
+                // controller.companyBussinesFilterApi(
+                //     bussinestype: sector['name']);
+              },
+              child: buttonForFilter(sector['name'], isSelected)
+              // Container(
+              //   margin: EdgeInsets.only(
+              //     top: 10,
+              //   ),
+              //   decoration: BoxDecoration(
+              //     shape: BoxShape.rectangle,
+              //     borderRadius: BorderRadius.circular(6),
+              //     border: Border.all(color: Color(0xffD9D9D9)),
+              //     color: isSelected ? Color(0xff28B9EB) : Colors.white,
+              //   ),
+              //   height: 33.h,
+              //   //width: 120,
+              //   child: Center(
+              //     child: AutoSizeText(
+              //       sector['name'],
+              //       maxLines: 1,
+              //       textAlign: TextAlign.center,
+              //       style: GoogleFonts.montserrat(
+              //           fontSize: 10,
+              //           fontWeight: FontWeight.w600,
+              //           color: isSelected ? whiteColor : Color(0xff454544)),
+              //     ),
+              //   ),
+              // ),
+              );
+        }).toList(),
+      ),
+    ),
+  ];
+}
+
+List<Widget> buildSortFilter(TendersController controller, TendersState state) {
+  return [
+    Container(
+      width: double.infinity,
+      // height: 437,
+      padding: EdgeInsets.only(left: 30, top: 19, bottom: 20, right: 20),
+
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(14),
+          color: HexColor('#FFFFFF'),
+          border: Border.all(color: HexColor('#7F7F8A4D'))),
+      child: Wrap(
+        spacing: 8.0,
+        runSpacing: 4.0,
+        children: sortList.map((sector) {
+          int index = sortList.indexOf(sector);
+          bool isSelected = sector['isChecked'];
+
+          return GestureDetector(
+              onTap: () {
+                // Unselect all other buttons
+                for (var s in sortList) {
+                  s['isChecked'] = false;
+                }
+                // Select the tapped button
+                sector['isChecked'] = true;
+
+                // Trigger the API call with the selected sector's ID
+                // companyBussinesFilterApi(bussinestype: sector['name']);
+                //controller.companyFilterApi(filtertype: sector['name']);
+              },
+              child: buttonForFilter(sector['name'], isSelected)
+              // Container(
+              //   margin: EdgeInsets.only(
+              //     top: 10,
+              //   ),
+              //   decoration: BoxDecoration(
+              //     shape: BoxShape.rectangle,
+              //     borderRadius: BorderRadius.circular(6),
+              //     border: Border.all(color: Color(0xffD9D9D9)),
+              //     color: isSelected ? Color(0xff28B9EB) : Colors.white,
+              //   ),
+              //   height: 33,
+              //   //width: 120,
+              //   child: Center(
+              //     child: AutoSizeText(
+              //       sector['name'],
+              //       maxLines: 1,
+              //       textAlign: TextAlign.center,
+              //       style: GoogleFonts.montserrat(
+              //           fontSize: 10,
+              //           fontWeight: FontWeight.w600,
+              //           color: isSelected ? whiteColor : Color(0xff454544)),
+              //     ),
+              //   ),
+              // ),
+              );
+        }).toList(),
+      ),
+    ),
+  ];
+}
+
+Widget buttonForFilter(name, isSelected) {
+  return Container(
+    margin: EdgeInsets.only(
+      top: 10,
+    ),
+    decoration: BoxDecoration(
+      shape: BoxShape.rectangle,
+      borderRadius: BorderRadius.circular(6),
+      border: Border.all(color: Color(0xffD9D9D9)),
+      color: isSelected ? Color(0xff28B9EB) : Colors.white,
+    ),
+    height: 33.h,
+    //width: 120,
+    child: Center(
+      child: AutoSizeText(
+        name,
+        maxLines: 1,
+        textAlign: TextAlign.center,
+        style: GoogleFonts.montserrat(
+            fontSize: 10,
+            fontWeight: FontWeight.w600,
+            color: isSelected ? whiteColor : Color(0xff454544)),
+      ),
+    ),
+  );
 }

@@ -590,49 +590,20 @@ List<Widget> buildBusinessActivitiesFilter(
       child: Wrap(
         spacing: 8.0, // Gap between adjacent chips.
         runSpacing: 4.0, // Gap between lines.
-        children: businessSectors.map((sector) {
-          int index = businessSectors.indexOf(sector);
-          bool isSelected = sector['isChecked'];
+        children: state.isic4MainActivities!.map((sector) {
+          bool isSelected = sector.id == state.selectedSectorId;
+          print(isSelected.runtimeType);
+          print(isSelected);
+
+          // int index = businessSectors.indexOf(sector);
+          // bool isSelected = sector['isChecked'];
 
           return GestureDetector(
-              onTap: () {
-                // Unselect all other buttons
-                for (var s in businessSectors) {
-                  s['isChecked'] = false;
-                }
-                // Select the tapped button
-                sector['isChecked'] = true;
-
-                // Trigger the API call with the selected sector's ID
-                controller
-                    .companyBussinesIsic4mainActivityFilterApi(sector['id']);
-              },
-              child: buttonForFilter(sector['main_activity_name'], isSelected)
-              //  Container(
-              //   margin: EdgeInsets.only(
-              //     top: 10,
-              //   ),
-              //   decoration: BoxDecoration(
-              //     shape: BoxShape.rectangle,
-              //     borderRadius: BorderRadius.circular(6),
-              //     border: Border.all(color: Color(0xffD9D9D9)),
-              //     color: isSelected ? Color(0xff23C2EA) : Colors.white,
-              //   ),
-              //   height: 33,
-              //   //width: 120,
-              //   child: Center(
-              //     child: AutoSizeText(
-              //       sector['main_activity_name'],
-              //       maxLines: 1,
-              //       textAlign: TextAlign.center,
-              //       style: GoogleFonts.montserrat(
-              //           fontSize: 10,
-              //           fontWeight: FontWeight.w400,
-              //           color: Color(0xff454544)),
-              //     ),
-              //   ),
-              // ),
-              );
+            onTap: () {
+              controller.setSelectedSectorId(sector.id!);
+            },
+            child: buttonForFilter(sector.mainActivityName, isSelected),
+          );
         }).toList(),
       ),
     ),
@@ -835,23 +806,33 @@ Widget buttonForFilter(name, isSelected) {
       top: 10,
     ),
     decoration: BoxDecoration(
-      shape: BoxShape.rectangle,
-      borderRadius: BorderRadius.circular(6),
-      border: Border.all(color: Color(0xffD9D9D9)),
-      color: isSelected ? Color(0xff28B9EB) : Colors.white,
-    ),
+        shape: BoxShape.rectangle,
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: Color(0xffD9D9D9)),
+        color: isSelected ? Color(0xff28B9EB) : whiteColor),
     height: 33.h,
     //width: 120,
-    child: Center(
-      child: AutoSizeText(
-        name,
-        maxLines: 1,
-        textAlign: TextAlign.center,
-        style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w600,
-            color: isSelected ? whiteColor : Color(0xff454544)),
-      ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: AutoSizeText(
+            name,
+            maxLines: 1,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.montserrat(
+                fontSize: 10,
+                fontWeight: FontWeight.w600,
+                color: isSelected ? whiteColor : Color(0xff454544)),
+          ),
+        ),
+        Icon(
+          isSelected ? Icons.close : Icons.add,
+          color: isSelected ? whiteColor : Color(0xff28B9EB),
+          size: 18,
+        )
+      ],
     ),
   );
 }

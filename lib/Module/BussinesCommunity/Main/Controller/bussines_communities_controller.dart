@@ -16,6 +16,9 @@ class BussinesCommunitiesState {
   final Person person;
   int? selectedFilterIndex;
   bool isFilterSelected;
+  final List<Isic4MainActivities>? isic4MainActivities;
+  final List<Industries>? industries;
+  int? selectedSectorId;
 
   BussinesCommunitiesState(
       {this.responseStatus = Status.loading,
@@ -23,23 +26,35 @@ class BussinesCommunitiesState {
       this.secondFilterval = 'Buyer',
       required this.person,
       this.selectedFilterIndex,
-      this.isFilterSelected = false})
-      : companiesApiList = companiesApiList ?? [];
+      this.isFilterSelected = false,
+      List<Isic4MainActivities>? isic4MainActivities,
+      List<Industries>? industries,
+      this.selectedSectorId})
+      : companiesApiList = companiesApiList ?? [],
+        isic4MainActivities = isic4MainActivities ?? [],
+        industries = industries ?? [];
 
-  BussinesCommunitiesState copyWith(
-      {Status? responseStatus,
-      List<Companies>? companiesApiList,
-      String? secondFilterval,
-      Person? person,
-      int? selectedFilterIndex,
-      bool? isFilterSelected}) {
+  BussinesCommunitiesState copyWith({
+    Status? responseStatus,
+    List<Companies>? companiesApiList,
+    String? secondFilterval,
+    Person? person,
+    int? selectedFilterIndex,
+    bool? isFilterSelected,
+    List<Isic4MainActivities>? isic4MainActivities,
+    List<Industries>? industries,
+    int? selectedSectorId,
+  }) {
     return BussinesCommunitiesState(
         responseStatus: responseStatus ?? this.responseStatus,
         companiesApiList: companiesApiList ?? this.companiesApiList,
         secondFilterval: secondFilterval ?? this.secondFilterval,
         person: person ?? this.person,
         selectedFilterIndex: selectedFilterIndex ?? this.selectedFilterIndex,
-        isFilterSelected: isFilterSelected ?? this.isFilterSelected);
+        isFilterSelected: isFilterSelected ?? this.isFilterSelected,
+        isic4MainActivities: isic4MainActivities ?? this.isic4MainActivities,
+        industries: industries ?? this.industries,
+        selectedSectorId: selectedSectorId ?? this.selectedSectorId);
   }
 }
 
@@ -60,6 +75,8 @@ class BussinesCommunitiesController
       );
       state = state.copyWith(
         companiesApiList: value.companies,
+        isic4MainActivities: value.isic4MainActivities,
+        industries: value.industries,
         responseStatus: Status.completed,
       );
     } catch (e, stackTrace) {
@@ -100,7 +117,7 @@ class BussinesCommunitiesController
   }
 
   companyBussinesIsic4mainActivityFilterApi(
-    String sectorId,
+    int sectorId,
   ) async {
     setResponseStatus(Status.loading);
     state.companiesApiList.clear();
@@ -241,6 +258,20 @@ class BussinesCommunitiesController
     {'id': '2', 'name': 'Supplier', 'isChecked': false},
     {'id': '3', 'name': 'Service-Provider', 'isChecked': false},
   ];
+  void setSelectedSectorId(int? sectorId) {
+    //state = state.copyWith(selectedSectorId: sectorId);
+
+    final currentSelectedId = state.selectedSectorId;
+
+    if (currentSelectedId == sectorId) {
+      state = state.copyWith(selectedSectorId: 0);
+      BussinesCommunitiesViewApi(bearerToken: state.person.Bearer);
+    } else {
+      // Otherwise, select the tapped sector
+      state = state.copyWith(selectedSectorId: sectorId);
+      companyBussinesIsic4mainActivityFilterApi(sectorId!);
+    }
+  }
 }
 
 final bussinesCommunitiesProvider = StateNotifierProvider.autoDispose<

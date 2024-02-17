@@ -60,4 +60,10 @@ class TendersController extends StateNotifier<TendersState> {
   void setResponseStatus(Status val) {
     state = state.copyWith(responseStatus: val);
   }
+
+  List<Map<String, dynamic>> businessProviders = [
+    {'id': '1', 'name': 'Buyer', 'isChecked': false},
+    {'id': '2', 'name': 'Supplier', 'isChecked': false},
+    {'id': '3', 'name': 'Service-Provider', 'isChecked': false},
+  ];
 }

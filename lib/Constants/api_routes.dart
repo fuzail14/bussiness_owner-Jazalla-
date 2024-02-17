@@ -79,4 +79,7 @@ class Api {
 
   static const String requestforProposal =
       "${baseUrl}marketplace/GeneralServices/requestforProposal";
+
+  static const String getIsic4MainActivities =
+      "${baseUrl}marketplace/Isic/getIsic4MainActivities";
 }

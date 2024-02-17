@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 List<Map<String, dynamic>> sortList = [
   {'id': '1', 'name': 'Newest', 'isChecked': false},
   {'id': '2', 'name': 'Oldest', 'isChecked': false},
@@ -100,3 +102,4 @@ List<Map<String, dynamic>> industriesFilter = [
   {'id': '10', 'name': 'Healthcare Services', 'isChecked': false},
   {'id': '11', 'name': 'Hospitality', 'isChecked': false},
 ];
+final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
