@@ -5,12 +5,25 @@ class SaleBussines {
   });
   late final bool success;
   late final List<Businesses> businesses;
-
+  late final List<Isic4MainActivities> isic4MainActivities;
+  late final List<Industries> industries;
   SaleBussines.fromJson(Map<String, dynamic> json) {
     success = json['success'];
-    businesses = List.from(json['businesses'])
-        .map((e) => Businesses.fromJson(e))
-        .toList();
+    // businesses = List.from(json['businesses'])
+    //     .map((e) => Businesses.fromJson(e))
+    //     .toList();
+    businesses = (json['businesses'] as List?)
+            ?.map((e) => Businesses.fromJson(e))
+            .toList() ??
+        [];
+    isic4MainActivities = (json['Isic4MainActivities'] as List?)
+            ?.map((e) => Isic4MainActivities.fromJson(e))
+            .toList() ??
+        [];
+    industries = (json['Industries'] as List?)
+            ?.map((e) => Industries.fromJson(e))
+            .toList() ??
+        [];
   }
 
   Map<String, dynamic> toJson() {
@@ -563,6 +576,78 @@ class Companies {
     _data['govt_requirement'] = govtRequirement;
     _data['company_requirement'] = companyRequirement;
     _data['attached_file'] = attachedFile;
+    return _data;
+  }
+}
+
+class Isic4MainActivities {
+  Isic4MainActivities({
+    required this.id,
+    required this.mainActivityName,
+    required this.sort,
+    required this.icon,
+    required this.status,
+  });
+  int? id;
+  String? mainActivityName;
+  int? sort;
+  String? icon;
+  String? status;
+
+  Isic4MainActivities.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    mainActivityName = json['main_activity_name'];
+    sort = json['sort'];
+    icon = json['icon'];
+    status = json['status'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final _data = <String, dynamic>{};
+    _data['id'] = id;
+    _data['main_activity_name'] = mainActivityName;
+    _data['sort'] = sort;
+    _data['icon'] = icon;
+    _data['status'] = status;
+
+    return _data;
+  }
+}
+
+class Industries {
+  Industries({
+    required this.id,
+    required this.name,
+    this.description,
+    required this.sort,
+    required this.icon,
+    required this.status,
+  });
+  int? id;
+  String? name;
+  String? description;
+  int? sort;
+  String? icon;
+  String? status;
+
+  Industries.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    description = null;
+    sort = json['sort'];
+    icon = json['icon'];
+    status = json['status'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final _data = <String, dynamic>{};
+    _data['id'] = id;
+    _data['name'] = name;
+    _data['description'] = description;
+    _data['sort'] = sort;
+    _data['icon'] = icon;
+    _data['status'] = status;
+
     return _data;
   }
 }

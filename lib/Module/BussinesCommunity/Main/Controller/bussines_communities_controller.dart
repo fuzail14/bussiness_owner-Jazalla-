@@ -19,6 +19,8 @@ class BussinesCommunitiesState {
   final List<Isic4MainActivities>? isic4MainActivities;
   final List<Industries>? industries;
   int? selectedSectorId;
+  int? selectedIndustryId;
+  int? selectedProviderId;
 
   BussinesCommunitiesState(
       {this.responseStatus = Status.loading,
@@ -29,22 +31,25 @@ class BussinesCommunitiesState {
       this.isFilterSelected = false,
       List<Isic4MainActivities>? isic4MainActivities,
       List<Industries>? industries,
-      this.selectedSectorId})
+      this.selectedSectorId,
+      this.selectedIndustryId,
+      this.selectedProviderId})
       : companiesApiList = companiesApiList ?? [],
         isic4MainActivities = isic4MainActivities ?? [],
         industries = industries ?? [];
 
-  BussinesCommunitiesState copyWith({
-    Status? responseStatus,
-    List<Companies>? companiesApiList,
-    String? secondFilterval,
-    Person? person,
-    int? selectedFilterIndex,
-    bool? isFilterSelected,
-    List<Isic4MainActivities>? isic4MainActivities,
-    List<Industries>? industries,
-    int? selectedSectorId,
-  }) {
+  BussinesCommunitiesState copyWith(
+      {Status? responseStatus,
+      List<Companies>? companiesApiList,
+      String? secondFilterval,
+      Person? person,
+      int? selectedFilterIndex,
+      bool? isFilterSelected,
+      List<Isic4MainActivities>? isic4MainActivities,
+      List<Industries>? industries,
+      int? selectedSectorId,
+      int? selectedIndustryId,
+      int? selectedProviderId}) {
     return BussinesCommunitiesState(
         responseStatus: responseStatus ?? this.responseStatus,
         companiesApiList: companiesApiList ?? this.companiesApiList,
@@ -54,7 +59,9 @@ class BussinesCommunitiesState {
         isFilterSelected: isFilterSelected ?? this.isFilterSelected,
         isic4MainActivities: isic4MainActivities ?? this.isic4MainActivities,
         industries: industries ?? this.industries,
-        selectedSectorId: selectedSectorId ?? this.selectedSectorId);
+        selectedSectorId: selectedSectorId ?? this.selectedSectorId,
+        selectedIndustryId: selectedIndustryId ?? this.selectedIndustryId,
+        selectedProviderId: selectedProviderId ?? this.selectedProviderId);
   }
 }
 
@@ -66,6 +73,7 @@ class BussinesCommunitiesController
       : super(BussinesCommunitiesState(person: person)) {
     BussinesCommunitiesViewApi(bearerToken: person.Bearer);
   }
+  final TextEditingController searchController = TextEditingController();
 
   Future<void> BussinesCommunitiesViewApi({required bearerToken}) async {
     setResponseStatus(Status.loading);
@@ -142,7 +150,7 @@ class BussinesCommunitiesController
   }
 
   companyBussinesIndustryFilterApi(
-    String industryId,
+    int industryId,
   ) async {
     setResponseStatus(Status.loading);
     state.companiesApiList.clear();
@@ -168,6 +176,7 @@ class BussinesCommunitiesController
   companyFilterApi({
     String? filtertype,
   }) async {
+    log(filtertype!);
     setResponseStatus(Status.loading);
     state.companiesApiList.clear();
     try {
@@ -175,6 +184,8 @@ class BussinesCommunitiesController
         type: filtertype,
         bearerToken: state.person.Bearer,
       );
+      log(value.toString());
+
       state = state.copyWith(
         companiesApiList: value.companies,
         responseStatus: Status.completed,
@@ -190,68 +201,112 @@ class BussinesCommunitiesController
 
   bussinesCommunitySearchApi({
     String? query,
-  }) {
+  }) async {
     if (query == null || query.isEmpty) {
       // If the search query is empty, we might want to load the initial data again
       BussinesCommunitiesViewApi(bearerToken: state.person.Bearer);
     } else {
-      //state.companiesApiList.clear();
-      //update();
-      bussinesCommunitiesRepo
-          .bussinesSearchApi(
-        query: query,
-        bearerToken: state.person.Bearer,
-      )
-          .then((value) {
-        Status.completed;
-        final updatedCompaniesList = List<Companies>.from(value.companies);
+      setResponseStatus(Status.loading);
+      state.companiesApiList.clear();
 
-        for (int i = 0; i < value.companies.length; i++) {
-          state.companiesApiList.add(value.companies[i]);
-        }
-        print('dikaaaa ${state.companiesApiList}');
+      try {
+        final value = await bussinesCommunitiesRepo.bussinesSearchApi(
+          query: query,
+          bearerToken: state.person.Bearer,
+        );
+        log(value.toString());
+
         state = state.copyWith(
-          companiesApiList: updatedCompaniesList,
+          companiesApiList: value.companies,
+          responseStatus: Status.completed,
         );
-
-        setResponseStatus(Status.completed);
-        //update();
-      }).onError((error, stackTrace) {
+      } catch (e, stackTrace) {
         setResponseStatus(Status.error);
+        log(e.toString());
+        log(stackTrace.toString());
 
-        myToast(
-          backgroundColor: Colors.white,
-          msg: '$error ',
-        );
-        log('controller error ${error.toString()}');
-        //log(stackTrace.toString());
-      });
+        myToast(msg: e.toString());
+      }
+      // bussinesCommunitiesRepo
+      //     .bussinesSearchApi(
+      //   query: query,
+      //   bearerToken: state.person.Bearer,
+      // )
+      //     .then((value) {
+      //   Status.completed;
+      //   final updatedCompaniesList = List<Companies>.from(value.companies);
+
+      //   for (int i = 0; i < value.companies.length; i++) {
+      //     state.companiesApiList.add(value.companies[i]);
+      //   }
+      //   print('dikaaaa ${state.companiesApiList}');
+      //   state = state.copyWith(
+      //     companiesApiList: updatedCompaniesList,
+      //   );
+
+      //   setResponseStatus(Status.completed);
+      //   //update();
+      // }).onError((error, stackTrace) {
+      //   setResponseStatus(Status.error);
+
+      //   myToast(
+      //     backgroundColor: Colors.white,
+      //     msg: '$error ',
+      //   );
+      //   log('controller error ${error.toString()}');
+      //   //log(stackTrace.toString());
+      // });
     }
   }
 
   String? searchQuery;
   Timer? debouncer;
+
   void debounce(
     VoidCallback callback, {
     Duration duration = const Duration(milliseconds: 1000),
   }) {
-    if (debouncer?.isActive ?? false) debouncer!.cancel();
-    debouncer = Timer(duration, callback);
-    if (debouncer != null) {
+    // Cancel the existing timer if it's active to ensure only the last call is executed
+    // after the specified duration of no further calls.
+    if (debouncer?.isActive ?? false) {
       debouncer!.cancel();
-      setResponseStatus(Status.completed);
     }
 
+    // Set up a new timer that will invoke the callback after the duration if no new
+    // debounce calls are made.
     debouncer = Timer(duration, callback);
-    setResponseStatus(Status.completed);
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
+    // Ensure the debouncer is cancelled when the controller is disposed to avoid memory leaks.
     debouncer?.cancel();
   }
+
+  // String? searchQuery;
+  // Timer? debouncer;
+  // void debounce(
+  //   VoidCallback callback, {
+  //   Duration duration = const Duration(milliseconds: 1000),
+  // }) {
+  //   if (debouncer?.isActive ?? false) debouncer!.cancel();
+  //   debouncer = Timer(duration, callback);
+  //   if (debouncer != null) {
+  //     debouncer!.cancel();
+  //     setResponseStatus(Status.completed);
+  //   }
+
+  //   debouncer = Timer(duration, callback);
+  //   setResponseStatus(Status.completed);
+  // }
+
+  // @override
+  // void dispose() {
+  //   // TODO: implement dispose
+  //   super.dispose();
+  //   debouncer?.cancel();
+  // }
 
   List<Map<String, dynamic>> businessProviders = [
     {'id': '1', 'name': 'Buyer', 'isChecked': false},
@@ -272,6 +327,36 @@ class BussinesCommunitiesController
       companyBussinesIsic4mainActivityFilterApi(sectorId!);
     }
   }
+
+  void setSelectedIndustryId(int? sectorId) {
+    //state = state.copyWith(selectedSectorId: sectorId);
+
+    final currentSelectedId = state.selectedIndustryId;
+
+    if (currentSelectedId == sectorId) {
+      state = state.copyWith(selectedIndustryId: 0);
+      BussinesCommunitiesViewApi(bearerToken: state.person.Bearer);
+    } else {
+      // Otherwise, select the tapped sector
+      state = state.copyWith(selectedIndustryId: sectorId);
+      companyBussinesIndustryFilterApi(sectorId!);
+    }
+  }
+
+  void updateSelectedProviderId(int? providerId) {
+    //state = state.copyWith(selectedSectorId: sectorId);
+
+    final currentSelectedId = state.selectedProviderId;
+
+    if (currentSelectedId == providerId) {
+      state = state.copyWith(selectedProviderId: 0);
+      BussinesCommunitiesViewApi(bearerToken: state.person.Bearer);
+    } else {
+      // Otherwise, select the tapped sector
+      state = state.copyWith(selectedProviderId: providerId);
+      companyBussinesIndustryFilterApi(providerId!);
+    }
+  }
 }
 
 final bussinesCommunitiesProvider = StateNotifierProvider.autoDispose<
@@ -282,3 +367,5 @@ final bussinesCommunitiesProvider = StateNotifierProvider.autoDispose<
   }
   return BussinesCommunitiesController(person);
 }, dependencies: [personProvider]);
+final expansionTileStateProvider =
+    StateProvider<Map<String, bool>>((ref) => {});

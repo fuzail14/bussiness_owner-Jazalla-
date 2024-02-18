@@ -12,12 +12,20 @@ class BussinesCommunity {
     success = json['success'];
     companies =
         List.from(json['companies']).map((e) => Companies.fromJson(e)).toList();
-    isic4MainActivities = List.from(json['Isic4MainActivities'])
-        .map((e) => Isic4MainActivities.fromJson(e))
-        .toList();
-    industries = List.from(json['Industries'])
-        .map((e) => Industries.fromJson(e))
-        .toList();
+    isic4MainActivities = (json['Isic4MainActivities'] as List?)
+            ?.map((e) => Isic4MainActivities.fromJson(e))
+            .toList() ??
+        [];
+    industries = (json['Industries'] as List?)
+            ?.map((e) => Industries.fromJson(e))
+            .toList() ??
+        [];
+    // isic4MainActivities = List.from(json['Isic4MainActivities'])
+    //     .map((e) => Isic4MainActivities.fromJson(e))
+    //     .toList();
+    // industries = List.from(json['Industries'])
+    //     .map((e) => Industries.fromJson(e))
+    //     .toList();
   }
 
   Map<String, dynamic> toJson() {
