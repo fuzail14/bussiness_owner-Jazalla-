@@ -15,4 +15,14 @@ class InvestMentOpportunityRepository {
 
     return InvestMentOpportunity.fromJson(response);
   }
+
+  Future<InvestMentOpportunity> investmentOpportunitySearchApi(
+      {required bearerToken, required query}) async {
+    var response = await networkServices.getReq(
+        "${Api.investmentOpportunitySearch}/$query",
+        bearerToken: bearerToken);
+    //log('my response${response.toString()}');
+
+    return InvestMentOpportunity.fromJson(response);
+  }
 }

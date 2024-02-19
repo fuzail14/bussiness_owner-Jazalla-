@@ -71,6 +71,8 @@ class Api {
       "${baseUrl}marketplace/InvestmentOpportunity/InvestmentOpportunityApi";
   static const String getInvestmentOpportunityDetail =
       "${baseUrl}marketplace/InvestmentOpportunity/getInvestmentOpportunityDetail";
+  static const String investmentOpportunitySearch =
+      "${baseUrl}marketplace/InvestmentOpportunity/InvestmentOpportunitySearch";
 
   static const String sendInquiry =
       "${baseUrl}marketplace/OnlineStore/sendInquiry";

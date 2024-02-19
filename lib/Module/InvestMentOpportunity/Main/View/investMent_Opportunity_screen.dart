@@ -50,10 +50,28 @@ class InvestMentOpportunityView extends ConsumerWidget {
                         fontWeight: FontWeight.w600,
                         color: whiteColor),
                   ),
+                  onExpansionChanged: (bool expanded) {
+                    // Update the expansion state for this specific tile
+                    ref
+                        .read(expansionTileStateProvider.notifier)
+                        .update((state) => {
+                              ...state,
+                              'sortBy':
+                                  expanded, // Use unique keys for each tile, e.g., 'sortBy', 'providers'
+                            });
+                  },
                   trailing: Icon(
                     Icons.add,
                     color: whiteColor,
                   ),
+                  // children: ref
+                  //             .watch(expansionTileStateProvider)
+                  //             .containsKey('sortBy') &&
+                  //         ref.watch(expansionTileStateProvider)['sortBy'] ==
+                  //             true
+                  //     ? buildSortFilter(controller,
+                  //         state) // This function builds the children widgets
+                  //     : [],
                   children: buildSortFilter(controller, state),
                 ),
                 // ListTile(
@@ -106,6 +124,16 @@ class InvestMentOpportunityView extends ConsumerWidget {
                         fontWeight: FontWeight.w600,
                         color: whiteColor),
                   ),
+                  onExpansionChanged: (bool expanded) {
+                    // Update the expansion state for this specific tile
+                    ref
+                        .read(expansionTileStateProvider.notifier)
+                        .update((state) => {
+                              ...state,
+                              'Business Activities Filter':
+                                  expanded, // Use unique keys for each tile, e.g., 'sortBy', 'providers'
+                            });
+                  },
                   children: buildBusinessActivitiesFilter(controller, state),
                 ),
               ),
@@ -166,7 +194,7 @@ class InvestMentOpportunityView extends ConsumerWidget {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(30.0),
-                      border: Border.all(color: HexColor('#DEDEDE'))),
+                      border: Border.all(color: blueColor)),
                   child: TextField(
                     // onChanged: (value) => controller.debounce(
                     //   () async {
@@ -182,9 +210,9 @@ class InvestMentOpportunityView extends ConsumerWidget {
                     onChanged: (query) {
                       // controller.debounce(() {
                       //   controller.bussinesCommunitySearchApi(query: query);
-
                       // });
                     },
+                    controller: controller.searchController,
                     decoration: InputDecoration(
                       hintText: "What are you looking for?",
                       hintStyle: TextStyle(
@@ -192,7 +220,10 @@ class InvestMentOpportunityView extends ConsumerWidget {
                           fontWeight: FontWeight.w300,
                           color: HexColor('#75788D')),
                       suffixIcon: GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          controller.investmentOpportunitySearchApi(
+                              query: controller.searchController.text.trim());
+                        },
                         child: Container(
                           padding: EdgeInsets.only(right: 22).r,
                           width: 22.w,
@@ -228,287 +259,310 @@ class InvestMentOpportunityView extends ConsumerWidget {
             ),
             if (state.responseStatus == Status.loading)
               const Loader()
-            else if (state.responseStatus == Status.completed)
-              Expanded(
-                  child: ListView.builder(
-                itemCount: state.investmentsList.length,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  var investments = state.investmentsList[index];
-                  return InkWell(
-                    onTap: () {},
-                    child: Container(
-                      height: 461.h,
-                      margin:
-                          const EdgeInsets.only(top: 26, left: 27, right: 27).r,
-                      padding: const EdgeInsets.only(
-                        top: 15,
-                        left: 21,
-                        right: 25,
-                      ).r,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5).r,
-                        border: Border.all(
-                            color: const Color(0xff26BDEB), width: 2),
-                        color: HexColor('#FFFFFF'),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Center(
-                            child: AutoSizeText(
-                              investments.title.toString(),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 14.sp,
-                                  color: HexColor('#707070')),
+            else if (state.responseStatus == Status.completed) ...[
+              20.ph,
+              if (state.investmentsList.isEmpty) ...[
+                Center(
+                  child: Text(
+                    'No Data Found.',
+                    style: GoogleFonts.montserrat(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                        color: HexColor('#EB2F2F')),
+                  ),
+                ),
+              ] else
+                Expanded(
+                    child: ListView.builder(
+                  itemCount: state.investmentsList.length,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    var investments = state.investmentsList[index];
+                    return InkWell(
+                      onTap: () {},
+                      child: Container(
+                        height: 461.h,
+                        margin:
+                            const EdgeInsets.only(top: 26, left: 27, right: 27)
+                                .r,
+                        padding: const EdgeInsets.only(
+                          top: 15,
+                          left: 21,
+                          right: 25,
+                        ).r,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5).r,
+                          border: Border.all(
+                              color: const Color(0xff26BDEB), width: 2),
+                          color: HexColor('#FFFFFF'),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Center(
+                              child: AutoSizeText(
+                                investments.title.toString(),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.montserrat(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14.sp,
+                                    color: HexColor('#707070')),
+                              ),
                             ),
-                          ),
-                          Center(
-                            child: AutoSizeText(
-                              investments.interest.toString(),
-                              maxLines: 2,
+                            Center(
+                              child: AutoSizeText(
+                                investments.interest.toString(),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.montserrat(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12.sp,
+                                    color: HexColor('#707070')),
+                              ),
+                            ),
+                            19.ph,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                AutoSizeText(
+                                  investments.interest.toString(),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: GoogleFonts.montserrat(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 12.sp,
+                                      color: HexColor('#707070')),
+                                ),
+                                SvgPicture.asset('assets/images/msg_phone.svg'),
+                              ],
+                            ),
+                            AutoSizeText(
+                              investments.postedDesignation.toString(),
+                              maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.center,
                               style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12.sp,
                                   color: HexColor('#707070')),
                             ),
-                          ),
-                          19.ph,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              AutoSizeText(
-                                investments.interest.toString(),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 12.sp,
-                                    color: HexColor('#707070')),
-                              ),
-                              SvgPicture.asset('assets/images/msg_phone.svg'),
-                            ],
-                          ),
-                          AutoSizeText(
-                            investments.postedDesignation.toString(),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: GoogleFonts.montserrat(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12.sp,
-                                color: HexColor('#707070')),
-                          ),
-                          17.ph,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              AutoSizeText(
-                                'Location',
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 12.sp,
-                                    color: HexColor('#707070')),
-                              ),
-                              AutoSizeText(
-                                'Industries',
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 12.sp,
-                                    color: HexColor('#707070')),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              AutoSizeText(
-                                investments.locationPreference.toString(),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 12.sp,
-                                    color: HexColor('#707070')),
-                              ),
-                              AutoSizeText(
-                                investments.companies!.primaryActivity
-                                    .toString(),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 12.sp,
-                                    color: HexColor('#707070')),
-                              ),
-                            ],
-                          ),
-                          11.ph,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              AutoSizeText(
-                                'Posted By',
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 12.sp,
-                                    color: HexColor('#707070')),
-                              ),
-                              AutoSizeText(
-                                'Established Date',
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 12.sp,
-                                    color: HexColor('#707070')),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              AutoSizeText(
-                                investments.companies!.companyName.toString(),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 12.sp,
-                                    color: HexColor('#707070')),
-                              ),
-                              AutoSizeText(
-                                investments.establishedDate.toString(),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 12.sp,
-                                    color: HexColor('#707070')),
-                              ),
-                            ],
-                          ),
-                          11.ph,
-                          AutoSizeText(
-                            'Business for Sale',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: GoogleFonts.montserrat(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 12.sp,
-                                color: HexColor('#707070')),
-                          ),
-                          AutoSizeText(
-                            investments.targetSellingPrice.toString(),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: GoogleFonts.montserrat(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12.sp,
-                                color: HexColor('#707070')),
-                          ),
-                          18.ph,
-                          AutoSizeText(
-                            'Description',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: GoogleFonts.montserrat(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14.sp,
-                                color: HexColor('#0D0B0C')),
-                          ),
-                          11.ph,
-                          Container(
-                            width: 307.w,
-                            height: 82.h,
-                            padding: const EdgeInsets.only(
-                                    left: 16, top: 11, bottom: 11, right: 33)
-                                .r,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                color: const Color(0xfff3f4f5)),
-                            child: AutoSizeText(
-                              investments.businessOverview.toString(),
-                              maxLines: 4,
+                            17.ph,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                AutoSizeText(
+                                  'Location',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: GoogleFonts.montserrat(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 12.sp,
+                                      color: HexColor('#707070')),
+                                ),
+                                AutoSizeText(
+                                  'Industries',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: GoogleFonts.montserrat(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 12.sp,
+                                      color: HexColor('#707070')),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                AutoSizeText(
+                                  investments.locationPreference.toString(),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: GoogleFonts.montserrat(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 12.sp,
+                                      color: HexColor('#707070')),
+                                ),
+                                AutoSizeText(
+                                  investments.companies!.primaryActivity
+                                      .toString(),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: GoogleFonts.montserrat(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 12.sp,
+                                      color: HexColor('#707070')),
+                                ),
+                              ],
+                            ),
+                            11.ph,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                AutoSizeText(
+                                  'Posted By',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: GoogleFonts.montserrat(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 12.sp,
+                                      color: HexColor('#707070')),
+                                ),
+                                AutoSizeText(
+                                  'Established Date',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: GoogleFonts.montserrat(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 12.sp,
+                                      color: HexColor('#707070')),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                AutoSizeText(
+                                  investments.companies!.companyName.toString(),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: GoogleFonts.montserrat(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 12.sp,
+                                      color: HexColor('#707070')),
+                                ),
+                                AutoSizeText(
+                                  investments.establishedDate.toString(),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: GoogleFonts.montserrat(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 12.sp,
+                                      color: HexColor('#707070')),
+                                ),
+                              ],
+                            ),
+                            11.ph,
+                            AutoSizeText(
+                              'Business for Sale',
+                              maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 12.sp,
                                   color: HexColor('#707070')),
                             ),
-                          ),
-                          20.ph,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  GoRouter.of(context).pushNamed(
-                                      investmentDetailPage,
-                                      pathParameters: {
-                                        'id': state.investmentsList[index].id
-                                            .toString()
-                                      },
-                                      extra: controller.person!.Bearer);
-                                },
-                                child: Container(
-                                  height: 32.h,
-                                  width: 120.w,
-                                  decoration: BoxDecoration(
-                                      color: Colors.transparent,
-                                      borderRadius: BorderRadius.circular(16).r,
-                                      border: Border.all(
-                                          color: HexColor('#27BCEB'))),
-                                  child: Center(
-                                    child: Text(
-                                      'Detail',
-                                      style: GoogleFonts.quicksand(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 10.sp,
-                                          color: HexColor('#27BCEB')),
+                            AutoSizeText(
+                              investments.targetSellingPrice.toString(),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12.sp,
+                                  color: HexColor('#707070')),
+                            ),
+                            18.ph,
+                            AutoSizeText(
+                              'Description',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                  color: HexColor('#0D0B0C')),
+                            ),
+                            11.ph,
+                            Container(
+                              width: 307.w,
+                              height: 82.h,
+                              padding: const EdgeInsets.only(
+                                      left: 16, top: 11, bottom: 11, right: 33)
+                                  .r,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  color: const Color(0xfff3f4f5)),
+                              child: AutoSizeText(
+                                investments.businessOverview.toString(),
+                                maxLines: 4,
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.montserrat(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 12.sp,
+                                    color: HexColor('#707070')),
+                              ),
+                            ),
+                            20.ph,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    GoRouter.of(context).pushNamed(
+                                        investmentDetailPage,
+                                        pathParameters: {
+                                          'id': state.investmentsList[index].id
+                                              .toString()
+                                        },
+                                        extra: controller.person!.Bearer);
+                                  },
+                                  child: Container(
+                                    height: 32.h,
+                                    width: 120.w,
+                                    decoration: BoxDecoration(
+                                        color: Colors.transparent,
+                                        borderRadius:
+                                            BorderRadius.circular(16).r,
+                                        border: Border.all(
+                                            color: HexColor('#27BCEB'))),
+                                    child: Center(
+                                      child: Text(
+                                        'Detail',
+                                        style: GoogleFonts.quicksand(
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 10.sp,
+                                            color: HexColor('#27BCEB')),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              //30.pw,
-                              Container(
-                                width: 120.w,
-                                height: 32.h,
-                                decoration: BoxDecoration(
-                                  color: HexColor('#27BCEB'),
-                                  borderRadius: BorderRadius.circular(16).r,
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'Respond',
-                                    style: GoogleFonts.quicksand(
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 10.sp,
-                                        color: HexColor('#FFFFFF')),
+                                //30.pw,
+                                Container(
+                                  width: 120.w,
+                                  height: 32.h,
+                                  decoration: BoxDecoration(
+                                    color: HexColor('#27BCEB'),
+                                    borderRadius: BorderRadius.circular(16).r,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Respond',
+                                      style: GoogleFonts.quicksand(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 10.sp,
+                                          color: HexColor('#FFFFFF')),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          )
-                        ],
+                              ],
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                  );
-                },
-              ))
-            else
-              const Text("SomeThing went Wrong"),
+                    );
+                  },
+                ))
+            ] else
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  "No Bussines Found",
+                  style: GoogleFonts.montserrat(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                      color: HexColor('#EB2F2F')),
+                ),
+              ),
           ],
         ),
       ),
@@ -532,49 +586,18 @@ List<Widget> buildBusinessActivitiesFilter(
       child: Wrap(
         spacing: 8.0, // Gap between adjacent chips.
         runSpacing: 4.0, // Gap between lines.
-        children: businessSectors.map((sector) {
-          int index = businessSectors.indexOf(sector);
-          bool isSelected = sector['isChecked'];
+        children: state.isic4MainActivities!.map((sector) {
+          bool isSelected = sector.id == state.selectedSectorId;
+
+          // int index = businessSectors.indexOf(sector);
+          // bool isSelected = sector['isChecked'];
 
           return GestureDetector(
-              onTap: () {
-                // Unselect all other buttons
-                for (var s in businessSectors) {
-                  s['isChecked'] = false;
-                }
-                // Select the tapped button
-                sector['isChecked'] = true;
-
-                // Trigger the API call with the selected sector's ID
-                // controller
-                //     .companyBussinesIsic4mainActivityFilterApi(sector['id']);
-              },
-              child: buttonForFilter(sector['main_activity_name'], isSelected)
-              //  Container(
-              //   margin: EdgeInsets.only(
-              //     top: 10,
-              //   ),
-              //   decoration: BoxDecoration(
-              //     shape: BoxShape.rectangle,
-              //     borderRadius: BorderRadius.circular(6),
-              //     border: Border.all(color: Color(0xffD9D9D9)),
-              //     color: isSelected ? Color(0xff23C2EA) : Colors.white,
-              //   ),
-              //   height: 33,
-              //   //width: 120,
-              //   child: Center(
-              //     child: AutoSizeText(
-              //       sector['main_activity_name'],
-              //       maxLines: 1,
-              //       textAlign: TextAlign.center,
-              //       style: GoogleFonts.montserrat(
-              //           fontSize: 10,
-              //           fontWeight: FontWeight.w400,
-              //           color: Color(0xff454544)),
-              //     ),
-              //   ),
-              // ),
-              );
+            onTap: () {
+              controller.setSelectedSectorId(sector.id!);
+            },
+            child: buttonForFilter(sector.mainActivityName, isSelected),
+          );
         }).toList(),
       ),
     ),
@@ -596,48 +619,18 @@ List<Widget> buildIndustriesFilter(InvestMentOpportunityController controller,
       child: Wrap(
         spacing: 8.0, // Gap between adjacent chips.
         runSpacing: 4.0, // Gap between lines.
-        children: industriesFilter.map((sector) {
-          int index = industriesFilter.indexOf(sector);
-          bool isSelected = sector['isChecked'];
+        children: state.industries!.map((sector) {
+          bool isSelected = sector.id == state.selectedIndustryId;
+
+          // int index = businessSectors.indexOf(sector);
+          // bool isSelected = sector['isChecked'];
 
           return GestureDetector(
-              onTap: () {
-                // Unselect all other buttons
-                for (var s in industriesFilter) {
-                  s['isChecked'] = false;
-                }
-                // Select the tapped button
-                sector['isChecked'] = true;
-
-                // Trigger the API call with the selected sector's ID
-                //controller.companyBussinesIndustryFilterApi(sector['id']);
-              },
-              child: buttonForFilter(sector['name'], isSelected)
-              // Container(
-              //   margin: EdgeInsets.only(
-              //     top: 10,
-              //   ),
-              //   decoration: BoxDecoration(
-              //     shape: BoxShape.rectangle,
-              //     borderRadius: BorderRadius.circular(6),
-              //     border: Border.all(color: Color(0xffD9D9D9)),
-              //     color: isSelected ? Color(0xff23C2EA) : Colors.white,
-              //   ),
-              //   height: 33,
-              //   //width: 120,
-              //   child: Center(
-              //     child: AutoSizeText(
-              //       sector['name'],
-              //       maxLines: 1,
-              //       textAlign: TextAlign.center,
-              //       style: GoogleFonts.montserrat(
-              //           fontSize: 10,
-              //           fontWeight: FontWeight.w400,
-              //           color: Color(0xff454544)),
-              //     ),
-              //   ),
-              // ),
-              );
+            onTap: () {
+              controller.setSelectedIndustryId(sector.id!);
+            },
+            child: buttonForFilter(sector.name, isSelected),
+          );
         }).toList(),
       ),
     ),
@@ -649,9 +642,7 @@ List<Widget> buildSortFilter(InvestMentOpportunityController controller,
   return [
     Container(
       width: double.infinity,
-      // height: 437,
       padding: EdgeInsets.only(left: 30, top: 19, bottom: 20, right: 20),
-
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(14),
           color: HexColor('#FFFFFF'),
@@ -660,48 +651,31 @@ List<Widget> buildSortFilter(InvestMentOpportunityController controller,
         spacing: 8.0,
         runSpacing: 4.0,
         children: sortList.map((sector) {
-          int index = sortList.indexOf(sector);
+          //bool isSelected = sector['id'] == state.selectedProviderId;
           bool isSelected = sector['isChecked'];
 
           return GestureDetector(
-              onTap: () {
-                // Unselect all other buttons
+            onTap: () {
+              // Check if the tapped button is already selected
+              if (sector['isChecked']) {
+                // If yes, revert its state
+                sector['isChecked'] = false;
+
+                controller.loadInvestMentOpportunities();
+              } else {
+                // If no, unselect all other buttons
                 for (var s in sortList) {
                   s['isChecked'] = false;
                 }
                 // Select the tapped button
                 sector['isChecked'] = true;
 
-                // Trigger the API call with the selected sector's ID
-                // companyBussinesFilterApi(bussinestype: sector['name']);
-                // controller.companyFilterApi(filtertype: sector['name']);
-              },
-              child: buttonForFilter(sector['name'], isSelected)
-              // Container(
-              //   margin: EdgeInsets.only(
-              //     top: 10,
-              //   ),
-              //   decoration: BoxDecoration(
-              //     shape: BoxShape.rectangle,
-              //     borderRadius: BorderRadius.circular(6),
-              //     border: Border.all(color: Color(0xffD9D9D9)),
-              //     color: isSelected ? Color(0xff28B9EB) : Colors.white,
-              //   ),
-              //   height: 33,
-              //   //width: 120,
-              //   child: Center(
-              //     child: AutoSizeText(
-              //       sector['name'],
-              //       maxLines: 1,
-              //       textAlign: TextAlign.center,
-              //       style: GoogleFonts.montserrat(
-              //           fontSize: 10,
-              //           fontWeight: FontWeight.w600,
-              //           color: isSelected ? whiteColor : Color(0xff454544)),
-              //     ),
-              //   ),
-              // ),
-              );
+                // Trigger the first API call with the selected sector's ID
+                controller.bussinesSortApi(filtertype: sector['name']);
+              }
+            },
+            child: buttonForFilter(sector['name'], isSelected),
+          );
         }).toList(),
       ),
     ),
@@ -714,23 +688,33 @@ Widget buttonForFilter(name, isSelected) {
       top: 10,
     ),
     decoration: BoxDecoration(
-      shape: BoxShape.rectangle,
-      borderRadius: BorderRadius.circular(6),
-      border: Border.all(color: Color(0xffD9D9D9)),
-      color: isSelected ? Color(0xff28B9EB) : Colors.white,
-    ),
+        shape: BoxShape.rectangle,
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: Color(0xffD9D9D9)),
+        color: isSelected ? Color(0xff28B9EB) : whiteColor),
     height: 33.h,
     //width: 120,
-    child: Center(
-      child: AutoSizeText(
-        name,
-        maxLines: 1,
-        textAlign: TextAlign.center,
-        style: GoogleFonts.montserrat(
-            fontSize: 10,
-            fontWeight: FontWeight.w600,
-            color: isSelected ? whiteColor : Color(0xff454544)),
-      ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: AutoSizeText(
+            name,
+            maxLines: 1,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.montserrat(
+                fontSize: 10,
+                fontWeight: FontWeight.w600,
+                color: isSelected ? whiteColor : Color(0xff454544)),
+          ),
+        ),
+        Icon(
+          isSelected ? Icons.close : Icons.add,
+          color: isSelected ? whiteColor : Color(0xff28B9EB),
+          size: 18,
+        )
+      ],
     ),
   );
 }
