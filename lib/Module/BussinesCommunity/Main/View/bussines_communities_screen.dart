@@ -94,8 +94,7 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
                         .read(expansionTileStateProvider.notifier)
                         .update((state) => {
                               ...state,
-                              'sortBy':
-                                  expanded, // Use unique keys for each tile, e.g., 'sortBy', 'providers'
+                              'sortBy': expanded,
                             });
                   },
                   trailing: Icon(

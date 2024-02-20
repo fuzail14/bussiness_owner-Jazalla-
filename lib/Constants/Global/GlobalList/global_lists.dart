@@ -102,4 +102,3 @@ List<Map<String, dynamic>> industriesFilter = [
   {'id': '10', 'name': 'Healthcare Services', 'isChecked': false},
   {'id': '11', 'name': 'Hospitality', 'isChecked': false},
 ];
-final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();

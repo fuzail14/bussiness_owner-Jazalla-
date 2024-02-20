@@ -21,7 +21,37 @@ class InvestMentOpportunityRepository {
     var response = await networkServices.getReq(
         "${Api.investmentOpportunitySearch}/$query",
         bearerToken: bearerToken);
-    //log('my response${response.toString()}');
+    log('my repo response${response.toString()}');
+
+    return InvestMentOpportunity.fromJson(response);
+  }
+
+  Future<InvestMentOpportunity> investMentOpportunityIsicFilterApi(
+      {required bearerToken, required isicId}) async {
+    var response = await networkServices.getReq(
+        "${Api.investmentOpportunitiesIsicFilter}/$isicId",
+        bearerToken: bearerToken);
+    log(response.toString());
+
+    return InvestMentOpportunity.fromJson(response);
+  }
+
+  Future<InvestMentOpportunity> investMentOpportunityIndustryApi(
+      {required bearerToken, required industryId}) async {
+    var response = await networkServices.getReq(
+        "${Api.investmentOpportunitiesIndustryFilter}/$industryId",
+        bearerToken: bearerToken);
+    log(response.toString());
+
+    return InvestMentOpportunity.fromJson(response);
+  }
+
+  Future<InvestMentOpportunity> investMentOpportunitySortApi(
+      {required bearerToken, required type}) async {
+    var response = await networkServices.getReq(
+        "${Api.sortInvestmentOpportunities}/$type",
+        bearerToken: bearerToken);
+    log(response.toString());
 
     return InvestMentOpportunity.fromJson(response);
   }

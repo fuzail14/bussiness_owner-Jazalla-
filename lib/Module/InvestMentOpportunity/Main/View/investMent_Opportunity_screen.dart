@@ -22,6 +22,7 @@ class InvestMentOpportunityView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(investMentOpportunityStateProvider.notifier);
     final state = ref.watch(investMentOpportunityStateProvider);
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
       endDrawer: Drawer(
         child: ListView(
@@ -173,12 +174,12 @@ class InvestMentOpportunityView extends ConsumerWidget {
           ],
         ),
       ),
-      key: scaffoldKey,
+      key: _scaffoldKey,
       appBar: MyAppBar(
           title: 'Investment Opportunities',
           showBell: false,
           filterOnPressed: () {
-            scaffoldKey.currentState?.openEndDrawer();
+            _scaffoldKey.currentState?.openEndDrawer();
           }),
       body: SafeArea(
         child: Column(
@@ -207,11 +208,11 @@ class InvestMentOpportunityView extends ConsumerWidget {
                     //     }
                     //   },
                     // ),
-                    onChanged: (query) {
-                      // controller.debounce(() {
-                      //   controller.bussinesCommunitySearchApi(query: query);
-                      // });
-                    },
+                    // onChanged: (query) {
+                    //   // controller.debounce(() {
+                    //   //   controller.bussinesCommunitySearchApi(query: query);
+                    //   // });
+                    // },
                     controller: controller.searchController,
                     decoration: InputDecoration(
                       hintText: "What are you looking for?",
@@ -504,7 +505,7 @@ class InvestMentOpportunityView extends ConsumerWidget {
                                           'id': state.investmentsList[index].id
                                               .toString()
                                         },
-                                        extra: controller.person!.Bearer);
+                                        extra: controller.person.Bearer);
                                   },
                                   child: Container(
                                     height: 32.h,
@@ -650,7 +651,7 @@ List<Widget> buildSortFilter(InvestMentOpportunityController controller,
       child: Wrap(
         spacing: 8.0,
         runSpacing: 4.0,
-        children: sortList.map((sector) {
+        children: controller.investmentSortList.map((sector) {
           //bool isSelected = sector['id'] == state.selectedProviderId;
           bool isSelected = sector['isChecked'];
 
@@ -664,14 +665,15 @@ List<Widget> buildSortFilter(InvestMentOpportunityController controller,
                 controller.loadInvestMentOpportunities();
               } else {
                 // If no, unselect all other buttons
-                for (var s in sortList) {
+                for (var s in controller.investmentSortList) {
                   s['isChecked'] = false;
                 }
                 // Select the tapped button
                 sector['isChecked'] = true;
 
                 // Trigger the first API call with the selected sector's ID
-                controller.bussinesSortApi(filtertype: sector['name']);
+                controller.investMentOpportunitySortApi(
+                    filtertype: sector['name']);
               }
             },
             child: buttonForFilter(sector['name'], isSelected),

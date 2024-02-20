@@ -104,11 +104,18 @@ class InvestMentOpportunityController
           query: query,
           bearerToken: person.Bearer,
         );
+        log('my val ${value.investments.toString()}');
 
         state = state.copyWith(
           investmentsList: value.investments,
           responseStatus: Status.completed,
         );
+        log(state
+            .copyWith(
+              investmentsList: value.investments,
+              responseStatus: Status.completed,
+            )
+            .toString());
       } catch (e, stackTrace) {
         setResponseStatus(Status.error);
 
@@ -129,7 +136,7 @@ class InvestMentOpportunityController
     } else {
       // Otherwise, select the tapped sector
       state = state.copyWith(selectedSectorId: sectorId);
-      companyForSaleBussinesIsic4mainActivityFilterApi(sectorId!);
+      investMentOpportunityIsic4mainActivityFilterApi(sectorId!);
     }
   }
 
@@ -144,25 +151,26 @@ class InvestMentOpportunityController
     } else {
       // Otherwise, select the tapped sector
       state = state.copyWith(selectedIndustryId: sectorId);
-      companyBussinesIndustryFilterApi(sectorId!);
+      investMentOpportunityIndustryFilterApi(sectorId!);
     }
   }
 
-  companyForSaleBussinesIsic4mainActivityFilterApi(
+  investMentOpportunityIsic4mainActivityFilterApi(
     int sectorId,
   ) async {
     setResponseStatus(Status.loading);
     state.investmentsList.clear();
 
     try {
-      // final value = await investMentOpportunityRepository.bussinesForSaleIsicFilterApi(
-      //   isicId: sectorId,
-      //   bearerToken: person!.Bearer,
-      // );
-      // state = state.copyWith(
-      //   investmentsList: value.,
-      //   responseStatus: Status.completed,
-      // );
+      final value = await investMentOpportunityRepository
+          .investMentOpportunityIsicFilterApi(
+        isicId: sectorId,
+        bearerToken: person.Bearer,
+      );
+      state = state.copyWith(
+        investmentsList: value.investments,
+        responseStatus: Status.completed,
+      );
     } catch (e, stackTrace) {
       setResponseStatus(Status.error);
       log(e.toString());
@@ -172,21 +180,22 @@ class InvestMentOpportunityController
     }
   }
 
-  companyBussinesIndustryFilterApi(
+  investMentOpportunityIndustryFilterApi(
     int industryId,
   ) async {
     setResponseStatus(Status.loading);
     state.investmentsList.clear();
 
     try {
-      // final value = await investMentOpportunityRepository.bussinesForSaleIndustryApi(
-      //   industryId: industryId,
-      //   bearerToken: person!.Bearer,
-      // );
-      // state = state.copyWith(
-      //   investmentsList: value.,
-      //   responseStatus: Status.completed,
-      // );
+      final value = await investMentOpportunityRepository
+          .investMentOpportunityIndustryApi(
+        industryId: industryId,
+        bearerToken: person.Bearer,
+      );
+      state = state.copyWith(
+        investmentsList: value.investments,
+        responseStatus: Status.completed,
+      );
     } catch (e, stackTrace) {
       setResponseStatus(Status.error);
       log(e.toString());
@@ -196,23 +205,24 @@ class InvestMentOpportunityController
     }
   }
 
-  bussinesSortApi({
+  investMentOpportunitySortApi({
     String? filtertype,
   }) async {
     log(filtertype!);
     setResponseStatus(Status.loading);
     state.investmentsList.clear();
     try {
-      // final value = await investMentOpportunityRepository.bussinesForSaleSortApi(
-      //   type: filtertype,
-      //   bearerToken: person!.Bearer,
-      // );
-      // log(value.toString());
+      final value =
+          await investMentOpportunityRepository.investMentOpportunitySortApi(
+        type: filtertype,
+        bearerToken: person.Bearer,
+      );
+      log(value.toString());
 
-      // state = state.copyWith(
-      //   investmentsList: value.,
-      //   responseStatus: Status.completed,
-      // );
+      state = state.copyWith(
+        investmentsList: value.investments,
+        responseStatus: Status.completed,
+      );
     } catch (e, stackTrace) {
       setResponseStatus(Status.error);
       log(e.toString());
@@ -221,6 +231,14 @@ class InvestMentOpportunityController
       myToast(msg: e.toString());
     }
   }
+
+  List<Map<String, dynamic>> investmentSortList = [
+    {'id': '1', 'name': 'Size Low To High', 'isChecked': false},
+    {'id': '2', 'name': 'Newest', 'isChecked': false},
+    {'id': '3', 'name': 'Oldest', 'isChecked': false},
+    {'id': '4', 'name': 'From Z-A', 'isChecked': false},
+    {'id': '5', 'name': 'From A-Z', 'isChecked': false},
+  ];
 }
 
 final expansionTileStateProvider =

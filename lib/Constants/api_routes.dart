@@ -74,6 +74,13 @@ class Api {
   static const String investmentOpportunitySearch =
       "${baseUrl}marketplace/InvestmentOpportunity/InvestmentOpportunitySearch";
 
+  static const String investmentOpportunitiesIsicFilter =
+      "${baseUrl}marketplace/InvestmentOpportunity/InvestmentOpportunitiesIsicFilter";
+  static const String investmentOpportunitiesIndustryFilter =
+      "${baseUrl}marketplace/InvestmentOpportunity/InvestmentOpportunitiesIndustryFilter";
+  static const String sortInvestmentOpportunities =
+      "${baseUrl}marketplace/InvestmentOpportunity/SortInvestmentOpportunities";
+
   static const String sendInquiry =
       "${baseUrl}marketplace/OnlineStore/sendInquiry";
 

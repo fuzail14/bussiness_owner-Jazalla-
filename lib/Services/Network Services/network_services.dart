@@ -33,8 +33,12 @@ class NetworkServices implements BaseNetworkServices {
         },
       );
       log(response.body.toString());
+
       log("------");
+      log(response.statusCode.toString());
+
       futureData = getApiResponse(response);
+      print(futureData);
     } on SocketException {
       throw InternetException;
     } on TimeoutException {

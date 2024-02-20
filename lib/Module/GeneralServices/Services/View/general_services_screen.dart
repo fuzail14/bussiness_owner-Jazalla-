@@ -25,6 +25,7 @@ class GeneralServiceView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(generalServiceStateProvider.notifier);
     final state = ref.watch(generalServiceStateProvider);
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
       endDrawer: Drawer(
@@ -117,13 +118,13 @@ class GeneralServiceView extends ConsumerWidget {
           ],
         ),
       ),
-      key: scaffoldKey,
+      key: _scaffoldKey,
       appBar: MyAppBar(
           title: 'General Service',
           size: 50.h,
           showBell: false,
           filterOnPressed: () {
-            scaffoldKey.currentState?.openEndDrawer();
+            _scaffoldKey.currentState?.openEndDrawer();
           }),
       body: SafeArea(
         child: Column(

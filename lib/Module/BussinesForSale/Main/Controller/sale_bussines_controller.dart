@@ -101,8 +101,6 @@ class BusinessForSaleController extends StateNotifier<BusinessForSaleState> {
           query: query,
           bearerToken: person!.Bearer,
         );
-        log('herre');
-        log(value.toString());
 
         state = state.copyWith(
           businesses: value.businesses,
