@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
+import 'package:bussines_owner/Constants/provider/global_providers.dart';
 import 'package:bussines_owner/Routes/set_routes.dart';
 import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
 import 'package:flutter/material.dart';

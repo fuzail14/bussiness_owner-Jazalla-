@@ -5,11 +5,16 @@ class Tender {
   });
   bool? success;
   List<Tenders>? tenders;
+  late final List<CustomMainCategory> customMainCategory;
 
   Tender.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     tenders =
         List.from(json['tenders']).map((e) => Tenders.fromJson(e)).toList();
+    customMainCategory = (json['CustomMainCategory'] as List?)
+            ?.map((e) => CustomMainCategory.fromJson(e))
+            .toList() ??
+        [];
   }
 
   Map<String, dynamic> toJson() {
@@ -688,6 +693,33 @@ class Companies {
     _data['govt_requirement'] = govtRequirement;
     _data['company_requirement'] = companyRequirement;
     _data['attached_file'] = attachedFile;
+    return _data;
+  }
+}
+
+class CustomMainCategory {
+  CustomMainCategory({
+    required this.id,
+    required this.isic4_main_activity_id,
+    required this.custom_activity_name,
+  });
+  int? id;
+  int? isic4_main_activity_id;
+
+  String? custom_activity_name;
+
+  CustomMainCategory.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    isic4_main_activity_id = json['isic4_main_activity_id'];
+    custom_activity_name = json['custom_activity_name'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final _data = <String, dynamic>{};
+    _data['id'] = id;
+    _data['isic4_main_activity_id'] = isic4_main_activity_id;
+    _data['custom_activity_name'] = custom_activity_name;
+
     return _data;
   }
 }

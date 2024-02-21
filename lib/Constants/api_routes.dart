@@ -55,6 +55,12 @@ class Api {
       "${baseUrl}marketplace/BussinesForSale/SortBussinesForSale";
 
   static const String tendersApi = "${baseUrl}marketplace/Tenders/TendersApi";
+  static const String tenderSearch =
+      "${baseUrl}marketplace/Tenders/tenderSearch";
+
+  static const String tenderIsicFilter =
+      "${baseUrl}marketplace/Tenders/tenderIsicFilter";
+  static const String sortTenders = "${baseUrl}marketplace/Tenders/SortTenders";
   static const String getTendersDetail =
       "${baseUrl}marketplace/Tenders/getTendersDetail";
   static const String generalServicesApi =

@@ -10,8 +10,10 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../Constants/Global/GlobalList/global_lists.dart';
+import '../../../../Constants/provider/global_providers.dart';
 import '../../../../Data/Api Resp/api_response.dart';
 import '../../../../Routes/set_routes.dart';
+import '../../../../Widgets/Buttons/FilterButton/filter_button.dart';
 import '../../../../Widgets/Loader/loader.dart';
 import '../Controller/bussines_communities_controller.dart';
 
@@ -588,7 +590,8 @@ List<Widget> buildBusinessActivitiesFilter(
             onTap: () {
               controller.setSelectedSectorId(sector.id!);
             },
-            child: buttonForFilter(sector.mainActivityName, isSelected),
+            child: FilterButton(
+                name: sector.mainActivityName!, isSelected: isSelected),
           );
         }).toList(),
       ),
@@ -621,7 +624,7 @@ List<Widget> buildIndustriesFilter(
             onTap: () {
               controller.setSelectedIndustryId(sector.id!);
             },
-            child: buttonForFilter(sector.name, isSelected),
+            child: FilterButton(name: sector.name!, isSelected: isSelected),
           );
         }).toList(),
       ),
@@ -668,7 +671,7 @@ List<Widget> buildBusinessProvidersFilter(
                     bussinestype: sector['name']);
               }
             },
-            child: buttonForFilter(sector['name'], isSelected),
+            child: FilterButton(name: sector['name'], isSelected: isSelected),
           );
         }).toList(),
       ),
@@ -714,47 +717,10 @@ List<Widget> buildSortFilter(
                 controller.companyFilterApi(filtertype: sector['name']);
               }
             },
-            child: buttonForFilter(sector['name'], isSelected),
+            child: FilterButton(name: sector['name'], isSelected: isSelected),
           );
         }).toList(),
       ),
     ),
   ];
-}
-
-Widget buttonForFilter(name, isSelected) {
-  return Container(
-    margin: EdgeInsets.only(
-      top: 10,
-    ),
-    decoration: BoxDecoration(
-        shape: BoxShape.rectangle,
-        borderRadius: BorderRadius.circular(6),
-        border: Border.all(color: Color(0xffD9D9D9)),
-        color: isSelected ? Color(0xff28B9EB) : whiteColor),
-    height: 33.h,
-    //width: 120,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(
-          child: AutoSizeText(
-            name,
-            maxLines: 1,
-            textAlign: TextAlign.center,
-            style: GoogleFonts.montserrat(
-                fontSize: 10,
-                fontWeight: FontWeight.w600,
-                color: isSelected ? whiteColor : Color(0xff454544)),
-          ),
-        ),
-        Icon(
-          isSelected ? Icons.close : Icons.add,
-          color: isSelected ? whiteColor : Color(0xff28B9EB),
-          size: 18,
-        )
-      ],
-    ),
-  );
 }

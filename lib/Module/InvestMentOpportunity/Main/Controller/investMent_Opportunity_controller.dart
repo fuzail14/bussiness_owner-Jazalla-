@@ -240,6 +240,3 @@ class InvestMentOpportunityController
     {'id': '5', 'name': 'From A-Z', 'isChecked': false},
   ];
 }
-
-final expansionTileStateProvider =
-    StateProvider<Map<String, bool>>((ref) => {});

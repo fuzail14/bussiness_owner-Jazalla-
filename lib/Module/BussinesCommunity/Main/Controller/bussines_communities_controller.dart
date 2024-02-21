@@ -367,5 +367,3 @@ final bussinesCommunitiesProvider = StateNotifierProvider.autoDispose<
   }
   return BussinesCommunitiesController(person);
 }, dependencies: [personProvider]);
-final expansionTileStateProvider =
-    StateProvider<Map<String, bool>>((ref) => {});
