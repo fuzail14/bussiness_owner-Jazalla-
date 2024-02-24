@@ -24,3 +24,4 @@ const String requestQuoteScreen = '/RequestQuoteScreen';
 const String serviceinquiryScreen = '/ServiceSendInquiryScreen';
 const String requestProposalScreen = '/RequestProposalScreen';
 const String tenderResponseScreen = '/TenderResponseScreen';
+const String procuremenetSoiScreen = '/ProcuremenetSoiScreen';
