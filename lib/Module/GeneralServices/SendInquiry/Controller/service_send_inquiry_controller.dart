@@ -57,8 +57,10 @@ class ServiceInquiryNotifier extends StateNotifier<ServiceInquiryState> {
 
   Future<void> saveInquiry({
     required serviceId,
+    required title,
+    required userCompanyId,
     required userId,
-    required companyId,
+    required supplierId,
     required description,
     File? pdfFile, // Make pdfFile nullable
     required BuildContext context,
@@ -67,13 +69,16 @@ class ServiceInquiryNotifier extends StateNotifier<ServiceInquiryState> {
 
     Map<String, String> data = {
       "service_id": serviceId.toString(),
+      "title": title.toString(),
       "user_id": userId.toString(),
-      "buyer_id": companyId.toString(),
+      "buyer_id": userCompanyId.toString(),
+      "network_id": supplierId.toString(),
       "request_type": 'service',
       "request_for": 'soi',
       "details": description,
       "status": '1',
     };
+    print(data);
 
     try {
       await sendServiceInquiryRepository.sendServiceInquiry(data,

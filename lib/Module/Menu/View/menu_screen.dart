@@ -116,7 +116,7 @@ class Menu extends ConsumerWidget {
                   title: 'RFI / SOI Management',
                   onTap: () {
                     Navigator.of(context).pop();
-                    context.goNamed(procuremenetSoiScreen, extra: person);
+                    context.pushNamed(procuremenetSoiScreen, extra: person);
                   },
                 ),
                 _dialogButton(
@@ -124,7 +124,7 @@ class Menu extends ConsumerWidget {
                   title: 'RFQ Management',
                   onTap: () {
                     Navigator.of(context).pop();
-                    context.goNamed('/rfqManagement');
+                    context.pushNamed(procuremenetRFQScreen, extra: person);
                   },
                 ),
                 _dialogButton(
@@ -132,7 +132,7 @@ class Menu extends ConsumerWidget {
                   title: 'RFP Management',
                   onTap: () {
                     Navigator.of(context).pop();
-                    context.goNamed('/rfqManagement');
+                    context.pushNamed(procurementRFPScreen, extra: person);
                   },
                 ),
               ],

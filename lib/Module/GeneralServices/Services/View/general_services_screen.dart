@@ -450,9 +450,13 @@ class GeneralServiceView extends ConsumerWidget {
                                     services.id;
                                     controller.person.data!.id;
                                     services.companyId;
+
                                     final inquiryData = {
                                       'serviceId': services.id,
+                                      'title': services.name,
                                       'userId': controller.person.data!.id,
+                                      'userCompanyId':
+                                          controller.person.data!.companyId,
                                       'companyId': services.companyId,
                                     };
 

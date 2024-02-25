@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 final Color primaryColor = HexColor("#4ebbd3");
@@ -9,32 +10,10 @@ final Color primaryColor2 = HexColor("#1f3996");
 const Color blueColor = Color(0xff4B6FFF);
 const borderColor = Color(0xff19A3A3);
 var whiteColor = HexColor("FAFFFD");
-
-//
-// getFile() async {
-//   var file;
-//   // String? base64Image;
-//   //
-//
-//
-//   FilePickerResult? result = await FilePicker.platform.pickFiles();
-//
-//   if (result != null) {
-//     file = File(result.files.single.path!);
-//
-//     print(file);
-//     // isFile = true;
-//     //  List<int> imageBytes = _file!.readAsBytesSync();
-//     //
-//     //  print(imageBytes);
-//     // base64Image = base64Encode(imageBytes);
-//     //  print(base64Image);
-//
-//     return file;
-//   } else {
-//     // View Users canceled the picker
-//   }
-// }
+var interTextstyle = GoogleFonts.inter(
+    fontSize: 10.sp,
+    fontWeight: FontWeight.w400,
+    color: const Color(0xff000000));
 
 /* Validations */
 

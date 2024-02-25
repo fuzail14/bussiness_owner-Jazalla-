@@ -107,4 +107,9 @@ class Api {
 
   static const String getIsic4MainActivities =
       "${baseUrl}marketplace/Isic/getIsic4MainActivities";
+  static const String getProcurementRfi =
+      "${baseUrl}marketplace/Procurement/getProcurementRfi";
+
+  static const String getProcurementRfq =
+      "${baseUrl}marketplace/Procurement/getProcurementRfq";
 }

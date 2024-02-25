@@ -24,7 +24,11 @@ class ServiceSendInquiryScreen extends ConsumerWidget {
 
     // inquirycontroller.descriptionController.clear();
     final serviceId = inquiryData?['serviceId'];
+    final title = inquiryData?['title'];
+
     final userId = inquiryData?['userId'];
+    final userCompanyId = inquiryData?['userCompanyId'];
+
     final companyId = inquiryData?['companyId'];
 
     print(inquiryData);
@@ -129,9 +133,11 @@ class ServiceSendInquiryScreen extends ConsumerWidget {
                 onTap: () {
                   if (inquirycontroller.key.currentState!.validate()) {
                     ref.read(serviceinquiryProvider.notifier).saveInquiry(
+                        title: title,
                         serviceId: serviceId,
                         userId: userId,
-                        companyId: companyId,
+                        userCompanyId: userCompanyId,
+                        supplierId: companyId,
                         description:
                             inquirycontroller.descriptionController.text,
                         pdfFile: inquiryState.pdfFile,

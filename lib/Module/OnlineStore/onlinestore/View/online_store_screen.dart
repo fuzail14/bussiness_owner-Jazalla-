@@ -422,7 +422,10 @@ class OnlineStoreScreen extends ConsumerWidget {
                                     product.companyId;
                                     final inquiryData = {
                                       'productId': product.id,
+                                      'productTitle': product.name,
                                       'userId': controller.person.data!.id,
+                                      'userCompanyId':
+                                          controller.person.data!.companyId,
                                       'companyId': product.companyId,
                                     };
 

@@ -24,7 +24,8 @@ import '../Module/GeneralServices/SendInquiry/View/service_send_inquiry_page.dar
 import '../Module/InvestMentOpportunity/Main/View/investMent_Opportunity_screen.dart';
 import '../Module/OnlineStore/RequestQuote/View/request_quote_page.dart';
 import '../Module/OnlineStore/SendInquiry/View/send_inquiry_page.dart';
-import '../Module/ProcurementManagment/ProcurementSoiManagment/View/procurement_soi_screen.dart';
+import '../Module/ProcurementManagment/RFI/View/procurement_soi_screen.dart';
+import '../Module/ProcurementManagment/RFQ/View/procurement_rfq_screen.dart';
 import '../Module/Tenders/TenderMain/View/tenders_screen.dart';
 import '../Module/Tenders/TendersResponse/View/tender_response_page.dart';
 import '../Providers/argument_provider.dart';
@@ -444,6 +445,25 @@ final router = GoRouter(
                 .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
           child: ProcuremenetSoiScreen(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: procuremenetRFQScreen,
+      path: '/ProcurementRFQScreen',
+      pageBuilder: (context, state) {
+        final person = state.extra as Person;
+        final page = ProviderScope(
+          overrides: [
+            personProvider
+                .overrideWith((ref) => PersonController()..setPerson(person)),
+          ],
+          child: ProcurementRFQScreen(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,

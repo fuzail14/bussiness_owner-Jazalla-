@@ -56,7 +56,9 @@ class InquiryNotifier extends StateNotifier<InquiryState> {
 
   Future<void> saveInquiry({
     required productId,
+    required productTitle,
     required userId,
+    required userCompanyId,
     required companyId,
     required description,
     File? pdfFile, // Make pdfFile nullable
@@ -66,8 +68,10 @@ class InquiryNotifier extends StateNotifier<InquiryState> {
 
     Map<String, String> data = {
       "product_id": productId.toString(),
+      "title": productTitle.toString(),
       "user_id": userId.toString(),
-      "buyer_id": companyId.toString(),
+      "buyer_id": userCompanyId.toString(),
+      "network_id": companyId.toString(),
       "request_type": 'product',
       "details": description,
       "status": '1',
