@@ -1,6 +1,6 @@
 import 'dart:developer';
 import '../../../Constants/api_routes.dart';
-import '../../../Module/ProcurementManagment/RFQ/Model/Request4Information.dart';
+import '../../../Module/ProcurementManagment/RFQ/Model/Request4Quotation.dart';
 import '../../../Services/Network Services/network_services.dart';
 
 class RequestForQuotationRepository {

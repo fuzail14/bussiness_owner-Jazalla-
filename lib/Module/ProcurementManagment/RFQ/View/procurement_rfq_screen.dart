@@ -136,10 +136,9 @@ class ProcurementRFQScreen extends ConsumerWidget {
                       columns: const [
                         DataColumn(label: Text('ID')),
                         DataColumn(label: Text('Title')),
-                        DataColumn(label: Text('Request Type')),
-                        DataColumn(label: Text('Item Type')),
-                        // DataColumn(label: Text('Issue Date')),
-
+                        DataColumn(label: Text('Item Unit')),
+                        DataColumn(label: Text('Item Quantity')),
+                        DataColumn(label: Text('Issue Date')),
                         DataColumn(label: Text('Status')),
                         DataColumn(label: Text('Actions')),
                       ],
@@ -158,14 +157,14 @@ class ProcurementRFQScreen extends ConsumerWidget {
                                   ),
                                 )),
                                 DataCell(Text(
-                                  'Rfi',
+                                  company.unit.toString(),
                                   style: interTextstyle,
                                 )),
                                 DataCell(Text(
-                                  company.title ?? 'N/A',
+                                  company.quantity.toString(),
                                   style: interTextstyle,
                                 )),
-                                // DataCell(Text(company.status ?? 'N/A')),
+                                DataCell(Text(company.deliveryDate.toString())),
                                 DataCell(Text(
                                   company.status == '1' ? 'RFI Sent' : 'Wait',
                                   style: GoogleFonts.inter(

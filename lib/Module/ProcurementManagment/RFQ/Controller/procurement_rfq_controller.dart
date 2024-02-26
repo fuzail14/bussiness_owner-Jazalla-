@@ -8,7 +8,7 @@ import '../../../../Constants/Person/person.dart';
 import '../../../../Constants/Person/person_controller.dart';
 import '../../../../Data/Api Resp/api_response.dart';
 import '../../../../Repo/Procurement Managment/RFQ/rfq_repository.dart';
-import '../Model/Request4Information.dart';
+import '../Model/Request4Quotation.dart';
 
 class ProcuremenetRFQState {
   final Status responseStatus;

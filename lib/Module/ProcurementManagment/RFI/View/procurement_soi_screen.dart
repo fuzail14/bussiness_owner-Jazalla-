@@ -160,7 +160,7 @@ class ProcuremenetSoiScreen extends ConsumerWidget {
                                   ),
                                 )),
                                 DataCell(Text(
-                                  'Rfi',
+                                  company.requestFor.toString(),
                                   style: interTextstyle,
                                 )),
                                 DataCell(Text(
