@@ -105,7 +105,7 @@ class SalesManagmentRFIScreen extends ConsumerWidget {
               if (state.request4Information.isEmpty) ...[
                 Center(
                   child: Text(
-                    'No Community Found.',
+                    'No Request Found.',
                     style: GoogleFonts.montserrat(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,

@@ -36,8 +36,6 @@ class RequestForQuotation {
     required this.title,
     required this.unit,
     required this.deliveryDate,
-    this.serviceType,
-    this.scopeOfWork,
     this.startDate,
     this.endDate,
     required this.paymentMode,
@@ -45,42 +43,30 @@ class RequestForQuotation {
     required this.shippingAddress,
     required this.address,
     required this.templateId,
-    this.attachment,
     required this.status,
-    this.localContentTarget,
-    this.remark,
-    this.attachmentOption,
-    required this.createdAt,
-    required this.updatedAt,
   });
-  late final int id;
-  late final String supplierNetwork;
-  late final int productId;
-  late final int userId;
-  late final int buyerId;
-  late final int supplierId;
-  late final String details;
-  late final int quantity;
-  late final Null productNature;
-  late final String title;
-  late final String unit;
-  late final String deliveryDate;
-  late final Null serviceType;
-  late final Null scopeOfWork;
-  late final Null startDate;
-  late final Null endDate;
-  late final String paymentMode;
-  late final String shippingMode;
-  late final String shippingAddress;
-  late final String address;
-  late final int templateId;
-  late final Null attachment;
-  late final String status;
-  late final Null localContentTarget;
-  late final Null remark;
-  late final Null attachmentOption;
-  late final String createdAt;
-  late final String updatedAt;
+  int? id;
+  String? supplierNetwork;
+  int? productId;
+  int? userId;
+  int? buyerId;
+  int? supplierId;
+  String? details;
+  int? quantity;
+  Null productNature;
+  String? title;
+  String? unit;
+  String? deliveryDate;
+
+  String? startDate;
+  String? endDate;
+  String? paymentMode;
+  String? shippingMode;
+  String? shippingAddress;
+  String? address;
+  int? templateId;
+
+  String? status;
 
   RequestForQuotation.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -95,22 +81,16 @@ class RequestForQuotation {
     title = json['title'];
     unit = json['unit'];
     deliveryDate = json['delivery_date'];
-    serviceType = null;
-    scopeOfWork = null;
-    startDate = null;
-    endDate = null;
+
+    startDate = json['start_date'];
+    endDate = json['end_date'];
     paymentMode = json['payment_mode'];
     shippingMode = json['shipping_mode'];
     shippingAddress = json['shipping_address'];
     address = json['address'];
     templateId = json['template_id'];
-    attachment = null;
+
     status = json['status'];
-    localContentTarget = null;
-    remark = null;
-    attachmentOption = null;
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
   }
 
   Map<String, dynamic> toJson() {
@@ -127,8 +107,7 @@ class RequestForQuotation {
     _data['title'] = title;
     _data['unit'] = unit;
     _data['delivery_date'] = deliveryDate;
-    _data['service_type'] = serviceType;
-    _data['scope_of_work'] = scopeOfWork;
+
     _data['start_date'] = startDate;
     _data['end_date'] = endDate;
     _data['payment_mode'] = paymentMode;
@@ -136,13 +115,9 @@ class RequestForQuotation {
     _data['shipping_address'] = shippingAddress;
     _data['address'] = address;
     _data['template_id'] = templateId;
-    _data['attachment'] = attachment;
+
     _data['status'] = status;
-    _data['local_content_target'] = localContentTarget;
-    _data['remark'] = remark;
-    _data['attachment_option'] = attachmentOption;
-    _data['created_at'] = createdAt;
-    _data['updated_at'] = updatedAt;
+
     return _data;
   }
 }

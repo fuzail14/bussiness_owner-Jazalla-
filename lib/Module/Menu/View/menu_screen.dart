@@ -188,7 +188,7 @@ class Menu extends ConsumerWidget {
                   title: 'RFQ Management',
                   onTap: () {
                     Navigator.of(context).pop();
-                    // context.pushNamed(procuremenetRFQScreen, extra: person);
+                    context.pushNamed(salesManagmentRFQScreen, extra: person);
                   },
                 ),
               ],

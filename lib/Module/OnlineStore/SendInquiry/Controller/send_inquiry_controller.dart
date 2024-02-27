@@ -1,5 +1,6 @@
 // Define the state class
 import 'dart:io';
+import 'dart:math';
 
 import 'package:bussines_owner/Constants/constants.dart';
 import 'package:flutter/foundation.dart';
@@ -77,6 +78,7 @@ class InquiryNotifier extends StateNotifier<InquiryState> {
       "status": '1',
     };
 
+    print(data);
     try {
       await sendInquiryRepository.sendInquiry(data, pdfFile: pdfFile);
       state = state.copyWith(isLoading: false);

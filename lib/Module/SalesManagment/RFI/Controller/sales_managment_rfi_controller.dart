@@ -8,6 +8,7 @@ import '../../../../Constants/Person/person.dart';
 import '../../../../Constants/Person/person_controller.dart';
 import '../../../../Data/Api Resp/api_response.dart';
 import '../../../../Repo/Procurement Managment/RFI/rfi_repository.dart';
+import '../../../../Repo/SalesManagment/RFI/sale_managment_rfi_repository.dart';
 import '../../../ProcurementManagment/RFI/Model/Request4Information.dart';
 
 class SalesManagmentRFIState {
@@ -68,12 +69,13 @@ class SalesManagmentRFIState {
 
 class SalesManagmentRFIController
     extends StateNotifier<SalesManagmentRFIState> {
-  final request4InformationRepository = Request4InformationRepository();
+  final salesManagmentRFIRepository = SalesManagmentRFIRepository();
 
   SalesManagmentRFIController(Person person)
       : super(SalesManagmentRFIState(person: person)) {
     request4InformationViewApi(
         userId: person.data!.companyId, bearerToken: person.Bearer);
+    print(person.data!.companyId);
   }
   final TextEditingController searchController = TextEditingController();
 
@@ -81,8 +83,9 @@ class SalesManagmentRFIController
       {required userId, required bearerToken}) async {
     setResponseStatus(Status.loading);
     try {
-      final value = await request4InformationRepository.request4InformationApi(
-        userId: userId,
+      log(userId.toString());
+      final value = await salesManagmentRFIRepository.salesManagmentRFIApi(
+        userId: userId.toString(),
         bearerToken: bearerToken,
       );
       state = state.copyWith(
