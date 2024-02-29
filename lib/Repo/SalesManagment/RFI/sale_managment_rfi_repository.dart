@@ -7,9 +7,9 @@ class SalesManagmentRFIRepository {
   final networkServices = NetworkServices();
 
   Future<Request4Information> salesManagmentRFIApi(
-      {required bearerToken, required userId}) async {
+      {required bearerToken, required userId, required requestType}) async {
     var response = await networkServices.getReq(
-        "${Api.getSalesManagmentRfi}/$userId",
+        "${Api.getSalesManagmentRfi}/$userId/$requestType",
         bearerToken: bearerToken);
     log(response.toString());
 

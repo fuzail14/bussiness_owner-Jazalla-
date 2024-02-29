@@ -81,11 +81,13 @@ class SalesManagmentRFIController
 
   Future<void> request4InformationViewApi(
       {required userId, required bearerToken}) async {
+    String type = 'product';
     setResponseStatus(Status.loading);
     try {
       log(userId.toString());
       final value = await salesManagmentRFIRepository.salesManagmentRFIApi(
         userId: userId.toString(),
+        requestType: type,
         bearerToken: bearerToken,
       );
       state = state.copyWith(

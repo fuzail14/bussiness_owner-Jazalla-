@@ -29,6 +29,8 @@ import '../Module/ProcurementManagment/RFP/View/procurement_rfp_screen.dart';
 import '../Module/ProcurementManagment/RFQ/View/procurement_rfq_screen.dart';
 import '../Module/SalesManagment/RFI/View/sales_managment_rfi_screen.dart';
 import '../Module/SalesManagment/RFQ/View/sales_managment_rfq_screen.dart';
+import '../Module/ServiceManagment/RFI/View/service_managment_rfi_screen.dart';
+import '../Module/ServiceManagment/RFP/View/service_managment_rfp_screen.dart';
 import '../Module/Tenders/TenderMain/View/tenders_screen.dart';
 import '../Module/Tenders/TendersResponse/View/tender_response_page.dart';
 import '../Providers/argument_provider.dart';
@@ -524,6 +526,44 @@ final router = GoRouter(
                 .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
           child: SalesManagmentRFQScreen(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: serviceManagmentRFIScreen,
+      path: '/ServiceManagmentRFIScreen',
+      pageBuilder: (context, state) {
+        final person = state.extra as Person;
+        final page = ProviderScope(
+          overrides: [
+            personProvider
+                .overrideWith((ref) => PersonController()..setPerson(person)),
+          ],
+          child: ServiceManagmentRFIScreen(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: serviceManagmentRFPScreen,
+      path: '/ServiceManagmentRFPScreen',
+      pageBuilder: (context, state) {
+        final person = state.extra as Person;
+        final page = ProviderScope(
+          overrides: [
+            personProvider
+                .overrideWith((ref) => PersonController()..setPerson(person)),
+          ],
+          child: ServiceManagmentRFPScreen(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,

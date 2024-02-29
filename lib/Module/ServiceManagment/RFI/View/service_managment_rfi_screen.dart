@@ -12,21 +12,21 @@ import '../../../../Widgets/Loader/loader.dart';
 import '../Controller/service_managment_rfi_controller.dart';
 
 // ignore: must_be_immutable
-class SalesManagmentRFIScreen extends ConsumerWidget {
+class ServiceManagmentRFIScreen extends ConsumerWidget {
   int buildcheck = 0;
 
-  SalesManagmentRFIScreen({super.key});
+  ServiceManagmentRFIScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.watch(SalesManagmentRFIProvider.notifier);
-    final state = ref.watch(SalesManagmentRFIProvider);
+    final controller = ref.watch(serviceManagmentRFIProvider.notifier);
+    final state = ref.watch(serviceManagmentRFIProvider);
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
     print('build check  ${buildcheck++}');
 
     return Scaffold(
       appBar: MyAppBar(
           showBell: false,
-          title: "RFI/SOI Managemet",
+          title: "RFI Managemet",
           filterOnPressed: () {
             _scaffoldKey.currentState?.openEndDrawer();
           }),

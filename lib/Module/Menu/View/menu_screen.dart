@@ -68,6 +68,8 @@ class Menu extends ConsumerWidget {
                         _showDialog(context, ref, person);
                       } else if (item.title == 'Sales Management') {
                         _salesManagmentshowDialog(context, ref, person);
+                      } else if (item.title == 'Services Management') {
+                        _serviceManagmentshowDialog(context, ref, person);
                       } else if (item.title == 'Logout') {
                         MySharedPreferences.deleteUserData();
                         context.pushReplacementNamed(checkPhoneNumber);
@@ -189,6 +191,61 @@ class Menu extends ConsumerWidget {
                   onTap: () {
                     Navigator.of(context).pop();
                     context.pushNamed(salesManagmentRFQScreen, extra: person);
+                  },
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _serviceManagmentshowDialog(
+      BuildContext context, WidgetRef ref, person) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+          child: Container(
+            padding: EdgeInsets.all(20.0),
+            decoration: BoxDecoration(
+              color: whiteColor,
+              borderRadius: BorderRadius.circular(20.0),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 2,
+                  blurRadius: 8,
+                  offset: Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'Service Management',
+                  style: GoogleFonts.quicksand(
+                      fontSize: 20.0, fontWeight: FontWeight.w500),
+                ),
+                SizedBox(height: 20.0),
+                _dialogButton(
+                  context: context,
+                  title: 'RFI / SOI Management',
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    context.pushNamed(serviceManagmentRFIScreen, extra: person);
+                  },
+                ),
+                _dialogButton(
+                  context: context,
+                  title: 'RFP Management',
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    context.pushNamed(serviceManagmentRFPScreen, extra: person);
                   },
                 ),
               ],

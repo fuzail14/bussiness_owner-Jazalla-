@@ -29,3 +29,5 @@ const String procuremenetRFQScreen = '/ProcurementRFQScreen';
 const String procurementRFPScreen = '/ProcurementRFPScreen';
 const String salesManagmentRFIScreen = '/SalesManagmentRFIScreen';
 const String salesManagmentRFQScreen = '/SalesManagmentRFQScreen';
+const String serviceManagmentRFIScreen = '/ServiceManagmentRFIScreen';
+const String serviceManagmentRFPScreen = '/ServiceManagmentRFPScreen';
