@@ -142,3 +142,9 @@ String? otpValidator(String? value) {
 
   return null; // Return null if the value is valid
 }
+
+TextStyle montserratHeadingTextStyle = GoogleFonts.montserrat(
+    fontSize: 13.sp, fontWeight: FontWeight.w600, color: Color(0xff707070));
+
+TextStyle montserratSubHeadingTextStyle = GoogleFonts.montserrat(
+    fontSize: 12.sp, fontWeight: FontWeight.w400, color: Color(0xff707070));

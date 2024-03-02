@@ -32,7 +32,7 @@ class CardMakretPlace extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: 154.w,
-        height: 160.h,
+        // height: 160.h,
         padding: EdgeInsets.only(bottom: 13),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16).r, color: color),

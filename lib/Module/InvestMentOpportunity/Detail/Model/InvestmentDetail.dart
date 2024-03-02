@@ -198,8 +198,8 @@ class Investment {
     facilitiesOverview = json['facilities_overview'];
     prodnservOverview = json['prodnserv_overview'];
     reasonforsale = json['reasonforsale'];
-    industryPreference =
-        List.castFrom<dynamic, String>(json['industry_preference']);
+    // industryPreference =
+    //     List.castFrom<dynamic, String>(json['industry_preference']);
     locationPreference = json['location_preference'];
     assets = json['assets'];
     monthlySale = json['monthly_sale'];

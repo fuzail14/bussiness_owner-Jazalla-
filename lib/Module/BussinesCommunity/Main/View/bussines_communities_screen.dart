@@ -321,13 +321,14 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
                             extra: state.person.Bearer);
                       },
                       child: Container(
-                        width: 386.w,
+                        // width: 386.w,
                         height: 177.h,
                         margin: EdgeInsets.only(
-                          left: 24.w,
-                          right: 24.w,
+                          left: 12.w,
+                          right: 12.w,
                           top: 12.h,
                         ),
+
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6.4.r),
                             color: HexColor('#FCFCFC')),
