@@ -61,6 +61,10 @@ class PasswordController extends StateNotifier<PasswordState> {
         MySharedPreferences.setUserData(person: person);
 
         Person person2 = await MySharedPreferences.getUserData();
+
+        print(person2);
+        print(person2.data!.companyId);
+
         context.goNamed(homescreen, extra: person2);
 
         // Get.offAllNamed(homescreen, arguments: person2);

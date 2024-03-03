@@ -10,11 +10,13 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       this.bellOnTap,
       this.size,
       this.showBell = true,
+      this.showFilter = true,
       this.filterOnPressed});
   String? title;
   void Function()? bellOnTap;
   var size;
   bool showBell;
+  bool showFilter;
   void Function()? filterOnPressed;
 
   @override
@@ -50,7 +52,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                 margin: const EdgeInsets.only(right: 30).r,
                 child: SvgPicture.asset('assets/images/bellicon.svg')),
           )
-        ] else ...[
+        ] else if (showFilter) ...[
           IconButton(
               icon: SvgPicture.asset(
                 'assets/images/filter.svg',

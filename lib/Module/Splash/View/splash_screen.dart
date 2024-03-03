@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void getUserSharedPreferencesData() async {
     Person person = await MySharedPreferences.getUserData();
 
-    if (person.Bearer == "") {
+    if (person.data!.isActive == 0) {
       Timer(const Duration(seconds: 3),
           () => context.goNamed('/CheckPhoneNumber'));
     } else {

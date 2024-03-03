@@ -62,19 +62,6 @@ String? emailValidator(String? v) {
   }
 }
 
-String? cnicValidator(String? v) {
-  String string = v!.trim();
-  bool _cnicValid = RegExp("^[0-9]{5}-[0-9]{7}-[0-9]\$").hasMatch(string);
-
-  if (string.isEmpty) {
-    return 'Please enter your CNIC';
-  } else if (!_cnicValid) {
-    return 'Please enter a valid CNIC  XXXXX-XXXXXXX-X  ';
-  } else {
-    return null;
-  }
-}
-
 Future<bool?> myToast(
     {required msg,
     Color? backgroundColor,

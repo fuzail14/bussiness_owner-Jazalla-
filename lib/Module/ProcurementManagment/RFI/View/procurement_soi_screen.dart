@@ -25,11 +25,13 @@ class ProcuremenetSoiScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: MyAppBar(
-          showBell: false,
-          title: "RFI/SOI Managemet",
-          filterOnPressed: () {
-            _scaffoldKey.currentState?.openEndDrawer();
-          }),
+        showBell: false,
+        showFilter: false,
+        title: "RFI/SOI Managemet",
+        // filterOnPressed: () {
+        //   _scaffoldKey.currentState?.openEndDrawer();
+        // }
+      ),
       backgroundColor: Colors.white,
       body: Column(
         children: [
@@ -78,23 +80,6 @@ class ProcuremenetSoiScreen extends ConsumerWidget {
                 ),
               ),
               10.pw,
-              IconButton(
-                  onPressed: () {
-                    controller.request4InformationViewApi(
-                        userId: state.person.data!.id,
-                        bearerToken: state.person.Bearer);
-                  },
-                  icon: const Icon(
-                    Icons.refresh,
-                    color: blueColor,
-                  )
-
-                  // SvgPicture.asset(
-                  //   'assets/images/filter.svg',
-                  //   height: 20,
-                  //   width: 40,
-                  // )
-                  ),
             ],
           ),
           if (state.responseStatus == Status.loading)
@@ -104,7 +89,7 @@ class ProcuremenetSoiScreen extends ConsumerWidget {
             if (state.request4Information.isEmpty) ...[
               Center(
                 child: Text(
-                  'No Community Found.',
+                  'No Requests Found.',
                   style: GoogleFonts.montserrat(
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
@@ -143,45 +128,115 @@ class ProcuremenetSoiScreen extends ConsumerWidget {
                                     ),
                                     4.ph,
                                     Text(
-                                      '1',
+                                      state.request4Information[index].id
+                                          .toString(),
                                       style: montserratSubHeadingTextStyle,
                                     ),
                                     16.ph,
-                                    Text('Title'),
+                                    Text(
+                                      'Title',
+                                      style: montserratHeadingTextStyle,
+                                    ),
                                     4.ph,
-                                    Text('SomeTitle'),
+                                    Text(
+                                      state.request4Information[index].title
+                                          .toString(),
+                                      style: montserratSubHeadingTextStyle,
+                                    ),
                                     16.ph,
-                                    Text('Issue Date'),
+                                    Text(
+                                      'Issue Date',
+                                      style: montserratHeadingTextStyle,
+                                    ),
                                     4.ph,
-                                    Text('2024-07-09'),
+                                    Text(
+                                      state.request4Information[index].startdate
+                                          .toString(),
+                                      style: montserratSubHeadingTextStyle,
+                                    ),
                                     16.ph,
-                                    Text('Item Type'),
+                                    Text(
+                                      'Item Type',
+                                      style: montserratHeadingTextStyle,
+                                    ),
                                     4.ph,
-                                    Text('Some Type'),
+                                    Text(
+                                      state.request4Information[index]
+                                          .requestType
+                                          .toString(),
+                                      style: montserratSubHeadingTextStyle,
+                                    ),
                                   ],
                                 ),
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(
-                                      right: 31, top: 16, bottom: 20)
-                                  .r,
+                              padding:
+                                  const EdgeInsets.only(top: 16, bottom: 20).r,
                               child: SizedBox(
                                 //width: 180.w,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('Request'),
+                                    Text(
+                                      'Request',
+                                      style: montserratHeadingTextStyle,
+                                    ),
                                     4.ph,
-                                    Text('Processing'),
+                                    if (state.request4Information[index]
+                                            .status ==
+                                        '1') ...[
+                                      Container(
+                                        padding: EdgeInsets.symmetric(
+                                                horizontal: 8.0)
+                                            .r,
+                                        decoration: BoxDecoration(
+                                            color: const Color(0xff124206),
+                                            borderRadius:
+                                                BorderRadius.circular(8).r),
+                                        child: Text('Processing',
+                                            style: GoogleFonts.montserrat(
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.w400,
+                                                color: Color(0xffFACC15))),
+                                      ),
+                                    ],
                                     16.ph,
-                                    Text('Status'),
+                                    Text(
+                                      'Status',
+                                      style: montserratHeadingTextStyle,
+                                    ),
                                     4.ph,
-                                    Text('Ready'),
+                                    if (state.request4Information[index]
+                                            .status ==
+                                        '1') ...[
+                                      Container(
+                                        padding: EdgeInsets.symmetric(
+                                                horizontal: 8.0)
+                                            .r,
+                                        decoration: BoxDecoration(
+                                            color: const Color(0xff042F2E),
+                                            borderRadius:
+                                                BorderRadius.circular(8).r),
+                                        child: Text('RFI Sent',
+                                            style: GoogleFonts.montserrat(
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.w400,
+                                                color: Color(0xff2DD4BF))),
+                                      ),
+                                    ],
                                     16.ph,
-                                    Text('Action'),
+                                    Text(
+                                      'Item For',
+                                      style: montserratHeadingTextStyle,
+                                    ),
                                     4.ph,
-                                    Text('2024-07-09'),
+                                    Text(
+                                      state
+                                          .request4Information[index].requestFor
+                                          .toString(),
+                                      style: montserratSubHeadingTextStyle,
+                                    ),
                                     16.ph,
                                   ],
                                 ),

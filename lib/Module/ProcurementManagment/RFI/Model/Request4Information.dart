@@ -47,6 +47,7 @@ class RequestForInformation {
 
   String? requestFor;
   String? details;
+  String? startdate;
 
   String? title;
   String? unit;
@@ -63,6 +64,7 @@ class RequestForInformation {
 
     requestFor = json['request_for'];
     details = json['details'];
+    startdate = json['start_date'];
 
     title = json['title'];
 
@@ -81,6 +83,7 @@ class RequestForInformation {
 
     _data['request_for'] = requestFor;
     _data['details'] = details;
+    _data['start_date'] = startdate;
 
     _data['title'] = title;
     _data['unit'] = unit;

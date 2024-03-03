@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:bussines_owner/Module/MarketPlace/View/market_place_screen.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
@@ -111,79 +112,83 @@ class CustomLineChart extends StatelessWidget {
           children: [
             IncomeExpenseCard(),
             Expanded(
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Color(0xff020227),
-                  borderRadius: BorderRadius.circular(18),
-                ),
-                padding: EdgeInsets.all(16),
-                margin: EdgeInsets.all(16),
-                child: LineChart(
-                  LineChartData(
-                    lineTouchData: LineTouchData(
-                      touchTooltipData: LineTouchTooltipData(
-                        tooltipBgColor: Colors.blueAccent,
-                        getTooltipItems: (List<LineBarSpot> touchedBarSpots) {
-                          return touchedBarSpots.map((barSpot) {
-                            final flSpot = barSpot;
-                            return LineTooltipItem(
-                              '${flSpot.y}m',
-                              const TextStyle(color: Colors.white),
-                            );
-                          }).toList();
+              child: FadeInDown(
+                duration: Duration(milliseconds: 600),
+                delay: Duration(milliseconds: 100),
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Color(0xff020227),
+                    borderRadius: BorderRadius.circular(18),
+                  ),
+                  padding: EdgeInsets.all(16),
+                  margin: EdgeInsets.all(16),
+                  child: LineChart(
+                    LineChartData(
+                      lineTouchData: LineTouchData(
+                        touchTooltipData: LineTouchTooltipData(
+                          tooltipBgColor: Colors.blueAccent,
+                          getTooltipItems: (List<LineBarSpot> touchedBarSpots) {
+                            return touchedBarSpots.map((barSpot) {
+                              final flSpot = barSpot;
+                              return LineTooltipItem(
+                                '${flSpot.y}m',
+                                const TextStyle(color: Colors.white),
+                              );
+                            }).toList();
+                          },
+                        ),
+                        touchCallback: (FlTouchEvent, LineTouchResponse) {},
+                        handleBuiltInTouches: true,
+                      ),
+                      gridData: FlGridData(
+                        show: true,
+                        drawHorizontalLine: true,
+                        horizontalInterval: 1,
+                        getDrawingVerticalLine: (value) {
+                          return FlLine(
+                            color: Colors.white10,
+                            strokeWidth: 1,
+                          );
+                        },
+                        getDrawingHorizontalLine: (value) {
+                          return FlLine(
+                            color: Colors.white10,
+                            strokeWidth: 1,
+                          );
                         },
                       ),
-                      touchCallback: (FlTouchEvent, LineTouchResponse) {},
-                      handleBuiltInTouches: true,
-                    ),
-                    gridData: FlGridData(
-                      show: true,
-                      drawHorizontalLine: true,
-                      horizontalInterval: 1,
-                      getDrawingVerticalLine: (value) {
-                        return FlLine(
-                          color: Colors.white10,
-                          strokeWidth: 1,
-                        );
-                      },
-                      getDrawingHorizontalLine: (value) {
-                        return FlLine(
-                          color: Colors.white10,
-                          strokeWidth: 1,
-                        );
-                      },
-                    ),
-                    titlesData: FlTitlesData(
-                      show: true,
-                      rightTitles:
-                          AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                      topTitles:
-                          AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                      bottomTitles: AxisTitles(
-                        sideTitles: SideTitles(
-                          showTitles: true,
-                          getTitlesWidget: _bottomTitleWidgets,
-                          reservedSize: 42,
+                      titlesData: FlTitlesData(
+                        show: true,
+                        rightTitles: AxisTitles(
+                            sideTitles: SideTitles(showTitles: false)),
+                        topTitles: AxisTitles(
+                            sideTitles: SideTitles(showTitles: false)),
+                        bottomTitles: AxisTitles(
+                          sideTitles: SideTitles(
+                            showTitles: true,
+                            getTitlesWidget: _bottomTitleWidgets,
+                            reservedSize: 42,
+                          ),
+                        ),
+                        leftTitles: AxisTitles(
+                          sideTitles: SideTitles(
+                            showTitles: true,
+                            getTitlesWidget: _leftTitleWidgets,
+                            reservedSize: 42,
+                          ),
                         ),
                       ),
-                      leftTitles: AxisTitles(
-                        sideTitles: SideTitles(
-                          showTitles: true,
-                          getTitlesWidget: _leftTitleWidgets,
-                          reservedSize: 42,
-                        ),
+                      borderData: FlBorderData(
+                        show: true,
+                        border: Border.all(color: Color(0xff37434d), width: 1),
                       ),
+                      minX: 0,
+                      maxX: 11,
+                      minY: 0,
+                      maxY: 6,
+                      lineBarsData: _linesBarData(),
                     ),
-                    borderData: FlBorderData(
-                      show: true,
-                      border: Border.all(color: Color(0xff37434d), width: 1),
-                    ),
-                    minX: 0,
-                    maxX: 11,
-                    minY: 0,
-                    maxY: 6,
-                    lineBarsData: _linesBarData(),
                   ),
                 ),
               ),
@@ -290,65 +295,69 @@ class CustomLineChart extends StatelessWidget {
 class IncomeExpenseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.all(16),
-      child: Padding(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Income Vs Expense',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.blueGrey,
+    return FadeInUp(
+      duration: Duration(milliseconds: 600),
+      delay: Duration(milliseconds: 100),
+      child: Card(
+        margin: EdgeInsets.all(16),
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Income Vs Expense',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueGrey,
+                ),
               ),
-            ),
-            Divider(),
-            SizedBox(height: 16),
-            IntrinsicHeight(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _InfoItem(
-                    title: 'Income Today',
-                    value: '\$15000.10',
-                    iconColor: Colors.blue,
-                    iconData: Icons.account_balance_wallet,
-                  ),
-                  VerticalDivider(),
-                  _InfoItem(
-                    title: 'Expense Today',
-                    value: '\$7342.40',
-                    iconColor: Colors.red,
-                    iconData: Icons.money_off,
-                  ),
-                ],
+              Divider(),
+              SizedBox(height: 16),
+              IntrinsicHeight(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _InfoItem(
+                      title: 'Income Today',
+                      value: '\$15000.10',
+                      iconColor: Colors.blue,
+                      iconData: Icons.account_balance_wallet,
+                    ),
+                    VerticalDivider(),
+                    _InfoItem(
+                      title: 'Expense Today',
+                      value: '\$7342.40',
+                      iconColor: Colors.red,
+                      iconData: Icons.money_off,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            SizedBox(height: 16),
-            IntrinsicHeight(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _InfoItem(
-                    title: 'Income This Month',
-                    value: '\$200000.890',
-                    iconColor: Colors.orange,
-                    iconData: Icons.account_balance_wallet,
-                  ),
-                  VerticalDivider(),
-                  _InfoItem(
-                    title: 'Expense This Month',
-                    value: '\$83500.90',
-                    iconColor: Colors.pink,
-                    iconData: Icons.money_off,
-                  ),
-                ],
+              SizedBox(height: 16),
+              IntrinsicHeight(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _InfoItem(
+                      title: 'Income This Month',
+                      value: '\$200000.890',
+                      iconColor: Colors.orange,
+                      iconData: Icons.account_balance_wallet,
+                    ),
+                    VerticalDivider(),
+                    _InfoItem(
+                      title: 'Expense This Month',
+                      value: '\$83500.90',
+                      iconColor: Colors.pink,
+                      iconData: Icons.money_off,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

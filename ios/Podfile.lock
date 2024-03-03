@@ -38,7 +38,7 @@ PODS:
     - FirebaseAuth (~> 10.18.0)
   - Firebase/CoreOnly (10.18.0):
     - FirebaseCore (= 10.18.0)
-  - firebase_auth (4.15.3):
+  - firebase_auth (4.16.0):
     - Firebase/Auth (= 10.18.0)
     - firebase_core
     - Flutter
@@ -63,9 +63,6 @@ PODS:
   - fluttertoast (0.0.2):
     - Flutter
     - Toast
-  - FMDB (2.7.5):
-    - FMDB/standard (= 2.7.5)
-  - FMDB/standard (2.7.5)
   - google_maps_flutter_ios (0.0.1):
     - Flutter
     - GoogleMaps (< 9.0)
@@ -105,7 +102,7 @@ PODS:
     - Flutter
   - sqflite (0.0.3):
     - Flutter
-    - FMDB (>= 2.7.5)
+    - FlutterMacOS
   - SwiftyGif (5.4.4)
   - Toast (4.1.0)
   - url_launcher_ios (0.0.1):
@@ -121,7 +118,7 @@ DEPENDENCIES:
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - smart_auth (from `.symlinks/plugins/smart_auth/ios`)
-  - sqflite (from `.symlinks/plugins/sqflite/ios`)
+  - sqflite (from `.symlinks/plugins/sqflite/darwin`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 SPEC REPOS:
@@ -133,7 +130,6 @@ SPEC REPOS:
     - FirebaseAuth
     - FirebaseCore
     - FirebaseCoreInternal
-    - FMDB
     - GoogleMaps
     - GoogleUtilities
     - GTMSessionFetcher
@@ -163,7 +159,7 @@ EXTERNAL SOURCES:
   smart_auth:
     :path: ".symlinks/plugins/smart_auth/ios"
   sqflite:
-    :path: ".symlinks/plugins/sqflite/ios"
+    :path: ".symlinks/plugins/sqflite/darwin"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
@@ -172,7 +168,7 @@ SPEC CHECKSUMS:
   DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
   file_picker: 15fd9539e4eb735dc54bae8c0534a7a9511a03de
   Firebase: 414ad272f8d02dfbf12662a9d43f4bba9bec2a06
-  firebase_auth: df44e14f8a93e8a9869d91695bd3f8e53d2c9f5a
+  firebase_auth: 8e9ec02991ca4659111cc671c84d0c010b6bfb26
   firebase_core: 0af4a2b24f62071f9bf283691c0ee41556dcb3f5
   FirebaseAppCheckInterop: 69fc7d8f6a1cbfa973efb8d1723651de30d12525
   FirebaseAuth: 12314b438fa76048540c8fb86d6cfc9e08595176
@@ -180,21 +176,20 @@ SPEC CHECKSUMS:
   FirebaseCoreInternal: 43c1788eaeee9d1b97caaa751af567ce11010d00
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   fluttertoast: 31b00dabfa7fb7bacd9e7dbee580d7a2ff4bf265
-  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  google_maps_flutter_ios: 590249c67f34f422122c232f2a626192adbc78ee
+  google_maps_flutter_ios: f135b968a67c05679e0a53538e900b5c174b0d99
   GoogleMaps: 8939898920281c649150e0af74aa291c60f2e77d
   GoogleUtilities: 0759d1a57ebb953965c2dfe0ba4c82e95ccc2e34
   GTMSessionFetcher: 8a1b34ad97ebe6f909fb8b9b77fba99943007556
-  path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
+  path_provider_foundation: 3784922295ac71e43754bd15e0653ccfd36a147c
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
   SDWebImage: 981fd7e860af070920f249fd092420006014c3eb
-  shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
+  shared_preferences_foundation: b4c3b4cddf1c21f02770737f147a3f5da9d39695
   smart_auth: 4bedbc118723912d0e45a07e8ab34039c19e04f2
-  sqflite: 31f7eba61e3074736dff8807a9b41581e4f7f15a
+  sqflite: 673a0e54cc04b7d6dba8d24fb8095b31c3a99eec
   SwiftyGif: 93a1cc87bf3a51916001cf8f3d63835fb64c819f
   Toast: ec33c32b8688982cecc6348adeae667c1b9938da
-  url_launcher_ios: bf5ce03e0e2088bad9cc378ea97fa0ed5b49673b
+  url_launcher_ios: 6116280ddcfe98ab8820085d8d76ae7449447586
 
 PODFILE CHECKSUM: 978dd492a93a8ef4ec2dc2b3631de447af34068a
 
