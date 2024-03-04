@@ -31,7 +31,7 @@ class MarketPlaceScreen extends ConsumerWidget {
             gradient: LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
-              colors: <Color>[Color(0xff23c2ea), Color(0xff792efd)],
+              colors: <Color>[Color(0xff1F3996), Color(0xff4EBBD3)],
             ),
           ),
           child: Row(

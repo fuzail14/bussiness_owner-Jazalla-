@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   MyAppBar(
@@ -40,7 +41,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           gradient: LinearGradient(
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
-            colors: <Color>[Color(0xff23c2ea), Color(0xff792efd)],
+            colors: <Color>[Color(0xff1F3996), Color(0xff4EBBD3)],
           ),
         ),
       ),

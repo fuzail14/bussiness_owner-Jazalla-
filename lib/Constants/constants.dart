@@ -4,8 +4,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-final Color primaryColor = HexColor("#4ebbd3");
-final Color primaryColor2 = HexColor("#1f3996");
+// final Color primaryColor = HexColor("#4ebbd3");
+// final Color primaryColor2 = HexColor("#1f3996");
+final Color primaryColor = HexColor("#1F3996");
+final Color primaryColor2 = HexColor("#4EBBD3");
 
 const Color blueColor = Color(0xff4B6FFF);
 const borderColor = Color(0xff19A3A3);
