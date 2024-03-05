@@ -3,17 +3,25 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
 class MenuItem {
-  final String title;
-  final SvgPicture icon;
-  final SvgPicture trailingIcon;
+  // final String title;
+  // final SvgPicture icon;
+  // final SvgPicture trailingIcon;
 
+  final String title;
+  final String iconPath; // Changed from SvgPicture to String
+  final SvgPicture trailingIcon;
+  Color iconColor;
   //final VoidCallback onTap;
 
   MenuItem({
+    // required this.title,
+    // required this.icon,
+    // required this.trailingIcon,
+    // // required this.onTap,
     required this.title,
-    required this.icon,
+    required this.iconPath, // Now expects a path to the SVG
     required this.trailingIcon,
-    // required this.onTap,
+    this.iconColor = Colors.black,
   });
 }
 
@@ -32,67 +40,66 @@ class MenuController extends StateNotifier<MenuState> {
     state = MenuState(menuItems: [
       MenuItem(
         title: 'Dashboard',
-        icon: SvgPicture.asset('assets/images/menu1.svg'),
+        iconPath: 'assets/images/menu1.svg',
         trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
-        // onTap: () {},
       ),
       MenuItem(
         title: 'Marketplace',
-        icon: SvgPicture.asset('assets/images/menu2.svg'),
+        iconPath: 'assets/images/menu2.svg',
         trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
         //onTap: () {},
       ),
       MenuItem(
         title: 'Procurement Management',
-        icon: SvgPicture.asset('assets/images/menu3.svg'),
+        iconPath: 'assets/images/menu3.svg',
         trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
         //onTap: () {},
       ),
       MenuItem(
         title: 'Sales Management',
-        icon: SvgPicture.asset('assets/images/menu4.svg'),
+        iconPath: 'assets/images/menu4.svg',
         trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
         // onTap: () {},
       ),
       MenuItem(
         title: 'Services Management',
-        icon: SvgPicture.asset('assets/images/menu5.svg'),
+        iconPath: 'assets/images/menu5.svg',
         trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
         //onTap: () {},
       ),
       MenuItem(
         title: 'Order Placement',
-        icon: SvgPicture.asset('assets/images/menu6.svg'),
+        iconPath: 'assets/images/menu6.svg',
         trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
         //onTap: () {},
       ),
       MenuItem(
         title: 'Invoice and Billing',
-        icon: SvgPicture.asset('assets/images/menu7.svg'),
+        iconPath: 'assets/images/menu7.svg',
         trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
         // onTap: () {},
       ),
       MenuItem(
         title: 'User Management',
-        icon: SvgPicture.asset('assets/images/menu8.svg'),
+        iconPath: 'assets/images/menu8.svg',
         trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
         // onTap: () {},
       ),
       MenuItem(
         title: 'Approvals and Workflows',
-        icon: SvgPicture.asset('assets/images/menu7.svg'),
+        iconPath: 'assets/images/menu7.svg',
         trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
         // onTap: () {},
       ),
       MenuItem(
         title: 'Settings',
-        icon: SvgPicture.asset('assets/images/menu11.svg'),
+        iconPath: 'assets/images/menu11.svg',
         trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
         // onTap: () {},
       ),
       MenuItem(
         title: 'Logout',
-        icon: SvgPicture.asset('assets/images/menu10.svg'),
+        iconPath: 'assets/images/menu10.svg',
         trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
         // onTap: () {},
       ),
@@ -104,3 +111,35 @@ final menuControllerProvider =
     StateNotifierProvider<MenuController, MenuState>((ref) {
   return MenuController();
 });
+
+// final expandedStateProvider =
+//     StateNotifierProvider<ExpandedStateNotifier, List<bool>>((ref) {
+//   // Assuming you have a fixed number of menu items; adjust accordingly
+//   int menuItemsCount = ref.watch(menuControllerProvider).menuItems.length;
+//   return ExpandedStateNotifier(List.filled(menuItemsCount, false));
+// });
+
+// class ExpandedStateNotifier extends StateNotifier<List<bool>> {
+//   ExpandedStateNotifier(List<bool> state) : super(state);
+
+//   void toggle(int index) {
+//     state = [
+//       for (int i = 0; i < state.length; i++) i == index ? !state[i] : state[i],
+//     ];
+//   }
+// }
+
+final expandedStateProvider =
+    StateNotifierProvider<ExpandedStateNotifier, int?>((ref) {
+  return ExpandedStateNotifier();
+});
+
+class ExpandedStateNotifier extends StateNotifier<int?> {
+  ExpandedStateNotifier() : super(null); // Initially, no tile is expanded.
+
+  void toggle(int index) {
+    // If the current state equals the index, collapse it by setting to null.
+    // Otherwise, expand the new index.
+    state = state == index ? null : index;
+  }
+}

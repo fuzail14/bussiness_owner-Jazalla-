@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import '../../../Constants/Person/person_controller.dart';
+import '../../EmployeeCenter/View/employee_center_page.dart';
 import '../../Menu/View/menu_screen.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -19,7 +20,7 @@ class HomeScreen extends ConsumerWidget {
       CustomLineChart(),
       MarketPlaceScreen(),
       Container(),
-      Container(),
+      EmployeeCenterPage(),
       Menu(),
     ];
   }
