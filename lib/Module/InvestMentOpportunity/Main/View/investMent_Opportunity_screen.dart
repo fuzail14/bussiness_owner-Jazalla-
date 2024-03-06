@@ -191,72 +191,71 @@ class InvestMentOpportunityView extends ConsumerWidget {
                 Container(
                   width: 281.w,
                   height: 36.h,
-                  padding: EdgeInsets.only(left: 20).r,
                   margin: EdgeInsets.only(left: 26).r,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30.0),
-                      border: Border.all(color: blueColor)),
+
+                  // decoration: BoxDecoration(
+                  //     color: Colors.white,
+                  //     borderRadius: BorderRadius.circular(30.0),
+                  //     border: Border.all(color: HexColor('#DEDEDE'))),
                   child: TextField(
-                    // onChanged: (value) => controller.debounce(
-                    //   () async {
-                    //     print('ab aya');
-                    //     if (value == '') {
-                    //       print('please enter something');
-                    //     } else {
-                    //       print('idhr aya');
-                    //       controller.bussinesCommunitySearchApi(query: value);
-                    //     }
-                    //   },
-                    // ),
-                    // onChanged: (query) {
-                    //   // controller.debounce(() {
-                    //   //   controller.bussinesCommunitySearchApi(query: query);
-                    //   // });
-                    // },
                     controller: controller.searchController,
+                    // onChanged: (query) {
+                    //   controller.debounce(() {
+                    //     controller.bussinesCommunitySearchApi(query: query);
+                    //   });
+                    // },
+
                     decoration: InputDecoration(
-                      hintText: "What are you looking for?",
-                      hintStyle: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w300,
-                          color: HexColor('#75788D')),
-                      suffixIcon: GestureDetector(
-                        onTap: () {
-                          controller.investmentOpportunitySearchApi(
-                              query: controller.searchController.text.trim());
-                        },
-                        child: Container(
-                          padding: EdgeInsets.only(right: 22).r,
-                          width: 22.w,
-                          height: 21.h,
-                          child: SvgPicture.asset(
-                            'assets/images/search.svg',
-                            fit: BoxFit.contain,
+                        contentPadding: EdgeInsets.only(left: 20).r,
+                        fillColor: Colors.white,
+                        disabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                          // border: Border.all(color: HexColor('#DEDEDE'))
+                        ),
+                        hintText: "What are you looking for?",
+                        hintStyle: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w300,
+                            color: HexColor('#75788D')),
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            controller.investmentOpportunitySearchApi(
+                                query: controller.searchController.text.trim());
+                          },
+                          child: Container(
+                            padding: EdgeInsets.only(right: 22).r,
+                            width: 22.w,
+                            height: 21.h,
+                            child: SvgPicture.asset(
+                              'assets/images/search.svg',
+                              fit: BoxFit.contain,
+                            ),
                           ),
                         ),
-                      ),
-                      border: InputBorder.none,
-                    ),
+                        border: InputBorder.none,
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          borderSide: BorderSide(
+                            color: primaryColor,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30).r,
+                          borderSide: BorderSide(color: Color(0xffDEDEDE)),
+                        ),
+                        focusColor: blueColor),
                   ),
                 ),
                 10.pw,
                 IconButton(
                     onPressed: () {
-                      // controller.BussinesCommunitiesViewApi(
-                      //     bearerToken: state.person.Bearer);
+                      controller.searchController.clear();
+                      controller.loadInvestMentOpportunities();
                     },
                     icon: const Icon(
                       Icons.refresh,
                       color: blueColor,
-                    )
-
-                    // SvgPicture.asset(
-                    //   'assets/images/filter.svg',
-                    //   height: 20,
-                    //   width: 40,
-                    // )
-                    ),
+                    )),
               ],
             ),
             if (state.responseStatus == Status.loading)

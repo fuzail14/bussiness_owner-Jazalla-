@@ -194,60 +194,66 @@ class BussinesForSale extends ConsumerWidget {
                 Container(
                   width: 281.w,
                   height: 36.h,
-                  padding: EdgeInsets.only(left: 20).r,
                   margin: EdgeInsets.only(left: 26).r,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30.0),
-                      border: Border.all(color: blueColor)),
+
+                  // decoration: BoxDecoration(
+                  //     color: Colors.white,
+                  //     borderRadius: BorderRadius.circular(30.0),
+                  //     border: Border.all(color: HexColor('#DEDEDE'))),
                   child: TextField(
-                    // onChanged: (value) => controller.debounce(
-                    //   () async {
-                    //     print('ab aya');
-                    //     if (value == '') {
-                    //       print('please enter something');
-                    //     } else {
-                    //       print('idhr aya');
-                    //       controller.bussinesCommunitySearchApi(query: value);
-                    //     }
-                    //   },
-                    // ),
-                    onChanged: (query) {
-                      // controller.debounce(() {
-                      //   controller.bussinesCommunitySearchApi(query: query);
-                      // });
-                    },
                     controller: controller.searchController,
+                    // onChanged: (query) {
+                    //   controller.debounce(() {
+                    //     controller.bussinesCommunitySearchApi(query: query);
+                    //   });
+                    // },
+
                     decoration: InputDecoration(
-                      hintText: "What are you looking for?",
-                      hintStyle: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w300,
-                          color: HexColor('#75788D')),
-                      suffixIcon: GestureDetector(
-                        onTap: () {
-                          controller.bussinesForSaleSearchApi(
-                              query: controller.searchController.text.trim());
-                        },
-                        child: Container(
-                          padding: EdgeInsets.only(right: 22).r,
-                          width: 22.w,
-                          height: 21.h,
-                          child: SvgPicture.asset(
-                            'assets/images/search.svg',
-                            fit: BoxFit.contain,
+                        contentPadding: EdgeInsets.only(left: 20).r,
+                        fillColor: Colors.white,
+                        disabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                          // border: Border.all(color: HexColor('#DEDEDE'))
+                        ),
+                        hintText: "What are you looking for?",
+                        hintStyle: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w300,
+                            color: HexColor('#75788D')),
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            controller.bussinesForSaleSearchApi(
+                                query: controller.searchController.text.trim());
+                          },
+                          child: Container(
+                            padding: EdgeInsets.only(right: 22).r,
+                            width: 22.w,
+                            height: 21.h,
+                            child: SvgPicture.asset(
+                              'assets/images/search.svg',
+                              fit: BoxFit.contain,
+                            ),
                           ),
                         ),
-                      ),
-                      border: InputBorder.none,
-                    ),
+                        border: InputBorder.none,
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          borderSide: BorderSide(
+                            color: primaryColor,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30).r,
+                          borderSide: BorderSide(color: Color(0xffDEDEDE)),
+                        ),
+                        focusColor: blueColor),
                   ),
                 ),
                 10.pw,
                 IconButton(
                     onPressed: () {
-                      // controller.BussinesCommunitiesViewApi(
-                      //     bearerToken: state.person.Bearer);
+                      controller.searchController.clear();
+                      controller.bussinesForSaleSearchApi();
                     },
                     icon: const Icon(
                       Icons.refresh,
@@ -531,13 +537,15 @@ class BussinesForSale extends ConsumerWidget {
                 ))
             ] else
               Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  "No Bussines Found",
-                  style: GoogleFonts.montserrat(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700,
-                      color: HexColor('#EB2F2F')),
+                padding: const EdgeInsets.symmetric(vertical: 20).r,
+                child: Center(
+                  child: Text(
+                    "No Bussines Found",
+                    style: GoogleFonts.montserrat(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                        color: HexColor('#EB2F2F')),
+                  ),
                 ),
               ),
           ],

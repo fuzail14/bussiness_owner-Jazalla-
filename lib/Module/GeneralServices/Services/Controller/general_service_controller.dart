@@ -37,13 +37,15 @@ class GeneralServiceState {
 class GeneralServiceController extends StateNotifier<GeneralServiceState> {
   final generalServiceRepository = GeneralServiceRepository();
   // final String bearerToken;
+  final TextEditingController searchController = TextEditingController();
+
   final Person person;
   GeneralServiceController({required this.person})
       : super(GeneralServiceState()) {
-    _loadServices();
+    loadServices();
   }
 
-  Future<void> _loadServices() async {
+  Future<void> loadServices() async {
     setResponseStatus(Status.loading);
     try {
       final value = await generalServiceRepository.ServicesResponse(
@@ -69,7 +71,7 @@ class GeneralServiceController extends StateNotifier<GeneralServiceState> {
     String? query,
   }) {
     if (query == null || query.isEmpty) {
-      _loadServices();
+      loadServices();
     } else {
       generalServiceRepository
           .serviceSearchRepo(
@@ -158,7 +160,7 @@ class GeneralServiceController extends StateNotifier<GeneralServiceState> {
   Future<void> applyFilter(GeneralServiceFilter filter) async {
     switch (filter) {
       case GeneralServiceFilter.showAll:
-        await _loadServices();
+        await loadServices();
         break;
       case GeneralServiceFilter.favouriteList:
         await serviceFilterApi(filtertype: 'favourite services');

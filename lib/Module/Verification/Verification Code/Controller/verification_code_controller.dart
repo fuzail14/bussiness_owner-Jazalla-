@@ -90,8 +90,7 @@ class VerificationCodeController extends StateNotifier<VerificationCodeState> {
   // You can add other methods here if needed
 }
 
-final verificationCodeProvider =
-    StateNotifierProvider<VerificationCodeController, VerificationCodeState>(
-        (ref) {
+final verificationCodeProvider = StateNotifierProvider.autoDispose<
+    VerificationCodeController, VerificationCodeState>((ref) {
   return VerificationCodeController();
 });

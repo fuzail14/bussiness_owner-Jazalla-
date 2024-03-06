@@ -62,6 +62,7 @@ class OnlineStoreState {
 class OnlineStoreController extends StateNotifier<OnlineStoreState> {
   final Person person;
   final onlineStoreRepo = OnlineStoreRepository();
+  final TextEditingController searchController = TextEditingController();
 
   OnlineStoreController({
     required this.person,
@@ -129,9 +130,6 @@ class OnlineStoreController extends StateNotifier<OnlineStoreState> {
     }).onError((error, stackTrace) {
       setResponseStatus(Status.error);
 
-      myToast(
-        msg: '$error ',
-      );
       log(error.toString());
       log(stackTrace.toString());
     });

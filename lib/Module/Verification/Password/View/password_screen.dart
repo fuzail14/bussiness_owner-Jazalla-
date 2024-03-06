@@ -24,10 +24,10 @@ class PasswordScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(passwordProvider.notifier);
     final state = ref.watch(passwordProvider);
+    final phoneNumberController =
+        ref.watch(checkPhoneNumberProvider.notifier).phoneNumberController;
 
-    final phoneNumbercontroller = ref.read(checkPhoneNumberProvider.notifier);
-
-    print('phone num ${phoneNumbercontroller.phoneNumberController.text}');
+    print('phone num: ${phoneNumberController.text}');
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -140,8 +140,7 @@ class PasswordScreen extends ConsumerWidget {
                         MyTextFormField(
                           padding: EdgeInsets.all(0),
                           validator: emptyStringValidator,
-                          controller:
-                              phoneNumbercontroller.phoneNumberController,
+                          controller: phoneNumberController,
 
                           hintText: 'Enter Mobile Number',
                           readOnly: true,
@@ -192,11 +191,8 @@ class PasswordScreen extends ConsumerWidget {
                           name: 'Submit',
                           onPressed: () {
                             if (_key.currentState!.validate()) {
-                              controller.loginApi(
-                                  phoneNumbercontroller
-                                      .phoneNumberController.text,
-                                  controller.passwordController.text,
-                                  context);
+                              controller.loginApi(phoneNumberController.text,
+                                  controller.passwordController.text, context);
                             }
                           },
                         ),

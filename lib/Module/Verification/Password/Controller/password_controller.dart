@@ -14,6 +14,7 @@ import 'package:go_router/go_router.dart';
 class PasswordState {
   final bool isLoading;
   final String phoneNum;
+
   final bool isHidden;
 
   PasswordState({
@@ -39,6 +40,7 @@ class PasswordController extends StateNotifier<PasswordState> {
   PasswordController() : super(PasswordState());
 
   final passwordController = TextEditingController();
+  var phoneNumController = TextEditingController();
   final _repository = LoginRepository();
 
   Future<void> loginApi(
@@ -96,6 +98,8 @@ class PasswordController extends StateNotifier<PasswordState> {
 }
 
 final passwordProvider =
-    StateNotifierProvider<PasswordController, PasswordState>((ref) {
+    StateNotifierProvider.autoDispose<PasswordController, PasswordState>((ref) {
   return PasswordController();
 });
+// checkPhoneNumberProvider
+// verificationCodeProvider

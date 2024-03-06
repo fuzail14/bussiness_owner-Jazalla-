@@ -114,7 +114,7 @@ class CheckPhoneNumber extends ConsumerWidget {
             Form(
               key: controller.key,
               child: Padding(
-                padding: EdgeInsets.only(top: 380.h),
+                padding: EdgeInsets.only(top: 320.h, left: 20, right: 20).r,
                 child: Column(
                   children: [
                     MyTextFormField(

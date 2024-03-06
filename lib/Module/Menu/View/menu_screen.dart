@@ -64,13 +64,11 @@ class Menu extends ConsumerWidget {
 
   Widget _buildExpansionTile(
       BuildContext context, WidgetRef ref, MenuItem item, int index, person) {
-    // Assuming you have a way to access the expanded state for each index
-
     final int? expandedIndex = ref.watch(expandedStateProvider);
     bool isExpanded = expandedIndex == index;
-    // Your existing code to determine children based on item
-    List<Widget> children = _buildChildrenForItem(context, item, person);
-    Color iconColor = isExpanded ? Colors.white : Color(0xff1A1A1A);
+    Color iconColor = isExpanded
+        ? Colors.white
+        : Color(0xff1A1A1A); // Color based on expansion
 
     return Container(
       decoration: BoxDecoration(
@@ -83,38 +81,19 @@ class Menu extends ConsumerWidget {
               )
             : null, // No gradient when not expanded
       ),
-      child: Theme(
-        data: Theme.of(context).copyWith(
-          dividerColor: Colors.transparent,
-          expansionTileTheme: ExpansionTileThemeData(
-            backgroundColor: Colors.transparent,
-          ),
-        ),
-        child: ExpansionTile(
-          leading: SvgPicture.asset(
-            item.iconPath,
-            color: iconColor,
-          ),
-          title: Text(
-            item.title,
-            style: GoogleFonts.poppins(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-              color: isExpanded ? whiteColor : Color(0xff1A1A1A),
-            ),
-          ),
-          trailing: Transform.rotate(
-            angle: isExpanded ? math.pi / 2 : 0, // Rotate icon if expanded
-            child: Icon(Icons.chevron_right,
-                color: isExpanded ? Colors.white : Color(0xff1A1A1A)),
-          ),
-          onExpansionChanged: (bool expanded) {
-            if (expanded) {
-              ref.read(expandedStateProvider.notifier).toggle(index);
-            }
-          },
-          children: children,
-        ),
+      child: CustomExpansionTile(
+        title: item.title,
+        iconPath: item.iconPath,
+        iconColor: iconColor, // Pass the dynamic color
+        children: _buildChildrenForItem(context, item, person),
+        isExpanded: isExpanded,
+        onTap: () {
+          ref.read(expandedStateProvider.notifier).toggle(index);
+          if (item.title == 'Logout') {
+            MySharedPreferences.deleteUserData();
+            context.pushReplacementNamed(checkPhoneNumber);
+          }
+        },
       ),
     );
   }
@@ -176,6 +155,61 @@ class Menu extends ConsumerWidget {
     );
   }
 }
+
+class CustomExpansionTile extends StatelessWidget {
+  final String title;
+  final String iconPath; // Path to the SVG asset
+  final List<Widget> children;
+  final bool isExpanded;
+  final VoidCallback? onTap;
+  final Color? iconColor; // Optional color for the icon
+
+  const CustomExpansionTile({
+    Key? key,
+    required this.title,
+    required this.iconPath,
+    required this.children,
+    this.isExpanded = false,
+    this.onTap,
+    this.iconColor,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // Dynamic text color based on expansion state
+    Color textColor = isExpanded ? Colors.white : Color(0xff1A1A1A);
+
+    return InkWell(
+      onTap: onTap,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // Leading icon with conditional color
+                SvgPicture.asset(iconPath, color: iconColor ?? Colors.black),
+                20.pw,
+                Expanded(
+                  child: Text(
+                    title,
+                    style: TextStyle(color: textColor), // Dynamic color
+                  ),
+                ),
+                Icon(isExpanded ? Icons.expand_less : Icons.expand_more,
+                    color: textColor),
+              ],
+            ),
+          ),
+          if (isExpanded) ...children,
+        ],
+      ),
+    );
+  }
+}
+
 
 // class Menu extends ConsumerWidget {
 //   const Menu({Key? key}) : super(key: key);
@@ -511,3 +545,4 @@ class Menu extends ConsumerWidget {
 
 //   // ... rest of your existing methods
 // }
+

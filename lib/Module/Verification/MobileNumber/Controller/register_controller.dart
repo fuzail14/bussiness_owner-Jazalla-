@@ -81,8 +81,7 @@ class CheckPhoneNumberController extends StateNotifier<CheckPhoneNumberState> {
   }
 }
 
-final checkPhoneNumberProvider =
-    StateNotifierProvider<CheckPhoneNumberController, CheckPhoneNumberState>(
-        (ref) {
+final checkPhoneNumberProvider = StateNotifierProvider.autoDispose<
+    CheckPhoneNumberController, CheckPhoneNumberState>((ref) {
   return CheckPhoneNumberController();
 });
