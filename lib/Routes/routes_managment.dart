@@ -24,6 +24,7 @@ import '../Module/GeneralServices/SendInquiry/View/service_send_inquiry_page.dar
 import '../Module/InvestMentOpportunity/Main/View/investMent_Opportunity_screen.dart';
 import '../Module/OnlineStore/RequestQuote/View/request_quote_page.dart';
 import '../Module/OnlineStore/SendInquiry/View/send_inquiry_page.dart';
+import '../Module/ProcurementManagment/RFI/RfxManagmentRFIDetail/View/rfx_managment_rfi_detail_page.dart';
 import '../Module/ProcurementManagment/RFI/View/procurement_soi_screen.dart';
 import '../Module/ProcurementManagment/RFP/View/procurement_rfp_screen.dart';
 import '../Module/ProcurementManagment/RFQ/View/procurement_rfq_screen.dart';
@@ -564,6 +565,25 @@ final router = GoRouter(
                 .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
           child: ServiceManagmentRFPScreen(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: rFXManagmentRFIDetailPage,
+      path: '/RFXManagmentRFIDetailPage/:id',
+      pageBuilder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider.overrideWithValue({'rfiId': id}),
+          ],
+          child: RFXManagmentRFIDetailPage(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,

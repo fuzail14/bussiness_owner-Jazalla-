@@ -32,7 +32,7 @@ class EmployeeCenterPage extends ConsumerWidget {
             Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20).r,
-              child: Text("Employee Center",
+              child: const Text("Employee Center",
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,

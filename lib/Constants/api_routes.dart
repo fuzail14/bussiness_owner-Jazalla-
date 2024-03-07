@@ -122,4 +122,7 @@ class Api {
       "${baseUrl}marketplace/OnlineStore/getSalesManagmentRFQ";
   static const String getServiceManagmentRFP =
       "${baseUrl}marketplace/ServiceManagment/getServiceManagmentRFP";
+
+  static const String getProcurementRfiDetail =
+      "${baseUrl}marketplace/Procurement/getProcurementRfiDetail";
 }

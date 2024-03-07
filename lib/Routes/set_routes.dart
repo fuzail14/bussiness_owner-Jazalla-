@@ -31,3 +31,4 @@ const String salesManagmentRFIScreen = '/SalesManagmentRFIScreen';
 const String salesManagmentRFQScreen = '/SalesManagmentRFQScreen';
 const String serviceManagmentRFIScreen = '/ServiceManagmentRFIScreen';
 const String serviceManagmentRFPScreen = '/ServiceManagmentRFPScreen';
+const String rFXManagmentRFIDetailPage = '/RFXManagmentRFIDetailPage';

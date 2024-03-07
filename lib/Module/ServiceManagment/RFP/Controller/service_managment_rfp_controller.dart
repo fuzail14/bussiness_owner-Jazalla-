@@ -12,23 +12,23 @@ import '../../../../Repo/ServiceManagment/RFP/service_managment_rfp_repository.d
 
 class ServiceManagmentRFQState {
   final Status responseStatus;
-  final List<RequestForProposal> requestForQuotation;
+  final List<RequestForProposal> requestForPropsal;
   final Person person;
 
   ServiceManagmentRFQState({
     this.responseStatus = Status.loading,
-    this.requestForQuotation = const [],
+    this.requestForPropsal = const [],
     required this.person,
   });
 
   ServiceManagmentRFQState copyWith({
     Status? responseStatus,
-    List<RequestForProposal>? requestForQuotation,
+    List<RequestForProposal>? requestForPropsal,
     Person? person,
   }) {
     return ServiceManagmentRFQState(
       responseStatus: responseStatus ?? this.responseStatus,
-      requestForQuotation: requestForQuotation ?? this.requestForQuotation,
+      requestForPropsal: requestForPropsal ?? this.requestForPropsal,
       person: person ?? this.person,
     );
   }
@@ -54,7 +54,7 @@ class ServiceManagmentRFQController
         bearerToken: bearerToken,
       );
       state = state.copyWith(
-        requestForQuotation: value.requestForProposal,
+        requestForPropsal: value.requestForProposal,
         responseStatus: Status.completed,
       );
     } catch (e, stackTrace) {

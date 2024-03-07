@@ -108,7 +108,7 @@ class MenuController extends StateNotifier<MenuState> {
 }
 
 final menuControllerProvider =
-    StateNotifierProvider<MenuController, MenuState>((ref) {
+    StateNotifierProvider.autoDispose<MenuController, MenuState>((ref) {
   return MenuController();
 });
 
@@ -130,7 +130,7 @@ final menuControllerProvider =
 // }
 
 final expandedStateProvider =
-    StateNotifierProvider<ExpandedStateNotifier, int?>((ref) {
+    StateNotifierProvider.autoDispose<ExpandedStateNotifier, int?>((ref) {
   return ExpandedStateNotifier();
 });
 
