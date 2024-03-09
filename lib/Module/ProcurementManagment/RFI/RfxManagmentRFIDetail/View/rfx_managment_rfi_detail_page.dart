@@ -1,7 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
+import 'package:bussines_owner/Constants/constants.dart';
 import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -48,26 +52,173 @@ class RFXManagmentRFIDetailPage extends ConsumerWidget {
                       ),
                       20.ph,
                       Container(
-                        height: 360,
-                        padding: EdgeInsets.only(
-                                top: 20, left: 14, right: 14, bottom: 40)
-                            .r,
+                        // height: 360,
+
+                        padding: const EdgeInsets.only(bottom: 20).r,
+
                         decoration: BoxDecoration(
                           color: Color(0xff707070).withOpacity(0.08),
                           borderRadius: BorderRadius.circular(8).r,
                         ),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            AutoSizeText(
-                              'RFI DETAILS ${state.rfxManagmentRFIDetail[index].title.toString()}',
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: GoogleFonts.poppins(
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.w500,
-                                  color: Color(0xff000000)),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                      horizontal: 14, vertical: 17)
+                                  .r,
+                              child: AutoSizeText(
+                                'RFI-${state.rfxManagmentRFIDetail[index].title.toString()}',
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.poppins(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w500,
+                                    color: Color(0xff000000)),
+                              ),
                             ),
-                            Container()
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: whiteColor,
+                                  borderRadius: BorderRadius.circular(12).r,
+                                  border: Border.all(color: Color(0xffE1E3E8))),
+                              padding: const EdgeInsets.symmetric(
+                                      horizontal: 15, vertical: 12)
+                                  .r,
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      AutoSizeText(
+                                        'Type',
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: GoogleFonts.montserrat(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w300,
+                                            color: Color(0xff777777)),
+                                      ),
+                                      10.pw,
+                                      Flexible(
+                                        child: AutoSizeText(
+                                          state.rfxManagmentRFIDetail[index]
+                                              .requestType
+                                              .toString(),
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 14.sp,
+                                              fontWeight: FontWeight.w500,
+                                              color: Color(0xff3A3A3A)),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const Divider(),
+                                  10.ph,
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      AutoSizeText(
+                                        'Status',
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: GoogleFonts.montserrat(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w300,
+                                            color: Color(0xff777777)),
+                                      ),
+                                      10.pw,
+                                      Flexible(
+                                        child: AutoSizeText(
+                                          state.rfxManagmentRFIDetail[index]
+                                              .status
+                                              .toString(),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w500,
+                                              color: Color(0xff3A3A3A)),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const Divider(),
+                                  10.ph,
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      AutoSizeText(
+                                        'Issue Date',
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: GoogleFonts.montserrat(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w300,
+                                            color: Color(0xff777777)),
+                                      ),
+                                      10.pw,
+                                      Flexible(
+                                        child: AutoSizeText(
+                                          state.rfxManagmentRFIDetail[index]
+                                              .startDate
+                                              .toString(),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 14.sp,
+                                              fontWeight: FontWeight.w500,
+                                              color: Color(0xff3A3A3A)),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const Divider(),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                      horizontal: 14, vertical: 17)
+                                  .r,
+                              child: AutoSizeText(
+                                'RFI-Description',
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.poppins(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w500,
+                                    color: Color(0xff000000)),
+                              ),
+                            ),
+                            Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  color: whiteColor,
+                                  borderRadius: BorderRadius.circular(12).r,
+                                  border: Border.all(color: Color(0xffE1E3E8))),
+                              padding: const EdgeInsets.symmetric(
+                                      horizontal: 15, vertical: 12)
+                                  .r,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  AutoSizeText(
+                                    state.rfxManagmentRFIDetail[index].details
+                                        .toString(),
+                                    style: GoogleFonts.montserrat(
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w500,
+                                        color: const Color(0xff3A3A3A)),
+                                  ),
+                                ],
+                              ),
+                            )
                           ],
                         ),
                       )

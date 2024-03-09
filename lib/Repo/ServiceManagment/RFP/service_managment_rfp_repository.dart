@@ -1,6 +1,6 @@
 import 'dart:developer';
-import 'package:bussines_owner/Module/ProcurementManagment/RFP/Model/Request4Proposal.dart';
 import '../../../Constants/api_routes.dart';
+import '../../../Module/ProcurementManagment/RFP/Main/Model/Request4Proposal.dart';
 import '../../../Services/Network Services/network_services.dart';
 
 class ServiceManagmentRFPRepository {
