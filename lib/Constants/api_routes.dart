@@ -125,4 +125,13 @@ class Api {
 
   static const String getProcurementRfiDetail =
       "${baseUrl}marketplace/Procurement/getProcurementRfiDetail";
+
+  static const String getProcurementRfqDetail =
+      "${baseUrl}marketplace/Procurement/getProcurementRfqDetail";
+
+  static const String getProcurementRfpDetail =
+      "${baseUrl}marketplace/Procurement/getProcurementRfpDetail";
+
+  static const String getSalesManagmentRfiDetail =
+      "${baseUrl}marketplace/OnlineStore/getSalesManagmentRfiDetail";
 }

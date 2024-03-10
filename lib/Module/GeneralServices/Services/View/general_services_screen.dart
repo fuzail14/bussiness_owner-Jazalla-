@@ -10,7 +10,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import '../../../../Constants/Global/GlobalList/global_lists.dart';
+import '../../../../Constants/Global/Model/global_lists.dart';
 import '../../../../Constants/api_routes.dart';
 import '../../../../Constants/constants.dart';
 import '../../../../Data/Api Resp/api_response.dart';

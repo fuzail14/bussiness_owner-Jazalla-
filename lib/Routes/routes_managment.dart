@@ -27,11 +27,17 @@ import '../Module/OnlineStore/SendInquiry/View/send_inquiry_page.dart';
 import '../Module/ProcurementManagment/RFI/RfxManagmentRFIDetail/View/rfx_managment_rfi_detail_page.dart';
 import '../Module/ProcurementManagment/RFI/Main/View/procurement_soi_screen.dart';
 import '../Module/ProcurementManagment/RFP/Main/View/procurement_rfp_screen.dart';
+import '../Module/ProcurementManagment/RFP/RFXManagmentRFPDetail/View/rfx_managment_rfp_detail_page.dart';
 import '../Module/ProcurementManagment/RFQ/Main/View/procurement_rfq_screen.dart';
+import '../Module/ProcurementManagment/RFQ/RFXManagmentRFQDetail/View/rfx_managment_rfq_detail_page.dart';
 import '../Module/SalesManagment/RFIMain/RFI/View/sales_managment_rfi_screen.dart';
+import '../Module/SalesManagment/RFIMain/SalesManagmentRFIDetail/View/sales_managment_rfi_detail_page.dart';
 import '../Module/SalesManagment/RFQMain/RFQ/View/sales_managment_rfq_screen.dart';
+import '../Module/SalesManagment/RFQMain/SalesManagmentRFQDetail/View/sales_managment_rfq_detail_page.dart';
 import '../Module/ServiceManagment/RFIMain/RFI/View/service_managment_rfi_screen.dart';
+import '../Module/ServiceManagment/RFIMain/ServiceManagmentRFIDetail/View/service_managment_rfi_detail_page.dart';
 import '../Module/ServiceManagment/RFPMain/RFP/View/service_managment_rfp_screen.dart';
+import '../Module/ServiceManagment/RFPMain/ServiceManagmentRFPDetail/View/service_managment_rfp_detail_page.dart';
 import '../Module/Tenders/TenderMain/View/tenders_screen.dart';
 import '../Module/Tenders/TendersResponse/View/tender_response_page.dart';
 import '../Providers/argument_provider.dart';
@@ -592,6 +598,120 @@ final router = GoRouter(
             child: page);
       },
     ),
+    GoRoute(
+      name: rFXManagmentRFQDetailPage,
+      path: '/RFXManagmentRFQDetailPage/:id',
+      pageBuilder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider.overrideWithValue({'rfqId': id}),
+          ],
+          child: RFXManagmentRFQDetailPage(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: rFXManagmentRFPDetailPage,
+      path: '/RFXManagmentRFPDetailPage/:id',
+      pageBuilder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider.overrideWithValue({'rfpId': id}),
+          ],
+          child: RFXManagmentRFPDetailPage(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: salesManagmentRFIDetailPage,
+      path: '/SalesManagmentRFIDetailPage/:id',
+      pageBuilder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider.overrideWithValue({'rfiId': id}),
+          ],
+          child: SalesManagmentRFIDetailPage(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: salesManagmentRFQDetailPage,
+      path: '/SalesManagmentRFQDetailPage/:id',
+      pageBuilder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider.overrideWithValue({'rfqId': id}),
+          ],
+          child: SalesManagmentRFQDetailPage(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: serviceManagmentRFIDetailPage,
+      path: '/ServiceManagmentRFIDetailPage/:id',
+      pageBuilder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider.overrideWithValue({'rfiId': id}),
+          ],
+          child: ServiceManagmentRFIDetailPage(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: serviceManagmentRFPDetailPage,
+      path: '/ServiceManagmentRFPDetailPage/:id',
+      pageBuilder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider.overrideWithValue({'rfpId': id}),
+          ],
+          child: ServiceManagmentRFPDetailPage(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
   ],
 );
 
@@ -604,8 +724,8 @@ CustomTransitionPage buildPageWithFadeTransition({
   return CustomTransitionPage(
     key: state.pageKey,
     child: child,
-    transitionDuration: const Duration(milliseconds: 100),
-    fullscreenDialog: fullscreenDialog, // Use this parameter here
+    transitionDuration: const Duration(milliseconds: 500),
+    fullscreenDialog: fullscreenDialog,
     transitionsBuilder: (context, animation, secondaryAnimation, child) =>
         FadeTransition(
             opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
