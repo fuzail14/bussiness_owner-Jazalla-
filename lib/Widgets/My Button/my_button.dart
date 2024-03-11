@@ -58,8 +58,8 @@ class MyButton extends StatelessWidget {
               shape: outlinedBorder ??
                   RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(border ?? 12.r)),
-              side: BorderSide(color: HexColor('#8518FF'), width: 2),
-              backgroundColor: color ?? Colors.transparent),
+              // side: BorderSide(color: HexColor('#8518FF'), width: 2),
+              backgroundColor: color),
           onPressed: onPressed,
           child: loading
               ? CircularProgressIndicator(

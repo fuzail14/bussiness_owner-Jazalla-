@@ -31,63 +31,62 @@ class CardMakretPlace extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 154.w,
-        // height: 160.h,
-        padding: EdgeInsets.only(bottom: 13),
-
+        width: 153.w,
+        // height: 128.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16).r,
-          color: HexColor('#F5F6FC'),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 0,
-              blurRadius: 6,
-              offset: Offset(0, 8), // changes position of shadow
-            ),
-          ],
+          color: Color(0xffF5F9F9),
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: Colors.grey.withOpacity(0.5),
+          //     spreadRadius: 0,
+          //     blurRadius: 6,
+          //     offset: Offset(0, 8), // changes position of shadow
+          //   ),
+          // ],
         ),
-        child: Column(
-          children: [
-            12.ph,
-            SvgPicture.asset(
-              svgPath!,
-              height: 64.h,
-              width: 64.w,
-            ),
-            22.ph,
-            RichText(
-              text: TextSpan(
-                style: GoogleFonts.quicksand(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w700,
-                    color: textColor),
-                children: <TextSpan>[
-                  const TextSpan(text: "00"),
-                  TextSpan(
-                    text: "/00",
-                    style: GoogleFonts.quicksand(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xff0D0B0C) // Dynamic number color
-                        ),
-                  ),
-                ],
+        child: Padding(
+          padding: EdgeInsets.only(left: 20, top: 20, right: 5, bottom: 20).r,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              FadeInUp(
+                child: SvgPicture.asset(
+                  svgPath!,
+                  color: Color(0xff479696),
+                  height: 20.h,
+                  width: 20.w,
+                ),
               ),
-            ),
-            10.ph,
-            FadeInLeft(
-              duration: Duration(milliseconds: 900),
-              child: AutoSizeText(
-                headingText!,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
-                style: GoogleFonts.quicksand(
-                    fontWeight: FontWeight.w600, fontSize: 12.sp),
+              10.ph,
+              FadeInLeft(
+                duration: const Duration(milliseconds: 900),
+                child: AutoSizeText(
+                  headingText!,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.roboto(
+                      color: Color(0xff479696),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 12.sp),
+                ),
               ),
-            )
-          ],
+              8.ph,
+              FadeInRight(
+                duration: Duration(milliseconds: 900),
+                child: AutoSizeText(
+                  'It serves as a comprehensive directory, showcasing company profiles.',
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  style: GoogleFonts.roboto(
+                      color: Color(0xff8DAEAE),
+                      fontWeight: FontWeight.w500,
+                      fontSize: 12.sp),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
