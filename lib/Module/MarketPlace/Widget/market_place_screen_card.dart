@@ -32,7 +32,7 @@ class CardMakretPlace extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: 153.w,
-        // height: 128.h,
+        height: 128.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16).r,
           color: Color(0xffF5F9F9),
@@ -46,16 +46,16 @@ class CardMakretPlace extends StatelessWidget {
           // ],
         ),
         child: Padding(
-          padding: EdgeInsets.only(left: 20, top: 20, right: 5, bottom: 20).r,
+          padding: EdgeInsets.only(left: 20, top: 20, right: 5, bottom: 0).r,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               FadeInUp(
                 child: SvgPicture.asset(
                   svgPath!,
                   color: Color(0xff479696),
-                  height: 20.h,
-                  width: 20.w,
+                  height: 40.h,
+                  //width: 40.w,
                 ),
               ),
               10.ph,
@@ -63,28 +63,28 @@ class CardMakretPlace extends StatelessWidget {
                 duration: const Duration(milliseconds: 900),
                 child: AutoSizeText(
                   headingText!,
-                  maxLines: 1,
+                  maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.roboto(
                       color: Color(0xff479696),
-                      fontWeight: FontWeight.w600,
-                      fontSize: 12.sp),
+                      fontWeight: FontWeight.w800,
+                      fontSize: 14.sp),
                 ),
               ),
-              8.ph,
-              FadeInRight(
-                duration: Duration(milliseconds: 900),
-                child: AutoSizeText(
-                  'It serves as a comprehensive directory, showcasing company profiles.',
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  style: GoogleFonts.roboto(
-                      color: Color(0xff8DAEAE),
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12.sp),
-                ),
-              )
+              // 8.ph,
+              // FadeInRight(
+              //   duration: Duration(milliseconds: 900),
+              //   child: AutoSizeText(
+              //     'It serves as a comprehensive directory, showcasing company profiles.',
+              //     maxLines: 1,
+              //     overflow: TextOverflow.ellipsis,
+              //     style: GoogleFonts.roboto(
+              //         color: Color(0xff8DAEAE),
+              //         fontWeight: FontWeight.w800,
+              //         fontSize: 14.sp),
+              //   ),
+              // )
             ],
           ),
         ),

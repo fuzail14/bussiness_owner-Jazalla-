@@ -29,141 +29,136 @@ class PasswordScreen extends ConsumerWidget {
 
     print('phone num: ${phoneNumberController.text}');
     return Scaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          child: Stack(
-            children: [
-              Container(
-                height: 441.h,
-                padding: EdgeInsets.symmetric(vertical: 62, horizontal: 70).r,
-                width: double.infinity.w,
-                decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [Color(0xff2C5DA7), Color(0xff49AECD)])),
+      body: Stack(
+        children: [
+          Container(
+            height: 441.h,
+            padding: EdgeInsets.symmetric(vertical: 62, horizontal: 70).r,
+            width: double.infinity.w,
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Color(0xff2C5DA7), Color(0xff49AECD)])),
+            child: Column(
+              children: [
+                SvgPicture.asset(
+                  'assets/images/jazalla_logo.svg',
+                  height: 135.14.h,
+                  width: 117.w,
+                ),
+                Text(
+                  'Jazalla',
+                  style: GoogleFonts.montserrat(
+                      fontSize: 36,
+                      fontWeight: FontWeight.w600,
+                      color: whiteColor),
+                ),
+                Text(
+                  'Business platform ',
+                  style: GoogleFonts.montserrat(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w300,
+                      color: whiteColor),
+                ),
+                10.ph,
+                Text(
+                  'Statrt Journey With Jazalla',
+                  style: GoogleFonts.montserrat(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: whiteColor),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 335.h),
+            padding: EdgeInsets.symmetric(horizontal: 35, vertical: 55.h).r,
+            width: double.infinity,
+            height: 557.h,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30).r, color: Colors.white),
+            child: SingleChildScrollView(
+              child: Form(
+                key: _key,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SvgPicture.asset(
-                      'assets/images/jazalla_logo.svg',
-                      height: 135.14.h,
-                      width: 117.w,
-                    ),
                     Text(
-                      'Jazalla',
-                      style: GoogleFonts.montserrat(
-                          fontSize: 36,
-                          fontWeight: FontWeight.w600,
-                          color: whiteColor),
-                    ),
-                    Text(
-                      'Business platform ',
-                      style: GoogleFonts.montserrat(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w300,
-                          color: whiteColor),
+                      'Mobile Number',
+                      style: GoogleFonts.poppins(
+                        color: HexColor('#868686'),
+                        fontSize: 15.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                     10.ph,
+                    MyTextFormField(
+                      padding: EdgeInsets.all(0),
+                      validator: emptyStringValidator,
+                      controller: phoneNumberController,
+
+                      hintText: 'Enter Mobile Number',
+                      readOnly: true,
+                      labelText: 'Phone',
+                      labelTextColor: HexColor('#75788D'),
+                      //fillColor: HexColor('#868686'),
+
+                      suffixIcon: Icon(Icons.phone,
+                          color: HexColor('#8518FF')), // Add an email icon
+                    ),
+                    35.ph,
                     Text(
-                      'Statrt Journey With Jazalla',
-                      style: GoogleFonts.montserrat(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: whiteColor),
+                      'Password',
+                      style: GoogleFonts.poppins(
+                        color: HexColor('#868686'),
+                        fontSize: 15.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    10.ph,
+                    MyTextFormField(
+                      padding: EdgeInsets.all(0),
+                      validator: emptyStringValidator,
+                      controller: controller.passwordController,
+                      hintText: 'Enter Password',
+                      labelText: 'Password',
+                      labelTextColor: HexColor('#75788D'),
+                      fillColor: HexColor('#FFFFFF'),
+                      obscureText: state.isHidden ? false : true,
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          controller.togglePasswordView();
+                        },
+                        child: Icon(
+                          state.isHidden
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: HexColor('#8518FF'),
+                        ),
+                      ),
+                    ),
+                    60.71.ph,
+                    MyButton(
+                      loading: state.isLoading,
+                      width: 286.w,
+                      height: 50.h,
+                      color: HexColor('#4CB5D0'),
+                      name: 'Submit',
+                      onPressed: () {
+                        if (_key.currentState!.validate()) {
+                          controller.loginApi(phoneNumberController.text,
+                              controller.passwordController.text, context);
+                        }
+                      },
                     ),
                   ],
                 ),
               ),
-              Container(
-                  margin: EdgeInsets.only(top: 335.h),
-                  width: double.infinity,
-                  height: 557.h,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30).r,
-                      color: Colors.white)),
-              Form(
-                key: _key,
-                child: Padding(
-                  padding: EdgeInsets.only(left: 51, top: 370.h).r,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Mobile Number',
-                        style: GoogleFonts.poppins(
-                          color: HexColor('#868686'),
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      10.ph,
-                      MyTextFormField(
-                        padding: EdgeInsets.all(0),
-                        validator: emptyStringValidator,
-                        controller: phoneNumberController,
-
-                        hintText: 'Enter Mobile Number',
-                        readOnly: true,
-                        labelText: 'Phone',
-                        labelTextColor: HexColor('#75788D'),
-                        //fillColor: HexColor('#868686'),
-
-                        suffixIcon: Icon(Icons.phone,
-                            color: HexColor('#8518FF')), // Add an email icon
-                      ),
-                      35.ph,
-                      Text(
-                        'Password',
-                        style: GoogleFonts.poppins(
-                          color: HexColor('#868686'),
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      10.ph,
-                      MyTextFormField(
-                        padding: EdgeInsets.all(0),
-                        validator: emptyStringValidator,
-                        controller: controller.passwordController,
-                        hintText: 'Enter Password',
-                        labelText: 'Password',
-                        labelTextColor: HexColor('#75788D'),
-                        fillColor: HexColor('#FFFFFF'),
-                        obscureText: state.isHidden ? false : true,
-                        suffixIcon: GestureDetector(
-                          onTap: () {
-                            controller.togglePasswordView();
-                          },
-                          child: Icon(
-                            state.isHidden
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            color: HexColor('#8518FF'),
-                          ),
-                        ),
-                      ),
-                      60.71.ph,
-                      MyButton(
-                        loading: state.isLoading,
-                        width: 286.w,
-                        height: 50.h,
-                        color: HexColor('#4CB5D0'),
-                        name: 'Submit',
-                        onPressed: () {
-                          if (_key.currentState!.validate()) {
-                            controller.loginApi(phoneNumberController.text,
-                                controller.passwordController.text, context);
-                          }
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
