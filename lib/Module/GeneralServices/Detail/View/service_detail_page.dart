@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
+import 'package:bussines_owner/Constants/constants.dart';
 import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../Constants/api_routes.dart';
 import '../../../../Data/Api Resp/api_response.dart';
+import '../../../../Widgets/CustomButton/custom_button.dart';
 import '../../../../Widgets/Loader/loader.dart';
 import '../../../../Widgets/StarRating/star_rating.dart';
 import '../Controller/service_detail_controller.dart';
@@ -29,6 +31,74 @@ class ServiceDetailPage extends ConsumerWidget {
           if (state.responseStatus == Status.loading)
             const Loader()
           else if (state.responseStatus == Status.completed) ...[
+            20.ph,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    // services.id;
+                    // controller.person.data!.id;
+                    // services.companyId;
+                    // controller.person.data!.companyId;
+                    // print(services.id);
+                    // print(
+                    //     "user id ${controller.person.data!.id}");
+                    // print(services.companyId);
+                    // print(
+                    //     "buyer id ${controller.person.data!.companyId}");
+
+                    // final quoteData = {
+                    //   'serviceId': services.id,
+                    //   'serviceCompanyId': services.companyId,
+                    //   'userId': controller.person.data!.id,
+                    //   'userCompanyId':
+                    //       controller.person.data!.companyId
+                    // };
+
+                    // GoRouter.of(context).pushNamed(
+                    //   requestProposalScreen,
+                    //   extra: quoteData,
+                    // );
+                  },
+                  child: CustomButton(
+                    height: 28.h,
+                    width: 120.w,
+                    borderColor: HexColor('#27BCEB'),
+                    text: 'Request Proposal',
+                    textColor: HexColor('#27BCEB'),
+                  ),
+                ),
+                //30.pw,
+                GestureDetector(
+                  onTap: () {
+                    // services.id;
+                    // controller.person.data!.id;
+                    // services.companyId;
+
+                    // final inquiryData = {
+                    //   'serviceId': services.id,
+                    //   'title': services.name,
+                    //   'userId': controller.person.data!.id,
+                    //   'userCompanyId':
+                    //       controller.person.data!.companyId,
+                    //   'companyId': services.companyId,
+                    // };
+
+                    // GoRouter.of(context).pushNamed(
+                    //   serviceinquiryScreen,
+                    //   extra: inquiryData,
+                    // );
+                  },
+                  child: CustomButton(
+                    height: 28.h,
+                    width: 120.w,
+                    color: HexColor('#1F3996'),
+                    text: 'Send Inquiry',
+                  ),
+                ),
+              ],
+            ),
             Expanded(
                 child: ListView.builder(
               itemCount: state.serviceDetail.length,
@@ -93,7 +163,7 @@ class ServiceDetailPage extends ConsumerWidget {
                                   padding: const EdgeInsets.all(10).r,
                                   decoration: BoxDecoration(
                                       border: Border.all(
-                                          color: HexColor('#08B783'))),
+                                          color: detailCradBorderColor)),
                                   child: PageView.builder(
                                     controller: state.pageController,
                                     itemCount: product.photos!.length,
@@ -164,7 +234,7 @@ class ServiceDetailPage extends ConsumerWidget {
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xff08B783)),
+                              border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
                               color: Color(0xfffbfffd)),
                           child: AutoSizeText(product.description.toString(),
@@ -191,7 +261,7 @@ class ServiceDetailPage extends ConsumerWidget {
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xff08B783)),
+                              border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
                               color: Color(0xfffbfffd)),
                           child: AutoSizeText(product.pDetails.toString(),
@@ -218,7 +288,7 @@ class ServiceDetailPage extends ConsumerWidget {
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xff08B783)),
+                              border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
                               color: Color(0xfffbfffd)),
                           child: Row(
@@ -267,8 +337,7 @@ class ServiceDetailPage extends ConsumerWidget {
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: const Color(0xff08B783)),
+                              border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
                               color: const Color(0xfffbfffd)),
                           child: AutoSizeText(
@@ -299,7 +368,8 @@ class ServiceDetailPage extends ConsumerWidget {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(14).r,
                                 color: HexColor('#FFFFFF'),
-                                border: Border.all(color: HexColor('#08B783'))),
+                                border:
+                                    Border.all(color: detailCradBorderColor)),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -319,7 +389,7 @@ class ServiceDetailPage extends ConsumerWidget {
                                   // margin: EdgeInsets.all(16),
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                      color: Color(0xFF08B783),
+                                      color: detailCradBorderColor,
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
@@ -330,7 +400,7 @@ class ServiceDetailPage extends ConsumerWidget {
                                           decoration: InputDecoration(
                                             labelText: 'Comment',
                                             labelStyle: TextStyle(
-                                                color: Color(0xFF08B783)),
+                                                color: detailCradBorderColor),
                                             border: InputBorder
                                                 .none, // Remove underline
                                           ),

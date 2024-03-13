@@ -6,10 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../Constants/api_routes.dart';
+import '../../../../Constants/constants.dart';
 import '../../../../Data/Api Resp/api_response.dart';
+import '../../../../Routes/set_routes.dart';
+import '../../../../Widgets/CustomButton/custom_button.dart';
 import '../../../../Widgets/Loader/loader.dart';
 
 import '../../../../Widgets/StarRating/star_rating.dart';
@@ -32,7 +36,37 @@ class TendersDetailPage extends ConsumerWidget {
           if (state.responseStatus == Status.loading)
             const Loader()
           else if (state.responseStatus == Status.completed) ...[
-            20.ph,
+            //20.ph,
+            CustomButton(
+              onTap: () {
+                // tenders.id;
+                // controller.person.data!.id;
+                // tenders.companyId;
+                // controller.person.data!.companyId;
+                // print(tenders.id);
+                // print("user id ${controller.person.data!.id}");
+                // print(tenders.companyId);
+                // print(
+                //     "buyer id ${controller.person.data!.companyId}");
+
+                // final quoteData = {
+                //   'tenderId': tenders.id,
+                //   'tenderCompanyId': tenders.companyId,
+                //   'userId': controller.person.data!.id,
+                //   'userCompanyId':
+                //       controller.person.data!.companyId
+                // };
+
+                GoRouter.of(context).pushNamed(
+                  tenderResponseScreen,
+                  // extra: quoteData,
+                );
+              },
+              width: 140.w,
+              height: 32.h,
+              text: 'Response',
+              color: HexColor('#1F3996'),
+            ),
             Expanded(
                 child: ListView.builder(
               itemCount: state.tenderDetail.length,
@@ -41,17 +75,15 @@ class TendersDetailPage extends ConsumerWidget {
                 var tender = state.tenderDetail[outerIndex];
                 return Column(
                   children: [
+                    20.ph,
+
                     //GENERAL INFORMATION
+
                     Container(
                       width: 333.6700134277344.w,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [Color(0xff29b8eb), Color(0xff7634fc)],
-                        ),
-                      ),
+                          borderRadius: BorderRadius.circular(12),
+                          gradient: myGradientColor),
                       child: Theme(
                         data: Theme.of(context).copyWith(
                           dividerColor: Colors.transparent,
@@ -240,13 +272,8 @@ class TendersDetailPage extends ConsumerWidget {
                     Container(
                       width: 333.6700134277344.w,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [Color(0xff29b8eb), Color(0xff7634fc)],
-                        ),
-                      ),
+                          borderRadius: BorderRadius.circular(12),
+                          gradient: myGradientColor),
                       child: Theme(
                         data: Theme.of(context).copyWith(
                           dividerColor: Colors.transparent,
@@ -451,13 +478,8 @@ class TendersDetailPage extends ConsumerWidget {
                     Container(
                       width: 333.6700134277344.w,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [Color(0xff29b8eb), Color(0xff7634fc)],
-                        ),
-                      ),
+                          borderRadius: BorderRadius.circular(12),
+                          gradient: myGradientColor),
                       child: Theme(
                         data: Theme.of(context).copyWith(
                           dividerColor: Colors.transparent,
@@ -734,13 +756,8 @@ class TendersDetailPage extends ConsumerWidget {
                     Container(
                       width: 333.6700134277344.w,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [Color(0xff29b8eb), Color(0xff7634fc)],
-                        ),
-                      ),
+                          borderRadius: BorderRadius.circular(12),
+                          gradient: myGradientColor),
                       child: Theme(
                         data: Theme.of(context).copyWith(
                           dividerColor: Colors.transparent,
@@ -914,13 +931,8 @@ class TendersDetailPage extends ConsumerWidget {
                     Container(
                       width: 333.6700134277344.w,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [Color(0xff29b8eb), Color(0xff7634fc)],
-                        ),
-                      ),
+                          borderRadius: BorderRadius.circular(12),
+                          gradient: myGradientColor),
                       child: Theme(
                         data: Theme.of(context).copyWith(
                           dividerColor: Colors.transparent,
@@ -1074,13 +1086,8 @@ class TendersDetailPage extends ConsumerWidget {
                     Container(
                       width: 333.6700134277344.w,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [Color(0xff29b8eb), Color(0xff7634fc)],
-                        ),
-                      ),
+                          borderRadius: BorderRadius.circular(12),
+                          gradient: myGradientColor),
                       child: Theme(
                         data: Theme.of(context).copyWith(
                           dividerColor: Colors.transparent,

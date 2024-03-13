@@ -33,13 +33,8 @@ class GeneralServiceView extends ConsumerWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [Color(0xff29b8eb), Color(0xff7634fc)],
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(6),
+                  gradient: myGradientColor),
               child: Theme(
                 data: Theme.of(context).copyWith(
                   dividerColor: Colors.transparent,
@@ -86,13 +81,8 @@ class GeneralServiceView extends ConsumerWidget {
             20.ph,
             Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [Color(0xff29b8eb), Color(0xff7634fc)],
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(6),
+                  gradient: myGradientColor),
               child: Theme(
                 data: Theme.of(context).copyWith(
                   dividerColor: Colors.transparent,
@@ -270,7 +260,7 @@ class GeneralServiceView extends ConsumerWidget {
                                             decoration: BoxDecoration(
                                                 border: Border.all(
                                                     color:
-                                                        HexColor('#08B783'))),
+                                                        detailCradBorderColor)),
                                             child: services.photos!.isNotEmpty
                                                 ? CachedNetworkImage(
                                                     imageUrl:
@@ -413,74 +403,74 @@ class GeneralServiceView extends ConsumerWidget {
                                   fontSize: 12.sp,
                                   color: HexColor('#0D0B0C')),
                             ),
-                            20.ph,
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    services.id;
-                                    controller.person.data!.id;
-                                    services.companyId;
-                                    controller.person.data!.companyId;
-                                    print(services.id);
-                                    print(
-                                        "user id ${controller.person.data!.id}");
-                                    print(services.companyId);
-                                    print(
-                                        "buyer id ${controller.person.data!.companyId}");
+                            // 20.ph,
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            //   children: [
+                            //     GestureDetector(
+                            //       onTap: () {
+                            //         services.id;
+                            //         controller.person.data!.id;
+                            //         services.companyId;
+                            //         controller.person.data!.companyId;
+                            //         print(services.id);
+                            //         print(
+                            //             "user id ${controller.person.data!.id}");
+                            //         print(services.companyId);
+                            //         print(
+                            //             "buyer id ${controller.person.data!.companyId}");
 
-                                    final quoteData = {
-                                      'serviceId': services.id,
-                                      'serviceCompanyId': services.companyId,
-                                      'userId': controller.person.data!.id,
-                                      'userCompanyId':
-                                          controller.person.data!.companyId
-                                    };
+                            //         final quoteData = {
+                            //           'serviceId': services.id,
+                            //           'serviceCompanyId': services.companyId,
+                            //           'userId': controller.person.data!.id,
+                            //           'userCompanyId':
+                            //               controller.person.data!.companyId
+                            //         };
 
-                                    GoRouter.of(context).pushNamed(
-                                      requestProposalScreen,
-                                      extra: quoteData,
-                                    );
-                                  },
-                                  child: CustomButton(
-                                    height: 28.h,
-                                    width: 120.w,
-                                    borderColor: HexColor('#27BCEB'),
-                                    text: 'Request Proposal',
-                                    textColor: HexColor('#27BCEB'),
-                                  ),
-                                ),
-                                //30.pw,
-                                GestureDetector(
-                                  onTap: () {
-                                    services.id;
-                                    controller.person.data!.id;
-                                    services.companyId;
+                            //         GoRouter.of(context).pushNamed(
+                            //           requestProposalScreen,
+                            //           extra: quoteData,
+                            //         );
+                            //       },
+                            //       child: CustomButton(
+                            //         height: 28.h,
+                            //         width: 120.w,
+                            //         borderColor: HexColor('#27BCEB'),
+                            //         text: 'Request Proposal',
+                            //         textColor: HexColor('#27BCEB'),
+                            //       ),
+                            //     ),
+                            //     //30.pw,
+                            //     GestureDetector(
+                            //       onTap: () {
+                            //         services.id;
+                            //         controller.person.data!.id;
+                            //         services.companyId;
 
-                                    final inquiryData = {
-                                      'serviceId': services.id,
-                                      'title': services.name,
-                                      'userId': controller.person.data!.id,
-                                      'userCompanyId':
-                                          controller.person.data!.companyId,
-                                      'companyId': services.companyId,
-                                    };
+                            //         final inquiryData = {
+                            //           'serviceId': services.id,
+                            //           'title': services.name,
+                            //           'userId': controller.person.data!.id,
+                            //           'userCompanyId':
+                            //               controller.person.data!.companyId,
+                            //           'companyId': services.companyId,
+                            //         };
 
-                                    GoRouter.of(context).pushNamed(
-                                      serviceinquiryScreen,
-                                      extra: inquiryData,
-                                    );
-                                  },
-                                  child: CustomButton(
-                                    height: 28.h,
-                                    width: 120.w,
-                                    color: HexColor('#27BCEB'),
-                                    text: 'Send Inquiry',
-                                  ),
-                                ),
-                              ],
-                            )
+                            //         GoRouter.of(context).pushNamed(
+                            //           serviceinquiryScreen,
+                            //           extra: inquiryData,
+                            //         );
+                            //       },
+                            //       child: CustomButton(
+                            //         height: 28.h,
+                            //         width: 120.w,
+                            //         color: HexColor('#27BCEB'),
+                            //         text: 'Send Inquiry',
+                            //       ),
+                            //     ),
+                            //   ],
+                            // )
                           ],
                         ),
                       ),

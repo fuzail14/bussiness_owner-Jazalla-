@@ -6,7 +6,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import '../../../../Constants/constants.dart';
 import '../../../../Data/Api Resp/api_response.dart';
+import '../../../../Widgets/CustomButton/custom_button.dart';
 import '../../../../Widgets/Loader/loader.dart';
 import '../../../../Widgets/StarRating/star_rating.dart';
 import '../Controller/bussines_for_sale_detail_controller.dart';
@@ -25,6 +27,18 @@ class SaleBussinesDetailPage extends ConsumerWidget {
           if (state.responseStatus == Status.loading)
             const Loader()
           else if (state.responseStatus == Status.completed) ...[
+            20.ph,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CustomButton(
+                  height: 32.h,
+                  width: 120.w,
+                  color: HexColor('#49AECD'),
+                  text: 'Respond',
+                ),
+              ],
+            ),
             Expanded(
                 child: ListView.builder(
               itemCount: state.saleBussinesDetail.length,
@@ -95,7 +109,7 @@ class SaleBussinesDetailPage extends ConsumerWidget {
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xff08B783)),
+                              border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
                               color: Color(0xfffbfffd)),
                           child: Column(
@@ -208,7 +222,7 @@ class SaleBussinesDetailPage extends ConsumerWidget {
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xff08B783)),
+                              border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
                               color: Color(0xfffbfffd)),
                           child: AutoSizeText(
@@ -236,7 +250,7 @@ class SaleBussinesDetailPage extends ConsumerWidget {
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xff08B783)),
+                              border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
                               color: Color(0xfffbfffd)),
                           child: AutoSizeText(
@@ -264,7 +278,7 @@ class SaleBussinesDetailPage extends ConsumerWidget {
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xff08B783)),
+                              border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
                               color: Color(0xfffbfffd)),
                           child: AutoSizeText(
@@ -292,7 +306,7 @@ class SaleBussinesDetailPage extends ConsumerWidget {
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xff08B783)),
+                              border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
                               color: Color(0xfffbfffd)),
                           child: AutoSizeText(
@@ -321,7 +335,7 @@ class SaleBussinesDetailPage extends ConsumerWidget {
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xff08B783)),
+                              border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
                               color: Color(0xfffbfffd)),
                           child: AutoSizeText(saleBussines.assets.toString(),

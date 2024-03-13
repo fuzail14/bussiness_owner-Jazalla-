@@ -9,7 +9,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../Constants/api_routes.dart';
+import '../../../../Constants/constants.dart';
 import '../../../../Data/Api Resp/api_response.dart';
+import '../../../../Widgets/CustomButton/custom_button.dart';
 import '../../../../Widgets/Loader/loader.dart';
 import '../../../../Widgets/StarRating/star_rating.dart';
 import '../../../Tenders/Widget/custom_tiles.dart';
@@ -31,6 +33,70 @@ class OnlineStoreDetailPage extends ConsumerWidget {
           if (state.responseStatus == Status.loading)
             const Loader()
           else if (state.responseStatus == Status.completed) ...[
+            20.ph,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    // product.id;
+                    // controller.person.data!.id;
+                    // product.companyId;
+                    // controller.person.data!.companyId;
+                    // print(product.id);
+                    // print(controller.person.data!.id);
+                    // print(product.companyId);
+                    // print(controller.person.data!.companyId);
+
+                    // final quoteData = {
+                    //   'productId': product.id,
+                    //   'userId': controller.person.data!.id,
+                    //   'userCompanyId':
+                    //       controller.person.data!.companyId
+                    // };
+
+                    // GoRouter.of(context).pushNamed(
+                    //   requestQuoteScreen,
+                    //   extra: quoteData,
+                    // );
+                  },
+                  child: CustomButton(
+                    height: 28.h,
+                    width: 120.w,
+                    borderColor: HexColor('#27BCEB'),
+                    text: 'Request Qoute',
+                    textColor: HexColor('#27BCEB'),
+                  ),
+                ),
+                //30.pw,
+                GestureDetector(
+                  onTap: () {
+                    // product.id;
+                    // controller.person.data!.id;
+                    // product.companyId;
+                    // final inquiryData = {
+                    //   'productId': product.id,
+                    //   'productTitle': product.name,
+                    //   'userId': controller.person.data!.id,
+                    //   'userCompanyId':
+                    //       controller.person.data!.companyId,
+                    //   'companyId': product.companyId,
+                    // };
+
+                    // GoRouter.of(context).pushNamed(
+                    //   inquiryScreen,
+                    //   extra: inquiryData,
+                    // );
+                  },
+                  child: CustomButton(
+                    height: 28.h,
+                    width: 120.w,
+                    color: Color(0xff1F3996),
+                    text: 'Send Inquiry',
+                  ),
+                ),
+              ],
+            ),
             Expanded(
                 child: ListView.builder(
               itemCount: state.productDetail.length,
@@ -94,8 +160,8 @@ class OnlineStoreDetailPage extends ConsumerWidget {
                                         .r,
                                 padding: const EdgeInsets.all(10).r,
                                 decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: HexColor('#08B783'))),
+                                    border: Border.all(
+                                        color: detailCradBorderColor)),
                                 child: PageView.builder(
                                   controller: state.pageController,
                                   itemCount: product.photos!.length,
@@ -140,7 +206,7 @@ class OnlineStoreDetailPage extends ConsumerWidget {
                                 padding: const EdgeInsets.all(10).r,
                                 decoration: BoxDecoration(
                                   border:
-                                      Border.all(color: HexColor('#08B783')),
+                                      Border.all(color: detailCradBorderColor),
                                 ),
                                 child: SvgPicture.asset(
                                   'assets/images/building.svg',
@@ -235,7 +301,7 @@ class OnlineStoreDetailPage extends ConsumerWidget {
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xff08B783)),
+                              border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
                               color: Color(0xfffbfffd)),
                           child: AutoSizeText(product.description.toString(),
@@ -286,7 +352,7 @@ class OnlineStoreDetailPage extends ConsumerWidget {
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xff08B783)),
+                              border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
                               color: Color(0xfffbfffd)),
                           child: AutoSizeText(product.refundPolicy.toString(),
@@ -317,7 +383,8 @@ class OnlineStoreDetailPage extends ConsumerWidget {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(14).r,
                                 color: HexColor('#FFFFFF'),
-                                border: Border.all(color: HexColor('#08B783'))),
+                                border:
+                                    Border.all(color: detailCradBorderColor)),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -337,7 +404,7 @@ class OnlineStoreDetailPage extends ConsumerWidget {
                                   // margin: EdgeInsets.all(16),
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                      color: Color(0xFF08B783),
+                                      color: detailCradBorderColor,
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
@@ -348,7 +415,7 @@ class OnlineStoreDetailPage extends ConsumerWidget {
                                           decoration: InputDecoration(
                                             labelText: 'Comment',
                                             labelStyle: TextStyle(
-                                                color: Color(0xFF08B783)),
+                                                color: detailCradBorderColor),
                                             border: InputBorder
                                                 .none, // Remove underline
                                           ),

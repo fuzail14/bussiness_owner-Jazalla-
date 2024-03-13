@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
+import 'package:bussines_owner/Constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -11,9 +12,9 @@ Widget specificationContainer(String firstText, String secondText) {
     height: 44.h,
     padding: const EdgeInsets.only(left: 15, top: 13, bottom: 12, right: 20).r,
     decoration: BoxDecoration(
-        border: Border.all(color: const Color(0xff08B783)),
+        border: Border.all(color: detailCradBorderColor),
         borderRadius: BorderRadius.circular(8),
-        color: const Color(0xffe2f5ed)),
+        color: whiteColor),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -47,7 +48,7 @@ Widget moreDetailsButton(
       width: 77.w,
       height: 75.h,
       decoration: BoxDecoration(
-          border: Border.all(color: Color(0xff08B783)),
+          border: Border.all(color: detailCradBorderColor),
           borderRadius: BorderRadius.circular(8),
           color: color),
       child: Column(

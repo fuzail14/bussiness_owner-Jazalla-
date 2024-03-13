@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -39,22 +40,22 @@ class VerificationCode extends ConsumerWidget {
               children: [
                 SvgPicture.asset(
                   'assets/images/jazalla_logo.svg',
-                  height: 135.14.h,
-                  width: 117.w,
+                  //width: 110.w,
+                  height: 135.h,
+
+                  fit: BoxFit.contain,
+
+                  // set your desired height
                 ),
-                Text(
-                  'Jazalla',
-                  style: GoogleFonts.montserrat(
-                      fontSize: 36,
-                      fontWeight: FontWeight.w600,
-                      color: whiteColor),
-                ),
-                Text(
-                  'Business platform ',
-                  style: GoogleFonts.montserrat(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w300,
-                      color: whiteColor),
+                10.ph,
+                SvgPicture.asset(
+                  'assets/images/jazalla_logo_text.svg',
+                  //  / width: 250.w,
+                  //height: 135.h,
+
+                  fit: BoxFit.contain,
+
+                  // set your desired height
                 ),
                 10.ph,
                 Text(
@@ -102,8 +103,7 @@ class VerificationCode extends ConsumerWidget {
                           TextSpan(
                             text: checkPhoneNumberState.phoneNumber,
                             style: const TextStyle(
-                                color: Color.fromRGBO(
-                                    133, 24, 255, 0.65) // Dynamic number color
+                                color: Color(0xff2C5DA7) // Dynamic number color
                                 ),
                           ),
                         ],
@@ -129,7 +129,7 @@ class VerificationCode extends ConsumerWidget {
                           fontWeight: FontWeight.w500,
                         ),
                         decoration: BoxDecoration(
-                          border: Border.all(color: HexColor('#8518FF')),
+                          border: Border.all(color: Color(0xff2C5DA7)),
                           borderRadius: BorderRadius.circular(8.r),
                         ),
                       ),
@@ -137,8 +137,7 @@ class VerificationCode extends ConsumerWidget {
                         width: 56.w,
                         height: 56.h,
                         decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Color.fromRGBO(133, 24, 255, 1)),
+                          border: Border.all(color: Color(0xff2C5DA7)),
                           borderRadius: BorderRadius.circular(8.r),
                         ),
                       ),
@@ -146,8 +145,7 @@ class VerificationCode extends ConsumerWidget {
                         width: 56.w,
                         height: 56.h,
                         decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Color.fromRGBO(133, 24, 255, 1)),
+                          border: Border.all(color: Color(0xff2C5DA7)),
                           borderRadius: BorderRadius.circular(8.r),
                         ),
                       ),

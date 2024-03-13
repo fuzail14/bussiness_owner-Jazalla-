@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
+import 'package:bussines_owner/Constants/constants.dart';
 import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -44,13 +45,8 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                     Container(
                       width: 333.6700134277344.w,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [Color(0xff29b8eb), Color(0xff7634fc)],
-                        ),
-                      ),
+                          borderRadius: BorderRadius.circular(12),
+                          gradient: myGradientColor),
                       child: Theme(
                         data: Theme.of(context).copyWith(
                           dividerColor: Colors.transparent,
@@ -213,13 +209,8 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                     Container(
                       width: 333.6700134277344.w,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [Color(0xff29b8eb), Color(0xff7634fc)],
-                        ),
-                      ),
+                          borderRadius: BorderRadius.circular(12),
+                          gradient: myGradientColor),
                       child: Theme(
                         data: Theme.of(context).copyWith(
                           dividerColor: Colors.transparent,
@@ -293,14 +284,8 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                       width: 333.6700134277344.w,
                       //height: 469.93.h,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          tileMode: TileMode.mirror,
-                          colors: [Color(0xff29b8eb), Color(0xff7634fc)],
-                        ),
-                      ),
+                          borderRadius: BorderRadius.circular(12),
+                          gradient: myGradientColor),
                       child: Theme(
                         data: Theme.of(context).copyWith(
                           dividerColor: Colors.transparent,
@@ -584,14 +569,8 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                       width: 333.6700134277344.w,
                       //height: 469.93.h,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          tileMode: TileMode.mirror,
-                          colors: [Color(0xff29b8eb), Color(0xff7634fc)],
-                        ),
-                      ),
+                          borderRadius: BorderRadius.circular(12),
+                          gradient: myGradientColor),
                       child: Theme(
                         data: Theme.of(context).copyWith(
                           dividerColor: Colors.transparent,
@@ -839,14 +818,8 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                       //height: 469.93.h,
 
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          tileMode: TileMode.mirror,
-                          colors: [Color(0xff29b8eb), Color(0xff7634fc)],
-                        ),
-                      ),
+                          borderRadius: BorderRadius.circular(12),
+                          gradient: myGradientColor),
                       child: Theme(
                         data: Theme.of(context).copyWith(
                           dividerColor: Colors.transparent,

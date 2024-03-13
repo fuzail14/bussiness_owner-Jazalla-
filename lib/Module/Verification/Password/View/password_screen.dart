@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -42,32 +43,45 @@ class PasswordScreen extends ConsumerWidget {
                     colors: [Color(0xff2C5DA7), Color(0xff49AECD)])),
             child: Column(
               children: [
-                SvgPicture.asset(
-                  'assets/images/jazalla_logo.svg',
-                  height: 135.14.h,
-                  width: 117.w,
-                ),
-                Text(
-                  'Jazalla',
-                  style: GoogleFonts.montserrat(
-                      fontSize: 36,
-                      fontWeight: FontWeight.w600,
-                      color: whiteColor),
-                ),
-                Text(
-                  'Business platform ',
-                  style: GoogleFonts.montserrat(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w300,
-                      color: whiteColor),
+                FadeInUpBig(
+                  duration: const Duration(seconds: 2),
+                  child: SvgPicture.asset(
+                    'assets/images/jazalla_logo.svg',
+                    //width: 110.w,
+                    height: 135.h,
+
+                    fit: BoxFit.contain,
+
+                    // set your desired height
+                  ),
                 ),
                 10.ph,
-                Text(
-                  'Statrt Journey With Jazalla',
-                  style: GoogleFonts.montserrat(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: whiteColor),
+                FadeInDownBig(
+                  duration: const Duration(seconds: 2),
+                  child: SizedBox(
+                    // width: double.infinity.w,
+                    // height: 100.h,
+                    child: SvgPicture.asset(
+                      'assets/images/jazalla_logo_text.svg',
+                      //  / width: 250.w,
+                      //height: 135.h,
+
+                      fit: BoxFit.contain,
+
+                      // set your desired height
+                    ),
+                  ),
+                ),
+                10.ph,
+                FadeInRightBig(
+                  duration: const Duration(seconds: 2),
+                  child: Text(
+                    'Statrt Journey With Jazalla',
+                    style: GoogleFonts.montserrat(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: whiteColor),
+                  ),
                 ),
               ],
             ),
@@ -106,7 +120,7 @@ class PasswordScreen extends ConsumerWidget {
                       //fillColor: HexColor('#868686'),
 
                       suffixIcon: Icon(Icons.phone,
-                          color: HexColor('#8518FF')), // Add an email icon
+                          color: Color(0xff2C5DA7)), // Add an email icon
                     ),
                     35.ph,
                     Text(
@@ -135,7 +149,7 @@ class PasswordScreen extends ConsumerWidget {
                           state.isHidden
                               ? Icons.visibility
                               : Icons.visibility_off,
-                          color: HexColor('#8518FF'),
+                          color: Color(0xff2C5DA7),
                         ),
                       ),
                     ),

@@ -36,13 +36,8 @@ class OnlineStoreScreen extends ConsumerWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [Color(0xff29b8eb), Color(0xff7634fc)],
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(6),
+                  gradient: myGradientColor),
               child: Theme(
                 data: Theme.of(context).copyWith(
                   dividerColor: Colors.transparent,
@@ -89,13 +84,8 @@ class OnlineStoreScreen extends ConsumerWidget {
             20.ph,
             Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [Color(0xff29b8eb), Color(0xff7634fc)],
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(6),
+                  gradient: myGradientColor),
               child: Theme(
                 data: Theme.of(context).copyWith(
                   dividerColor: Colors.transparent,
@@ -387,70 +377,70 @@ class OnlineStoreScreen extends ConsumerWidget {
                               rating: 3,
                               color: HexColor('#FCAB10'),
                             ),
-                            20.ph,
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    product.id;
-                                    controller.person.data!.id;
-                                    product.companyId;
-                                    controller.person.data!.companyId;
-                                    print(product.id);
-                                    print(controller.person.data!.id);
-                                    print(product.companyId);
-                                    print(controller.person.data!.companyId);
+                            // 20.ph,
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            //   children: [
+                            //     GestureDetector(
+                            //       onTap: () {
+                            //         product.id;
+                            //         controller.person.data!.id;
+                            //         product.companyId;
+                            //         controller.person.data!.companyId;
+                            //         print(product.id);
+                            //         print(controller.person.data!.id);
+                            //         print(product.companyId);
+                            //         print(controller.person.data!.companyId);
 
-                                    final quoteData = {
-                                      'productId': product.id,
-                                      'userId': controller.person.data!.id,
-                                      'userCompanyId':
-                                          controller.person.data!.companyId
-                                    };
+                            //         final quoteData = {
+                            //           'productId': product.id,
+                            //           'userId': controller.person.data!.id,
+                            //           'userCompanyId':
+                            //               controller.person.data!.companyId
+                            //         };
 
-                                    GoRouter.of(context).pushNamed(
-                                      requestQuoteScreen,
-                                      extra: quoteData,
-                                    );
-                                  },
-                                  child: CustomButton(
-                                    height: 28.h,
-                                    width: 120.w,
-                                    borderColor: HexColor('#27BCEB'),
-                                    text: 'Request Qoute',
-                                    textColor: HexColor('#27BCEB'),
-                                  ),
-                                ),
-                                //30.pw,
-                                GestureDetector(
-                                  onTap: () {
-                                    product.id;
-                                    controller.person.data!.id;
-                                    product.companyId;
-                                    final inquiryData = {
-                                      'productId': product.id,
-                                      'productTitle': product.name,
-                                      'userId': controller.person.data!.id,
-                                      'userCompanyId':
-                                          controller.person.data!.companyId,
-                                      'companyId': product.companyId,
-                                    };
+                            //         GoRouter.of(context).pushNamed(
+                            //           requestQuoteScreen,
+                            //           extra: quoteData,
+                            //         );
+                            //       },
+                            //       child: CustomButton(
+                            //         height: 28.h,
+                            //         width: 120.w,
+                            //         borderColor: HexColor('#27BCEB'),
+                            //         text: 'Request Qoute',
+                            //         textColor: HexColor('#27BCEB'),
+                            //       ),
+                            //     ),
+                            //     //30.pw,
+                            //     GestureDetector(
+                            //       onTap: () {
+                            //         product.id;
+                            //         controller.person.data!.id;
+                            //         product.companyId;
+                            //         final inquiryData = {
+                            //           'productId': product.id,
+                            //           'productTitle': product.name,
+                            //           'userId': controller.person.data!.id,
+                            //           'userCompanyId':
+                            //               controller.person.data!.companyId,
+                            //           'companyId': product.companyId,
+                            //         };
 
-                                    GoRouter.of(context).pushNamed(
-                                      inquiryScreen,
-                                      extra: inquiryData,
-                                    );
-                                  },
-                                  child: CustomButton(
-                                    height: 28.h,
-                                    width: 120.w,
-                                    color: HexColor('#27BCEB'),
-                                    text: 'Send Inquiry',
-                                  ),
-                                ),
-                              ],
-                            )
+                            //         GoRouter.of(context).pushNamed(
+                            //           inquiryScreen,
+                            //           extra: inquiryData,
+                            //         );
+                            //       },
+                            //       child: CustomButton(
+                            //         height: 28.h,
+                            //         width: 120.w,
+                            //         color: HexColor('#27BCEB'),
+                            //         text: 'Send Inquiry',
+                            //       ),
+                            //     ),
+                            //   ],
+                            // )
                           ],
                         ),
                       ),

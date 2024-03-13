@@ -2,7 +2,10 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
 import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -35,13 +38,8 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [Color(0xff29b8eb), Color(0xff7634fc)],
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(6),
+                  gradient: myGradientColor),
               child: Theme(
                 data: Theme.of(context).copyWith(
                   dividerColor: Colors.transparent,
@@ -68,13 +66,8 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
             20.ph,
             Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [Color(0xff29b8eb), Color(0xff7634fc)],
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(6),
+                  gradient: myGradientColor),
               child: Theme(
                 data: Theme.of(context).copyWith(
                   dividerColor: Colors.transparent,
@@ -138,13 +131,8 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
             20.ph,
             Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [Color(0xff29b8eb), Color(0xff7634fc)],
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(6),
+                  gradient: myGradientColor),
               child: Theme(
                 data: Theme.of(context).copyWith(
                   dividerColor: Colors.transparent,
@@ -180,13 +168,8 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
             20.ph,
             Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [Color(0xff29b8eb), Color(0xff7634fc)],
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(6),
+                  gradient: myGradientColor),
               child: Theme(
                 data: Theme.of(context).copyWith(
                   dividerColor: Colors.transparent,
@@ -313,7 +296,7 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
             if (state.responseStatus == Status.loading)
               const Loader()
             else if (state.responseStatus == Status.completed) ...[
-              20.ph,
+              // 20.ph,
               if (state.companiesApiList.isEmpty) ...[
                 Center(
                   child: Text(
@@ -341,224 +324,291 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
                       },
                       child: Container(
                         // width: 386.w,
-                        height: 177.h,
-                        margin: EdgeInsets.only(
-                          left: 12.w,
-                          right: 12.w,
-                          top: 12.h,
-                        ),
+                        // height: 171.h,
+                        margin:
+                            EdgeInsets.only(left: 20.w, right: 20.w, top: 20.h)
+                                .r,
+                        padding: const EdgeInsets.only(
+                                left: 17, top: 18, right: 30, bottom: 10)
+                            .r,
 
                         decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.1),
+                                spreadRadius: 2,
+                                blurRadius: 2,
+                                offset: const Offset(
+                                    0, 4), // changes position of shadow
+                              ),
+                            ],
                             borderRadius: BorderRadius.circular(6.4.r),
                             color: HexColor('#FCFCFC')),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                      left: 17, top: 18, right: 30)
-                                  .r,
-                              child: Row(
-                                children: [
-                                  // SizedBox(
-                                  //   // width: double.infinity,
-                                  //   //height: 200.h,
-                                  //   child: Wrap(
-                                  //     children: [
-                                  //       if (state.companiesApiList[index]
-                                  //           .companyName.isNotEmpty) ...[
-                                  //         Container(
-                                  //           width: 10.w,
-                                  //           height: 10.h,
-                                  //           // margin: const EdgeInsets.symmetric(
-                                  //           //         horizontal: 10)
-                                  //           //     .r,
-                                  //           padding: const EdgeInsets.all(10).r,
-                                  //           decoration: BoxDecoration(
-                                  //               border: Border.all(
-                                  //                   color: HexColor('#08B783'))),
-                                  //           child: state.companiesApiList[index]
-                                  //                   .companyName.isNotEmpty
-                                  //               ? CachedNetworkImage(
-                                  //                   imageUrl: Api
-                                  //                           .originalImageBaseUrl +
-                                  //                       state
-                                  //                           .companiesApiList[index]
-                                  //                           .logoPath
-                                  //                           .toString() +
-                                  //                       state
-                                  //                           .companiesApiList[index]
-                                  //                           .logoPath
-                                  //                           .toString(),
-                                  //                   fit: BoxFit.fill,
-                                  //                 )
-                                  //               : SvgPicture.asset(
-                                  //                   'assets/images/building.svg',
-                                  //                   // width: 100.w,
-                                  //                   // height: 100.h,
-                                  //                 ),
-                                  //         ),
-                                  //       ] else
-                                  //         Container(
-                                  //           width: 10.w,
-                                  //           height: 10.h,
-                                  //           // margin: const EdgeInsets.symmetric(
-                                  //           //         horizontal: 10)
-                                  //           //     .r,
-                                  //           padding: const EdgeInsets.all(10).r,
-                                  //           decoration: BoxDecoration(
-                                  //             border: Border.all(
-                                  //                 color: HexColor('#08B783')),
-                                  //           ),
-                                  //           child: SvgPicture.asset(
-                                  //             'assets/images/bccard.svg',
-                                  //             fit: BoxFit.contain,
-                                  //             width: 10.w,
-                                  //             height: 10.h,
-                                  //           ),
-                                  //         ),
-                                  //     ],
-                                  //   ),
-                                  // ),
-                                  SvgPicture.asset('assets/images/bccard.svg'),
-                                  20.pw,
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        width: 100.w,
-                                        child: AutoSizeText(
-                                          state.companiesApiList[index]
-                                              .companyName,
-                                          textAlign: TextAlign.center,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: GoogleFonts.ubuntu(
-                                              color: HexColor('#404345'),
-                                              fontStyle: FontStyle.normal,
-                                              letterSpacing: 0.0015,
-                                              fontSize: ScreenUtil().setSp(16),
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                      ),
-                                      Text(
-                                        state.companiesApiList[index].mobileNo
-                                            .toString(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                // SizedBox(
+                                //   // width: double.infinity,
+                                //   //height: 200.h,
+                                //   child: Wrap(
+                                //     children: [
+                                //       if (state.companiesApiList[index]
+                                //           .companyName.isNotEmpty) ...[
+                                //         Container(
+                                //           width: 10.w,
+                                //           height: 10.h,
+                                //           // margin: const EdgeInsets.symmetric(
+                                //           //         horizontal: 10)
+                                //           //     .r,
+                                //           padding: const EdgeInsets.all(10).r,
+                                //           decoration: BoxDecoration(
+                                //               border: Border.all(
+                                //                   color: HexColor('#08B783'))),
+                                //           child: state.companiesApiList[index]
+                                //                   .companyName.isNotEmpty
+                                //               ? CachedNetworkImage(
+                                //                   imageUrl: Api
+                                //                           .originalImageBaseUrl +
+                                //                       state
+                                //                           .companiesApiList[index]
+                                //                           .logoPath
+                                //                           .toString() +
+                                //                       state
+                                //                           .companiesApiList[index]
+                                //                           .logoPath
+                                //                           .toString(),
+                                //                   fit: BoxFit.fill,
+                                //                 )
+                                //               : SvgPicture.asset(
+                                //                   'assets/images/building.svg',
+                                //                   // width: 100.w,
+                                //                   // height: 100.h,
+                                //                 ),
+                                //         ),
+                                //       ] else
+                                //         Container(
+                                //           width: 10.w,
+                                //           height: 10.h,
+                                //           // margin: const EdgeInsets.symmetric(
+                                //           //         horizontal: 10)
+                                //           //     .r,
+                                //           padding: const EdgeInsets.all(10).r,
+                                //           decoration: BoxDecoration(
+                                //             border: Border.all(
+                                //                 color: HexColor('#08B783')),
+                                //           ),
+                                //           child: SvgPicture.asset(
+                                //             'assets/images/bccard.svg',
+                                //             fit: BoxFit.contain,
+                                //             width: 10.w,
+                                //             height: 10.h,
+                                //           ),
+                                //         ),
+                                //     ],
+                                //   ),
+                                // ),
+                                SvgPicture.asset('assets/images/bccard.svg'),
+                                //20.pw,
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      width: 100.w,
+                                      child: AutoSizeText(
+                                        state.companiesApiList[index]
+                                            .companyName,
                                         textAlign: TextAlign.center,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
                                         style: GoogleFonts.ubuntu(
-                                            color: HexColor('#AAAAAA'),
+                                            color: HexColor('#404345'),
                                             fontStyle: FontStyle.normal,
                                             letterSpacing: 0.0015,
-                                            fontSize: ScreenUtil().setSp(12),
-                                            fontWeight: FontWeight.w400),
+                                            fontSize: ScreenUtil().setSp(16),
+                                            fontWeight: FontWeight.w500),
                                       ),
-                                    ],
+                                    ),
+                                    Text(
+                                      state.companiesApiList[index].mobileNo
+                                          .toString(),
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.ubuntu(
+                                          color: HexColor('#AAAAAA'),
+                                          fontStyle: FontStyle.normal,
+                                          letterSpacing: 0.0015,
+                                          fontSize: ScreenUtil().setSp(12),
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                  ],
+                                ),
+                                // 30.pw,
+                                Container(
+                                  constraints: BoxConstraints(
+                                    minWidth: 79.w,
+                                    maxWidth: 79.w,
                                   ),
-                                  20.pw,
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SvgPicture.asset(
-                                          'assets/images/phone_email_location.svg'),
-                                      20.ph,
-                                      Container(
-                                        constraints: BoxConstraints(
-                                          minWidth: 79.w,
-                                          maxWidth: 79.w,
-                                        ),
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 4.w),
-                                        height: 22.h,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10).r,
-                                          color: (state.companiesApiList[index]
-                                                      .primaryActivity ==
-                                                  'buyer')
-                                              ? Color(0x5933a7ed)
-                                              : Color(0x594b6fff),
-                                        ),
-                                        child: Center(
-                                          child: AutoSizeText(
-                                              state.companiesApiList[index]
-                                                  .primaryActivity
-                                                  .toString(),
-                                              maxLines: 2,
-                                              textAlign: TextAlign.center,
-                                              style: GoogleFonts.poppins(
-                                                fontSize: 12.sp,
-                                                fontWeight: FontWeight.w500,
-                                                letterSpacing: 0.5,
-                                                color: HexColor('#2984BB'),
-                                              ),
-                                              minFontSize: 8),
-                                        ),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
-                            27.ph,
-                            Divider(
-                              indent: 25,
-                              endIndent: 25,
-                            ),
-                            15.ph,
-                            Container(
-                              width: 300.w,
-                              height: 27.h,
-                              decoration: BoxDecoration(
-                                  color: HexColor('#F6F6F6'),
-                                  borderRadius: BorderRadius.circular(16),
-                                  border:
-                                      Border.all(color: HexColor('#E1E3E6'))),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  SvgPicture.asset(
-                                    'assets/images/bc_chat.svg',
-                                    height: 14.h,
-                                    width: 15.01.w,
+                                  height: 22.h,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10).r,
+                                    color: (state.companiesApiList[index]
+                                                .primaryActivity ==
+                                            'buyer')
+                                        ? Color(0xff47A7CA)
+                                        : Color(0xff3067AB),
                                   ),
-                                  Text(
-                                    'Chat',
-                                    style: GoogleFonts.quicksand(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 12.sp,
-                                        color: HexColor('#4B6FFF')),
-                                  ),
-                                  VerticalDivider(
-                                    color: HexColor('#E1E3E6'),
-                                  ),
-                                  SvgPicture.asset(
-                                    'assets/images/bc_share.svg',
-                                    height: 14.h,
-                                    width: 15.01.w,
-                                  ),
-                                  Text('Share',
-                                      style: GoogleFonts.quicksand(
-                                          fontWeight: FontWeight.w600,
+                                  child: Center(
+                                    child: AutoSizeText(
+                                        state.companiesApiList[index]
+                                            .primaryActivity
+                                            .toString(),
+                                        maxLines: 2,
+                                        textAlign: TextAlign.center,
+                                        style: GoogleFonts.poppins(
                                           fontSize: 12.sp,
-                                          color: HexColor('#4B6FFF'))),
-                                  VerticalDivider(
-                                    color: HexColor('#E1E3E6'),
+                                          fontWeight: FontWeight.w500,
+                                          letterSpacing: 0.5,
+                                          color: whiteColor,
+                                        ),
+                                        minFontSize: 8),
                                   ),
-                                  SvgPicture.asset(
-                                    'assets/images/bc_detail.svg',
-                                    height: 14.h,
-                                    width: 15.01.w,
-                                  ),
-                                  Text('Details',
-                                      style: GoogleFonts.quicksand(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 12.sp,
-                                          color: HexColor('#4B6FFF'))),
-                                ],
-                              ),
+                                )
+                              ],
                             ),
+                            14.ph,
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.phone,
+                                  color: const Color(0xff33A7ED),
+                                  size: 16.h,
+                                ),
+                                10.pw,
+                                SizedBox(
+                                  width: 100.w,
+                                  child: AutoSizeText(
+                                    state.companiesApiList[index].mobileNo
+                                        .toString(),
+                                    maxLines: 1,
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w400,
+                                      letterSpacing: 0.5,
+                                      color: HexColor('#1F3996'),
+                                    ),
+                                  ),
+                                ),
+                                10.pw,
+                                Icon(
+                                  Icons.location_city,
+                                  color: const Color(0xff33A7ED),
+                                  size: 16.h,
+                                ),
+                                10.pw,
+                                SizedBox(
+                                  width: 100.w,
+                                  child: AutoSizeText(
+                                    'Al Khobar',
+                                    maxLines: 1,
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w400,
+                                      letterSpacing: 0.5,
+                                      color: HexColor('#1F3996'),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            12.ph,
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.email_outlined,
+                                  color: const Color(0xff33A7ED),
+                                  size: 16.h,
+                                ),
+                                10.pw,
+                                SizedBox(
+                                  width: 200.w,
+                                  child: AutoSizeText(
+                                    state.companiesApiList[index].email
+                                        .toString(),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w400,
+                                      color: HexColor('#1F3996'),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            // 27.ph,
+                            // Divider(
+                            //   indent: 25,
+                            //   endIndent: 25,
+                            // ),
+                            // 15.ph,
+                            // Container(
+                            //   width: 300.w,
+                            //   height: 27.h,
+                            //   decoration: BoxDecoration(
+                            //       color: HexColor('#F6F6F6'),
+                            //       borderRadius: BorderRadius.circular(16),
+                            //       border:
+                            //           Border.all(color: HexColor('#E1E3E6'))),
+                            //   child: Row(
+                            //     mainAxisAlignment:
+                            //         MainAxisAlignment.spaceEvenly,
+                            //     children: [
+                            //       SvgPicture.asset(
+                            //         'assets/images/bc_chat.svg',
+                            //         height: 14.h,
+                            //         width: 15.01.w,
+                            //       ),
+                            //       Text(
+                            //         'Chat',
+                            //         style: GoogleFonts.quicksand(
+                            //             fontWeight: FontWeight.w600,
+                            //             fontSize: 12.sp,
+                            //             color: HexColor('#4B6FFF')),
+                            //       ),
+                            //       VerticalDivider(
+                            //         color: HexColor('#E1E3E6'),
+                            //       ),
+                            //       SvgPicture.asset(
+                            //         'assets/images/bc_share.svg',
+                            //         height: 14.h,
+                            //         width: 15.01.w,
+                            //       ),
+                            //       Text('Share',
+                            //           style: GoogleFonts.quicksand(
+                            //               fontWeight: FontWeight.w600,
+                            //               fontSize: 12.sp,
+                            //               color: HexColor('#4B6FFF'))),
+                            //       VerticalDivider(
+                            //         color: HexColor('#E1E3E6'),
+                            //       ),
+                            //       SvgPicture.asset(
+                            //         'assets/images/bc_detail.svg',
+                            //         height: 14.h,
+                            //         width: 15.01.w,
+                            //       ),
+                            //       Text('Details',
+                            //           style: GoogleFonts.quicksand(
+                            //               fontWeight: FontWeight.w600,
+                            //               fontSize: 12.sp,
+                            //               color: HexColor('#4B6FFF'))),
+                            //     ],
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),

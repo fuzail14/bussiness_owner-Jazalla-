@@ -30,32 +30,32 @@ class HomeScreen extends ConsumerWidget {
       PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.home),
         title: ("Home"),
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
+        activeColorPrimary: Color(0xff2C5DA7),
+        inactiveColorPrimary: Color(0xff49AECD),
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.macwindow),
         title: ("MarketPlace"),
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
+        activeColorPrimary: Color(0xff2C5DA7),
+        inactiveColorPrimary: Color(0xff49AECD),
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.app_badge_fill),
         title: ("Approvals"),
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
+        activeColorPrimary: Color(0xff2C5DA7),
+        inactiveColorPrimary: Color(0xff49AECD),
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.waveform_circle),
         title: ("Employee Center"),
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
+        activeColorPrimary: Color(0xff2C5DA7),
+        inactiveColorPrimary: Color(0xff49AECD),
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.square_grid_2x2_fill),
         title: ("Menu"),
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
+        activeColorPrimary: Color(0xff2C5DA7),
+        inactiveColorPrimary: Color(0xff49AECD),
       ),
       // Add more items as needed
     ];

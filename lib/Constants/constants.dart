@@ -17,6 +17,14 @@ var interTextstyle = GoogleFonts.inter(
     fontWeight: FontWeight.w400,
     color: const Color(0xff000000));
 
+var myGradientColor = const LinearGradient(
+  begin: Alignment.centerLeft,
+  end: Alignment.centerRight,
+  colors: <Color>[Color(0xff1F3996), Color(0xff4EBBD3)],
+);
+
+var detailCradBorderColor = const Color(0xff46A5C9);
+
 /* Validations */
 
 String? emptyStringValidator(String? val) {

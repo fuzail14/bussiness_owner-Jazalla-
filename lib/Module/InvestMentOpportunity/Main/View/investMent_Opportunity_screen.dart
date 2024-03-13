@@ -30,13 +30,8 @@ class InvestMentOpportunityView extends ConsumerWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [Color(0xff29b8eb), Color(0xff7634fc)],
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(6),
+                  gradient: myGradientColor),
               child: Theme(
                 data: Theme.of(context).copyWith(
                   dividerColor: Colors.transparent,
@@ -101,13 +96,8 @@ class InvestMentOpportunityView extends ConsumerWidget {
             20.ph,
             Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [Color(0xff29b8eb), Color(0xff7634fc)],
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(6),
+                  gradient: myGradientColor),
               child: Theme(
                 data: Theme.of(context).copyWith(
                   dividerColor: Colors.transparent,
@@ -143,13 +133,8 @@ class InvestMentOpportunityView extends ConsumerWidget {
             20.ph,
             Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [Color(0xff29b8eb), Color(0xff7634fc)],
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(6),
+                  gradient: myGradientColor),
               child: Theme(
                 data: Theme.of(context).copyWith(
                   dividerColor: Colors.transparent,
@@ -280,17 +265,21 @@ class InvestMentOpportunityView extends ConsumerWidget {
                   itemBuilder: (context, index) {
                     var investments = state.investmentsList[index];
                     return InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        GoRouter.of(context).pushNamed(investmentDetailPage,
+                            pathParameters: {
+                              'id': state.investmentsList[index].id.toString()
+                            },
+                            extra: controller.person.Bearer);
+                      },
                       child: Container(
-                        height: 461.h,
+                        // height: 461.h,
                         margin:
                             const EdgeInsets.only(top: 26, left: 27, right: 27)
                                 .r,
                         padding: const EdgeInsets.only(
-                          top: 15,
-                          left: 21,
-                          right: 25,
-                        ).r,
+                                top: 15, left: 21, right: 25, bottom: 30)
+                            .r,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5).r,
                           border: Border.all(
@@ -493,60 +482,60 @@ class InvestMentOpportunityView extends ConsumerWidget {
                                     color: HexColor('#707070')),
                               ),
                             ),
-                            20.ph,
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    GoRouter.of(context).pushNamed(
-                                        investmentDetailPage,
-                                        pathParameters: {
-                                          'id': state.investmentsList[index].id
-                                              .toString()
-                                        },
-                                        extra: controller.person.Bearer);
-                                  },
-                                  child: Container(
-                                    height: 32.h,
-                                    width: 120.w,
-                                    decoration: BoxDecoration(
-                                        color: Colors.transparent,
-                                        borderRadius:
-                                            BorderRadius.circular(16).r,
-                                        border: Border.all(
-                                            color: HexColor('#27BCEB'))),
-                                    child: Center(
-                                      child: Text(
-                                        'Detail',
-                                        style: GoogleFonts.quicksand(
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 10.sp,
-                                            color: HexColor('#27BCEB')),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                //30.pw,
-                                Container(
-                                  width: 120.w,
-                                  height: 32.h,
-                                  decoration: BoxDecoration(
-                                    color: HexColor('#27BCEB'),
-                                    borderRadius: BorderRadius.circular(16).r,
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      'Respond',
-                                      style: GoogleFonts.quicksand(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 10.sp,
-                                          color: HexColor('#FFFFFF')),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            )
+                            // 20.ph,
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            //   children: [
+                            //     GestureDetector(
+                            //       onTap: () {
+                            //         GoRouter.of(context).pushNamed(
+                            //             investmentDetailPage,
+                            //             pathParameters: {
+                            //               'id': state.investmentsList[index].id
+                            //                   .toString()
+                            //             },
+                            //             extra: controller.person.Bearer);
+                            //       },
+                            //       child: Container(
+                            //         height: 32.h,
+                            //         width: 120.w,
+                            //         decoration: BoxDecoration(
+                            //             color: Colors.transparent,
+                            //             borderRadius:
+                            //                 BorderRadius.circular(16).r,
+                            //             border: Border.all(
+                            //                 color: HexColor('#27BCEB'))),
+                            //         child: Center(
+                            //           child: Text(
+                            //             'Detail',
+                            //             style: GoogleFonts.quicksand(
+                            //                 fontWeight: FontWeight.w700,
+                            //                 fontSize: 10.sp,
+                            //                 color: HexColor('#27BCEB')),
+                            //           ),
+                            //         ),
+                            //       ),
+                            //     ),
+                            //     //30.pw,
+                            //     Container(
+                            //       width: 120.w,
+                            //       height: 32.h,
+                            //       decoration: BoxDecoration(
+                            //         color: HexColor('#27BCEB'),
+                            //         borderRadius: BorderRadius.circular(16).r,
+                            //       ),
+                            //       child: Center(
+                            //         child: Text(
+                            //           'Respond',
+                            //           style: GoogleFonts.quicksand(
+                            //               fontWeight: FontWeight.w700,
+                            //               fontSize: 10.sp,
+                            //               color: HexColor('#FFFFFF')),
+                            //         ),
+                            //       ),
+                            //     ),
+                            //   ],
+                            // )
                           ],
                         ),
                       ),

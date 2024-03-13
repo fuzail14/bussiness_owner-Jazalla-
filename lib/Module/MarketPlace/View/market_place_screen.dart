@@ -107,7 +107,7 @@ class MarketPlaceScreen extends ConsumerWidget {
                       style: GoogleFonts.mulish(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w400,
-                          color: Color(0xff8518FF)),
+                          color: Color(0xff4CB5D0)),
                     ),
                     Text(
                       'Hi, Company',

@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
+import 'package:bussines_owner/Constants/constants.dart';
 import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -25,6 +26,30 @@ class InvestmentDetailPage extends ConsumerWidget {
           if (state.responseStatus == Status.loading)
             const Loader()
           else if (state.responseStatus == Status.completed) ...[
+            20.ph,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                //30.pw,
+                Container(
+                  width: 120.w,
+                  height: 32.h,
+                  decoration: BoxDecoration(
+                    color: HexColor('#1F3996'),
+                    borderRadius: BorderRadius.circular(16).r,
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Respond',
+                      style: GoogleFonts.quicksand(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 10.sp,
+                          color: HexColor('#FFFFFF')),
+                    ),
+                  ),
+                ),
+              ],
+            ),
             Expanded(
                 child: ListView.builder(
               itemCount: state.investmentDetail.length,
@@ -95,7 +120,7 @@ class InvestmentDetailPage extends ConsumerWidget {
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xff08B783)),
+                              border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
                               color: Color(0xfffbfffd)),
                           child: Column(
@@ -207,7 +232,7 @@ class InvestmentDetailPage extends ConsumerWidget {
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xff08B783)),
+                              border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
                               color: Color(0xfffbfffd)),
                           child: AutoSizeText(
@@ -235,7 +260,7 @@ class InvestmentDetailPage extends ConsumerWidget {
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xff08B783)),
+                              border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
                               color: Color(0xfffbfffd)),
                           child: AutoSizeText(
@@ -263,7 +288,7 @@ class InvestmentDetailPage extends ConsumerWidget {
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xff08B783)),
+                              border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
                               color: Color(0xfffbfffd)),
                           child: AutoSizeText(
@@ -291,7 +316,7 @@ class InvestmentDetailPage extends ConsumerWidget {
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xff08B783)),
+                              border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
                               color: Color(0xfffbfffd)),
                           child: AutoSizeText(
@@ -320,7 +345,7 @@ class InvestmentDetailPage extends ConsumerWidget {
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xff08B783)),
+                              border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
                               color: Color(0xfffbfffd)),
                           child: AutoSizeText(investment.assets.toString(),

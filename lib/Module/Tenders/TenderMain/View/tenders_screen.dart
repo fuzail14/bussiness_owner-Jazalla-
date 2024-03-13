@@ -33,13 +33,8 @@ class TendersView extends ConsumerWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [Color(0xff29b8eb), Color(0xff7634fc)],
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(6),
+                  gradient: myGradientColor),
               child: Theme(
                 data: Theme.of(context).copyWith(
                   dividerColor: Colors.transparent,
@@ -103,13 +98,8 @@ class TendersView extends ConsumerWidget {
             20.ph,
             Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [Color(0xff29b8eb), Color(0xff7634fc)],
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(6),
+                  gradient: myGradientColor),
               child: Theme(
                 data: Theme.of(context).copyWith(
                   dividerColor: Colors.transparent,

@@ -29,8 +29,6 @@ class _SplashScreenState extends State<SplashScreen> {
   void getUserSharedPreferencesData() async {
     Person person = await MySharedPreferences.getUserData();
 
-    print(person.data!.companyId);
-
     if (person.data!.companyId == 0) {
       Timer(const Duration(seconds: 3),
           () => context.goNamed('/CheckPhoneNumber'));
@@ -56,38 +54,50 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            FadeInLeft(
-              duration: const Duration(seconds: 2),
-              child: SvgPicture.asset(
-                'assets/images/jazalla_logo.svg',
-                width: 117.w,
-                height: 135.h,
-                // set your desired height
-              ),
-            ),
             FadeInUp(
               duration: const Duration(seconds: 2),
-              child: Text(
-                'Jazalla',
-                style: GoogleFonts.montserrat(
-                  fontSize: 36.sp,
-                  fontWeight: FontWeight.bold,
-                  color: whiteColor, // set your desired color
+              child: SizedBox(
+                // width: double.infinity.w,
+                // height: 100.h,
+                child: SvgPicture.asset(
+                  'assets/images/jazalla_logo.svg',
+                  //width: 110.w,
+                  height: 135.h,
+
+                  fit: BoxFit.contain,
+
+                  // set your desired height
                 ),
               ),
             ),
-            10.ph,
-            FadeInRight(
+            FadeInLeft(
               duration: const Duration(seconds: 2),
-              child: Text(
-                'Bussines Platform',
-                style: GoogleFonts.mulish(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w300,
-                  color: whiteColor,
+              child: SizedBox(
+                // width: double.infinity.w,
+                // height: 100.h,
+                child: SvgPicture.asset(
+                  'assets/images/jazalla_logo_text.svg',
+                  //  / width: 250.w,
+                  //height: 135.h,
+
+                  fit: BoxFit.contain,
+
+                  // set your desired height
                 ),
               ),
             ),
+            // FadeInUp(
+            //   duration: const Duration(seconds: 2),
+            //   child: Text(
+            //     'Jazalla',
+            //     style: GoogleFonts.montserrat(
+            //       fontSize: 36.sp,
+            //       fontWeight: FontWeight.bold,
+            //       color: whiteColor, // set your desired color
+            //     ),
+            //   ),
+            // ),
+
             20.ph,
             FadeInDown(
               duration: const Duration(seconds: 2),

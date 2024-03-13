@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/cupertino.dart';
@@ -34,32 +35,45 @@ class CheckPhoneNumber extends ConsumerWidget {
                   colors: [Color(0xff2C5DA7), Color(0xff49AECD)])),
           child: Column(
             children: [
-              SvgPicture.asset(
-                'assets/images/jazalla_logo.svg',
-                height: 135.14.h,
-                width: 117.w,
-              ),
-              Text(
-                'Jazalla',
-                style: GoogleFonts.montserrat(
-                    fontSize: 36,
-                    fontWeight: FontWeight.w600,
-                    color: whiteColor),
-              ),
-              Text(
-                'Business platform ',
-                style: GoogleFonts.montserrat(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w300,
-                    color: whiteColor),
+              FadeInUp(
+                duration: const Duration(seconds: 2),
+                child: SvgPicture.asset(
+                  'assets/images/jazalla_logo.svg',
+                  //width: 110.w,
+                  height: 135.h,
+
+                  fit: BoxFit.contain,
+
+                  // set your desired height
+                ),
               ),
               10.ph,
-              Text(
-                'Statrt Journey With Jazalla',
-                style: GoogleFonts.montserrat(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: whiteColor),
+              FadeInDown(
+                duration: const Duration(seconds: 2),
+                child: SizedBox(
+                  // width: double.infinity.w,
+                  // height: 100.h,
+                  child: SvgPicture.asset(
+                    'assets/images/jazalla_logo_text.svg',
+                    //  / width: 250.w,
+                    //height: 135.h,
+
+                    fit: BoxFit.contain,
+
+                    // set your desired height
+                  ),
+                ),
+              ),
+              10.ph,
+              FadeInRight(
+                duration: const Duration(seconds: 2),
+                child: Text(
+                  'Statrt Journey With Jazalla',
+                  style: GoogleFonts.montserrat(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: whiteColor),
+                ),
               ),
             ],
           ),
@@ -98,14 +112,16 @@ class CheckPhoneNumber extends ConsumerWidget {
                       // height: 52.h,
                       margin: EdgeInsets.only(right: 10),
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10.0),
-                            bottomLeft: Radius.circular(10.0),
-                          ),
-                          border: Border.symmetric(
-                            vertical: BorderSide(
-                                color: HexColor('#EFEFEF'), width: 2),
-                          )),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10.0),
+                          bottomLeft: Radius.circular(10.0),
+                        ),
+                        // border: Border.symmetric(
+                        //   vertical: BorderSide(
+                        //       color: HexColor('#EFEFEF'), width: 2),
+
+                        //)
+                      ),
                       child: GestureDetector(
                           onTap: () {
                             _showCountryPicker(context, ref);
