@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 import 'package:bussines_owner/Data/Api%20Resp/api_response.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../Providers/argument_provider.dart';
 import '../../../../../Repo/Procurement Managment/RFI/DetailRepo/rfx_managment_rfi_detail_repository.dart';
@@ -9,21 +11,25 @@ import '../../../../ProcurementManagment/RFI/RfxManagmentRFIDetail/Model/RFIDeta
 class ServiceManagmentRFIDetailState {
   final Status responseStatus;
   final List<RequestForInformationDetail> serviceManagmentRFIDetail;
+  final bool isLoading;
+  final File? pdfFile;
+  ServiceManagmentRFIDetailState(
+      {this.responseStatus = Status.loading,
+      this.serviceManagmentRFIDetail = const [],
+      this.isLoading = false,
+      this.pdfFile});
 
-  ServiceManagmentRFIDetailState({
-    this.responseStatus = Status.loading,
-    this.serviceManagmentRFIDetail = const [],
-  });
-
-  ServiceManagmentRFIDetailState copyWith({
-    Status? responseStatus,
-    List<RequestForInformationDetail>? serviceManagmentRFIDetail,
-  }) {
+  ServiceManagmentRFIDetailState copyWith(
+      {Status? responseStatus,
+      List<RequestForInformationDetail>? serviceManagmentRFIDetail,
+      bool? isLoading,
+      File? pdfFile}) {
     return ServiceManagmentRFIDetailState(
-      responseStatus: responseStatus ?? this.responseStatus,
-      serviceManagmentRFIDetail:
-          serviceManagmentRFIDetail ?? this.serviceManagmentRFIDetail,
-    );
+        responseStatus: responseStatus ?? this.responseStatus,
+        serviceManagmentRFIDetail:
+            serviceManagmentRFIDetail ?? this.serviceManagmentRFIDetail,
+        isLoading: isLoading ?? this.isLoading,
+        pdfFile: pdfFile ?? this.pdfFile);
   }
 }
 
@@ -36,7 +42,7 @@ class ServiceManagmentRFIDetailNotifier
   }
 
   final rFXManagmentRFIDetailRepository = RFXManagmentRFIDetailRepository();
-
+  TextEditingController descriptionController = TextEditingController();
   Future<void> rfiDetailViewApi({required int rfiId}) async {
     setResponseStatus(Status.loading);
 
@@ -57,6 +63,10 @@ class ServiceManagmentRFIDetailNotifier
 
   void setResponseStatus(Status val) {
     state = state.copyWith(responseStatus: val);
+  }
+
+  void setPdfFile(File? pdfFile) {
+    state = state.copyWith(pdfFile: pdfFile);
   }
 }
 

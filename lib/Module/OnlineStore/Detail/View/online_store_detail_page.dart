@@ -6,11 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../Constants/api_routes.dart';
 import '../../../../Constants/constants.dart';
 import '../../../../Data/Api Resp/api_response.dart';
+import '../../../../Routes/set_routes.dart';
 import '../../../../Widgets/CustomButton/custom_button.dart';
 import '../../../../Widgets/Loader/loader.dart';
 import '../../../../Widgets/StarRating/star_rating.dart';
@@ -46,19 +48,19 @@ class OnlineStoreDetailPage extends ConsumerWidget {
                     // print(product.id);
                     // print(controller.person.data!.id);
                     // print(product.companyId);
-                    // print(controller.person.data!.companyId);
 
-                    // final quoteData = {
-                    //   'productId': product.id,
-                    //   'userId': controller.person.data!.id,
-                    //   'userCompanyId':
-                    //       controller.person.data!.companyId
-                    // };
+                    //print(controller.person.data!.companyId);
 
-                    // GoRouter.of(context).pushNamed(
-                    //   requestQuoteScreen,
-                    //   extra: quoteData,
-                    // );
+                    final quoteData = {
+                      'productId': controller.productId,
+                      'userId': controller.person.data!.id,
+                      'userCompanyId': controller.person.data!.companyId
+                    };
+
+                    GoRouter.of(context).pushNamed(
+                      requestQuoteScreen,
+                      extra: quoteData,
+                    );
                   },
                   child: CustomButton(
                     height: 28.h,
@@ -71,22 +73,26 @@ class OnlineStoreDetailPage extends ConsumerWidget {
                 //30.pw,
                 GestureDetector(
                   onTap: () {
-                    // product.id;
-                    // controller.person.data!.id;
-                    // product.companyId;
-                    // final inquiryData = {
-                    //   'productId': product.id,
-                    //   'productTitle': product.name,
-                    //   'userId': controller.person.data!.id,
-                    //   'userCompanyId':
-                    //       controller.person.data!.companyId,
-                    //   'companyId': product.companyId,
-                    // };
+                    var product = state.productDetail.first;
+                    product.id;
+                    controller.person.data!.id;
+                    product.companyId;
+                    print(product.id);
+                    print(controller.person.data!.id);
+                    print(product.companyId);
 
-                    // GoRouter.of(context).pushNamed(
-                    //   inquiryScreen,
-                    //   extra: inquiryData,
-                    // );
+                    final inquiryData = {
+                      'productId': controller.productId,
+                      'productTitle': product.name,
+                      'userId': controller.person.data!.id,
+                      'userCompanyId': controller.person.data!.companyId,
+                      'companyId': product.companyId,
+                    };
+
+                    GoRouter.of(context).pushNamed(
+                      inquiryScreen,
+                      extra: inquiryData,
+                    );
                   },
                   child: CustomButton(
                     height: 28.h,

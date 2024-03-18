@@ -329,7 +329,7 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
                             EdgeInsets.only(left: 20.w, right: 20.w, top: 20.h)
                                 .r,
                         padding: const EdgeInsets.only(
-                                left: 17, top: 18, right: 30, bottom: 10)
+                                left: 0, top: 18, right: 0, bottom: 10)
                             .r,
 
                         decoration: BoxDecoration(
@@ -348,7 +348,6 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 // SizedBox(
                                 //   // width: double.infinity,
@@ -410,75 +409,109 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
                                 //     ],
                                 //   ),
                                 // ),
-                                SvgPicture.asset('assets/images/bccard.svg'),
-                                //20.pw,
+                                // SvgPicture.asset('assets/images/bccard.svg'),
+                                // 28.pw,
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
+                                    Row(
+                                      children: [
+                                        SizedBox(
+                                          width: 200.w,
+                                          child: Text(
+                                            state.companiesApiList[index]
+                                                .companyName
+                                                .toString(),
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: GoogleFonts.ubuntu(
+                                                color: HexColor('#404345'),
+                                                letterSpacing: 0.0015,
+                                                fontSize: 18.sp,
+                                                fontWeight: FontWeight.w800),
+                                          ),
+                                        ),
+                                        20.pw,
+                                        SvgPicture.asset(
+                                            'assets/images/bccard.svg'),
+                                      ],
+                                    ),
+                                    9.ph,
                                     SizedBox(
-                                      width: 100.w,
-                                      child: AutoSizeText(
-                                        state.companiesApiList[index]
-                                            .companyName,
-                                        textAlign: TextAlign.center,
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
+                                      width: 150.w,
+                                      child: Text(
+                                        'CompanyId - 100002A',
                                         style: GoogleFonts.ubuntu(
-                                            color: HexColor('#404345'),
-                                            fontStyle: FontStyle.normal,
+                                            color: HexColor('#AAAAAA'),
                                             letterSpacing: 0.0015,
-                                            fontSize: ScreenUtil().setSp(16),
-                                            fontWeight: FontWeight.w500),
+                                            fontSize: 10.sp,
+                                            fontWeight: FontWeight.w900),
                                       ),
                                     ),
-                                    Text(
-                                      state.companiesApiList[index].mobileNo
-                                          .toString(),
-                                      textAlign: TextAlign.center,
-                                      style: GoogleFonts.ubuntu(
-                                          color: HexColor('#AAAAAA'),
-                                          fontStyle: FontStyle.normal,
-                                          letterSpacing: 0.0015,
-                                          fontSize: ScreenUtil().setSp(12),
-                                          fontWeight: FontWeight.w400),
+                                    4.ph,
+                                    SizedBox(
+                                      width: 150.w,
+                                      child: Text(
+                                        'Industries - Agriculture',
+                                        style: GoogleFonts.ubuntu(
+                                            color: HexColor('#AAAAAA'),
+                                            letterSpacing: 0.0015,
+                                            fontSize: 10.sp,
+                                            fontWeight: FontWeight.w900),
+                                      ),
+                                    ),
+                                    4.ph,
+                                    SizedBox(
+                                      width: 220.w,
+                                      child: Text(
+                                        'Business Activities - Energy (Oil & Gas, Power)',
+                                        style: GoogleFonts.ubuntu(
+                                            color: HexColor('#AAAAAA'),
+                                            letterSpacing: 0.0015,
+                                            fontSize: 10.sp,
+                                            fontWeight: FontWeight.w900),
+                                      ),
                                     ),
                                   ],
                                 ),
-                                // 30.pw,
-                                Container(
-                                  constraints: BoxConstraints(
-                                    minWidth: 79.w,
-                                    maxWidth: 79.w,
-                                  ),
-                                  height: 22.h,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10).r,
-                                    color: (state.companiesApiList[index]
-                                                .primaryActivity ==
-                                            'buyer')
-                                        ? Color(0xff47A7CA)
-                                        : Color(0xff3067AB),
-                                  ),
-                                  child: Center(
-                                    child: AutoSizeText(
-                                        state.companiesApiList[index]
-                                            .primaryActivity
-                                            .toString(),
-                                        maxLines: 2,
-                                        textAlign: TextAlign.center,
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 12.sp,
-                                          fontWeight: FontWeight.w500,
-                                          letterSpacing: 0.5,
-                                          color: whiteColor,
-                                        ),
-                                        minFontSize: 8),
-                                  ),
-                                )
+                                13.pw,
+                                // Container(
+                                //   constraints: BoxConstraints(
+                                //     minWidth: 79.w,
+                                //     maxWidth: 79.w,
+                                //   ),
+                                //   height: 22.h,
+                                //   decoration: BoxDecoration(
+                                //     borderRadius: BorderRadius.circular(10).r,
+                                //     // color: (state.companiesApiList[index]
+                                //     //             .primaryActivity ==
+                                //     //         'buyer')
+                                //     //     ? Color(0xff47A7CA)
+                                //     //     : Color(0xff3067AB),
+                                //   ),
+                                //   child: Center(
+                                //     child: AutoSizeText(
+                                //       state.companiesApiList[index]
+                                //           .primaryActivity
+                                //           .toString()
+                                //           .toUpperCase(),
+                                //       maxLines: 1,
+                                //       textAlign: TextAlign.center,
+                                //       style: GoogleFonts.poppins(
+                                //         fontSize: 12.sp,
+                                //         fontWeight: FontWeight.w500,
+                                //         letterSpacing: 0.5,
+                                //         color: Colors.black,
+                                //       ),
+                                //     ),
+                                //   ),
+                                // )
                               ],
                             ),
                             14.ph,
                             Row(
+                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Icon(
                                   Icons.phone,
@@ -487,7 +520,7 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
                                 ),
                                 10.pw,
                                 SizedBox(
-                                  width: 100.w,
+                                  width: 80.w,
                                   child: AutoSizeText(
                                     state.companiesApiList[index].mobileNo
                                         .toString(),
@@ -502,14 +535,35 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
                                   ),
                                 ),
                                 10.pw,
+                                // Icon(
+                                //   Icons.email_outlined,
+                                //   color: const Color(0xff33A7ED),
+                                //   size: 16.h,
+                                // ),
+                                // 5.pw,
+                                // SizedBox(
+                                //   width: 50.w,
+                                //   child: AutoSizeText(
+                                //     state.companiesApiList[index].email
+                                //         .toString(),
+                                //     maxLines: 1,
+                                //     overflow: TextOverflow.ellipsis,
+                                //     style: GoogleFonts.poppins(
+                                //       fontSize: 12.sp,
+                                //       fontWeight: FontWeight.w400,
+                                //       color: HexColor('#1F3996'),
+                                //     ),
+                                //   ),
+                                // ),
+                                // 10.pw,
                                 Icon(
                                   Icons.location_city,
                                   color: const Color(0xff33A7ED),
                                   size: 16.h,
                                 ),
-                                10.pw,
+                                //10.pw,
                                 SizedBox(
-                                  width: 100.w,
+                                  width: 80.w,
                                   child: AutoSizeText(
                                     'Al Khobar',
                                     maxLines: 1,
@@ -522,27 +576,29 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
-                            12.ph,
-                            Row(
-                              children: [
                                 Icon(
-                                  Icons.email_outlined,
+                                  Icons.local_activity_sharp,
                                   color: const Color(0xff33A7ED),
                                   size: 16.h,
                                 ),
-                                10.pw,
+                                //10.pw,
                                 SizedBox(
-                                  width: 200.w,
-                                  child: AutoSizeText(
-                                    state.companiesApiList[index].email
-                                        .toString(),
+                                  width: 80.w,
+                                  child: Text(
+                                    (state.companiesApiList[index]
+                                                .primaryActivity ==
+                                            'service-provider')
+                                        ? 'S-Provider'
+                                        : state.companiesApiList[index]
+                                            .primaryActivity
+                                            .toString()
+                                            .toUpperCase(),
                                     maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.center,
                                     style: GoogleFonts.poppins(
                                       fontSize: 12.sp,
                                       fontWeight: FontWeight.w400,
+                                      letterSpacing: 0.5,
                                       color: HexColor('#1F3996'),
                                     ),
                                   ),

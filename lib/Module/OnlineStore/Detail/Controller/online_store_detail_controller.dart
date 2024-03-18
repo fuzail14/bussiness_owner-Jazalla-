@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../Constants/Person/person.dart';
+import '../../../../Constants/Person/person_controller.dart';
 import '../../../../Data/Api Resp/api_response.dart';
 import '../../../../Providers/argument_provider.dart';
 import '../../../../Repo/Online Store Repository/online_store_detail_repository.dart';
@@ -12,12 +14,15 @@ final onlineStoreDetailProvider =
         (ref) {
   final args = ref.watch(routeArgsProvider);
   final productId = args['productId'] as int;
-  final bearerToken = args['bearerToken'] as String;
+  final person = ref.watch(personProvider);
+  if (person == null) {
+    throw Exception('Person data is not available');
+  }
   return OnlineStorePageController(
     productId: productId,
-    Bearer: bearerToken,
+    person: person,
   );
-}, dependencies: [routeArgsProvider]);
+}, dependencies: [personProvider]);
 
 class OnlineStoreDetailState {
   final Status responseStatus;
@@ -52,8 +57,10 @@ class OnlineStoreDetailState {
 
 class OnlineStorePageController extends StateNotifier<OnlineStoreDetailState> {
   final onineStoreDetailRepository = OnineStoreDetailRepository();
+  final Person person;
+
   final int productId;
-  final String Bearer;
+
   List<String> moreDetails = [
     'Details',
     'UNSPSC',
@@ -61,16 +68,15 @@ class OnlineStorePageController extends StateNotifier<OnlineStoreDetailState> {
     'Refund&\nShipping'
   ];
 
-  OnlineStorePageController({
-    required this.productId,
-    required this.Bearer,
-  }) : super(OnlineStoreDetailState(pageController: PageController())) {
+  OnlineStorePageController({required this.productId, required this.person})
+      : super(OnlineStoreDetailState(pageController: PageController())) {
     _initialize();
   }
 
+  var onlineStoreProvider;
   void _initialize() {
     Future.delayed(Duration(milliseconds: 300), () {
-      productDetailViewApi(productId: productId, bearerToken: Bearer);
+      productDetailViewApi(productId: productId, bearerToken: person.Bearer!);
     });
   }
 

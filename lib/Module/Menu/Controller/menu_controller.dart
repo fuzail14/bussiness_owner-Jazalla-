@@ -50,7 +50,7 @@ class MenuController extends StateNotifier<MenuState> {
         //onTap: () {},
       ),
       MenuItem(
-        title: 'Procurement Management',
+        title: 'Order Placement',
         iconPath: 'assets/images/menu3.svg',
         trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
         //onTap: () {},
@@ -64,12 +64,6 @@ class MenuController extends StateNotifier<MenuState> {
       MenuItem(
         title: 'Services Management',
         iconPath: 'assets/images/menu5.svg',
-        trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
-        //onTap: () {},
-      ),
-      MenuItem(
-        title: 'Order Placement',
-        iconPath: 'assets/images/menu6.svg',
         trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
         //onTap: () {},
       ),

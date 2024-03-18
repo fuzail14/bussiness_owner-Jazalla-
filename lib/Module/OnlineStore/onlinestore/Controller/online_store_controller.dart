@@ -15,7 +15,8 @@ import '../Model/Product.dart';
 import 'package:flutter/foundation.dart';
 
 final onlineStoreProvider =
-    StateNotifierProvider<OnlineStoreController, OnlineStoreState>((ref) {
+    StateNotifierProvider.autoDispose<OnlineStoreController, OnlineStoreState>(
+        (ref) {
   final person = ref.watch(personProvider);
   if (person == null) {
     throw Exception('Person data is not available');

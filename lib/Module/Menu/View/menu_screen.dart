@@ -29,16 +29,13 @@ class Menu extends ConsumerWidget {
       appBar: MyAppBar(
         title: 'Menu',
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(
-          left: 20,
-          top: 20,
-          right: 20,
-        ).r,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          20.ph,
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0).r,
+            child: Text(
               'Menu',
               style: GoogleFonts.quicksand(
                 fontSize: 16,
@@ -46,18 +43,18 @@ class Menu extends ConsumerWidget {
                 color: Color(0xff000000),
               ),
             ),
-            10.ph,
-            Expanded(
-              child: ListView.builder(
-                itemCount: menuItems.length,
-                itemBuilder: (context, index) {
-                  final item = menuItems[index];
-                  return _buildExpansionTile(context, ref, item, index, person);
-                },
-              ),
+          ),
+          10.ph,
+          Expanded(
+            child: ListView.builder(
+              itemCount: menuItems.length,
+              itemBuilder: (context, index) {
+                final item = menuItems[index];
+                return _buildExpansionTile(context, ref, item, index, person);
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -71,10 +68,20 @@ class Menu extends ConsumerWidget {
         : Color(0xff1A1A1A); // Color based on expansion
 
     return Container(
+      margin: const EdgeInsets.only(top: 10, left: 20, right: 20).r,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.shade300,
+            offset: Offset(0.0, 1.0), //(x,y)
+            blurRadius: 6.0,
+          ),
+        ],
+
+        //borderRadius: BorderRadius.circular(12),
         gradient: isExpanded
-            ? LinearGradient(
+            ? const LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
                 colors: [Color(0xff1F3996), Color(0xff4EBBD3)],
@@ -84,8 +91,7 @@ class Menu extends ConsumerWidget {
       child: CustomExpansionTile(
         title: item.title,
         iconPath: item.iconPath,
-        iconColor: iconColor, // Pass the dynamic color
-        children: _buildChildrenForItem(context, item, person),
+        iconColor: iconColor,
         isExpanded: isExpanded,
         onTap: () {
           ref.read(expandedStateProvider.notifier).toggle(index);
@@ -93,7 +99,8 @@ class Menu extends ConsumerWidget {
             MySharedPreferences.deleteUserData();
             context.pushReplacementNamed(checkPhoneNumber);
           }
-        },
+        }, // Pass the dynamic color
+        children: _buildChildrenForItem(context, item, person),
       ),
     );
   }
@@ -102,11 +109,11 @@ class Menu extends ConsumerWidget {
       BuildContext context, MenuItem item, person) {
     // Decide which children to build based on the item title or any other attribute
     List<Widget> children = [];
-    if (item.title == 'Procurement Management') {
+    if (item.title == 'Order Placement') {
       children.addAll([
-        _buildListItem(context, 'RFI / SOI Management', () {
-          context.pushNamed(procuremenetSoiScreen, extra: person);
-        }),
+        // _buildListItem(context, 'RFI / SOI Management', () {
+        //   context.pushNamed(procuremenetSoiScreen, extra: person);
+        // }),
         _buildListItem(context, 'RFQ Management', () {
           context.pushNamed(procuremenetRFQScreen, extra: person);
         }),
@@ -140,17 +147,23 @@ class Menu extends ConsumerWidget {
   Widget _buildListItem(
       BuildContext context, String title, VoidCallback onTap) {
     return Container(
+      padding: const EdgeInsets.only(left: 12.0, right: 12.0, bottom: 3).r,
       color: whiteColor,
-      child: ListTile(
-        title: Text(
-          title,
-          style: GoogleFonts.poppins(
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
-            color: Color(0xff1A1A1A),
+      child: Column(
+        children: [
+          ListTile(
+            title: Text(
+              title,
+              style: GoogleFonts.poppins(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                color: const Color(0xff1A1A1A),
+              ),
+            ),
+            onTap: onTap,
           ),
-        ),
-        onTap: onTap,
+          const Divider(),
+        ],
       ),
     );
   }
@@ -190,7 +203,8 @@ class CustomExpansionTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Leading icon with conditional color
-                SvgPicture.asset(iconPath, color: iconColor ?? Colors.black),
+                SvgPicture.asset(iconPath,
+                    color: iconColor ?? Color(0xff203C98)),
                 20.pw,
                 Expanded(
                   child: Text(
@@ -209,340 +223,3 @@ class CustomExpansionTile extends StatelessWidget {
     );
   }
 }
-
-
-// class Menu extends ConsumerWidget {
-//   const Menu({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//     final menuItems = ref.watch(menuControllerProvider).menuItems;
-//     final person = ref.read(personProvider);
-
-//     return Scaffold(
-//       appBar: MyAppBar(
-//         title: 'Menu',
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.only(
-//           left: 20,
-//           top: 20,
-//           right: 20,
-//         ).r,
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             Text(
-//               'Menu',
-//               style: GoogleFonts.quicksand(
-//                   fontSize: 16,
-//                   fontWeight: FontWeight.w800,
-//                   color: Color(0xff000000)),
-//             ),
-//             10.ph,
-//             Container(
-//               height: 574.h,
-//               color: Color(0xffE1E3E6).withOpacity(0.5),
-//               child: ListView.builder(
-//                 itemCount: menuItems.length,
-//                 itemBuilder: (context, index) {
-//                   final item = menuItems[index];
-//                   return ListTile(
-//                     leading: item.icon,
-//                     title: Text(
-//                       item.title,
-//                       style: GoogleFonts.poppins(
-//                           fontSize: 16,
-//                           fontWeight: FontWeight.w400,
-//                           color: Color(0xff1A1A1A)),
-//                     ),
-//                     trailing: item.trailingIcon,
-//                     onTap: () {
-//                       if (item.title == 'Procurement Management') {
-//                         Container(
-//                             height: 200,
-//                             child: ExpansionTile(
-//                               title: Text('Rfx Managment'),
-//                             ));
-//                         // _buildProcurementExpansionTile(context, ref, person);
-//                       } else if (item.title == 'Sales Management') {
-//                         _salesManagmentshowDialog(context, ref, person);
-//                       } else if (item.title == 'Services Management') {
-//                         _serviceManagmentshowDialog(context, ref, person);
-//                       } else if (item.title == 'Logout') {
-//                         MySharedPreferences.deleteUserData();
-//                         context.pushReplacementNamed(checkPhoneNumber);
-//                       }
-//                     },
-//                   );
-//                 },
-//               ),
-        
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-
-//   Widget _buildProcurementExpansionTile(
-//       BuildContext context, WidgetRef ref, person) {
-//     print('come');
-//     final person = ref.read(personProvider);
-//     return ExpansionTile(
-//       title: Text(
-//         'Procurement Management',
-//         style: GoogleFonts.quicksand(
-//           fontSize: 20.0.sp,
-//           fontWeight: FontWeight.w500,
-//           color: Color(0xff1A1A1A),
-//         ),
-//       ),
-//       children: <Widget>[
-//         _buildListItem(context, 'RFI / SOI Management', () {
-//           context.pushNamed(procuremenetSoiScreen, extra: person);
-//         }),
-//         _buildListItem(context, 'RFQ Management', () {
-//           context.pushNamed(procuremenetRFQScreen, extra: person);
-//         }),
-//         _buildListItem(context, 'RFP Management', () {
-//           context.pushNamed(procurementRFPScreen, extra: person);
-//         }),
-//       ],
-//     );
-//   }
-
-//   // void _showDialog(BuildContext context, WidgetRef ref, person) {
-//   //   ExpansionTile(title: Text('Rfx Managment'));
-//   //   showDialog(
-//   //     context: context,
-//   //     builder: (BuildContext context) {
-//   //       return Dialog(
-//   //         shape:
-//   //             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-//   //         child: Container(
-//   //           padding: EdgeInsets.all(20.0),
-//   //           decoration: BoxDecoration(
-//   //             color: whiteColor,
-//   //             borderRadius: BorderRadius.circular(20.0),
-//   //             boxShadow: [
-//   //               BoxShadow(
-//   //                 color: Colors.grey.withOpacity(0.5),
-//   //                 spreadRadius: 2,
-//   //                 blurRadius: 8,
-//   //                 offset: Offset(0, 2),
-//   //               ),
-//   //             ],
-//   //           ),
-//   //           child: Column(
-//   //             mainAxisSize: MainAxisSize.min,
-//   //             children: [
-//   //               Text(
-//   //                 'Procurement Management',
-//   //                 style: GoogleFonts.quicksand(
-//   //                     fontSize: 20.0, fontWeight: FontWeight.w500),
-//   //               ),
-//   //               SizedBox(height: 20.0),
-//   //               _dialogButton(
-//   //                 context: context,
-//   //                 title: 'RFI / SOI Management',
-//   //                 onTap: () {
-//   //                   Navigator.of(context).pop();
-//   //                   context.pushNamed(procuremenetSoiScreen, extra: person);
-//   //                 },
-//   //               ),
-//   //               _dialogButton(
-//   //                 context: context,
-//   //                 title: 'RFQ Management',
-//   //                 onTap: () {
-//   //                   Navigator.of(context).pop();
-//   //                   context.pushNamed(procuremenetRFQScreen, extra: person);
-//   //                 },
-//   //               ),
-//   //               _dialogButton(
-//   //                 context: context,
-//   //                 title: 'RFP Management',
-//   //                 onTap: () {
-//   //                   Navigator.of(context).pop();
-//   //                   context.pushNamed(procurementRFPScreen, extra: person);
-//   //                 },
-//   //               ),
-//   //             ],
-//   //           ),
-//   //         ),
-//   //       );
-//   //     },
-//   //   );
-//   // }
-
-//   void _salesManagmentshowDialog(BuildContext context, WidgetRef ref, person) {
-//     showDialog(
-//       context: context,
-//       builder: (BuildContext context) {
-//         return Dialog(
-//           shape:
-//               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-//           child: Container(
-//             padding: EdgeInsets.all(20.0),
-//             decoration: BoxDecoration(
-//               color: whiteColor,
-//               borderRadius: BorderRadius.circular(20.0),
-//               boxShadow: [
-//                 BoxShadow(
-//                   color: Colors.grey.withOpacity(0.5),
-//                   spreadRadius: 2,
-//                   blurRadius: 8,
-//                   offset: Offset(0, 2),
-//                 ),
-//               ],
-//             ),
-//             child: Column(
-//               mainAxisSize: MainAxisSize.min,
-//               children: [
-//                 Text(
-//                   'Sales Management',
-//                   style: GoogleFonts.quicksand(
-//                       fontSize: 20.0, fontWeight: FontWeight.w500),
-//                 ),
-//                 SizedBox(height: 20.0),
-//                 _dialogButton(
-//                   context: context,
-//                   title: 'RFI / SOI Management',
-//                   onTap: () {
-//                     Navigator.of(context).pop();
-//                     context.pushNamed(salesManagmentRFIScreen, extra: person);
-//                 
-//  },
-//                 ),
-//                 _dialogButton(
-//                   context: context,
-//                   title: 'RFQ Management',
-//                   onTap: () {
-//                     Navigator.of(context).pop();
-//                     context.pushNamed(salesManagmentRFQScreen, extra: person);
-//                   },
-//                 ),
-//               ],
-//             ),
-//           ),
-//         );
-//       },
-//     );
-//   }
-
-//   void _serviceManagmentshowDialog(
-//       BuildContext context, WidgetRef ref, person) {
-//     showDialog(
-//       context: context,
-//       builder: (BuildContext context) {
-//         return Dialog(
-//           shape:
-//               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-//           child: Container(
-//             padding: EdgeInsets.all(20.0),
-//             decoration: BoxDecoration(
-//               color: whiteColor,
-//               borderRadius: BorderRadius.circular(20.0),
-//               boxShadow: [
-//                 BoxShadow(
-//                   color: Colors.grey.withOpacity(0.5),
-//                   spreadRadius: 2,
-//                   blurRadius: 8,
-//                   offset: Offset(0, 2),
-//                 ),
-//               ],
-//             ),
-//             child: Column(
-//               mainAxisSize: MainAxisSize.min,
-//               children: [
-//                 Text(
-//                   'Service Management',
-//                   style: GoogleFonts.quicksand(
-//                       fontSize: 20.0, fontWeight: FontWeight.w500),
-//                 ),
-//                 SizedBox(height: 20.0),
-//                 _dialogButton(
-//                   context: context,
-//                   title: 'RFI / SOI Management',
-//                   onTap: () {
-//                     Navigator.of(context).pop();
-//                     context.pushNamed(serviceManagmentRFIScreen, extra: person);
-//                   },
-//                 ),
-//                 _dialogButton(
-//                   context: context,
-//                   title: 'RFP Management',
-//                   onTap: () {
-//                     Navigator.of(context).pop();
-//                     context.pushNamed(serviceManagmentRFPScreen, extra: person);
-//                   },
-//                 ),
-//               ],
-//             ),
-//           ),
-//         );
-//       },
-//     );
-//   }
-
-//   Widget _dialogButton(
-//       {required BuildContext context,
-//       required String title,
-//       required VoidCallback onTap}) {
-//     return InkWell(
-//       onTap: onTap,
-//       child: Container(
-//         margin: EdgeInsets.only(top: 20),
-//         padding: EdgeInsets.only(left: 20, right: 20).r,
-//         width: 362.w,
-//         height: 51.h,
-//         decoration: BoxDecoration(
-//           borderRadius: BorderRadius.circular(12).r,
-//           color: whiteColor,
-//           boxShadow: [
-//             BoxShadow(
-//               color: Colors.grey.withOpacity(0.2),
-//               spreadRadius: 1,
-//               blurRadius: 6,
-//               offset: Offset(0, 1),
-//             ),
-//           ],
-//         ),
-//         child: Row(
-//           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//           children: [
-//             Text(
-//               title,
-//               style: GoogleFonts.quicksand(
-//                   fontSize: 16.0.sp,
-//                   fontWeight: FontWeight.w500,
-//                   color: Color(0xff7A7A7A)),
-//             ),
-//             Icon(
-//               Icons.chevron_right,
-//               color: Color(0xff7A7A7A),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-
-//   Widget _buildListItem(
-//       BuildContext context, String title, VoidCallback onTap) {
-//     return ListTile(
-//       title: Text(
-//         title,
-//         style: GoogleFonts.quicksand(
-//           fontSize: 16.0.sp,
-//           fontWeight: FontWeight.w500,
-//           color: Color(0xff1A1A1A),
-//         ),
-//       ),
-//       onTap: onTap,
-//     );
-//   }
-
-//   // ... rest of your existing methods
-// }
-

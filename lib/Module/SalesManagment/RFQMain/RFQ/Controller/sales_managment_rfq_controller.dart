@@ -71,6 +71,7 @@ class SalesManagmentRFQController
 
   Future<void> request4InformationViewApi(
       {required userId, required bearerToken}) async {
+    print('how many');
     setResponseStatus(Status.loading);
     try {
       final value = await salesManagmentRFQRepository.salesManagmentRFQApi(
@@ -93,7 +94,7 @@ class SalesManagmentRFQController
   }
 }
 
-final ProcuremenetSoiProvider = StateNotifierProvider.autoDispose<
+final salesManagmentRFQProvider = StateNotifierProvider.autoDispose<
     SalesManagmentRFQController, SalesManagmentRFQState>((ref) {
   final person = ref.watch(personProvider);
   if (person == null) {

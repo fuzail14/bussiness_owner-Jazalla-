@@ -4,6 +4,8 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import '../../../Constants/Person/person_controller.dart';
 import '../../EmployeeCenter/View/employee_center_page.dart';
@@ -30,32 +32,42 @@ class HomeScreen extends ConsumerWidget {
       PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.home),
         title: ("Home"),
-        activeColorPrimary: Color(0xff2C5DA7),
-        inactiveColorPrimary: Color(0xff49AECD),
+        textStyle:
+            GoogleFonts.ubuntu(fontSize: 10.sp, fontWeight: FontWeight.w600),
+        activeColorPrimary: Color(0xff49AECD),
+        inactiveColorPrimary: Colors.black,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.macwindow),
         title: ("MarketPlace"),
-        activeColorPrimary: Color(0xff2C5DA7),
-        inactiveColorPrimary: Color(0xff49AECD),
+        textStyle:
+            GoogleFonts.ubuntu(fontSize: 10.sp, fontWeight: FontWeight.w600),
+        activeColorPrimary: Color(0xff49AECD),
+        inactiveColorPrimary: Colors.black,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.app_badge_fill),
         title: ("Approvals"),
-        activeColorPrimary: Color(0xff2C5DA7),
-        inactiveColorPrimary: Color(0xff49AECD),
+        textStyle:
+            GoogleFonts.ubuntu(fontSize: 10.sp, fontWeight: FontWeight.w600),
+        activeColorPrimary: Color(0xff49AECD),
+        inactiveColorPrimary: Colors.black,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.waveform_circle),
         title: ("Employee Center"),
-        activeColorPrimary: Color(0xff2C5DA7),
-        inactiveColorPrimary: Color(0xff49AECD),
+        textStyle:
+            GoogleFonts.ubuntu(fontSize: 10.sp, fontWeight: FontWeight.w600),
+        activeColorPrimary: Color(0xff49AECD),
+        inactiveColorPrimary: Colors.black,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.square_grid_2x2_fill),
         title: ("Menu"),
-        activeColorPrimary: Color(0xff2C5DA7),
-        inactiveColorPrimary: Color(0xff49AECD),
+        textStyle:
+            GoogleFonts.ubuntu(fontSize: 10.sp, fontWeight: FontWeight.w600),
+        activeColorPrimary: Color(0xff49AECD),
+        inactiveColorPrimary: Colors.black,
       ),
       // Add more items as needed
     ];

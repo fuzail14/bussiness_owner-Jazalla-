@@ -12,13 +12,106 @@ import 'package:hexcolor/hexcolor.dart';
 import '../../../../../Data/Api Resp/api_response.dart';
 import '../../../../../Routes/set_routes.dart';
 import '../../../../../Widgets/Loader/loader.dart';
+import '../../../../ServiceManagment/RFPMain/RFP/Controller/service_managment_rfp_controller.dart';
+import '../../../../ServiceManagment/RFPMain/RFP/View/service_managment_rfp_screen.dart';
 import '../Controller/procurement_rfp_controller.dart';
 
-// ignore: must_be_immutable
-class ProcurementRFPScreen extends ConsumerWidget {
+class ProcurementRFPScreen extends ConsumerStatefulWidget {
+  @override
+  _ProcurementRFPScreenState createState() => _ProcurementRFPScreenState();
+}
+
+class _ProcurementRFPScreenState extends ConsumerState<ProcurementRFPScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
   int buildcheck = 0;
 
-  ProcurementRFPScreen({super.key});
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    print('build check  ${buildcheck++}');
+    final controller = ref.watch(ProcuremenetRFpProvider.notifier);
+    final state = ref.watch(ProcuremenetRFpProvider);
+    final serviceManagmentRFPcontroller =
+        ref.watch(serviceManagmentRFPProvider.notifier);
+    final serviceManagmentRFPstate = ref.watch(serviceManagmentRFPProvider);
+    return Scaffold(
+      appBar: MyAppBar(
+        showBell: false,
+        showFilter: false,
+        title: "RFP Managment",
+      ),
+      backgroundColor: Colors.white,
+      body: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(left: 23.w, right: 23.w, top: 30).w,
+            // width: 362.w,
+            height: 48.h,
+            decoration: ShapeDecoration(
+                color: const Color(0xffE2F5ED),
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(width: 1.w, color: const Color(0xff27BCEB)),
+                  borderRadius: BorderRadius.circular(8.r),
+                )),
+            child: TabBar(
+              controller: _tabController,
+              unselectedLabelColor: const Color(0xFF5A5A5A),
+              indicatorSize: TabBarIndicatorSize.tab,
+              labelColor: Colors.white,
+              indicator: ShapeDecoration(
+                color: HexColor('#4B6FFF'),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6.r)),
+              ),
+              indicatorColor: HexColor('#4B6FFF'),
+              tabs: [
+                Tab(
+                    child: Text(
+                  'RFP Send',
+                  style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w500, fontSize: 12.sp),
+                )),
+                Tab(
+                  child: Text(
+                    'RFP Recieved',
+                    style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.w500, fontSize: 12.sp),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                SendRFPScreen(),
+                ServiceManagmentRFPScreen(),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SendRFPScreen extends ConsumerWidget {
+  int buildcheck = 0;
+
+  SendRFPScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(ProcuremenetRFpProvider.notifier);
@@ -27,77 +120,74 @@ class ProcurementRFPScreen extends ConsumerWidget {
     print('build check  ${buildcheck++}');
 
     return Scaffold(
-      appBar: MyAppBar(
-        showBell: false,
-        title: "RFP Managemet",
-      ),
       backgroundColor: Colors.white,
       body: Column(
         children: [
-          26.ph,
-          Row(
-            children: [
-              Container(
-                width: 281.w,
-                height: 36.h,
-                padding: EdgeInsets.only(left: 20).r,
-                margin: EdgeInsets.only(left: 26).r,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(30.0),
-                    border: Border.all(color: HexColor('#DEDEDE'))),
-                child: TextField(
-                  controller: controller.searchController,
-                  // onChanged: (query) {
-                  //   controller.debounce(() {
-                  //     controller.bussinesCommunitySearchApi(query: query);
-                  //   });
-                  // },
-                  decoration: InputDecoration(
-                    hintText: "What are you looking for?",
-                    hintStyle: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w300,
-                        color: HexColor('#75788D')),
-                    suffixIcon: GestureDetector(
-                      onTap: () {
-                        // controller.request4InformationRepository(
-                        //     query: controller.searchController.text.trim());
-                      },
-                      child: Container(
-                        padding: EdgeInsets.only(right: 22).r,
-                        width: 22.w,
-                        height: 21.h,
-                        child: SvgPicture.asset(
-                          'assets/images/search.svg',
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                    ),
-                    border: InputBorder.none,
-                  ),
-                ),
-              ),
-              10.pw,
-              IconButton(
-                  onPressed: () {
-                    controller.request4ProposalViewApi(
-                        userId: state.person.data!.id,
-                        bearerToken: state.person.Bearer);
-                  },
-                  icon: const Icon(
-                    Icons.refresh,
-                    color: blueColor,
-                  )
+          // 26.ph,
+          // Row(
+          //   children: [
+          //     Container(
+          //       width: 281.w,
+          //       height: 36.h,
+          //       padding: EdgeInsets.only(left: 20).r,
+          //       margin: EdgeInsets.only(left: 26).r,
+          //       decoration: BoxDecoration(
+          //           color: Colors.white,
+          //           borderRadius: BorderRadius.circular(30.0),
+          //           border: Border.all(color: HexColor('#DEDEDE'))),
+          //       child: TextField(
+          //         controller: controller.searchController,
+          //         // onChanged: (query) {
+          //         //   controller.debounce(() {
+          //         //     controller.bussinesCommunitySearchApi(query: query);
+          //         //   });
+          //         // },
+          //         decoration: InputDecoration(
+          //           hintText: "What are you looking for?",
+          //           hintStyle: TextStyle(
+          //               fontSize: 12.sp,
+          //               fontWeight: FontWeight.w300,
+          //               color: HexColor('#75788D')),
+          //           suffixIcon: GestureDetector(
+          //             onTap: () {
+          //               // controller.request4InformationRepository(
+          //               //     query: controller.searchController.text.trim());
+          //             },
+          //             child: Container(
+          //               padding: EdgeInsets.only(right: 22).r,
+          //               width: 22.w,
+          //               height: 21.h,
+          //               child: SvgPicture.asset(
+          //                 'assets/images/search.svg',
+          //                 fit: BoxFit.contain,
+          //               ),
+          //             ),
+          //           ),
+          //           border: InputBorder.none,
+          //         ),
+          //       ),
+          //     ),
+          //     10.pw,
+          //     IconButton(
+          //         onPressed: () {
+          //           controller.request4ProposalViewApi(
+          //               userId: state.person.data!.id,
+          //               bearerToken: state.person.Bearer);
+          //         },
+          //         icon: const Icon(
+          //           Icons.refresh,
+          //           color: blueColor,
+          //         )
 
-                  // SvgPicture.asset(
-                  //   'assets/images/filter.svg',
-                  //   height: 20,
-                  //   width: 40,
-                  // )
-                  ),
-            ],
-          ),
+          //         // SvgPicture.asset(
+          //         //   'assets/images/filter.svg',
+          //         //   height: 20,
+          //         //   width: 40,
+          //         // )
+          //         ),
+          //   ],
+          // ),
+
           if (state.responseStatus == Status.loading)
             const Loader()
           else if (state.responseStatus == Status.completed) ...[

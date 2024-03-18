@@ -5,6 +5,7 @@ import 'package:bussines_owner/Routes/set_routes.dart';
 import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -374,18 +375,20 @@ class BussinesForSale extends ConsumerWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                AutoSizeText(
-                                  saleBussines.locationPreference.toString(),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: GoogleFonts.montserrat(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 12.sp,
-                                      color: HexColor('#707070')),
+                                SizedBox(
+                                  width: 140.w,
+                                  child: AutoSizeText(
+                                    'saleBussines.locationPreference.toString()',
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: GoogleFonts.montserrat(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12.sp,
+                                        color: HexColor('#707070')),
+                                  ),
                                 ),
                                 AutoSizeText(
-                                  saleBussines.companies!.primaryActivity
-                                      .toString(),
+                                  saleBussines.companies!.industry.toString(),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.montserrat(
@@ -484,11 +487,11 @@ class BussinesForSale extends ConsumerWidget {
                                   color: Color(0xfff3f4f5)),
                               child: AutoSizeText(
                                 saleBussines.businessOverview.toString(),
-                                maxLines: 4,
+                                maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
                                 style: GoogleFonts.montserrat(
                                     fontWeight: FontWeight.w600,
-                                    fontSize: 12.sp,
+                                    fontSize: 14.sp,
                                     color: HexColor('#707070')),
                               ),
                             ),

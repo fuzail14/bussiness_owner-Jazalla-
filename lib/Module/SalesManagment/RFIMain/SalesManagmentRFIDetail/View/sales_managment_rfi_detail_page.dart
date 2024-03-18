@@ -1,19 +1,46 @@
+import 'dart:io';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
 import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../../Data/Api Resp/api_response.dart';
+import '../../../../../Widgets/DescriptionTextField/description_field_attachment.dart';
 import '../../../../../Widgets/Loader/loader.dart';
 import '../Controller/sales_managment_rfi_detail_controller.dart';
 
-class SalesManagmentRFIDetailPage extends ConsumerWidget {
+class SalesManagmentRFIDetailPage extends ConsumerStatefulWidget {
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  _SalesManagmentRFIDetailPageState createState() =>
+      _SalesManagmentRFIDetailPageState();
+}
+
+class _SalesManagmentRFIDetailPageState
+    extends ConsumerState<SalesManagmentRFIDetailPage>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final controller = ref.watch(salesManagmentRFIDetailProvider.notifier);
     final state = ref.watch(salesManagmentRFIDetailProvider);
     return Scaffold(
@@ -22,6 +49,74 @@ class SalesManagmentRFIDetailPage extends ConsumerWidget {
         showFilter: false,
         title: "RFI Detail",
       ),
+      backgroundColor: Colors.white,
+      body: Column(
+        children: [
+          Container(
+            //margin: EdgeInsets.only(left: 23.w, right: 23.w, top: 30).w,
+            // width: 362.w,
+            height: 48.h,
+            // decoration: ShapeDecoration(
+            //     color: const Color(0xffE2F5ED),
+            //     shape: RoundedRectangleBorder(
+            //       side: BorderSide(width: 1.w, color: const Color(0xff27BCEB)),
+            //       borderRadius: BorderRadius.circular(8.r),
+            //     )),
+            child: TabBar(
+              controller: _tabController,
+              unselectedLabelColor: const Color(0xFF5A5A5A),
+              indicatorSize: TabBarIndicatorSize.tab,
+              labelColor: Colors.white,
+              dividerColor: Color(0xffEEEEEE),
+              // indicator: ShapeDecoration(
+              //   //color: Color(0xff4B6FFF),
+              //   shape: RoundedRectangleBorder(
+              //       side: BorderSide(
+              //         color: Color(0xff22419A),
+              //       ),
+              //       borderRadius: BorderRadius.circular(0.r)),
+              // ),
+              indicatorColor: Color(0xff22419A),
+              tabs: [
+                Tab(
+                    child: Text(
+                  'RFI / SOI Details',
+                  style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 18.sp,
+                      color: Color(0xff414141)),
+                )),
+                Tab(
+                  child: Text('Send Response',
+                      style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18.sp,
+                          color: Color(0xff414141))),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                SalesManagmentRFIDetailView(),
+                SendResponseView(),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SalesManagmentRFIDetailView extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final controller = ref.watch(salesManagmentRFIDetailProvider.notifier);
+    final state = ref.watch(salesManagmentRFIDetailProvider);
+    return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
         children: [
@@ -236,6 +331,57 @@ class SalesManagmentRFIDetailPage extends ConsumerWidget {
               ),
             ),
         ],
+      ),
+    );
+  }
+}
+
+class SendResponseView extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final controller = ref.watch(salesManagmentRFIDetailProvider.notifier);
+    final state = ref.watch(salesManagmentRFIDetailProvider);
+    return Padding(
+      padding: const EdgeInsets.only(top: 20, left: 20, right: 20).r,
+      child: Form(
+        //  key: inquirycontroller.key,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            DescriptionFieldAttachment(
+              text: 'Description',
+              hintText: 'Enter Description',
+              controller: controller.descriptionController,
+              attachmentContentShow: true,
+              buttonLoading: state.isLoading,
+              onTap: () async {
+                FilePickerResult? result = await FilePicker.platform.pickFiles(
+                  type: FileType.custom,
+                  allowedExtensions: ['pdf'],
+                );
+
+                if (result != null) {
+                  File file = File(result.files.single.path!);
+
+                  controller.setPdfFile(file);
+                }
+              },
+              fileName: state.pdfFile?.path.split('/').last,
+              buttonOnTap: () {
+                // if (tenderResponseNotifier.key.currentState!.validate()) {
+                //   ref.read(tenderResponseProvider.notifier).saveInquiry(
+                //       productId: '',
+                //       userId: '',
+                //       companyId: '',
+                //       description:
+                //           tenderResponseNotifier.descriptionController.text,
+                //       pdfFile: tenderResponseState.pdfFile,
+                //       context: context);
+                // }
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

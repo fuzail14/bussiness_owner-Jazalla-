@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
+import 'package:bussines_owner/Constants/Person/person_controller.dart';
 import 'package:bussines_owner/Constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';

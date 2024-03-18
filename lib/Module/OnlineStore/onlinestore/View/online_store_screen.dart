@@ -218,9 +218,16 @@ class OnlineStoreScreen extends ConsumerWidget {
                     var product = state.productsApiList[index];
                     return InkWell(
                       onTap: () {
-                        GoRouter.of(context).pushNamed(onlineStoreDetailPage,
-                            pathParameters: {'id': product.id.toString()},
-                            extra: controller.person.Bearer);
+                        // GoRouter.of(context).pushNamed(onlineStoreDetailPage,
+                        //     pathParameters: {'id': product.id.toString()},
+                        //     extra: controller.person.Bearer);
+
+                        // When navigating to the new route
+                        GoRouter.of(context).pushNamed(
+                          onlineStoreDetailPage,
+                          pathParameters: {'id': product.id.toString()},
+                          extra: controller.person,
+                        );
                       },
                       child: Container(
                         // height: 325.h,

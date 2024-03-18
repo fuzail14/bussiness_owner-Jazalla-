@@ -107,7 +107,7 @@ class MarketPlaceScreen extends ConsumerWidget {
                       style: GoogleFonts.mulish(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w400,
-                          color: Color(0xff4CB5D0)),
+                          color: Color(0xff1F3996)),
                     ),
                     Text(
                       'Hi, Company',
@@ -126,21 +126,21 @@ class MarketPlaceScreen extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("your business insights",
+                    const Text("your business insights",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
                         )),
                     14.ph,
                     FadeInUp(
-                      duration: Duration(
+                      duration: const Duration(
                           milliseconds: 500), // You can adjust the duration
-                      delay: Duration(milliseconds: 100),
+                      delay: const Duration(milliseconds: 100),
                       child: Row(
                         //mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           CardMakretPlace(
-                            textColor: Color(0xffFF6D17),
+                            textColor: const Color(0xffFF6D17),
                             svgPath: 'assets/images/building.svg',
                             headingText: 'Bussines Community',
                             boxText: '1',

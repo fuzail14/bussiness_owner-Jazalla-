@@ -175,12 +175,14 @@ final router = GoRouter(
       path: '/OnlineStoreDetailPage/:id',
       pageBuilder: (context, state) {
         final id = int.parse(state.pathParameters['id']!);
+        final person = state.extra as Person;
 
-        final bearerToken = state.extra as String;
         final page = ProviderScope(
           overrides: [
-            routeArgsProvider.overrideWithValue(
-                {'productId': id, 'bearerToken': bearerToken}),
+            routeArgsProvider.overrideWithValue({'productId': id}),
+            personProvider.overrideWith(
+              (ref) => PersonController()..setPerson(person),
+            ),
           ],
           child: OnlineStoreDetailPage(),
         );
@@ -191,6 +193,28 @@ final router = GoRouter(
             child: page);
       },
     ),
+
+    // GoRoute(
+    //   name: onlineStoreDetailPage,
+    //   path: '/OnlineStoreDetailPage/:id',
+    //   pageBuilder: (context, state) {
+    //     final id = int.parse(state.pathParameters['id']!);
+
+    //     final bearerToken = state.extra as String;
+    //     final page = ProviderScope(
+    //       overrides: [
+    //         routeArgsProvider.overrideWithValue(
+    //             {'productId': id, 'bearerToken': bearerToken}),
+    //       ],
+    //       child: OnlineStoreDetailPage(),
+    //     );
+    //     return buildPageWithFadeTransition(
+    //         fullscreenDialog: false,
+    //         context: context,
+    //         state: state,
+    //         child: page);
+    //   },
+    // ),
     GoRoute(
       name: tendersView,
       path: '/TendersView',

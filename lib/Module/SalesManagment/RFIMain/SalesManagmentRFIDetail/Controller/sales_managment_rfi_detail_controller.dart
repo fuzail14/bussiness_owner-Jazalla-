@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 import 'package:bussines_owner/Data/Api%20Resp/api_response.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../Providers/argument_provider.dart';
 import '../../../../../Repo/SalesManagment/RFI/DetailRepo/sales_managment_rfi_detail_repository.dart';
@@ -9,21 +11,28 @@ import '../Model/SalesManagmentRFIDetail.dart';
 class SalesManagmentRFIDetailState {
   final Status responseStatus;
   final List<SalesManagmentRfiDetail> salesManagmentRFIDetail;
+  final bool isLoading;
+  final File? pdfFile;
 
   SalesManagmentRFIDetailState({
     this.responseStatus = Status.loading,
     this.salesManagmentRFIDetail = const [],
+    this.isLoading = false,
+    this.pdfFile,
   });
 
   SalesManagmentRFIDetailState copyWith({
     Status? responseStatus,
     List<SalesManagmentRfiDetail>? salesManagmentRFIDetail,
+    bool? isLoading,
+    File? pdfFile,
   }) {
     return SalesManagmentRFIDetailState(
-      responseStatus: responseStatus ?? this.responseStatus,
-      salesManagmentRFIDetail:
-          salesManagmentRFIDetail ?? this.salesManagmentRFIDetail,
-    );
+        responseStatus: responseStatus ?? this.responseStatus,
+        salesManagmentRFIDetail:
+            salesManagmentRFIDetail ?? this.salesManagmentRFIDetail,
+        isLoading: isLoading ?? this.isLoading,
+        pdfFile: pdfFile ?? this.pdfFile);
   }
 }
 
@@ -36,6 +45,7 @@ class SalesManagmentRFIDetailNotifier
   }
 
   final salesManagmentRFIDetailRepository = SalesManagmentRFIDetailRepository();
+  TextEditingController descriptionController = TextEditingController();
 
   Future<void> rfiDetailViewApi({required int rfiId}) async {
     setResponseStatus(Status.loading);
@@ -57,6 +67,10 @@ class SalesManagmentRFIDetailNotifier
 
   void setResponseStatus(Status val) {
     state = state.copyWith(responseStatus: val);
+  }
+
+  void setPdfFile(File? pdfFile) {
+    state = state.copyWith(pdfFile: pdfFile);
   }
 }
 
