@@ -2,7 +2,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
 import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -60,9 +62,9 @@ class _ProcurementRFPScreenState extends ConsumerState<ProcurementRFPScreen>
             // width: 362.w,
             height: 48.h,
             decoration: ShapeDecoration(
-                color: const Color(0xffE2F5ED),
+                color: const Color(0xff4EBBD3).withOpacity(0.2),
                 shape: RoundedRectangleBorder(
-                  side: BorderSide(width: 1.w, color: const Color(0xff27BCEB)),
+                  side: BorderSide(width: 1.w, color: const Color(0xff4EBBD3)),
                   borderRadius: BorderRadius.circular(8.r),
                 )),
             child: TabBar(
@@ -71,11 +73,10 @@ class _ProcurementRFPScreenState extends ConsumerState<ProcurementRFPScreen>
               indicatorSize: TabBarIndicatorSize.tab,
               labelColor: Colors.white,
               indicator: ShapeDecoration(
-                color: HexColor('#4B6FFF'),
+                color: HexColor('#1F3996'),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(6.r)),
               ),
-              indicatorColor: HexColor('#4B6FFF'),
               tabs: [
                 Tab(
                     child: Text(
@@ -219,52 +220,16 @@ class SendRFPScreen extends ConsumerWidget {
                           );
                         },
                         child: Container(
-                          //width: 360.w,
-                          // height: 224.h,
                           margin: const EdgeInsets.only(
-                            left: 26,
-                            right: 26,
-                            bottom: 20,
+                            bottom: 10,
                           ).r,
                           padding: const EdgeInsets.only(
-                                  left: 16, right: 16, bottom: 20, top: 16)
+                                  left: 16, right: 16, bottom: 5, top: 10)
                               .r,
-
-                          decoration: BoxDecoration(
-                            // color: Color(0xffF9F9F9),
-                            gradient: LinearGradient(
-                              stops: [0.01, 0.5],
-                              // begin: Alignment.bottomRight,
-                              // end: Alignment.bottomLeft,
-
-                              begin: Alignment
-                                  .topRight, // Begin gradient from top right
-                              end: Alignment.bottomLeft,
-                              colors: <Color>[
-                                Color(0xff4EBBD3).withOpacity(0.4),
-                                Color(0xffFFFFFF),
-                              ],
-                            ),
-
-                            borderRadius: BorderRadius.circular(8.0).r,
-                          ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                'RFP-ID',
-                                style: GoogleFonts.sourceCodePro(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color(0xff000000)),
-                              ),
-                              4.ph,
-                              Text('RFP-${state.requestForProposal[index].id}',
-                                  style: GoogleFonts.sourceCodePro(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w300,
-                                      color: Color(0xff000000))),
-                              16.ph,
+                              10.ph,
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment:
@@ -275,195 +240,398 @@ class SendRFPScreen extends ConsumerWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'Item Name',
-                                        style: GoogleFonts.montserrat(
-                                            fontSize: 12.sp,
-                                            color: Color(0xff000000),
-                                            fontWeight: FontWeight.w500),
+                                        'RFP-ID',
+                                        style: GoogleFonts.sourceCodePro(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w300,
+                                            color: Color(0xff000000)),
                                       ),
-                                      5.ph,
-                                      Container(
-                                        width: 89.w,
-                                        // height: 22.h,
-                                        padding: const EdgeInsets.symmetric(
-                                                horizontal: 8.0)
-                                            .r,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(12).r,
-                                            border: Border.all(
-                                                color: Color(0xff3C3C43))),
-                                        child: AutoSizeText(
-                                            state
-                                                .requestForProposal[index].title
-                                                .toString(),
-                                            maxLines: 1,
-                                            style: GoogleFonts.sourceCodePro(
-                                                fontSize: 8.sp,
-                                                fontWeight: FontWeight.w300,
-                                                color:
-                                                    const Color(0xff000000))),
-                                      )
-                                    ],
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
                                       Text(
-                                        'Payment Mode',
-                                        style: GoogleFonts.montserrat(
-                                            fontSize: 12.sp,
-                                            color: Color(0xff000000),
-                                            fontWeight: FontWeight.w500),
+                                        'RFP-${state.requestForProposal[index].id.toString()}',
+                                        style: GoogleFonts.sourceCodePro(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w600,
+                                            color: Color(0xff000000)),
                                       ),
                                       5.ph,
-                                      Container(
-                                        width: 89.w,
-                                        // height: 22.h,
-                                        padding: const EdgeInsets.symmetric(
-                                                horizontal: 8.0)
-                                            .r,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(12).r,
-                                            border: Border.all(
-                                                color: Color(0xff3C3C43))),
-                                        child: AutoSizeText(
-                                            state.requestForProposal[index]
-                                                .paymentMode
-                                                .toString(),
-                                            maxLines: 1,
-                                            style: GoogleFonts.sourceCodePro(
-                                                fontSize: 8.sp,
-                                                fontWeight: FontWeight.w300,
-                                                color:
-                                                    const Color(0xff000000))),
-                                      )
-                                    ],
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Issue Date',
-                                        style: GoogleFonts.montserrat(
-                                            fontSize: 12.sp,
-                                            color: Color(0xff000000),
-                                            fontWeight: FontWeight.w500),
+                                      SizedBox(
+                                        width: 200.w,
+                                        child: Text(
+                                          state.requestForProposal[index].title
+                                              .toString(),
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: GoogleFonts.sourceCodePro(
+                                              fontSize: 14.sp,
+                                              fontWeight: FontWeight.w600,
+                                              color: Color(0xff000000)),
+                                        ),
                                       ),
                                       5.ph,
-                                      Container(
-                                        width: 89.w,
-                                        // height: 22.h,
-                                        padding: const EdgeInsets.symmetric(
-                                                horizontal: 8.0)
-                                            .r,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(12).r,
-                                            border: Border.all(
-                                                color: Color(0xff3C3C43))),
-                                        child: AutoSizeText(
-                                            state.requestForProposal[index]
-                                                .startDate
-                                                .toString(),
-                                            maxLines: 1,
-                                            style: GoogleFonts.sourceCodePro(
-                                                fontSize: 8.sp,
-                                                fontWeight: FontWeight.w300,
-                                                color:
-                                                    const Color(0xff000000))),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              16.ph,
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Request From',
-                                        style: GoogleFonts.montserrat(
-                                            fontSize: 12.sp,
-                                            color: Color(0xff000000),
-                                            fontWeight: FontWeight.w500),
+                                      SizedBox(
+                                        width: 100,
+                                        child: Text(
+                                          state.requestForProposal[index]
+                                              .startDate
+                                              .toString(),
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: GoogleFonts.sourceCodePro(
+                                              fontSize: 14.sp,
+                                              fontWeight: FontWeight.w600,
+                                              color: Color(0xff4EBBD3)),
+                                        ),
                                       ),
-                                      5.ph,
-                                      Container(
-                                        width: 89.w,
-                                        // height: 22.h,
-                                        padding: const EdgeInsets.symmetric(
-                                                horizontal: 8.0)
-                                            .r,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(12).r,
-                                            border: Border.all(
-                                                color: Color(0xff3C3C43))),
-                                        child: AutoSizeText(
-                                            state.requestForProposal[index]
-                                                .requestFrom
-                                                .toString(),
-                                            maxLines: 1,
-                                            style: GoogleFonts.sourceCodePro(
-                                                fontSize: 8.sp,
-                                                fontWeight: FontWeight.w300,
-                                                color:
-                                                    const Color(0xff000000))),
-                                      )
                                     ],
                                   ),
-                                  20.pw,
+                                  // 10.pw,
+
+                                  //Spacer(),
+                                  // 20.pw,
+
                                   Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'Status',
-                                        style: GoogleFonts.montserrat(
-                                            fontSize: 12.sp,
-                                            color: Color(0xff000000),
-                                            fontWeight: FontWeight.w500),
+                                        style: GoogleFonts.sourceCodePro(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w300,
+                                            color: Color(0xff000000)),
                                       ),
                                       5.ph,
                                       if (state.requestForProposal[index]
                                               .status ==
                                           '1') ...[
-                                        Container(
-                                          width: 89.w,
-                                          // height: 22.h,
-                                          padding: const EdgeInsets.symmetric(
-                                                  horizontal: 8.0)
-                                              .r,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(12).r,
-                                              border: Border.all(
-                                                  color: Color(0xff3C3C43))),
-
-                                          child: AutoSizeText('RFP Sent',
-                                              maxLines: 1,
-                                              style: GoogleFonts.sourceCodePro(
-                                                  fontSize: 8.sp,
-                                                  fontWeight: FontWeight.w300,
-                                                  color:
-                                                      const Color(0xff000000))),
-                                        )
+                                        SizedBox(
+                                          width: 100.w,
+                                          child: Text(
+                                            'RFP Sent',
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: GoogleFonts.sourceCodePro(
+                                                fontSize: 14.sp,
+                                                fontWeight: FontWeight.w600,
+                                                color: Color(0xff4EBBD3)),
+                                          ),
+                                        ),
+                                      ] else if (state.requestForProposal[index]
+                                              .status ==
+                                          '2') ...[
+                                        SizedBox(
+                                          width: 100.w,
+                                          child: Text(
+                                            'RFP Recieved',
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: GoogleFonts.sourceCodePro(
+                                                fontSize: 14.sp,
+                                                fontWeight: FontWeight.w600,
+                                                color: Color(0xff3D56A3)),
+                                          ),
+                                        ),
+                                      ] else if (state.requestForProposal[index]
+                                              .status ==
+                                          '1') ...[
+                                        SizedBox(
+                                          width: 100.w,
+                                          child: Text(
+                                            'RFP Replied',
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: GoogleFonts.sourceCodePro(
+                                                fontSize: 14.sp,
+                                                fontWeight: FontWeight.w600,
+                                                color: Color(0xff4EBBD3)),
+                                          ),
+                                        ),
+                                      ] else if (state.requestForProposal[index]
+                                              .status ==
+                                          '4') ...[
+                                        SizedBox(
+                                          width: 100.w,
+                                          child: Text(
+                                            'RFP Cancel',
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: GoogleFonts.sourceCodePro(
+                                                fontSize: 14.sp,
+                                                fontWeight: FontWeight.w600,
+                                                color: Color(0xffFF0000)),
+                                          ),
+                                        ),
+                                      ] else if (state.requestForProposal[index]
+                                              .status ==
+                                          '10') ...[
+                                        SizedBox(
+                                          width: 100.w,
+                                          child: Text(
+                                            'RFP Draft',
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: GoogleFonts.sourceCodePro(
+                                                fontSize: 14.sp,
+                                                fontWeight: FontWeight.w600,
+                                                color: Color(0xff000000)),
+                                          ),
+                                        ),
                                       ]
                                     ],
                                   ),
                                 ],
                               ),
+                              5.ph,
+                              const Divider()
                             ],
                           ),
                         ),
+                        // child: Container(
+                        //   //width: 360.w,
+                        //   // height: 224.h,
+                        //   margin: const EdgeInsets.only(
+                        //     left: 26,
+                        //     right: 26,
+                        //     bottom: 20,
+                        //   ).r,
+                        //   padding: const EdgeInsets.only(
+                        //           left: 16, right: 16, bottom: 20, top: 16)
+                        //       .r,
+
+                        //   decoration: BoxDecoration(
+                        //     // color: Color(0xffF9F9F9),
+                        //     gradient: LinearGradient(
+                        //       stops: [0.01, 0.5],
+                        //       // begin: Alignment.bottomRight,
+                        //       // end: Alignment.bottomLeft,
+
+                        //       begin: Alignment
+                        //           .topRight, // Begin gradient from top right
+                        //       end: Alignment.bottomLeft,
+                        //       colors: <Color>[
+                        //         Color(0xff4EBBD3).withOpacity(0.4),
+                        //         Color(0xffFFFFFF),
+                        //       ],
+                        //     ),
+
+                        //     borderRadius: BorderRadius.circular(8.0).r,
+                        //   ),
+                        //   child: Column(
+                        //     crossAxisAlignment: CrossAxisAlignment.start,
+                        //     children: [
+                        //       Text(
+                        //         'RFP-ID',
+                        //         style: GoogleFonts.sourceCodePro(
+                        //             fontSize: 14.sp,
+                        //             fontWeight: FontWeight.w600,
+                        //             color: Color(0xff000000)),
+                        //       ),
+                        //       4.ph,
+                        //       Text('RFP-${state.requestForProposal[index].id}',
+                        //           style: GoogleFonts.sourceCodePro(
+                        //               fontSize: 12.sp,
+                        //               fontWeight: FontWeight.w300,
+                        //               color: Color(0xff000000))),
+                        //       16.ph,
+                        //       Row(
+                        //         crossAxisAlignment: CrossAxisAlignment.start,
+                        //         mainAxisAlignment:
+                        //             MainAxisAlignment.spaceBetween,
+                        //         children: [
+                        //           Column(
+                        //             crossAxisAlignment:
+                        //                 CrossAxisAlignment.start,
+                        //             children: [
+                        //               Text(
+                        //                 'Item Name',
+                        //                 style: GoogleFonts.montserrat(
+                        //                     fontSize: 12.sp,
+                        //                     color: Color(0xff000000),
+                        //                     fontWeight: FontWeight.w500),
+                        //               ),
+                        //               5.ph,
+                        //               Container(
+                        //                 width: 89.w,
+                        //                 // height: 22.h,
+                        //                 padding: const EdgeInsets.symmetric(
+                        //                         horizontal: 8.0)
+                        //                     .r,
+                        //                 decoration: BoxDecoration(
+                        //                     borderRadius:
+                        //                         BorderRadius.circular(12).r,
+                        //                     border: Border.all(
+                        //                         color: Color(0xff3C3C43))),
+                        //                 child: AutoSizeText(
+                        //                     state
+                        //                         .requestForProposal[index].title
+                        //                         .toString(),
+                        //                     maxLines: 1,
+                        //                     style: GoogleFonts.sourceCodePro(
+                        //                         fontSize: 8.sp,
+                        //                         fontWeight: FontWeight.w300,
+                        //                         color:
+                        //                             const Color(0xff000000))),
+                        //               )
+                        //             ],
+                        //           ),
+                        //           Column(
+                        //             crossAxisAlignment:
+                        //                 CrossAxisAlignment.start,
+                        //             children: [
+                        //               Text(
+                        //                 'Payment Mode',
+                        //                 style: GoogleFonts.montserrat(
+                        //                     fontSize: 12.sp,
+                        //                     color: Color(0xff000000),
+                        //                     fontWeight: FontWeight.w500),
+                        //               ),
+                        //               5.ph,
+                        //               Container(
+                        //                 width: 89.w,
+                        //                 // height: 22.h,
+                        //                 padding: const EdgeInsets.symmetric(
+                        //                         horizontal: 8.0)
+                        //                     .r,
+                        //                 decoration: BoxDecoration(
+                        //                     borderRadius:
+                        //                         BorderRadius.circular(12).r,
+                        //                     border: Border.all(
+                        //                         color: Color(0xff3C3C43))),
+                        //                 child: AutoSizeText(
+                        //                     state.requestForProposal[index]
+                        //                         .paymentMode
+                        //                         .toString(),
+                        //                     maxLines: 1,
+                        //                     style: GoogleFonts.sourceCodePro(
+                        //                         fontSize: 8.sp,
+                        //                         fontWeight: FontWeight.w300,
+                        //                         color:
+                        //                             const Color(0xff000000))),
+                        //               )
+                        //             ],
+                        //           ),
+                        //           Column(
+                        //             crossAxisAlignment:
+                        //                 CrossAxisAlignment.start,
+                        //             children: [
+                        //               Text(
+                        //                 'Issue Date',
+                        //                 style: GoogleFonts.montserrat(
+                        //                     fontSize: 12.sp,
+                        //                     color: Color(0xff000000),
+                        //                     fontWeight: FontWeight.w500),
+                        //               ),
+                        //               5.ph,
+                        //               Container(
+                        //                 width: 89.w,
+                        //                 // height: 22.h,
+                        //                 padding: const EdgeInsets.symmetric(
+                        //                         horizontal: 8.0)
+                        //                     .r,
+                        //                 decoration: BoxDecoration(
+                        //                     borderRadius:
+                        //                         BorderRadius.circular(12).r,
+                        //                     border: Border.all(
+                        //                         color: Color(0xff3C3C43))),
+                        //                 child: AutoSizeText(
+                        //                     state.requestForProposal[index]
+                        //                         .startDate
+                        //                         .toString(),
+                        //                     maxLines: 1,
+                        //                     style: GoogleFonts.sourceCodePro(
+                        //                         fontSize: 8.sp,
+                        //                         fontWeight: FontWeight.w300,
+                        //                         color:
+                        //                             const Color(0xff000000))),
+                        //               )
+                        //             ],
+                        //           ),
+                        //         ],
+                        //       ),
+                        //       16.ph,
+                        //       Row(
+                        //         crossAxisAlignment: CrossAxisAlignment.start,
+                        //         children: [
+                        //           Column(
+                        //             crossAxisAlignment:
+                        //                 CrossAxisAlignment.start,
+                        //             children: [
+                        //               Text(
+                        //                 'Request From',
+                        //                 style: GoogleFonts.montserrat(
+                        //                     fontSize: 12.sp,
+                        //                     color: Color(0xff000000),
+                        //                     fontWeight: FontWeight.w500),
+                        //               ),
+                        //               5.ph,
+                        //               Container(
+                        //                 width: 89.w,
+                        //                 // height: 22.h,
+                        //                 padding: const EdgeInsets.symmetric(
+                        //                         horizontal: 8.0)
+                        //                     .r,
+                        //                 decoration: BoxDecoration(
+                        //                     borderRadius:
+                        //                         BorderRadius.circular(12).r,
+                        //                     border: Border.all(
+                        //                         color: Color(0xff3C3C43))),
+                        //                 child: AutoSizeText(
+                        //                     state.requestForProposal[index]
+                        //                         .requestFrom
+                        //                         .toString(),
+                        //                     maxLines: 1,
+                        //                     style: GoogleFonts.sourceCodePro(
+                        //                         fontSize: 8.sp,
+                        //                         fontWeight: FontWeight.w300,
+                        //                         color:
+                        //                             const Color(0xff000000))),
+                        //               )
+                        //             ],
+                        //           ),
+                        //           20.pw,
+                        //           Column(
+                        //             crossAxisAlignment:
+                        //                 CrossAxisAlignment.start,
+                        //             children: [
+                        //               Text(
+                        //                 'Status',
+                        //                 style: GoogleFonts.montserrat(
+                        //                     fontSize: 12.sp,
+                        //                     color: Color(0xff000000),
+                        //                     fontWeight: FontWeight.w500),
+                        //               ),
+                        //               5.ph,
+                        //               if (state.requestForProposal[index]
+                        //                       .status ==
+                        //                   '1') ...[
+                        //                 Container(
+                        //                   width: 89.w,
+                        //                   // height: 22.h,
+                        //                   padding: const EdgeInsets.symmetric(
+                        //                           horizontal: 8.0)
+                        //                       .r,
+                        //                   decoration: BoxDecoration(
+                        //                       borderRadius:
+                        //                           BorderRadius.circular(12).r,
+                        //                       border: Border.all(
+                        //                           color: Color(0xff3C3C43))),
+
+                        //                   child: AutoSizeText('RFP Sent',
+                        //                       maxLines: 1,
+                        //                       style: GoogleFonts.sourceCodePro(
+                        //                           fontSize: 8.sp,
+                        //                           fontWeight: FontWeight.w300,
+                        //                           color:
+                        //                               const Color(0xff000000))),
+                        //                 )
+                        //               ]
+                        //             ],
+                        //           ),
+                        //         ],
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
                       );
                     }),
               )

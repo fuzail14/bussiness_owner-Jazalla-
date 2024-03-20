@@ -1,15 +1,19 @@
 # This is a generated file; do not edit or check into version control.
-file_picker=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/file_picker-6.1.1/
-firebase_auth=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/firebase_auth-4.16.0/
-firebase_auth_web=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/firebase_auth_web-5.8.13/
-firebase_core=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/firebase_core-2.24.2/
-firebase_core_web=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/firebase_core_web-2.10.0/
+app_settings=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/app_settings-5.1.1/
+file_picker=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/file_picker-6.2.0/
+firebase_auth=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/firebase_auth-4.17.9/
+firebase_auth_web=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/firebase_auth_web-5.10.0/
+firebase_core=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/firebase_core-2.27.1/
+firebase_core_web=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/firebase_core_web-2.12.0/
+firebase_messaging=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/firebase_messaging-14.7.20/
+firebase_messaging_web=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/firebase_messaging_web-3.7.0/
+flutter_local_notifications=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/flutter_local_notifications-17.0.0/
 flutter_plugin_android_lifecycle=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.17/
 fluttertoast=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/fluttertoast-8.2.4/
 google_maps_flutter=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/google_maps_flutter-2.6.0/
 google_maps_flutter_android=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/google_maps_flutter_android-2.7.0/
 google_maps_flutter_ios=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/google_maps_flutter_ios-2.5.0/
-google_maps_flutter_web=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/google_maps_flutter_web-0.5.6+1/
+google_maps_flutter_web=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/google_maps_flutter_web-0.5.6+2/
 path_provider=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/path_provider-2.1.2/
 path_provider_android=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/path_provider_android-2.2.2/
 path_provider_foundation=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/path_provider_foundation-2.3.2/

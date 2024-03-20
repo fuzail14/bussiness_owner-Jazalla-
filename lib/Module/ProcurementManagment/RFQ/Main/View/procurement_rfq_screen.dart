@@ -63,9 +63,9 @@ class _ProcurementRFQScreenState extends ConsumerState<ProcurementRFQScreen>
             // width: 362.w,
             height: 48.h,
             decoration: ShapeDecoration(
-                color: const Color(0xffE2F5ED),
+                color: const Color(0xff4EBBD3).withOpacity(0.2),
                 shape: RoundedRectangleBorder(
-                  side: BorderSide(width: 1.w, color: const Color(0xff27BCEB)),
+                  side: BorderSide(width: 1.w, color: const Color(0xff4EBBD3)),
                   borderRadius: BorderRadius.circular(8.r),
                 )),
             child: TabBar(
@@ -74,11 +74,11 @@ class _ProcurementRFQScreenState extends ConsumerState<ProcurementRFQScreen>
               indicatorSize: TabBarIndicatorSize.tab,
               labelColor: Colors.white,
               indicator: ShapeDecoration(
-                color: HexColor('#4B6FFF'),
+                color: HexColor('#1F3996'),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(6.r)),
               ),
-              indicatorColor: HexColor('#4B6FFF'),
+              //  indicatorColor: HexColor('#4EBBD3'),
               tabs: [
                 Tab(
                     child: Text(
@@ -346,15 +346,71 @@ class SendRFQScreen extends ConsumerWidget {
                                                 color: Color(0xff000000))),
                                       ),
                                       10.ph,
-                                      SizedBox(
-                                        width: 80.w,
-                                        child: AutoSizeText('RFQ Send',
-                                            maxLines: 1,
-                                            style: GoogleFonts.sourceCodePro(
-                                                fontSize: 12.sp,
-                                                fontWeight: FontWeight.w600,
-                                                color: Color(0xff4EBBD3))),
-                                      ),
+                                      if (state.requestForQuotation[index]
+                                              .status ==
+                                          '1') ...[
+                                        SizedBox(
+                                          width: 80.w,
+                                          child: AutoSizeText('RFQ Send',
+                                              maxLines: 1,
+                                              style: GoogleFonts.sourceCodePro(
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Color(0xff4EBBD3))),
+                                        ),
+                                      ] else if (state
+                                              .requestForQuotation[index]
+                                              .status ==
+                                          '2') ...[
+                                        SizedBox(
+                                          width: 80.w,
+                                          child: AutoSizeText('RFQ Viewed',
+                                              maxLines: 1,
+                                              style: GoogleFonts.sourceCodePro(
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Color(0xff3D56A3))),
+                                        ),
+                                      ] else if (state
+                                              .requestForQuotation[index]
+                                              .status ==
+                                          '3') ...[
+                                        SizedBox(
+                                          width: 80.w,
+                                          child: AutoSizeText('RFQ Replied',
+                                              maxLines: 1,
+                                              style: GoogleFonts.sourceCodePro(
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Color(0xff4EBBD3))),
+                                        ),
+                                      ] else if (state
+                                              .requestForQuotation[index]
+                                              .status ==
+                                          '4') ...[
+                                        SizedBox(
+                                          width: 80.w,
+                                          child: AutoSizeText('RFQ Cancel',
+                                              maxLines: 1,
+                                              style: GoogleFonts.sourceCodePro(
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Color(0xffFF0000))),
+                                        ),
+                                      ] else if (state
+                                              .requestForQuotation[index]
+                                              .status ==
+                                          '10') ...[
+                                        SizedBox(
+                                          width: 80.w,
+                                          child: AutoSizeText('RFQ Draft',
+                                              maxLines: 1,
+                                              style: GoogleFonts.sourceCodePro(
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Color(0xff4EBBD3))),
+                                        ),
+                                      ]
                                     ],
                                   ),
 

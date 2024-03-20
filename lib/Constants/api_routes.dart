@@ -9,6 +9,8 @@ class Api {
   // static const String baseUrl = 'https://staging.jazalla.com/api/';
 
   static const String login = "${baseUrl}loginWithMobileNumber";
+  static const String fcmTokenRefresh = "${baseUrl}fcmtokenrefresh";
+
   static const String bussinesCommunities =
       "${baseUrl}marketplace/bussinesCommunity/bussinesCommunityView";
 

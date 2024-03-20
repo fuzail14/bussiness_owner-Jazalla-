@@ -8,14 +8,31 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import '../../../Constants/Person/person_controller.dart';
+import '../../../Services/Notification Services/notification_services.dart';
 import '../../EmployeeCenter/View/employee_center_page.dart';
 import '../../Menu/View/menu_screen.dart';
 
-class HomeScreen extends ConsumerWidget {
+class HomeScreen extends ConsumerStatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    NotificationServices notificationServices = NotificationServices();
+    notificationServices.requestNotification();
+    notificationServices.foreGroundMessage();
+    notificationServices.firebaseInit(context);
+    notificationServices.setupInteractMessage();
+    notificationServices.getDeviceToken().then((value) => print(value));
+  }
+
   final PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
 
-  HomeScreen({super.key});
+//  _HomeScreenState({super.key});
 
   List<Widget> _buildScreens() {
     return [
@@ -74,7 +91,7 @@ class HomeScreen extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final person = ref.read(personProvider);
 
     print('homescreen');

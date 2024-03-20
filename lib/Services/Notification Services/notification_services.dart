@@ -1,185 +1,214 @@
-// import 'dart:convert';
+import 'dart:convert';
+import 'dart:io';
 
-// import 'package:app_settings/app_settings.dart';
-// import 'package:firebase_messaging/firebase_messaging.dart';
-// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-// import 'package:get/get.dart';
-// import 'package:http/http.dart' as Http;
-// import 'package:userapp/Services/Shared%20Preferences/MySharedPreferences.dart';
+import 'package:app_settings/app_settings.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:http/http.dart' as Http;
 
-// import '../../Constants/api_routes.dart';
-// import '../../Module/HomeScreen/Model/residents.dart';
-// import '../../Module/Login/Model/User.dart';
-// import '../../Routes/set_routes.dart';
+import '../../Constants/api_routes.dart';
+import '../../Routes/set_routes.dart';
 
-// class NotificationServices {
-//   FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+class NotificationServices {
+  FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
 
-//   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-//       FlutterLocalNotificationsPlugin();
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
 
-//   initFlutterNotificationPlugin(RemoteMessage message) async {
-//     var androidInitialization =
-//         AndroidInitializationSettings("@mipmap/ic_launcher");
-//     var initializeSetting =
-//         InitializationSettings(android: androidInitialization);
+  initFlutterNotificationPlugin(
+      BuildContext context, RemoteMessage message) async {
+    var androidInitialization =
+        const AndroidInitializationSettings("@mipmap/ic_launcher");
+    var iosInitialization = const DarwinInitializationSettings();
 
-//     await flutterLocalNotificationsPlugin.initialize(initializeSetting,
-//         onDidReceiveNotificationResponse: (payload) async {
-//       handleMessages(message);
-//     });
-//   }
+    var initializeSetting = InitializationSettings(
+        android: androidInitialization, iOS: iosInitialization);
 
-//   fireBaseInit() {
-//     FirebaseMessaging.onMessage.listen((message) {
-//       initFlutterNotificationPlugin(message);
-//       showNotificationFlutter(message);
-//     });
-//   }
+    await flutterLocalNotificationsPlugin.initialize(initializeSetting,
+        onDidReceiveNotificationResponse: (payload) async {
+      // handleMessages(message);
+    });
+  }
 
-//   Future<void> showNotificationFlutter(RemoteMessage message) async {
-//     // Android Channel Initialization
-//     AndroidNotificationChannel androidNotificationChannel =
-//         AndroidNotificationChannel(
-//       "high_importance_channel",
-//       "high_importance_channel",
-//       description: "smart-gate-notification",
-//       importance: Importance.max,
-//     );
+  void firebaseInit(BuildContext context) {
+    FirebaseMessaging.onMessage.listen((message) {
+      RemoteNotification? notification = message.notification;
+      AndroidNotification? android = message.notification!.android;
 
-//     AndroidNotificationDetails androidNotificationDetails =
-//         AndroidNotificationDetails(
-//             androidNotificationChannel.id, androidNotificationChannel.name,
-//             channelDescription: androidNotificationChannel.description,
-//             importance: Importance.max,
-//             priority: Priority.high,
-//             ticker: 'ticker');
+      if (kDebugMode) {
+        print("notifications title:${notification!.title}");
+        print("notifications body:${notification.body}");
+        print('count:${android!.count}');
+        print('data:${message.data.toString()}');
+      }
 
-//     NotificationDetails notificationDetails =
-//         NotificationDetails(android: androidNotificationDetails);
+      if (Platform.isIOS) {
+        foreGroundMessage();
+      }
 
-//     Future.delayed(Duration.zero, () {
-//       flutterLocalNotificationsPlugin.show(
-//           0,
-//           message.notification!.title.toString(),
-//           message.notification!.body.toString(),
-//           notificationDetails);
-//     });
-//   }
+      if (Platform.isAndroid) {
+        initFlutterNotificationPlugin(context, message);
+        showNotificationFlutter(message);
+      }
+    });
+  }
 
-//   requestNotification() async {
-//     NotificationSettings settings = await firebaseMessaging.requestPermission(
-//         alert: true,
-//         announcement: true,
-//         badge: true,
-//         sound: true,
-//         carPlay: true,
-//         criticalAlert: true,
-//         provisional: true);
-//     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-//       print('permission granted');
-//     } else if (settings.authorizationStatus ==
-//         AuthorizationStatus.provisional) {
-//       print('permission denied');
-//       AppSettings.openAppSettings();
-//     }
-//   }
+  Future<void> showNotificationFlutter(RemoteMessage message) async {
+    // Android Channel Initialization
+    AndroidNotificationChannel androidNotificationChannel =
+        AndroidNotificationChannel(
+      "high_importance_channel",
+      "high_importance_channel",
+      description: "jazalla-notification",
+      importance: Importance.max,
+    );
 
-//   Future<String?> getDeviceToken() async {
-//     String? deviceToken = await firebaseMessaging.getToken();
+    AndroidNotificationDetails androidNotificationDetails =
+        AndroidNotificationDetails(
+            androidNotificationChannel.id, androidNotificationChannel.name,
+            channelDescription: androidNotificationChannel.description,
+            importance: Importance.max,
+            priority: Priority.high,
+            ticker: 'ticker');
 
-//     return deviceToken;
-//   }
+    DarwinNotificationDetails iosNotificationDetails =
+        const DarwinNotificationDetails(
+            presentAlert: true, presentBadge: true, presentSound: true);
 
-//   refreshDeviceToken() async {
-//     firebaseMessaging.onTokenRefresh.listen((event) {
-//       event.toString();
-//     });
-//   }
+    NotificationDetails notificationDetails = NotificationDetails(
+        android: androidNotificationDetails, iOS: iosNotificationDetails);
 
-//   Future<void> setupInteractMessage() async {
-//     // when app is terminated
-//     RemoteMessage? message =
-//         await FirebaseMessaging.instance.getInitialMessage();
+    Future.delayed(Duration.zero, () {
+      flutterLocalNotificationsPlugin.show(
+          0,
+          message.notification!.title.toString(),
+          message.notification!.body.toString(),
+          notificationDetails);
+    });
+  }
 
-//     if (message != null) {
-//       handleMessages(message);
-//     }
+  requestNotification() async {
+    NotificationSettings settings = await firebaseMessaging.requestPermission(
+        alert: true,
+        announcement: true,
+        badge: true,
+        sound: true,
+        carPlay: true,
+        criticalAlert: true,
+        provisional: true);
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+      print('permission granted');
+    } else if (settings.authorizationStatus ==
+        AuthorizationStatus.provisional) {
+      print('permission denied');
+      AppSettings.openAppSettings();
+    }
+  }
 
-//     // when app is running in background then this function is call
-//     FirebaseMessaging.onMessageOpenedApp.listen((event) {
-//       handleMessages(event);
-//     });
-//   }
+  Future<String?> getDeviceToken() async {
+    String? deviceToken = await firebaseMessaging.getToken();
 
-//   handleMessages(RemoteMessage message) async {
-//     User user = await MySharedPreferences.getUserData();
+    return deviceToken;
+  }
 
-//     final Residents resident = await loginResidentDetails(
-//         token: user.bearerToken!, userid: user.userId!);
+  refreshDeviceToken() async {
+    firebaseMessaging.onTokenRefresh.listen((event) {
+      event.toString();
+    });
+  }
 
-//     if (message.data['type'] == 'Event') {
-//       Get.toNamed(eventsscreen, arguments: [user, resident]);
-//     } else if (message.data['type'] == 'Noticeboard') {
-//       Get.toNamed(noticeboardscreen, arguments: [user, resident]);
-//     } else if (message.data['type'] == 'PreApproveEntry') {
-//       Get.toNamed(preapproveentryscreen, arguments: [user, resident]);
-//     } else if (message.data['type'] == 'Report') {
-//       Get.toNamed(adminreports, arguments: [user, resident]);
-//     } else if (message.data['type'] == 'ReportHistory') {
-//       Get.toNamed(reportshistoryscreen, arguments: [user, resident]);
-//     }
-//   }
+  Future<void> setupInteractMessage() async {
+    // when app is terminated
+    RemoteMessage? message =
+        await FirebaseMessaging.instance.getInitialMessage();
 
-//   Future<Residents> loginResidentDetails(
-//       {required int userid, required String token}) async {
-//     print("${userid.toString()}");
-//     print(token);
+    if (message != null) {
+      //handleMessages(message);
+    }
 
-//     final response = await Http.get(
-//       Uri.parse(Api.loginResidentDetails + "/" + userid.toString()),
-//       headers: <String, String>{
-//         'Content-Type': 'application/json; charset=UTF-8',
-//         'Authorization': "Bearer $token"
-//       },
-//     );
+    // when app is running in background then this function is call
+    FirebaseMessaging.onMessageOpenedApp.listen((event) {
+      //handleMessages(event);
+    });
+  }
 
-//     var data = jsonDecode(response.body.toString());
-//     print(data);
+  Future foreGroundMessage() async {
+    await FirebaseMessaging.instance
+        .setForegroundNotificationPresentationOptions(
+            alert: true, badge: true, sound: true);
+  }
 
-//     var e = data['data'];
+  // handleMessages(RemoteMessage message) async {
+  //   User user = await MySharedPreferences.getUserData();
 
-//     var societyData = data['data']['societydata'];
+  //   final Residents resident = await loginResidentDetails(
+  //       token: user.bearerToken!, userid: user.userId!);
 
-//     var societyId = societyData[0]['societyid'];
-//     var superAdminId = societyData[0]['superadminid'];
+  //   if (message.data['type'] == 'Event') {
+  //     Get.toNamed(eventsscreen, arguments: [user, resident]);
+  //   } else if (message.data['type'] == 'Noticeboard') {
+  //     Get.toNamed(noticeboardscreen, arguments: [user, resident]);
+  //   } else if (message.data['type'] == 'PreApproveEntry') {
+  //     Get.toNamed(preapproveentryscreen, arguments: [user, resident]);
+  //   } else if (message.data['type'] == 'Report') {
+  //     Get.toNamed(adminreports, arguments: [user, resident]);
+  //   } else if (message.data['type'] == 'ReportHistory') {
+  //     Get.toNamed(reportshistoryscreen, arguments: [user, resident]);
+  //   }
+  // }
 
-//     print(societyId);
-//     print('superAdminId $superAdminId');
+  // Future<Residents> loginResidentDetails(
+  //     {required int userid, required String token}) async {
+  //   print("${userid.toString()}");
+  //   print(token);
 
-//     final Residents residents = Residents(
-//         id: e['id'],
-//         residentid: e['residentid'],
-//         subadminid: e['subadminid'],
-//         username: e['username'],
-//         superadminid: superAdminId,
-//         societyid: societyId,
-//         country: e["country"],
-//         state: e["state"],
-//         city: e["city"],
-//         houseaddress: e["houseaddress"],
-//         vechileno: e["vechileno"],
-//         residenttype: e["residenttype"],
-//         propertytype: e["propertytype"],
-//         committeemember: e["committeemember"],
-//         status: e["status"],
-//         createdAt: e["createdAt"],
-//         updatedAt: e["updatedAt"]);
+  //   final response = await Http.get(
+  //     Uri.parse(Api.loginResidentDetails + "/" + userid.toString()),
+  //     headers: <String, String>{
+  //       'Content-Type': 'application/json; charset=UTF-8',
+  //       'Authorization': "Bearer $token"
+  //     },
+  //   );
 
-//     if (response.statusCode == 200) {
-//       return residents;
-//     }
+  //   var data = jsonDecode(response.body.toString());
+  //   print(data);
 
-//     return residents;
-//   }
-// }
+  //   var e = data['data'];
+
+  //   var societyData = data['data']['societydata'];
+
+  //   var societyId = societyData[0]['societyid'];
+  //   var superAdminId = societyData[0]['superadminid'];
+
+  //   print(societyId);
+  //   print('superAdminId $superAdminId');
+
+  //   final Residents residents = Residents(
+  //       id: e['id'],
+  //       residentid: e['residentid'],
+  //       subadminid: e['subadminid'],
+  //       username: e['username'],
+  //       superadminid: superAdminId,
+  //       societyid: societyId,
+  //       country: e["country"],
+  //       state: e["state"],
+  //       city: e["city"],
+  //       houseaddress: e["houseaddress"],
+  //       vechileno: e["vechileno"],
+  //       residenttype: e["residenttype"],
+  //       propertytype: e["propertytype"],
+  //       committeemember: e["committeemember"],
+  //       status: e["status"],
+  //       createdAt: e["createdAt"],
+  //       updatedAt: e["updatedAt"]);
+
+  //   if (response.statusCode == 200) {
+  //     return residents;
+  //   }
+
+  //   return residents;
+  // }
+}

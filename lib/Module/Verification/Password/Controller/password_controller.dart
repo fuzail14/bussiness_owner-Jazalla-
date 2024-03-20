@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
@@ -6,10 +7,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../Constants/Person/person.dart';
+import '../../../../Constants/api_routes.dart';
+import '../../../../Constants/constants.dart';
 import '../../../../Repo/Verification Repository/verification_repository.dart';
 import '../../../../Routes/set_routes.dart';
+import '../../../../Services/Notification Services/notification_services.dart';
 import '../../../../Services/Shared Preferences/MySharedPreferences.dart';
 import 'package:go_router/go_router.dart';
+import 'package:http/http.dart' as Http;
 
 class PasswordState {
   final bool isLoading;
@@ -64,6 +69,11 @@ class PasswordController extends StateNotifier<PasswordState> {
 
         Person person2 = await MySharedPreferences.getUserData();
 
+        final NotificationServices notificationServices =
+            NotificationServices();
+        final String? token = await notificationServices.getDeviceToken();
+        fcmtokenrefresh(person2.data!.id!, token!, person2.Bearer!);
+
         print(person2);
         print(person2.data!.companyId);
 
@@ -94,6 +104,25 @@ class PasswordController extends StateNotifier<PasswordState> {
 
   void setLoading(bool loading) {
     state = state.copyWith(isLoading: loading);
+  }
+
+  Future fcmtokenrefresh(int id, String fcmtoken, String bearertoken) async {
+    try {
+      final response = await Http.post(
+        Uri.parse(Api.fcmTokenRefresh),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': "Bearer $bearertoken"
+        },
+        body: jsonEncode(<String, dynamic>{
+          'id': id,
+          'fcmtoken': fcmtoken,
+        }),
+      );
+      print("Fcm token refresh Api Hits Successfully !");
+    } catch (e) {
+      myToast(msg: e);
+    }
   }
 }
 

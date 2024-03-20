@@ -216,7 +216,7 @@ class SalesManagmentRFQScreen extends ConsumerWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'Request',
+                                        'Quantity',
                                         style: GoogleFonts.sourceCodePro(
                                             fontSize: 14.sp,
                                             fontWeight: FontWeight.w300,
@@ -250,15 +250,71 @@ class SalesManagmentRFQScreen extends ConsumerWidget {
                                                 color: Color(0xff000000))),
                                       ),
                                       10.ph,
-                                      SizedBox(
-                                        width: 80.w,
-                                        child: AutoSizeText('RFQ Recieved',
-                                            maxLines: 1,
-                                            style: GoogleFonts.sourceCodePro(
-                                                fontSize: 12.sp,
-                                                fontWeight: FontWeight.w600,
-                                                color: Color(0xff4EBBD3))),
-                                      ),
+                                      if (state.requestForQuotation[index]
+                                              .status ==
+                                          '1') ...[
+                                        SizedBox(
+                                          width: 80.w,
+                                          child: AutoSizeText('RFQ Send',
+                                              maxLines: 1,
+                                              style: GoogleFonts.sourceCodePro(
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Color(0xff4EBBD3))),
+                                        ),
+                                      ] else if (state
+                                              .requestForQuotation[index]
+                                              .status ==
+                                          '2') ...[
+                                        SizedBox(
+                                          width: 80.w,
+                                          child: AutoSizeText('RFQ Viewed',
+                                              maxLines: 1,
+                                              style: GoogleFonts.sourceCodePro(
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Color(0xff3D56A3))),
+                                        ),
+                                      ] else if (state
+                                              .requestForQuotation[index]
+                                              .status ==
+                                          '3') ...[
+                                        SizedBox(
+                                          width: 80.w,
+                                          child: AutoSizeText('RFQ Replied',
+                                              maxLines: 1,
+                                              style: GoogleFonts.sourceCodePro(
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Color(0xff4EBBD3))),
+                                        ),
+                                      ] else if (state
+                                              .requestForQuotation[index]
+                                              .status ==
+                                          '4') ...[
+                                        SizedBox(
+                                          width: 80.w,
+                                          child: AutoSizeText('RFQ Cancel',
+                                              maxLines: 1,
+                                              style: GoogleFonts.sourceCodePro(
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Color(0xffFF0000))),
+                                        ),
+                                      ] else if (state
+                                              .requestForQuotation[index]
+                                              .status ==
+                                          '10') ...[
+                                        SizedBox(
+                                          width: 80.w,
+                                          child: AutoSizeText('RFQ Draft',
+                                              maxLines: 1,
+                                              style: GoogleFonts.sourceCodePro(
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Color(0xff000000))),
+                                        ),
+                                      ]
                                     ],
                                   ),
 
@@ -302,103 +358,6 @@ class SalesManagmentRFQScreen extends ConsumerWidget {
                       );
                     }),
               )
-
-            // SingleChildScrollView(
-            //   scrollDirection: Axis.horizontal,
-            //   child: Padding(
-            //     padding: const EdgeInsets.symmetric(
-            //         horizontal: 16.0, vertical: 16.0),
-            //     child: DataTable(
-            //       headingRowColor:
-            //           MaterialStateProperty.resolveWith<Color?>(
-            //               (Set<MaterialState> states) {
-            //         if (states.contains(MaterialState.selected)) {
-            //           return Color(0xffE5E7EB);
-            //         }
-            //         return Color(0xffE5E7EB);
-            //       }),
-            //       columnSpacing: 20.0,
-            //       dividerThickness: 0.3,
-            //       border: TableBorder.all(
-            //           color: Color(0xffF3F4F6),
-            //           width: 1,
-            //           borderRadius: BorderRadius.circular(16).r),
-            //       decoration: BoxDecoration(
-            //           borderRadius: BorderRadius.circular(16).r),
-            //       columns: const [
-            //         DataColumn(label: Text('ID')),
-            //         DataColumn(label: Text('Title')),
-            //         DataColumn(label: Text('Item Unit')),
-            //         DataColumn(label: Text('Item Quantity')),
-            //         DataColumn(label: Text('Issue Date')),
-            //         DataColumn(label: Text('Status')),
-            //         DataColumn(label: Text('Actions')),
-            //       ],
-            //       rows: state.requestForQuotation
-            //           .map<DataRow>(
-            //             (company) => DataRow(
-            //               cells: [
-            //                 DataCell(Text(company.id.toString())),
-            //                 DataCell(SizedBox(
-            //                   width: 100.w,
-            //                   child: Text(
-            //                     company.title.toString(),
-            //                     maxLines: 1,
-            //                     overflow: TextOverflow.ellipsis,
-            //                     style: interTextstyle,
-            //                   ),
-            //                 )),
-            //                 DataCell(Text(
-            //                   company.unit.toString(),
-            //                   style: interTextstyle,
-            //                 )),
-            //                 DataCell(Text(
-            //                   company.quantity.toString(),
-            //                   style: interTextstyle,
-            //                 )),
-            //                 DataCell(Text(company.deliveryDate.toString())),
-            //                 DataCell(Text(
-            //                   company.status == '1' ? 'RFI Sent' : 'Wait',
-            //                   style: GoogleFonts.inter(
-            //                       fontSize: 10.sp,
-            //                       fontWeight: FontWeight.w400,
-            //                       color: company.status == '1'
-            //                           ? Color(0xffE83434)
-            //                           : Color(0xff000000)),
-            //                 )),
-            //                 DataCell(
-            //                   DropdownButton<String>(
-            //                     dropdownColor: whiteColor,
-
-            //                     borderRadius: BorderRadius.circular(10).r,
-            //                     style: interTextstyle,
-            //                     icon: const Icon(Icons.arrow_drop_down,
-            //                         color:
-            //                             Colors.grey), // Custom icon color
-            //                     items: <String>['View RFI', 'Delete RFI']
-            //                         .map((String value) {
-            //                       return DropdownMenuItem<String>(
-            //                         value: value,
-            //                         child: Text(value),
-            //                       );
-            //                     }).toList(),
-            //                     onChanged: (newValue) {
-            //                       // Handle dropdown changes
-            //                       if (newValue == 'View RFI') {
-            //                         // View RFI logic goes here
-            //                       } else if (newValue == 'Delete RFI') {
-            //                         // Send Response logic goes here
-            //                       }
-            //                     },
-            //                   ),
-            //                 ),
-            //               ],
-            //             ),
-            //           )
-            //           .toList(),
-            //     ),
-            //   ),
-            // )
           ] else
             Padding(
               padding: const EdgeInsets.all(16.0),
