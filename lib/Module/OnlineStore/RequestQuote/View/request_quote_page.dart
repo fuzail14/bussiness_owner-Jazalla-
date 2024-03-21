@@ -592,7 +592,6 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                                 controller:
                                     requestQuotecontroller.districtController,
 
-                                keyboardType: TextInputType.number,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(
                                       borderSide: BorderSide.none),

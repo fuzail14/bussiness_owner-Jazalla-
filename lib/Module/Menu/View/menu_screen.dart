@@ -121,25 +121,27 @@ class Menu extends ConsumerWidget {
           context.pushNamed(procurementRFPScreen, extra: person);
         }),
       ]);
-    } else if (item.title == 'Sales Management') {
-      children.addAll([
-        _buildListItem(context, 'RFI Management', () {
-          context.pushNamed(salesManagmentRFIScreen, extra: person);
-        }),
-        _buildListItem(context, 'RFQ Management', () {
-          context.pushNamed(salesManagmentRFQScreen, extra: person);
-        }),
-      ]);
-    } else if (item.title == 'Services Management') {
-      children.addAll([
-        _buildListItem(context, 'RFI Management', () {
-          context.pushNamed(serviceManagmentRFIScreen, extra: person);
-        }),
-        _buildListItem(context, 'RFP Management', () {
-          context.pushNamed(serviceManagmentRFPScreen, extra: person);
-        }),
-      ]);
     }
+    // else if (item.title == 'Sales Management') {
+    //   children.addAll([
+    //     _buildListItem(context, 'RFI Management', () {
+    //       context.pushNamed(salesManagmentRFIScreen, extra: person);
+    //     }),
+    //     _buildListItem(context, 'RFQ Management', () {
+    //       context.pushNamed(salesManagmentRFQScreen, extra: person);
+    //     }),
+    //   ]);
+    // }
+    // else if (item.title == 'Services Management') {
+    //   children.addAll([
+    //     _buildListItem(context, 'RFI Management', () {
+    //       context.pushNamed(serviceManagmentRFIScreen, extra: person);
+    //     }),
+    //     _buildListItem(context, 'RFP Management', () {
+    //       context.pushNamed(serviceManagmentRFPScreen, extra: person);
+    //     }),
+    //   ]);
+    // }
 
     return children;
   }

@@ -1103,7 +1103,7 @@ Widget _generalInfoCard(firstText, SecondText) {
 Widget customListItem(String leadingText, String trailingText, int index) {
   return Container(
     //width: 100,
-    height: 39.h,
+    //height: 39.h,
     padding: EdgeInsets.only(top: 12, left: 16, right: 20).r,
     margin: EdgeInsets.only(left: 1, top: 12).r,
     color: index % 2 == 0 ? Color(0xFFF9F9F9) : Color(0xFFFFFFFF),

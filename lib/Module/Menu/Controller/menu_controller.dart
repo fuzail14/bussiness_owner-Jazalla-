@@ -38,35 +38,35 @@ class MenuController extends StateNotifier<MenuState> {
 
   void loadMenuItems() {
     state = MenuState(menuItems: [
-      MenuItem(
-        title: 'Dashboard',
-        iconPath: 'assets/images/menu1.svg',
-        trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
-      ),
-      MenuItem(
-        title: 'Marketplace',
-        iconPath: 'assets/images/menu2.svg',
-        trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
-        //onTap: () {},
-      ),
+      // MenuItem(
+      //   title: 'Dashboard',
+      //   iconPath: 'assets/images/menu1.svg',
+      //   trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+      // ),
+      // MenuItem(
+      //   title: 'Marketplace',
+      //   iconPath: 'assets/images/menu2.svg',
+      //   trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+      //   //onTap: () {},
+      // ),
       MenuItem(
         title: 'Order Placement',
         iconPath: 'assets/images/menu3.svg',
         trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
         //onTap: () {},
       ),
-      MenuItem(
-        title: 'Sales Management',
-        iconPath: 'assets/images/menu4.svg',
-        trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
-        // onTap: () {},
-      ),
-      MenuItem(
-        title: 'Services Management',
-        iconPath: 'assets/images/menu5.svg',
-        trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
-        //onTap: () {},
-      ),
+      // MenuItem(
+      //   title: 'Sales Management',
+      //   iconPath: 'assets/images/menu4.svg',
+      //   trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+      //   // onTap: () {},
+      // ),
+      // MenuItem(
+      //   title: 'Services Management',
+      //   iconPath: 'assets/images/menu5.svg',
+      //   trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+      //   //onTap: () {},
+      // ),
       MenuItem(
         title: 'Invoice and Billing',
         iconPath: 'assets/images/menu7.svg',

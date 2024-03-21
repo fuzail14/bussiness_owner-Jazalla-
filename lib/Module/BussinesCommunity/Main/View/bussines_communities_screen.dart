@@ -329,7 +329,7 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
                             EdgeInsets.only(left: 20.w, right: 20.w, top: 20.h)
                                 .r,
                         padding: const EdgeInsets.only(
-                                left: 0, top: 18, right: 0, bottom: 10)
+                                left: 20, top: 18, right: 0, bottom: 10)
                             .r,
 
                         decoration: BoxDecoration(
