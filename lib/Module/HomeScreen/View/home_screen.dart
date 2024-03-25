@@ -7,8 +7,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import '../../../Constants/Global/Method/global_methods.dart';
+import '../../../Constants/Person/person.dart';
 import '../../../Constants/Person/person_controller.dart';
 import '../../../Services/Notification Services/notification_services.dart';
+import '../../../Services/Shared Preferences/MySharedPreferences.dart';
 import '../../EmployeeCenter/View/employee_center_page.dart';
 import '../../Menu/View/menu_screen.dart';
 
@@ -26,7 +29,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     notificationServices.foreGroundMessage();
     notificationServices.firebaseInit(context);
     notificationServices.setupInteractMessage();
-    notificationServices.getDeviceToken().then((value) => print(value));
+    notificationServices.getDeviceToken().then((value) async {
+      print('updated token $value');
+      Person person2 = await MySharedPreferences.getUserData();
+
+      if (person2.data!.fcmtoken != value) {
+        print('token not matched');
+        fcmtokenrefresh(person2.data!.id!, value!, person2.Bearer!);
+
+        MySharedPreferences.updateUserData(fcmToken: value);
+      } else {
+        print('token matched');
+      }
+    });
   }
 
   final PersistentTabController _controller =
@@ -96,6 +111,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
     print('homescreen');
     print(person!.data!.name);
+    // print(person!.data!.company!.companyName);
 
     return PersistentTabView(
       context,

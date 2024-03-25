@@ -19,44 +19,46 @@ class Person {
     _data['success'] = success;
     _data['data'] = data!.toJson();
     _data['Bearer'] = Bearer;
+
     return _data;
   }
 }
 
 class Data {
-  Data({
-    this.id,
-    this.companyId,
-    this.locationId,
-    this.currentLocation,
-    this.loginType,
-    this.name,
-    this.firstName,
-    this.lastName,
-    this.mobileNo,
-    this.userRoleId,
-    this.email,
-    this.emailVerifiedAt,
-    this.plan,
-    this.planExpireDate,
-    this.requestedPlan,
-    this.type,
-    this.avatar,
-    this.lang,
-    this.mode,
-    this.createdBy,
-    this.defaultPipeline,
-    this.deleteStatus,
-    this.isActive,
-    this.lastLoginAt,
-    this.createdAt,
-    this.updatedAt,
-    this.messengerColor,
-    this.darkMode,
-    this.activeStatus,
-    this.isEmailVerified,
-    this.profile,
-  });
+  Data(
+      {this.id,
+      this.companyId,
+      this.locationId,
+      this.currentLocation,
+      this.loginType,
+      this.name,
+      this.firstName,
+      this.lastName,
+      this.mobileNo,
+      this.userRoleId,
+      this.email,
+      this.emailVerifiedAt,
+      this.plan,
+      this.planExpireDate,
+      this.requestedPlan,
+      this.type,
+      this.avatar,
+      this.lang,
+      this.mode,
+      this.createdBy,
+      this.defaultPipeline,
+      this.deleteStatus,
+      this.isActive,
+      this.lastLoginAt,
+      this.createdAt,
+      this.updatedAt,
+      this.messengerColor,
+      this.darkMode,
+      this.activeStatus,
+      this.isEmailVerified,
+      this.profile,
+      this.fcmtoken,
+      this.company});
   int? id;
   int? companyId;
   int? locationId;
@@ -88,6 +90,8 @@ class Data {
   int? activeStatus;
   int? isEmailVerified;
   String? profile;
+  String? fcmtoken;
+  Company? company;
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -96,8 +100,8 @@ class Data {
     currentLocation = json['current_location'];
     loginType = null;
     name = json['name'];
-    firstName = null;
-    lastName = null;
+    firstName = json['first_name'];
+    lastName = json['last_name'];
     mobileNo = json['mobile_no'];
     userRoleId = null;
     email = json['email'];
@@ -121,6 +125,8 @@ class Data {
     activeStatus = json['active_status'];
     isEmailVerified = json['is_email_verified'];
     profile = json['profile'];
+    fcmtoken = json['fcmtoken'];
+    company = Company.fromJson(json['company']);
   }
 
   Map<String, dynamic> toJson() {
@@ -156,6 +162,43 @@ class Data {
     _data['active_status'] = activeStatus;
     _data['is_email_verified'] = isEmailVerified;
     _data['profile'] = profile;
+    _data['fcmtoken'] = fcmtoken;
+    _data['company'] = company!.toJson();
+
+    return _data;
+  }
+}
+
+class Company {
+  Company({
+    this.id,
+    this.companyCode,
+    this.companyName,
+    this.arCompanyName,
+    this.businessType,
+  });
+  int? id;
+  String? companyCode;
+  String? companyName;
+  String? arCompanyName;
+  String? businessType;
+
+  Company.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    companyCode = json['company_code'];
+    companyName = json['company_name'];
+    arCompanyName = null;
+    businessType = null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final _data = <String, dynamic>{};
+    _data['id'] = id;
+    _data['company_code'] = companyCode;
+    _data['company_name'] = companyName;
+    _data['ar_company_name'] = arCompanyName;
+    _data['business_type'] = businessType;
+
     return _data;
   }
 }

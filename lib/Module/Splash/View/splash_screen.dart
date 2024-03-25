@@ -103,7 +103,7 @@ class _SplashScreenState extends State<SplashScreen> {
             FadeInDown(
               duration: const Duration(seconds: 2),
               child: Text(
-                'Statrt Journey With Jazallah',
+                'Statrt Journey With Jazalla',
                 style: GoogleFonts.mulish(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w500,

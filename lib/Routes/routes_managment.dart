@@ -22,6 +22,7 @@ import '../Module/BussinesForSale/Main/View/sale_bussines_screen.dart';
 import '../Module/GeneralServices/RequestProposal/View/request_proposal_page.dart';
 import '../Module/GeneralServices/SendInquiry/View/service_send_inquiry_page.dart';
 import '../Module/InvestMentOpportunity/Main/View/investMent_Opportunity_screen.dart';
+import '../Module/Notifications/View/notifications_screen.dart';
 import '../Module/OnlineStore/RequestQuote/View/request_quote_page.dart';
 import '../Module/OnlineStore/SendInquiry/View/send_inquiry_page.dart';
 import '../Module/ProcurementManagment/RFI/RfxManagmentRFIDetail/View/rfx_managment_rfi_detail_page.dart';
@@ -280,14 +281,17 @@ final router = GoRouter(
       pageBuilder: (context, state) {
         final id = int.parse(state.pathParameters['id']!);
 
-        final bearerToken = state.extra as String;
+        final person = state.extra as Person;
         final page = ProviderScope(
           overrides: [
-            routeArgsProvider.overrideWithValue(
-                {'serviceId': id, 'bearerToken': bearerToken}),
+            routeArgsProvider.overrideWithValue({'serviceId': id}),
+            personProvider.overrideWith(
+              (ref) => PersonController()..setPerson(person),
+            ),
           ],
           child: ServiceDetailPage(),
         );
+
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
             context: context,
@@ -735,6 +739,11 @@ final router = GoRouter(
             state: state,
             child: page);
       },
+    ),
+    GoRoute(
+      name: notificationsScreen,
+      path: '/NotificationsScreen',
+      builder: (context, state) => NotificationsScreen(),
     ),
   ],
 );

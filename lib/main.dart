@@ -34,6 +34,7 @@ main() async {
   // print(result);
 
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
   runApp(const ProviderScope(child: MyApp()));
 }
 

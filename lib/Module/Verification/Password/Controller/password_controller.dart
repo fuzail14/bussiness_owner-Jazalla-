@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../../../../Constants/Global/Method/global_methods.dart';
 import '../../../../Constants/Person/person.dart';
 import '../../../../Constants/api_routes.dart';
 import '../../../../Constants/constants.dart';
@@ -65,23 +66,25 @@ class PasswordController extends StateNotifier<PasswordState> {
         final person = Person.fromJson(value);
 
         log(person.toString());
-        MySharedPreferences.setUserData(person: person);
-
-        Person person2 = await MySharedPreferences.getUserData();
+        //log(person.data!.company!.companyName!);
 
         final NotificationServices notificationServices =
             NotificationServices();
         final String? token = await notificationServices.getDeviceToken();
+        MySharedPreferences.setUserData(person: person, fcmToken: token);
+
+        Person person2 = await MySharedPreferences.getUserData();
+        print('shared prefernces fcm token');
+        print(person2.data!.fcmtoken);
+        print('get  device fcm token');
+        print(token);
+
         fcmtokenrefresh(person2.data!.id!, token!, person2.Bearer!);
 
         print(person2);
         print(person2.data!.companyId);
 
-        context.goNamed(homescreen, extra: person2);
-
-        // Get.offAllNamed(homescreen, arguments: person2);
-
-        // Get.snackbar('Login', person.data!.name.toString());
+        context.pushReplacementNamed(homescreen, extra: person2);
 
         setLoading(false);
       }
@@ -104,25 +107,6 @@ class PasswordController extends StateNotifier<PasswordState> {
 
   void setLoading(bool loading) {
     state = state.copyWith(isLoading: loading);
-  }
-
-  Future fcmtokenrefresh(int id, String fcmtoken, String bearertoken) async {
-    try {
-      final response = await Http.post(
-        Uri.parse(Api.fcmTokenRefresh),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-          'Authorization': "Bearer $bearertoken"
-        },
-        body: jsonEncode(<String, dynamic>{
-          'id': id,
-          'fcmtoken': fcmtoken,
-        }),
-      );
-      print("Fcm token refresh Api Hits Successfully !");
-    } catch (e) {
-      myToast(msg: e);
-    }
   }
 }
 

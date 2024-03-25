@@ -38,6 +38,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "badges",
+      "rootUri": "file:///Users/muhammadfuzail/.pub-cache/hosted/pub.dev/badges-3.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "boolean_selector",
       "rootUri": "file:///Users/muhammadfuzail/.pub-cache/hosted/pub.dev/boolean_selector-2.1.1",
       "packageUri": "lib/",
@@ -800,7 +806,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2024-03-20T08:48:57.930620Z",
+  "generated": "2024-03-25T11:31:55.186366Z",
   "generator": "pub",
   "generatorVersion": "3.3.0"
 }

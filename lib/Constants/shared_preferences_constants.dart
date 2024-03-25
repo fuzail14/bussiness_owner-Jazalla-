@@ -9,3 +9,5 @@ const String userRoleIdSPKey = 'user_role_id';
 const String emailSPKEY = 'email';
 const String typeSPKEY = 'type';
 const String bearerTokenSPKEY = 'bearerToken';
+const String fcmTokenSPKEY = 'fcmToken';
+const String companyNameSPKEY = 'companyName';

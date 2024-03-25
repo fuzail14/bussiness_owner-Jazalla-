@@ -217,7 +217,7 @@ class GeneralServiceView extends ConsumerWidget {
                       onTap: () {
                         GoRouter.of(context).pushNamed(serviceDetailPage,
                             pathParameters: {'id': services.id.toString()},
-                            extra: controller.person.Bearer);
+                            extra: controller.person);
                       },
                       child: Container(
                         // height: 325.h,

@@ -14,15 +14,18 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import '../../../Constants/Person/person.dart';
 import '../../../Constants/Person/person_controller.dart';
+import '../../../Services/Shared Preferences/MySharedPreferences.dart';
 import '../Widget/market_place_screen_card.dart';
+import 'package:badges/badges.dart' as badges;
 
 class MarketPlaceScreen extends ConsumerWidget {
-  const MarketPlaceScreen({super.key});
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final person = ref.read(personProvider);
+    print('marketplace');
+    print(person!.data!.lastName!);
 
     return Scaffold(
         //backgroundColor: Colors.red,
@@ -58,11 +61,28 @@ class MarketPlaceScreen extends ConsumerWidget {
                       color: Colors.white),
                 ),
 
-                Container(
-                    child: SvgPicture.asset(
-                  'assets/images/bellicon.svg',
-                  color: Color(0xff8B97A8),
-                )),
+                InkWell(
+                  onTap: () {
+                    print('Attempting to navigate to notifications screen');
+
+                    GoRouter.of(context).pushNamed(notificationsScreen);
+                  },
+                  child: badges.Badge(
+                    badgeContent: Text('3',
+                        style: GoogleFonts.roboto(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xffFFFFFF))),
+                    position: badges.BadgePosition.topEnd(top: -10, end: -12),
+                    showBadge: true,
+                    ignorePointer: false,
+                    child: Container(
+                        child: SvgPicture.asset(
+                      'assets/images/bellicon.svg',
+                      color: Color(0xff8B97A8),
+                    )),
+                  ),
+                ),
               ],
             ),
             Row(
@@ -74,7 +94,7 @@ class MarketPlaceScreen extends ConsumerWidget {
                       border: Border.all(color: Color(0xff4EBBD3)),
                       color: Color(0xffF5F9F9),
                       shape: BoxShape.circle),
-                  margin: EdgeInsets.symmetric(vertical: 117, horizontal: 30).r,
+                  margin: EdgeInsets.only(top: 117, left: 30).r,
                   child: Stack(
                     children: [
                       SvgPicture.asset(
@@ -93,10 +113,12 @@ class MarketPlaceScreen extends ConsumerWidget {
                     ],
                   ),
                 ),
+                10.pw,
                 Column(
                   children: [
+                    120.ph,
                     Text(
-                      'Jazalla',
+                      person.data!.company!.companyName!.toString(),
                       style: GoogleFonts.roboto(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w600,
@@ -110,7 +132,7 @@ class MarketPlaceScreen extends ConsumerWidget {
                           color: Color(0xff1F3996)),
                     ),
                     Text(
-                      'Hi, Company',
+                      'Hi, ${person.data!.firstName.toString() + person.data!.lastName.toString()}',
                       style: GoogleFonts.roboto(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w400,
@@ -120,136 +142,136 @@ class MarketPlaceScreen extends ConsumerWidget {
                 ),
               ],
             ),
-            SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 260, left: 30).r,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text("your business insights",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                        )),
-                    14.ph,
-                    FadeInUp(
-                      duration: const Duration(
-                          milliseconds: 500), // You can adjust the duration
-                      delay: const Duration(milliseconds: 100),
-                      child: Row(
-                        //mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CardMakretPlace(
-                            textColor: const Color(0xffFF6D17),
-                            svgPath: 'assets/images/building.svg',
-                            headingText: 'Bussines Community',
-                            boxText: '1',
-                            onTap: () {
-                              // Get.toNamed(bussinesCommunitiesScreen,
-                              //     arguments: controller.arguments);
-                              // context.goNamed(bussinesCommunitiesScreen, extra: person);
-                              GoRouter.of(context).pushNamed(
-                                  bussinesCommunitiesScreen,
-                                  extra: person);
-                            },
-                            subHeadingText:
-                                'It serves as a comprehensive directory, showcasing company profiles with industry, locations, products, services, and contact details for easy access and networking.',
-                          ),
-                          20.pw,
-                          CardMakretPlace(
-                            textColor: Color(0xffFCAB10),
-                            svgPath: 'assets/images/online_store.svg',
-                            headingText: 'Online Store',
-                            boxText: '2',
-                            onTap: () {
-                              GoRouter.of(context)
-                                  .pushNamed(onlineStoreScreen, extra: person);
-                            },
-                            subHeadingText:
-                                'It hosts an online store providing a platform for suppliers to showcase and sell their products online, catering to diverse customers worldwide.',
-                          ),
-                        ],
-                      ),
-                    ),
-                    20.ph,
-                    FadeInUp(
-                      duration: Duration(
-                          milliseconds: 500), // You can adjust the duration
-                      delay: Duration(milliseconds: 100),
-                      child: Row(
-                        //mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CardMakretPlace(
-                            textColor: Color(0xffFCAB10),
-                            svgPath: 'assets/images/bussines_sale.svg',
-                            headingText: 'Bussines For Sale',
-                            boxText: '3',
-                            onTap: () {
-                              GoRouter.of(context)
-                                  .pushNamed(bussinesForSale, extra: person);
-                            },
-                            subHeadingText:
-                                'To facilitate the sale of existing business to potential buyers. Business owners looking to sell their ventures can list their opportunities in this section.',
-                          ),
-                          20.pw,
-                          CardMakretPlace(
-                            textColor: Color(0xff188F71),
-                            svgPath: 'assets/images/tenders.svg',
-                            headingText: 'Tenders',
-                            boxText: '4',
-                            onTap: () {
-                              GoRouter.of(context)
-                                  .pushNamed(tendersView, extra: person);
-                            },
-                            subHeadingText:
-                                'It presents a list of tenders for companies to bid on projects, contracts, and procurements, offered by buyers, fostering engagement and collaboration with various industries.',
-                          ),
-                        ],
-                      ),
-                    ),
-                    20.ph,
-                    FadeInDown(
-                      duration: Duration(
-                          milliseconds: 500), // You can adjust the duration
-                      delay: Duration(milliseconds: 100),
-                      child: Row(
-                        //mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CardMakretPlace(
-                            textColor: Color(0xff4B6FFF),
-                            svgPath: 'assets/images/general_service.svg',
-                            headingText: 'Genral Services',
-                            boxText: '5',
-                            onTap: () {
-                              GoRouter.of(context)
-                                  .pushNamed(generalServiceView, extra: person);
-                            },
-                            subHeadingText:
-                                'It offers a general services catalog for service providers to showcase and sell their services online, catering to diverse customers worldwide.',
-                          ),
-                          20.pw,
-                          CardMakretPlace(
-                            textColor: Color(0xff4B6FFF),
-                            svgPath:
-                                'assets/images/investment_opportunities.svg',
-                            headingText: 'Invesetment Opportunities',
-                            boxText: '6',
-                            onTap: () {
-                              GoRouter.of(context).pushNamed(
-                                  investMentOpportunityView,
-                                  extra: person);
-                            },
-                            subHeadingText:
-                                'It presents investment opportunities listed by business owners aiming for partnerships, growth, franchising, and more attracting interested investors and potential collaborators.',
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
           ],
+        ),
+        20.ph,
+        SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 0, left: 30).r,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text("your business insights",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                    )),
+                14.ph,
+                FadeInUp(
+                  duration: const Duration(
+                      milliseconds: 500), // You can adjust the duration
+                  delay: const Duration(milliseconds: 100),
+                  child: Row(
+                    //mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CardMakretPlace(
+                        textColor: const Color(0xffFF6D17),
+                        svgPath: 'assets/images/building.svg',
+                        headingText: 'Bussines Community',
+                        boxText: '1',
+                        onTap: () {
+                          // Get.toNamed(bussinesCommunitiesScreen,
+                          //     arguments: controller.arguments);
+                          // context.goNamed(bussinesCommunitiesScreen, extra: person);
+                          GoRouter.of(context).pushNamed(
+                              bussinesCommunitiesScreen,
+                              extra: person);
+                        },
+                        subHeadingText:
+                            'It serves as a comprehensive directory, showcasing company profiles with industry, locations, products, services, and contact details for easy access and networking.',
+                      ),
+                      20.pw,
+                      CardMakretPlace(
+                        textColor: Color(0xffFCAB10),
+                        svgPath: 'assets/images/online_store.svg',
+                        headingText: 'Online Store',
+                        boxText: '2',
+                        onTap: () {
+                          GoRouter.of(context)
+                              .pushNamed(onlineStoreScreen, extra: person);
+                        },
+                        subHeadingText:
+                            'It hosts an online store providing a platform for suppliers to showcase and sell their products online, catering to diverse customers worldwide.',
+                      ),
+                    ],
+                  ),
+                ),
+                20.ph,
+                FadeInUp(
+                  duration: Duration(
+                      milliseconds: 500), // You can adjust the duration
+                  delay: Duration(milliseconds: 100),
+                  child: Row(
+                    //mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CardMakretPlace(
+                        textColor: Color(0xffFCAB10),
+                        svgPath: 'assets/images/bussines_sale.svg',
+                        headingText: 'Bussines For Sale',
+                        boxText: '3',
+                        onTap: () {
+                          GoRouter.of(context)
+                              .pushNamed(bussinesForSale, extra: person);
+                        },
+                        subHeadingText:
+                            'To facilitate the sale of existing business to potential buyers. Business owners looking to sell their ventures can list their opportunities in this section.',
+                      ),
+                      20.pw,
+                      CardMakretPlace(
+                        textColor: Color(0xff188F71),
+                        svgPath: 'assets/images/tenders.svg',
+                        headingText: 'Tenders',
+                        boxText: '4',
+                        onTap: () {
+                          GoRouter.of(context)
+                              .pushNamed(tendersView, extra: person);
+                        },
+                        subHeadingText:
+                            'It presents a list of tenders for companies to bid on projects, contracts, and procurements, offered by buyers, fostering engagement and collaboration with various industries.',
+                      ),
+                    ],
+                  ),
+                ),
+                20.ph,
+                FadeInDown(
+                  duration: Duration(
+                      milliseconds: 500), // You can adjust the duration
+                  delay: Duration(milliseconds: 100),
+                  child: Row(
+                    //mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CardMakretPlace(
+                        textColor: Color(0xff4B6FFF),
+                        svgPath: 'assets/images/general_service.svg',
+                        headingText: 'Genral Services',
+                        boxText: '5',
+                        onTap: () {
+                          GoRouter.of(context)
+                              .pushNamed(generalServiceView, extra: person);
+                        },
+                        subHeadingText:
+                            'It offers a general services catalog for service providers to showcase and sell their services online, catering to diverse customers worldwide.',
+                      ),
+                      20.pw,
+                      CardMakretPlace(
+                        textColor: Color(0xff4B6FFF),
+                        svgPath: 'assets/images/investment_opportunities.svg',
+                        headingText: 'Invesetment Opportunities',
+                        boxText: '6',
+                        onTap: () {
+                          GoRouter.of(context).pushNamed(
+                              investMentOpportunityView,
+                              extra: person);
+                        },
+                        subHeadingText:
+                            'It presents investment opportunities listed by business owners aiming for partnerships, growth, franchising, and more attracting interested investors and potential collaborators.',
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ],
     ));

@@ -7,10 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../Constants/api_routes.dart';
 import '../../../../Data/Api Resp/api_response.dart';
+import '../../../../Routes/set_routes.dart';
 import '../../../../Widgets/CustomButton/custom_button.dart';
 import '../../../../Widgets/Loader/loader.dart';
 import '../../../../Widgets/StarRating/star_rating.dart';
@@ -37,29 +39,27 @@ class ServiceDetailPage extends ConsumerWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    // services.id;
-                    // controller.person.data!.id;
-                    // services.companyId;
-                    // controller.person.data!.companyId;
-                    // print(services.id);
-                    // print(
-                    //     "user id ${controller.person.data!.id}");
-                    // print(services.companyId);
-                    // print(
-                    //     "buyer id ${controller.person.data!.companyId}");
+                    var services = state.serviceDetail.first;
+                    services.id;
+                    controller.person.data!.id;
+                    services.companyId;
+                    controller.person.data!.companyId;
+                    print(services.id);
+                    print("user id ${controller.person.data!.id}");
+                    print(services.companyId);
+                    print("buyer id ${controller.person.data!.companyId}");
 
-                    // final quoteData = {
-                    //   'serviceId': services.id,
-                    //   'serviceCompanyId': services.companyId,
-                    //   'userId': controller.person.data!.id,
-                    //   'userCompanyId':
-                    //       controller.person.data!.companyId
-                    // };
+                    final quoteData = {
+                      'serviceId': controller.serviceId,
+                      'serviceCompanyId': services.companyId,
+                      'userId': controller.person.data!.id,
+                      'userCompanyId': controller.person.data!.companyId
+                    };
 
-                    // GoRouter.of(context).pushNamed(
-                    //   requestProposalScreen,
-                    //   extra: quoteData,
-                    // );
+                    GoRouter.of(context).pushNamed(
+                      requestProposalScreen,
+                      extra: quoteData,
+                    );
                   },
                   child: CustomButton(
                     height: 28.h,
@@ -72,23 +72,23 @@ class ServiceDetailPage extends ConsumerWidget {
                 //30.pw,
                 GestureDetector(
                   onTap: () {
-                    // services.id;
-                    // controller.person.data!.id;
-                    // services.companyId;
+                    var services = state.serviceDetail.first;
+                    services.id;
+                    controller.person.data!.id;
+                    services.companyId;
 
-                    // final inquiryData = {
-                    //   'serviceId': services.id,
-                    //   'title': services.name,
-                    //   'userId': controller.person.data!.id,
-                    //   'userCompanyId':
-                    //       controller.person.data!.companyId,
-                    //   'companyId': services.companyId,
-                    // };
+                    final inquiryData = {
+                      'serviceId': services.id,
+                      'title': services.name,
+                      'userId': controller.person.data!.id,
+                      'userCompanyId': controller.person.data!.companyId,
+                      'companyId': services.companyId,
+                    };
 
-                    // GoRouter.of(context).pushNamed(
-                    //   serviceinquiryScreen,
-                    //   extra: inquiryData,
-                    // );
+                    GoRouter.of(context).pushNamed(
+                      serviceinquiryScreen,
+                      extra: inquiryData,
+                    );
                   },
                   child: CustomButton(
                     height: 28.h,

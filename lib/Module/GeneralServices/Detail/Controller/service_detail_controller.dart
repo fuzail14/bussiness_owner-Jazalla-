@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../Constants/Person/person.dart';
+import '../../../../Constants/Person/person_controller.dart';
 import '../../../../Data/Api Resp/api_response.dart';
 import '../../../../Providers/argument_provider.dart';
 import '../../../../Repo/General Service Repo/service_detail_repository.dart';
@@ -11,11 +13,11 @@ final servicePageProvider =
     StateNotifierProvider<ServicePageController, ServiceState>((ref) {
   final args = ref.watch(routeArgsProvider);
   final serviceId = args['serviceId'] as int;
-  final bearerToken = args['bearerToken'] as String;
-  return ServicePageController(
-    serviceId: serviceId,
-    bearerToken: bearerToken,
-  );
+  final person = ref.watch(personProvider);
+  if (person == null) {
+    throw Exception('Person data is not available');
+  }
+  return ServicePageController(serviceId: serviceId, person: person);
 }, dependencies: [routeArgsProvider]);
 
 class ServiceState {
@@ -62,11 +64,11 @@ class ServiceState {
 class ServicePageController extends StateNotifier<ServiceState> {
   final serviceDetailRepository = ServiceDetailRepository();
   final int serviceId;
-  final String bearerToken;
+  final Person person;
 
   ServicePageController({
     required this.serviceId,
-    required this.bearerToken,
+    required this.person,
   }) : super(ServiceState(pageController: PageController())) {
     _loadServiceDetails();
   }
@@ -76,7 +78,7 @@ class ServicePageController extends StateNotifier<ServiceState> {
     try {
       final value = await serviceDetailRepository.serviceDetailViewApi(
         serviceId: serviceId,
-        bearerToken: bearerToken,
+        bearerToken: person.Bearer,
       );
       state = state.copyWith(
         serviceDetail: value.servicedetail,

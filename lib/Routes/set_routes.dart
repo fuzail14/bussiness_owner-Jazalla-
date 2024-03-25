@@ -38,3 +38,4 @@ const String salesManagmentRFIDetailPage = '/SalesManagmentRFIDetailPage';
 const String salesManagmentRFQDetailPage = '/SalesManagmentRFQDetailPage';
 const String serviceManagmentRFIDetailPage = '/ServiceManagmentRFIDetailPage';
 const String serviceManagmentRFPDetailPage = '/ServiceManagmentRFPDetailPage';
+const String notificationsScreen = '/NotificationsScreen';
