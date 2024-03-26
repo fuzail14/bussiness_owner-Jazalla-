@@ -63,9 +63,8 @@ class MarketPlaceScreen extends ConsumerWidget {
 
                 InkWell(
                   onTap: () {
-                    print('Attempting to navigate to notifications screen');
-
-                    GoRouter.of(context).pushNamed(notificationsScreen);
+                    GoRouter.of(context)
+                        .pushNamed(notificationsScreen, extra: person);
                   },
                   child: badges.Badge(
                     badgeContent: Text('3',

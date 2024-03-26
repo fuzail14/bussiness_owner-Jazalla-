@@ -740,10 +740,25 @@ final router = GoRouter(
             child: page);
       },
     ),
+
     GoRoute(
       name: notificationsScreen,
       path: '/NotificationsScreen',
-      builder: (context, state) => NotificationsScreen(),
+      pageBuilder: (context, state) {
+        final person = state.extra as Person;
+        final page = ProviderScope(
+          overrides: [
+            personProvider
+                .overrideWith((ref) => PersonController()..setPerson(person)),
+          ],
+          child: NotificationsScreen(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
     ),
   ],
 );

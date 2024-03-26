@@ -195,61 +195,6 @@ class OnlineStoreController extends StateNotifier<OnlineStoreState> {
     debouncer?.cancel();
   }
 
-  // List<ActionItem> getDialogActions(BuildContext context) {
-  //   return [
-  //     ActionItem(
-  //       title: 'Show All',
-  //       onPressed: () {
-  //         onlineStoreViewApi(bearerToken: person.Bearer!);
-  //         Navigator.pop(context);
-  //       },
-  //     ),
-  //     ActionItem(
-  //       title: 'Favourite List',
-  //       onPressed: () {
-  //         productFilterApi(filtertype: 'favourite products');
-  //         Navigator.pop(context);
-  //       },
-  //     ),
-  //     ActionItem(
-  //       title: 'National Product',
-  //       onPressed: () {
-  //         productFilterApi(filtertype: 'national products');
-  //         Navigator.pop(context);
-  //       },
-  //     ),
-  //     ActionItem(
-  //       title: 'Newest Products',
-  //       onPressed: () {
-  //         productFilterApi(filtertype: 'newest products');
-  //         Navigator.pop(context);
-  //       },
-  //     ),
-  //     ActionItem(
-  //       title: 'Oldest Products',
-  //       onPressed: () {
-  //         productFilterApi(filtertype: 'oldest products');
-  //         Navigator.pop(context);
-  //       },
-  //     ),
-  //     ActionItem(
-  //       title: 'From Z-A Products',
-  //       onPressed: () {
-  //         productFilterApi(filtertype: 'z-a products');
-  //         Navigator.pop(context);
-  //       },
-  //     ),
-  //     ActionItem(
-  //       title: 'From A-Z Products',
-  //       onPressed: () {
-  //         productFilterApi(filtertype: 'a-z products');
-
-  //         Navigator.pop(context);
-  //       },
-  //     ),
-  //   ];
-  // }
-
   void setDescription(String description) {
     state = state.copyWith(description: description);
   }

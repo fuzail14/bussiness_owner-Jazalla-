@@ -11,6 +11,7 @@ import 'package:http/http.dart' as Http;
 
 import '../../Constants/api_routes.dart';
 import '../../Routes/set_routes.dart';
+import '../Shared Preferences/MySharedPreferences.dart';
 
 class NotificationServices {
   FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
@@ -29,7 +30,9 @@ class NotificationServices {
 
     await flutterLocalNotificationsPlugin.initialize(initializeSetting,
         onDidReceiveNotificationResponse: (payload) async {
-      // handleMessages(message);
+      print('payload data');
+      print(payload);
+      //handleMessages(message);
     });
   }
 
@@ -142,7 +145,7 @@ class NotificationServices {
   }
 
   // handleMessages(RemoteMessage message) async {
-  //   User user = await MySharedPreferences.getUserData();
+  //   Person person = await MySharedPreferences.getUserData();
 
   //   final Residents resident = await loginResidentDetails(
   //       token: user.bearerToken!, userid: user.userId!);

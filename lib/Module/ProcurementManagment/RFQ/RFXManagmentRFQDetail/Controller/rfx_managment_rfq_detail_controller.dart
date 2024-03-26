@@ -38,6 +38,10 @@ class RFXManagmentRFQDetailNotifier
   final rfXManagmentRFQDetailRepository = RFXManagmentRFQDetailRepository();
 
   Future<void> rFQDetailViewApi({required int rfqId}) async {
+    print('RFXManagmentRFQDetailPage notification detail test');
+
+    print(rfqId.toString());
+
     setResponseStatus(Status.loading);
 
     try {
