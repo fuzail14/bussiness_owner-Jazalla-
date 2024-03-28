@@ -12,6 +12,8 @@ class CustomButton extends StatelessWidget {
   Color? borderColor;
   String? text;
   Color? textColor;
+  double? fontSize;
+
   void Function()? onTap;
   EdgeInsetsGeometry? margin;
 
@@ -24,6 +26,7 @@ class CustomButton extends StatelessWidget {
       this.text,
       this.textColor,
       this.onTap,
+      this.fontSize,
       this.margin});
 
   @override
@@ -43,7 +46,7 @@ class CustomButton extends StatelessWidget {
             text!,
             style: GoogleFonts.quicksand(
                 fontWeight: FontWeight.w700,
-                fontSize: 10.sp,
+                fontSize: fontSize ?? 10.sp,
                 color: textColor ?? HexColor('#FFFFFF')),
           ),
         ),

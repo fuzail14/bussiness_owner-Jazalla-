@@ -53,7 +53,7 @@ class NotificationData {
   String? notificationFrom;
   int? senderId;
   int? senderUserId;
-  String? receiverId;
+  int? receiverId;
   String? notificationTo;
   String? receiverType;
   int? isRead;

@@ -294,32 +294,32 @@ class ServiceDetailPage extends ConsumerWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Flexible(
-                                child: AutoSizeText(
-                                    product.unspscCommodity!.commodityName
-                                        .toString(),
-                                    maxLines: 8,
-                                    overflow: TextOverflow.ellipsis,
-                                    textScaleFactor: 1.2,
-                                    textAlign: TextAlign.left,
-                                    style: GoogleFonts.poppins(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color(0xff414141))),
-                              ),
-                              Flexible(
-                                child: AutoSizeText(
-                                    product.unspscCommodity!.commodityCode
-                                        .toString(),
-                                    maxLines: 8,
-                                    overflow: TextOverflow.ellipsis,
-                                    textScaleFactor: 1.2,
-                                    textAlign: TextAlign.left,
-                                    style: GoogleFonts.poppins(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color(0xff414141))),
-                              ),
+                              // Flexible(
+                              //   child: AutoSizeText(
+                              //       product.unspscCommodity!.commodityName
+                              //           .toString(),
+                              //       maxLines: 8,
+                              //       overflow: TextOverflow.ellipsis,
+                              //       textScaleFactor: 1.2,
+                              //       textAlign: TextAlign.left,
+                              //       style: GoogleFonts.poppins(
+                              //           fontSize: 12,
+                              //           fontWeight: FontWeight.w400,
+                              //           color: Color(0xff414141))),
+                              // ),
+                              // Flexible(
+                              //   child: AutoSizeText(
+                              //       product.unspscCommodity!.commodityCode
+                              //           .toString(),
+                              //       maxLines: 8,
+                              //       overflow: TextOverflow.ellipsis,
+                              //       textScaleFactor: 1.2,
+                              //       textAlign: TextAlign.left,
+                              //       style: GoogleFonts.poppins(
+                              //           fontSize: 12,
+                              //           fontWeight: FontWeight.w400,
+                              //           color: Color(0xff414141))),
+                              // ),
                             ],
                           ),
                         ),

@@ -98,6 +98,9 @@ class Menu extends ConsumerWidget {
           if (item.title == 'Logout') {
             MySharedPreferences.deleteUserData();
             context.pushReplacementNamed(checkPhoneNumber);
+          } else if (item.title == 'Order Placement') {
+            context.pushNamed(orderPlacementScreen, extra: person);
+            // context.pushNamed(procuremenetRFQScreen, extra: person);
           }
         }, // Pass the dynamic color
         children: _buildChildrenForItem(context, item, person),
@@ -109,19 +112,19 @@ class Menu extends ConsumerWidget {
       BuildContext context, MenuItem item, person) {
     // Decide which children to build based on the item title or any other attribute
     List<Widget> children = [];
-    if (item.title == 'Order Placement') {
-      children.addAll([
-        // _buildListItem(context, 'RFI / SOI Management', () {
-        //   context.pushNamed(procuremenetSoiScreen, extra: person);
-        // }),
-        _buildListItem(context, 'RFQ Management', () {
-          context.pushNamed(procuremenetRFQScreen, extra: person);
-        }),
-        _buildListItem(context, 'RFP Management', () {
-          context.pushNamed(procurementRFPScreen, extra: person);
-        }),
-      ]);
-    }
+    // if (item.title == 'Order Placement') {
+    //   children.addAll([
+    //     // _buildListItem(context, 'RFI / SOI Management', () {
+    //     //   context.pushNamed(procuremenetSoiScreen, extra: person);
+    //     // }),
+    //     _buildListItem(context, 'RFQ Management', () {
+    //       context.pushNamed(procuremenetRFQScreen, extra: person);
+    //     }),
+    //     _buildListItem(context, 'RFP Management', () {
+    //       context.pushNamed(procurementRFPScreen, extra: person);
+    //     }),
+    //   ]);
+    // }
     // else if (item.title == 'Sales Management') {
     //   children.addAll([
     //     _buildListItem(context, 'RFI Management', () {

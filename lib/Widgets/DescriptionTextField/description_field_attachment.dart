@@ -130,8 +130,9 @@ class DescriptionFieldAttachment extends StatelessWidget {
                   child: buttonLoading
                       ? const Loader()
                       : CustomButton(
-                          width: 110.w,
-                          height: 24.h,
+                          width: 275.w,
+                          height: 50.h,
+                          fontSize: 16.sp,
                           color: Color(0xff27BCEB),
                           text: 'Send',
                         ),

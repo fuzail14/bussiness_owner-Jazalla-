@@ -49,11 +49,11 @@ class _ProcurementRFPScreenState extends ConsumerState<ProcurementRFPScreen>
         ref.watch(serviceManagmentRFPProvider.notifier);
     final serviceManagmentRFPstate = ref.watch(serviceManagmentRFPProvider);
     return Scaffold(
-      appBar: MyAppBar(
-        showBell: false,
-        showFilter: false,
-        title: "RFP Managment",
-      ),
+      // appBar: MyAppBar(
+      //   showBell: false,
+      //   showFilter: false,
+      //   title: "RFP Managment",
+      // ),
       backgroundColor: Colors.white,
       body: Column(
         children: [

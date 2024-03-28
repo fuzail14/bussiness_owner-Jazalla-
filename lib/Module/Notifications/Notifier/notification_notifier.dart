@@ -90,11 +90,11 @@ class NotificationsNotifier extends StateNotifier<NotificationsState> {
     if (difference.inMinutes < 1) {
       return 'just now';
     } else if (difference.inMinutes < 60) {
-      return '${difference.inMinutes} min ago';
+      return '${difference.inMinutes} m';
     } else if (difference.inHours < 24) {
-      return '${difference.inHours} hour ago';
+      return '${difference.inHours} h';
     } else if (difference.inDays < 7) {
-      return '${difference.inDays} days ago';
+      return '${difference.inDays} d';
     } else {
       return DateFormat('MM/dd/yyyy').format(dateTime);
     }

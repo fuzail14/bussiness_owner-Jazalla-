@@ -11,13 +11,107 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../../Data/Api Resp/api_response.dart';
 import '../../../../../Widgets/Loader/loader.dart';
+import '../../../../SalesManagment/RFIMain/RFI/Controller/sales_managment_rfi_controller.dart';
+import '../../../../SalesManagment/RFIMain/RFI/View/sales_managment_rfi_screen.dart';
 import '../Controller/procurement_soi_controller.dart';
 
 // ignore: must_be_immutable
-class ProcuremenetSoiScreen extends ConsumerWidget {
+class ProcuremenetSoiScreen extends ConsumerStatefulWidget {
+  @override
+  _ProcuremenetSoiScreenState createState() => _ProcuremenetSoiScreenState();
+}
+
+class _ProcuremenetSoiScreenState extends ConsumerState<ProcuremenetSoiScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
   int buildcheck = 0;
 
-  ProcuremenetSoiScreen({super.key});
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    print('build check  ${buildcheck++}');
+    final controller = ref.watch(ProcuremenetSoiProvider.notifier);
+    final state = ref.watch(ProcuremenetSoiProvider);
+    final salesManagmentRFPcontroller =
+        ref.watch(SalesManagmentRFIProvider.notifier);
+    final salesManagmentRFPstate = ref.watch(SalesManagmentRFIProvider);
+
+    return Scaffold(
+      // appBar: MyAppBar(
+      //   showBell: false,
+      //   showFilter: false,
+      //   title: "RFP Managment",
+      // ),
+      backgroundColor: Colors.white,
+      body: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(left: 23.w, right: 23.w, top: 30).w,
+            // width: 362.w,
+            height: 48.h,
+            decoration: ShapeDecoration(
+                color: const Color(0xff4EBBD3).withOpacity(0.2),
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(width: 1.w, color: const Color(0xff4EBBD3)),
+                  borderRadius: BorderRadius.circular(8.r),
+                )),
+            child: TabBar(
+              controller: _tabController,
+              unselectedLabelColor: const Color(0xFF5A5A5A),
+              indicatorSize: TabBarIndicatorSize.tab,
+              labelColor: Colors.white,
+              indicator: ShapeDecoration(
+                color: HexColor('#1F3996'),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6.r)),
+              ),
+              tabs: [
+                Tab(
+                    child: Text(
+                  'RFI Send',
+                  style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w500, fontSize: 12.sp),
+                )),
+                Tab(
+                  child: Text(
+                    'RFI Recieved',
+                    style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.w500, fontSize: 12.sp),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                SendRFIScreen(),
+                SalesManagmentRFIScreen(),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SendRFIScreen extends ConsumerWidget {
+  int buildcheck = 0;
+
+  SendRFIScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(ProcuremenetSoiProvider.notifier);
@@ -26,68 +120,68 @@ class ProcuremenetSoiScreen extends ConsumerWidget {
     print('build check  ${buildcheck++}');
 
     return Scaffold(
-      appBar: MyAppBar(
-        showBell: false,
-        showFilter: false,
-        title: "RFI/SOI Managemet",
-        // filterOnPressed: () {
-        //   _scaffoldKey.currentState?.openEndDrawer();
-        // }
-      ),
+      // appBar: MyAppBar(
+      //   showBell: false,
+      //   showFilter: false,
+      //   title: "RFI Managemet",
+      //   // filterOnPressed: () {
+      //   //   _scaffoldKey.currentState?.openEndDrawer();
+      //   // }
+      // ),
       backgroundColor: Colors.white,
       body: Column(
         children: [
           26.ph,
-          Row(
-            children: [
-              Container(
-                width: 281.w,
-                height: 36.h,
-                padding: EdgeInsets.only(left: 20).r,
-                margin: EdgeInsets.only(left: 26).r,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(30.0),
-                    border: Border.all(color: HexColor('#DEDEDE'))),
-                child: TextField(
-                  controller: controller.searchController,
-                  // onChanged: (query) {
-                  //   controller.debounce(() {
-                  //     controller.bussinesCommunitySearchApi(query: query);
-                  //   });
-                  // },
-                  decoration: InputDecoration(
-                    hintText: "What are you looking for?",
-                    hintStyle: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w300,
-                        color: HexColor('#75788D')),
-                    suffixIcon: GestureDetector(
-                      onTap: () {
-                        // controller.request4InformationRepository(
-                        //     query: controller.searchController.text.trim());
-                      },
-                      child: Container(
-                        padding: EdgeInsets.only(right: 22).r,
-                        width: 22.w,
-                        height: 21.h,
-                        child: SvgPicture.asset(
-                          'assets/images/search.svg',
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                    ),
-                    border: InputBorder.none,
-                  ),
-                ),
-              ),
-              10.pw,
-            ],
-          ),
+          // Row(
+          //   children: [
+          //     Container(
+          //       width: 281.w,
+          //       height: 36.h,
+          //       padding: EdgeInsets.only(left: 20).r,
+          //       margin: EdgeInsets.only(left: 26).r,
+          //       decoration: BoxDecoration(
+          //           color: Colors.white,
+          //           borderRadius: BorderRadius.circular(30.0),
+          //           border: Border.all(color: HexColor('#DEDEDE'))),
+          //       child: TextField(
+          //         controller: controller.searchController,
+          //         // onChanged: (query) {
+          //         //   controller.debounce(() {
+          //         //     controller.bussinesCommunitySearchApi(query: query);
+          //         //   });
+          //         // },
+          //         decoration: InputDecoration(
+          //           hintText: "What are you looking for?",
+          //           hintStyle: TextStyle(
+          //               fontSize: 12.sp,
+          //               fontWeight: FontWeight.w300,
+          //               color: HexColor('#75788D')),
+          //           suffixIcon: GestureDetector(
+          //             onTap: () {
+          //               // controller.request4InformationRepository(
+          //               //     query: controller.searchController.text.trim());
+          //             },
+          //             child: Container(
+          //               padding: EdgeInsets.only(right: 22).r,
+          //               width: 22.w,
+          //               height: 21.h,
+          //               child: SvgPicture.asset(
+          //                 'assets/images/search.svg',
+          //                 fit: BoxFit.contain,
+          //               ),
+          //             ),
+          //           ),
+          //           border: InputBorder.none,
+          //         ),
+          //       ),
+          //     ),
+          //     10.pw,
+          //   ],
+          // ),
           if (state.responseStatus == Status.loading)
             const Loader()
           else if (state.responseStatus == Status.completed) ...[
-            20.ph,
+            // 20.ph,
             if (state.request4Information.isEmpty) ...[
               Center(
                 child: Text(

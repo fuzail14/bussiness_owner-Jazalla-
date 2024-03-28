@@ -39,3 +39,7 @@ const String salesManagmentRFQDetailPage = '/SalesManagmentRFQDetailPage';
 const String serviceManagmentRFIDetailPage = '/ServiceManagmentRFIDetailPage';
 const String serviceManagmentRFPDetailPage = '/ServiceManagmentRFPDetailPage';
 const String notificationsScreen = '/NotificationsScreen';
+const String sendResponseView = '/SendResponseView';
+const String sendRFQResponse = '/SendRFQResponse';
+const String sendRFPResponse = '/SendRFPResponse';
+const String orderPlacementScreen = '/OrderPlacementScreen';

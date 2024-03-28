@@ -31,7 +31,12 @@ class NotificationServices {
     await flutterLocalNotificationsPlugin.initialize(initializeSetting,
         onDidReceiveNotificationResponse: (payload) async {
       print('payload data');
-      print(payload);
+      print(payload.notificationResponseType);
+      print(payload.actionId);
+      print(payload.id);
+      print(payload.input);
+      print(payload.payload);
+
       //handleMessages(message);
     });
   }

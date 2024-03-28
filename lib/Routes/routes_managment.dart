@@ -25,6 +25,7 @@ import '../Module/InvestMentOpportunity/Main/View/investMent_Opportunity_screen.
 import '../Module/Notifications/View/notifications_screen.dart';
 import '../Module/OnlineStore/RequestQuote/View/request_quote_page.dart';
 import '../Module/OnlineStore/SendInquiry/View/send_inquiry_page.dart';
+import '../Module/OrderPlacement/View/order_placement_screen.dart';
 import '../Module/ProcurementManagment/RFI/RfxManagmentRFIDetail/View/rfx_managment_rfi_detail_page.dart';
 import '../Module/ProcurementManagment/RFI/Main/View/procurement_soi_screen.dart';
 import '../Module/ProcurementManagment/RFP/Main/View/procurement_rfp_screen.dart';
@@ -33,11 +34,14 @@ import '../Module/ProcurementManagment/RFQ/Main/View/procurement_rfq_screen.dart
 import '../Module/ProcurementManagment/RFQ/RFXManagmentRFQDetail/View/rfx_managment_rfq_detail_page.dart';
 import '../Module/SalesManagment/RFIMain/RFI/View/sales_managment_rfi_screen.dart';
 import '../Module/SalesManagment/RFIMain/SalesManagmentRFIDetail/View/sales_managment_rfi_detail_page.dart';
+import '../Module/SalesManagment/RFIMain/SendRFIResponse/View/send_rfi_response.dart';
 import '../Module/SalesManagment/RFQMain/RFQ/View/sales_managment_rfq_screen.dart';
 import '../Module/SalesManagment/RFQMain/SalesManagmentRFQDetail/View/sales_managment_rfq_detail_page.dart';
+import '../Module/SalesManagment/RFQMain/SendRfqResponse/View/send_rfq_response.dart';
 import '../Module/ServiceManagment/RFIMain/RFI/View/service_managment_rfi_screen.dart';
 import '../Module/ServiceManagment/RFIMain/ServiceManagmentRFIDetail/View/service_managment_rfi_detail_page.dart';
 import '../Module/ServiceManagment/RFPMain/RFP/View/service_managment_rfp_screen.dart';
+import '../Module/ServiceManagment/RFPMain/SendRFPResponse/View/send_rfp_response.dart';
 import '../Module/ServiceManagment/RFPMain/ServiceManagmentRFPDetail/View/service_managment_rfp_detail_page.dart';
 import '../Module/Tenders/TenderMain/View/tenders_screen.dart';
 import '../Module/Tenders/TendersResponse/View/tender_response_page.dart';
@@ -752,6 +756,98 @@ final router = GoRouter(
                 .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
           child: NotificationsScreen(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: sendResponseView,
+      path: '/SendResponseView',
+      // builder: (context, state) {
+      //   return SendResponseView();
+      // },
+
+      pageBuilder: (context, state) {
+        // final person = state.extra as Person;
+        final page = ProviderScope(
+          // overrides: [
+          // personProvider
+          //     .overrideWith((ref) => PersonController()..setPerson(person)),
+
+          //  ],
+          child: SendResponseView(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: sendRFQResponse,
+      path: '/SendRFQResponse',
+      // builder: (context, state) {
+      //   return SendResponseView();
+      // },
+
+      pageBuilder: (context, state) {
+        // final person = state.extra as Person;
+        final page = ProviderScope(
+          // overrides: [
+          // personProvider
+          //     .overrideWith((ref) => PersonController()..setPerson(person)),
+
+          //  ],
+          child: SendRFQResponse(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: sendRFPResponse,
+      path: '/SendRFPResponse',
+      // builder: (context, state) {
+      //   return SendResponseView();
+      // },
+
+      pageBuilder: (context, state) {
+        // final person = state.extra as Person;
+        final page = ProviderScope(
+          // overrides: [
+          // personProvider
+          //     .overrideWith((ref) => PersonController()..setPerson(person)),
+
+          //  ],
+          child: SendRFPResponse(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+
+    GoRoute(
+      name: orderPlacementScreen,
+      path: '/OrderPlacementScreen',
+      pageBuilder: (context, state) {
+        final person = state.extra as Person;
+        final page = ProviderScope(
+          overrides: [
+            personProvider
+                .overrideWith((ref) => PersonController()..setPerson(person)),
+          ],
+          child: OrderPlacementScreen(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,

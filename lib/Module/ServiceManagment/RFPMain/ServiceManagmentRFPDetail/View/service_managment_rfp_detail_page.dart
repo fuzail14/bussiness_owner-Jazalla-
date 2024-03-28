@@ -5,10 +5,13 @@ import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../../Data/Api Resp/api_response.dart';
+import '../../../../../Routes/set_routes.dart';
 import '../../../../../Widgets/Loader/loader.dart';
+import '../../../../../Widgets/My Button/my_button.dart';
 import '../Controller/service_managment_rfp_detail_controller.dart';
 
 class ServiceManagmentRFPDetailPage extends ConsumerWidget {
@@ -25,18 +28,17 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
       backgroundColor: Colors.white,
       body: Column(
         children: [
-          26.ph,
+          24.ph,
           if (state.responseStatus == Status.loading)
             const Loader()
           else if (state.responseStatus == Status.completed) ...[
-            20.ph,
             Expanded(
                 child: ListView.builder(
               itemCount: state.serviceManagmentRFPDetail.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 26).r,
+                  padding: const EdgeInsets.symmetric(horizontal: 13).r,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -65,7 +67,7 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                                       horizontal: 14, vertical: 17)
                                   .r,
                               child: AutoSizeText(
-                                'RFQ-${state.serviceManagmentRFPDetail[index].title.toString()}',
+                                'RFP-${state.serviceManagmentRFPDetail[index].title.toString()}',
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: GoogleFonts.poppins(
@@ -89,7 +91,7 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       AutoSizeText(
-                                        'Type',
+                                        'Service Start Date',
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                         style: GoogleFonts.montserrat(
@@ -101,7 +103,7 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                                       Flexible(
                                         child: AutoSizeText(
                                           state.serviceManagmentRFPDetail[index]
-                                              .address
+                                              .startDate
                                               .toString(),
                                           maxLines: 2,
                                           overflow: TextOverflow.ellipsis,
@@ -120,7 +122,7 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       AutoSizeText(
-                                        'Status',
+                                        'Proposed Duration',
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                         style: GoogleFonts.montserrat(
@@ -132,7 +134,7 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                                       Flexible(
                                         child: AutoSizeText(
                                           state.serviceManagmentRFPDetail[index]
-                                              .status
+                                              .proposedDuration
                                               .toString(),
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
@@ -151,8 +153,69 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       AutoSizeText(
-                                        'Issue Date',
+                                        'Payment Mode',
                                         maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: GoogleFonts.montserrat(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w300,
+                                            color: Color(0xff777777)),
+                                      ),
+                                      10.pw,
+                                      Flexible(
+                                        child: AutoSizeText(
+                                          state.serviceManagmentRFPDetail[index]
+                                              .paymentMode
+                                              .toString(),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 14.sp,
+                                              fontWeight: FontWeight.w500,
+                                              color: Color(0xff3A3A3A)),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const Divider(),
+                                  10.ph,
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      AutoSizeText(
+                                        'Address',
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: GoogleFonts.montserrat(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w300,
+                                            color: Color(0xff777777)),
+                                      ),
+                                      10.pw,
+                                      Flexible(
+                                        child: AutoSizeText(
+                                          state.serviceManagmentRFPDetail[index]
+                                              .location
+                                              .toString(),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 14.sp,
+                                              fontWeight: FontWeight.w500,
+                                              color: Color(0xff3A3A3A)),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const Divider(),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      AutoSizeText(
+                                        'Issue Date',
+                                        maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                         style: GoogleFonts.montserrat(
                                             fontSize: 14.sp,
@@ -165,10 +228,39 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                                           state.serviceManagmentRFPDetail[index]
                                               .startDate
                                               .toString(),
-                                          maxLines: 1,
+                                          maxLines: 2,
                                           overflow: TextOverflow.ellipsis,
                                           style: GoogleFonts.montserrat(
                                               fontSize: 14.sp,
+                                              fontWeight: FontWeight.w500,
+                                              color: Color(0xff3A3A3A)),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const Divider(),
+                                  10.ph,
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      AutoSizeText(
+                                        'Issued For',
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: GoogleFonts.montserrat(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w300,
+                                            color: Color(0xff777777)),
+                                      ),
+                                      10.pw,
+                                      Flexible(
+                                        child: AutoSizeText(
+                                          'Daharan Company',
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 12.sp,
                                               fontWeight: FontWeight.w500,
                                               color: Color(0xff3A3A3A)),
                                         ),
@@ -184,7 +276,7 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                                       horizontal: 14, vertical: 17)
                                   .r,
                               child: AutoSizeText(
-                                'RFI-Description',
+                                'Request-Details',
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: GoogleFonts.poppins(
@@ -216,10 +308,32 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                                   ),
                                 ],
                               ),
-                            )
+                            ),
                           ],
                         ),
-                      )
+                      ),
+                      20.ph,
+                      Center(
+                        child: MyButton(
+                          width: 275.w,
+
+                          height: 50.h,
+                          name: 'Send RFP Response',
+                          color: HexColor('#4CB5D0'),
+                          //textColor: HexColor('#8518FF'),
+
+                          onPressed: () {
+                            GoRouter.of(context).pushNamed(sendRFPResponse);
+                            // if (controller.key.currentState!.validate()) {
+                            //   state.phoneNumber =
+                            //       "+${state.countryCode}${controller.phoneNumberController.text}";
+                            //   if (!state.isLoading) {
+                            //     controller.verifyUserPhoneNumber(context);
+                            //   }
+                            // }
+                          },
+                        ),
+                      ),
                     ],
                   ),
                 );

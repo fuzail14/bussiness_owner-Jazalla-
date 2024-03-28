@@ -50,11 +50,11 @@ class _ProcurementRFQScreenState extends ConsumerState<ProcurementRFQScreen>
     final salesManagmentRFQ = ref.watch(salesManagmentRFQProvider.notifier);
     final salesManagmentRFQstate = ref.watch(salesManagmentRFQProvider);
     return Scaffold(
-      appBar: MyAppBar(
-        showBell: false,
-        showFilter: false,
-        title: "RFQ Managment",
-      ),
+      // appBar: MyAppBar(
+      //   showBell: false,
+      //   showFilter: false,
+      //   title: "RFQ Managment",
+      // ),
       backgroundColor: Colors.white,
       body: Column(
         children: [

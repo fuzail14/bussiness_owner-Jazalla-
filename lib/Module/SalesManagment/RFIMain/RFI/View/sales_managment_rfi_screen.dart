@@ -26,84 +26,85 @@ class SalesManagmentRFIScreen extends ConsumerWidget {
     print('build check  ${buildcheck++}');
 
     return Scaffold(
-      appBar: MyAppBar(
-          showFilter: false,
-          showBell: false,
-          title: "RFI/SOI Managemet",
-          filterOnPressed: () {
-            _scaffoldKey.currentState?.openEndDrawer();
-          }),
+      // appBar: MyAppBar(
+      //     showFilter: false,
+      //     showBell: false,
+      //     title: "RFI/SOI Managemet",
+      //     filterOnPressed: () {
+      //       _scaffoldKey.currentState?.openEndDrawer();
+      //     }),
       backgroundColor: Colors.white,
       body: Column(
         children: [
           26.ph,
-          Row(
-            children: [
-              Container(
-                width: 281.w,
-                height: 36.h,
-                padding: EdgeInsets.only(left: 20).r,
-                margin: EdgeInsets.only(left: 26).r,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(30.0),
-                    border: Border.all(color: HexColor('#DEDEDE'))),
-                child: TextField(
-                  controller: controller.searchController,
-                  // onChanged: (query) {
-                  //   controller.debounce(() {
-                  //     controller.bussinesCommunitySearchApi(query: query);
-                  //   });
-                  // },
-                  decoration: InputDecoration(
-                    hintText: "What are you looking for?",
-                    hintStyle: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w300,
-                        color: HexColor('#75788D')),
-                    suffixIcon: GestureDetector(
-                      onTap: () {
-                        // controller.request4InformationRepository(
-                        //     query: controller.searchController.text.trim());
-                      },
-                      child: Container(
-                        padding: EdgeInsets.only(right: 22).r,
-                        width: 22.w,
-                        height: 21.h,
-                        child: SvgPicture.asset(
-                          'assets/images/search.svg',
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                    ),
-                    border: InputBorder.none,
-                  ),
-                ),
-              ),
-              10.pw,
-              IconButton(
-                  onPressed: () {
-                    controller.request4InformationViewApi(
-                        userId: state.person.data!.id,
-                        bearerToken: state.person.Bearer);
-                  },
-                  icon: const Icon(
-                    Icons.refresh,
-                    color: blueColor,
-                  )
+          // Row(
+          //   children: [
+          //     Container(
+          //       width: 281.w,
+          //       height: 36.h,
+          //       padding: EdgeInsets.only(left: 20).r,
+          //       margin: EdgeInsets.only(left: 26).r,
+          //       decoration: BoxDecoration(
+          //           color: Colors.white,
+          //           borderRadius: BorderRadius.circular(30.0),
+          //           border: Border.all(color: HexColor('#DEDEDE'))),
+          //       child: TextField(
+          //         controller: controller.searchController,
+          //         // onChanged: (query) {
+          //         //   controller.debounce(() {
+          //         //     controller.bussinesCommunitySearchApi(query: query);
+          //         //   });
+          //         // },
+          //         decoration: InputDecoration(
+          //           hintText: "What are you looking for?",
+          //           hintStyle: TextStyle(
+          //               fontSize: 12.sp,
+          //               fontWeight: FontWeight.w300,
+          //               color: HexColor('#75788D')),
+          //           suffixIcon: GestureDetector(
+          //             onTap: () {
+          //               // controller.request4InformationRepository(
+          //               //     query: controller.searchController.text.trim());
+          //             },
+          //             child: Container(
+          //               padding: EdgeInsets.only(right: 22).r,
+          //               width: 22.w,
+          //               height: 21.h,
+          //               child: SvgPicture.asset(
+          //                 'assets/images/search.svg',
+          //                 fit: BoxFit.contain,
+          //               ),
+          //             ),
+          //           ),
+          //           border: InputBorder.none,
+          //         ),
+          //       ),
+          //     ),
+          //     10.pw,
+          //     IconButton(
+          //         onPressed: () {
+          //           controller.request4InformationViewApi(
+          //               userId: state.person.data!.id,
+          //               bearerToken: state.person.Bearer);
+          //         },
+          //         icon: const Icon(
+          //           Icons.refresh,
+          //           color: blueColor,
+          //         )
 
-                  // SvgPicture.asset(
-                  //   'assets/images/filter.svg',
-                  //   height: 20,
-                  //   width: 40,
-                  // )
-                  ),
-            ],
-          ),
+          //         // SvgPicture.asset(
+          //         //   'assets/images/filter.svg',
+          //         //   height: 20,
+          //         //   width: 40,
+          //         // )
+          //         ),
+          //   ],
+          // ),
+
           if (state.responseStatus == Status.loading)
             const Loader()
           else if (state.responseStatus == Status.completed) ...[
-            20.ph,
+            //20.ph,
             if (state.request4Information.isEmpty) ...[
               Center(
                 child: Text(

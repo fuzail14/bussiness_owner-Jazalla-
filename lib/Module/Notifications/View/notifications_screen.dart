@@ -66,7 +66,7 @@ class NotificationsScreen extends ConsumerWidget {
 
                           if (notification.type == 'RFQ') {
                             GoRouter.of(context).pushNamed(
-                              rFXManagmentRFQDetailPage,
+                              salesManagmentRFQDetailPage,
                               pathParameters: {
                                 'id': notification.typeId.toString()
                               },
@@ -75,7 +75,25 @@ class NotificationsScreen extends ConsumerWidget {
                           }
                           if (notification.type == 'RFP') {
                             GoRouter.of(context).pushNamed(
-                              rFXManagmentRFPDetailPage,
+                              serviceManagmentRFPDetailPage,
+                              pathParameters: {
+                                'id': notification.typeId.toString()
+                              },
+                              extra: controller.person,
+                            );
+                          }
+                          if (notification.type == 'ServiceInquiry') {
+                            GoRouter.of(context).pushNamed(
+                              serviceManagmentRFIDetailPage,
+                              pathParameters: {
+                                'id': notification.typeId.toString()
+                              },
+                              extra: controller.person,
+                            );
+                          }
+                          if (notification.type == 'ProductInquiry') {
+                            GoRouter.of(context).pushNamed(
+                              salesManagmentRFIDetailPage,
                               pathParameters: {
                                 'id': notification.typeId.toString()
                               },
@@ -84,80 +102,195 @@ class NotificationsScreen extends ConsumerWidget {
                           }
                         },
                         child: Container(
-                            padding: const EdgeInsets.only(
-                                    left: 20, right: 0, top: 4, bottom: 14)
-                                .r,
-                            margin: const EdgeInsets.only(
-                                    left: 20, right: 20, top: 20, bottom: 0)
-                                .r,
-                            decoration: BoxDecoration(
-                              color: (notification.isRead == 0)
-                                  ? Color.fromRGBO(237, 243, 255, 0.5)
-                                  : whiteColor,
-                            ),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              //mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Container(
-                                  height: 10.h,
-                                  width: 10.w,
-                                  margin: EdgeInsets.only(top: 20).r,
-                                  decoration: BoxDecoration(
-                                      color: (notification.isRead == 0)
-                                          ? Color(0xff1F3996)
-                                          : Colors.white,
-                                      shape: BoxShape.circle),
-                                ),
-                                5.pw,
-                                SizedBox(
-                                  height: 48.h,
-                                  width: 48.w,
-                                  child: SvgPicture.asset(
-                                    'assets/images/jazalla_logo.svg',
-                                    fit: BoxFit.contain,
+                          width: 375.w,
+                          padding: (notification.isRead == 0)
+                              ? const EdgeInsets.only(
+                                      left: 10, right: 0, top: 24, bottom: 0)
+                                  .r
+                              : const EdgeInsets.only(
+                                      left: 20, right: 0, top: 24, bottom: 0)
+                                  .r,
+                          margin: const EdgeInsets.only(
+                                  left: 0, right: 0, top: 0, bottom: 0)
+                              .r,
+                          decoration: BoxDecoration(
+                            color: (notification.isRead == 0)
+                                ? Color.fromRGBO(237, 243, 255, 0.5)
+                                : whiteColor,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                //mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  if (notification.isRead == 0) ...[
+                                    Container(
+                                      height: 8.h,
+                                      width: 8.w,
+                                      margin:
+                                          EdgeInsets.only(top: 20, left: 5).r,
+                                      decoration: BoxDecoration(
+                                          color: (notification.isRead == 0)
+                                              ? const Color(0xff2E70E8)
+                                              : Colors.white,
+                                          shape: BoxShape.circle),
+                                    ),
+                                  ],
+                                  5.pw,
+                                  // if (notification.type == 'RFQ') ...[
+                                  SizedBox(
+                                    height: 48.h,
+                                    width: 48.w,
+                                    child: SvgPicture.asset(
+                                      'assets/images/general_service.svg',
+                                      fit: BoxFit.contain,
+                                    ),
                                   ),
-                                ),
-                                12.pw,
-                                SizedBox(
-                                  width: 180.w,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        notification.heading.toString(),
-                                        style: GoogleFonts.inter(
-                                            fontSize: 14.sp,
-                                            color: Color(0xff1E293B),
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      8.ph,
-                                      Text(
-                                        notification.data.toString(),
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: GoogleFonts.inter(
-                                            fontSize: 14.sp,
-                                            color: Color(0xff334155),
-                                            fontWeight: FontWeight.w300),
-                                      ),
-                                    ],
+                                  //]
+                                  //else if (notification.type == 'RFP') ...[
+                                  //   SizedBox(
+                                  //     height: 48.h,
+                                  //     width: 48.w,
+                                  //     child: SvgPicture.asset(
+                                  //       'assets/images/tendercard_icon2.svg',
+                                  //       fit: BoxFit.contain,
+                                  //     ),
+                                  //   ),
+                                  // ] else if (notification.type ==
+                                  //     'ServiceInquiry') ...[
+                                  //   SizedBox(
+                                  //     height: 48.h,
+                                  //     width: 48.w,
+                                  //     child: SvgPicture.asset(
+                                  //       'assets/images/tenders.svg',
+                                  //       fit: BoxFit.contain,
+                                  //     ),
+                                  //   ),
+                                  // ] else if (notification.type ==
+                                  //     'ProductInquiry') ...[
+                                  //   SizedBox(
+                                  //     height: 48.h,
+                                  //     width: 48.w,
+                                  //     child: SvgPicture.asset(
+                                  //       'assets/images/tick.svg',
+                                  //       fit: BoxFit.contain,
+                                  //     ),
+                                  //   ),
+                                  // ],
+                                  12.pw,
+                                  SizedBox(
+                                    width: 200.w,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        // Text(
+                                        //   notification.heading.toString(),
+                                        //   style: GoogleFonts.inter(
+                                        //       fontSize: 14.sp,
+                                        //       color: Color(0xff1E293B),
+                                        //       fontWeight: FontWeight.w600),
+                                        // ),
+                                        RichText(
+                                          text: TextSpan(
+                                            text:
+                                                notification.heading.toString(),
+                                            style: GoogleFonts.inter(
+                                                fontSize: 16.sp,
+                                                color: Color(0xff1E293B),
+                                                fontWeight: FontWeight.w700),
+                                            /*defining default style is optional */
+                                            children: <TextSpan>[
+                                              TextSpan(
+                                                text: '  Type   ',
+                                                style: GoogleFonts.inter(
+                                                    fontSize: 12.sp,
+                                                    color: Color(0xff1E293B),
+                                                    fontWeight:
+                                                        FontWeight.w300),
+                                              ),
+                                              if (notification.type ==
+                                                  'RFQ') ...[
+                                                TextSpan(
+                                                  text: 'Request For Quotation',
+                                                  style: GoogleFonts.inter(
+                                                      fontSize: 14.sp,
+                                                      color: Color(0xff1E293B),
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                              ] else if (notification.type ==
+                                                  'RFP') ...[
+                                                TextSpan(
+                                                  text: 'Request For Proposal',
+                                                  style: GoogleFonts.inter(
+                                                      fontSize: 14.sp,
+                                                      color: Color(0xff1E293B),
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                              ] else if (notification.type ==
+                                                  'ServiceInquiry') ...[
+                                                TextSpan(
+                                                  text:
+                                                      'Request For Information For Service',
+                                                  style: GoogleFonts.inter(
+                                                      fontSize: 14.sp,
+                                                      color: Color(0xff1E293B),
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                              ] else if (notification.type ==
+                                                  'ProductInquiry') ...[
+                                                TextSpan(
+                                                  text:
+                                                      'Request For Information For Product',
+                                                  style: GoogleFonts.inter(
+                                                      fontSize: 14.sp,
+                                                      color: Color(0xff1E293B),
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                              ]
+                                            ],
+                                          ),
+                                        ),
+                                        8.ph,
+                                        Text(
+                                          notification.data.toString(),
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: GoogleFonts.inter(
+                                              fontSize: 14.sp,
+                                              color: Color(0xff334155),
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                12.pw,
-                                SizedBox(
-                                  width: 30.w,
-                                  child: Text(
-                                    formattedTime.toString(),
-                                    style: GoogleFonts.quicksand(
-                                        fontSize: 10.sp,
-                                        color: Color(0xff475569),
-                                        fontWeight: FontWeight.w300),
+                                  18.pw,
+                                  SizedBox(
+                                    width: 50.w,
+                                    child: Text(
+                                      formattedTime.toString(),
+                                      style: GoogleFonts.quicksand(
+                                          fontSize: 10.sp,
+                                          color: Color(0xff475569),
+                                          fontWeight: FontWeight.w300),
+                                    ),
                                   ),
-                                ),
-                              ],
-                            )));
+                                ],
+                              ),
+                              10.ph,
+                              const Divider(
+                                thickness: 0.5,
+                                height: 0,
+                              )
+                            ],
+                          ),
+                        ));
                   },
                 ))
             ] else
@@ -177,9 +310,6 @@ class NotificationsScreen extends ConsumerWidget {
     );
   }
 }
-
-
-
 
 // class NotificationsScreen extends ConsumerWidget {
 //   const NotificationsScreen({Key? key}) : super(key: key);

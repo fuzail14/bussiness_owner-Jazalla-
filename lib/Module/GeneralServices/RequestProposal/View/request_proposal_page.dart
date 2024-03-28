@@ -125,7 +125,7 @@ class RequestProposalScreen extends ConsumerWidget {
                           ),
                           child: Center(
                             child: Text(requestProposalState
-                                .serviceDetailForProposal!.paymentMode!
+                                .serviceDetailForProposal!.paymentMode
                                 .toString()),
                           ),
                         )
