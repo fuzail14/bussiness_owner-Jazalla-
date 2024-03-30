@@ -53,8 +53,6 @@ class InquiryNotifier extends StateNotifier<InquiryState> {
     state = state.copyWith(pdfFile: pdfFile);
   }
 
-  Future<void> sendInquiry() async {}
-
   Future<void> saveInquiry({
     required productId,
     required productTitle,

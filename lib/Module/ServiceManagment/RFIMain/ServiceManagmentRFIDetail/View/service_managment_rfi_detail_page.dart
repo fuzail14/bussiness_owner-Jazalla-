@@ -636,7 +636,7 @@ class ServiceManagmentRFIDetailPage extends ConsumerWidget {
                           //textColor: HexColor('#8518FF'),
 
                           onPressed: () {
-                            GoRouter.of(context).pushNamed(sendResponseView);
+                            GoRouter.of(context).pushNamed(sendRFIResponseView);
                             // if (controller.key.currentState!.validate()) {
                             //   state.phoneNumber =
                             //       "+${state.countryCode}${controller.phoneNumberController.text}";

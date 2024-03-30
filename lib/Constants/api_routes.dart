@@ -3,14 +3,14 @@ class Api {
   // static const String originalImageBaseUrl = 'http://127.0.0.1:8000';
   // static const String baseUrl = 'http://127.0.0.1:8000/api/';
 
-  // static const String imageBaseUrl = 'http://192.168.100.47:8000/uploads/logo/';
-  // static const String originalImageBaseUrl = 'http://192.168.100.47:8000';
-  // static const String baseUrl = 'http://192.168.100.47:8000/api/';
+  static const String imageBaseUrl = 'http://192.168.100.47:8000/uploads/logo/';
+  static const String originalImageBaseUrl = 'http://192.168.100.47:8000';
+  static const String baseUrl = 'http://192.168.100.47:8000/api/';
 
-  static const String imageBaseUrl =
-      'https://staging.jazalla.com/api/uploads/logo/';
-  static const String originalImageBaseUrl = 'https://staging.jazalla.com';
-  static const String baseUrl = 'https://staging.jazalla.com/api/';
+  // static const String imageBaseUrl =
+  //     'https://staging.jazalla.com/api/uploads/logo/';
+  // static const String originalImageBaseUrl = 'https://staging.jazalla.com';
+  // static const String baseUrl = 'https://staging.jazalla.com/api/';
 
   static const String login = "${baseUrl}loginWithMobileNumber";
   static const String fcmTokenRefresh = "${baseUrl}fcmtokenrefresh";
@@ -96,6 +96,9 @@ class Api {
 
   static const String sendInquiry =
       "${baseUrl}marketplace/OnlineStore/sendInquiry";
+
+  static const String sendresponseForInformation =
+      "${baseUrl}marketplace/OnlineStore/sendresponseForInformation";
 
   static const String getProductWithTemplate =
       "${baseUrl}marketplace/OnlineStore/getProductWithTemplate";

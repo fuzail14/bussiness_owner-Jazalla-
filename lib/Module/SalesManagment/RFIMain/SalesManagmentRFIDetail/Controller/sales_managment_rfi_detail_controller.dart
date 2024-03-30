@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:bussines_owner/Data/Api%20Resp/api_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../../Constants/Person/person.dart';
+import '../../../../../Constants/Person/person_controller.dart';
 import '../../../../../Providers/argument_provider.dart';
 import '../../../../../Repo/SalesManagment/RFI/DetailRepo/sales_managment_rfi_detail_repository.dart';
 import '../Model/SalesManagmentRFIDetail.dart';
@@ -38,8 +40,11 @@ class SalesManagmentRFIDetailState {
 
 class SalesManagmentRFIDetailNotifier
     extends StateNotifier<SalesManagmentRFIDetailState> {
+  int rfiId;
+  Person person;
   SalesManagmentRFIDetailNotifier({
-    required int rfiId,
+    required this.rfiId,
+    required this.person,
   }) : super(SalesManagmentRFIDetailState()) {
     rfiDetailViewApi(rfiId: rfiId);
   }
@@ -78,8 +83,10 @@ final salesManagmentRFIDetailProvider = StateNotifierProvider.autoDispose<
     SalesManagmentRFIDetailNotifier, SalesManagmentRFIDetailState>((ref) {
   final args = ref.watch(routeArgsProvider);
   final rfiId = args['rfiId'] as int;
+  final person = ref.watch(personProvider);
+  if (person == null) {
+    throw Exception('Person data is not available');
+  }
 
-  return SalesManagmentRFIDetailNotifier(
-    rfiId: rfiId,
-  );
-}, dependencies: [routeArgsProvider]);
+  return SalesManagmentRFIDetailNotifier(rfiId: rfiId, person: person);
+}, dependencies: [routeArgsProvider, personProvider]);

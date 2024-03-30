@@ -124,12 +124,12 @@ class SalesManagmentRFIScreen extends ConsumerWidget {
                       return GestureDetector(
                         onTap: () {
                           GoRouter.of(context).pushNamed(
-                            salesManagmentRFIDetailPage,
-                            pathParameters: {
-                              'id':
-                                  state.request4Information[index].id.toString()
-                            },
-                          );
+                              salesManagmentRFIDetailPage,
+                              pathParameters: {
+                                'id': state.request4Information[index].id
+                                    .toString()
+                              },
+                              extra: state.person);
                         },
                         child: Container(
                           //width: 360.w,

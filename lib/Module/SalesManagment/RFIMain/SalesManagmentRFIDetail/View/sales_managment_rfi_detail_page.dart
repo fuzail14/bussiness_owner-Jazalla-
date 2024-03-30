@@ -407,14 +407,12 @@ class SalesManagmentRFIDetailPage extends ConsumerWidget {
                           //textColor: HexColor('#8518FF'),
 
                           onPressed: () {
-                            GoRouter.of(context).pushNamed(sendResponseView);
-                            // if (controller.key.currentState!.validate()) {
-                            //   state.phoneNumber =
-                            //       "+${state.countryCode}${controller.phoneNumberController.text}";
-                            //   if (!state.isLoading) {
-                            //     controller.verifyUserPhoneNumber(context);
-                            //   }
-                            // }
+                            GoRouter.of(context).pushNamed(sendRFIResponseView,
+                                pathParameters: {
+                                  'id': state.salesManagmentRFIDetail[index].id
+                                      .toString()
+                                },
+                                extra: controller.person);
                           },
                         ),
                       ),

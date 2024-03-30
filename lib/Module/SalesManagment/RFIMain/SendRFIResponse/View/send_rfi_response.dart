@@ -10,7 +10,7 @@ import '../../../../../Widgets/AppBar/my_app_bar.dart';
 import '../../../../../Widgets/DescriptionTextField/description_field_attachment.dart';
 import '../Notifier/send_rfi_response_notifier.dart';
 
-class SendResponseView extends ConsumerWidget {
+class SendRFIResponseView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(sendRFIResponseProvider.notifier);
@@ -25,7 +25,7 @@ class SendResponseView extends ConsumerWidget {
       body: Padding(
         padding: const EdgeInsets.only(top: 20, left: 20, right: 20).r,
         child: Form(
-          //  key: inquirycontroller.key,
+          key: controller.key,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -50,16 +50,18 @@ class SendResponseView extends ConsumerWidget {
                 },
                 fileName: state.pdfFile?.path.split('/').last,
                 buttonOnTap: () {
-                  // if (tenderResponseNotifier.key.currentState!.validate()) {
-                  //   ref.read(tenderResponseProvider.notifier).saveInquiry(
-                  //       productId: '',
-                  //       userId: '',
-                  //       companyId: '',
-                  //       description:
-                  //           tenderResponseNotifier.descriptionController.text,
-                  //       pdfFile: tenderResponseState.pdfFile,
-                  //       context: context);
-                  // }
+                  if (controller.key.currentState!.validate()) {
+                    ref
+                        .read(sendRFIResponseProvider.notifier)
+                        .sendResponseOfInformation(
+                            rfiId: controller.rfiId,
+                            companyId: controller.person.data!.companyId,
+                            userId: controller.person.data!.id,
+                            response_detail:
+                                controller.descriptionController.text,
+                            pdfFile: state.pdfFile,
+                            context: context);
+                  }
                 },
               ),
             ],

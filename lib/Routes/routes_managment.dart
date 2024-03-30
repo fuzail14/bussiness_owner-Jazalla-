@@ -673,10 +673,13 @@ final router = GoRouter(
       path: '/SalesManagmentRFIDetailPage/:id',
       pageBuilder: (context, state) {
         final id = int.parse(state.pathParameters['id']!);
+        final person = state.extra as Person;
 
         final page = ProviderScope(
           overrides: [
             routeArgsProvider.overrideWithValue({'rfiId': id}),
+            personProvider
+                .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
           child: SalesManagmentRFIDetailPage(),
         );
@@ -692,10 +695,13 @@ final router = GoRouter(
       path: '/SalesManagmentRFQDetailPage/:id',
       pageBuilder: (context, state) {
         final id = int.parse(state.pathParameters['id']!);
+        //  final person = state.extra as Person;
 
         final page = ProviderScope(
           overrides: [
             routeArgsProvider.overrideWithValue({'rfqId': id}),
+            // personProvider
+            //     .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
           child: SalesManagmentRFQDetailPage(),
         );
@@ -765,21 +771,20 @@ final router = GoRouter(
       },
     ),
     GoRoute(
-      name: sendResponseView,
-      path: '/SendResponseView',
-      // builder: (context, state) {
-      //   return SendResponseView();
-      // },
-
+      name: sendRFIResponseView,
+      path: '/SendRFIResponseView/:id',
       pageBuilder: (context, state) {
-        // final person = state.extra as Person;
-        final page = ProviderScope(
-          // overrides: [
-          // personProvider
-          //     .overrideWith((ref) => PersonController()..setPerson(person)),
+        final id = int.parse(state.pathParameters['id']!);
 
-          //  ],
-          child: SendResponseView(),
+        final person = state.extra as Person;
+
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider.overrideWithValue({'rfiId': id}),
+            personProvider
+                .overrideWith((ref) => PersonController()..setPerson(person)),
+          ],
+          child: SendRFIResponseView(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
