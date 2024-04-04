@@ -26,7 +26,18 @@ class SalesManagmentRFQScreen extends ConsumerWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 16, top: 20).r,
+            child: Text(
+              'RFQ Managment',
+              style: GoogleFonts.sourceCodePro(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xff000000)),
+            ),
+          ),
           // 26.ph,
           // Row(
           //   children: [
@@ -95,7 +106,6 @@ class SalesManagmentRFQScreen extends ConsumerWidget {
           if (state.responseStatus == Status.loading)
             const Loader()
           else if (state.responseStatus == Status.completed) ...[
-            20.ph,
             if (state.requestForQuotation.isEmpty) ...[
               Center(
                 child: Text(
@@ -124,234 +134,144 @@ class SalesManagmentRFQScreen extends ConsumerWidget {
                         },
                         child: Container(
                           margin: const EdgeInsets.only(
-                            bottom: 10,
-                          ).r,
-                          padding: const EdgeInsets.only(
-                                  left: 16, right: 16, bottom: 5, top: 10)
+                                  left: 13, right: 13, top: 20)
                               .r,
+                          padding: const EdgeInsets.only(
+                                  left: 17, right: 17, bottom: 18, top: 14)
+                              .r,
+                          decoration: BoxDecoration(
+                            color: whiteColor,
+                            borderRadius: BorderRadius.circular(7).r,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                offset: const Offset(
+                                  1.0,
+                                  3.0,
+                                ),
+                                blurRadius: 10.0,
+                                spreadRadius: 1.0,
+                              ),
+                            ],
+                          ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    SizedBox(
+                                      width: 100.w,
+                                      child: Text(
+                                        'ID',
+                                        style: montserratHeadingTextStyle,
+                                      ),
+                                    ),
+                                    Flexible(
+                                      child: AutoSizeText(
+                                        'RFQ-${state.requestForQuotation[index].id}',
+                                        maxLines: 1,
+                                        style: montserratSubHeadingTextStyle,
+                                      ),
+                                    ),
+                                  ]),
+                              8.ph,
+                              Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    SizedBox(
+                                      width: 100.w,
+                                      child: Text(
+                                        'Title',
+                                        style: montserratHeadingTextStyle,
+                                      ),
+                                    ),
+                                    Flexible(
+                                      child: AutoSizeText(
+                                        state.requestForQuotation[index].title
+                                            .toString(),
+                                        maxLines: 2,
+                                        style: montserratSubHeadingTextStyle,
+                                      ),
+                                    ),
+                                  ]),
+                              8.ph,
+                              Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceBetween,
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'ID',
-                                        style: GoogleFonts.sourceCodePro(
-                                            fontSize: 14.sp,
-                                            fontWeight: FontWeight.w300,
-                                            color: Color(0xff000000)),
-                                      ),
-                                      5.ph,
-                                      Text(
-                                        'Title',
-                                        style: GoogleFonts.sourceCodePro(
-                                            fontSize: 14.sp,
-                                            fontWeight: FontWeight.w300,
-                                            color: Color(0xff000000)),
-                                      ),
-                                      5.ph,
-                                      Text(
-                                        'Date',
-                                        style: GoogleFonts.sourceCodePro(
-                                            fontSize: 14.sp,
-                                            fontWeight: FontWeight.w300,
-                                            color: Color(0xff000000)),
-                                      ),
-                                    ],
+                                  SizedBox(
+                                    width: 100.w,
+                                    child: AutoSizeText('Status',
+                                        maxLines: 1,
+                                        style: montserratHeadingTextStyle),
                                   ),
-                                  6.pw,
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        width: 80.w,
-                                        child: AutoSizeText(
-                                            'RFQ-${state.requestForQuotation[index].id}',
-                                            maxLines: 1,
-                                            style: GoogleFonts.sourceCodePro(
-                                                fontSize: 12.sp,
-                                                fontWeight: FontWeight.w600,
-                                                color: Color(0xff000000))),
-                                      ),
-                                      5.ph,
-                                      SizedBox(
-                                        width: 80.w,
-                                        child: AutoSizeText(
-                                            state.requestForQuotation[index]
-                                                .title
-                                                .toString(),
-                                            maxLines: 1,
-                                            style: GoogleFonts.sourceCodePro(
-                                                fontSize: 12.sp,
-                                                fontWeight: FontWeight.w600,
-                                                color: Color(0xff000000))),
-                                      ),
-                                      5.ph,
-                                      SizedBox(
-                                        width: 80.w,
-                                        child: AutoSizeText(
-                                            state.requestForQuotation[index]
-                                                .startDate
-                                                .toString(),
-                                            maxLines: 1,
-                                            style: GoogleFonts.sourceCodePro(
-                                                fontSize: 12.sp,
-                                                fontWeight: FontWeight.w600,
-                                                color: Color(0xff000000))),
-                                      ),
-                                    ],
-                                  ),
-                                  50.pw,
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Quantity',
-                                        style: GoogleFonts.sourceCodePro(
-                                            fontSize: 14.sp,
-                                            fontWeight: FontWeight.w300,
-                                            color: Color(0xff000000)),
-                                      ),
-                                      5.ph,
-                                      Text(
-                                        'Status',
-                                        style: GoogleFonts.sourceCodePro(
-                                            fontSize: 14.sp,
-                                            fontWeight: FontWeight.w300,
-                                            color: Color(0xff000000)),
-                                      ),
-                                    ],
-                                  ),
-                                  5.pw,
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        width: 70.w,
-                                        child: AutoSizeText(
-                                            state.requestForQuotation[index]
-                                                .quantity
-                                                .toString(),
-                                            maxLines: 1,
-                                            style: GoogleFonts.sourceCodePro(
-                                                fontSize: 12.sp,
-                                                fontWeight: FontWeight.w600,
-                                                color: Color(0xff000000))),
-                                      ),
-                                      10.ph,
-                                      if (state.requestForQuotation[index]
-                                              .status ==
-                                          '1') ...[
-                                        SizedBox(
-                                          width: 80.w,
-                                          child: AutoSizeText('RFQ Send',
-                                              maxLines: 1,
-                                              style: GoogleFonts.sourceCodePro(
-                                                  fontSize: 12.sp,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Color(0xff4EBBD3))),
-                                        ),
-                                      ] else if (state
-                                              .requestForQuotation[index]
-                                              .status ==
-                                          '2') ...[
-                                        SizedBox(
-                                          width: 80.w,
-                                          child: AutoSizeText('RFQ Viewed',
-                                              maxLines: 1,
-                                              style: GoogleFonts.sourceCodePro(
-                                                  fontSize: 12.sp,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Color(0xff3D56A3))),
-                                        ),
-                                      ] else if (state
-                                              .requestForQuotation[index]
-                                              .status ==
-                                          '3') ...[
-                                        SizedBox(
-                                          width: 80.w,
-                                          child: AutoSizeText('RFQ Replied',
-                                              maxLines: 1,
-                                              style: GoogleFonts.sourceCodePro(
-                                                  fontSize: 12.sp,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Color(0xff4EBBD3))),
-                                        ),
-                                      ] else if (state
-                                              .requestForQuotation[index]
-                                              .status ==
-                                          '4') ...[
-                                        SizedBox(
-                                          width: 80.w,
-                                          child: AutoSizeText('RFQ Cancel',
-                                              maxLines: 1,
-                                              style: GoogleFonts.sourceCodePro(
-                                                  fontSize: 12.sp,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Color(0xffFF0000))),
-                                        ),
-                                      ] else if (state
-                                              .requestForQuotation[index]
-                                              .status ==
-                                          '10') ...[
-                                        SizedBox(
-                                          width: 80.w,
-                                          child: AutoSizeText('RFQ Draft',
-                                              maxLines: 1,
-                                              style: GoogleFonts.sourceCodePro(
-                                                  fontSize: 12.sp,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Color(0xff000000))),
-                                        ),
-                                      ]
-                                    ],
-                                  ),
-
-                                  // 5.p
-                                  // w,
-                                  // Flexible(
-                                  //   child: AutoSizeText(
-                                  //       'RFQ-${state.requestForQuotation[index].id}',
-                                  //       maxLines: 1,
-                                  //       style: GoogleFonts.sourceCodePro(
-                                  //           fontSize: 12.sp,
-                                  //           fontWeight: FontWeight.w600,
-                                  //           color: Color(0xff000000))),
-                                  // ),
-                                  // 70.pw,
-                                  // Text(
-                                  //   'Request',
-                                  //   style: GoogleFonts.montserrat(
-                                  //       fontSize: 12.sp,
-                                  //       color: Color(0xff000000),
-                                  //       fontWeight: FontWeight.w300),
-                                  // ),
-                                  // 5.pw,
-                                  // Flexible(
-                                  //   child: AutoSizeText(
-                                  //     'Processing',
-                                  //     maxLines: 1,
-                                  //     style: GoogleFonts.montserrat(
-                                  //         fontSize: 12.sp,
-                                  //         color: Color(0xff000000),
-                                  //         fontWeight: FontWeight.w600),
-                                  //   ),
-                                  // ),
+                                  10.ph,
+                                  if (state.requestForQuotation[index].status ==
+                                      '1') ...[
+                                    Flexible(
+                                      child: AutoSizeText('RFQ Received',
+                                          maxLines: 1,
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w400,
+                                              color: Color(0xff274EA0))),
+                                    ),
+                                  ] else if (state
+                                          .requestForQuotation[index].status ==
+                                      '2') ...[
+                                    Flexible(
+                                      child: AutoSizeText('RFQ Viewed',
+                                          maxLines: 1,
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w400,
+                                              color: Color(0xff274EA0))),
+                                    )
+                                  ] else if (state
+                                          .requestForQuotation[index].status ==
+                                      '3') ...[
+                                    Flexible(
+                                      child: AutoSizeText('RFQ Replied',
+                                          maxLines: 1,
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w400,
+                                              color: Color(0xff4EBBD3))),
+                                    )
+                                  ] else if (state
+                                          .requestForQuotation[index].status ==
+                                      '4') ...[
+                                    Flexible(
+                                      child: AutoSizeText('RFQ Cancel',
+                                          maxLines: 1,
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w400,
+                                              color: Color(0xffFF0000))),
+                                    )
+                                  ] else if (state
+                                          .requestForQuotation[index].status ==
+                                      '10') ...[
+                                    Flexible(
+                                      child: AutoSizeText('RFQ Draft',
+                                          maxLines: 1,
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w400,
+                                              color: Color(0xff4EBBD3))),
+                                    )
+                                  ]
                                 ],
                               ),
-                              5.ph,
-                              const Divider()
                             ],
                           ),
                         ),

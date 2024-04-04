@@ -23,69 +23,69 @@ class CheckPhoneNumber extends ConsumerWidget {
     final state = ref.watch(checkPhoneNumberProvider);
 
     return Scaffold(
-      body: Stack(children: [
-        Container(
-          height: 441.h,
-          padding: EdgeInsets.symmetric(vertical: 62, horizontal: 70).r,
-          width: double.infinity.w,
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Color(0xff2C5DA7), Color(0xff49AECD)])),
-          child: Column(
-            children: [
-              FadeInUp(
-                duration: const Duration(seconds: 2),
-                child: SvgPicture.asset(
-                  'assets/images/jazalla_logo.svg',
-                  //width: 110.w,
-                  height: 135.h,
-
-                  fit: BoxFit.contain,
-
-                  // set your desired height
-                ),
-              ),
-              10.ph,
-              FadeInDown(
-                duration: const Duration(seconds: 2),
-                child: SizedBox(
-                  // width: double.infinity.w,
-                  // height: 100.h,
+      body: SingleChildScrollView(
+        child: Stack(children: [
+          Container(
+            //height: 441.h,
+            padding: EdgeInsets.symmetric(vertical: 62, horizontal: 70).r,
+            width: double.infinity.w,
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Color(0xff2C5DA7), Color(0xff49AECD)])),
+            child: Column(
+              children: [
+                FadeInUp(
+                  duration: const Duration(seconds: 2),
                   child: SvgPicture.asset(
-                    'assets/images/jazalla_logo_text.svg',
-                    //  / width: 250.w,
-                    //height: 135.h,
+                    'assets/images/jazalla_logo.svg',
+                    //width: 110.w,
+                    height: 135.h,
 
                     fit: BoxFit.contain,
 
                     // set your desired height
                   ),
                 ),
-              ),
-              10.ph,
-              FadeInRight(
-                duration: const Duration(seconds: 2),
-                child: Text(
-                  'Statrt Journey With Jazalla',
-                  style: GoogleFonts.montserrat(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: whiteColor),
+                10.ph,
+                FadeInDown(
+                  duration: const Duration(seconds: 2),
+                  child: SizedBox(
+                    // width: double.infinity.w,
+                    // height: 100.h,
+                    child: SvgPicture.asset(
+                      'assets/images/jazalla_logo_text.svg',
+                      //  / width: 250.w,
+                      //height: 135.h,
+
+                      fit: BoxFit.contain,
+
+                      // set your desired height
+                    ),
+                  ),
                 ),
-              ),
-            ],
+                10.ph,
+                FadeInRight(
+                  duration: const Duration(seconds: 2),
+                  child: Text(
+                    'Statrt Journey With Jazalla',
+                    style: GoogleFonts.montserrat(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: whiteColor),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 335.h),
-          padding: EdgeInsets.only(top: 40.h, left: 20, right: 20).r,
-          width: double.infinity,
-          height: 557.h,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30).r, color: Colors.white),
-          child: SingleChildScrollView(
+          Container(
+            margin: EdgeInsets.only(top: 330.h),
+            padding: EdgeInsets.only(top: 40.h, left: 20, right: 20).r,
+            width: double.infinity,
+            //height: 557.h,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30).r, color: Colors.white),
             child: Form(
               key: controller.key,
               child: Column(
@@ -162,8 +162,8 @@ class CheckPhoneNumber extends ConsumerWidget {
               ),
             ),
           ),
-        ),
-      ]),
+        ]),
+      ),
     );
   }
 

@@ -122,6 +122,12 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "dotted_border",
+      "rootUri": "file:///Users/muhammadfuzail/.pub-cache/hosted/pub.dev/dotted_border-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "equatable",
       "rootUri": "file:///Users/muhammadfuzail/.pub-cache/hosted/pub.dev/equatable-2.0.5",
       "packageUri": "lib/",
@@ -444,6 +450,12 @@
       "rootUri": "file:///Users/muhammadfuzail/.pub-cache/hosted/pub.dev/path-1.9.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
+    },
+    {
+      "name": "path_drawing",
+      "rootUri": "file:///Users/muhammadfuzail/.pub-cache/hosted/pub.dev/path_drawing-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "path_parsing",
@@ -806,7 +818,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2024-03-30T11:36:34.371095Z",
+  "generated": "2024-04-01T16:45:16.851344Z",
   "generator": "pub",
   "generatorVersion": "3.3.0"
 }

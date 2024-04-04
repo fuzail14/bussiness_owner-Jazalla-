@@ -31,7 +31,18 @@ class ServiceManagmentRFPScreen extends ConsumerWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 16, top: 20).r,
+            child: Text(
+              'RFP Managment',
+              style: GoogleFonts.sourceCodePro(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xff000000)),
+            ),
+          ),
           // 26.ph,
           // Row(
           //   children: [
@@ -100,8 +111,7 @@ class ServiceManagmentRFPScreen extends ConsumerWidget {
           if (state.responseStatus == Status.loading)
             const Loader()
           else if (state.responseStatus == Status.completed) ...[
-            20.ph,
-            if (state.requestForPropsal.isEmpty) ...[
+            if (state.requestForProposal.isEmpty) ...[
               Center(
                 child: Text(
                   'No Requests Found.',
@@ -115,181 +125,158 @@ class ServiceManagmentRFPScreen extends ConsumerWidget {
               Expanded(
                 child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: state.requestForPropsal.length,
+                    itemCount: state.requestForProposal.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
                           GoRouter.of(context).pushNamed(
                             serviceManagmentRFPDetailPage,
                             pathParameters: {
-                              'id': state.requestForPropsal[index].id.toString()
+                              'id':
+                                  state.requestForProposal[index].id.toString()
                             },
                           );
                         },
                         child: Container(
                           margin: const EdgeInsets.only(
-                            bottom: 10,
-                          ).r,
-                          padding: const EdgeInsets.only(
-                                  left: 16, right: 16, bottom: 5, top: 10)
+                                  left: 13, right: 13, top: 20)
                               .r,
+                          padding: const EdgeInsets.only(
+                                  left: 17, right: 17, bottom: 18, top: 14)
+                              .r,
+                          decoration: BoxDecoration(
+                            color: whiteColor,
+                            borderRadius: BorderRadius.circular(7).r,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                offset: const Offset(
+                                  1.0,
+                                  3.0,
+                                ),
+                                blurRadius: 10.0,
+                                spreadRadius: 1.0,
+                              ),
+                            ],
+                          ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              10.ph,
+                              Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    SizedBox(
+                                      width: 100.w,
+                                      child: Text(
+                                        'ID',
+                                        style: montserratHeadingTextStyle,
+                                      ),
+                                    ),
+                                    Flexible(
+                                      child: AutoSizeText(
+                                        'RFP-${state.requestForProposal[index].id}',
+                                        maxLines: 1,
+                                        style: montserratSubHeadingTextStyle,
+                                      ),
+                                    ),
+                                  ]),
+                              8.ph,
+                              Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    SizedBox(
+                                      width: 100.w,
+                                      child: Text(
+                                        'Title',
+                                        style: montserratHeadingTextStyle,
+                                      ),
+                                    ),
+                                    Flexible(
+                                      child: AutoSizeText(
+                                        state.requestForProposal[index].title
+                                            .toString(),
+                                        maxLines: 2,
+                                        style: montserratSubHeadingTextStyle,
+                                      ),
+                                    ),
+                                  ]),
+                              8.ph,
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
+                                mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'RFP-ID',
-                                        style: GoogleFonts.sourceCodePro(
-                                            fontSize: 14.sp,
-                                            fontWeight: FontWeight.w300,
-                                            color: Color(0xff000000)),
-                                      ),
-                                      Text(
-                                        'RFP-${state.requestForPropsal[index].id.toString()}',
-                                        style: GoogleFonts.sourceCodePro(
-                                            fontSize: 14.sp,
-                                            fontWeight: FontWeight.w600,
-                                            color: Color(0xff000000)),
-                                      ),
-                                      5.ph,
-                                      SizedBox(
-                                        width: 200.w,
-                                        child: Text(
-                                          state.requestForPropsal[index].title
-                                              .toString(),
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: GoogleFonts.sourceCodePro(
-                                              fontSize: 14.sp,
-                                              fontWeight: FontWeight.w600,
-                                              color: Color(0xff000000)),
-                                        ),
-                                      ),
-                                      5.ph,
-                                      SizedBox(
-                                        width: 100,
-                                        child: Text(
-                                          state.requestForPropsal[index]
-                                              .startDate
-                                              .toString(),
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: GoogleFonts.sourceCodePro(
-                                              fontSize: 14.sp,
-                                              fontWeight: FontWeight.w600,
-                                              color: Color(0xff4EBBD3)),
-                                        ),
-                                      ),
-                                    ],
+                                  SizedBox(
+                                    width: 100.w,
+                                    child: AutoSizeText('Status',
+                                        maxLines: 1,
+                                        style: montserratHeadingTextStyle),
                                   ),
-                                  // 10.pw,
-
-                                  //Spacer(),
-                                  // 20.pw,
-
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Status',
-                                        style: GoogleFonts.sourceCodePro(
-                                            fontSize: 14.sp,
-                                            fontWeight: FontWeight.w300,
-                                            color: Color(0xff000000)),
-                                      ),
-                                      5.ph,
-                                      if (state.requestForPropsal[index]
-                                              .status ==
-                                          '1') ...[
-                                        SizedBox(
-                                          width: 100.w,
-                                          child: Text(
-                                            'RFP Sent',
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: GoogleFonts.sourceCodePro(
-                                                fontSize: 14.sp,
-                                                fontWeight: FontWeight.w600,
-                                                color: Color(0xff4EBBD3)),
-                                          ),
-                                        ),
-                                      ] else if (state.requestForPropsal[index]
-                                              .status ==
-                                          '2') ...[
-                                        SizedBox(
-                                          width: 100.w,
-                                          child: Text(
-                                            'RFP Recieved',
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: GoogleFonts.sourceCodePro(
-                                                fontSize: 14.sp,
-                                                fontWeight: FontWeight.w600,
-                                                color: Color(0xff3D56A3)),
-                                          ),
-                                        ),
-                                      ] else if (state.requestForPropsal[index]
-                                              .status ==
-                                          '1') ...[
-                                        SizedBox(
-                                          width: 100.w,
-                                          child: Text(
-                                            'RFP Replied',
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: GoogleFonts.sourceCodePro(
-                                                fontSize: 14.sp,
-                                                fontWeight: FontWeight.w600,
-                                                color: Color(0xff4EBBD3)),
-                                          ),
-                                        ),
-                                      ] else if (state.requestForPropsal[index]
-                                              .status ==
-                                          '4') ...[
-                                        SizedBox(
-                                          width: 100.w,
-                                          child: Text(
-                                            'RFP Cancel',
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: GoogleFonts.sourceCodePro(
-                                                fontSize: 14.sp,
-                                                fontWeight: FontWeight.w600,
-                                                color: Color(0xffFF0000)),
-                                          ),
-                                        ),
-                                      ] else if (state.requestForPropsal[index]
-                                              .status ==
-                                          '10') ...[
-                                        SizedBox(
-                                          width: 100.w,
-                                          child: Text(
-                                            'RFP Draft',
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: GoogleFonts.sourceCodePro(
-                                                fontSize: 14.sp,
-                                                fontWeight: FontWeight.w600,
-                                                color: Color(0xff000000)),
-                                          ),
-                                        ),
-                                      ]
-                                    ],
-                                  ),
+                                  10.ph,
+                                  if (state.requestForProposal[index].status ==
+                                      '1') ...[
+                                    Flexible(
+                                      child: AutoSizeText('RFP Received',
+                                          maxLines: 1,
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w400,
+                                              color: Color(0xff274EA0))),
+                                    ),
+                                  ] else if (state
+                                          .requestForProposal[index].status ==
+                                      '2') ...[
+                                    Flexible(
+                                      child: AutoSizeText('RFP Viewed',
+                                          maxLines: 1,
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w400,
+                                              color: Color(0xff274EA0))),
+                                    )
+                                  ] else if (state
+                                          .requestForProposal[index].status ==
+                                      '3') ...[
+                                    Flexible(
+                                      child: AutoSizeText('RFP Replied',
+                                          maxLines: 1,
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w400,
+                                              color: Color(0xff4EBBD3))),
+                                    )
+                                  ] else if (state
+                                          .requestForProposal[index].status ==
+                                      '4') ...[
+                                    Flexible(
+                                      child: AutoSizeText('RFP Cancel',
+                                          maxLines: 1,
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w400,
+                                              color: Color(0xffFF0000))),
+                                    )
+                                  ] else if (state
+                                          .requestForProposal[index].status ==
+                                      '10') ...[
+                                    Flexible(
+                                      child: AutoSizeText('RFP Draft',
+                                          maxLines: 1,
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w400,
+                                              color: Color(0xff4EBBD3))),
+                                    )
+                                  ]
                                 ],
                               ),
-                              5.ph,
-                              const Divider()
                             ],
                           ),
                         ),

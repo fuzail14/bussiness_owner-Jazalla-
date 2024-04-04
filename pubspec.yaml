@@ -65,7 +65,7 @@ dependencies:
   flutter_local_notifications: ^17.0.0
   app_settings: ^5.1.1
   badges: ^3.1.2
-  
+  dotted_border: ^2.1.0
   
 
 dev_dependencies:

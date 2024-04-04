@@ -12,6 +12,7 @@ final Color primaryColor2 = HexColor("#4EBBD3");
 const Color blueColor = Color(0xff4B6FFF);
 const borderColor = Color(0xff19A3A3);
 var whiteColor = Colors.white;
+var blackColor = const Color(0xff000000);
 var interTextstyle = GoogleFonts.inter(
     fontSize: 10.sp,
     fontWeight: FontWeight.w400,

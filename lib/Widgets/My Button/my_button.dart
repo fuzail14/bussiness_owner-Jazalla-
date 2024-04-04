@@ -19,6 +19,7 @@ class MyButton extends StatelessWidget {
   final Color? textColor;
   final int? maxLines;
   final void Function()? onPressed;
+  final TextStyle? style;
 
   const MyButton(
       {super.key,
@@ -36,7 +37,8 @@ class MyButton extends StatelessWidget {
       required this.name,
       this.color,
       this.maxLines,
-      this.onPressed});
+      this.onPressed,
+      this.style});
 
   @override
   Widget build(BuildContext context) {
@@ -67,12 +69,13 @@ class MyButton extends StatelessWidget {
                 )
               : Text(name,
                   maxLines: maxLines ?? 1,
-                  style: GoogleFonts.ubuntu(
-                      color: textColor ?? Colors.white,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: 1,
-                      fontStyle: fontStyle,
-                      fontSize: 20.sp),
+                  style: style ??
+                      GoogleFonts.ubuntu(
+                          color: textColor ?? Colors.white,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: 1,
+                          fontStyle: fontStyle,
+                          fontSize: fontSize ?? 20.sp),
                   textAlign: TextAlign.center),
         ),
       ),

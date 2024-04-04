@@ -10,23 +10,23 @@ import '../../../../ProcurementManagment/RFP/Main/Model/Request4Proposal.dart';
 
 class ServiceManagmentRFQState {
   final Status responseStatus;
-  final List<RequestForProposal> requestForPropsal;
+  final List<RequestForProposal> requestForProposal;
   final Person person;
 
   ServiceManagmentRFQState({
     this.responseStatus = Status.loading,
-    this.requestForPropsal = const [],
+    this.requestForProposal = const [],
     required this.person,
   });
 
   ServiceManagmentRFQState copyWith({
     Status? responseStatus,
-    List<RequestForProposal>? requestForPropsal,
+    List<RequestForProposal>? requestForProposal,
     Person? person,
   }) {
     return ServiceManagmentRFQState(
       responseStatus: responseStatus ?? this.responseStatus,
-      requestForPropsal: requestForPropsal ?? this.requestForPropsal,
+      requestForProposal: requestForProposal ?? this.requestForProposal,
       person: person ?? this.person,
     );
   }
@@ -52,7 +52,7 @@ class ServiceManagmentRFQController
         bearerToken: bearerToken,
       );
       state = state.copyWith(
-        requestForPropsal: value.requestForProposal,
+        requestForProposal: value.requestForProposal,
         responseStatus: Status.completed,
       );
     } catch (e, stackTrace) {

@@ -26,6 +26,7 @@ class MarketPlaceScreen extends ConsumerWidget {
     final person = ref.read(personProvider);
     print('marketplace');
     print(person!.data!.lastName!);
+    print(person!.data!.mobileNo!);
 
     return Scaffold(
         //backgroundColor: Colors.red,

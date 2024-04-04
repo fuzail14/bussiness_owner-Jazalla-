@@ -1,11 +1,9 @@
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
 import 'package:bussines_owner/Routes/set_routes.dart';
-import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -16,31 +14,10 @@ import '../../../../SalesManagment/RFIMain/RFI/View/sales_managment_rfi_screen.d
 import '../Controller/procurement_soi_controller.dart';
 
 // ignore: must_be_immutable
-class ProcuremenetSoiScreen extends ConsumerStatefulWidget {
+class ProcuremenetSoiScreen extends ConsumerWidget {
   @override
-  _ProcuremenetSoiScreenState createState() => _ProcuremenetSoiScreenState();
-}
-
-class _ProcuremenetSoiScreenState extends ConsumerState<ProcuremenetSoiScreen>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-  int buildcheck = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 2, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    print('build check  ${buildcheck++}');
+  Widget build(BuildContext context, WidgetRef ref) {
+    //print('build check  ${buildcheck++}');
     final controller = ref.watch(ProcuremenetSoiProvider.notifier);
     final state = ref.watch(ProcuremenetSoiProvider);
     final salesManagmentRFPcontroller =
@@ -48,54 +25,32 @@ class _ProcuremenetSoiScreenState extends ConsumerState<ProcuremenetSoiScreen>
     final salesManagmentRFPstate = ref.watch(SalesManagmentRFIProvider);
 
     return Scaffold(
-      // appBar: MyAppBar(
-      //   showBell: false,
-      //   showFilter: false,
-      //   title: "RFP Managment",
-      // ),
       backgroundColor: Colors.white,
       body: Column(
         children: [
           Container(
-            margin: EdgeInsets.only(left: 23.w, right: 23.w, top: 30).w,
-            // width: 362.w,
-            height: 48.h,
-            decoration: ShapeDecoration(
-                color: const Color(0xff4EBBD3).withOpacity(0.2),
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(width: 1.w, color: const Color(0xff4EBBD3)),
-                  borderRadius: BorderRadius.circular(8.r),
-                )),
-            child: TabBar(
-              controller: _tabController,
-              unselectedLabelColor: const Color(0xFF5A5A5A),
-              indicatorSize: TabBarIndicatorSize.tab,
-              labelColor: Colors.white,
-              indicator: ShapeDecoration(
-                color: HexColor('#1F3996'),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6.r)),
-              ),
-              tabs: [
-                Tab(
-                    child: Text(
-                  'RFI Send',
-                  style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w500, fontSize: 12.sp),
-                )),
-                Tab(
-                  child: Text(
-                    'RFI Recieved',
-                    style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.w500, fontSize: 12.sp),
-                  ),
+            margin: EdgeInsets.only(left: 23.w, right: 23.w, top: 15.h),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _tabButton(
+                  title: 'RFI Sent',
+                  index: 0,
+                  isSelected: state.selectedIndex == 0,
+                  controller: controller,
+                ),
+                _tabButton(
+                  title: 'RFI Received',
+                  index: 1,
+                  isSelected: state.selectedIndex == 1,
+                  controller: controller,
                 ),
               ],
             ),
           ),
           Expanded(
-            child: TabBarView(
-              controller: _tabController,
+            child: IndexedStack(
+              index: state.selectedIndex,
               children: [
                 SendRFIScreen(),
                 SalesManagmentRFIScreen(),
@@ -106,6 +61,49 @@ class _ProcuremenetSoiScreenState extends ConsumerState<ProcuremenetSoiScreen>
       ),
     );
   }
+}
+
+Widget _tabButton({
+  required String title,
+  required int index,
+  required bool isSelected,
+  required ProcuremenetSoiController controller,
+}) {
+  return GestureDetector(
+    onTap: () => controller.setTabBarStatus(index),
+    child: AnimatedContainer(
+      width: 150.w,
+      duration: const Duration(milliseconds: 500),
+      padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+      decoration: BoxDecoration(
+        color: isSelected ? const Color(0xff4EBBD3) : Colors.white,
+        borderRadius: BorderRadius.circular(6.r),
+        boxShadow: isSelected
+            ? [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  offset: Offset(0, 2),
+                  blurRadius: 4.0,
+                ),
+              ]
+            : [], // Apply shadow only when selected
+        border: Border.all(
+          color: isSelected ? Color(0xffDADADA) : Color(0xff4EBBD3),
+          width: 1.w,
+        ),
+      ),
+      child: Center(
+        child: Text(
+          title,
+          style: GoogleFonts.poppins(
+            fontWeight: FontWeight.w600,
+            fontSize: 12.sp,
+            color: isSelected ? Colors.white : const Color(0xff4EBBD3),
+          ),
+        ),
+      ),
+    ),
+  );
 }
 
 class SendRFIScreen extends ConsumerWidget {
@@ -130,8 +128,18 @@ class SendRFIScreen extends ConsumerWidget {
       // ),
       backgroundColor: Colors.white,
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          26.ph,
+          Padding(
+            padding: const EdgeInsets.only(left: 20, top: 20).r,
+            child: Text(
+              'RFI Managment',
+              style: GoogleFonts.sourceCodePro(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xff000000)),
+            ),
+          ),
           // Row(
           //   children: [
           //     Container(
@@ -181,7 +189,6 @@ class SendRFIScreen extends ConsumerWidget {
           if (state.responseStatus == Status.loading)
             const Loader()
           else if (state.responseStatus == Status.completed) ...[
-            // 20.ph,
             if (state.request4Information.isEmpty) ...[
               Center(
                 child: Text(
@@ -211,146 +218,120 @@ class SendRFIScreen extends ConsumerWidget {
                         child: Container(
                           //width: 360.w,
                           // height: 224.h,
-                          margin:
-                              EdgeInsets.only(left: 26, right: 26, bottom: 20)
-                                  .r,
+                          margin: const EdgeInsets.only(
+                                  bottom: 9, left: 20, right: 20, top: 9)
+                              .r,
+                          padding: const EdgeInsets.only(
+                                  left: 39, right: 0, bottom: 15, top: 9)
+                              .r,
                           decoration: BoxDecoration(
-                              color: Color(0xffF9F9F9),
-                              borderRadius: BorderRadius.circular(8.0).r),
+                            color: whiteColor,
+                            borderRadius: BorderRadius.circular(7).r,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                offset: const Offset(
+                                  1.0,
+                                  3.0,
+                                ),
+                                blurRadius: 10.0,
+                                spreadRadius: 1.0,
+                              ),
+                            ],
+                          ),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                        left: 32, top: 16, bottom: 20)
-                                    .r,
-                                child: SizedBox(
-                                  width: 180.w,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'ID',
-                                        style: montserratHeadingTextStyle,
-                                      ),
-                                      4.ph,
-                                      Text(
-                                        state.request4Information[index].id
-                                            .toString(),
-                                        style: montserratSubHeadingTextStyle,
-                                      ),
-                                      16.ph,
-                                      Text(
-                                        'Title',
-                                        style: montserratHeadingTextStyle,
-                                      ),
-                                      4.ph,
-                                      Text(
-                                        state.request4Information[index].title
-                                            .toString(),
-                                        style: montserratSubHeadingTextStyle,
-                                      ),
-                                      16.ph,
-                                      Text(
-                                        'Issue Date',
-                                        style: montserratHeadingTextStyle,
-                                      ),
-                                      4.ph,
-                                      Text(
-                                        state.request4Information[index]
-                                            .startdate
-                                            .toString(),
-                                        style: montserratSubHeadingTextStyle,
-                                      ),
-                                      16.ph,
-                                      Text(
-                                        'Item Type',
-                                        style: montserratHeadingTextStyle,
-                                      ),
-                                      4.ph,
-                                      Text(
-                                        state.request4Information[index]
-                                            .requestType
-                                            .toString(),
-                                        style: montserratSubHeadingTextStyle,
-                                      ),
-                                    ],
-                                  ),
+                              SizedBox(
+                                width: 180.w,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'ID',
+                                      style: montserratHeadingTextStyle,
+                                    ),
+                                    4.ph,
+                                    Text(
+                                      state.request4Information[index].id
+                                          .toString(),
+                                      maxLines: 2,
+                                      style: montserratSubHeadingTextStyle,
+                                    ),
+                                    10.ph,
+                                    Text(
+                                      'Title',
+                                      style: montserratHeadingTextStyle,
+                                    ),
+                                    4.ph,
+                                    Text(
+                                      state.request4Information[index].title
+                                          .toString(),
+                                      maxLines: 2,
+                                      style: montserratSubHeadingTextStyle,
+                                    ),
+                                    10.ph,
+                                    Text(
+                                      'Issue Date',
+                                      style: montserratHeadingTextStyle,
+                                    ),
+                                    4.ph,
+                                    Text(
+                                      state.request4Information[index].startdate
+                                          .toString(),
+                                      maxLines: 2,
+                                      style: montserratSubHeadingTextStyle,
+                                    ),
+                                  ],
                                 ),
                               ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 16, bottom: 20)
-                                        .r,
-                                child: SizedBox(
-                                  //width: 180.w,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Request',
-                                        style: montserratHeadingTextStyle,
-                                      ),
-                                      4.ph,
-                                      if (state.request4Information[index]
-                                              .status ==
-                                          '1') ...[
-                                        Container(
-                                          padding: EdgeInsets.symmetric(
-                                                  horizontal: 8.0)
-                                              .r,
-                                          decoration: BoxDecoration(
-                                              color: const Color(0xff124206),
-                                              borderRadius:
-                                                  BorderRadius.circular(8).r),
-                                          child: Text('Processing',
-                                              style: GoogleFonts.montserrat(
-                                                  fontSize: 12.sp,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Color(0xffFACC15))),
-                                        ),
-                                      ],
-                                      16.ph,
-                                      Text(
-                                        'Status',
-                                        style: montserratHeadingTextStyle,
-                                      ),
-                                      4.ph,
-                                      if (state.request4Information[index]
-                                              .status ==
-                                          '1') ...[
-                                        Container(
-                                          padding: EdgeInsets.symmetric(
-                                                  horizontal: 8.0)
-                                              .r,
-                                          decoration: BoxDecoration(
-                                              color: const Color(0xff042F2E),
-                                              borderRadius:
-                                                  BorderRadius.circular(8).r),
-                                          child: Text('RFI Sent',
-                                              style: GoogleFonts.montserrat(
-                                                  fontSize: 12.sp,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Color(0xff2DD4BF))),
-                                        ),
-                                      ],
-                                      16.ph,
-                                      Text(
-                                        'Item For',
-                                        style: montserratHeadingTextStyle,
-                                      ),
-                                      4.ph,
-                                      Text(
-                                        state.request4Information[index]
-                                            .requestFor
-                                            .toString(),
-                                        style: montserratSubHeadingTextStyle,
-                                      ),
-                                      16.ph,
+                              SizedBox(
+                                width: 100.w,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Item Type',
+                                      style: montserratHeadingTextStyle,
+                                    ),
+                                    4.ph,
+                                    Text(
+                                      state.request4Information[index]
+                                          .requestType
+                                          .toString(),
+                                      maxLines: 2,
+                                      style: montserratSubHeadingTextStyle,
+                                    ),
+                                    10.ph,
+                                    Text(
+                                      'Request',
+                                      style: montserratHeadingTextStyle,
+                                    ),
+                                    4.ph,
+                                    if (state.request4Information[index]
+                                            .status ==
+                                        '1') ...[
+                                      Text('Processing',
+                                          maxLines: 2,
+                                          style: montserratSubHeadingTextStyle),
                                     ],
-                                  ),
+                                    10.ph,
+                                    Text(
+                                      'Status',
+                                      style: montserratHeadingTextStyle,
+                                    ),
+                                    4.ph,
+                                    if (state.request4Information[index]
+                                            .status ==
+                                        '1') ...[
+                                      Text('RFI Sent',
+                                          maxLines: 2,
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w400,
+                                              color: Color(0xff213F99))),
+                                    ],
+                                  ],
                                 ),
                               ),
                             ],

@@ -12,6 +12,7 @@ import '../../../Constants/Person/person.dart';
 import '../../../Constants/Person/person_controller.dart';
 import '../../../Services/Notification Services/notification_services.dart';
 import '../../../Services/Shared Preferences/MySharedPreferences.dart';
+import '../../Approval Managment/Main/View/approval_managment_screen.dart';
 import '../../EmployeeCenter/View/employee_center_page.dart';
 import '../../Menu/View/menu_screen.dart';
 
@@ -53,7 +54,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     return [
       CustomLineChart(),
       MarketPlaceScreen(),
-      Container(),
+      ApprovalManagmentScreen(),
       EmployeeCenterPage(),
       Menu(),
     ];

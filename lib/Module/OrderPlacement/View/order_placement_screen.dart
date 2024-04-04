@@ -68,44 +68,57 @@ class _OrderPlacementScreenState extends ConsumerState<OrderPlacementScreen>
       body: Column(
         children: [
           Container(
-            margin: EdgeInsets.only(left: 23.w, right: 23.w, top: 30).w,
+            //margin: EdgeInsets.only(left: 23.w, right: 23.w, top: 30).w,
             // width: 362.w,
             height: 48.h,
-            decoration: ShapeDecoration(
-                color: const Color(0xff4EBBD3).withOpacity(0.2),
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(width: 1.w, color: const Color(0xff4EBBD3)),
-                  borderRadius: BorderRadius.circular(8.r),
-                )),
+            // decoration: ShapeDecoration(
+            //     color: const Color(0xff4EBBD3).withOpacity(0.2),
+            //     shape: RoundedRectangleBorder(
+            //       side: BorderSide(width: 1.w, color: const Color(0xff4EBBD3)),
+            //       borderRadius: BorderRadius.circular(8.r),
+            //     )
+            //     )
+            //     ,
             child: TabBar(
               controller: _tabController,
               unselectedLabelColor: const Color(0xFF5A5A5A),
+              indicatorColor: const Color(0xff1F3996),
+
               indicatorSize: TabBarIndicatorSize.tab,
-              labelColor: Colors.white,
-              indicator: ShapeDecoration(
-                color: HexColor('#1F3996'),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6.r)),
-              ),
+
+              //  labelColor: Colors.white,
+              // indicator: ShapeDecoration(
+
+              //   color: HexColor('#1F3996'),
+              //   shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(6.r)),
+              // ),
+
               tabs: [
                 Tab(
                     child: Text(
                   'RFI',
                   style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w500, fontSize: 12.sp),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16.sp,
+                      color: Color(0xff3D56A3)),
                 )),
                 Tab(
                   child: Text(
                     'RFQ',
                     style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.w500, fontSize: 12.sp),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16.sp,
+                        color: Color(0xff3D56A3)),
                   ),
                 ),
                 Tab(
                   child: Text(
                     'RFP',
                     style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.w500, fontSize: 12.sp),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16.sp,
+                        color: Color(0xff3D56A3)),
                   ),
                 ),
               ],
