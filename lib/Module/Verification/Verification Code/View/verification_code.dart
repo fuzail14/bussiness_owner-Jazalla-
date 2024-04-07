@@ -25,57 +25,58 @@ class VerificationCode extends ConsumerWidget {
     final checkPhoneNumberState = ref.watch(checkPhoneNumberProvider);
 
     return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            height: 441.h,
-            padding: EdgeInsets.symmetric(vertical: 62, horizontal: 70).r,
-            width: double.infinity.w,
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Color(0xff2C5DA7), Color(0xff49AECD)])),
-            child: Column(
-              children: [
-                SvgPicture.asset(
-                  'assets/images/jazalla_logo.svg',
-                  //width: 110.w,
-                  height: 135.h,
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            Container(
+              height: 441.h,
+              padding: EdgeInsets.symmetric(vertical: 62, horizontal: 70).r,
+              width: double.infinity.w,
+              decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Color(0xff2C5DA7), Color(0xff49AECD)])),
+              child: Column(
+                children: [
+                  SvgPicture.asset(
+                    'assets/images/jazalla_logo.svg',
+                    //width: 110.w,
+                    height: 135.h,
 
-                  fit: BoxFit.contain,
+                    fit: BoxFit.contain,
 
-                  // set your desired height
-                ),
-                10.ph,
-                SvgPicture.asset(
-                  'assets/images/jazalla_logo_text.svg',
-                  //  / width: 250.w,
-                  //height: 135.h,
+                    // set your desired height
+                  ),
+                  10.ph,
+                  SvgPicture.asset(
+                    'assets/images/jazalla_logo_text.svg',
+                    //  / width: 250.w,
+                    //height: 135.h,
 
-                  fit: BoxFit.contain,
+                    fit: BoxFit.contain,
 
-                  // set your desired height
-                ),
-                10.ph,
-                Text(
-                  'Statrt Journey With Jazalla',
-                  style: GoogleFonts.montserrat(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: whiteColor),
-                ),
-              ],
+                    // set your desired height
+                  ),
+                  10.ph,
+                  Text(
+                    'Statrt Journey With Jazalla',
+                    style: GoogleFonts.montserrat(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: whiteColor),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 335).r,
-            padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 35).r,
-            width: double.infinity,
-            height: 557.h,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30), color: Colors.white),
-            child: SingleChildScrollView(
+            Container(
+              margin: const EdgeInsets.only(top: 335).r,
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 35, vertical: 35).r,
+              width: double.infinity,
+              height: 557.h,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30), color: Colors.white),
               child: Form(
                 key: verificationCodeController.key,
                 child: Column(
@@ -175,8 +176,8 @@ class VerificationCode extends ConsumerWidget {
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

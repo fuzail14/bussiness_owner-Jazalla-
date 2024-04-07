@@ -68,6 +68,10 @@ class SendRFPResponseNotifier extends StateNotifier<SendRFPResponseState> {
   // }
 
   final key = GlobalKey<FormState>();
+  TextEditingController dateController = TextEditingController();
+  TextEditingController timeController = TextEditingController();
+  TextEditingController totalPriceAmountController = TextEditingController();
+
   var responseDurationTimeUnitLists = ['Hour/s', 'Day/s', 'Week/s'];
 
   void setPdfFile(File? pdfFile) {
@@ -76,6 +80,28 @@ class SendRFPResponseNotifier extends StateNotifier<SendRFPResponseState> {
 
   void updateresponseDurationTimeUnit(String unit) {
     state = state.copyWith(responseDurationTimeUnit: unit);
+  }
+
+  Future StartDate(context) async {
+    DateTime? picked = await showDatePicker(
+        initialDate: DateTime.now(),
+        firstDate: DateTime(
+            DateTime.now().year, DateTime.now().month, DateTime.now().day),
+        lastDate: DateTime(2080),
+        context: context);
+    if (picked != null) {
+      dateController.text = DateFormat('yyyy-MM-dd').format(picked);
+    }
+  }
+
+  Future DurationTime(context) async {
+    TimeOfDay? pickedTime = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+    );
+    if (pickedTime != null) {
+      timeController.text = pickedTime.format(context);
+    }
   }
 }
 

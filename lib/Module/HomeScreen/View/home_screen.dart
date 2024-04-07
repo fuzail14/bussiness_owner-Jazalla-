@@ -1,15 +1,22 @@
+import 'dart:ui';
+
 import 'package:animate_do/animate_do.dart';
+import 'package:bussines_owner/Constants/Extensions/extensions.dart';
+import 'package:bussines_owner/Constants/Font/fonts.dart';
 import 'package:bussines_owner/Module/MarketPlace/View/market_place_screen.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import '../../../Constants/Global/Method/global_methods.dart';
 import '../../../Constants/Person/person.dart';
 import '../../../Constants/Person/person_controller.dart';
+import '../../../Constants/constants.dart';
 import '../../../Services/Notification Services/notification_services.dart';
 import '../../../Services/Shared Preferences/MySharedPreferences.dart';
 import '../../Approval Managment/Main/View/approval_managment_screen.dart';
@@ -52,7 +59,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   List<Widget> _buildScreens() {
     return [
-      CustomLineChart(),
+      // CustomLineChart(),
+      MainHomeScreen(),
       MarketPlaceScreen(),
       ApprovalManagmentScreen(),
       EmployeeCenterPage(),
@@ -457,3 +465,522 @@ class _InfoItem extends StatelessWidget {
     );
   }
 }
+
+class MainHomeScreen extends StatefulWidget {
+  @override
+  _MainHomeScreenState createState() => _MainHomeScreenState();
+}
+
+class _MainHomeScreenState extends State<MainHomeScreen> {
+  PageController _pageController =
+      PageController(initialPage: 0, viewportFraction: 1.1);
+  int _currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController.addListener(() {
+      int next = _pageController.page!.round();
+      if (_currentPage != next) {
+        setState(() {
+          _currentPage = next;
+        });
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Stack(children: [
+          Container(
+            //height: 441.h,
+            padding:
+                const EdgeInsets.only(left: 20, top: 48, right: 20, bottom: 20)
+                    .r,
+
+            width: double.infinity.w,
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Color(0xff2751A1), Color(0xff4BB3CF)])),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Sales Manager', style: FontManagment().poppins14),
+                    SvgPicture.asset('assets/images/notification_icon.svg')
+                  ],
+                ),
+                Text(
+                  'Ahmend Ahmed',
+                  style: FontManagment().poppins24,
+                ),
+                40.ph,
+                Center(
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.all(Radius.circular(25)),
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+                      child: Container(
+                        //width: 427.w,
+                        //height: 280.h,
+                        padding: const EdgeInsets.only(
+                                top: 22, left: 20, right: 20, bottom: 2)
+                            .r,
+
+                        decoration: BoxDecoration(
+                            color: const Color(0xffF6F6F6).withOpacity(0.15),
+                            border: Border.all(
+                                color:
+                                    const Color(0xffF6F6F6).withOpacity(0.15)),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(30)).r),
+                        child: SizedBox(
+                          // height: 400,
+                          // width: 427.w,
+                          height: 280.h,
+
+                          child: PageView.builder(
+                            controller: _pageController,
+                            pageSnapping: true,
+                            physics: AlwaysScrollableScrollPhysics(),
+                            scrollDirection: Axis.horizontal,
+                            clipBehavior: Clip.none,
+                            itemCount: glassCardList.length,
+                            itemBuilder: (context, index) {
+                              return FractionallySizedBox(
+                                widthFactor:
+                                    1 / _pageController.viewportFraction,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        Text('Dashboard',
+                                            style: FontManagment().poppins14),
+                                        10.ph,
+                                        // Text('Attendees',
+                                        //     style: FontManagment().poppins28),
+                                        Text(glassCardList[index]['title'],
+                                            style: FontManagment().poppins28),
+
+                                        29.ph,
+                                        Container(
+                                          width: 53.w,
+                                          height: 20.h,
+                                          padding: EdgeInsets.only(left: 4).r,
+                                          decoration: BoxDecoration(
+                                              color: Color(0xffFFFFFF)
+                                                  .withOpacity(0.30),
+                                              borderRadius:
+                                                  BorderRadius.circular(10).r),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                'View',
+                                                style: FontManagment()
+                                                    .poppins10White,
+                                              ),
+                                              2.pw,
+                                              SvgPicture.asset(
+                                                  'assets/images/arrow_down.svg')
+                                            ],
+                                          ),
+                                        ),
+                                        23.8.ph,
+                                        const Divider(),
+                                      ],
+                                    ),
+                                    14.8.ph,
+                                    Row(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            Container(
+                                              height: 70.h,
+                                              width: 130.w,
+                                              padding: const EdgeInsets.only(
+                                                      left: 0,
+                                                      top: 20,
+                                                      bottom: 15)
+                                                  .r,
+                                              decoration: BoxDecoration(
+                                                  color: whiteColor,
+                                                  borderRadius:
+                                                      BorderRadius.circular(12)
+                                                          .r),
+                                              child: glassCardList[index]
+                                                          ['widget_title1'] ==
+                                                      'Vacation Balance'
+                                                  ? ShaderMask(
+                                                      shaderCallback: (bounds) {
+                                                        return const LinearGradient(
+                                                          begin: Alignment
+                                                              .topCenter,
+                                                          end: Alignment
+                                                              .bottomCenter,
+                                                          colors: [
+                                                            Color(0xFF22429A),
+                                                            Color(0xFF47A8CA)
+                                                          ],
+                                                        ).createShader(
+                                                            Rect.fromLTWH(
+                                                                0,
+                                                                0,
+                                                                bounds.width,
+                                                                bounds.height));
+                                                      },
+                                                      child: Text(
+                                                        '10 Days',
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                          color: Colors.white,
+
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          fontSize: 16.0
+                                                              .sp, // Use your sp extension for responsive font size if needed
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      ),
+                                                    )
+                                                  : SvgPicture.asset(
+                                                      glassCardList[index]
+                                                          ['widget_icon1']),
+                                            ),
+                                            7.ph,
+                                            Text(
+                                              glassCardList[index]
+                                                  ['widget_title1'],
+                                              style: FontManagment()
+                                                  .poppins12White,
+                                            ),
+                                          ],
+                                        ),
+                                        19.pw,
+                                        Column(
+                                          children: [
+                                            Container(
+                                              padding: const EdgeInsets.only(
+                                                      left: 0,
+                                                      top: 12,
+                                                      bottom: 12)
+                                                  .r,
+                                              height: 70.h,
+                                              width: 130.w,
+                                              decoration: BoxDecoration(
+                                                  color: whiteColor,
+                                                  borderRadius:
+                                                      BorderRadius.circular(12)
+                                                          .r),
+                                              child: SvgPicture.asset(
+                                                  glassCardList[index]
+                                                      ['widget_icon2']),
+                                            ),
+                                            7.ph,
+                                            Text(
+                                              glassCardList[index]
+                                                  ['widget_title2'],
+                                              style: FontManagment()
+                                                  .poppins12White,
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                17.ph,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                    glassCardList.length,
+                    (index) => buildDot(index: index, context: context),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ]),
+      ),
+    );
+  }
+
+  Widget buildDot({required int index, required BuildContext context}) {
+    return Container(
+        margin: EdgeInsets.symmetric(horizontal: 5),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          //color: _currentPage == index ? Colors.white : Colors.grey,
+        ),
+        child: _currentPage == index
+            ? SizedBox(
+                width: 20.w,
+                height: 10,
+                child: SvgPicture.asset(
+                  'assets/images/dot_indicator_selected.svg',
+                  fit: BoxFit.contain,
+                ),
+              )
+            : SizedBox(
+                height: 10.h,
+                width: 10.w,
+                child: SvgPicture.asset(
+                  'assets/images/dot_indicator_unselected.svg',
+                  fit: BoxFit.cover,
+                ),
+              ));
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  List glassCardList = [
+    {
+      'title': 'Attendees',
+      'widget_icon1': 'assets/images/check_in_icon.svg',
+      'widget_title1': 'Check In',
+      'widget_icon2': 'assets/images/check_out_icon.svg',
+      'widget_title2': 'Check Out',
+    },
+    {
+      'title': 'Leave Management',
+      'widget_icon1': 'assets/images/vacation_balance_icon.svg',
+      'widget_title1': 'Vacation Balance',
+      'widget_icon2': 'assets/images/leave_request_icon.svg',
+      'widget_title2': 'Leave Request',
+    },
+    {
+      'title': 'General Information',
+      'widget_icon1': 'assets/images/profile_icon.svg',
+      'widget_title1': 'Profile',
+      'widget_icon2': 'assets/images/company_icon.svg',
+      'widget_title2': 'Company',
+    }
+  ];
+}
+
+// class MainHomeScreen extends StatefulWidget {
+//   @override
+//   _MainHomeScreenState createState() => _MainHomeScreenState();
+// }
+
+// class _MainHomeScreenState extends State<MainHomeScreen> {
+//   PageController _pageController = PageController(viewportFraction: 0.9);
+//   int _currentPage = 0;
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     _pageController.addListener(() {
+//       int next = _pageController.page!.round();
+//       if (_currentPage != next) {
+//         setState(() {
+//           _currentPage = next;
+//         });
+//       }
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: SingleChildScrollView(
+//         child: Column(
+//           children: [
+//             Container(
+//               //height: 441.h,
+//               padding: const EdgeInsets.only(
+//                       left: 20, top: 48, right: 20, bottom: 20)
+//                   .r,
+
+//               width: double.infinity.w,
+//               decoration: const BoxDecoration(
+//                   gradient: LinearGradient(
+//                       begin: Alignment.topCenter,
+//                       end: Alignment.bottomCenter,
+//                       colors: [Color(0xff2751A1), Color(0xff4BB3CF)])),
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   Row(
+//                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                     children: [
+//                       Text('Sales Manager', style: FontManagment().poppins14),
+//                       Icon(Icons.notification_add)
+//                     ],
+//                   ),
+//                   Text(
+//                     'Ahmend Ahmed',
+//                     style: FontManagment().poppins24,
+//                   ),
+//                   40.ph,
+//                   PageView.builder(
+//                       controller: _pageController,
+//                       itemCount: 3,
+//                       itemBuilder: (context, index) {
+//                         return Center(
+//                           child: ClipRRect(
+//                             borderRadius:
+//                                 const BorderRadius.all(Radius.circular(25)),
+//                             child: BackdropFilter(
+//                               filter:
+//                                   ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+//                               child: Container(
+//                                 width: 327.w,
+//                                 // height: 280.h,
+//                                 padding: const EdgeInsets.only(
+//                                         top: 22,
+//                                         left: 20,
+//                                         right: 20,
+//                                         bottom: 22)
+//                                     .r,
+//                                 decoration: BoxDecoration(
+//                                     color: const Color(0xffF6F6F6)
+//                                         .withOpacity(0.15),
+//                                     border: Border.all(
+//                                         color: const Color(0xffF6F6F6)
+//                                             .withOpacity(0.15)),
+//                                     borderRadius: const BorderRadius.all(
+//                                             Radius.circular(30))
+//                                         .r),
+//                                 child: Column(
+//                                   crossAxisAlignment: CrossAxisAlignment.start,
+//                                   children: [
+//                                     Column(
+//                                       children: [
+//                                         Text('Dashboard',
+//                                             style: FontManagment().poppins14),
+//                                         10.ph,
+//                                         Text('Attendees',
+//                                             style: FontManagment().poppins28),
+//                                         29.ph,
+//                                         Container(
+//                                           width: 53.w,
+//                                           height: 20.h,
+//                                           padding: EdgeInsets.only(left: 4).r,
+//                                           decoration: BoxDecoration(
+//                                               color: Color(0xffFFFFFF)
+//                                                   .withOpacity(0.30),
+//                                               borderRadius:
+//                                                   BorderRadius.circular(10).r),
+//                                           child: Row(
+//                                             mainAxisAlignment:
+//                                                 MainAxisAlignment.center,
+//                                             children: [
+//                                               Text(
+//                                                 'View',
+//                                                 style: FontManagment()
+//                                                     .poppins10White,
+//                                               ),
+//                                               2.pw,
+//                                               SvgPicture.asset(
+//                                                   'assets/images/arrow_down.svg')
+//                                             ],
+//                                           ),
+//                                         ),
+//                                         23.8.ph,
+//                                         const Divider(),
+//                                       ],
+//                                     ),
+//                                     14.8.ph,
+//                                     Row(
+//                                       children: [
+//                                         Column(
+//                                           children: [
+//                                             Container(
+//                                               height: 70.h,
+//                                               width: 130.w,
+//                                               padding: const EdgeInsets.only(
+//                                                       left: 0,
+//                                                       top: 12,
+//                                                       bottom: 12)
+//                                                   .r,
+//                                               decoration: BoxDecoration(
+//                                                   color: whiteColor,
+//                                                   borderRadius:
+//                                                       BorderRadius.circular(12)
+//                                                           .r),
+//                                               child: SvgPicture.asset(
+//                                                 'assets/images/check_in_icon.svg',
+//                                               ),
+//                                             ),
+//                                             7.ph,
+//                                             Text(
+//                                               'Check In',
+//                                               style: FontManagment()
+//                                                   .poppins12White,
+//                                             ),
+//                                           ],
+//                                         ),
+//                                         19.pw,
+//                                         Column(
+//                                           children: [
+//                                             Container(
+//                                               padding: const EdgeInsets.only(
+//                                                       left: 0,
+//                                                       top: 12,
+//                                                       bottom: 12)
+//                                                   .r,
+//                                               height: 70.h,
+//                                               width: 130.w,
+//                                               decoration: BoxDecoration(
+//                                                   color: whiteColor,
+//                                                   borderRadius:
+//                                                       BorderRadius.circular(12)
+//                                                           .r),
+//                                               child: SvgPicture.asset(
+//                                                 'assets/images/check_out_icon.svg',
+//                                               ),
+//                                             ),
+//                                             7.ph,
+//                                             Text(
+//                                               'Check Out',
+//                                               style: FontManagment()
+//                                                   .poppins12White,
+//                                             ),
+//                                           ],
+//                                         ),
+//                                       ],
+//                                     ),
+//                                   ],
+//                                 ),
+//                               ),
+//                             ),
+//                           ),
+//                         );
+//                       })
+//                 ],
+//               ),
+//             ),
+//             Row(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: List.generate(
+//                 3, // Number of dots should match the itemCount of the PageView
+//                 (index) => buildDot(index: index, context: context),
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }

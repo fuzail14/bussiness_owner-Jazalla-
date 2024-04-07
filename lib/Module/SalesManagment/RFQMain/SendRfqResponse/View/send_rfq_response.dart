@@ -104,6 +104,8 @@ class SendRFQResponse extends ConsumerWidget {
                       TextField(
                         //readOnly: true, // Remove this line
                         controller: controller.quantityController,
+
+                        keyboardType: TextInputType.number,
                         textDirection: TextDirection.rtl,
                         decoration: InputDecoration(
                           prefixText: 'Quantity',
@@ -128,6 +130,7 @@ class SendRFQResponse extends ConsumerWidget {
                       TextField(
                         //readOnly: true, // Remove this line
                         controller: controller.priceController,
+                        keyboardType: TextInputType.number,
                         textDirection: TextDirection.rtl,
                         decoration: InputDecoration(
                           prefixText: 'Price',

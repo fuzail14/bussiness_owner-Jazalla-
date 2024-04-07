@@ -196,9 +196,11 @@ class SendRFPResponse extends ConsumerWidget {
                         ),
                         child: TextField(
                           //readOnly: true, // Remove this line
-                          // controller: controller.quantityController,
+                          controller: controller.dateController,
                           cursorHeight: 16,
-
+                          onTap: () {
+                            controller.StartDate(context);
+                          },
                           decoration: InputDecoration(
                             hintText: 'value',
                             fillColor: whiteColor,
@@ -253,7 +255,10 @@ class SendRFPResponse extends ConsumerWidget {
                         ),
                         child: TextField(
                           //readOnly: true, // Remove this line
-                          // controller: controller.quantityController,
+                          controller: controller.timeController,
+                          onTap: () {
+                            controller.DurationTime(context);
+                          },
                           cursorHeight: 16,
 
                           decoration: InputDecoration(
@@ -374,8 +379,9 @@ class SendRFPResponse extends ConsumerWidget {
                         ),
                         child: TextField(
                           //readOnly: true, // Remove this line
-                          // controller: controller.quantityController,
+                          controller: controller.totalPriceAmountController,
                           cursorHeight: 16,
+                          keyboardType: TextInputType.number,
 
                           decoration: InputDecoration(
                             hintText: '0.00',
