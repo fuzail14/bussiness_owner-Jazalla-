@@ -46,6 +46,13 @@ class FontManagment {
       fontSize: 14.sp,
       fontWeight: FontWeight.w400,
       color: const Color(0xff3A3A3A));
+  var montserrat14White = GoogleFonts.montserrat(
+      fontSize: 14.sp, fontWeight: FontWeight.w600, color: whiteColor);
+  var montserrat16 = GoogleFonts.montserrat(
+      fontSize: 16.sp,
+      fontWeight: FontWeight.w500,
+      color: const Color(0xff393939));
+
   var quicksand4 = GoogleFonts.quicksand(
       fontSize: 14.sp,
       fontWeight: FontWeight.w600,
@@ -71,9 +78,17 @@ class FontManagment {
   var poppins14 = GoogleFonts.poppins(
       fontSize: 14.sp, fontWeight: FontWeight.w300, color: whiteColor);
 
+  var poppins12Grey = GoogleFonts.poppins(
+      fontSize: 12.sp, fontWeight: FontWeight.w300, color: Color(0xff9CA2AA));
+
+  var poppins14Black = GoogleFonts.poppins(
+      fontSize: 14.sp, fontWeight: FontWeight.w600, color: Color(0xff202046));
+
   var poppins24 = GoogleFonts.poppins(
       fontSize: 24.sp, fontWeight: FontWeight.w500, color: whiteColor);
 
   var poppins28 = GoogleFonts.poppins(
       fontSize: 28.sp, fontWeight: FontWeight.w600, color: whiteColor);
+  var montserrat18 = GoogleFonts.montserrat(
+      fontSize: 18.sp, fontWeight: FontWeight.w600, color: Color(0xff202046));
 }

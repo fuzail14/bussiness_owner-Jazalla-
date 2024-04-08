@@ -7,6 +7,8 @@ import 'package:bussines_owner/Module/MarketPlace/View/market_place_screen.dart'
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -492,14 +494,14 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffF9F9F9),
       body: SingleChildScrollView(
         child: Stack(children: [
           Container(
-            //height: 441.h,
+            height: 600.h,
             padding:
                 const EdgeInsets.only(left: 20, top: 48, right: 20, bottom: 20)
                     .r,
-
             width: double.infinity.w,
             decoration: const BoxDecoration(
                 gradient: LinearGradient(
@@ -520,191 +522,244 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                   'Ahmend Ahmed',
                   style: FontManagment().poppins24,
                 ),
-                40.ph,
-                Center(
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(25)),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                      child: Container(
-                        //width: 427.w,
-                        //height: 280.h,
-                        padding: const EdgeInsets.only(
-                                top: 22, left: 20, right: 20, bottom: 2)
-                            .r,
+                20.ph,
+                SizedBox(
+                  // height: 400,
+                  // width: 427.w,
+                  height: 320.h,
+                  child: PageView.builder(
+                      controller: _pageController,
+                      pageSnapping: true,
+                      physics: AlwaysScrollableScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      clipBehavior: Clip.none,
+                      itemCount: glassCardList.length,
+                      itemBuilder: (context, index) {
+                        return FractionallySizedBox(
+                          widthFactor: 1 / _pageController.viewportFraction,
+                          child: Center(
+                            child: ClipRRect(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(25)),
+                              child: BackdropFilter(
+                                filter:
+                                    ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+                                child: Container(
+                                  //width: 427.w,
+                                  //height: 280.h,
+                                  padding: const EdgeInsets.only(
+                                          top: 22,
+                                          left: 20,
+                                          right: 20,
+                                          bottom: 2)
+                                      .r,
 
-                        decoration: BoxDecoration(
-                            color: const Color(0xffF6F6F6).withOpacity(0.15),
-                            border: Border.all(
-                                color:
-                                    const Color(0xffF6F6F6).withOpacity(0.15)),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(30)).r),
-                        child: SizedBox(
-                          // height: 400,
-                          // width: 427.w,
-                          height: 280.h,
+                                  decoration: BoxDecoration(
+                                      color: const Color(0xffF6F6F6)
+                                          .withOpacity(0.15),
+                                      border: Border.all(
+                                          color: const Color(0xffF6F6F6)
+                                              .withOpacity(0.15)),
+                                      borderRadius: const BorderRadius.all(
+                                              Radius.circular(30))
+                                          .r),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Column(
+                                        children: [
+                                          Text('Dashboard',
+                                              style: FontManagment().poppins14),
+                                          10.ph,
+                                          // Text('Attendees',
+                                          //     style: FontManagment().poppins28),
+                                          Text(glassCardList[index]['title'],
+                                              style: FontManagment().poppins28),
 
-                          child: PageView.builder(
-                            controller: _pageController,
-                            pageSnapping: true,
-                            physics: AlwaysScrollableScrollPhysics(),
-                            scrollDirection: Axis.horizontal,
-                            clipBehavior: Clip.none,
-                            itemCount: glassCardList.length,
-                            itemBuilder: (context, index) {
-                              return FractionallySizedBox(
-                                widthFactor:
-                                    1 / _pageController.viewportFraction,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Column(
-                                      children: [
-                                        Text('Dashboard',
-                                            style: FontManagment().poppins14),
-                                        10.ph,
-                                        // Text('Attendees',
-                                        //     style: FontManagment().poppins28),
-                                        Text(glassCardList[index]['title'],
-                                            style: FontManagment().poppins28),
-
-                                        29.ph,
-                                        Container(
-                                          width: 53.w,
-                                          height: 20.h,
-                                          padding: EdgeInsets.only(left: 4).r,
-                                          decoration: BoxDecoration(
-                                              color: Color(0xffFFFFFF)
-                                                  .withOpacity(0.30),
-                                              borderRadius:
-                                                  BorderRadius.circular(10).r),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
+                                          29.ph,
+                                          Container(
+                                            width: 53.w,
+                                            height: 20.h,
+                                            padding: EdgeInsets.only(left: 4).r,
+                                            decoration: BoxDecoration(
+                                                color: Color(0xffFFFFFF)
+                                                    .withOpacity(0.30),
+                                                borderRadius:
+                                                    BorderRadius.circular(10)
+                                                        .r),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  'View',
+                                                  style: FontManagment()
+                                                      .poppins10White,
+                                                ),
+                                                2.pw,
+                                                SvgPicture.asset(
+                                                    'assets/images/arrow_down.svg')
+                                              ],
+                                            ),
+                                          ),
+                                          23.8.ph,
+                                          const Divider(),
+                                        ],
+                                      ),
+                                      14.8.ph,
+                                      Row(
+                                        children: [
+                                          Column(
                                             children: [
-                                              Text(
-                                                'View',
-                                                style: FontManagment()
-                                                    .poppins10White,
+                                              InkWell(
+                                                onTap: () {
+                                                  if (glassCardList[index]
+                                                          ['widget_title1'] ==
+                                                      'Check In') {
+                                                    showDialog(
+                                                        context: context,
+                                                        builder: (BuildContext
+                                                                context) =>
+                                                            CheckInDialog(
+                                                              title: 'Check In',
+                                                            ));
+                                                  }
+                                                },
+                                                child: Container(
+                                                  height: 70.h,
+                                                  width: 130.w,
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                              left: 0,
+                                                              top: 15,
+                                                              bottom: 15)
+                                                          .r,
+                                                  decoration: BoxDecoration(
+                                                      color: whiteColor,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                                  12)
+                                                              .r),
+                                                  child: glassCardList[index][
+                                                              'widget_title1'] ==
+                                                          'Vacation Balance'
+                                                      ? ShaderMask(
+                                                          shaderCallback:
+                                                              (bounds) {
+                                                            return const LinearGradient(
+                                                              begin: Alignment
+                                                                  .topCenter,
+                                                              end: Alignment
+                                                                  .bottomCenter,
+                                                              colors: [
+                                                                Color(
+                                                                    0xFF47A8CA),
+                                                                Color(
+                                                                    0xFF22429A),
+                                                              ],
+                                                            ).createShader(
+                                                                Rect.fromLTWH(
+                                                                    0,
+                                                                    0,
+                                                                    bounds
+                                                                        .width,
+                                                                    bounds
+                                                                        .height));
+                                                          },
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(8.0),
+                                                            child: Text(
+                                                              '10 Days',
+                                                              style: GoogleFonts
+                                                                  .poppins(
+                                                                color: Colors
+                                                                    .white,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontSize:
+                                                                    16.0.sp,
+                                                              ),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                            ),
+                                                          ),
+                                                        )
+                                                      : SvgPicture.asset(
+                                                          glassCardList[index]
+                                                              ['widget_icon1']),
+                                                ),
                                               ),
-                                              2.pw,
-                                              SvgPicture.asset(
-                                                  'assets/images/arrow_down.svg')
+                                              7.ph,
+                                              Text(
+                                                glassCardList[index]
+                                                    ['widget_title1'],
+                                                style: FontManagment()
+                                                    .poppins12White,
+                                              ),
                                             ],
                                           ),
-                                        ),
-                                        23.8.ph,
-                                        const Divider(),
-                                      ],
-                                    ),
-                                    14.8.ph,
-                                    Row(
-                                      children: [
-                                        Column(
-                                          children: [
-                                            Container(
-                                              height: 70.h,
-                                              width: 130.w,
-                                              padding: const EdgeInsets.only(
-                                                      left: 0,
-                                                      top: 20,
-                                                      bottom: 15)
-                                                  .r,
-                                              decoration: BoxDecoration(
-                                                  color: whiteColor,
-                                                  borderRadius:
-                                                      BorderRadius.circular(12)
-                                                          .r),
-                                              child: glassCardList[index]
-                                                          ['widget_title1'] ==
-                                                      'Vacation Balance'
-                                                  ? ShaderMask(
-                                                      shaderCallback: (bounds) {
-                                                        return const LinearGradient(
-                                                          begin: Alignment
-                                                              .topCenter,
-                                                          end: Alignment
-                                                              .bottomCenter,
-                                                          colors: [
-                                                            Color(0xFF22429A),
-                                                            Color(0xFF47A8CA)
-                                                          ],
-                                                        ).createShader(
-                                                            Rect.fromLTWH(
-                                                                0,
-                                                                0,
-                                                                bounds.width,
-                                                                bounds.height));
-                                                      },
-                                                      child: Text(
-                                                        '10 Days',
-                                                        style:
-                                                            GoogleFonts.poppins(
-                                                          color: Colors.white,
-
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontSize: 16.0
-                                                              .sp, // Use your sp extension for responsive font size if needed
-                                                        ),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                      ),
-                                                    )
-                                                  : SvgPicture.asset(
+                                          19.pw,
+                                          Column(
+                                            children: [
+                                              InkWell(
+                                                onTap: () {
+                                                  if (glassCardList[index]
+                                                          ['widget_title2'] ==
+                                                      'Check Out') {
+                                                    showDialog(
+                                                        context: context,
+                                                        builder: (BuildContext
+                                                                context) =>
+                                                            CheckInDialog(
+                                                              title:
+                                                                  'Check Out',
+                                                            ));
+                                                  }
+                                                },
+                                                child: Container(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                              left: 0,
+                                                              top: 12,
+                                                              bottom: 12)
+                                                          .r,
+                                                  height: 70.h,
+                                                  width: 130.w,
+                                                  decoration: BoxDecoration(
+                                                      color: whiteColor,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                                  12)
+                                                              .r),
+                                                  child: SvgPicture.asset(
                                                       glassCardList[index]
-                                                          ['widget_icon1']),
-                                            ),
-                                            7.ph,
-                                            Text(
-                                              glassCardList[index]
-                                                  ['widget_title1'],
-                                              style: FontManagment()
-                                                  .poppins12White,
-                                            ),
-                                          ],
-                                        ),
-                                        19.pw,
-                                        Column(
-                                          children: [
-                                            Container(
-                                              padding: const EdgeInsets.only(
-                                                      left: 0,
-                                                      top: 12,
-                                                      bottom: 12)
-                                                  .r,
-                                              height: 70.h,
-                                              width: 130.w,
-                                              decoration: BoxDecoration(
-                                                  color: whiteColor,
-                                                  borderRadius:
-                                                      BorderRadius.circular(12)
-                                                          .r),
-                                              child: SvgPicture.asset(
-                                                  glassCardList[index]
-                                                      ['widget_icon2']),
-                                            ),
-                                            7.ph,
-                                            Text(
-                                              glassCardList[index]
-                                                  ['widget_title2'],
-                                              style: FontManagment()
-                                                  .poppins12White,
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                                          ['widget_icon2']),
+                                                ),
+                                              ),
+                                              7.ph,
+                                              Text(
+                                                glassCardList[index]
+                                                    ['widget_title2'],
+                                                style: FontManagment()
+                                                    .poppins12White,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              );
-                            },
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
-                  ),
+                        );
+                      }),
                 ),
                 17.ph,
                 Row(
@@ -712,6 +767,300 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                   children: List.generate(
                     glassCardList.length,
                     (index) => buildDot(index: index, context: context),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            // height: 662.h,
+            margin: EdgeInsets.only(top: 500, bottom: 25).r,
+            decoration: BoxDecoration(
+                color: Color(0xffF9F9F9),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30).r,
+                    topRight: Radius.circular(30).r)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                8.ph,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 178).r,
+                  child: const Divider(
+                    color: Color(0xff080422),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 24, right: 11).r,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Actions',
+                        style: FontManagment().montserrat18,
+                      ),
+                      16.ph,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            children: [
+                              Container(
+                                width: 100.w,
+                                height: 86.h,
+                                decoration: BoxDecoration(
+                                  color: whiteColor,
+                                  borderRadius: BorderRadius.circular(12).r,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.1),
+                                      offset: const Offset(
+                                        1.0,
+                                        1.0,
+                                      ),
+                                      blurRadius: 10.0,
+                                      spreadRadius: 1.0,
+                                    ),
+                                  ],
+                                ),
+                                child: Stack(
+                                  children: [
+                                    Padding(
+                                        padding:
+                                            EdgeInsets.only(left: 7, top: 4).r,
+                                        child: Text(
+                                          '5',
+                                          style: GoogleFonts.montserrat(
+                                              color: Color(0xffBA1717),
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w600),
+                                        )),
+                                    Center(
+                                      child: Image.asset(
+                                        'assets/images/approval_icon.png',
+                                        fit: BoxFit.fitWidth,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              7.ph,
+                              Text(
+                                'Approval',
+                                style: FontManagment().montserrat16,
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                width: 100.w,
+                                height: 86.h,
+                                decoration: BoxDecoration(
+                                  color: whiteColor,
+                                  borderRadius: BorderRadius.circular(12).r,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.1),
+                                      offset: const Offset(
+                                        1.0,
+                                        1.0,
+                                      ),
+                                      blurRadius: 10.0,
+                                      spreadRadius: 1.0,
+                                    ),
+                                  ],
+                                ),
+                                child: Image.asset(
+                                    'assets/images/message_icon.png'),
+                              ),
+                              7.ph,
+                              Text(
+                                'Messages',
+                                style: FontManagment().montserrat16,
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                width: 100.w,
+                                height: 86.h,
+                                decoration: BoxDecoration(
+                                  color: whiteColor,
+                                  borderRadius: BorderRadius.circular(12).r,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.1),
+                                      offset: const Offset(
+                                        1.0,
+                                        1.0,
+                                      ),
+                                      blurRadius: 10.0,
+                                      spreadRadius: 1.0,
+                                    ),
+                                  ],
+                                ),
+                                child: Image.asset(
+                                    'assets/images/calendar_icon.png'),
+                              ),
+                              7.ph,
+                              Text(
+                                'Calander',
+                                style: FontManagment().montserrat16,
+                              ),
+                            ],
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                25.ph,
+                Container(
+                  height: 51.h,
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 25,
+                  ).r,
+                  decoration: BoxDecoration(
+                    color: whiteColor,
+                    borderRadius: BorderRadius.circular(6).r,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.3),
+                        offset: const Offset(
+                          1.0,
+                          3.0,
+                        ),
+                        blurRadius: 10.0,
+                        spreadRadius: 1.0,
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 21.5, right: 32.4),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Generate OTP',
+                          style: GoogleFonts.montserrat(
+                              color: Color(0xff302929),
+                              fontSize: 17.16.sp,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        SvgPicture.asset('assets/images/forward_arrow.svg')
+                      ],
+                    ),
+                  ),
+                ),
+                20.ph,
+                Padding(
+                  padding: EdgeInsets.only(left: 24, right: 11).r,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Services',
+                        style: FontManagment().montserrat18,
+                      ),
+                      13.ph,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            width: 100.w,
+                            height: 86.h,
+                            decoration: BoxDecoration(
+                              color: whiteColor,
+                              borderRadius: BorderRadius.circular(12).r,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.1),
+                                  offset: const Offset(
+                                    1.0,
+                                    1.0,
+                                  ),
+                                  blurRadius: 10.0,
+                                  spreadRadius: 1.0,
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text('Services',
+                                    maxLines: 1,
+                                    style: FontManagment().poppins14Black),
+                                Text('Lorem Ispum',
+                                    maxLines: 1,
+                                    style: FontManagment().poppins12Grey),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 100.w,
+                            height: 86.h,
+                            decoration: BoxDecoration(
+                              color: whiteColor,
+                              borderRadius: BorderRadius.circular(12).r,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.1),
+                                  offset: const Offset(
+                                    1.0,
+                                    1.0,
+                                  ),
+                                  blurRadius: 10.0,
+                                  spreadRadius: 1.0,
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text('Services',
+                                    maxLines: 1,
+                                    style: FontManagment().poppins14Black),
+                                Text('Lorem Ispum',
+                                    maxLines: 1,
+                                    style: FontManagment().poppins12Grey),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 100.w,
+                            height: 86.h,
+                            decoration: BoxDecoration(
+                              color: whiteColor,
+                              borderRadius: BorderRadius.circular(12).r,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.1),
+                                  offset: const Offset(
+                                    1.0,
+                                    1.0,
+                                  ),
+                                  blurRadius: 10.0,
+                                  spreadRadius: 1.0,
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text('Services',
+                                    maxLines: 1,
+                                    style: FontManagment().poppins14Black),
+                                Text('Lorem Ispum',
+                                    maxLines: 1,
+                                    style: FontManagment().poppins12Grey),
+                              ],
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
                   ),
                 ),
               ],
@@ -778,6 +1127,283 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
     }
   ];
 }
+
+class CheckInDialog extends StatelessWidget {
+  String? title;
+  CheckInDialog({required this.title});
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+        elevation: 0.0,
+        backgroundColor: Colors.transparent,
+        child: Container(
+          margin: EdgeInsets.only(left: 0.0, right: 0.0),
+          width: 320.w,
+          height: 403.h,
+          child: Container(
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  // height: 403.h,
+                  padding: EdgeInsets.only(top: 18.0, right: 0, bottom: 50).r,
+                  margin: EdgeInsets.only(top: 50.0, right: 8.0, bottom: 0).r,
+
+                  decoration: BoxDecoration(
+                      color: whiteColor,
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(16.0),
+                      boxShadow: <BoxShadow>[
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 0.0,
+                          offset: Offset(0.0, 0.0),
+                        ),
+                      ]),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      16.2.ph,
+                      Center(
+                        child: Text(
+                          title!,
+                          style: GoogleFonts.montserrat(
+                              fontSize: 18.22.sp,
+                              color: Color(0xff5F5656),
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                      28.4.ph,
+                      Padding(
+                        padding: const EdgeInsets.only(left: 30).r,
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.calendar_month_rounded,
+                              color: Color(0xffAFAFAF),
+                              size: 18.h,
+                            ),
+                            10.pw,
+                            SizedBox(
+                              width: 220.w,
+                              child: Text(
+                                'Saturday, October 22nd 2022',
+                                style: GoogleFonts.montserrat(
+                                    color: Color(0xff383333),
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 30, top: 15).r,
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.timer_sharp,
+                              color: Color(0xffAFAFAF),
+                              size: 18.h,
+                            ),
+                            10.pw,
+                            Text(
+                              '06:00 PM',
+                              style: GoogleFonts.montserrat(
+                                  color: Color(0xff383333),
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w400),
+                            )
+                          ],
+                        ),
+                      ),
+                      31.ph,
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          height: 30.h,
+                          width: 147.w,
+                          margin: EdgeInsets.symmetric(horizontal: 75).r,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16).r,
+                              gradient: LinearGradient(colors: [
+                                Color(0xff2751A1),
+                                Color(0xff4BB3CF)
+                              ])),
+                          child: Center(
+                            child: Text(
+                              'Done',
+                              style: FontManagment().montserrat14White,
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Positioned(
+                  top: 10
+                      .h, // This positions the top of the CircleAvatar at the top edge of the Stack.
+                  left: (280.w / 2) -
+                      (41.8.w /
+                          2), // This centers the CircleAvatar horizontally in the Stack.
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: CircleAvatar(
+                      radius: 61.8.h /
+                          2, // This sets the radius of the CircleAvatar.
+                      backgroundColor: Colors.transparent,
+                      child: SvgPicture.asset(
+                        'assets/images/dialog_upper_circle.svg',
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
+
+  Widget dialogContent(BuildContext context, title) {
+    return Container(
+      margin: EdgeInsets.only(left: 0.0, right: 0.0),
+      width: 320.w,
+      height: 403.h,
+      child: Container(
+        child: Stack(
+          children: <Widget>[
+            Container(
+              // height: 403.h,
+              padding: EdgeInsets.only(top: 18.0, right: 0, bottom: 50).r,
+              margin: EdgeInsets.only(top: 50.0, right: 8.0, bottom: 0).r,
+
+              decoration: BoxDecoration(
+                  color: whiteColor,
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(16.0),
+                  boxShadow: <BoxShadow>[
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 0.0,
+                      offset: Offset(0.0, 0.0),
+                    ),
+                  ]),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  16.2.ph,
+                  Center(
+                    child: Text(
+                      title!,
+                      style: GoogleFonts.montserrat(
+                          fontSize: 18.22.sp,
+                          color: Color(0xff5F5656),
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                  28.4.ph,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30).r,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.calendar_month_rounded,
+                          color: Color(0xffAFAFAF),
+                          size: 18.h,
+                        ),
+                        10.pw,
+                        SizedBox(
+                          width: 220.w,
+                          child: Text(
+                            'Saturday, October 22nd 2022',
+                            style: GoogleFonts.montserrat(
+                                color: Color(0xff383333),
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30, top: 15).r,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.timer_sharp,
+                          color: Color(0xffAFAFAF),
+                          size: 18.h,
+                        ),
+                        10.pw,
+                        Text(
+                          '06:00 PM',
+                          style: GoogleFonts.montserrat(
+                              color: Color(0xff383333),
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w400),
+                        )
+                      ],
+                    ),
+                  ),
+                  31.ph,
+                  InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      height: 30.h,
+                      width: 147.w,
+                      margin: EdgeInsets.symmetric(horizontal: 75).r,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16).r,
+                          gradient: LinearGradient(
+                              colors: [Color(0xff2751A1), Color(0xff4BB3CF)])),
+                      child: Center(
+                        child: Text(
+                          'Done',
+                          style: FontManagment().montserrat14White,
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Positioned(
+              top: 10
+                  .h, // This positions the top of the CircleAvatar at the top edge of the Stack.
+              left: (280.w / 2) -
+                  (41.8.w /
+                      2), // This centers the CircleAvatar horizontally in the Stack.
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+                child: CircleAvatar(
+                  radius:
+                      61.8.h / 2, // This sets the radius of the CircleAvatar.
+                  backgroundColor: Colors.transparent,
+                  child: SvgPicture.asset(
+                    'assets/images/dialog_upper_circle.svg',
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 
 // class MainHomeScreen extends StatefulWidget {
 //   @override
