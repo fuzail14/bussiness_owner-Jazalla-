@@ -11,22 +11,33 @@ import 'package:hexcolor/hexcolor.dart';
 // ignore: must_be_immutable
 class CardEmployeeCenter extends StatelessWidget {
   CardEmployeeCenter(
-      {super.key, this.headingText, this.onTap, this.svgPath, this.textColor});
+      {super.key,
+      this.headingText,
+      this.onTap,
+      this.svgPath,
+      this.textColor,
+      this.margin});
   String? headingText;
 
   void Function()? onTap;
   Color? color;
   String? svgPath;
   Color? textColor;
+  EdgeInsets? margin;
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 145.w,
-        // height: 112.h,
-        padding: EdgeInsets.only(left: 0, right: 0, bottom: 15, top: 10).r,
+        width: 150.w,
+        // height: 160.h,
+        padding:
+            const EdgeInsets.only(left: 8, right: 8, bottom: 35.5, top: 36).r,
+
+        //  margin: const EdgeInsets.only(left: 31, right: 0, bottom: 0, top: 0).r,
         //margin: EdgeInsets.only(left: 10),
 
         // decoration: BoxDecoration(
@@ -46,7 +57,7 @@ class CardEmployeeCenter extends StatelessWidget {
           borderRadius: BorderRadius.circular(8).r,
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
+              color: Colors.grey.withOpacity(0.2),
               offset: const Offset(
                 1.0,
                 3.0,

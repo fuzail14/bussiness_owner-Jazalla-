@@ -43,3 +43,4 @@ const String sendRFIResponseView = '/SendRFIResponseView';
 const String sendRFQResponse = '/SendRFQResponse';
 const String sendRFPResponse = '/SendRFPResponse';
 const String orderPlacementScreen = '/OrderPlacementScreen';
+const String attendanceManagmentScreen = '/AttendanceManagmentScreen';

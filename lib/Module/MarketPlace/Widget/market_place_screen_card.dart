@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
@@ -31,11 +33,13 @@ class CardMakretPlace extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        width: 153.w,
-        height: 128.h,
+        width: 160.w,
+        height: 160.h,
+        padding: EdgeInsets.only(left: 20, top: 20, right: 5, bottom: 0).r,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16).r,
+          borderRadius: BorderRadius.circular(8).r,
           color: Color(0xffF5F9F9),
+          border: Border.all(color: Color(0xff449FC6).withOpacity(0.6)),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.1),
@@ -45,48 +49,44 @@ class CardMakretPlace extends StatelessWidget {
             ),
           ],
         ),
-        child: Padding(
-          padding: EdgeInsets.only(left: 20, top: 12, right: 5, bottom: 0).r,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              FadeInUp(
-                child: SvgPicture.asset(
-                  svgPath!,
-                  color: Color(0xff479696),
-                  height: 40.h,
-                  //width: 40.w,
-                ),
+        child: Column(
+          children: [
+            FadeInUp(
+              child: SvgPicture.asset(
+                svgPath!,
+                color: Color(0xff479696),
+                height: 40.h,
+                //width: 40.w,
               ),
-              8.ph,
-              FadeInLeft(
-                duration: const Duration(milliseconds: 900),
-                child: AutoSizeText(
-                  headingText!,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.roboto(
-                      color: Color(0xff479696),
-                      fontWeight: FontWeight.w800,
-                      fontSize: 14.sp),
-                ),
+            ),
+            8.ph,
+            FadeInLeft(
+              duration: const Duration(milliseconds: 900),
+              child: AutoSizeText(
+                headingText!,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.roboto(
+                    color: Color(0xff479696),
+                    fontWeight: FontWeight.w800,
+                    fontSize: 12.sp),
               ),
-              4.ph,
-              FadeInRight(
-                duration: Duration(milliseconds: 900),
-                child: AutoSizeText(
-                  'It serves as a comprehensive directory, showcasing company profiles.',
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: GoogleFonts.roboto(
-                      color: Color(0xff8DAEAE),
-                      fontWeight: FontWeight.w800,
-                      fontSize: 14.sp),
-                ),
-              )
-            ],
-          ),
+            ),
+            4.ph,
+            FadeInRight(
+              duration: Duration(milliseconds: 900),
+              child: AutoSizeText(
+                'It serves as a comprehensive directory, showcasing company profiles.',
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+                style: GoogleFonts.roboto(
+                    color: Color(0xff8DAEAE),
+                    fontWeight: FontWeight.w400,
+                    fontSize: 10.sp),
+              ),
+            )
+          ],
         ),
       ),
     );

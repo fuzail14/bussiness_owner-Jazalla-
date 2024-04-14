@@ -1,5 +1,5 @@
 import 'dart:ui';
-
+import 'package:badges/badges.dart' as badges;
 import 'package:animate_do/animate_do.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/Font/fonts.dart';
@@ -13,12 +13,14 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import '../../../Constants/Global/Method/global_methods.dart';
 import '../../../Constants/Person/person.dart';
 import '../../../Constants/Person/person_controller.dart';
 import '../../../Constants/constants.dart';
+import '../../../Routes/set_routes.dart';
 import '../../../Services/Notification Services/notification_services.dart';
 import '../../../Services/Shared Preferences/MySharedPreferences.dart';
 import '../../Approval Managment/Main/View/approval_managment_screen.dart';
@@ -468,12 +470,12 @@ class _InfoItem extends StatelessWidget {
   }
 }
 
-class MainHomeScreen extends StatefulWidget {
+class MainHomeScreen extends ConsumerStatefulWidget {
   @override
   _MainHomeScreenState createState() => _MainHomeScreenState();
 }
 
-class _MainHomeScreenState extends State<MainHomeScreen> {
+class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
   PageController _pageController =
       PageController(initialPage: 0, viewportFraction: 1.1);
   int _currentPage = 0;
@@ -493,6 +495,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final person = ref.read(personProvider);
     return Scaffold(
       backgroundColor: Color(0xffF9F9F9),
       body: SingleChildScrollView(
@@ -500,7 +503,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           Container(
             height: 600.h,
             padding:
-                const EdgeInsets.only(left: 20, top: 48, right: 20, bottom: 20)
+                const EdgeInsets.only(left: 20, top: 50, right: 20, bottom: 20)
                     .r,
             width: double.infinity.w,
             decoration: const BoxDecoration(
@@ -511,17 +514,87 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Text('Sales Manager', style: FontManagment().poppins14),
+                //     SvgPicture.asset('assets/images/notification_icon.svg')
+                //   ],
+                // ),
+                // Text(
+                //   'Ahmend Ahmed',
+                //   style: FontManagment().poppins24,
+                // ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Sales Manager', style: FontManagment().poppins14),
-                    SvgPicture.asset('assets/images/notification_icon.svg')
+                    Container(
+                      height: 48.h,
+                      width: 48.w,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xff4EBBD3)),
+                          color: Color(0xffF5F9F9),
+                          shape: BoxShape.circle),
+                      margin: EdgeInsets.only(top: 0, left: 0).r,
+                      child: SvgPicture.asset(
+                        'assets/images/default_company_logo.svg',
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                    10.pw,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          person!.data!.company!.companyName!.toString(),
+                          style: GoogleFonts.roboto(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600,
+                              color: whiteColor),
+                        ),
+                        5.ph,
+                        Text(
+                          person.data!.firstName.toString() +
+                              person.data!.lastName.toString(),
+                          style: GoogleFonts.roboto(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w400,
+                              color: whiteColor),
+                        ),
+                        Text(
+                          'Administrator',
+                          style: GoogleFonts.mulish(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w300,
+                              color: whiteColor),
+                        ),
+                      ],
+                    ),
+                    100.pw,
+                    InkWell(
+                      onTap: () {
+                        GoRouter.of(context)
+                            .pushNamed(notificationsScreen, extra: person);
+                      },
+                      child: badges.Badge(
+                        badgeContent: Text('3',
+                            style: GoogleFonts.roboto(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xffFFFFFF))),
+                        position:
+                            badges.BadgePosition.topEnd(top: -10, end: -12),
+                        showBadge: true,
+                        ignorePointer: false,
+                        child: Container(
+                            child: SvgPicture.asset(
+                          'assets/images/bellicon.svg',
+                        )),
+                      ),
+                    ),
                   ],
                 ),
-                Text(
-                  'Ahmend Ahmed',
-                  style: FontManagment().poppins24,
-                ),
+
                 20.ph,
                 SizedBox(
                   // height: 400,
@@ -623,6 +696,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                                                 context) =>
                                                             CheckInDialog(
                                                               title: 'Check In',
+                                                              svgPath:
+                                                                  'assets/images/check_in_dialog_icon.svg',
                                                             ));
                                                   }
                                                 },
@@ -718,6 +793,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                                             CheckInDialog(
                                                               title:
                                                                   'Check Out',
+                                                              svgPath:
+                                                                  'assets/images/check_out_dialog_icon.svg',
                                                             ));
                                                   }
                                                 },
@@ -783,11 +860,12 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                8.ph,
+                // 8.ph,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 178).r,
                   child: const Divider(
                     color: Color(0xff080422),
+                    thickness: 0.3,
                   ),
                 ),
                 Padding(
@@ -799,7 +877,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                         'Actions',
                         style: FontManagment().montserrat18,
                       ),
-                      16.ph,
+                      10.ph,
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -916,12 +994,10 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                     ],
                   ),
                 ),
-                25.ph,
+                10.ph,
                 Container(
                   height: 51.h,
-                  margin: EdgeInsets.symmetric(
-                    horizontal: 25,
-                  ).r,
+                  margin: EdgeInsets.only(left: 25, right: 25, bottom: 0).r,
                   decoration: BoxDecoration(
                     color: whiteColor,
                     borderRadius: BorderRadius.circular(6).r,
@@ -1129,8 +1205,9 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
 }
 
 class CheckInDialog extends StatelessWidget {
-  String? title;
-  CheckInDialog({required this.title});
+  String title;
+  String svgPath;
+  CheckInDialog({required this.title, required this.svgPath});
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -1168,7 +1245,7 @@ class CheckInDialog extends StatelessWidget {
                       16.2.ph,
                       Center(
                         child: Text(
-                          title!,
+                          title,
                           style: GoogleFonts.montserrat(
                               fontSize: 18.22.sp,
                               color: Color(0xff5F5656),
@@ -1259,9 +1336,7 @@ class CheckInDialog extends StatelessWidget {
                       radius: 61.8.h /
                           2, // This sets the radius of the CircleAvatar.
                       backgroundColor: Colors.transparent,
-                      child: SvgPicture.asset(
-                        'assets/images/dialog_upper_circle.svg',
-                      ),
+                      child: SvgPicture.asset(svgPath),
                     ),
                   ),
                 ),

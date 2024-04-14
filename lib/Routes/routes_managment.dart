@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bussines_owner/Routes/set_routes.dart';
 import '../Constants/Person/person_controller.dart';
+import '../Module/Attendance Managment/View/attendance_managment_view.dart';
 import '../Module/BussinesCommunity/Detail/View/bussines_community_detail_page.dart';
 import '../Module/BussinesCommunity/Main/View/bussines_communities_screen.dart';
 import '../Module/BussinesForSale/Main/View/sale_bussines_screen.dart';
@@ -853,6 +854,25 @@ final router = GoRouter(
                 .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
           child: OrderPlacementScreen(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: attendanceManagmentScreen,
+      path: '/AttendanceManagmentScreen',
+      pageBuilder: (context, state) {
+        final person = state.extra as Person;
+        final page = ProviderScope(
+          overrides: [
+            personProvider
+                .overrideWith((ref) => PersonController()..setPerson(person)),
+          ],
+          child: AttendanceManagmentScreen(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,

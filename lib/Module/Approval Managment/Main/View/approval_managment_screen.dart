@@ -60,7 +60,6 @@ class _ApprovalManagmentScreenState
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: MyAppBar(
-          showBell: false,
           showFilter: false,
           title: (state.selectedIndex == 0)
               ? "Approval Control"

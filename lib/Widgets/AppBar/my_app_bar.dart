@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:badges/badges.dart' as badges;
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   MyAppBar(
@@ -47,11 +48,31 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: [
         if (showBell) ...[
-          GestureDetector(
-            onTap: bellOnTap,
-            child: Container(
-                margin: const EdgeInsets.only(right: 30).r,
-                child: SvgPicture.asset('assets/images/bellicon.svg')),
+          // GestureDetector(
+          //   onTap: bellOnTap,
+          //   child: Container(
+          //       margin: const EdgeInsets.only(right: 30).r,
+          //       child: SvgPicture.asset('assets/images/bellicon.svg')),
+          // )
+
+          Padding(
+            padding: const EdgeInsets.only(right: 30).r,
+            child: InkWell(
+              onTap: () {},
+              child: badges.Badge(
+                badgeContent: Text('3',
+                    style: GoogleFonts.roboto(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xffFFFFFF))),
+                position: badges.BadgePosition.topEnd(top: -10, end: -12),
+                showBadge: true,
+                ignorePointer: false,
+                child: SvgPicture.asset(
+                  'assets/images/bellicon.svg',
+                ),
+              ),
+            ),
           )
         ] else if (showFilter) ...[
           IconButton(
