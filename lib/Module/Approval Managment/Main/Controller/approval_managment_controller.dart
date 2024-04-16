@@ -81,6 +81,7 @@ class ApprovalManagmentController
   }
 
   final TextEditingController searchController = TextEditingController();
+  late TabController tabController;
 
   Future<void> request4InformationViewApi(
       {required userId, required bearerToken}) async {

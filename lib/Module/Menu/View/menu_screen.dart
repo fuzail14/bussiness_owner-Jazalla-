@@ -15,6 +15,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../Constants/Person/person_controller.dart';
 import '../../../Routes/set_routes.dart';
 import '../../../Services/Shared Preferences/MySharedPreferences.dart';
+import '../../../Widgets/HomeAppBar/home_app_bar.dart';
 import '../Controller/menu_controller.dart';
 import 'dart:math' as math;
 
@@ -26,25 +27,25 @@ class Menu extends ConsumerWidget {
     final menuItems = ref.watch(menuControllerProvider).menuItems;
     final person = ref.read(personProvider);
     return Scaffold(
-      appBar: MyAppBar(
+      appBar: HomeAppBar(
         title: 'Menu',
+        showBackButton: false,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           20.ph,
-          Padding(
-            padding: const EdgeInsets.only(left: 20.0).r,
-            child: Text(
-              'Menu',
-              style: GoogleFonts.quicksand(
-                fontSize: 16,
-                fontWeight: FontWeight.w800,
-                color: Color(0xff000000),
-              ),
-            ),
-          ),
-          10.ph,
+          // Padding(
+          //   padding: const EdgeInsets.only(left: 20.0).r,
+          //   child: Text(
+          //     'Menu',
+          //     style: GoogleFonts.quicksand(
+          //       fontSize: 16,
+          //       fontWeight: FontWeight.w800,
+          //       color: Color(0xff000000),
+          //     ),
+          //   ),
+          // ),
           Expanded(
             child: ListView.builder(
               itemCount: menuItems.length,
@@ -68,7 +69,7 @@ class Menu extends ConsumerWidget {
         : Color(0xff1A1A1A); // Color based on expansion
 
     return Container(
-      margin: const EdgeInsets.only(top: 10, left: 20, right: 20).r,
+      margin: const EdgeInsets.only(top: 10, left: 15, right: 15).r,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [

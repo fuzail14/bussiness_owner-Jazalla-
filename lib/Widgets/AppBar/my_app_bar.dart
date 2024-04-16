@@ -13,29 +13,56 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       this.size,
       this.showBell = true,
       this.showFilter = true,
+      this.showBackButton = true,
       this.filterOnPressed});
   String? title;
   void Function()? bellOnTap;
   var size;
   bool showBell;
   bool showFilter;
+  bool showBackButton;
+
   void Function()? filterOnPressed;
 
   @override
-  Size get preferredSize => Size.fromHeight(50);
+  Size get preferredSize => Size.fromHeight(100);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: true,
-      iconTheme: const IconThemeData(
-        color: Colors.white,
-      ),
+      // iconTheme: const IconThemeData(
+      //   color: Colors.white,
+      // ),
       toolbarHeight: size,
-      title: Text(
-        title!,
-        style: GoogleFonts.poppins(
-            fontWeight: FontWeight.w500, fontSize: 18.sp, color: Colors.white),
+
+      leading: showBackButton
+          ? Padding(
+              padding: const EdgeInsets.only(top: 30),
+              child: InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: SizedBox(
+                  height: 24.h,
+                  width: 24.w,
+                  child: SvgPicture.asset(
+                    'assets/images/arrow_back.svg',
+                  ),
+                ),
+              ),
+            )
+          : null,
+
+      title: Padding(
+        padding: const EdgeInsets.only(top: 30).r,
+        child: Text(
+          title!,
+          style: GoogleFonts.poppins(
+              fontWeight: FontWeight.w500,
+              fontSize: 18.sp,
+              color: Colors.white),
+        ),
       ),
       flexibleSpace: Container(
         decoration: const BoxDecoration(
@@ -56,7 +83,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           // )
 
           Padding(
-            padding: const EdgeInsets.only(right: 30).r,
+            padding: const EdgeInsets.only(right: 20, top: 30).r,
             child: InkWell(
               onTap: () {},
               child: badges.Badge(
@@ -75,12 +102,15 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           )
         ] else if (showFilter) ...[
-          IconButton(
-              icon: SvgPicture.asset(
-                'assets/images/filter.svg',
-                color: Colors.white,
-              ),
-              onPressed: filterOnPressed),
+          Padding(
+            padding: const EdgeInsets.only(right: 0, top: 20).r,
+            child: IconButton(
+                icon: SvgPicture.asset(
+                  'assets/images/filter.svg',
+                  color: Colors.white,
+                ),
+                onPressed: filterOnPressed),
+          ),
         ]
       ],
     );

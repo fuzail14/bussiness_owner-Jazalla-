@@ -1,20 +1,52 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 //import 'package:get/get.dart';
 import '../../../Constants/Person/person.dart';
 import '../../../Constants/Person/person_controller.dart';
 
-// class HomeScreenController extends GetxController {
-//   var arguments = Get.arguments;
-//   late final Person person;
-//   String appBarDropdownval = 'Profile';
-//   var appBarDropdownli = ['Profile', 'logout'];
+final homeScreenProvider =
+    StateNotifierProvider<HomeScreenNotifier, HomeScreenState>((ref) {
+  return HomeScreenNotifier();
+});
 
-//   @override
-//   void onInit() {
-//     super.onInit();
-//     person = arguments;
-//   }
-// }
+class HomeScreenState {
+  int currentIndex;
 
-// final personProvider = StateNotifierProvider<PersonController, Person?>(
-//     (ref) => PersonController());
+  HomeScreenState({this.currentIndex = 0});
+
+  HomeScreenState copyWith({int? currentIndex}) {
+    return HomeScreenState(currentIndex: currentIndex ?? this.currentIndex);
+  }
+}
+
+class HomeScreenNotifier extends StateNotifier<HomeScreenState> {
+  late PageController pageController;
+
+  HomeScreenNotifier() : super(HomeScreenState()) {
+    pageController = PageController(initialPage: state.currentIndex);
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose(); // Dispose controller when not needed
+    super.dispose();
+  }
+
+  // void bottomIndexChanged(int index) {
+  //   state = state.copyWith(currentIndex: index);
+  //   pageController.animateToPage(index,
+  //       duration: Duration(milliseconds: 500), curve: Curves.easeOut);
+  // }
+  void bottomIndexChanged(int index) {
+    if (state.currentIndex != index) {
+      // Update the state only if the index changes
+      state = state.copyWith(currentIndex: index);
+      pageController.animateToPage(index,
+          duration: Duration(microseconds: 3), curve: Curves.easeInOut);
+    }
+  }
+
+  void pageChanged(int index) {
+    state = state.copyWith(currentIndex: index);
+  }
+}

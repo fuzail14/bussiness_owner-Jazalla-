@@ -53,7 +53,8 @@ class CardEmployeeCenter extends StatelessWidget {
         //   ],
         // ),
         decoration: BoxDecoration(
-          color: whiteColor,
+          color: Color(0xffF5F9F9),
+          border: Border.all(color: Color(0xff449FC6).withOpacity(0.6)),
           borderRadius: BorderRadius.circular(8).r,
           boxShadow: [
             BoxShadow(
@@ -92,27 +93,21 @@ class CardEmployeeCenter extends StatelessWidget {
 
                 //borderRadius: BorderRadius.circular(8.0).r,
               ),
-              child: FadeInRight(
-                duration: Duration(milliseconds: 900),
-                child: SvgPicture.asset(
-                  svgPath!,
-                  fit: BoxFit.none,
-                ),
+              child: SvgPicture.asset(
+                svgPath!,
+                fit: BoxFit.none,
               ),
             ),
             10.ph,
-            FadeInLeft(
-              duration: Duration(milliseconds: 900),
-              child: Text(
-                headingText!,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
-                style: GoogleFonts.montserrat(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 12.sp,
-                    color: Color(0xff1C2827)),
-              ),
+            Text(
+              headingText!,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.montserrat(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 12.sp,
+                  color: Color(0xff1C2827)),
             )
           ],
         ),

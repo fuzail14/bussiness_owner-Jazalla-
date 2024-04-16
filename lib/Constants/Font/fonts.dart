@@ -42,6 +42,12 @@ class FontManagment {
       fontWeight: FontWeight.w600,
       color: const Color(0xff89E85C));
 
+  var montserrat12 = GoogleFonts.montserrat(
+    color: Color(0xff7C828A),
+    fontWeight: FontWeight.w500,
+    fontSize: 12,
+  );
+
   var montserrat14 = GoogleFonts.montserrat(
       fontSize: 14.sp,
       fontWeight: FontWeight.w400,
@@ -88,7 +94,7 @@ class FontManagment {
       fontSize: 24.sp, fontWeight: FontWeight.w500, color: whiteColor);
 
   var poppins28 = GoogleFonts.poppins(
-      fontSize: 28.sp, fontWeight: FontWeight.w600, color: whiteColor);
+      fontSize: 24.sp, fontWeight: FontWeight.w600, color: whiteColor);
   var montserrat18 = GoogleFonts.montserrat(
       fontSize: 18.sp, fontWeight: FontWeight.w600, color: Color(0xff202046));
 }

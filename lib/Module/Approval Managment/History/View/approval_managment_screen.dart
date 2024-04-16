@@ -110,6 +110,7 @@ class ApprovalHistoryScreen extends ConsumerWidget {
                         child: Container(
                           //width: 360.w,
                           // height: 224.h,
+
                           margin: const EdgeInsets.only(
                                   bottom: 15, left: 28, right: 28, top: 10)
                               .r,

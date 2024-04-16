@@ -19,6 +19,7 @@ import 'package:hexcolor/hexcolor.dart';
 import '../../../../../Data/Api Resp/api_response.dart';
 import '../../../../../Widgets/Loader/loader.dart';
 import '../../../../Widgets/AppBar/my_app_bar.dart';
+import '../../../../Widgets/HomeAppBar/home_app_bar.dart';
 import '../../History/View/approval_managment_screen.dart';
 import '../Controller/approval_managment_controller.dart';
 
@@ -59,8 +60,9 @@ class _ApprovalManagmentScreenState
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: MyAppBar(
+      appBar: HomeAppBar(
           showFilter: false,
+          showBackButton: false,
           title: (state.selectedIndex == 0)
               ? "Approval Control"
               : "Approval History"),
@@ -229,6 +231,7 @@ class ApprovalControlScreen extends ConsumerWidget {
                         child: Container(
                           //width: 360.w,
                           // height: 224.h,
+
                           margin: const EdgeInsets.only(
                                   bottom: 15, left: 28, right: 28, top: 10)
                               .r,

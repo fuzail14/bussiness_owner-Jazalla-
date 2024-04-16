@@ -51,20 +51,18 @@ class CardMakretPlace extends StatelessWidget {
         ),
         child: Column(
           children: [
-            FadeInUp(
-              child: SvgPicture.asset(
-                svgPath!,
-                color: Color(0xff479696),
-                height: 40.h,
-                //width: 40.w,
-              ),
+            SvgPicture.asset(
+              svgPath!,
+              color: Color(0xff479696),
+              height: 40.h,
+              //width: 40.w,
             ),
             8.ph,
-            FadeInLeft(
-              duration: const Duration(milliseconds: 900),
-              child: AutoSizeText(
+            SizedBox(
+              width: 120.w,
+              child: Text(
                 headingText!,
-                maxLines: 1,
+                maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.roboto(
@@ -74,17 +72,15 @@ class CardMakretPlace extends StatelessWidget {
               ),
             ),
             4.ph,
-            FadeInRight(
-              duration: Duration(milliseconds: 900),
-              child: AutoSizeText(
-                'It serves as a comprehensive directory, showcasing company profiles.',
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-                style: GoogleFonts.roboto(
-                    color: Color(0xff8DAEAE),
-                    fontWeight: FontWeight.w400,
-                    fontSize: 10.sp),
-              ),
+            AutoSizeText(
+              subHeadingText!,
+              maxLines: 3,
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
+              style: GoogleFonts.roboto(
+                  color: Color(0xff8DAEAE),
+                  fontWeight: FontWeight.w400,
+                  fontSize: 10.sp),
             )
           ],
         ),

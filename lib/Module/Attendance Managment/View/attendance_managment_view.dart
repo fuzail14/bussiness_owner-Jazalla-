@@ -103,7 +103,7 @@ class AttendanceManagmentScreen extends ConsumerWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    'Emp-2852',
+                                    '10-05-2024 (SUN)',
                                     style: GoogleFonts.montserrat(
                                       fontSize: 16.sp,
                                       color: blackColor,
@@ -195,52 +195,75 @@ class AttendanceManagmentScreen extends ConsumerWidget {
                                       ],
                                     ),
                                     Divider(),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          'Late',
-                                          style: GoogleFonts.montserrat(
-                                            fontSize: 12.sp,
-                                            color: Color(0xff4B4F54),
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        Text(
-                                          '30:00 Min',
-                                          style: GoogleFonts.montserrat(
-                                            fontSize: 12.sp,
-                                            color: Color(0xff4B4F54),
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Divider(),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          'Early Evening',
-                                          style: GoogleFonts.montserrat(
-                                            fontSize: 12.sp,
-                                            color: Color(0xff4B4F54),
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        Text(
-                                          '05:00 AM',
-                                          style: GoogleFonts.montserrat(
-                                            fontSize: 12.sp,
-                                            color: Color(0xff4B4F54),
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Divider(),
+                                    // Row(
+                                    //   mainAxisAlignment:
+                                    //       MainAxisAlignment.spaceBetween,
+                                    //   children: [
+                                    //     Text(
+                                    //       'Late',
+                                    //       style: GoogleFonts.montserrat(
+                                    //         fontSize: 12.sp,
+                                    //         color: Color(0xff4B4F54),
+                                    //         fontWeight: FontWeight.w600,
+                                    //       ),
+                                    //     ),
+                                    //     Text(
+                                    //       '30:00 Min',
+                                    //       style: GoogleFonts.montserrat(
+                                    //         fontSize: 12.sp,
+                                    //         color: Color(0xff4B4F54),
+                                    //         fontWeight: FontWeight.w500,
+                                    //       ),
+                                    //     ),
+                                    //   ],
+                                    // ),
+                                    // // Divider(),
+                                    // Row(
+                                    //   mainAxisAlignment:
+                                    //       MainAxisAlignment.spaceBetween,
+                                    //   children: [
+                                    //     Text(
+                                    //       'Early Evening',
+                                    //       style: GoogleFonts.montserrat(
+                                    //         fontSize: 12.sp,
+                                    //         color: Color(0xff4B4F54),
+                                    //         fontWeight: FontWeight.w600,
+                                    //       ),
+                                    //     ),
+                                    //     Text(
+                                    //       '05:00 AM',
+                                    //       style: GoogleFonts.montserrat(
+                                    //         fontSize: 12.sp,
+                                    //         color: Color(0xff4B4F54),
+                                    //         fontWeight: FontWeight.w500,
+                                    //       ),
+                                    //     ),
+                                    //   ],
+                                    // ),
+                                    // Divider(),
+                                    // Row(
+                                    //   mainAxisAlignment:
+                                    //       MainAxisAlignment.spaceBetween,
+                                    //   children: [
+                                    //     Text(
+                                    //       'Total',
+                                    //       style: GoogleFonts.montserrat(
+                                    //         fontSize: 12.sp,
+                                    //         color: Color(0xff4B4F54),
+                                    //         fontWeight: FontWeight.w600,
+                                    //       ),
+                                    //     ),
+                                    //     Text(
+                                    //       '08:00h',
+                                    //       style: GoogleFonts.montserrat(
+                                    //         fontSize: 12.sp,
+                                    //         color: Color(0xff4B4F54),
+                                    //         fontWeight: FontWeight.w500,
+                                    //       ),
+                                    //     ),
+                                    //   ],
+                                    // ),
+                                    // Divider(),
                                   ],
                                 ),
                               )
