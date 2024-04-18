@@ -39,3 +39,35 @@ Widget dashBoardFirstGrid({
     ),
   );
 }
+
+Widget othersListTile({
+  required String icon,
+  required String title,
+  required String subTitle,
+}) {
+  return ListTile(
+    leading: SizedBox(width: 48.w, height: 48.h, child: Image.asset(icon)),
+    title: SizedBox(
+      width: 200.w,
+      child: Text(
+        title,
+        textAlign: TextAlign.start,
+        style: GoogleFonts.poppins(
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w600,
+            color: const Color(0xff202046)),
+      ),
+    ),
+    subtitle: SizedBox(
+      width: 200.w,
+      child: Text(
+        subTitle,
+        maxLines: 1,
+        style: GoogleFonts.poppins(
+            fontSize: 12.sp,
+            fontWeight: FontWeight.w500,
+            color: const Color(0xff9CA2AA)),
+      ),
+    ),
+  );
+}

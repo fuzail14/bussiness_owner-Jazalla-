@@ -83,54 +83,59 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                 // ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      height: 48.h,
-                      width: 48.w,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xff4EBBD3)),
-                          color: Color(0xffF5F9F9),
-                          shape: BoxShape.circle),
-                      margin: EdgeInsets.only(top: 0, left: 0).r,
-                      child: SvgPicture.asset(
-                        'assets/images/default_company_logo.svg',
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                    10.pw,
-                    Column(
+                    Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          person!.data!.company!.companyName!.toString(),
-                          style: GoogleFonts.roboto(
-                              fontSize: 18.sp,
-                              fontWeight: FontWeight.w800,
-                              color: whiteColor),
-                        ),
-                        //5.ph,
-                        SizedBox(
-                          width: 150.w,
-                          child: Text(
-                            "Hi,${person.data!.firstName.toString() + " " + person.data!.lastName.toString()}",
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: GoogleFonts.roboto(
-                                fontSize: 15.sp,
-                                fontWeight: FontWeight.w500,
-                                color: whiteColor),
+                        Container(
+                          height: 48.h,
+                          width: 48.w,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Color(0xff4EBBD3)),
+                              color: Color(0xffF5F9F9),
+                              shape: BoxShape.circle),
+                          margin: EdgeInsets.only(top: 0, left: 0).r,
+                          child: SvgPicture.asset(
+                            'assets/images/default_company_logo.svg',
+                            fit: BoxFit.contain,
                           ),
                         ),
-                        Text(
-                          'Administrator',
-                          style: GoogleFonts.mulish(
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.w300,
-                              color: whiteColor),
+                        10.pw,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              person!.data!.company!.companyName!.toString(),
+                              style: GoogleFonts.roboto(
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.w800,
+                                  color: whiteColor),
+                            ),
+                            //5.ph,
+                            SizedBox(
+                              width: 150.w,
+                              child: Text(
+                                "Hi,${person.data!.firstName.toString() + " " + person.data!.lastName.toString()}",
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.roboto(
+                                    fontSize: 15.sp,
+                                    fontWeight: FontWeight.w500,
+                                    color: whiteColor),
+                              ),
+                            ),
+                            Text(
+                              'Administrator',
+                              style: GoogleFonts.mulish(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w300,
+                                  color: whiteColor),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                    90.pw,
                     InkWell(
                       onTap: () {
                         GoRouter.of(context)
@@ -160,7 +165,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                 SizedBox(
                   // height: 400,
                   width: 427.w,
-                  height: 320.h,
+                  height: 210.h,
                   child: PageView.builder(
                       controller: notifier.pageController,
                       pageSnapping: true,
@@ -185,8 +190,8 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                   //height: 280.h,
                                   padding: const EdgeInsets.only(
                                           top: 22,
-                                          left: 20,
-                                          right: 20,
+                                          left: 40,
+                                          right: 40,
                                           bottom: 2)
                                       .r,
 
@@ -197,15 +202,15 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                           color: const Color(0xffF6F6F6)
                                               .withOpacity(0.15)),
                                       borderRadius: const BorderRadius.all(
-                                              Radius.circular(30))
+                                              Radius.circular(15))
                                           .r),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      Text('Dashboard',
-                                          style: FontManagment().poppins14),
-                                      10.ph,
+                                      // Text('Dashboard',
+                                      //     style: FontManagment().poppins14),
+                                      // 10.ph,
                                       // Text('Attendees',
                                       //     style: FontManagment().poppins28),
                                       SizedBox(
@@ -219,32 +224,32 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                             style: FontManagment().poppins28),
                                       ),
 
-                                      29.ph,
-                                      Container(
-                                        width: 53.w,
-                                        height: 20.h,
-                                        padding: EdgeInsets.only(left: 4).r,
-                                        decoration: BoxDecoration(
-                                            color: Color(0xffFFFFFF)
-                                                .withOpacity(0.30),
-                                            borderRadius:
-                                                BorderRadius.circular(10).r),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              'View',
-                                              style: FontManagment()
-                                                  .poppins10White,
-                                            ),
-                                            2.pw,
-                                            SvgPicture.asset(
-                                                'assets/images/arrow_down.svg')
-                                          ],
-                                        ),
-                                      ),
-                                      23.8.ph,
+                                      //  29.ph,
+                                      // Container(
+                                      //   width: 53.w,
+                                      //   height: 20.h,
+                                      //   padding: EdgeInsets.only(left: 4).r,
+                                      //   decoration: BoxDecoration(
+                                      //       color: Color(0xffFFFFFF)
+                                      //           .withOpacity(0.30),
+                                      //       borderRadius:
+                                      //           BorderRadius.circular(10).r),
+                                      //   child: Row(
+                                      //     mainAxisAlignment:
+                                      //         MainAxisAlignment.center,
+                                      //     children: [
+                                      //       Text(
+                                      //         'View',
+                                      //         style: FontManagment()
+                                      //             .poppins10White,
+                                      //       ),
+                                      //       2.pw,
+                                      //       SvgPicture.asset(
+                                      //           'assets/images/arrow_down.svg')
+                                      //     ],
+                                      //   ),
+                                      // ),
+                                      15.8.ph,
                                       const Divider(),
                                       14.8.ph,
                                       Row(
@@ -269,8 +274,8 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                                   }
                                                 },
                                                 child: Container(
-                                                  height: 70.h,
-                                                  width: 130.w,
+                                                  height: 60.h,
+                                                  width: 110.w,
                                                   padding:
                                                       const EdgeInsets.only(
                                                               left: 0,
@@ -313,7 +318,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                                           child: Padding(
                                                             padding:
                                                                 const EdgeInsets
-                                                                    .all(8.0),
+                                                                    .all(4.0),
                                                             child: Text(
                                                               '10 Days',
                                                               style: GoogleFonts
@@ -375,8 +380,8 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                                               top: 12,
                                                               bottom: 12)
                                                           .r,
-                                                  height: 70.h,
-                                                  width: 130.w,
+                                                  height: 60.h,
+                                                  width: 110.w,
                                                   decoration: BoxDecoration(
                                                       color: whiteColor,
                                                       borderRadius:
@@ -424,7 +429,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
           ),
           Container(
             // height: 662.h,
-            margin: EdgeInsets.only(top: 500, bottom: 25).r,
+            margin: EdgeInsets.only(top: 400, bottom: 25).r,
             padding: EdgeInsets.only(left: 24, right: 24).r,
             decoration: BoxDecoration(
                 color: Color(0xffF9F9F9),
@@ -446,7 +451,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Actions',
+                      'Quick Actions',
                       style: GoogleFonts.montserrat(
                           fontSize: 16,
                           color: blackColor,
@@ -461,7 +466,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                             InkWell(
                               onTap: () {
                                 GoRouter.of(context).pushNamed(
-                                    notificationsScreen,
+                                    approvalManagmentScreen,
                                     extra: person);
                               },
                               child: badges.Badge(
@@ -475,8 +480,8 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                 showBadge: true,
                                 ignorePointer: false,
                                 child: Container(
-                                  width: 100.w,
-                                  height: 86.h,
+                                  width: 80.w,
+                                  height: 66.h,
                                   decoration: BoxDecoration(
                                     color: whiteColor,
                                     borderRadius: BorderRadius.circular(12).r,
@@ -551,8 +556,8 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                         Column(
                           children: [
                             Container(
-                              width: 100.w,
-                              height: 86.h,
+                              width: 80.w,
+                              height: 66.h,
                               decoration: BoxDecoration(
                                 color: whiteColor,
                                 borderRadius: BorderRadius.circular(12).r,
@@ -581,8 +586,8 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                         Column(
                           children: [
                             Container(
-                              width: 100.w,
-                              height: 86.h,
+                              width: 80.w,
+                              height: 66.h,
                               decoration: BoxDecoration(
                                 color: whiteColor,
                                 borderRadius: BorderRadius.circular(12).r,
@@ -612,43 +617,63 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                     )
                   ],
                 ),
-                10.ph,
-                Container(
-                  height: 51.h,
-                  // margin: EdgeInsets.only(left: 24, right: 24, bottom: 0).r,
-                  decoration: BoxDecoration(
-                    color: whiteColor,
-                    borderRadius: BorderRadius.circular(6).r,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.3),
-                        offset: const Offset(
-                          1.0,
-                          3.0,
-                        ),
-                        blurRadius: 10.0,
-                        spreadRadius: 1.0,
+                20.ph,
+                InkWell(
+                  onTap: () {
+                    GoRouter.of(context).pushNamed(generatedOtpPage);
+                  },
+                  child: Container(
+                    height: 55.h,
+                    // margin: EdgeInsets.only(left: 24, right: 24, bottom: 0).r,
+                    decoration: BoxDecoration(
+                      //  color: Color(0xff449FC6).withOpacity(0.6),
+                      borderRadius: BorderRadius.circular(6).r,
+                      border: Border.all(color: Color(0xff2D60A8)),
+                      // boxShadow: [
+                      //   BoxShadow(
+                      //     color: Colors.grey.withOpacity(0.3),
+                      //     offset: const Offset(
+                      //       1.0,
+                      //       3.0,
+                      //     ),
+                      //     blurRadius: 10.0,
+                      //     spreadRadius: 1.0,
+                      //   ),
+                      // ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 21.5, right: 32.4),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Image.asset(
+                                'assets/images/generate_otp.png',
+                                height: 34.h,
+                                width: 34.w,
+                              ),
+                              10.pw,
+                              Text(
+                                'Generate OTP',
+                                style: GoogleFonts.montserrat(
+                                    color: blackColor,
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ],
+                          ),
+                          SvgPicture.asset(
+                            'assets/images/forward_arrow.svg',
+                            height: 11.08.h,
+                            width: 7.05.w,
+                          )
+                        ],
                       ),
-                    ],
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 21.5, right: 32.4),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Generate OTP',
-                          style: GoogleFonts.montserrat(
-                              color: Color(0xff302929),
-                              fontSize: 17.16.sp,
-                              fontWeight: FontWeight.w600),
-                        ),
-                        SvgPicture.asset('assets/images/forward_arrow.svg')
-                      ],
                     ),
                   ),
                 ),
-                15.ph,
+                20.ph,
 
                 Text(
                   'Dashboard',
@@ -777,38 +802,84 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                       fontWeight: FontWeight.bold),
                 ),
                 10.ph,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    dashBoardFirstGrid(
-                      icon: 'assets/images/no_of_project_icon.png',
-                      title: 'No of Projects',
-                      subTitle: '85',
-                    ),
-                    // 19.pw,
-                    dashBoardFirstGrid(
-                      icon: 'assets/images/total_project_value_icon.png',
-                      title: 'Total Project Value',
-                      subTitle: 'SAR 550M',
-                    ),
-                  ],
-                ),
-                30.ph,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    dashBoardFirstGrid(
-                      icon: 'assets/images/local_content_value_icon.png',
-                      title: 'Local Content Value',
-                      subTitle: 'SAR 55M',
-                    ),
-                    // 19.pw,
-                    dashBoardFirstGrid(
-                      icon: 'assets/images/lc_percentage_icon.png',
-                      title: 'LC Percentage',
-                      subTitle: '38%',
-                    ),
-                  ],
+                Container(
+                  // padding: const EdgeInsets.only(
+                  //         left: 24, top: 15, bottom: 15, right: 0)
+                  //     .r,
+                  // decoration: BoxDecoration(
+                  //     color: whiteColor,
+                  //     borderRadius: BorderRadius.circular(12).r),
+                  //height: 353.h,
+                  width: 331.w,
+
+                  decoration: BoxDecoration(
+                    color: whiteColor,
+                    borderRadius: BorderRadius.circular(12).r,
+                  ),
+                  padding: const EdgeInsets.only(
+                          left: 16.8, top: 19, bottom: 20, right: 1)
+                      .r,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      othersListTile(
+                        icon: 'assets/images/no_of_project_icon.png',
+                        title: 'No of Projects',
+                        subTitle: '85',
+                      ),
+                      15.ph,
+                      Container(
+                        height: 1.h,
+                        width: double.infinity.w,
+                        margin: const EdgeInsets.only(right: 25).r,
+                        decoration:
+                            BoxDecoration(color: Colors.grey.withOpacity(0.5)),
+                      ),
+                      13.ph,
+                      othersListTile(
+                        icon: 'assets/images/total_project_value_icon.png',
+                        title: 'Total Project Value',
+                        subTitle: 'SAR 550M',
+                      ),
+                      15.ph,
+                      Container(
+                        height: 1.h,
+                        width: double.infinity.w,
+                        margin: const EdgeInsets.only(right: 25).r,
+                        decoration:
+                            BoxDecoration(color: Colors.grey.withOpacity(0.5)),
+                      ),
+                      13.ph,
+                      othersListTile(
+                        icon: 'assets/images/local_content_value_icon.png',
+                        title: 'Local Content Value',
+                        subTitle: 'SAR 55M',
+                      ),
+                      15.ph,
+                      Container(
+                        height: 1.h,
+                        width: double.infinity.w,
+                        margin: const EdgeInsets.only(right: 25).r,
+                        decoration:
+                            BoxDecoration(color: Colors.grey.withOpacity(0.5)),
+                      ),
+                      13.ph,
+                      othersListTile(
+                        icon: 'assets/images/lc_percentage_icon.png',
+                        title: 'LC Percentage',
+                        subTitle: '38%',
+                      ),
+                      15.ph,
+                      Container(
+                        height: 1.h,
+                        width: double.infinity.w,
+                        margin: const EdgeInsets.only(right: 25).r,
+                        decoration:
+                            BoxDecoration(color: Colors.grey.withOpacity(0.5)),
+                      ),
+                      13.ph,
+                    ],
+                  ),
                 ),
               ],
             ),

@@ -27,7 +27,7 @@ class Menu extends ConsumerWidget {
     final menuItems = ref.watch(menuControllerProvider).menuItems;
     final person = ref.read(personProvider);
     return Scaffold(
-      appBar: HomeAppBar(
+      appBar: MyAppBar(
         title: 'Menu',
         showBackButton: false,
       ),

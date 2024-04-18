@@ -16,13 +16,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bussines_owner/Routes/set_routes.dart';
 import '../Constants/Person/person_controller.dart';
+import '../Module/Approval Managment/Main/View/approval_managment_screen.dart';
 import '../Module/Attendance Managment/View/attendance_managment_view.dart';
 import '../Module/BussinesCommunity/Detail/View/bussines_community_detail_page.dart';
 import '../Module/BussinesCommunity/Main/View/bussines_communities_screen.dart';
 import '../Module/BussinesForSale/Main/View/sale_bussines_screen.dart';
 import '../Module/GeneralServices/RequestProposal/View/request_proposal_page.dart';
 import '../Module/GeneralServices/SendInquiry/View/service_send_inquiry_page.dart';
+import '../Module/GeneratedOtpScreen/view/generated_otp_screen.dart';
 import '../Module/InvestMentOpportunity/Main/View/investMent_Opportunity_screen.dart';
+import '../Module/Leave Managment/View/leave_managment_view.dart';
+import '../Module/LeaveCreate/View/leave_create_view.dart';
 import '../Module/Notifications/View/notifications_screen.dart';
 import '../Module/OnlineStore/RequestQuote/View/request_quote_page.dart';
 import '../Module/OnlineStore/SendInquiry/View/send_inquiry_page.dart';
@@ -33,6 +37,7 @@ import '../Module/ProcurementManagment/RFP/Main/View/procurement_rfp_screen.dart
 import '../Module/ProcurementManagment/RFP/RFXManagmentRFPDetail/View/rfx_managment_rfp_detail_page.dart';
 import '../Module/ProcurementManagment/RFQ/Main/View/procurement_rfq_screen.dart';
 import '../Module/ProcurementManagment/RFQ/RFXManagmentRFQDetail/View/rfx_managment_rfq_detail_page.dart';
+import '../Module/SalaryPaySlip/View/salary_payslip_view.dart';
 import '../Module/SalesManagment/RFIMain/RFI/View/sales_managment_rfi_screen.dart';
 import '../Module/SalesManagment/RFIMain/SalesManagmentRFIDetail/View/sales_managment_rfi_detail_page.dart';
 import '../Module/SalesManagment/RFIMain/SendRFIResponse/View/send_rfi_response.dart';
@@ -873,6 +878,95 @@ final router = GoRouter(
                 .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
           child: AttendanceManagmentScreen(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: approvalManagmentScreen,
+      path: '/ApprovalManagmentScreen',
+      pageBuilder: (context, state) {
+        final person = state.extra as Person;
+        final page = ProviderScope(
+          overrides: [
+            personProvider
+                .overrideWith((ref) => PersonController()..setPerson(person)),
+          ],
+          child: ApprovalManagmentScreen(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: leaveManagmentScreen,
+      path: '/LeaveManagmentScreen',
+      pageBuilder: (context, state) {
+        final person = state.extra as Person;
+        final page = ProviderScope(
+          overrides: [
+            personProvider
+                .overrideWith((ref) => PersonController()..setPerson(person)),
+          ],
+          child: LeaveManagmentScreen(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+
+    GoRoute(
+      name: generatedOtpPage,
+      path: '/GeneratedOtpPage',
+      pageBuilder: (context, state) {
+        final page = GeneratedOtpPage();
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: salaryPaySlipScreen,
+      path: '/SalaryPaySlipScreen',
+      pageBuilder: (context, state) {
+        final person = state.extra as Person;
+        final page = ProviderScope(
+          overrides: [
+            personProvider
+                .overrideWith((ref) => PersonController()..setPerson(person)),
+          ],
+          child: SalaryPaySlipScreen(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: leaveCreateScreen,
+      path: '/LeaveCreateScreen',
+      pageBuilder: (context, state) {
+        final person = state.extra as Person;
+        final page = ProviderScope(
+          overrides: [
+            personProvider
+                .overrideWith((ref) => PersonController()..setPerson(person)),
+          ],
+          child: LeaveCreateScreen(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,

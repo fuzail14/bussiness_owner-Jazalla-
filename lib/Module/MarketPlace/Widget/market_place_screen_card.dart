@@ -34,11 +34,11 @@ class CardMakretPlace extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: 160.w,
-        height: 160.h,
+        height: 140.h,
         padding: EdgeInsets.only(left: 20, top: 20, right: 5, bottom: 0).r,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8).r,
-          color: Color(0xffF5F9F9),
+          color: whiteColor,
           border: Border.all(color: Color(0xff449FC6).withOpacity(0.6)),
           boxShadow: [
             BoxShadow(
@@ -53,10 +53,11 @@ class CardMakretPlace extends StatelessWidget {
           children: [
             SvgPicture.asset(
               svgPath!,
-              color: Color(0xff479696),
+              color: Color(0xff1F3996),
               height: 40.h,
               //width: 40.w,
             ),
+
             8.ph,
             SizedBox(
               width: 120.w,
@@ -66,22 +67,22 @@ class CardMakretPlace extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.roboto(
-                    color: Color(0xff479696),
-                    fontWeight: FontWeight.w800,
-                    fontSize: 12.sp),
+                    color: Color(0xff1F3996),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14.sp),
               ),
             ),
-            4.ph,
-            AutoSizeText(
-              subHeadingText!,
-              maxLines: 3,
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
-              style: GoogleFonts.roboto(
-                  color: Color(0xff8DAEAE),
-                  fontWeight: FontWeight.w400,
-                  fontSize: 10.sp),
-            )
+            // 4.ph,
+            // AutoSizeText(
+            //   subHeadingText!,
+            //   maxLines: 3,
+            //   textAlign: TextAlign.center,
+            //   overflow: TextOverflow.ellipsis,
+            //   style: GoogleFonts.roboto(
+            //       color: Color(0xff8DAEAE),
+            //       fontWeight: FontWeight.w400,
+            //       fontSize: 10.sp),
+            // )
           ],
         ),
       ),

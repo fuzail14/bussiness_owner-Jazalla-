@@ -32,12 +32,11 @@ class CardEmployeeCenter extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 150.w,
-        // height: 160.h,
-        padding:
-            const EdgeInsets.only(left: 8, right: 8, bottom: 35.5, top: 36).r,
+        width: 140.w,
+        height: 160.h,
+        padding: const EdgeInsets.only(left: 8, right: 8, bottom: 0, top: 36).r,
 
-        //  margin: const EdgeInsets.only(left: 31, right: 0, bottom: 0, top: 0).r,
+        // margin: const EdgeInsets.only(left: 35, right: 0, bottom: 0, top: 0).r,
         //margin: EdgeInsets.only(left: 10),
 
         // decoration: BoxDecoration(
@@ -53,7 +52,7 @@ class CardEmployeeCenter extends StatelessWidget {
         //   ],
         // ),
         decoration: BoxDecoration(
-          color: Color(0xffF5F9F9),
+          color: whiteColor,
           border: Border.all(color: Color(0xff449FC6).withOpacity(0.6)),
           borderRadius: BorderRadius.circular(8).r,
           boxShadow: [
@@ -74,22 +73,25 @@ class CardEmployeeCenter extends StatelessWidget {
             Container(
               height: 60.22.h,
               width: 60.22.w,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                // color: Color(0xffF9F9F9),
-                gradient: LinearGradient(
-                  stops: [0.01, 0.5],
-                  // begin: Alignment.bottomRight,
-                  // end: Alignment.bottomLeft,
-
-                  begin:
-                      Alignment.bottomCenter, // Begin gradient from top right
-                  end: Alignment.topCenter,
-                  colors: <Color>[
-                    Color(0xffA4EAE4),
-                    Color(0xffFFFFFF),
-                  ],
+                border: Border.all(
+                  color: Color(0xff1F3996),
                 ),
+                // color: Color(0xffF9F9F9),
+                // gradient: LinearGradient(
+                //   stops: [0.01, 0.5],
+                //   // begin: Alignment.bottomRight,
+                //   // end: Alignment.bottomLeft,
+
+                //   begin:
+                //       Alignment.bottomCenter, // Begin gradient from top right
+                //   end: Alignment.topCenter,
+                //   colors: <Color>[
+                //     Color(0xff1F3996),
+                //     Color(0xffFFFFFF),
+                //   ],
+                // ),
 
                 //borderRadius: BorderRadius.circular(8.0).r,
               ),
@@ -104,10 +106,15 @@ class CardEmployeeCenter extends StatelessWidget {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
-              style: GoogleFonts.montserrat(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 12.sp,
-                  color: Color(0xff1C2827)),
+              // style: GoogleFonts.montserrat(
+              //     fontWeight: FontWeight.w500,
+              //     fontSize: 12.sp,
+              //     color: Color(0xff1C2827)
+              //     ),
+              style: GoogleFonts.roboto(
+                  color: Color(0xff1F3996),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14.sp),
             )
           ],
         ),

@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
+import 'package:bussines_owner/Constants/constants.dart';
 import 'package:bussines_owner/Routes/set_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,7 +23,8 @@ class MarketPlaceScreen extends ConsumerWidget {
     print('market place build check ${buildCheck++}');
 
     return Scaffold(
-        appBar: HomeAppBar(
+        backgroundColor: whiteColor,
+        appBar: MyAppBar(
           title: 'MarketPlace',
           showFilter: false,
           showBackButton: false,
@@ -32,12 +34,13 @@ class MarketPlaceScreen extends ConsumerWidget {
         ),
         body: Column(
           children: [
-            30.ph,
+            50.ph,
             SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.only(top: 0, left: 15, right: 15).r,
                 child: Column(
                   children: [
+                    20.ph,
                     // Text("Business Insight",
                     //     style: GoogleFonts.poppins(
                     //       fontSize: 24,
@@ -65,36 +68,6 @@ class MarketPlaceScreen extends ConsumerWidget {
                                 'It serves as a comprehensive directory, showcasing company profiles with industry, locations, products, services, and contact details for easy access and networking.'),
                         20.pw,
                         CardMakretPlace(
-                            textColor: Color(0xffFCAB10),
-                            svgPath: 'assets/images/online_store.svg',
-                            headingText: 'Online Store',
-                            boxText: '2',
-                            onTap: () {
-                              GoRouter.of(context)
-                                  .pushNamed(onlineStoreScreen, extra: person);
-                            },
-                            subHeadingText:
-                                'It hosts an online store providing a platform for suppliers to showcase and sell their products online, catering to diverse customers worldwide.'),
-                      ],
-                    ),
-                    20.ph,
-                    Row(
-                      //mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CardMakretPlace(
-                          textColor: Color(0xffFCAB10),
-                          svgPath: 'assets/images/bussines_sale.svg',
-                          headingText: 'Bussines For Sale',
-                          boxText: '3',
-                          onTap: () {
-                            GoRouter.of(context)
-                                .pushNamed(bussinesForSale, extra: person);
-                          },
-                          subHeadingText:
-                              'To facilitate the sale of existing business to potential buyers. Business owners looking to sell their ventures can list their opportunities in this section.',
-                        ),
-                        20.pw,
-                        CardMakretPlace(
                           textColor: Color(0xff188F71),
                           svgPath: 'assets/images/tenders.svg',
                           headingText: 'Tenders',
@@ -113,9 +86,21 @@ class MarketPlaceScreen extends ConsumerWidget {
                       //mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CardMakretPlace(
+                            textColor: Color(0xffFCAB10),
+                            svgPath: 'assets/images/online_store.svg',
+                            headingText: 'Online Store',
+                            boxText: '2',
+                            onTap: () {
+                              GoRouter.of(context)
+                                  .pushNamed(onlineStoreScreen, extra: person);
+                            },
+                            subHeadingText:
+                                'It hosts an online store providing a platform for suppliers to showcase and sell their products online, catering to diverse customers worldwide.'),
+                        20.pw,
+                        CardMakretPlace(
                           textColor: Color(0xff4B6FFF),
                           svgPath: 'assets/images/general_service.svg',
-                          headingText: 'Genral Services',
+                          headingText: 'General Services',
                           boxText: '5',
                           onTap: () {
                             GoRouter.of(context)
@@ -123,6 +108,24 @@ class MarketPlaceScreen extends ConsumerWidget {
                           },
                           subHeadingText:
                               'It offers a general services catalog for service providers to showcase and sell their services online, catering to diverse customers worldwide.',
+                        ),
+                      ],
+                    ),
+                    20.ph,
+                    Row(
+                      //mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CardMakretPlace(
+                          textColor: Color(0xffFCAB10),
+                          svgPath: 'assets/images/bussines_sale.svg',
+                          headingText: 'Bussines For Sale',
+                          boxText: '3',
+                          onTap: () {
+                            GoRouter.of(context)
+                                .pushNamed(bussinesForSale, extra: person);
+                          },
+                          subHeadingText:
+                              'To facilitate the sale of existing business to potential buyers. Business owners looking to sell their ventures can list their opportunities in this section.',
                         ),
                         20.pw,
                         CardMakretPlace(

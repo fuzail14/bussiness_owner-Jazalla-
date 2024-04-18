@@ -25,7 +25,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   void Function()? filterOnPressed;
 
   @override
-  Size get preferredSize => Size.fromHeight(100);
+  Size get preferredSize => Size.fromHeight(80);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       // iconTheme: const IconThemeData(
       //   color: Colors.white,
       // ),
-      toolbarHeight: size,
+      //toolbarHeight: size,
 
       leading: showBackButton
           ? Padding(

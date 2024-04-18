@@ -13,6 +13,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../Constants/Person/person_controller.dart';
 import '../../../Widgets/HomeAppBar/home_app_bar.dart';
 import '../../MarketPlace/Widget/market_place_screen_card.dart';
+import '../Notifier/employee_center_notifier.dart';
 import '../Widget/employee_center_custom_card.dart';
 
 class EmployeeCenterPage extends ConsumerWidget {
@@ -21,117 +22,148 @@ class EmployeeCenterPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final person = ref.read(personProvider);
+    final notifier = ref.read(employeeCenterProvider.notifier);
+
+    final state = ref.read(employeeCenterProvider);
+
     print(person!.data!.id!);
     print(person.Bearer);
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
         backgroundColor: whiteColor,
-        appBar: HomeAppBar(
+        appBar: MyAppBar(
           title: 'Employee Center',
           showBackButton: false,
         ),
         //backgroundColor: Colors.red,
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            30.ph,
-            GestureDetector(
-              onTap: () {
-                GoRouter.of(context)
-                    .pushNamed(attendanceManagmentScreen, extra: person);
+        body: Container(
+          width: width,
+          // padding: EdgeInsets.only(left: 35, right: 35).r,
+          margin: EdgeInsets.only(left: 35, right: 35).r,
+          // color: Colors.red,
 
-                // context.goNamed(attendanceManagmentScreen);
-              },
-              child: Container(
-                width: width,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              30.ph,
+              GestureDetector(
+                onTap: () {
+                  GoRouter.of(context)
+                      .pushNamed(attendanceManagmentScreen, extra: person);
+                },
+                child: Container(
+                  width: 345.w,
 
-                padding:
-                    EdgeInsets.only(left: 0, right: 0, bottom: 38, top: 37).r,
+                  padding: const EdgeInsets.only(
+                          left: 0, right: 0, bottom: 38, top: 37)
+                      .r,
 
-                margin:
-                    EdgeInsets.only(left: 35, right: 35, bottom: 0, top: 0).r,
+                  // margin: const EdgeInsets.only(
+                  //         left: 35, right: 0, bottom: 0, top: 0)
+                  //     .r,
 
-                //margin: EdgeInsets.only(left: 10),
+                  //margin: EdgeInsets.only(left: 10),
 
-                // decoration: BoxDecoration(
-                //   borderRadius: BorderRadius.circular(16).r,
-                //   color: whiteColor,
-                //   boxShadow: [
-                //     BoxShadow(
-                //       color: Colors.grey.withOpacity(0.2),
-                //       spreadRadius: 0,
-                //       blurRadius: 2,
-                //       offset: Offset(0, 3), // changes position of shadow
-                //     ),
-                //   ],
-                // ),
-                decoration: BoxDecoration(
-                  color: Color(0xffF5F9F9),
-                  border: Border.all(color: Color(0xff449FC6).withOpacity(0.6)),
-                  borderRadius: BorderRadius.circular(8).r,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
-                      offset: const Offset(
-                        1.0,
-                        3.0,
-                      ),
-                      blurRadius: 10.0,
-                      spreadRadius: 1.0,
-                    ),
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    //12.ph,
-                    Container(
-                      height: 60.22.h,
-                      width: 60.22.w,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        // color: Color(0xffF9F9F9),
-                        gradient: LinearGradient(
-                          stops: [0.01, 0.5],
-                          // begin: Alignment.bottomRight,
-                          // end: Alignment.bottomLeft,
-
-                          begin: Alignment
-                              .bottomCenter, // Begin gradient from top right
-                          end: Alignment.topCenter,
-                          colors: <Color>[
-                            Color(0xffA4EAE4),
-                            Color(0xffFFFFFF),
-                          ],
+                  // decoration: BoxDecoration(
+                  //   borderRadius: BorderRadius.circular(16).r,
+                  //   color: whiteColor,
+                  //   boxShadow: [
+                  //     BoxShadow(
+                  //       color: Colors.grey.withOpacity(0.2),
+                  //       spreadRadius: 0,
+                  //       blurRadius: 2,
+                  //       offset: Offset(0, 3), // changes position of shadow
+                  //     ),
+                  //   ],
+                  // ),
+                  decoration: BoxDecoration(
+                    color: whiteColor,
+                    border:
+                        Border.all(color: Color(0xff449FC6).withOpacity(0.6)),
+                    borderRadius: BorderRadius.circular(8).r,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        offset: const Offset(
+                          1.0,
+                          3.0,
                         ),
+                        blurRadius: 10.0,
+                        spreadRadius: 1.0,
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      //12.ph,
+                      Container(
+                        height: 60.22.h,
+                        width: 60.22.w,
+                        // decoration: const BoxDecoration(
+                        //   shape: BoxShape.circle,
+                        //   // color: Color(0xffF9F9F9),
+                        //   gradient: LinearGradient(
+                        //     stops: [0.01, 0.5],
+                        //     // begin: Alignment.bottomRight,
+                        //     // end: Alignment.bottomLeft,
 
-                        //borderRadius: BorderRadius.circular(8.0).r,
+                        //     begin: Alignment
+                        //         .bottomCenter, // Begin gradient from top right
+                        //     end: Alignment.topCenter,
+                        //     colors: <Color>[
+                        //       Color(0xff1F3996),
+                        //       Color(0xffFFFFFF),
+                        //     ],
+                        //   ),
+
+                        //   //borderRadius: BorderRadius.circular(8.0).r,
+                        // ),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Color(0xff1F3996),
+                          ),
+                          // color: Color(0xffF9F9F9),
+                          // gradient: LinearGradient(
+                          //   stops: [0.01, 0.5],
+                          //   // begin: Alignment.bottomRight,
+                          //   // end: Alignment.bottomLeft,
+
+                          //   begin:
+                          //       Alignment.bottomCenter, // Begin gradient from top right
+                          //   end: Alignment.topCenter,
+                          //   colors: <Color>[
+                          //     Color(0xff1F3996),
+                          //     Color(0xffFFFFFF),
+                          //   ],
+                          // ),
+
+                          //borderRadius: BorderRadius.circular(8.0).r,
+                        ),
+                        child: SvgPicture.asset(
+                          'assets/images/employee_center_card_icon.svg',
+                          fit: BoxFit.none,
+                        ),
                       ),
-                      child: SvgPicture.asset(
-                        'assets/images/employee_center_card_icon.svg',
-                        fit: BoxFit.none,
-                      ),
-                    ),
-                    10.ph,
-                    Text(
-                      'Attendance Management',
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.montserrat(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12.sp,
-                          color: Color(0xff1C2827)),
-                    )
-                  ],
+                      10.ph,
+                      Text(
+                        'Attendance Management',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.roboto(
+                            color: Color(0xff1F3996),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14.sp),
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-            28.ph,
-            Padding(
-              padding: const EdgeInsets.only(left: 35, right: 0),
-              child: Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              28.ph,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   // 16.pw,
                   CardEmployeeCenter(
@@ -140,28 +172,28 @@ class EmployeeCenterPage extends ConsumerWidget {
                     svgPath: 'assets/images/employee_center_card_icon2.svg',
                     headingText: 'Leave Management',
                     onTap: () {
+                      GoRouter.of(context)
+                          .pushNamed(leaveManagmentScreen, extra: person);
                       // GoRouter.of(context)
                       //     .pushNamed(onlineStoreScreen, extra: person);
                     },
                   ),
-                  20.pw,
+                  //20.pw,
                   CardEmployeeCenter(
                     //margin: const EdgeInsets.only(right: 33).r,
                     textColor: Color(0xffFCAB10),
                     svgPath: 'assets/images/employee_center_card_icon3.svg',
                     headingText: 'Salary Payslip',
                     onTap: () {
-                      // GoRouter.of(context)
-                      //     .pushNamed(bussinesForSale, extra: person);
+                      GoRouter.of(context)
+                          .pushNamed(salaryPaySlipScreen, extra: person);
                     },
                   ),
                 ],
               ),
-            ),
-            20.ph,
-            Padding(
-              padding: const EdgeInsets.only(left: 35, right: 0).r,
-              child: Row(
+              28.ph,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CardEmployeeCenter(
                     textColor: Color(0xff188F71),
@@ -172,7 +204,7 @@ class EmployeeCenterPage extends ConsumerWidget {
                       //     .pushNamed(tendersView, extra: person);
                     },
                   ),
-                  20.pw,
+                  //20.pw,
                   CardEmployeeCenter(
                     textColor: Color(0xffFCAB10),
                     svgPath: 'assets/images/employee_center_card_icon5.svg',
@@ -181,9 +213,9 @@ class EmployeeCenterPage extends ConsumerWidget {
                   ),
                 ],
               ),
-            ),
-            //  20.ph,
-          ],
+              //  20.ph,
+            ],
+          ),
         ));
   }
 }

@@ -55,7 +55,7 @@ class FontManagment {
   var montserrat14White = GoogleFonts.montserrat(
       fontSize: 14.sp, fontWeight: FontWeight.w600, color: whiteColor);
   var montserrat16 = GoogleFonts.montserrat(
-      fontSize: 16.sp,
+      fontSize: 12.sp,
       fontWeight: FontWeight.w500,
       color: const Color(0xff393939));
 
