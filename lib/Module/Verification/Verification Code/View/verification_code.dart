@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,7 +12,7 @@ import '../../MobileNumber/Controller/register_controller.dart';
 import '../Controller/verification_code_controller.dart';
 
 class VerificationCode extends ConsumerWidget {
-  VerificationCode({
+  const VerificationCode({
     super.key,
   });
 
@@ -30,7 +29,7 @@ class VerificationCode extends ConsumerWidget {
           children: [
             Container(
               height: 441.h,
-              padding: EdgeInsets.symmetric(vertical: 62, horizontal: 70).r,
+              padding: const EdgeInsets.symmetric(vertical: 62, horizontal: 70).r,
               width: double.infinity.w,
               decoration: const BoxDecoration(
                   gradient: LinearGradient(
@@ -130,7 +129,7 @@ class VerificationCode extends ConsumerWidget {
                           fontWeight: FontWeight.w500,
                         ),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xff2C5DA7)),
+                          border: Border.all(color: const Color(0xff2C5DA7)),
                           borderRadius: BorderRadius.circular(8.r),
                         ),
                       ),
@@ -138,7 +137,7 @@ class VerificationCode extends ConsumerWidget {
                         width: 56.w,
                         height: 56.h,
                         decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xff2C5DA7)),
+                          border: Border.all(color: const Color(0xff2C5DA7)),
                           borderRadius: BorderRadius.circular(8.r),
                         ),
                       ),
@@ -146,7 +145,7 @@ class VerificationCode extends ConsumerWidget {
                         width: 56.w,
                         height: 56.h,
                         decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xff2C5DA7)),
+                          border: Border.all(color: const Color(0xff2C5DA7)),
                           borderRadius: BorderRadius.circular(8.r),
                         ),
                       ),

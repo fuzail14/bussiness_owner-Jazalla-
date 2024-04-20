@@ -75,7 +75,7 @@ class OnlineStorePageController extends StateNotifier<OnlineStoreDetailState> {
 
   var onlineStoreProvider;
   void _initialize() {
-    Future.delayed(Duration(milliseconds: 300), () {
+    Future.delayed(const Duration(milliseconds: 300), () {
       productDetailViewApi(productId: productId, bearerToken: person.Bearer!);
     });
   }

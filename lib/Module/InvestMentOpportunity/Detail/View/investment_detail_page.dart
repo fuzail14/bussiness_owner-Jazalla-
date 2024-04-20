@@ -13,6 +13,8 @@ import '../../../../Widgets/StarRating/star_rating.dart';
 import '../Controller/investment_detail_controller.dart';
 
 class InvestmentDetailPage extends ConsumerWidget {
+  const InvestmentDetailPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(investmentPageProvider);
@@ -116,13 +118,13 @@ class InvestmentDetailPage extends ConsumerWidget {
                         Container(
                           width: 362.w,
                           //height: 242.h,
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
                               border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
-                              color: Color(0xfffbfffd)),
+                              color: const Color(0xfffbfffd)),
                           child: Column(
                             children: [
                               Row(
@@ -138,7 +140,7 @@ class InvestmentDetailPage extends ConsumerWidget {
                                         style: GoogleFonts.poppins(
                                             fontSize: 12.sp,
                                             fontWeight: FontWeight.w400,
-                                            color: Color(0xff414141))),
+                                            color: const Color(0xff414141))),
                                   ),
                                   Flexible(
                                     child: AutoSizeText(
@@ -151,7 +153,7 @@ class InvestmentDetailPage extends ConsumerWidget {
                                         style: GoogleFonts.poppins(
                                             fontSize: 12.sp,
                                             fontWeight: FontWeight.w400,
-                                            color: Color(0xff414141))),
+                                            color: const Color(0xff414141))),
                                   ),
                                 ],
                               ),
@@ -169,7 +171,7 @@ class InvestmentDetailPage extends ConsumerWidget {
                                         style: GoogleFonts.poppins(
                                             fontSize: 12.sp,
                                             fontWeight: FontWeight.w400,
-                                            color: Color(0xff414141))),
+                                            color: const Color(0xff414141))),
                                   ),
                                   Flexible(
                                     child: AutoSizeText(
@@ -181,7 +183,7 @@ class InvestmentDetailPage extends ConsumerWidget {
                                         style: GoogleFonts.poppins(
                                             fontSize: 12.sp,
                                             fontWeight: FontWeight.w400,
-                                            color: Color(0xff414141))),
+                                            color: const Color(0xff414141))),
                                   ),
                                 ],
                               ),
@@ -199,7 +201,7 @@ class InvestmentDetailPage extends ConsumerWidget {
                                         style: GoogleFonts.poppins(
                                             fontSize: 12.sp,
                                             fontWeight: FontWeight.w400,
-                                            color: Color(0xff414141))),
+                                            color: const Color(0xff414141))),
                                   ),
                                   Flexible(
                                     child: AutoSizeText(
@@ -211,7 +213,7 @@ class InvestmentDetailPage extends ConsumerWidget {
                                         style: GoogleFonts.poppins(
                                             fontSize: 12.sp,
                                             fontWeight: FontWeight.w400,
-                                            color: Color(0xff414141))),
+                                            color: const Color(0xff414141))),
                                   ),
                                 ],
                               ),
@@ -234,7 +236,7 @@ class InvestmentDetailPage extends ConsumerWidget {
                           decoration: BoxDecoration(
                               border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
-                              color: Color(0xfffbfffd)),
+                              color: const Color(0xfffbfffd)),
                           child: AutoSizeText(
                               investment.businessOverview.toString(),
                               maxLines: 8,
@@ -244,7 +246,7 @@ class InvestmentDetailPage extends ConsumerWidget {
                               style: GoogleFonts.poppins(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xff414141))),
+                                  color: const Color(0xff414141))),
                         ),
                         20.ph,
                         Text("Facilities Overview",
@@ -262,7 +264,7 @@ class InvestmentDetailPage extends ConsumerWidget {
                           decoration: BoxDecoration(
                               border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
-                              color: Color(0xfffbfffd)),
+                              color: const Color(0xfffbfffd)),
                           child: AutoSizeText(
                               investment.facilitiesOverview.toString(),
                               maxLines: 8,
@@ -272,7 +274,7 @@ class InvestmentDetailPage extends ConsumerWidget {
                               style: GoogleFonts.poppins(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xff414141))),
+                                  color: const Color(0xff414141))),
                         ),
                         20.ph,
                         Text("Product & Service Overview",
@@ -290,7 +292,7 @@ class InvestmentDetailPage extends ConsumerWidget {
                           decoration: BoxDecoration(
                               border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
-                              color: Color(0xfffbfffd)),
+                              color: const Color(0xfffbfffd)),
                           child: AutoSizeText(
                               investment.prodnservOverview.toString(),
                               maxLines: 8,
@@ -300,7 +302,7 @@ class InvestmentDetailPage extends ConsumerWidget {
                               style: GoogleFonts.poppins(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xff414141))),
+                                  color: const Color(0xff414141))),
                         ),
                         20.ph,
                         Text("Reason For Sale",
@@ -312,13 +314,13 @@ class InvestmentDetailPage extends ConsumerWidget {
                         Container(
                           width: 362.w,
                           //height: 242.h,
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
                               border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
-                              color: Color(0xfffbfffd)),
+                              color: const Color(0xfffbfffd)),
                           child: AutoSizeText(
                               investment.reasonforsale.toString(),
                               maxLines: 8,
@@ -328,7 +330,7 @@ class InvestmentDetailPage extends ConsumerWidget {
                               style: GoogleFonts.poppins(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xff414141))),
+                                  color: const Color(0xff414141))),
                         ),
                         20.ph,
                         Text(
@@ -347,7 +349,7 @@ class InvestmentDetailPage extends ConsumerWidget {
                           decoration: BoxDecoration(
                               border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
-                              color: Color(0xfffbfffd)),
+                              color: const Color(0xfffbfffd)),
                           child: AutoSizeText(investment.assets.toString(),
                               maxLines: 8,
                               overflow: TextOverflow.ellipsis,
@@ -356,7 +358,7 @@ class InvestmentDetailPage extends ConsumerWidget {
                               style: GoogleFonts.poppins(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xff414141))),
+                                  color: const Color(0xff414141))),
                         ),
                       ]),
                 );

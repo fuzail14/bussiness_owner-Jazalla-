@@ -14,8 +14,6 @@ import 'package:intl/intl.dart';
 import '../../../../Data/Api Resp/api_response.dart';
 import '../../../../Providers/argument_provider.dart';
 import '../../../../Repo/General Service Repo/request_proposal_repository.dart';
-import '../../../../Repo/General Service Repo/send_service_inquiry_repository.dart';
-import '../../../../Repo/Online Store Repository/request_quote_repository.dart';
 import '../Model/ServiceWithTemplate.dart';
 
 class RequestProposalState {
@@ -231,7 +229,7 @@ class RequestProposalNotifier extends StateNotifier<RequestProposalState> {
       "start_date": startDate,
       "status": '1',
     };
-    print('data  ${data}');
+    print('data  $data');
 
     try {
       await requestProposalRepository.sendProposal(data, pdfFile: pdfFile);

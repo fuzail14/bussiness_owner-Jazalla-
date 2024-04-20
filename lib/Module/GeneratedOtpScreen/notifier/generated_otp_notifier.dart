@@ -4,7 +4,7 @@ import '../../../../../Data/Api Resp/api_response.dart';
 import '../state/generated_otp_state.dart';
 
 class GeneratedOtpNotifier extends StateNotifier<GeneratedOtpState> {
-  GeneratedOtpNotifier() : super(GeneratedOtpState()) {}
+  GeneratedOtpNotifier() : super(GeneratedOtpState());
 
   final TextEditingController searchController = TextEditingController();
 

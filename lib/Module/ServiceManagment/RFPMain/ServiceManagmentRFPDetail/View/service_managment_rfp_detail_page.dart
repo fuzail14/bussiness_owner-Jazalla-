@@ -15,6 +15,8 @@ import '../../../../../Widgets/My Button/my_button.dart';
 import '../Controller/service_managment_rfp_detail_controller.dart';
 
 class ServiceManagmentRFPDetailPage extends ConsumerWidget {
+  const ServiceManagmentRFPDetailPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(serviceManagmentRFPDetailProvider.notifier);
@@ -47,7 +49,7 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                         style: GoogleFonts.poppins(
                             fontSize: 18.sp,
                             fontWeight: FontWeight.w600,
-                            color: Color(0xff414141)),
+                            color: const Color(0xff414141)),
                       ),
                       20.ph,
                       Container(
@@ -56,7 +58,7 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                         padding: const EdgeInsets.only(bottom: 20).r,
 
                         decoration: BoxDecoration(
-                          color: Color(0xff707070).withOpacity(0.08),
+                          color: const Color(0xff707070).withOpacity(0.08),
                           borderRadius: BorderRadius.circular(8).r,
                         ),
                         child: Column(
@@ -73,14 +75,14 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                                 style: GoogleFonts.poppins(
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.w500,
-                                    color: Color(0xff000000)),
+                                    color: const Color(0xff000000)),
                               ),
                             ),
                             Container(
                               decoration: BoxDecoration(
                                   color: whiteColor,
                                   borderRadius: BorderRadius.circular(12).r,
-                                  border: Border.all(color: Color(0xffE1E3E8))),
+                                  border: Border.all(color: const Color(0xffE1E3E8))),
                               padding: const EdgeInsets.symmetric(
                                       horizontal: 15, vertical: 12)
                                   .r,
@@ -97,7 +99,7 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                                         style: GoogleFonts.montserrat(
                                             fontSize: 14.sp,
                                             fontWeight: FontWeight.w300,
-                                            color: Color(0xff777777)),
+                                            color: const Color(0xff777777)),
                                       ),
                                       10.pw,
                                       Flexible(
@@ -110,7 +112,7 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                                           style: GoogleFonts.montserrat(
                                               fontSize: 14.sp,
                                               fontWeight: FontWeight.w500,
-                                              color: Color(0xff3A3A3A)),
+                                              color: const Color(0xff3A3A3A)),
                                         ),
                                       ),
                                     ],
@@ -128,7 +130,7 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                                         style: GoogleFonts.montserrat(
                                             fontSize: 14.sp,
                                             fontWeight: FontWeight.w300,
-                                            color: Color(0xff777777)),
+                                            color: const Color(0xff777777)),
                                       ),
                                       10.pw,
                                       Flexible(
@@ -141,7 +143,7 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                                           style: GoogleFonts.montserrat(
                                               fontSize: 12.sp,
                                               fontWeight: FontWeight.w500,
-                                              color: Color(0xff3A3A3A)),
+                                              color: const Color(0xff3A3A3A)),
                                         ),
                                       ),
                                     ],
@@ -159,7 +161,7 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                                         style: GoogleFonts.montserrat(
                                             fontSize: 14.sp,
                                             fontWeight: FontWeight.w300,
-                                            color: Color(0xff777777)),
+                                            color: const Color(0xff777777)),
                                       ),
                                       10.pw,
                                       Flexible(
@@ -172,7 +174,7 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                                           style: GoogleFonts.montserrat(
                                               fontSize: 14.sp,
                                               fontWeight: FontWeight.w500,
-                                              color: Color(0xff3A3A3A)),
+                                              color: const Color(0xff3A3A3A)),
                                         ),
                                       ),
                                     ],
@@ -190,7 +192,7 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                                         style: GoogleFonts.montserrat(
                                             fontSize: 14.sp,
                                             fontWeight: FontWeight.w300,
-                                            color: Color(0xff777777)),
+                                            color: const Color(0xff777777)),
                                       ),
                                       10.pw,
                                       Flexible(
@@ -203,7 +205,7 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                                           style: GoogleFonts.montserrat(
                                               fontSize: 14.sp,
                                               fontWeight: FontWeight.w500,
-                                              color: Color(0xff3A3A3A)),
+                                              color: const Color(0xff3A3A3A)),
                                         ),
                                       ),
                                     ],
@@ -220,7 +222,7 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                                         style: GoogleFonts.montserrat(
                                             fontSize: 14.sp,
                                             fontWeight: FontWeight.w300,
-                                            color: Color(0xff777777)),
+                                            color: const Color(0xff777777)),
                                       ),
                                       10.pw,
                                       Flexible(
@@ -233,7 +235,7 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                                           style: GoogleFonts.montserrat(
                                               fontSize: 14.sp,
                                               fontWeight: FontWeight.w500,
-                                              color: Color(0xff3A3A3A)),
+                                              color: const Color(0xff3A3A3A)),
                                         ),
                                       ),
                                     ],
@@ -251,7 +253,7 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                                         style: GoogleFonts.montserrat(
                                             fontSize: 14.sp,
                                             fontWeight: FontWeight.w300,
-                                            color: Color(0xff777777)),
+                                            color: const Color(0xff777777)),
                                       ),
                                       10.pw,
                                       Flexible(
@@ -262,7 +264,7 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                                           style: GoogleFonts.montserrat(
                                               fontSize: 12.sp,
                                               fontWeight: FontWeight.w500,
-                                              color: Color(0xff3A3A3A)),
+                                              color: const Color(0xff3A3A3A)),
                                         ),
                                       ),
                                     ],
@@ -282,7 +284,7 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                                 style: GoogleFonts.poppins(
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.w500,
-                                    color: Color(0xff000000)),
+                                    color: const Color(0xff000000)),
                               ),
                             ),
                             Container(
@@ -290,7 +292,7 @@ class ServiceManagmentRFPDetailPage extends ConsumerWidget {
                               decoration: BoxDecoration(
                                   color: whiteColor,
                                   borderRadius: BorderRadius.circular(12).r,
-                                  border: Border.all(color: Color(0xffE1E3E8))),
+                                  border: Border.all(color: const Color(0xffE1E3E8))),
                               padding: const EdgeInsets.symmetric(
                                       horizontal: 15, vertical: 12)
                                   .r,

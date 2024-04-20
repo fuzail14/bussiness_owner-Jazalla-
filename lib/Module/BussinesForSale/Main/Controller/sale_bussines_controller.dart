@@ -106,7 +106,7 @@ class BusinessForSaleController extends StateNotifier<BusinessForSaleState> {
           businesses: value.businesses,
           responseStatus: Status.completed,
         );
-      } catch (e, stackTrace) {
+      } catch (e) {
         setResponseStatus(Status.error);
 
         // log(e.toString());

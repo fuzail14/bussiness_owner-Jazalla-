@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:badges/badges.dart' as badges;
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -25,7 +24,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   void Function()? filterOnPressed;
 
   @override
-  Size get preferredSize => Size.fromHeight(80);
+  Size get preferredSize => const Size.fromHeight(80);
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +90,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                     style: GoogleFonts.roboto(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w600,
-                        color: Color(0xffFFFFFF))),
+                        color: const Color(0xffFFFFFF))),
                 position: badges.BadgePosition.topEnd(top: -10, end: -12),
                 showBadge: true,
                 ignorePointer: false,

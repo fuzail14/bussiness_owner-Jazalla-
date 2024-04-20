@@ -1,17 +1,11 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:app_settings/app_settings.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:http/http.dart' as Http;
 
-import '../../Constants/api_routes.dart';
-import '../../Routes/set_routes.dart';
-import '../Shared Preferences/MySharedPreferences.dart';
 
 class NotificationServices {
   FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
@@ -67,7 +61,7 @@ class NotificationServices {
   Future<void> showNotificationFlutter(RemoteMessage message) async {
     // Android Channel Initialization
     AndroidNotificationChannel androidNotificationChannel =
-        AndroidNotificationChannel(
+        const AndroidNotificationChannel(
       "high_importance_channel",
       "high_importance_channel",
       description: "jazalla-notification",

@@ -28,7 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  flutter:
+  flutter_web_plugins:
     sdk: flutter
 
 
@@ -66,8 +66,15 @@ dependencies:
   app_settings: ^5.1.1
   badges: ^3.1.2
   dotted_border: ^2.1.0
+  pdf: ^3.6.0
+  path_provider: ^2.0.2
+  printing: ^5.6.0
   
 
+  firebase_core_web: any
+  
+  shared_preferences_web: any
+  http_parser: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

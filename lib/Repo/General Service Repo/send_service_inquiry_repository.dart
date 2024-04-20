@@ -1,6 +1,5 @@
 import 'dart:io';
 import '../../Constants/api_routes.dart';
-import '../../Module/GeneralServices/RequestProposal/Model/ServiceWithTemplate.dart';
 import '../../Services/Network Services/network_services.dart';
 
 class SendServiceInquiryRepository {

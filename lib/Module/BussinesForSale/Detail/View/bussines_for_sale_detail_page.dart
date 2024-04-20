@@ -14,6 +14,8 @@ import '../../../../Widgets/StarRating/star_rating.dart';
 import '../Controller/bussines_for_sale_detail_controller.dart';
 
 class SaleBussinesDetailPage extends ConsumerWidget {
+  const SaleBussinesDetailPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(saleBussinesPageProvider);
@@ -105,13 +107,13 @@ class SaleBussinesDetailPage extends ConsumerWidget {
                         Container(
                           width: 362.w,
                           //height: 242.h,
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
                               border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
-                              color: Color(0xfffbfffd)),
+                              color: const Color(0xfffbfffd)),
                           child: Column(
                             children: [
                               Row(
@@ -127,7 +129,7 @@ class SaleBussinesDetailPage extends ConsumerWidget {
                                         style: GoogleFonts.poppins(
                                             fontSize: 12.sp,
                                             fontWeight: FontWeight.w400,
-                                            color: Color(0xff414141))),
+                                            color: const Color(0xff414141))),
                                   ),
                                   Flexible(
                                     child: AutoSizeText(
@@ -140,7 +142,7 @@ class SaleBussinesDetailPage extends ConsumerWidget {
                                         style: GoogleFonts.poppins(
                                             fontSize: 12.sp,
                                             fontWeight: FontWeight.w400,
-                                            color: Color(0xff414141))),
+                                            color: const Color(0xff414141))),
                                   ),
                                 ],
                               ),
@@ -158,7 +160,7 @@ class SaleBussinesDetailPage extends ConsumerWidget {
                                         style: GoogleFonts.poppins(
                                             fontSize: 12.sp,
                                             fontWeight: FontWeight.w400,
-                                            color: Color(0xff414141))),
+                                            color: const Color(0xff414141))),
                                   ),
                                   Flexible(
                                     child: AutoSizeText(
@@ -171,7 +173,7 @@ class SaleBussinesDetailPage extends ConsumerWidget {
                                         style: GoogleFonts.poppins(
                                             fontSize: 12.sp,
                                             fontWeight: FontWeight.w400,
-                                            color: Color(0xff414141))),
+                                            color: const Color(0xff414141))),
                                   ),
                                 ],
                               ),
@@ -189,7 +191,7 @@ class SaleBussinesDetailPage extends ConsumerWidget {
                                         style: GoogleFonts.poppins(
                                             fontSize: 12.sp,
                                             fontWeight: FontWeight.w400,
-                                            color: Color(0xff414141))),
+                                            color: const Color(0xff414141))),
                                   ),
                                   Flexible(
                                     child: AutoSizeText(
@@ -201,7 +203,7 @@ class SaleBussinesDetailPage extends ConsumerWidget {
                                         style: GoogleFonts.poppins(
                                             fontSize: 12.sp,
                                             fontWeight: FontWeight.w400,
-                                            color: Color(0xff414141))),
+                                            color: const Color(0xff414141))),
                                   ),
                                 ],
                               ),
@@ -224,7 +226,7 @@ class SaleBussinesDetailPage extends ConsumerWidget {
                           decoration: BoxDecoration(
                               border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
-                              color: Color(0xfffbfffd)),
+                              color: const Color(0xfffbfffd)),
                           child: AutoSizeText(
                               saleBussines.businessOverview.toString(),
                               maxLines: 8,
@@ -234,7 +236,7 @@ class SaleBussinesDetailPage extends ConsumerWidget {
                               style: GoogleFonts.poppins(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xff414141))),
+                                  color: const Color(0xff414141))),
                         ),
                         20.ph,
                         Text("Facilities Overview",
@@ -252,7 +254,7 @@ class SaleBussinesDetailPage extends ConsumerWidget {
                           decoration: BoxDecoration(
                               border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
-                              color: Color(0xfffbfffd)),
+                              color: const Color(0xfffbfffd)),
                           child: AutoSizeText(
                               saleBussines.facilitiesOverview.toString(),
                               maxLines: 8,
@@ -262,7 +264,7 @@ class SaleBussinesDetailPage extends ConsumerWidget {
                               style: GoogleFonts.poppins(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xff414141))),
+                                  color: const Color(0xff414141))),
                         ),
                         20.ph,
                         Text("Product & Service Overview",
@@ -280,7 +282,7 @@ class SaleBussinesDetailPage extends ConsumerWidget {
                           decoration: BoxDecoration(
                               border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
-                              color: Color(0xfffbfffd)),
+                              color: const Color(0xfffbfffd)),
                           child: AutoSizeText(
                               saleBussines.prodnservOverview.toString(),
                               maxLines: 8,
@@ -290,7 +292,7 @@ class SaleBussinesDetailPage extends ConsumerWidget {
                               style: GoogleFonts.poppins(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xff414141))),
+                                  color: const Color(0xff414141))),
                         ),
                         20.ph,
                         Text("Reason For Sale",
@@ -302,13 +304,13 @@ class SaleBussinesDetailPage extends ConsumerWidget {
                         Container(
                           width: 362.w,
                           //height: 242.h,
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
                               border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
-                              color: Color(0xfffbfffd)),
+                              color: const Color(0xfffbfffd)),
                           child: AutoSizeText(
                               saleBussines.reasonforsale.toString(),
                               maxLines: 8,
@@ -318,7 +320,7 @@ class SaleBussinesDetailPage extends ConsumerWidget {
                               style: GoogleFonts.poppins(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xff414141))),
+                                  color: const Color(0xff414141))),
                         ),
                         20.ph,
                         Text(
@@ -337,7 +339,7 @@ class SaleBussinesDetailPage extends ConsumerWidget {
                           decoration: BoxDecoration(
                               border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
-                              color: Color(0xfffbfffd)),
+                              color: const Color(0xfffbfffd)),
                           child: AutoSizeText(saleBussines.assets.toString(),
                               maxLines: 8,
                               overflow: TextOverflow.ellipsis,
@@ -346,7 +348,7 @@ class SaleBussinesDetailPage extends ConsumerWidget {
                               style: GoogleFonts.poppins(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xff414141))),
+                                  color: const Color(0xff414141))),
                         ),
                       ]),
                 );

@@ -1,9 +1,7 @@
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
 import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -23,7 +21,7 @@ class NotificationsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(notificationsProvider.notifier);
     final state = ref.watch(notificationsProvider);
-    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
       backgroundColor: whiteColor,
@@ -115,7 +113,7 @@ class NotificationsScreen extends ConsumerWidget {
                               .r,
                           decoration: BoxDecoration(
                             color: (notification.isRead == 0)
-                                ? Color.fromRGBO(237, 243, 255, 0.5)
+                                ? const Color.fromRGBO(237, 243, 255, 0.5)
                                 : whiteColor,
                           ),
                           child: Column(
@@ -130,7 +128,7 @@ class NotificationsScreen extends ConsumerWidget {
                                       height: 8.h,
                                       width: 8.w,
                                       margin:
-                                          EdgeInsets.only(top: 20, left: 5).r,
+                                          const EdgeInsets.only(top: 20, left: 5).r,
                                       decoration: BoxDecoration(
                                           color: (notification.isRead == 0)
                                               ? const Color(0xff2E70E8)
@@ -199,7 +197,7 @@ class NotificationsScreen extends ConsumerWidget {
                                                 notification.heading.toString(),
                                             style: GoogleFonts.inter(
                                                 fontSize: 16.sp,
-                                                color: Color(0xff1E293B),
+                                                color: const Color(0xff1E293B),
                                                 fontWeight: FontWeight.w700),
                                             /*defining default style is optional */
                                             children: <TextSpan>[
@@ -207,7 +205,7 @@ class NotificationsScreen extends ConsumerWidget {
                                                 text: '  Type   ',
                                                 style: GoogleFonts.inter(
                                                     fontSize: 12.sp,
-                                                    color: Color(0xff1E293B),
+                                                    color: const Color(0xff1E293B),
                                                     fontWeight:
                                                         FontWeight.w300),
                                               ),
@@ -217,7 +215,7 @@ class NotificationsScreen extends ConsumerWidget {
                                                   text: 'Request For Quotation',
                                                   style: GoogleFonts.inter(
                                                       fontSize: 14.sp,
-                                                      color: Color(0xff1E293B),
+                                                      color: const Color(0xff1E293B),
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 ),
@@ -227,7 +225,7 @@ class NotificationsScreen extends ConsumerWidget {
                                                   text: 'Request For Proposal',
                                                   style: GoogleFonts.inter(
                                                       fontSize: 14.sp,
-                                                      color: Color(0xff1E293B),
+                                                      color: const Color(0xff1E293B),
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 ),
@@ -238,7 +236,7 @@ class NotificationsScreen extends ConsumerWidget {
                                                       'Request For Information For Service',
                                                   style: GoogleFonts.inter(
                                                       fontSize: 14.sp,
-                                                      color: Color(0xff1E293B),
+                                                      color: const Color(0xff1E293B),
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 ),
@@ -249,7 +247,7 @@ class NotificationsScreen extends ConsumerWidget {
                                                       'Request For Information For Product',
                                                   style: GoogleFonts.inter(
                                                       fontSize: 14.sp,
-                                                      color: Color(0xff1E293B),
+                                                      color: const Color(0xff1E293B),
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 ),
@@ -264,7 +262,7 @@ class NotificationsScreen extends ConsumerWidget {
                                           overflow: TextOverflow.ellipsis,
                                           style: GoogleFonts.inter(
                                               fontSize: 14.sp,
-                                              color: Color(0xff334155),
+                                              color: const Color(0xff334155),
                                               fontWeight: FontWeight.w400),
                                         ),
                                       ],
@@ -277,7 +275,7 @@ class NotificationsScreen extends ConsumerWidget {
                                       formattedTime.toString(),
                                       style: GoogleFonts.quicksand(
                                           fontSize: 10.sp,
-                                          color: Color(0xff475569),
+                                          color: const Color(0xff475569),
                                           fontWeight: FontWeight.w300),
                                     ),
                                   ),

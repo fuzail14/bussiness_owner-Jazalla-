@@ -1,12 +1,8 @@
 import 'dart:ui';
-import 'package:animate_do/animate_do.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/Font/fonts.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -15,16 +11,14 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../Constants/Person/person_controller.dart';
 import '../../../Constants/constants.dart';
 import '../../../Routes/set_routes.dart';
-import '../../HomeScreen/Controller/home_screen_controller.dart';
 import '../Notifier/main_home_screen_notifier.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/material.dart';
-import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/material.dart';
 
 import '../Widget/main_home_screen_widget.dart';
 
 class MainHomeScreen extends ConsumerStatefulWidget {
+  const MainHomeScreen({super.key});
+
   @override
   _MainHomeScreenState createState() => _MainHomeScreenState();
 }
@@ -53,7 +47,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
     final state = ref.watch(mainHomeScreenProvider);
     final notifier = ref.watch(mainHomeScreenProvider.notifier);
     return Scaffold(
-      backgroundColor: Color(0xffF9F9F9),
+      backgroundColor: const Color(0xffF9F9F9),
       body: SingleChildScrollView(
         child: Stack(children: [
           Container(
@@ -92,10 +86,10 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                           height: 48.h,
                           width: 48.w,
                           decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xff4EBBD3)),
-                              color: Color(0xffF5F9F9),
+                              border: Border.all(color: const Color(0xff4EBBD3)),
+                              color: const Color(0xffF5F9F9),
                               shape: BoxShape.circle),
-                          margin: EdgeInsets.only(top: 0, left: 0).r,
+                          margin: const EdgeInsets.only(top: 0, left: 0).r,
                           child: SvgPicture.asset(
                             'assets/images/default_company_logo.svg',
                             fit: BoxFit.contain,
@@ -116,7 +110,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                             SizedBox(
                               width: 150.w,
                               child: Text(
-                                "Hi,${person.data!.firstName.toString() + " " + person.data!.lastName.toString()}",
+                                "Hi,${"${person.data!.firstName} ${person.data!.lastName}"}",
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: GoogleFonts.roboto(
@@ -146,7 +140,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                             style: GoogleFonts.roboto(
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w600,
-                                color: Color(0xffFFFFFF))),
+                                color: const Color(0xffFFFFFF))),
                         position:
                             badges.BadgePosition.topEnd(top: -10, end: -12),
                         showBadge: true,
@@ -159,7 +153,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                     ),
                   ],
                 ),
-                Divider(),
+                const Divider(),
 
                 10.ph,
                 SizedBox(
@@ -169,7 +163,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                   child: PageView.builder(
                       controller: notifier.pageController,
                       pageSnapping: true,
-                      physics: AlwaysScrollableScrollPhysics(),
+                      physics: const AlwaysScrollableScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       clipBehavior: Clip.none,
                       itemCount: notifier.glassCardList.length,
@@ -429,13 +423,13 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
           ),
           Container(
             // height: 662.h,
-            margin: EdgeInsets.only(top: 400, bottom: 25).r,
-            padding: EdgeInsets.only(left: 24, right: 24).r,
+            margin: const EdgeInsets.only(top: 400, bottom: 25).r,
+            padding: const EdgeInsets.only(left: 24, right: 24).r,
             decoration: BoxDecoration(
-                color: Color(0xffF9F9F9),
+                color: const Color(0xffF9F9F9),
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30).r,
-                    topRight: Radius.circular(30).r)),
+                    topLeft: const Radius.circular(30).r,
+                    topRight: const Radius.circular(30).r)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -474,7 +468,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                     style: GoogleFonts.roboto(
                                         fontSize: 12.sp,
                                         fontWeight: FontWeight.w600,
-                                        color: Color(0xffFFFFFF))),
+                                        color: const Color(0xffFFFFFF))),
                                 position: badges.BadgePosition.topEnd(
                                     top: -10, end: -10),
                                 showBadge: true,
@@ -628,7 +622,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                     decoration: BoxDecoration(
                       //  color: Color(0xff449FC6).withOpacity(0.6),
                       borderRadius: BorderRadius.circular(6).r,
-                      border: Border.all(color: Color(0xff2D60A8)),
+                      border: Border.all(color: const Color(0xff2D60A8)),
                       // boxShadow: [
                       //   BoxShadow(
                       //     color: Colors.grey.withOpacity(0.3),
@@ -734,7 +728,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                     color: whiteColor,
                     borderRadius: BorderRadius.circular(12).r,
                   ),
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                           left: 16.8, top: 19, bottom: 20, right: 15.8)
                       .r,
                   child: Column(
@@ -755,15 +749,15 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                             color: const Color(0xff7C828A),
                             fontWeight: FontWeight.w500),
                       ),
-                      BarChartSample2(),
-                      Divider(),
+                      const BarChartSample2(),
+                      const Divider(),
                       20.ph,
                       Row(
                         children: [
                           Container(
                             height: 8.h,
                             width: 8.4.w,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 color: Color(0xff147AD6),
                                 shape: BoxShape.circle),
                           ),
@@ -771,13 +765,13 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                           Text(
                             'Revenue',
                             style: GoogleFonts.nunitoSans(
-                                fontSize: 16.sp, color: Color(0xff7C828A)),
+                                fontSize: 16.sp, color: const Color(0xff7C828A)),
                           ),
                           25.2.pw,
                           Container(
                             height: 8.h,
                             width: 8.4.w,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 color: Color(0xff79D2DE),
                                 shape: BoxShape.circle),
                           ),
@@ -785,7 +779,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                           Text(
                             'Expense',
                             style: GoogleFonts.nunitoSans(
-                                fontSize: 16.sp, color: Color(0xff7C828A)),
+                                fontSize: 16.sp, color: const Color(0xff7C828A)),
                           ),
                         ],
                       )
@@ -894,7 +888,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
       required BuildContext context,
       required MainHomeScreenState state}) {
     return Container(
-        margin: EdgeInsets.symmetric(horizontal: 5),
+        margin: const EdgeInsets.symmetric(horizontal: 5),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
           //color: _currentPage == index ? Colors.white : Colors.grey,
@@ -922,7 +916,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
 class CheckInDialog extends StatelessWidget {
   String title;
   String svgPath;
-  CheckInDialog({required this.title, required this.svgPath});
+  CheckInDialog({super.key, required this.title, required this.svgPath});
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -931,7 +925,7 @@ class CheckInDialog extends StatelessWidget {
         elevation: 0.0,
         backgroundColor: Colors.transparent,
         child: Container(
-          margin: EdgeInsets.only(left: 0.0, right: 0.0),
+          margin: const EdgeInsets.only(left: 0.0, right: 0.0),
           width: 320.w,
           height: 403.h,
           child: Container(
@@ -939,14 +933,14 @@ class CheckInDialog extends StatelessWidget {
               children: <Widget>[
                 Container(
                   // height: 403.h,
-                  padding: EdgeInsets.only(top: 18.0, right: 0, bottom: 50).r,
-                  margin: EdgeInsets.only(top: 50.0, right: 8.0, bottom: 0).r,
+                  padding: const EdgeInsets.only(top: 18.0, right: 0, bottom: 50).r,
+                  margin: const EdgeInsets.only(top: 50.0, right: 8.0, bottom: 0).r,
 
                   decoration: BoxDecoration(
                       color: whiteColor,
                       shape: BoxShape.rectangle,
                       borderRadius: BorderRadius.circular(16.0),
-                      boxShadow: <BoxShadow>[
+                      boxShadow: const <BoxShadow>[
                         BoxShadow(
                           color: Colors.black26,
                           blurRadius: 0.0,
@@ -963,7 +957,7 @@ class CheckInDialog extends StatelessWidget {
                           title,
                           style: GoogleFonts.montserrat(
                               fontSize: 18.22.sp,
-                              color: Color(0xff5F5656),
+                              color: const Color(0xff5F5656),
                               fontWeight: FontWeight.w500),
                         ),
                       ),
@@ -974,7 +968,7 @@ class CheckInDialog extends StatelessWidget {
                           children: [
                             Icon(
                               Icons.calendar_month_rounded,
-                              color: Color(0xffAFAFAF),
+                              color: const Color(0xffAFAFAF),
                               size: 18.h,
                             ),
                             10.pw,
@@ -983,7 +977,7 @@ class CheckInDialog extends StatelessWidget {
                               child: Text(
                                 'Saturday, October 22nd 2022',
                                 style: GoogleFonts.montserrat(
-                                    color: Color(0xff383333),
+                                    color: const Color(0xff383333),
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.w400),
                               ),
@@ -997,14 +991,14 @@ class CheckInDialog extends StatelessWidget {
                           children: [
                             Icon(
                               Icons.timer_sharp,
-                              color: Color(0xffAFAFAF),
+                              color: const Color(0xffAFAFAF),
                               size: 18.h,
                             ),
                             10.pw,
                             Text(
                               '06:00 PM',
                               style: GoogleFonts.montserrat(
-                                  color: Color(0xff383333),
+                                  color: const Color(0xff383333),
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.w400),
                             )
@@ -1019,10 +1013,10 @@ class CheckInDialog extends StatelessWidget {
                         child: Container(
                           height: 30.h,
                           width: 147.w,
-                          margin: EdgeInsets.symmetric(horizontal: 75).r,
+                          margin: const EdgeInsets.symmetric(horizontal: 75).r,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16).r,
-                              gradient: LinearGradient(colors: [
+                              gradient: const LinearGradient(colors: [
                                 Color(0xff2751A1),
                                 Color(0xff4BB3CF)
                               ])),
@@ -1063,7 +1057,7 @@ class CheckInDialog extends StatelessWidget {
 
   Widget dialogContent(BuildContext context, title) {
     return Container(
-      margin: EdgeInsets.only(left: 0.0, right: 0.0),
+      margin: const EdgeInsets.only(left: 0.0, right: 0.0),
       width: 320.w,
       height: 403.h,
       child: Container(
@@ -1071,14 +1065,14 @@ class CheckInDialog extends StatelessWidget {
           children: <Widget>[
             Container(
               // height: 403.h,
-              padding: EdgeInsets.only(top: 18.0, right: 0, bottom: 50).r,
-              margin: EdgeInsets.only(top: 50.0, right: 8.0, bottom: 0).r,
+              padding: const EdgeInsets.only(top: 18.0, right: 0, bottom: 50).r,
+              margin: const EdgeInsets.only(top: 50.0, right: 8.0, bottom: 0).r,
 
               decoration: BoxDecoration(
                   color: whiteColor,
                   shape: BoxShape.rectangle,
                   borderRadius: BorderRadius.circular(16.0),
-                  boxShadow: <BoxShadow>[
+                  boxShadow: const <BoxShadow>[
                     BoxShadow(
                       color: Colors.black26,
                       blurRadius: 0.0,
@@ -1095,7 +1089,7 @@ class CheckInDialog extends StatelessWidget {
                       title!,
                       style: GoogleFonts.montserrat(
                           fontSize: 18.22.sp,
-                          color: Color(0xff5F5656),
+                          color: const Color(0xff5F5656),
                           fontWeight: FontWeight.w500),
                     ),
                   ),
@@ -1106,7 +1100,7 @@ class CheckInDialog extends StatelessWidget {
                       children: [
                         Icon(
                           Icons.calendar_month_rounded,
-                          color: Color(0xffAFAFAF),
+                          color: const Color(0xffAFAFAF),
                           size: 18.h,
                         ),
                         10.pw,
@@ -1115,7 +1109,7 @@ class CheckInDialog extends StatelessWidget {
                           child: Text(
                             'Saturday, October 22nd 2022',
                             style: GoogleFonts.montserrat(
-                                color: Color(0xff383333),
+                                color: const Color(0xff383333),
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w400),
                           ),
@@ -1129,14 +1123,14 @@ class CheckInDialog extends StatelessWidget {
                       children: [
                         Icon(
                           Icons.timer_sharp,
-                          color: Color(0xffAFAFAF),
+                          color: const Color(0xffAFAFAF),
                           size: 18.h,
                         ),
                         10.pw,
                         Text(
                           '06:00 PM',
                           style: GoogleFonts.montserrat(
-                              color: Color(0xff383333),
+                              color: const Color(0xff383333),
                               fontSize: 14.sp,
                               fontWeight: FontWeight.w400),
                         )
@@ -1151,10 +1145,10 @@ class CheckInDialog extends StatelessWidget {
                     child: Container(
                       height: 30.h,
                       width: 147.w,
-                      margin: EdgeInsets.symmetric(horizontal: 75).r,
+                      margin: const EdgeInsets.symmetric(horizontal: 75).r,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16).r,
-                          gradient: LinearGradient(
+                          gradient: const LinearGradient(
                               colors: [Color(0xff2751A1), Color(0xff4BB3CF)])),
                       child: Center(
                         child: Text(
@@ -1195,6 +1189,8 @@ class CheckInDialog extends StatelessWidget {
 }
 
 class BarChartSample2 extends StatefulWidget {
+  const BarChartSample2({super.key});
+
   @override
   State<StatefulWidget> createState() => BarChartSample2State();
 }
@@ -1371,12 +1367,12 @@ class BarChartSample2State extends State<BarChartSample2> {
       barRods: [
         BarChartRodData(
           toY: y1,
-          color: Color(0xff147AD6),
+          color: const Color(0xff147AD6),
           width: 8.w,
         ),
         BarChartRodData(
           toY: y2,
-          color: Color(0xff79D2DE),
+          color: const Color(0xff79D2DE),
           width: 8.w,
         ),
       ],

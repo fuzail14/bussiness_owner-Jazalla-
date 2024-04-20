@@ -11,6 +11,8 @@ import '../../../../../Widgets/DescriptionTextField/description_field_attachment
 import '../Notifier/send_rfi_response_notifier.dart';
 
 class SendRFIResponseView extends ConsumerWidget {
+  const SendRFIResponseView({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(sendRFIResponseProvider.notifier);

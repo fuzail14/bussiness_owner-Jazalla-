@@ -21,6 +21,8 @@ import '../../Widget/custom_tiles.dart';
 import '../Controller/tenders_detail_controller.dart';
 
 class TendersDetailPage extends ConsumerWidget {
+  const TendersDetailPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(tenderDetailProvider.notifier);
@@ -87,7 +89,7 @@ class TendersDetailPage extends ConsumerWidget {
                       child: Theme(
                         data: Theme.of(context).copyWith(
                           dividerColor: Colors.transparent,
-                          expansionTileTheme: ExpansionTileThemeData(
+                          expansionTileTheme: const ExpansionTileThemeData(
                             backgroundColor: Colors.transparent,
                           ),
                         ),
@@ -95,7 +97,7 @@ class TendersDetailPage extends ConsumerWidget {
                           iconColor: Colors.white,
                           collapsedIconColor: Colors.black,
                           backgroundColor: Colors.transparent,
-                          title: Text(
+                          title: const Text(
                             'General Information',
                             style: TextStyle(
                               fontSize: 18,
@@ -109,7 +111,7 @@ class TendersDetailPage extends ConsumerWidget {
                                 Container(
                                   width: double.infinity,
                                   height: 230.h,
-                                  padding: EdgeInsets.only(left: 30, top: 19).r,
+                                  padding: const EdgeInsets.only(left: 30, top: 19).r,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(14).r,
                                       color: HexColor('#FFFFFF'),
@@ -127,7 +129,7 @@ class TendersDetailPage extends ConsumerWidget {
                                               decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(3),
-                                                  color: Color(0x33e1e1e2)),
+                                                  color: const Color(0x33e1e1e2)),
                                               child: (state
                                                           .tenderDetail[
                                                               outerIndex]
@@ -138,7 +140,7 @@ class TendersDetailPage extends ConsumerWidget {
                                                       'assets/images/building.svg')
                                                   : CachedNetworkImage(
                                                       imageUrl:
-                                                          "${Api.imageBaseUrl + tender.companies!.logo.toString()}",
+                                                          Api.imageBaseUrl + tender.companies!.logo.toString(),
                                                       fit: BoxFit.contain,
                                                     ),
                                             ),
@@ -177,7 +179,7 @@ class TendersDetailPage extends ConsumerWidget {
                                               .toString(),
                                         ),
                                         11.ph,
-                                        Divider(),
+                                        const Divider(),
                                         //7.ph,
                                         Row(
                                           children: [
@@ -277,12 +279,12 @@ class TendersDetailPage extends ConsumerWidget {
                       child: Theme(
                         data: Theme.of(context).copyWith(
                           dividerColor: Colors.transparent,
-                          expansionTileTheme: ExpansionTileThemeData(
+                          expansionTileTheme: const ExpansionTileThemeData(
                             backgroundColor: Colors.transparent,
                           ),
                         ),
                         child: ExpansionTile(
-                          title: Text(
+                          title: const Text(
                             'Qualified Sectors',
                             style: TextStyle(
                               fontSize: 18,
@@ -309,7 +311,7 @@ class TendersDetailPage extends ConsumerWidget {
                                     length: 2,
                                     child: Column(
                                       children: [
-                                        TabBar(
+                                        const TabBar(
                                           tabs: [
                                             Tab(text: 'Main Activity'),
                                             Tab(text: 'Sub Category'),
@@ -317,7 +319,7 @@ class TendersDetailPage extends ConsumerWidget {
                                         ),
                                         Container(
                                           height: 100.h,
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                             left: 22,
                                             top: 14,
                                           ).r,
@@ -444,6 +446,7 @@ class TendersDetailPage extends ConsumerWidget {
                                                       ],
                                                     );
                                                   }
+                                                  return null;
                                                 },
                                               ),
                                             ],
@@ -483,7 +486,7 @@ class TendersDetailPage extends ConsumerWidget {
                       child: Theme(
                         data: Theme.of(context).copyWith(
                           dividerColor: Colors.transparent,
-                          expansionTileTheme: ExpansionTileThemeData(
+                          expansionTileTheme: const ExpansionTileThemeData(
                             backgroundColor: Colors.transparent,
                           ),
                         ),
@@ -491,7 +494,7 @@ class TendersDetailPage extends ConsumerWidget {
                           iconColor: Colors.white,
                           collapsedIconColor: Colors.black,
                           backgroundColor: Colors.transparent,
-                          title: Text(
+                          title: const Text(
                             'Business Activites',
                             style: TextStyle(
                               fontSize: 18,
@@ -506,7 +509,7 @@ class TendersDetailPage extends ConsumerWidget {
                                     width: double.infinity,
                                     // height: 437.h,
 
-                                    padding: EdgeInsets.only(bottom: 36).r,
+                                    padding: const EdgeInsets.only(bottom: 36).r,
                                     decoration: BoxDecoration(
                                         borderRadius:
                                             BorderRadius.circular(14).r,
@@ -525,7 +528,7 @@ class TendersDetailPage extends ConsumerWidget {
                                           color: HexColor('#FFFFFF'),
                                           width: double.infinity,
                                           height: 39.h,
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                                   left: 27, right: 27)
                                               .r,
                                           child: Row(
@@ -595,7 +598,7 @@ class TendersDetailPage extends ConsumerWidget {
                                           color: HexColor('#FFFFFF'),
                                           width: double.infinity,
                                           height: 39.h,
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                                   left: 27, right: 27)
                                               .r,
                                           child: Row(
@@ -724,6 +727,7 @@ class TendersDetailPage extends ConsumerWidget {
                                                           ],
                                                         );
                                                       }
+                                                      return null;
                                                     },
                                                   ),
                                                 ),
@@ -761,12 +765,12 @@ class TendersDetailPage extends ConsumerWidget {
                       child: Theme(
                         data: Theme.of(context).copyWith(
                           dividerColor: Colors.transparent,
-                          expansionTileTheme: ExpansionTileThemeData(
+                          expansionTileTheme: const ExpansionTileThemeData(
                             backgroundColor: Colors.transparent,
                           ),
                         ),
                         child: ExpansionTile(
-                          title: Text(
+                          title: const Text(
                             'Required Documents',
                             style: TextStyle(
                               fontSize: 18,
@@ -793,7 +797,7 @@ class TendersDetailPage extends ConsumerWidget {
                                     length: 2,
                                     child: Column(
                                       children: [
-                                        TabBar(
+                                        const TabBar(
                                           tabs: [
                                             Tab(text: 'Government Documents'),
                                             Tab(text: 'Company Documents'),
@@ -801,10 +805,10 @@ class TendersDetailPage extends ConsumerWidget {
                                         ),
                                         Container(
                                           height: 120.h,
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                                   left: 12, top: 14, right: 12)
                                               .r,
-                                          margin: EdgeInsets.only(
+                                          margin: const EdgeInsets.only(
                                                   left: 12,
                                                   top: 14,
                                                   right: 12,
@@ -820,7 +824,7 @@ class TendersDetailPage extends ConsumerWidget {
                                                     .withOpacity(0.5),
                                                 spreadRadius: 1,
                                                 blurRadius: 7,
-                                                offset: Offset(0, 3),
+                                                offset: const Offset(0, 3),
                                               ),
                                             ],
                                           ),
@@ -936,7 +940,7 @@ class TendersDetailPage extends ConsumerWidget {
                       child: Theme(
                         data: Theme.of(context).copyWith(
                           dividerColor: Colors.transparent,
-                          expansionTileTheme: ExpansionTileThemeData(
+                          expansionTileTheme: const ExpansionTileThemeData(
                             backgroundColor: Colors.transparent,
                           ),
                         ),
@@ -944,7 +948,7 @@ class TendersDetailPage extends ConsumerWidget {
                           iconColor: Colors.white,
                           collapsedIconColor: Colors.black,
                           backgroundColor: Colors.transparent,
-                          title: Text(
+                          title: const Text(
                             'Attachments',
                             style: TextStyle(
                               fontSize: 18,
@@ -959,7 +963,7 @@ class TendersDetailPage extends ConsumerWidget {
                                     width: double.infinity,
                                     // height: 437.h,
 
-                                    padding: EdgeInsets.only(bottom: 36).r,
+                                    padding: const EdgeInsets.only(bottom: 36).r,
                                     decoration: BoxDecoration(
                                         borderRadius:
                                             BorderRadius.circular(14).r,
@@ -974,10 +978,10 @@ class TendersDetailPage extends ConsumerWidget {
                                           color: HexColor('#F9F9F9'),
                                           width: double.infinity,
                                           height: 39.h,
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                                   left: 27, right: 27)
                                               .r,
-                                          margin: EdgeInsets.only(top: 10).r,
+                                          margin: const EdgeInsets.only(top: 10).r,
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
@@ -1021,7 +1025,7 @@ class TendersDetailPage extends ConsumerWidget {
                                           ),
                                           width: double.infinity,
                                           height: 39.h,
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                                   left: 27, right: 27)
                                               .r,
                                           child: Row(
@@ -1051,7 +1055,7 @@ class TendersDetailPage extends ConsumerWidget {
                                                     color: HexColor('#3F3939')),
                                               ),
                                               IconButton(
-                                                icon: Icon(
+                                                icon: const Icon(
                                                     Icons.download_rounded),
                                                 onPressed: () {},
                                                 iconSize: 15.w,
@@ -1091,7 +1095,7 @@ class TendersDetailPage extends ConsumerWidget {
                       child: Theme(
                         data: Theme.of(context).copyWith(
                           dividerColor: Colors.transparent,
-                          expansionTileTheme: ExpansionTileThemeData(
+                          expansionTileTheme: const ExpansionTileThemeData(
                             backgroundColor: Colors.transparent,
                           ),
                         ),
@@ -1099,7 +1103,7 @@ class TendersDetailPage extends ConsumerWidget {
                           iconColor: Colors.white,
                           collapsedIconColor: Colors.black,
                           backgroundColor: Colors.transparent,
-                          title: Text(
+                          title: const Text(
                             'Comments',
                             style: TextStyle(
                               fontSize: 18,
@@ -1114,7 +1118,7 @@ class TendersDetailPage extends ConsumerWidget {
                                     width: double.infinity,
                                     // height: 437.h,
 
-                                    padding: EdgeInsets.only(
+                                    padding: const EdgeInsets.only(
                                             bottom: 36,
                                             left: 38,
                                             top: 10,
@@ -1141,17 +1145,17 @@ class TendersDetailPage extends ConsumerWidget {
                                         Container(
                                           width: 278.w,
                                           height: 75.h,
-                                          padding: EdgeInsets.symmetric(
+                                          padding: const EdgeInsets.symmetric(
                                               horizontal: 8.0),
                                           // margin: EdgeInsets.all(16),
                                           decoration: BoxDecoration(
                                             border: Border.all(
-                                              color: Color(0xFF08B783),
+                                              color: const Color(0xFF08B783),
                                             ),
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
                                           ),
-                                          child: Row(
+                                          child: const Row(
                                             children: [
                                               Expanded(
                                                 child: TextField(
@@ -1309,7 +1313,7 @@ Widget _generalInfoCard(firstText, SecondText) {
   return Container(
     width: 130.w,
     height: 56.h,
-    decoration: BoxDecoration(boxShadow: [
+    decoration: BoxDecoration(boxShadow: const [
       BoxShadow(
         color: Colors.grey,
         offset: Offset(0.5, 0.5),
@@ -1332,7 +1336,7 @@ Widget _generalInfoCard(firstText, SecondText) {
             Container(
                 width: 23.065.w,
                 height: 22.h,
-                margin: EdgeInsets.only(left: 10.48, top: 10).r,
+                margin: const EdgeInsets.only(left: 10.48, top: 10).r,
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: LinearGradient(
@@ -1380,14 +1384,14 @@ Widget customListItem(String leadingText, String trailingText, int index) {
   return Container(
     //width: 100,
     height: 39.h,
-    padding: EdgeInsets.only(top: 12, left: 16, right: 20).r,
-    margin: EdgeInsets.only(left: 1, top: 12).r,
-    color: index % 2 == 0 ? Color(0xFFF9F9F9) : Color(0xFFFFFFFF),
+    padding: const EdgeInsets.only(top: 12, left: 16, right: 20).r,
+    margin: const EdgeInsets.only(left: 1, top: 12).r,
+    color: index % 2 == 0 ? const Color(0xFFF9F9F9) : const Color(0xFFFFFFFF),
     //color: Colors.amber,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
+        SizedBox(
           width: 186.w,
           //color: Colors.amber,
           child: AutoSizeText(

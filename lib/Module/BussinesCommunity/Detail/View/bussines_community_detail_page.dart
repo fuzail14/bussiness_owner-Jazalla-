@@ -17,6 +17,8 @@ import '../../../../Widgets/StarRating/star_rating.dart';
 import '../Controller/bussines_community_detail_controller.dart';
 
 class BussinesCommunityDetailPage extends ConsumerWidget {
+  const BussinesCommunityDetailPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(bussinesCommunityPageProvider.notifier);
@@ -50,7 +52,7 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                       child: Theme(
                         data: Theme.of(context).copyWith(
                           dividerColor: Colors.transparent,
-                          expansionTileTheme: ExpansionTileThemeData(
+                          expansionTileTheme: const ExpansionTileThemeData(
                             backgroundColor: Colors.transparent,
                           ),
                         ),
@@ -58,7 +60,7 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                           iconColor: Colors.white,
                           collapsedIconColor: Colors.black,
                           backgroundColor: Colors.transparent,
-                          title: Text(
+                          title: const Text(
                             'General Information',
                             style: TextStyle(
                               fontSize: 18,
@@ -72,7 +74,7 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                                 Container(
                                   width: double.infinity,
                                   height: 437.h,
-                                  padding: EdgeInsets.only(left: 30, top: 19).r,
+                                  padding: const EdgeInsets.only(left: 30, top: 19).r,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(14).r,
                                       color: HexColor('#FFFFFF'),
@@ -90,7 +92,7 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                                               decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(3),
-                                                  color: Color(0x33e1e1e2)),
+                                                  color: const Color(0x33e1e1e2)),
                                               child: (state
                                                           .companyDetail[
                                                               outerIndex]
@@ -148,7 +150,7 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                                               .toString(),
                                         ),
                                         23.ph,
-                                        Container(
+                                        SizedBox(
                                           width: 271.w,
                                           height: 77.h,
                                           child: GoogleMap(
@@ -163,7 +165,7 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                                             markers: {
                                               Marker(
                                                 markerId:
-                                                    MarkerId('some_marker'),
+                                                    const MarkerId('some_marker'),
                                                 position: controller.center,
                                               ),
                                             },
@@ -214,7 +216,7 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                       child: Theme(
                         data: Theme.of(context).copyWith(
                           dividerColor: Colors.transparent,
-                          expansionTileTheme: ExpansionTileThemeData(
+                          expansionTileTheme: const ExpansionTileThemeData(
                             backgroundColor: Colors.transparent,
                           ),
                         ),
@@ -222,7 +224,7 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                           iconColor: Colors.white,
                           collapsedIconColor: Colors.black,
                           backgroundColor: Colors.transparent,
-                          title: Text(
+                          title: const Text(
                             'Business Activites',
                             style: TextStyle(
                               fontSize: 18,
@@ -289,7 +291,7 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                       child: Theme(
                         data: Theme.of(context).copyWith(
                           dividerColor: Colors.transparent,
-                          expansionTileTheme: ExpansionTileThemeData(
+                          expansionTileTheme: const ExpansionTileThemeData(
                             backgroundColor: Colors.transparent,
                           ),
                         ),
@@ -297,7 +299,7 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                           iconColor: Colors.white,
                           collapsedIconColor: Colors.black,
                           backgroundColor: Colors.transparent,
-                          title: Text(
+                          title: const Text(
                             'Products Catalogue',
                             style: TextStyle(
                               fontSize: 18,
@@ -419,7 +421,7 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                                                               errorWidget: (context,
                                                                       url,
                                                                       error) =>
-                                                                  Icon(Icons
+                                                                  const Icon(Icons
                                                                       .error), // Optional: Handle error state
                                                             ),
                                                           ),
@@ -574,7 +576,7 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                       child: Theme(
                         data: Theme.of(context).copyWith(
                           dividerColor: Colors.transparent,
-                          expansionTileTheme: ExpansionTileThemeData(
+                          expansionTileTheme: const ExpansionTileThemeData(
                             backgroundColor: Colors.transparent,
                           ),
                         ),
@@ -582,7 +584,7 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                           iconColor: Colors.white,
                           collapsedIconColor: Colors.black,
                           backgroundColor: Colors.transparent,
-                          title: Text(
+                          title: const Text(
                             'Services Catalogue',
                             style: TextStyle(
                               fontSize: 18,
@@ -823,7 +825,7 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                       child: Theme(
                         data: Theme.of(context).copyWith(
                           dividerColor: Colors.transparent,
-                          expansionTileTheme: ExpansionTileThemeData(
+                          expansionTileTheme: const ExpansionTileThemeData(
                             backgroundColor: Colors.transparent,
                           ),
                         ),
@@ -831,7 +833,7 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                           iconColor: Colors.white,
                           collapsedIconColor: Colors.black,
                           backgroundColor: Colors.transparent,
-                          title: Text(
+                          title: const Text(
                             'Review & Rating',
                             style: TextStyle(
                               fontSize: 18,
@@ -845,7 +847,7 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                                 Container(
                                   height: 325.93.h,
                                   width: double.maxFinite,
-                                  padding: EdgeInsets.only(
+                                  padding: const EdgeInsets.only(
                                     left: 27,
                                     top: 16,
                                     right: 30,
@@ -865,7 +867,7 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(3),
-                                                color: Color(0x33e1e1e2)),
+                                                color: const Color(0x33e1e1e2)),
                                             child: (state
                                                         .companyDetail[
                                                             outerIndex]
@@ -906,7 +908,7 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                                                 color: HexColor('##000000'))),
                                       ),
                                       15.ph,
-                                      Divider(),
+                                      const Divider(),
                                       _reviewNRatingRow(
                                         'On-time Delivery - ',
                                         'Consistently meets delivery time',
@@ -944,7 +946,7 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                                                   fontSize: 10,
                                                   fontWeight: FontWeight.w300,
                                                   color: HexColor('#0D0B0C')),
-                                              children: [])),
+                                              children: const [])),
                                           StarRating(
                                               rating: 4,
                                               color: HexColor('#FCAB10'))
@@ -1033,7 +1035,7 @@ Widget _generalInfoCard(firstText, SecondText) {
   return Container(
     width: 130.w,
     height: 56.h,
-    decoration: BoxDecoration(boxShadow: [
+    decoration: BoxDecoration(boxShadow: const [
       BoxShadow(
         color: Colors.grey,
         offset: Offset(0.5, 0.5),
@@ -1056,7 +1058,7 @@ Widget _generalInfoCard(firstText, SecondText) {
             Container(
                 width: 23.065.w,
                 height: 22.h,
-                margin: EdgeInsets.only(left: 10.48, top: 10).r,
+                margin: const EdgeInsets.only(left: 10.48, top: 10).r,
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: LinearGradient(
@@ -1104,14 +1106,14 @@ Widget customListItem(String leadingText, String trailingText, int index) {
   return Container(
     //width: 100,
     //height: 39.h,
-    padding: EdgeInsets.only(top: 12, left: 16, right: 20).r,
-    margin: EdgeInsets.only(left: 1, top: 12).r,
-    color: index % 2 == 0 ? Color(0xFFF9F9F9) : Color(0xFFFFFFFF),
+    padding: const EdgeInsets.only(top: 12, left: 16, right: 20).r,
+    margin: const EdgeInsets.only(left: 1, top: 12).r,
+    color: index % 2 == 0 ? const Color(0xFFF9F9F9) : const Color(0xFFFFFFFF),
     //color: Colors.amber,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
+        SizedBox(
           width: 186.w,
           //color: Colors.amber,
           child: AutoSizeText(

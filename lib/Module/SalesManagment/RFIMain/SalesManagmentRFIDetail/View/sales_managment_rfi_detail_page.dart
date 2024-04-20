@@ -1,12 +1,9 @@
-import 'dart:io';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
 import 'package:bussines_owner/Routes/set_routes.dart';
 import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,7 +11,6 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../../Data/Api Resp/api_response.dart';
-import '../../../../../Widgets/DescriptionTextField/description_field_attachment.dart';
 import '../../../../../Widgets/Loader/loader.dart';
 import '../../../../../Widgets/My Button/my_button.dart';
 import '../Controller/sales_managment_rfi_detail_controller.dart';
@@ -110,6 +106,8 @@ import '../Controller/sales_managment_rfi_detail_controller.dart';
 // }
 
 class SalesManagmentRFIDetailPage extends ConsumerWidget {
+  const SalesManagmentRFIDetailPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(salesManagmentRFIDetailProvider.notifier);
@@ -142,7 +140,7 @@ class SalesManagmentRFIDetailPage extends ConsumerWidget {
                         style: GoogleFonts.poppins(
                             fontSize: 18.sp,
                             fontWeight: FontWeight.w600,
-                            color: Color(0xff414141)),
+                            color: const Color(0xff414141)),
                       ),
                       20.ph,
                       Container(
@@ -151,7 +149,7 @@ class SalesManagmentRFIDetailPage extends ConsumerWidget {
                         padding: const EdgeInsets.only(bottom: 20).r,
 
                         decoration: BoxDecoration(
-                          color: Color(0xff707070).withOpacity(0.08),
+                          color: const Color(0xff707070).withOpacity(0.08),
                           borderRadius: BorderRadius.circular(8).r,
                         ),
                         child: Column(
@@ -168,14 +166,14 @@ class SalesManagmentRFIDetailPage extends ConsumerWidget {
                                 style: GoogleFonts.poppins(
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.w500,
-                                    color: Color(0xff000000)),
+                                    color: const Color(0xff000000)),
                               ),
                             ),
                             Container(
                               decoration: BoxDecoration(
                                   color: whiteColor,
                                   borderRadius: BorderRadius.circular(12).r,
-                                  border: Border.all(color: Color(0xffE1E3E8))),
+                                  border: Border.all(color: const Color(0xffE1E3E8))),
                               padding: const EdgeInsets.symmetric(
                                       horizontal: 15, vertical: 12)
                                   .r,
@@ -192,7 +190,7 @@ class SalesManagmentRFIDetailPage extends ConsumerWidget {
                                         style: GoogleFonts.montserrat(
                                             fontSize: 14.sp,
                                             fontWeight: FontWeight.w300,
-                                            color: Color(0xff777777)),
+                                            color: const Color(0xff777777)),
                                       ),
                                       10.pw,
                                       Flexible(
@@ -203,7 +201,7 @@ class SalesManagmentRFIDetailPage extends ConsumerWidget {
                                           style: GoogleFonts.montserrat(
                                               fontSize: 14.sp,
                                               fontWeight: FontWeight.w500,
-                                              color: Color(0xff3A3A3A)),
+                                              color: const Color(0xff3A3A3A)),
                                         ),
                                       ),
                                     ],
@@ -221,7 +219,7 @@ class SalesManagmentRFIDetailPage extends ConsumerWidget {
                                         style: GoogleFonts.montserrat(
                                             fontSize: 14.sp,
                                             fontWeight: FontWeight.w300,
-                                            color: Color(0xff777777)),
+                                            color: const Color(0xff777777)),
                                       ),
                                       10.pw,
                                       Flexible(
@@ -232,7 +230,7 @@ class SalesManagmentRFIDetailPage extends ConsumerWidget {
                                           style: GoogleFonts.montserrat(
                                               fontSize: 12.sp,
                                               fontWeight: FontWeight.w500,
-                                              color: Color(0xff3A3A3A)),
+                                              color: const Color(0xff3A3A3A)),
                                         ),
                                       ),
                                     ],
@@ -250,7 +248,7 @@ class SalesManagmentRFIDetailPage extends ConsumerWidget {
                                         style: GoogleFonts.montserrat(
                                             fontSize: 14.sp,
                                             fontWeight: FontWeight.w300,
-                                            color: Color(0xff777777)),
+                                            color: const Color(0xff777777)),
                                       ),
                                       10.pw,
                                       Flexible(
@@ -261,7 +259,7 @@ class SalesManagmentRFIDetailPage extends ConsumerWidget {
                                           style: GoogleFonts.montserrat(
                                               fontSize: 14.sp,
                                               fontWeight: FontWeight.w500,
-                                              color: Color(0xff3A3A3A)),
+                                              color: const Color(0xff3A3A3A)),
                                         ),
                                       ),
                                     ],
@@ -279,7 +277,7 @@ class SalesManagmentRFIDetailPage extends ConsumerWidget {
                                         style: GoogleFonts.montserrat(
                                             fontSize: 14.sp,
                                             fontWeight: FontWeight.w300,
-                                            color: Color(0xff777777)),
+                                            color: const Color(0xff777777)),
                                       ),
                                       10.pw,
                                       Flexible(
@@ -290,7 +288,7 @@ class SalesManagmentRFIDetailPage extends ConsumerWidget {
                                           style: GoogleFonts.montserrat(
                                               fontSize: 14.sp,
                                               fontWeight: FontWeight.w500,
-                                              color: Color(0xff3A3A3A)),
+                                              color: const Color(0xff3A3A3A)),
                                         ),
                                       ),
                                     ],
@@ -307,7 +305,7 @@ class SalesManagmentRFIDetailPage extends ConsumerWidget {
                                         style: GoogleFonts.montserrat(
                                             fontSize: 14.sp,
                                             fontWeight: FontWeight.w300,
-                                            color: Color(0xff777777)),
+                                            color: const Color(0xff777777)),
                                       ),
                                       10.pw,
                                       Flexible(
@@ -318,7 +316,7 @@ class SalesManagmentRFIDetailPage extends ConsumerWidget {
                                           style: GoogleFonts.montserrat(
                                               fontSize: 14.sp,
                                               fontWeight: FontWeight.w500,
-                                              color: Color(0xff3A3A3A)),
+                                              color: const Color(0xff3A3A3A)),
                                         ),
                                       ),
                                     ],
@@ -336,7 +334,7 @@ class SalesManagmentRFIDetailPage extends ConsumerWidget {
                                         style: GoogleFonts.montserrat(
                                             fontSize: 14.sp,
                                             fontWeight: FontWeight.w300,
-                                            color: Color(0xff777777)),
+                                            color: const Color(0xff777777)),
                                       ),
                                       10.pw,
                                       Flexible(
@@ -347,7 +345,7 @@ class SalesManagmentRFIDetailPage extends ConsumerWidget {
                                           style: GoogleFonts.montserrat(
                                               fontSize: 12.sp,
                                               fontWeight: FontWeight.w500,
-                                              color: Color(0xff3A3A3A)),
+                                              color: const Color(0xff3A3A3A)),
                                         ),
                                       ),
                                     ],
@@ -367,7 +365,7 @@ class SalesManagmentRFIDetailPage extends ConsumerWidget {
                                 style: GoogleFonts.poppins(
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.w500,
-                                    color: Color(0xff000000)),
+                                    color: const Color(0xff000000)),
                               ),
                             ),
                             Container(
@@ -375,7 +373,7 @@ class SalesManagmentRFIDetailPage extends ConsumerWidget {
                               decoration: BoxDecoration(
                                   color: whiteColor,
                                   borderRadius: BorderRadius.circular(12).r,
-                                  border: Border.all(color: Color(0xffE1E3E8))),
+                                  border: Border.all(color: const Color(0xffE1E3E8))),
                               padding: const EdgeInsets.symmetric(
                                       horizontal: 15, vertical: 12)
                                   .r,

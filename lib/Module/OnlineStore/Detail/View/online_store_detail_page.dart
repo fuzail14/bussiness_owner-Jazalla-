@@ -21,6 +21,8 @@ import '../../Widget/custom_widgets.dart';
 import '../Controller/online_store_detail_controller.dart';
 
 class OnlineStoreDetailPage extends ConsumerWidget {
+  const OnlineStoreDetailPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(onlineStoreDetailProvider.notifier);
@@ -97,7 +99,7 @@ class OnlineStoreDetailPage extends ConsumerWidget {
                   child: CustomButton(
                     height: 28.h,
                     width: 120.w,
-                    color: Color(0xff1F3996),
+                    color: const Color(0xff1F3996),
                     text: 'Send Inquiry',
                   ),
                 ),
@@ -187,7 +189,7 @@ class OnlineStoreDetailPage extends ConsumerWidget {
                                     color: HexColor('#414141')),
                                 onPressed: () {
                                   state.pageController.previousPage(
-                                    duration: Duration(milliseconds: 400),
+                                    duration: const Duration(milliseconds: 400),
                                     curve: Curves.easeInOut,
                                   );
                                 },
@@ -197,7 +199,7 @@ class OnlineStoreDetailPage extends ConsumerWidget {
                                     color: HexColor('#414141')),
                                 onPressed: () {
                                   state.pageController.nextPage(
-                                    duration: Duration(milliseconds: 400),
+                                    duration: const Duration(milliseconds: 400),
                                     curve: Curves.easeInOut,
                                   );
                                 },
@@ -262,32 +264,32 @@ class OnlineStoreDetailPage extends ConsumerWidget {
                               'assets/images/building.svg',
                               controller.moreDetails[0],
                               state.selectedOptionIndex == 0
-                                  ? Color(0xffE2F5ED)
-                                  : Color(0xffFBFFFD), () {
+                                  ? const Color(0xffE2F5ED)
+                                  : const Color(0xffFBFFFD), () {
                             controller.moreDetailBuild(0);
                           }),
                           moreDetailsButton(
                               'assets/images/building.svg',
                               controller.moreDetails[1],
                               state.selectedOptionIndex == 1
-                                  ? Color(0xffE2F5ED)
-                                  : Color(0xffFBFFFD), () {
+                                  ? const Color(0xffE2F5ED)
+                                  : const Color(0xffFBFFFD), () {
                             controller.moreDetailBuild(1);
                           }),
                           moreDetailsButton(
                               'assets/images/building.svg',
                               controller.moreDetails[2],
                               state.selectedOptionIndex == 2
-                                  ? Color(0xffE2F5ED)
-                                  : Color(0xffFBFFFD), () {
+                                  ? const Color(0xffE2F5ED)
+                                  : const Color(0xffFBFFFD), () {
                             controller.moreDetailBuild(2);
                           }),
                           moreDetailsButton(
                               'assets/images/building.svg',
                               controller.moreDetails[3],
                               state.selectedOptionIndex == 3
-                                  ? Color(0xffE2F5ED)
-                                  : Color(0xffFBFFFD), () {
+                                  ? const Color(0xffE2F5ED)
+                                  : const Color(0xffFBFFFD), () {
                             controller.moreDetailBuild(3);
                           }),
                         ],
@@ -303,13 +305,13 @@ class OnlineStoreDetailPage extends ConsumerWidget {
                         Container(
                           width: 362.w,
                           //height: 242.h,
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
                               border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
-                              color: Color(0xfffbfffd)),
+                              color: const Color(0xfffbfffd)),
                           child: AutoSizeText(product.description.toString(),
                               maxLines: 8,
                               overflow: TextOverflow.ellipsis,
@@ -318,7 +320,7 @@ class OnlineStoreDetailPage extends ConsumerWidget {
                               style: GoogleFonts.poppins(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xff414141))),
+                                  color: const Color(0xff414141))),
                         )
                       ],
                       if (state.selectedOptionIndex == 1) ...[
@@ -354,13 +356,13 @@ class OnlineStoreDetailPage extends ConsumerWidget {
                         Container(
                           width: 362.w,
                           //height: 242.h,
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
                               border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
-                              color: Color(0xfffbfffd)),
+                              color: const Color(0xfffbfffd)),
                           child: AutoSizeText(product.refundPolicy.toString(),
                               maxLines: 8,
                               overflow: TextOverflow.ellipsis,
@@ -369,7 +371,7 @@ class OnlineStoreDetailPage extends ConsumerWidget {
                               style: GoogleFonts.poppins(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xff414141))),
+                                  color: const Color(0xff414141))),
                         )
                       ],
                       if (state.selectedOptionIndex == 2) ...[
@@ -383,7 +385,7 @@ class OnlineStoreDetailPage extends ConsumerWidget {
                             width: double.infinity,
                             // height: 437.h,
 
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                     bottom: 36, left: 38, top: 10, right: 15)
                                 .r,
                             decoration: BoxDecoration(
@@ -406,7 +408,7 @@ class OnlineStoreDetailPage extends ConsumerWidget {
                                   width: 278.w,
                                   height: 75.h,
                                   padding:
-                                      EdgeInsets.symmetric(horizontal: 8.0),
+                                      const EdgeInsets.symmetric(horizontal: 8.0),
                                   // margin: EdgeInsets.all(16),
                                   decoration: BoxDecoration(
                                     border: Border.all(
@@ -445,7 +447,7 @@ class OnlineStoreDetailPage extends ConsumerWidget {
                                       style: GoogleFonts.quicksand(
                                           fontSize: 12.sp,
                                           fontWeight: FontWeight.w500,
-                                          color: Color(0xff504B4B)),
+                                          color: const Color(0xff504B4B)),
                                     ),
                                   ),
                                 ),

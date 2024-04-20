@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
@@ -8,14 +7,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../Constants/Global/Method/global_methods.dart';
 import '../../../../Constants/Person/person.dart';
-import '../../../../Constants/api_routes.dart';
-import '../../../../Constants/constants.dart';
 import '../../../../Repo/Verification Repository/verification_repository.dart';
 import '../../../../Routes/set_routes.dart';
 import '../../../../Services/Notification Services/notification_services.dart';
 import '../../../../Services/Shared Preferences/MySharedPreferences.dart';
 import 'package:go_router/go_router.dart';
-import 'package:http/http.dart' as Http;
 
 class PasswordState {
   final bool isLoading;

@@ -1,26 +1,14 @@
-import 'dart:ui';
-import 'package:badges/badges.dart' as badges;
-import 'package:animate_do/animate_do.dart';
-import 'package:bussines_owner/Constants/Extensions/extensions.dart';
-import 'package:bussines_owner/Constants/Font/fonts.dart';
 import 'package:bussines_owner/Module/MarketPlace/View/market_place_screen.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import '../../../Constants/Global/Method/global_methods.dart';
 import '../../../Constants/Person/person.dart';
 import '../../../Constants/Person/person_controller.dart';
 import '../../../Constants/constants.dart';
-import '../../../Routes/set_routes.dart';
 import '../../../Services/Notification Services/notification_services.dart';
 import '../../../Services/Shared Preferences/MySharedPreferences.dart';
 import '../../Approval Managment/Main/View/approval_managment_screen.dart';
@@ -30,6 +18,8 @@ import '../../Menu/View/menu_screen.dart';
 import '../Controller/home_screen_controller.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -66,11 +56,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   List<Widget> _buildScreens() {
     return [
       // CustomLineChart(),
-      MainHomeScreen(),
+      const MainHomeScreen(),
       MarketPlaceScreen(),
-      ApprovalManagmentScreen(),
-      EmployeeCenterPage(),
-      Menu(),
+      const ApprovalManagmentScreen(),
+      const EmployeeCenterPage(),
+      const Menu(),
     ];
   }
 
@@ -122,27 +112,27 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   List<BottomNavigationBarItem> _bottomNavBarItems() {
     return [
-      BottomNavigationBarItem(
+      const BottomNavigationBarItem(
         icon: Icon(CupertinoIcons.home),
         label: 'Home',
         backgroundColor: Color(0xff49AECD), // used for active item background
       ),
-      BottomNavigationBarItem(
+      const BottomNavigationBarItem(
         icon: Icon(CupertinoIcons.macwindow),
         label: 'MarketPlace',
         backgroundColor: Color(0xff49AECD),
       ),
-      BottomNavigationBarItem(
+      const BottomNavigationBarItem(
         icon: Icon(CupertinoIcons.app_badge_fill),
         label: 'Approvals',
         backgroundColor: Color(0xff49AECD),
       ),
-      BottomNavigationBarItem(
+      const BottomNavigationBarItem(
         icon: Icon(CupertinoIcons.waveform_circle),
         label: 'Employee Center',
         backgroundColor: Color(0xff49AECD),
       ),
-      BottomNavigationBarItem(
+      const BottomNavigationBarItem(
         icon: Icon(CupertinoIcons.square_grid_2x2_fill),
         label: 'Menu',
         backgroundColor: Color(0xff49AECD),

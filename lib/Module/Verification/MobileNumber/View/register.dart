@@ -1,7 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:country_picker/country_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,7 +26,7 @@ class CheckPhoneNumber extends ConsumerWidget {
         child: Stack(children: [
           Container(
             //height: 441.h,
-            padding: EdgeInsets.symmetric(vertical: 62, horizontal: 70).r,
+            padding: const EdgeInsets.symmetric(vertical: 62, horizontal: 70).r,
             width: double.infinity.w,
             decoration: const BoxDecoration(
                 gradient: LinearGradient(
@@ -95,7 +94,7 @@ class CheckPhoneNumber extends ConsumerWidget {
                     style: GoogleFonts.montserrat(
                         fontSize: 20.sp,
                         fontWeight: FontWeight.w600,
-                        color: Color(0xff000000)),
+                        color: const Color(0xff000000)),
                   ),
                   30.ph,
                   MyTextFormField(
@@ -110,8 +109,8 @@ class CheckPhoneNumber extends ConsumerWidget {
                     fillColor: HexColor('#FFFFFF'),
                     prefixIcon: Container(
                       // height: 52.h,
-                      margin: EdgeInsets.only(right: 10),
-                      decoration: BoxDecoration(
+                      margin: const EdgeInsets.only(right: 10),
+                      decoration: const BoxDecoration(
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10.0),
                           bottomLeft: Radius.circular(10.0),

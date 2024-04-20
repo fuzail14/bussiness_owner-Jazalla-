@@ -15,7 +15,7 @@ import '../Controller/service_send_inquiry_controller.dart';
 class ServiceSendInquiryScreen extends ConsumerWidget {
   final Map<String, dynamic>? inquiryData;
   int buiuld = 0;
-  ServiceSendInquiryScreen({this.inquiryData});
+  ServiceSendInquiryScreen({super.key, this.inquiryData});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     print('send inquiry build check ${buiuld++}');
@@ -50,7 +50,7 @@ class ServiceSendInquiryScreen extends ConsumerWidget {
                 style: GoogleFonts.montserrat(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w400,
-                    color: Color(0xff4D4D4D)),
+                    color: const Color(0xff4D4D4D)),
               ),
               5.ph,
               Container(
@@ -75,7 +75,7 @@ class ServiceSendInquiryScreen extends ConsumerWidget {
                     width: 300.w,
                     height: 23.h,
                     decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xff19A3A3))),
+                        border: Border.all(color: const Color(0xff19A3A3))),
                     child: Row(
                       children: [
                         GestureDetector(
@@ -97,15 +97,15 @@ class ServiceSendInquiryScreen extends ConsumerWidget {
                             width: 76.w,
                             height: 23.h,
                             decoration: BoxDecoration(
-                                color: Color(0xffF7F7F9),
-                                border: Border.all(color: Color(0xff19A3A3))),
+                                color: const Color(0xffF7F7F9),
+                                border: Border.all(color: const Color(0xff19A3A3))),
                             child: Center(
                               child: Text(
                                 'Choose File',
                                 style: GoogleFonts.montserrat(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 10.sp,
-                                    color: Color(0xff657474)),
+                                    color: const Color(0xff657474)),
                               ),
                             ),
                           ),
@@ -119,7 +119,7 @@ class ServiceSendInquiryScreen extends ConsumerWidget {
                               style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 12.sp,
-                                  color: Color(0xff657474)),
+                                  color: const Color(0xff657474)),
                             ),
                           ),
                         ],
@@ -149,7 +149,7 @@ class ServiceSendInquiryScreen extends ConsumerWidget {
                     : CustomButton(
                         width: 119.w,
                         height: 28.h,
-                        color: Color(0xff27BCEB),
+                        color: const Color(0xff27BCEB),
                         text: 'Save Inquiry',
                       ),
               ),

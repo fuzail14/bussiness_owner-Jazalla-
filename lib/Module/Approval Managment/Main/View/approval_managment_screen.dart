@@ -1,30 +1,24 @@
-import 'dart:ui';
 
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/Font/fonts.dart';
 import 'package:bussines_owner/Constants/constants.dart';
-import 'package:bussines_owner/Routes/set_routes.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../../Data/Api Resp/api_response.dart';
 import '../../../../../Widgets/Loader/loader.dart';
 import '../../../../Widgets/AppBar/my_app_bar.dart';
-import '../../../../Widgets/HomeAppBar/home_app_bar.dart';
 import '../../History/View/approval_managment_screen.dart';
 import '../Controller/approval_managment_controller.dart';
 
 // ignore: must_be_immutable
 class ApprovalManagmentScreen extends ConsumerStatefulWidget {
+  const ApprovalManagmentScreen({super.key});
+
   @override
   _ApprovalManagmentScreenState createState() =>
       _ApprovalManagmentScreenState();
@@ -75,7 +69,7 @@ class _ApprovalManagmentScreenState
 
             height: 40.h,
             decoration: ShapeDecoration(
-                color: Color(0xffF9F9F9),
+                color: const Color(0xffF9F9F9),
                 // shape: Border(
                 //   right: BorderSide(
                 //     width: 1,
@@ -95,7 +89,7 @@ class _ApprovalManagmentScreenState
                 shape: RoundedRectangleBorder(
                   side: BorderSide(
                     width: 1.5.w,
-                    color: Color.fromRGBO(97, 97, 97, 0.1),
+                    color: const Color.fromRGBO(97, 97, 97, 0.1),
                   ),
                   borderRadius: BorderRadius.circular(14.r),
                 )),
@@ -144,7 +138,7 @@ Widget _tabButton({
     child: AnimatedContainer(
       width: 150.w,
       duration: const Duration(milliseconds: 00),
-      margin: EdgeInsets.symmetric(
+      margin: const EdgeInsets.symmetric(
         vertical: 4,
       ).r,
       decoration: BoxDecoration(
@@ -152,9 +146,9 @@ Widget _tabButton({
           borderRadius: BorderRadius.circular(12).r,
           boxShadow: isSelected
               ? [
-                  BoxShadow(
+                  const BoxShadow(
                     color: Color.fromRGBO(191, 113, 15, 0.2),
-                    offset: const Offset(
+                    offset: Offset(
                       1.0,
                       15.0,
                     ),
@@ -185,7 +179,7 @@ class ApprovalControlScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(ApprovalManagmentProvider.notifier);
     final state = ref.watch(ApprovalManagmentProvider);
-    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     print('build check  ${buildcheck++}');
 
     return Scaffold(
@@ -226,7 +220,7 @@ class ApprovalControlScreen extends ConsumerWidget {
                           showDialog(
                               context: context,
                               builder: (BuildContext context) =>
-                                  CustomDialog());
+                                  const CustomDialog());
                         },
                         child: Container(
                           //width: 360.w,
@@ -268,7 +262,7 @@ class ApprovalControlScreen extends ConsumerWidget {
                                       style: GoogleFonts.poppins(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w600,
-                                          color: Color(0xff000000)),
+                                          color: const Color(0xff000000)),
                                     ),
                                   ),
                                   //40.pw,
@@ -280,12 +274,12 @@ class ApprovalControlScreen extends ConsumerWidget {
                                       style: GoogleFonts.poppins(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500,
-                                          color: Color(0xff707070)),
+                                          color: const Color(0xff707070)),
                                     ),
                                   ),
                                 ],
                               ),
-                              Divider(),
+                              const Divider(),
                               11.ph,
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -343,7 +337,7 @@ class ApprovalControlScreen extends ConsumerWidget {
                                       Icon(
                                         Icons.calendar_today,
                                         size: 14.h,
-                                        color: Color(0xffA7A7A7),
+                                        color: const Color(0xffA7A7A7),
                                       ),
                                       6.pw,
                                       SizedBox(
@@ -387,6 +381,8 @@ class ApprovalControlScreen extends ConsumerWidget {
 }
 
 class CustomDialog extends StatelessWidget {
+  const CustomDialog({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -399,7 +395,7 @@ class CustomDialog extends StatelessWidget {
 
   Widget dialogContent(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 0.0, right: 0.0),
+      margin: const EdgeInsets.only(left: 0.0, right: 0.0),
       width: 320.w,
       height: 403.h,
       child: Container(
@@ -407,10 +403,10 @@ class CustomDialog extends StatelessWidget {
           children: <Widget>[
             Container(
               height: 403.h,
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 top: 18.0,
               ),
-              margin: EdgeInsets.only(
+              margin: const EdgeInsets.only(
                 top: 50.0,
                 right: 8.0,
               ).r,
@@ -418,7 +414,7 @@ class CustomDialog extends StatelessWidget {
                   color: whiteColor,
                   shape: BoxShape.rectangle,
                   borderRadius: BorderRadius.circular(16.0),
-                  boxShadow: <BoxShadow>[
+                  boxShadow: const <BoxShadow>[
                     BoxShadow(
                       color: Colors.black26,
                       blurRadius: 0.0,
@@ -444,7 +440,7 @@ class CustomDialog extends StatelessWidget {
                             width: 78.w,
                             height: 24.h,
                             decoration: BoxDecoration(
-                              color: Color(0xff1F3996).withOpacity(0.11),
+                              color: const Color(0xff1F3996).withOpacity(0.11),
                               borderRadius: BorderRadius.circular(5).r,
                             ),
                             child: Center(
@@ -452,7 +448,7 @@ class CustomDialog extends StatelessWidget {
                                 "Detail",
                                 style: GoogleFonts.montserrat(
                                     fontWeight: FontWeight.w600,
-                                    color: Color(0xff2955A3),
+                                    color: const Color(0xff2955A3),
                                     fontSize: 12.sp),
                               ),
                             ),
@@ -480,7 +476,7 @@ class CustomDialog extends StatelessWidget {
                                   decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       border:
-                                          Border.all(color: Color(0xffF5F5F5))),
+                                          Border.all(color: const Color(0xffF5F5F5))),
                                   child: SvgPicture.asset(
                                     'assets/images/dialog_tick.svg',
                                   ),
@@ -509,7 +505,7 @@ class CustomDialog extends StatelessWidget {
                             ),
                             SizedBox(
                                 height: 43.h,
-                                child: VerticalDivider(
+                                child: const VerticalDivider(
                                   color: Color(0xffD9D9D9),
                                 )),
                             Row(
@@ -540,7 +536,7 @@ class CustomDialog extends StatelessWidget {
                             ),
                             SizedBox(
                                 height: 43.h,
-                                child: VerticalDivider(
+                                child: const VerticalDivider(
                                   color: Color(0xffD9D9D9),
                                 )),
                             Row(
@@ -690,7 +686,7 @@ class CustomDialog extends StatelessWidget {
                             width: 90.w,
                             height: 24.h,
                             decoration: BoxDecoration(
-                              color: Color(0xffC2EECC).withOpacity(0.5),
+                              color: const Color(0xffC2EECC).withOpacity(0.5),
                               borderRadius: BorderRadius.circular(5).r,
                             ),
                             child: Center(
@@ -698,7 +694,7 @@ class CustomDialog extends StatelessWidget {
                                 "Accept",
                                 style: GoogleFonts.inter(
                                     fontWeight: FontWeight.w500,
-                                    color: Color(0xff03781D),
+                                    color: const Color(0xff03781D),
                                     fontSize: 12.sp),
                                 textAlign: TextAlign.center,
                               ),
@@ -714,7 +710,7 @@ class CustomDialog extends StatelessWidget {
                             width: 90.w,
                             height: 24.h,
                             decoration: BoxDecoration(
-                              color: Color(0xffFEE1E1),
+                              color: const Color(0xffFEE1E1),
                               borderRadius: BorderRadius.circular(5).r,
                             ),
                             child: Center(
@@ -722,7 +718,7 @@ class CustomDialog extends StatelessWidget {
                                 "Reject",
                                 style: GoogleFonts.inter(
                                     fontWeight: FontWeight.w500,
-                                    color: Color(0xffBA1717),
+                                    color: const Color(0xffBA1717),
                                     fontSize: 12.sp),
                                 textAlign: TextAlign.center,
                               ),

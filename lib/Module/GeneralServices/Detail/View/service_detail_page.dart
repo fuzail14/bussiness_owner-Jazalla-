@@ -19,6 +19,8 @@ import '../../../../Widgets/StarRating/star_rating.dart';
 import '../Controller/service_detail_controller.dart';
 
 class ServiceDetailPage extends ConsumerWidget {
+  const ServiceDetailPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(servicePageProvider.notifier);
@@ -236,7 +238,7 @@ class ServiceDetailPage extends ConsumerWidget {
                           decoration: BoxDecoration(
                               border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
-                              color: Color(0xfffbfffd)),
+                              color: const Color(0xfffbfffd)),
                           child: AutoSizeText(product.description.toString(),
                               maxLines: 8,
                               overflow: TextOverflow.ellipsis,
@@ -245,7 +247,7 @@ class ServiceDetailPage extends ConsumerWidget {
                               style: GoogleFonts.poppins(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xff414141))),
+                                  color: const Color(0xff414141))),
                         ),
                         20.ph,
                         Text("Details",
@@ -257,13 +259,13 @@ class ServiceDetailPage extends ConsumerWidget {
                         Container(
                           width: 362.w,
                           //height: 242.h,
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
                               border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
-                              color: Color(0xfffbfffd)),
+                              color: const Color(0xfffbfffd)),
                           child: AutoSizeText(product.pDetails.toString(),
                               maxLines: 8,
                               overflow: TextOverflow.ellipsis,
@@ -272,7 +274,7 @@ class ServiceDetailPage extends ConsumerWidget {
                               style: GoogleFonts.poppins(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xff414141))),
+                                  color: const Color(0xff414141))),
                         ),
                         20.ph,
                         Text("Services Classification (UNSPSC)",
@@ -284,14 +286,14 @@ class ServiceDetailPage extends ConsumerWidget {
                         Container(
                           width: 362.w,
                           //height: 242.h,
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                                   left: 21, right: 21, top: 18, bottom: 17)
                               .r,
                           decoration: BoxDecoration(
                               border: Border.all(color: detailCradBorderColor),
                               borderRadius: BorderRadius.circular(8),
-                              color: Color(0xfffbfffd)),
-                          child: Row(
+                              color: const Color(0xfffbfffd)),
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               // Flexible(
@@ -349,7 +351,7 @@ class ServiceDetailPage extends ConsumerWidget {
                               style: GoogleFonts.poppins(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xff414141))),
+                                  color: const Color(0xff414141))),
                         ),
                         20.ph,
                         Text("Review&Ratings",
@@ -362,7 +364,7 @@ class ServiceDetailPage extends ConsumerWidget {
                             width: double.infinity,
                             // height: 437.h,
 
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                     bottom: 36, left: 38, top: 10, right: 15)
                                 .r,
                             decoration: BoxDecoration(
@@ -385,7 +387,7 @@ class ServiceDetailPage extends ConsumerWidget {
                                   width: 278.w,
                                   height: 75.h,
                                   padding:
-                                      EdgeInsets.symmetric(horizontal: 8.0),
+                                      const EdgeInsets.symmetric(horizontal: 8.0),
                                   // margin: EdgeInsets.all(16),
                                   decoration: BoxDecoration(
                                     border: Border.all(
@@ -424,7 +426,7 @@ class ServiceDetailPage extends ConsumerWidget {
                                       style: GoogleFonts.quicksand(
                                           fontSize: 12.sp,
                                           fontWeight: FontWeight.w500,
-                                          color: Color(0xff504B4B)),
+                                          color: const Color(0xff504B4B)),
                                     ),
                                   ),
                                 ),

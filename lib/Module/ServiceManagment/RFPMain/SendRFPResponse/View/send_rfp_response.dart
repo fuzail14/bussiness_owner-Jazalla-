@@ -4,7 +4,6 @@ import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,6 +15,8 @@ import '../../../../../Widgets/My Button/my_button.dart';
 import '../Notifier/send_rfp_response_notifier.dart';
 
 class SendRFPResponse extends ConsumerWidget {
+  const SendRFPResponse({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(sendRFPResponseProvider);
@@ -105,7 +106,7 @@ class SendRFPResponse extends ConsumerWidget {
                         maxLines: 2,
                         style: FontManagment().quicksand4,
                       ),
-                      Divider(),
+                      const Divider(),
                       13.ph,
                       Text(
                         'Service Start Date',
@@ -117,7 +118,7 @@ class SendRFPResponse extends ConsumerWidget {
                         maxLines: 2,
                         style: FontManagment().quicksand4,
                       ),
-                      Divider(),
+                      const Divider(),
                       13.ph,
                       Text(
                         'Proposed Duration',
@@ -128,7 +129,7 @@ class SendRFPResponse extends ConsumerWidget {
                         maxLines: 2,
                         style: FontManagment().quicksand4,
                       ),
-                      Divider(),
+                      const Divider(),
                       13.ph,
                       Text(
                         'Proposed Duration Unit',
@@ -180,7 +181,7 @@ class SendRFPResponse extends ConsumerWidget {
                           color: whiteColor,
                           borderRadius: BorderRadius.circular(6).r,
                           border: Border.all(
-                            color: Color(0xffE4E4E4).withOpacity(0.5),
+                            color: const Color(0xffE4E4E4).withOpacity(0.5),
                           ),
                           boxShadow: [
                             BoxShadow(
@@ -217,7 +218,7 @@ class SendRFPResponse extends ConsumerWidget {
                             ),
                             suffixIcon: Icon(
                               Icons.calendar_month,
-                              color: Color(0xffBEBEC2),
+                              color: const Color(0xffBEBEC2),
                               size: 20.h,
                             ),
                             contentPadding: const EdgeInsets.symmetric(
@@ -239,7 +240,7 @@ class SendRFPResponse extends ConsumerWidget {
                           color: whiteColor,
                           borderRadius: BorderRadius.circular(6).r,
                           border: Border.all(
-                            color: Color(0xffE4E4E4).withOpacity(0.5),
+                            color: const Color(0xffE4E4E4).withOpacity(0.5),
                           ),
                           boxShadow: [
                             BoxShadow(
@@ -277,7 +278,7 @@ class SendRFPResponse extends ConsumerWidget {
                             ),
                             suffixIcon: Icon(
                               Icons.timer,
-                              color: Color(0xffBEBEC2),
+                              color: const Color(0xffBEBEC2),
                               size: 20.h,
                             ),
                             contentPadding: const EdgeInsets.symmetric(
@@ -299,7 +300,7 @@ class SendRFPResponse extends ConsumerWidget {
                             color: whiteColor,
                             borderRadius: BorderRadius.circular(6).r,
                             border: Border.all(
-                              color: Color(0xffE4E4E4),
+                              color: const Color(0xffE4E4E4),
                             ),
                             boxShadow: [
                               BoxShadow(
@@ -326,7 +327,7 @@ class SendRFPResponse extends ConsumerWidget {
                                 color: Color(0xffBEBEC2),
                               ),
                               decoration: InputDecoration(
-                                contentPadding: EdgeInsets.symmetric(
+                                contentPadding: const EdgeInsets.symmetric(
                                         horizontal: 10, vertical: 10)
                                     .r,
                                 border: InputBorder.none,
@@ -342,7 +343,7 @@ class SendRFPResponse extends ConsumerWidget {
                                       style: GoogleFonts.montserrat(
                                           fontSize: 12.sp,
                                           fontWeight: FontWeight.w400,
-                                          color: Color(0xFF657474))),
+                                          color: const Color(0xFF657474))),
                                 );
                               }).toList(),
                               onChanged: (String? newValue) {
@@ -363,7 +364,7 @@ class SendRFPResponse extends ConsumerWidget {
                           color: whiteColor,
                           borderRadius: BorderRadius.circular(6).r,
                           border: Border.all(
-                            color: Color(0xffE4E4E4).withOpacity(0.5),
+                            color: const Color(0xffE4E4E4).withOpacity(0.5),
                           ),
                           boxShadow: [
                             BoxShadow(
@@ -416,7 +417,7 @@ class SendRFPResponse extends ConsumerWidget {
                           color: whiteColor,
                           borderRadius: BorderRadius.circular(6).r,
                           border: Border.all(
-                            color: Color(0xffE4E4E4).withOpacity(0.5),
+                            color: const Color(0xffE4E4E4).withOpacity(0.5),
                           ),
                           boxShadow: [
                             BoxShadow(
@@ -451,7 +452,7 @@ class SendRFPResponse extends ConsumerWidget {
                             ),
                             suffixIcon: Icon(
                               Icons.currency_exchange_rounded,
-                              color: Color(0xffBEBEC2),
+                              color: const Color(0xffBEBEC2),
                               size: 20.h,
                             ),
                             contentPadding: const EdgeInsets.symmetric(
@@ -467,7 +468,7 @@ class SendRFPResponse extends ConsumerWidget {
                           Checkbox(
                             value: true,
                             onChanged: (val) {},
-                            side: BorderSide(color: Color(0xffCDC2C2)),
+                            side: const BorderSide(color: Color(0xffCDC2C2)),
                           ),
                           Text(
                             'Price Are Negotiable',
@@ -480,7 +481,7 @@ class SendRFPResponse extends ConsumerWidget {
                           Checkbox(
                             value: false,
                             onChanged: (val) {},
-                            side: BorderSide(color: Color(0xffCDC2C2)),
+                            side: const BorderSide(color: Color(0xffCDC2C2)),
                           ),
                           SizedBox(
                             width: 200.w,
@@ -517,7 +518,7 @@ class SendRFPResponse extends ConsumerWidget {
                       ),
                     ],
                   ),
-                  child: TextField(
+                  child: const TextField(
                     maxLines: 2,
                     decoration: InputDecoration(
                         hintText: 'Enter Response Details',
@@ -547,9 +548,9 @@ class SendRFPResponse extends ConsumerWidget {
                     height: 114.h,
                     width: double.infinity,
                     child: DottedBorder(
-                      color: Color(0xff1849D6),
-                      dashPattern: [8, 4],
-                      radius: Radius.circular(8).r,
+                      color: const Color(0xff1849D6),
+                      dashPattern: const [8, 4],
+                      radius: const Radius.circular(8).r,
                       stackFit: StackFit.expand,
                       strokeWidth: 2,
                       child: Column(
@@ -643,7 +644,7 @@ class SendRFPResponse extends ConsumerWidget {
                     name: 'Send Response',
 
                     style: FontManagment().quicksand12,
-                    color: Color(0xff27BCEB),
+                    color: const Color(0xff27BCEB),
                     //textColor: HexColor('#8518FF'),
 
                     onPressed: () {

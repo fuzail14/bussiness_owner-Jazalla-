@@ -10,7 +10,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../Data/Api Resp/api_response.dart';
 import '../../../../Repo/General Service Repo/send_service_inquiry_repository.dart';
-import '../../../../Repo/Online Store Repository/send_inquiry_repository.dart';
 
 class ServiceInquiryState {
   final Status responseStatus;

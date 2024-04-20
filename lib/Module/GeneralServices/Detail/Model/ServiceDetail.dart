@@ -14,10 +14,10 @@ class ServiceDetail {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['success'] = success;
-    _data['servicedetail'] = servicedetail.map((e) => e.toJson()).toList();
-    return _data;
+    final data = <String, dynamic>{};
+    data['success'] = success;
+    data['servicedetail'] = servicedetail.map((e) => e.toJson()).toList();
+    return data;
   }
 }
 
@@ -232,74 +232,74 @@ class Servicedetail {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['company_id'] = companyId;
-    _data['name'] = name;
-    _data['manufacturer'] = manufacturer;
-    _data['manufacturer_part_no'] = manufacturerPartNo;
-    _data['description'] = description;
-    _data['terms_and_conditions'] = termsAndConditions;
-    _data['status'] = status;
-    _data['code'] = code;
-    _data['alert_quantity'] = alertQuantity;
-    _data['quantity'] = quantity;
-    _data['p_details'] = pDetails;
-    _data['tax_rate'] = taxRate;
-    _data['hide'] = hide;
-    _data['barcode_symbology'] = barcodeSymbology;
-    _data['tax_method'] = taxMethod;
-    _data['family'] = family;
-    _data['commodity'] = commodity;
-    _data['inventory_info'] = inventoryInfo;
-    _data['segment'] = segment;
-    _data['class'] = classObj;
-    _data['created_at'] = createdAt;
-    _data['updated_at'] = updatedAt;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['company_id'] = companyId;
+    data['name'] = name;
+    data['manufacturer'] = manufacturer;
+    data['manufacturer_part_no'] = manufacturerPartNo;
+    data['description'] = description;
+    data['terms_and_conditions'] = termsAndConditions;
+    data['status'] = status;
+    data['code'] = code;
+    data['alert_quantity'] = alertQuantity;
+    data['quantity'] = quantity;
+    data['p_details'] = pDetails;
+    data['tax_rate'] = taxRate;
+    data['hide'] = hide;
+    data['barcode_symbology'] = barcodeSymbology;
+    data['tax_method'] = taxMethod;
+    data['family'] = family;
+    data['commodity'] = commodity;
+    data['inventory_info'] = inventoryInfo;
+    data['segment'] = segment;
+    data['class'] = classObj;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
 
-    _data['product_type'] = productType;
-    _data['specification'] = specification;
-    _data['warranty'] = warranty;
-    _data['refund_policy'] = refundPolicy;
-    _data['promotion'] = promotion;
-    _data['price_visibility'] = priceVisibility;
-    _data['national_product'] = nationalProduct;
-    _data['product_nature'] = productNature;
-    _data['min_qty'] = minQty;
-    _data['sale_price'] = salePrice;
-    _data['purchase_price'] = purchasePrice;
-    _data['unit'] = unit;
-    _data['unit_price'] = unitPrice;
-    _data['max_price'] = maxPrice;
-    _data['min_price'] = minPrice;
-    _data['vat'] = vat;
-    _data['payment_mode'] = paymentMode;
-    _data['video_path'] = videoPath;
-    _data['video_name'] = videoName;
-    _data['document_path'] = documentPath;
-    _data['document_name'] = documentName;
-    _data['model_no'] = modelNo;
-    _data['brand_id'] = brandId;
-    _data['package_id'] = packageId;
-    _data['sku_code'] = skuCode;
-    _data['service_charge'] = serviceCharge;
-    _data['no_service_booked'] = noServiceBooked;
-    _data['service_type'] = serviceType;
-    _data['price'] = price;
-    _data['price_unit'] = priceUnit;
-    _data['other_priceunit'] = otherPriceunit;
-    _data['price_tax'] = priceTax;
-    _data['service_durationtime'] = serviceDurationtime;
-    _data['duration_timeunit'] = durationTimeunit;
-    _data['other_durationunit'] = otherDurationunit;
-    _data['advance_payment'] = advancePayment;
-    _data['payment_distribution'] = paymentDistribution;
-    _data['fav'] = fav;
-    _data['company'] = company!.toJson();
-    _data['unspsc_commodity'] = unspscCommodity!.toJson();
-    _data['photos'] = photos!.map((e) => e.toJson()).toList();
+    data['product_type'] = productType;
+    data['specification'] = specification;
+    data['warranty'] = warranty;
+    data['refund_policy'] = refundPolicy;
+    data['promotion'] = promotion;
+    data['price_visibility'] = priceVisibility;
+    data['national_product'] = nationalProduct;
+    data['product_nature'] = productNature;
+    data['min_qty'] = minQty;
+    data['sale_price'] = salePrice;
+    data['purchase_price'] = purchasePrice;
+    data['unit'] = unit;
+    data['unit_price'] = unitPrice;
+    data['max_price'] = maxPrice;
+    data['min_price'] = minPrice;
+    data['vat'] = vat;
+    data['payment_mode'] = paymentMode;
+    data['video_path'] = videoPath;
+    data['video_name'] = videoName;
+    data['document_path'] = documentPath;
+    data['document_name'] = documentName;
+    data['model_no'] = modelNo;
+    data['brand_id'] = brandId;
+    data['package_id'] = packageId;
+    data['sku_code'] = skuCode;
+    data['service_charge'] = serviceCharge;
+    data['no_service_booked'] = noServiceBooked;
+    data['service_type'] = serviceType;
+    data['price'] = price;
+    data['price_unit'] = priceUnit;
+    data['other_priceunit'] = otherPriceunit;
+    data['price_tax'] = priceTax;
+    data['service_durationtime'] = serviceDurationtime;
+    data['duration_timeunit'] = durationTimeunit;
+    data['other_durationunit'] = otherDurationunit;
+    data['advance_payment'] = advancePayment;
+    data['payment_distribution'] = paymentDistribution;
+    data['fav'] = fav;
+    data['company'] = company!.toJson();
+    data['unspsc_commodity'] = unspscCommodity!.toJson();
+    data['photos'] = photos!.map((e) => e.toJson()).toList();
 
-    return _data;
+    return data;
   }
 }
 
@@ -496,70 +496,70 @@ class Company {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['company_code'] = companyCode;
-    _data['company_name'] = companyName;
-    _data['ar_company_name'] = arCompanyName;
-    _data['business_type'] = businessType;
-    _data['description'] = description;
-    _data['website'] = website;
-    _data['country_code'] = countryCode;
-    _data['mobile_no'] = mobileNo;
-    _data['phone'] = phone;
-    _data['fax'] = fax;
-    _data['email'] = email;
-    _data['zip_code'] = zipCode;
-    _data['street'] = street;
-    _data['logo'] = logo;
-    _data['logo_path'] = logoPath;
-    _data['contact_person_name'] = contactPersonName;
-    _data['designation'] = designation;
-    _data['primary_activity'] = primaryActivity;
-    _data['industry'] = industry;
-    _data['vat_no'] = vatNo;
-    _data['vat_percentage'] = vatPercentage;
-    _data['is_verified'] = isVerified;
-    _data['is_public'] = isPublic;
-    _data['is_branch'] = isBranch;
-    _data['is_department'] = isDepartment;
-    _data['registration_no'] = registrationNo;
-    _data['registration_date'] = registrationDate;
-    _data['facebook_link'] = facebookLink;
-    _data['linkedin_link'] = linkedinLink;
-    _data['twitter_link'] = twitterLink;
-    _data['company_sector_id'] = companySectorId;
-    _data['legal_status_id'] = legalStatusId;
-    _data['status'] = status;
-    _data['created_by'] = createdBy;
-    _data['invited_id'] = invitedId;
-    _data['currency_id'] = currencyId;
-    _data['timezone_id'] = timezoneId;
-    _data['language_id'] = languageId;
-    _data['created_at'] = createdAt;
-    _data['updated_at'] = updatedAt;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['company_code'] = companyCode;
+    data['company_name'] = companyName;
+    data['ar_company_name'] = arCompanyName;
+    data['business_type'] = businessType;
+    data['description'] = description;
+    data['website'] = website;
+    data['country_code'] = countryCode;
+    data['mobile_no'] = mobileNo;
+    data['phone'] = phone;
+    data['fax'] = fax;
+    data['email'] = email;
+    data['zip_code'] = zipCode;
+    data['street'] = street;
+    data['logo'] = logo;
+    data['logo_path'] = logoPath;
+    data['contact_person_name'] = contactPersonName;
+    data['designation'] = designation;
+    data['primary_activity'] = primaryActivity;
+    data['industry'] = industry;
+    data['vat_no'] = vatNo;
+    data['vat_percentage'] = vatPercentage;
+    data['is_verified'] = isVerified;
+    data['is_public'] = isPublic;
+    data['is_branch'] = isBranch;
+    data['is_department'] = isDepartment;
+    data['registration_no'] = registrationNo;
+    data['registration_date'] = registrationDate;
+    data['facebook_link'] = facebookLink;
+    data['linkedin_link'] = linkedinLink;
+    data['twitter_link'] = twitterLink;
+    data['company_sector_id'] = companySectorId;
+    data['legal_status_id'] = legalStatusId;
+    data['status'] = status;
+    data['created_by'] = createdBy;
+    data['invited_id'] = invitedId;
+    data['currency_id'] = currencyId;
+    data['timezone_id'] = timezoneId;
+    data['language_id'] = languageId;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
 
-    _data['verification_link'] = verificationLink;
-    _data['otp'] = otp;
-    _data['main_segment_p'] = mainSegmentP;
-    _data['family_p'] = familyP;
-    _data['class_p'] = classP;
-    _data['commodity_p'] = commodityP;
-    _data['main_segment_s'] = mainSegmentS;
-    _data['family_s'] = familyS;
-    _data['class_s'] = classS;
-    _data['commodity_s'] = commodityS;
-    _data['isProfileEnabled'] = isProfileEnabled;
-    _data['isic4_main'] = isic4Main;
-    _data['isic4_category'] = isic4Category;
-    _data['activity'] = activity;
-    _data['subscription_id'] = subscriptionId;
-    _data['network'] = network;
-    _data['registration_requirement'] = registrationRequirement;
-    _data['govt_requirement'] = govtRequirement;
-    _data['company_requirement'] = companyRequirement;
-    _data['attached_file'] = attachedFile;
-    return _data;
+    data['verification_link'] = verificationLink;
+    data['otp'] = otp;
+    data['main_segment_p'] = mainSegmentP;
+    data['family_p'] = familyP;
+    data['class_p'] = classP;
+    data['commodity_p'] = commodityP;
+    data['main_segment_s'] = mainSegmentS;
+    data['family_s'] = familyS;
+    data['class_s'] = classS;
+    data['commodity_s'] = commodityS;
+    data['isProfileEnabled'] = isProfileEnabled;
+    data['isic4_main'] = isic4Main;
+    data['isic4_category'] = isic4Category;
+    data['activity'] = activity;
+    data['subscription_id'] = subscriptionId;
+    data['network'] = network;
+    data['registration_requirement'] = registrationRequirement;
+    data['govt_requirement'] = govtRequirement;
+    data['company_requirement'] = companyRequirement;
+    data['attached_file'] = attachedFile;
+    return data;
   }
 }
 
@@ -595,17 +595,17 @@ class UnspscCommodity {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['commodity_name'] = commodityName;
-    _data['commodity_code'] = commodityCode;
-    _data['unspsc_segment_id'] = unspscSegmentId;
-    _data['unspsc_family_id'] = unspscFamilyId;
-    _data['unspsc_class_id'] = unspscClassId;
-    _data['unspsc_type'] = unspscType;
-    _data['created_at'] = createdAt;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['commodity_name'] = commodityName;
+    data['commodity_code'] = commodityCode;
+    data['unspsc_segment_id'] = unspscSegmentId;
+    data['unspsc_family_id'] = unspscFamilyId;
+    data['unspsc_class_id'] = unspscClassId;
+    data['unspsc_type'] = unspscType;
+    data['created_at'] = createdAt;
 
-    return _data;
+    return data;
   }
 }
 
@@ -642,17 +642,17 @@ class Photos {
   }
 
   Map<String?, dynamic> toJson() {
-    final _data = <String?, dynamic>{};
-    _data['id'] = id;
-    _data['service_id'] = serviceId;
-    _data['image_path'] = imagePath;
-    _data['image_name'] = imageName;
-    _data['image_type'] = imageType;
+    final data = <String?, dynamic>{};
+    data['id'] = id;
+    data['service_id'] = serviceId;
+    data['image_path'] = imagePath;
+    data['image_name'] = imageName;
+    data['image_type'] = imageType;
 
-    _data['updated_at'] = updatedAt;
+    data['updated_at'] = updatedAt;
 
-    _data['status'] = status;
+    data['status'] = status;
 
-    return _data;
+    return data;
   }
 }

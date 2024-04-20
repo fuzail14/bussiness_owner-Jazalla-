@@ -1,6 +1,5 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,7 +34,7 @@ class PasswordScreen extends ConsumerWidget {
           children: [
             Container(
               height: 441.h,
-              padding: EdgeInsets.symmetric(vertical: 62, horizontal: 70).r,
+              padding: const EdgeInsets.symmetric(vertical: 62, horizontal: 70).r,
               width: double.infinity.w,
               decoration: const BoxDecoration(
                   gradient: LinearGradient(
@@ -110,7 +109,7 @@ class PasswordScreen extends ConsumerWidget {
                     ),
                     10.ph,
                     MyTextFormField(
-                      padding: EdgeInsets.all(0),
+                      padding: const EdgeInsets.all(0),
                       validator: emptyStringValidator,
                       controller: phoneNumberController,
 
@@ -120,7 +119,7 @@ class PasswordScreen extends ConsumerWidget {
                       labelTextColor: HexColor('#75788D'),
                       //fillColor: HexColor('#868686'),
 
-                      suffixIcon: Icon(Icons.phone,
+                      suffixIcon: const Icon(Icons.phone,
                           color: Color(0xff2C5DA7)), // Add an email icon
                     ),
                     35.ph,
@@ -134,7 +133,7 @@ class PasswordScreen extends ConsumerWidget {
                     ),
                     10.ph,
                     MyTextFormField(
-                      padding: EdgeInsets.all(0),
+                      padding: const EdgeInsets.all(0),
                       validator: emptyStringValidator,
                       controller: controller.passwordController,
                       hintText: 'Enter Password',
@@ -150,7 +149,7 @@ class PasswordScreen extends ConsumerWidget {
                           state.isHidden
                               ? Icons.visibility
                               : Icons.visibility_off,
-                          color: Color(0xff2C5DA7),
+                          color: const Color(0xff2C5DA7),
                         ),
                       ),
                     ),

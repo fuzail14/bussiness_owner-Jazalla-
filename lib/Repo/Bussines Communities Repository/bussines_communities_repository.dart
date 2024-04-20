@@ -9,7 +9,7 @@ class BussinessCommunitiesRepository {
   Future<BussinesCommunity> bussinesCommunitiesViewApi({
     required bearerToken,
   }) async {
-    var response = await networkServices.getReq("${Api.bussinesCommunities}",
+    var response = await networkServices.getReq(Api.bussinesCommunities,
         bearerToken: bearerToken);
     log(response.toString());
 

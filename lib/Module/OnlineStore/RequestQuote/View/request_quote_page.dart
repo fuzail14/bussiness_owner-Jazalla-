@@ -10,7 +10,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../Constants/constants.dart';
@@ -20,6 +19,8 @@ import '../Controller/request_quote_controller.dart';
 import '../Model/ProductWithTemplate.dart';
 
 class RequestQuoteScreen extends ConsumerStatefulWidget {
+  const RequestQuoteScreen({super.key});
+
   @override
   _RequestQuoteScreenState createState() => _RequestQuoteScreenState();
 }
@@ -120,14 +121,14 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                     style: GoogleFonts.montserrat(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w400,
-                        color: Color(0xff4D4D4D)),
+                        color: const Color(0xff4D4D4D)),
                   ),
                   5.ph,
                   Container(
                     height: 117.h,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Color(0xff19A3A3)),
+                      border: Border.all(color: const Color(0xff19A3A3)),
                     ),
                     child: TextFormField(
                       maxLines: 5,
@@ -147,7 +148,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                         children: [
                           Text("Quantity Needed *",
                               style: GoogleFonts.montserrat(
-                                color: Color(0xff4D4D4D),
+                                color: const Color(0xff4D4D4D),
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
                               )),
@@ -183,7 +184,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                         children: [
                           Text("Item Unit*",
                               style: GoogleFonts.montserrat(
-                                color: Color(0xff4D4D4D),
+                                color: const Color(0xff4D4D4D),
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
                               )),
@@ -195,7 +196,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                                 vertical: 8.0, horizontal: 8.0),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
-                              border: Border.all(color: Color(0xff19A3A3)),
+                              border: Border.all(color: const Color(0xff19A3A3)),
                             ),
                             child: Center(
                               child: AutoSizeText(
@@ -219,7 +220,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                         children: [
                           Text("Delivery Date*",
                               style: GoogleFonts.montserrat(
-                                color: Color(0xff4D4D4D),
+                                color: const Color(0xff4D4D4D),
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
                               )),
@@ -290,7 +291,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                                           style: GoogleFonts.montserrat(
                                               fontSize: 12.sp,
                                               fontWeight: FontWeight.w400,
-                                              color: Color(0xFF657474))),
+                                              color: const Color(0xFF657474))),
                                     );
                                   }).toList(),
                                   onChanged: (String? newValue) {
@@ -332,7 +333,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                         children: [
                           Text("Shipping Mode*",
                               style: GoogleFonts.montserrat(
-                                color: Color(0xff4D4D4D),
+                                color: const Color(0xff4D4D4D),
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
                               )),
@@ -372,7 +373,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                                         style: GoogleFonts.montserrat(
                                             fontSize: 12.sp,
                                             fontWeight: FontWeight.w400,
-                                            color: Color(0xFF657474))),
+                                            color: const Color(0xFF657474))),
                                   );
                                 }).toList(),
                                 onChanged: (String? newValue) {
@@ -390,7 +391,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                         children: [
                           Text('Select Template*',
                               style: GoogleFonts.montserrat(
-                                color: Color(0xff4D4D4D),
+                                color: const Color(0xff4D4D4D),
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
                               )),
@@ -430,7 +431,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                                       style: GoogleFonts.montserrat(
                                           fontSize: 12.sp,
                                           fontWeight: FontWeight.w400,
-                                          color: Color(0xFF657474)),
+                                          color: const Color(0xFF657474)),
                                     ),
                                   );
                                 }).toList(),
@@ -457,7 +458,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                           children: [
                             Text("Shipping Address*",
                                 style: GoogleFonts.montserrat(
-                                  color: Color(0xff4D4D4D),
+                                  color: const Color(0xff4D4D4D),
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.w400,
                                 )),
@@ -498,7 +499,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                                           style: GoogleFonts.montserrat(
                                               fontSize: 12.sp,
                                               fontWeight: FontWeight.w400,
-                                              color: Color(0xFF657474))),
+                                              color: const Color(0xFF657474))),
                                     );
                                   }).toList(),
                                   onChanged: (String? newValue) {
@@ -573,7 +574,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                           children: [
                             Text("District",
                                 style: GoogleFonts.montserrat(
-                                  color: Color(0xff4D4D4D),
+                                  color: const Color(0xff4D4D4D),
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.w400,
                                 )),
@@ -609,7 +610,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                           children: [
                             Text("Street",
                                 style: GoogleFonts.montserrat(
-                                  color: Color(0xff4D4D4D),
+                                  color: const Color(0xff4D4D4D),
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.w400,
                                 )),
@@ -621,7 +622,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                                   vertical: 8.0, horizontal: 8.0),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
-                                border: Border.all(color: Color(0xff19A3A3)),
+                                border: Border.all(color: const Color(0xff19A3A3)),
                               ),
                               child: TextFormField(
                                 controller:
@@ -647,7 +648,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                           children: [
                             Text("Zip Code",
                                 style: GoogleFonts.montserrat(
-                                  color: Color(0xff4D4D4D),
+                                  color: const Color(0xff4D4D4D),
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.w400,
                                 )),
@@ -684,7 +685,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                           children: [
                             Text("Building No",
                                 style: GoogleFonts.montserrat(
-                                  color: Color(0xff4D4D4D),
+                                  color: const Color(0xff4D4D4D),
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.w400,
                                 )),
@@ -696,7 +697,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                                   vertical: 8.0, horizontal: 8.0),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
-                                border: Border.all(color: Color(0xff19A3A3)),
+                                border: Border.all(color: const Color(0xff19A3A3)),
                               ),
                               child: TextFormField(
                                 controller:
@@ -720,7 +721,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                       children: [
                         Text("Unit No",
                             style: GoogleFonts.montserrat(
-                              color: Color(0xff4D4D4D),
+                              color: const Color(0xff4D4D4D),
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w400,
                             )),
@@ -732,7 +733,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                               vertical: 8.0, horizontal: 8.0),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: Color(0xff19A3A3)),
+                            border: Border.all(color: const Color(0xff19A3A3)),
                           ),
                           child: TextFormField(
                             controller: requestQuotecontroller.unitNoController,
@@ -756,7 +757,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                         width: 300.w,
                         height: 43.h,
                         decoration: BoxDecoration(
-                            border: Border.all(color: Color(0xff19A3A3))),
+                            border: Border.all(color: const Color(0xff19A3A3))),
                         child: Row(
                           children: [
                             GestureDetector(
@@ -778,7 +779,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                                 width: 76.w,
                                 height: 43.h,
                                 decoration: BoxDecoration(
-                                    color: Color(0xffF7F7F9),
+                                    color: const Color(0xffF7F7F9),
                                     border: Border.all(
                                         color: const Color(0xff19A3A3))),
                                 child: Center(
@@ -787,7 +788,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                                     style: GoogleFonts.montserrat(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 10.sp,
-                                        color: Color(0xff657474)),
+                                        color: const Color(0xff657474)),
                                   ),
                                 ),
                               ),
@@ -803,7 +804,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                                   style: GoogleFonts.montserrat(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 12.sp,
-                                      color: Color(0xff657474)),
+                                      color: const Color(0xff657474)),
                                 ),
                               ),
                             ],
@@ -814,7 +815,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                   ),
                   20.ph,
                   requestQuoteState.isLoading
-                      ? Loader()
+                      ? const Loader()
                       : CustomButton(
                           onTap: () {
                             String rawCountryName =
@@ -876,7 +877,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                           },
                           width: 200.w,
                           height: 48.h,
-                          color: Color(0xff27BCEB),
+                          color: const Color(0xff27BCEB),
                           text: 'Send Quotation',
                         ),
                 ]

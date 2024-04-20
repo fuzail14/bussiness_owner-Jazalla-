@@ -1,12 +1,8 @@
-import 'dart:ui';
 
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
 import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -15,12 +11,10 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../Constants/Person/person_controller.dart';
 import '../../../Routes/set_routes.dart';
 import '../../../Services/Shared Preferences/MySharedPreferences.dart';
-import '../../../Widgets/HomeAppBar/home_app_bar.dart';
 import '../Controller/menu_controller.dart';
-import 'dart:math' as math;
 
 class Menu extends ConsumerWidget {
-  const Menu({Key? key}) : super(key: key);
+  const Menu({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -66,7 +60,7 @@ class Menu extends ConsumerWidget {
     bool isExpanded = expandedIndex == index;
     Color iconColor = isExpanded
         ? Colors.white
-        : Color(0xff1A1A1A); // Color based on expansion
+        : const Color(0xff1A1A1A); // Color based on expansion
 
     return Container(
       margin: const EdgeInsets.only(top: 10, left: 15, right: 15).r,
@@ -75,7 +69,7 @@ class Menu extends ConsumerWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.grey.shade300,
-            offset: Offset(0.0, 1.0), //(x,y)
+            offset: const Offset(0.0, 1.0), //(x,y)
             blurRadius: 6.0,
           ),
         ],
@@ -184,19 +178,19 @@ class CustomExpansionTile extends StatelessWidget {
   final Color? iconColor; // Optional color for the icon
 
   const CustomExpansionTile({
-    Key? key,
+    super.key,
     required this.title,
     required this.iconPath,
     required this.children,
     this.isExpanded = false,
     this.onTap,
     this.iconColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     // Dynamic text color based on expansion state
-    Color textColor = isExpanded ? Colors.white : Color(0xff1A1A1A);
+    Color textColor = isExpanded ? Colors.white : const Color(0xff1A1A1A);
 
     return InkWell(
       onTap: onTap,
@@ -204,13 +198,13 @@ class CustomExpansionTile extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Leading icon with conditional color
                 SvgPicture.asset(iconPath,
-                    color: iconColor ?? Color(0xff203C98)),
+                    color: iconColor ?? const Color(0xff203C98)),
                 20.pw,
                 Expanded(
                   child: Text(

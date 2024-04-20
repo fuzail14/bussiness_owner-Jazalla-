@@ -14,11 +14,11 @@ class Request4Proposal {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['success'] = success;
-    _data['RequestForProposal'] =
+    final data = <String, dynamic>{};
+    data['success'] = success;
+    data['RequestForProposal'] =
         requestForProposal.map((e) => e.toJson()).toList();
-    return _data;
+    return data;
   }
 }
 
@@ -89,27 +89,27 @@ class RequestForProposal {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
+    final data = <String, dynamic>{};
+    data['id'] = id;
 
-    _data['service_id'] = serviceId;
-    _data['buyer_id'] = buyerId;
-    _data['service_provider_id'] = serviceProviderId;
-    _data['user_id'] = userId;
-    _data['request_from'] = requestFrom;
-    _data['title'] = title;
+    data['service_id'] = serviceId;
+    data['buyer_id'] = buyerId;
+    data['service_provider_id'] = serviceProviderId;
+    data['user_id'] = userId;
+    data['request_from'] = requestFrom;
+    data['title'] = title;
 
-    _data['payment_mode'] = paymentMode;
-    _data['details'] = details;
-    _data['start_date'] = startDate;
-    _data['proposed_duration'] = proposedDuration;
-    _data['proposed_duration_unit'] = proposedDurationUnit;
-    _data['other_durationunit'] = otherDurationunit;
-    _data['location'] = location;
-    _data['address'] = address;
-    _data['template_id'] = templateId;
-    _data['status'] = status;
+    data['payment_mode'] = paymentMode;
+    data['details'] = details;
+    data['start_date'] = startDate;
+    data['proposed_duration'] = proposedDuration;
+    data['proposed_duration_unit'] = proposedDurationUnit;
+    data['other_durationunit'] = otherDurationunit;
+    data['location'] = location;
+    data['address'] = address;
+    data['template_id'] = templateId;
+    data['status'] = status;
 
-    return _data;
+    return data;
   }
 }

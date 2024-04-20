@@ -1,30 +1,24 @@
 import 'dart:io';
 
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/Font/fonts.dart';
 import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
-import 'package:bussines_owner/Widgets/CustomButton/custom_button.dart';
-import 'package:bussines_owner/Widgets/Loader/loader.dart';
-import 'package:csc_picker/csc_picker.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import '../../../../../Constants/constants.dart';
-import '../../../../../Widgets/DescriptionTextField/description_field_attachment.dart';
 import '../../../../../Widgets/My Button/my_button.dart';
 import '../Notifier/send_rfq_response_notifier.dart';
 
 class SendRFQResponse extends ConsumerWidget {
+  const SendRFQResponse({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(sendRFQResponseProvider);
@@ -332,7 +326,7 @@ class SendRFQResponse extends ConsumerWidget {
                       ),
                     ],
                   ),
-                  child: TextField(
+                  child: const TextField(
                     maxLines: 2,
                     decoration: InputDecoration(
                         hintText: 'Enter Response Details',
@@ -362,9 +356,9 @@ class SendRFQResponse extends ConsumerWidget {
                     height: 114.h,
                     width: double.infinity,
                     child: DottedBorder(
-                      color: Color(0xff1849D6),
-                      dashPattern: [8, 4],
-                      radius: Radius.circular(8).r,
+                      color: const Color(0xff1849D6),
+                      dashPattern: const [8, 4],
+                      radius: const Radius.circular(8).r,
                       stackFit: StackFit.expand,
                       strokeWidth: 2,
                       child: Column(

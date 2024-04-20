@@ -20,8 +20,8 @@ class FilterButton extends StatelessWidget {
       decoration: BoxDecoration(
           shape: BoxShape.rectangle,
           borderRadius: BorderRadius.circular(6),
-          border: Border.all(color: Color(0xffD9D9D9)),
-          color: isSelected ? Color(0xff28B9EB) : whiteColor),
+          border: Border.all(color: const Color(0xffD9D9D9)),
+          color: isSelected ? const Color(0xff28B9EB) : whiteColor),
       height: 33.h,
       //width: 120,
       child: Row(
@@ -36,12 +36,12 @@ class FilterButton extends StatelessWidget {
               style: GoogleFonts.montserrat(
                   fontSize: 10,
                   fontWeight: FontWeight.w600,
-                  color: isSelected ? whiteColor : Color(0xff454544)),
+                  color: isSelected ? whiteColor : const Color(0xff454544)),
             ),
           ),
           Icon(
             isSelected ? Icons.close : Icons.add,
-            color: isSelected ? whiteColor : Color(0xff28B9EB),
+            color: isSelected ? whiteColor : const Color(0xff28B9EB),
             size: 18,
           )
         ],

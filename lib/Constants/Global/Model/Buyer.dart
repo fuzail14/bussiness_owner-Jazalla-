@@ -27,17 +27,17 @@ class Buyer {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['company_code'] = companyCode;
-    _data['company_name'] = companyName;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['company_code'] = companyCode;
+    data['company_name'] = companyName;
 
-    _data['mobile_no'] = mobileNo;
+    data['mobile_no'] = mobileNo;
 
-    _data['email'] = email;
+    data['email'] = email;
 
-    _data['primary_activity'] = primaryActivity;
+    data['primary_activity'] = primaryActivity;
 
-    return _data;
+    return data;
   }
 }

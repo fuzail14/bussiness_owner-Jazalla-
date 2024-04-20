@@ -1,7 +1,5 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
-import 'package:bussines_owner/Module/Attendance%20Managment/View/attendance_managment_view.dart';
 import 'package:bussines_owner/Routes/set_routes.dart';
 import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +9,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../Constants/Person/person_controller.dart';
-import '../../../Widgets/HomeAppBar/home_app_bar.dart';
-import '../../MarketPlace/Widget/market_place_screen_card.dart';
 import '../Notifier/employee_center_notifier.dart';
 import '../Widget/employee_center_custom_card.dart';
 
@@ -40,7 +36,7 @@ class EmployeeCenterPage extends ConsumerWidget {
         body: Container(
           width: width,
           // padding: EdgeInsets.only(left: 35, right: 35).r,
-          margin: EdgeInsets.only(left: 35, right: 35).r,
+          margin: const EdgeInsets.only(left: 35, right: 35).r,
           // color: Colors.red,
 
           child: Column(
@@ -80,7 +76,7 @@ class EmployeeCenterPage extends ConsumerWidget {
                   decoration: BoxDecoration(
                     color: whiteColor,
                     border:
-                        Border.all(color: Color(0xff449FC6).withOpacity(0.6)),
+                        Border.all(color: const Color(0xff449FC6).withOpacity(0.6)),
                     borderRadius: BorderRadius.circular(8).r,
                     boxShadow: [
                       BoxShadow(
@@ -122,7 +118,7 @@ class EmployeeCenterPage extends ConsumerWidget {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
-                            color: Color(0xff1F3996),
+                            color: const Color(0xff1F3996),
                           ),
                           // color: Color(0xffF9F9F9),
                           // gradient: LinearGradient(
@@ -153,7 +149,7 @@ class EmployeeCenterPage extends ConsumerWidget {
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.roboto(
-                            color: Color(0xff1F3996),
+                            color: const Color(0xff1F3996),
                             fontWeight: FontWeight.bold,
                             fontSize: 14.sp),
                       )
@@ -168,7 +164,7 @@ class EmployeeCenterPage extends ConsumerWidget {
                   // 16.pw,
                   CardEmployeeCenter(
                     //margin: const EdgeInsets.only(left: 31).r,
-                    textColor: Color(0xffFCAB10),
+                    textColor: const Color(0xffFCAB10),
                     svgPath: 'assets/images/employee_center_card_icon2.svg',
                     headingText: 'Leave Management',
                     onTap: () {
@@ -181,7 +177,7 @@ class EmployeeCenterPage extends ConsumerWidget {
                   //20.pw,
                   CardEmployeeCenter(
                     //margin: const EdgeInsets.only(right: 33).r,
-                    textColor: Color(0xffFCAB10),
+                    textColor: const Color(0xffFCAB10),
                     svgPath: 'assets/images/employee_center_card_icon3.svg',
                     headingText: 'Salary Payslip',
                     onTap: () {
@@ -196,7 +192,7 @@ class EmployeeCenterPage extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CardEmployeeCenter(
-                    textColor: Color(0xff188F71),
+                    textColor: const Color(0xff188F71),
                     svgPath: 'assets/images/employee_center_card_icon4.svg',
                     headingText: 'Appraisal',
                     onTap: () {
@@ -206,7 +202,7 @@ class EmployeeCenterPage extends ConsumerWidget {
                   ),
                   //20.pw,
                   CardEmployeeCenter(
-                    textColor: Color(0xffFCAB10),
+                    textColor: const Color(0xffFCAB10),
                     svgPath: 'assets/images/employee_center_card_icon5.svg',
                     headingText: 'General Information',
                     onTap: () {},

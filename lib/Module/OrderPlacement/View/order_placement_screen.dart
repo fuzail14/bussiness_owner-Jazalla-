@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hexcolor/hexcolor.dart';
 
 import '../../ProcurementManagment/RFI/Main/Controller/procurement_soi_controller.dart';
 import '../../ProcurementManagment/RFI/Main/View/procurement_soi_screen.dart';
@@ -16,6 +15,8 @@ import '../../ServiceManagment/RFPMain/RFP/Controller/service_managment_rfp_cont
 
 // ignore: must_be_immutable
 class OrderPlacementScreen extends ConsumerStatefulWidget {
+  const OrderPlacementScreen({super.key});
+
   @override
   _OrderPlacementScreenState createState() => _OrderPlacementScreenState();
 }
@@ -67,7 +68,7 @@ class _OrderPlacementScreenState extends ConsumerState<OrderPlacementScreen>
       backgroundColor: Colors.white,
       body: Column(
         children: [
-          Container(
+          SizedBox(
             //margin: EdgeInsets.only(left: 23.w, right: 23.w, top: 30).w,
             // width: 362.w,
             height: 48.h,
@@ -101,7 +102,7 @@ class _OrderPlacementScreenState extends ConsumerState<OrderPlacementScreen>
                   style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w600,
                       fontSize: 16.sp,
-                      color: Color(0xff3D56A3)),
+                      color: const Color(0xff3D56A3)),
                 )),
                 Tab(
                   child: Text(
@@ -109,7 +110,7 @@ class _OrderPlacementScreenState extends ConsumerState<OrderPlacementScreen>
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w600,
                         fontSize: 16.sp,
-                        color: Color(0xff3D56A3)),
+                        color: const Color(0xff3D56A3)),
                   ),
                 ),
                 Tab(
@@ -118,7 +119,7 @@ class _OrderPlacementScreenState extends ConsumerState<OrderPlacementScreen>
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w600,
                         fontSize: 16.sp,
-                        color: Color(0xff3D56A3)),
+                        color: const Color(0xff3D56A3)),
                   ),
                 ),
               ],
@@ -127,7 +128,7 @@ class _OrderPlacementScreenState extends ConsumerState<OrderPlacementScreen>
           Expanded(
             child: TabBarView(
               controller: _tabController,
-              children: [
+              children: const [
                 ProcuremenetSoiScreen(),
                 ProcurementRFQScreen(),
                 ProcurementRFPScreen(),

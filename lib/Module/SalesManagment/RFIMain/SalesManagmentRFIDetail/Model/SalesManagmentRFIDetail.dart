@@ -16,11 +16,11 @@ class SalesManagmentRFIDetail {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['success'] = success;
-    _data['salesManagmentRfiDetail'] =
+    final data = <String, dynamic>{};
+    data['success'] = success;
+    data['salesManagmentRfiDetail'] =
         salesManagmentRfiDetail.map((e) => e.toJson()).toList();
-    return _data;
+    return data;
   }
 }
 
@@ -100,31 +100,31 @@ class SalesManagmentRfiDetail {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['product_id'] = productId;
-    _data['service_id'] = serviceId;
-    _data['user_id'] = userId;
-    _data['buyer_id'] = buyerId;
-    _data['network'] = network;
-    _data['request_type'] = requestType;
-    _data['network_id'] = networkId;
-    _data['request_for'] = requestFor;
-    _data['details'] = details;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['product_id'] = productId;
+    data['service_id'] = serviceId;
+    data['user_id'] = userId;
+    data['buyer_id'] = buyerId;
+    data['network'] = network;
+    data['request_type'] = requestType;
+    data['network_id'] = networkId;
+    data['request_for'] = requestFor;
+    data['details'] = details;
 
-    _data['title'] = title;
-    _data['unit'] = unit;
-    _data['delivery_date'] = deliveryDate;
+    data['title'] = title;
+    data['unit'] = unit;
+    data['delivery_date'] = deliveryDate;
 
-    _data['start_date'] = startDate;
-    _data['end_date'] = endDate;
-    _data['payment_mode'] = paymentMode;
-    _data['shipping_mode'] = shippingMode;
+    data['start_date'] = startDate;
+    data['end_date'] = endDate;
+    data['payment_mode'] = paymentMode;
+    data['shipping_mode'] = shippingMode;
 
-    _data['attachment'] = attachment;
-    _data['status'] = status;
+    data['attachment'] = attachment;
+    data['status'] = status;
 
-    _data['buyer'] = buyer!.toJson();
-    return _data;
+    data['buyer'] = buyer!.toJson();
+    return data;
   }
 }

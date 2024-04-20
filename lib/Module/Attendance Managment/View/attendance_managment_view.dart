@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/Font/fonts.dart';
@@ -12,7 +11,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../../Data/Api Resp/api_response.dart';
 import '../../../../../Widgets/Loader/loader.dart';
-import '../../../Constants/Person/person_controller.dart';
 import '../../../Widgets/AppBar/my_app_bar.dart';
 import '../Notifier/attendance_managment_notifier.dart';
 
@@ -125,7 +123,7 @@ class AttendanceManagmentScreen extends ConsumerWidget {
                                           'Absent',
                                           style: GoogleFonts.montserrat(
                                             fontSize: 14.sp,
-                                            color: Color(0xffBA1717),
+                                            color: const Color(0xffBA1717),
                                             fontWeight: FontWeight.w600,
                                           ),
                                         )
@@ -133,20 +131,20 @@ class AttendanceManagmentScreen extends ConsumerWidget {
                                           'Present',
                                           style: GoogleFonts.montserrat(
                                             fontSize: 14.sp,
-                                            color: Color(0xff22A527),
+                                            color: const Color(0xff22A527),
                                             fontWeight: FontWeight.w600,
                                           ),
                                         )
                                 ],
                               ),
                               Container(
-                                padding: EdgeInsets.only(
+                                padding: const EdgeInsets.only(
                                         left: 21,
                                         right: 18,
                                         top: 12,
                                         bottom: 10)
                                     .r,
-                                margin: EdgeInsets.only(
+                                margin: const EdgeInsets.only(
                                         left: 19,
                                         right: 18,
                                         top: 11,
@@ -154,7 +152,7 @@ class AttendanceManagmentScreen extends ConsumerWidget {
                                     .r,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10).r,
-                                    color: Color(0xffF9F9F9)),
+                                    color: const Color(0xffF9F9F9)),
                                 child: Column(
                                   children: [
                                     Row(
@@ -165,7 +163,7 @@ class AttendanceManagmentScreen extends ConsumerWidget {
                                           'Check In',
                                           style: GoogleFonts.montserrat(
                                             fontSize: 12.sp,
-                                            color: Color(0xff4B4F54),
+                                            color: const Color(0xff4B4F54),
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ),
@@ -173,13 +171,13 @@ class AttendanceManagmentScreen extends ConsumerWidget {
                                           '10:00 AM',
                                           style: GoogleFonts.montserrat(
                                             fontSize: 12.sp,
-                                            color: Color(0xff4B4F54),
+                                            color: const Color(0xff4B4F54),
                                             fontWeight: FontWeight.w500,
                                           ),
                                         ),
                                       ],
                                     ),
-                                    Divider(),
+                                    const Divider(),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -188,7 +186,7 @@ class AttendanceManagmentScreen extends ConsumerWidget {
                                           'Check Out',
                                           style: GoogleFonts.montserrat(
                                             fontSize: 12.sp,
-                                            color: Color(0xff4B4F54),
+                                            color: const Color(0xff4B4F54),
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ),
@@ -196,13 +194,13 @@ class AttendanceManagmentScreen extends ConsumerWidget {
                                           '05:00 PM',
                                           style: GoogleFonts.montserrat(
                                             fontSize: 12.sp,
-                                            color: Color(0xff4B4F54),
+                                            color: const Color(0xff4B4F54),
                                             fontWeight: FontWeight.w500,
                                           ),
                                         ),
                                       ],
                                     ),
-                                    Divider(),
+                                    const Divider(),
                                     // Row(
                                     //   mainAxisAlignment:
                                     //       MainAxisAlignment.spaceBetween,
@@ -303,7 +301,7 @@ class AttendanceManagmentScreen extends ConsumerWidget {
 class CheckInDialog extends StatelessWidget {
   String title;
   String svgPath;
-  CheckInDialog({required this.title, required this.svgPath});
+  CheckInDialog({super.key, required this.title, required this.svgPath});
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -312,7 +310,7 @@ class CheckInDialog extends StatelessWidget {
         elevation: 0.0,
         backgroundColor: Colors.transparent,
         child: Container(
-          margin: EdgeInsets.only(left: 0.0, right: 0.0),
+          margin: const EdgeInsets.only(left: 0.0, right: 0.0),
           width: 320.w,
           //  height: 403.h,
           child: Container(
@@ -320,14 +318,14 @@ class CheckInDialog extends StatelessWidget {
               children: <Widget>[
                 Container(
                   // height: 403.h,
-                  padding: EdgeInsets.only(top: 18.0, right: 0, bottom: 30).r,
-                  margin: EdgeInsets.only(top: 50.0, right: 8.0, bottom: 0).r,
+                  padding: const EdgeInsets.only(top: 18.0, right: 0, bottom: 30).r,
+                  margin: const EdgeInsets.only(top: 50.0, right: 8.0, bottom: 0).r,
 
                   decoration: BoxDecoration(
                       color: whiteColor,
                       shape: BoxShape.rectangle,
                       borderRadius: BorderRadius.circular(16.0),
-                      boxShadow: <BoxShadow>[
+                      boxShadow: const <BoxShadow>[
                         BoxShadow(
                           color: Colors.black26,
                           blurRadius: 0.0,
@@ -344,7 +342,7 @@ class CheckInDialog extends StatelessWidget {
                           title,
                           style: GoogleFonts.montserrat(
                               fontSize: 18.22.sp,
-                              color: Color(0xff5F5656),
+                              color: const Color(0xff5F5656),
                               fontWeight: FontWeight.w500),
                         ),
                       ),
@@ -364,7 +362,7 @@ class CheckInDialog extends StatelessWidget {
                             Text(
                               'Present',
                               style: GoogleFonts.montserrat(
-                                  color: Color(0xff22A527),
+                                  color: const Color(0xff22A527),
                                   fontSize: 16.sp,
                                   fontWeight: FontWeight.w600),
                             ),
@@ -373,41 +371,41 @@ class CheckInDialog extends StatelessWidget {
                       ),
                       5.ph,
                       Container(
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                                 left: 23, right: 23, top: 12, bottom: 11)
                             .r,
                         decoration: BoxDecoration(
-                            color: Color(0xffF9F9F9),
+                            color: const Color(0xffF9F9F9),
                             borderRadius: BorderRadius.circular(8).r),
                         child: Column(
                           children: [
                             attendanceManagmentDialog(
                                 title: 'Date', subTitle: '03 April 2023'),
-                            Divider(),
+                            const Divider(),
                             6.ph,
                             attendanceManagmentDialog(
                                 title: 'Check In ', subTitle: '08:00 AM'),
-                            Divider(),
+                            const Divider(),
                             6.ph,
                             attendanceManagmentDialog(
                                 title: 'Check Out ', subTitle: '05:00 AM'),
-                            Divider(),
+                            const Divider(),
                             6.ph,
                             attendanceManagmentDialog(
                                 title: 'Late', subTitle: '30 Min'),
-                            Divider(),
+                            const Divider(),
                             6.ph,
                             attendanceManagmentDialog(
                                 title: 'Early Leaving', subTitle: '00:00:00'),
-                            Divider(),
+                            const Divider(),
                             6.ph,
                             attendanceManagmentDialog(
                                 title: 'Overtime', subTitle: '00:00:00'),
-                            Divider(),
+                            const Divider(),
                             6.ph,
                             attendanceManagmentDialog(
                                 title: 'Total Hours', subTitle: '12H 45M'),
-                            Divider(),
+                            const Divider(),
                             6.ph,
                           ],
                         ),
@@ -420,10 +418,10 @@ class CheckInDialog extends StatelessWidget {
                         child: Container(
                           height: 30.h,
                           width: 147.w,
-                          margin: EdgeInsets.symmetric(horizontal: 75).r,
+                          margin: const EdgeInsets.symmetric(horizontal: 75).r,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16).r,
-                              gradient: LinearGradient(colors: [
+                              gradient: const LinearGradient(colors: [
                                 Color(0xff2751A1),
                                 Color(0xff4BB3CF)
                               ])),
@@ -471,14 +469,14 @@ Widget attendanceManagmentDialog(
       Text(
         title,
         style: GoogleFonts.montserrat(
-            color: Color(0xff383333),
+            color: const Color(0xff383333),
             fontSize: 14.sp,
             fontWeight: FontWeight.w400),
       ),
       Text(
         subTitle,
         style: GoogleFonts.montserrat(
-            color: Color(0xff383333),
+            color: const Color(0xff383333),
             fontSize: 14.sp,
             fontWeight: FontWeight.w400),
       ),

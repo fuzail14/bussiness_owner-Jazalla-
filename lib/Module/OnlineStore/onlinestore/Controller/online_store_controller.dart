@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
-import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,9 +9,7 @@ import '../../../../Constants/Person/person_controller.dart';
 import '../../../../Constants/constants.dart';
 import '../../../../Data/Api Resp/api_response.dart';
 import '../../../../Repo/Online Store Repository/online_store_repository.dart';
-import '../../../../Widgets/CustomDialog/custom_dialog.dart';
 import '../Model/Product.dart';
-import 'package:flutter/foundation.dart';
 
 final onlineStoreProvider =
     StateNotifierProvider.autoDispose<OnlineStoreController, OnlineStoreState>(

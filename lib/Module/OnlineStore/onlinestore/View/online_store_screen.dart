@@ -1,11 +1,8 @@
-import 'dart:io';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Routes/set_routes.dart';
 import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,8 +12,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../Constants/constants.dart';
 import '../../../../Data/Api Resp/api_response.dart';
-import '../../../../Widgets/CustomButton/custom_button.dart';
-import '../../../../Widgets/CustomDialog/custom_dialog.dart';
 import '../../../../Widgets/Loader/loader.dart';
 import '../../../../Widgets/StarRating/star_rating.dart';
 import '../Controller/online_store_controller.dart';
@@ -28,7 +23,7 @@ class OnlineStoreScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(onlineStoreProvider.notifier);
     final state = ref.watch(onlineStoreProvider);
-    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
       endDrawer: Drawer(
@@ -41,7 +36,7 @@ class OnlineStoreScreen extends ConsumerWidget {
               child: Theme(
                 data: Theme.of(context).copyWith(
                   dividerColor: Colors.transparent,
-                  expansionTileTheme: ExpansionTileThemeData(
+                  expansionTileTheme: const ExpansionTileThemeData(
                     backgroundColor: Colors.transparent,
                   ),
                 ),
@@ -89,7 +84,7 @@ class OnlineStoreScreen extends ConsumerWidget {
               child: Theme(
                 data: Theme.of(context).copyWith(
                   dividerColor: Colors.transparent,
-                  expansionTileTheme: ExpansionTileThemeData(
+                  expansionTileTheme: const ExpansionTileThemeData(
                     backgroundColor: Colors.transparent,
                   ),
                 ),
@@ -111,12 +106,12 @@ class OnlineStoreScreen extends ConsumerWidget {
           ],
         ),
       ),
-      key: _scaffoldKey,
+      key: scaffoldKey,
       appBar: MyAppBar(
           title: 'Online Store',
           showBell: false,
           filterOnPressed: () {
-            _scaffoldKey.currentState?.openEndDrawer();
+            scaffoldKey.currentState?.openEndDrawer();
           }),
       body: SafeArea(
         child: Column(
@@ -127,7 +122,7 @@ class OnlineStoreScreen extends ConsumerWidget {
                 Container(
                   width: 281.w,
                   height: 36.h,
-                  margin: EdgeInsets.only(left: 26).r,
+                  margin: const EdgeInsets.only(left: 26).r,
 
                   // decoration: BoxDecoration(
                   //     color: Colors.white,
@@ -142,7 +137,7 @@ class OnlineStoreScreen extends ConsumerWidget {
                     // },
 
                     decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(left: 20).r,
+                        contentPadding: const EdgeInsets.only(left: 20).r,
                         fillColor: Colors.white,
                         disabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30.0),
@@ -159,7 +154,7 @@ class OnlineStoreScreen extends ConsumerWidget {
                                 query: controller.searchController.text.trim());
                           },
                           child: Container(
-                            padding: EdgeInsets.only(right: 22).r,
+                            padding: const EdgeInsets.only(right: 22).r,
                             width: 22.w,
                             height: 21.h,
                             child: SvgPicture.asset(
@@ -177,7 +172,7 @@ class OnlineStoreScreen extends ConsumerWidget {
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30).r,
-                          borderSide: BorderSide(color: Color(0xffDEDEDE)),
+                          borderSide: const BorderSide(color: Color(0xffDEDEDE)),
                         ),
                         focusColor: blueColor),
                   ),
@@ -245,7 +240,7 @@ class OnlineStoreScreen extends ConsumerWidget {
                             Container(
                               width: 328.w,
                               height: 132.h,
-                              padding: EdgeInsets.only(
+                              padding: const EdgeInsets.only(
                                 left: 10,
                                 right: 10,
                                 top: 10,
@@ -263,7 +258,7 @@ class OnlineStoreScreen extends ConsumerWidget {
                                   ),
 
                                   Padding(
-                                    padding: EdgeInsets.only(
+                                    padding: const EdgeInsets.only(
                                       left: 110,
                                       top: 10,
                                       right: 30,
@@ -478,7 +473,7 @@ List<Widget> buildBusinessActivitiesFilter(
     Container(
       width: double.infinity,
       // height: 437,
-      padding: EdgeInsets.only(left: 30, top: 19, bottom: 20, right: 20),
+      padding: const EdgeInsets.only(left: 30, top: 19, bottom: 20, right: 20),
 
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(14),
@@ -542,7 +537,7 @@ List<Widget> buildSortFilter(
     Container(
       width: double.infinity,
       // height: 437,
-      padding: EdgeInsets.only(left: 30, top: 19, bottom: 20, right: 20),
+      padding: const EdgeInsets.only(left: 30, top: 19, bottom: 20, right: 20),
 
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(14),
@@ -602,14 +597,14 @@ List<Widget> buildSortFilter(
 
 Widget buttonForFilter(name, isSelected) {
   return Container(
-    margin: EdgeInsets.only(
+    margin: const EdgeInsets.only(
       top: 10,
     ),
     decoration: BoxDecoration(
       shape: BoxShape.rectangle,
       borderRadius: BorderRadius.circular(6),
-      border: Border.all(color: Color(0xffD9D9D9)),
-      color: isSelected ? Color(0xff28B9EB) : Colors.white,
+      border: Border.all(color: const Color(0xffD9D9D9)),
+      color: isSelected ? const Color(0xff28B9EB) : Colors.white,
     ),
     height: 33.h,
     //width: 120,
@@ -621,7 +616,7 @@ Widget buttonForFilter(name, isSelected) {
         style: GoogleFonts.montserrat(
             fontSize: 10,
             fontWeight: FontWeight.w600,
-            color: isSelected ? whiteColor : Color(0xff454544)),
+            color: isSelected ? whiteColor : const Color(0xff454544)),
       ),
     ),
   );

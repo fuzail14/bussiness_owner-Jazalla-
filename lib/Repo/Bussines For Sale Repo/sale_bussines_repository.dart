@@ -9,7 +9,7 @@ class SaleBussinesRepository {
   Future<SaleBussines> BussinesForSaleResponse({
     required bearerToken,
   }) async {
-    var response = await networkServices.getReq("${Api.bussinesForSale}",
+    var response = await networkServices.getReq(Api.bussinesForSale,
         bearerToken: bearerToken);
     log(response.toString());
 

@@ -15,10 +15,10 @@ class RequestForQuotationDetail {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['success'] = success;
-    _data['rfqDetail'] = rfqDetail.map((e) => e.toJson()).toList();
-    return _data;
+    final data = <String, dynamic>{};
+    data['success'] = success;
+    data['rfqDetail'] = rfqDetail.map((e) => e.toJson()).toList();
+    return data;
   }
 }
 
@@ -92,26 +92,26 @@ class RfqDetail {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['supplier_network'] = supplierNetwork;
-    _data['product_id'] = productId;
-    _data['user_id'] = userId;
-    _data['buyer_id'] = buyerId;
-    _data['supplier_id'] = supplierId;
-    _data['details'] = details;
-    _data['quantity'] = quantity;
-    _data['title'] = title;
-    _data['unit'] = unit;
-    _data['delivery_date'] = deliveryDate;
-    _data['payment_mode'] = paymentMode;
-    _data['shipping_mode'] = shippingMode;
-    _data['shipping_address'] = shippingAddress;
-    _data['address'] = address;
-    _data['template_id'] = templateId;
-    _data['attachment'] = attachment;
-    _data['status'] = status;
-    _data['buyer'] = buyer!.toJson();
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['supplier_network'] = supplierNetwork;
+    data['product_id'] = productId;
+    data['user_id'] = userId;
+    data['buyer_id'] = buyerId;
+    data['supplier_id'] = supplierId;
+    data['details'] = details;
+    data['quantity'] = quantity;
+    data['title'] = title;
+    data['unit'] = unit;
+    data['delivery_date'] = deliveryDate;
+    data['payment_mode'] = paymentMode;
+    data['shipping_mode'] = shippingMode;
+    data['shipping_address'] = shippingAddress;
+    data['address'] = address;
+    data['template_id'] = templateId;
+    data['attachment'] = attachment;
+    data['status'] = status;
+    data['buyer'] = buyer!.toJson();
+    return data;
   }
 }

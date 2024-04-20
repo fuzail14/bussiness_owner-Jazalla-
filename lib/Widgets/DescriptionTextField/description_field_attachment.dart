@@ -2,7 +2,6 @@ import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:file_picker/file_picker.dart';
 
 import '../CustomButton/custom_button.dart';
 import '../Loader/loader.dart';
@@ -20,7 +19,7 @@ class DescriptionFieldAttachment extends StatelessWidget {
   bool buttonLoading;
   bool attachmentContentShow;
 
-  DescriptionFieldAttachment({
+  DescriptionFieldAttachment({super.key, 
     this.controller,
     this.text,
     this.hintText,
@@ -43,23 +42,23 @@ class DescriptionFieldAttachment extends StatelessWidget {
           style: GoogleFonts.montserrat(
               fontSize: 12.sp,
               fontWeight: FontWeight.w400,
-              color: Color(0xff4D4D4D)),
+              color: const Color(0xff4D4D4D)),
         ),
         SizedBox(height: 5.h),
         Container(
           height: 102.h,
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10).r,
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10).r,
           decoration: BoxDecoration(
               border: Border.all(color: borderColor ?? Colors.transparent),
               borderRadius: BorderRadius.circular(8),
-              color: containerFillColor ?? Color(0xffEFEFF2)),
+              color: containerFillColor ?? const Color(0xffEFEFF2)),
           child: TextFormField(
             maxLines: 5,
             controller: controller,
             decoration: InputDecoration(
               hintText: hintText ?? '',
-              enabledBorder: UnderlineInputBorder(borderSide: BorderSide.none),
-              focusedBorder: UnderlineInputBorder(borderSide: BorderSide.none),
+              enabledBorder: const UnderlineInputBorder(borderSide: BorderSide.none),
+              focusedBorder: const UnderlineInputBorder(borderSide: BorderSide.none),
             ),
           ),
         ),
@@ -73,7 +72,7 @@ class DescriptionFieldAttachment extends StatelessWidget {
                 style: GoogleFonts.montserrat(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w400,
-                    color: Color(0xff4D4D4D)),
+                    color: const Color(0xff4D4D4D)),
               ),
               5.ph,
               Row(
@@ -83,7 +82,7 @@ class DescriptionFieldAttachment extends StatelessWidget {
                     height: 23.h,
                     decoration: BoxDecoration(
                         border: Border.all(
-                            color: Color(0xff19A3A3).withOpacity(0.50))),
+                            color: const Color(0xff19A3A3).withOpacity(0.50))),
                     child: Row(
                       children: [
                         GestureDetector(
@@ -92,10 +91,10 @@ class DescriptionFieldAttachment extends StatelessWidget {
                             width: 76.w,
                             height: 23.h,
                             decoration: BoxDecoration(
-                                color: Color(0xffF7F7F9),
+                                color: const Color(0xffF7F7F9),
                                 border: Border.symmetric(
                                     vertical: BorderSide(
-                                        color: Color(0xff19A3A3)
+                                        color: const Color(0xff19A3A3)
                                             .withOpacity(0.35)))),
                             child: Center(
                               child: Text(
@@ -103,7 +102,7 @@ class DescriptionFieldAttachment extends StatelessWidget {
                                 style: GoogleFonts.montserrat(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 10.sp,
-                                    color: Color(0xff657474)),
+                                    color: const Color(0xff657474)),
                               ),
                             ),
                           ),
@@ -133,7 +132,7 @@ class DescriptionFieldAttachment extends StatelessWidget {
                           width: 275.w,
                           height: 50.h,
                           fontSize: 16.sp,
-                          color: Color(0xff27BCEB),
+                          color: const Color(0xff27BCEB),
                           text: 'Send',
                         ),
                 ),

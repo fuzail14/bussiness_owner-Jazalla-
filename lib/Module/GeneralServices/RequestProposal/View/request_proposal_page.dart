@@ -20,6 +20,8 @@ import '../Controller/request_proposal_controller.dart';
 class RequestProposalScreen extends ConsumerWidget {
   int buiuld = 0;
 
+  RequestProposalScreen({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     print('quote inquiry build check ${buiuld++}');
@@ -55,7 +57,7 @@ class RequestProposalScreen extends ConsumerWidget {
                   style: GoogleFonts.montserrat(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w400,
-                      color: Color(0xff4D4D4D)),
+                      color: const Color(0xff4D4D4D)),
                 ),
                 5.ph,
                 Container(
@@ -63,7 +65,7 @@ class RequestProposalScreen extends ConsumerWidget {
                   //width: 311.w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: Color(0xff19A3A3)),
+                    border: Border.all(color: const Color(0xff19A3A3)),
                   ),
                   child: TextFormField(
                     maxLines: 5,
@@ -83,7 +85,7 @@ class RequestProposalScreen extends ConsumerWidget {
                       children: [
                         Text("Service Type*",
                             style: GoogleFonts.montserrat(
-                              color: Color(0xff4D4D4D),
+                              color: const Color(0xff4D4D4D),
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w400,
                             )),
@@ -110,7 +112,7 @@ class RequestProposalScreen extends ConsumerWidget {
                       children: [
                         Text("Payment Mode*",
                             style: GoogleFonts.montserrat(
-                              color: Color(0xff4D4D4D),
+                              color: const Color(0xff4D4D4D),
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w400,
                             )),
@@ -139,7 +141,7 @@ class RequestProposalScreen extends ConsumerWidget {
                   children: [
                     Text("Delivery Date*",
                         style: GoogleFonts.montserrat(
-                          color: Color(0xff4D4D4D),
+                          color: const Color(0xff4D4D4D),
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w400,
                         )),
@@ -169,7 +171,7 @@ class RequestProposalScreen extends ConsumerWidget {
                   children: [
                     Text("Proposed Duration Time*",
                         style: GoogleFonts.montserrat(
-                          color: Color(0xff4D4D4D),
+                          color: const Color(0xff4D4D4D),
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w400,
                         )),
@@ -199,7 +201,7 @@ class RequestProposalScreen extends ConsumerWidget {
                   children: [
                     Text("Proposed Duration Unit *",
                         style: GoogleFonts.montserrat(
-                          color: Color(0xff4D4D4D),
+                          color: const Color(0xff4D4D4D),
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w400,
                         )),
@@ -236,7 +238,7 @@ class RequestProposalScreen extends ConsumerWidget {
                                   style: GoogleFonts.montserrat(
                                       fontSize: 12.sp,
                                       fontWeight: FontWeight.w400,
-                                      color: Color(0xFF657474))),
+                                      color: const Color(0xFF657474))),
                             );
                           }).toList(),
                           onChanged: (String? newValue) {
@@ -255,7 +257,7 @@ class RequestProposalScreen extends ConsumerWidget {
                     children: [
                       Text("Other Proposed Duration Unit *",
                           style: GoogleFonts.montserrat(
-                            color: Color(0xff4D4D4D),
+                            color: const Color(0xff4D4D4D),
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w400,
                           )),
@@ -286,7 +288,7 @@ class RequestProposalScreen extends ConsumerWidget {
                   children: [
                     Text("Service Location (Address) *",
                         style: GoogleFonts.montserrat(
-                          color: Color(0xff4D4D4D),
+                          color: const Color(0xff4D4D4D),
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w400,
                         )),
@@ -323,7 +325,7 @@ class RequestProposalScreen extends ConsumerWidget {
                                   style: GoogleFonts.montserrat(
                                       fontSize: 12.sp,
                                       fontWeight: FontWeight.w400,
-                                      color: Color(0xFF657474))),
+                                      color: const Color(0xFF657474))),
                             );
                           }).toList(),
                           onChanged: (String? newValue) {
@@ -390,7 +392,7 @@ class RequestProposalScreen extends ConsumerWidget {
                         children: [
                           Text("District",
                               style: GoogleFonts.montserrat(
-                                color: Color(0xff4D4D4D),
+                                color: const Color(0xff4D4D4D),
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
                               )),
@@ -428,7 +430,7 @@ class RequestProposalScreen extends ConsumerWidget {
                         children: [
                           Text("Street",
                               style: GoogleFonts.montserrat(
-                                color: Color(0xff4D4D4D),
+                                color: const Color(0xff4D4D4D),
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
                               )),
@@ -440,7 +442,7 @@ class RequestProposalScreen extends ConsumerWidget {
                                 vertical: 8.0, horizontal: 8.0),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
-                              border: Border.all(color: Color(0xff19A3A3)),
+                              border: Border.all(color: const Color(0xff19A3A3)),
                             ),
                             child: TextFormField(
                               controller:
@@ -465,7 +467,7 @@ class RequestProposalScreen extends ConsumerWidget {
                         children: [
                           Text("Zip Code",
                               style: GoogleFonts.montserrat(
-                                color: Color(0xff4D4D4D),
+                                color: const Color(0xff4D4D4D),
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
                               )),
@@ -502,7 +504,7 @@ class RequestProposalScreen extends ConsumerWidget {
                         children: [
                           Text("Building No",
                               style: GoogleFonts.montserrat(
-                                color: Color(0xff4D4D4D),
+                                color: const Color(0xff4D4D4D),
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w400,
                               )),
@@ -514,7 +516,7 @@ class RequestProposalScreen extends ConsumerWidget {
                                 vertical: 8.0, horizontal: 8.0),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
-                              border: Border.all(color: Color(0xff19A3A3)),
+                              border: Border.all(color: const Color(0xff19A3A3)),
                             ),
                             child: TextFormField(
                               controller: requestProposalcontroller
@@ -537,7 +539,7 @@ class RequestProposalScreen extends ConsumerWidget {
                     children: [
                       Text("Unit No",
                           style: GoogleFonts.montserrat(
-                            color: Color(0xff4D4D4D),
+                            color: const Color(0xff4D4D4D),
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w400,
                           )),
@@ -549,7 +551,7 @@ class RequestProposalScreen extends ConsumerWidget {
                             vertical: 8.0, horizontal: 8.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Color(0xff19A3A3)),
+                          border: Border.all(color: const Color(0xff19A3A3)),
                         ),
                         child: TextFormField(
                           controller:
@@ -572,7 +574,7 @@ class RequestProposalScreen extends ConsumerWidget {
                   children: [
                     Text('Select Template*',
                         style: GoogleFonts.montserrat(
-                          color: Color(0xff4D4D4D),
+                          color: const Color(0xff4D4D4D),
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w400,
                         )),
@@ -610,7 +612,7 @@ class RequestProposalScreen extends ConsumerWidget {
                                 style: GoogleFonts.montserrat(
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.w400,
-                                    color: Color(0xFF657474)),
+                                    color: const Color(0xFF657474)),
                               ),
                             );
                           }).toList(),
@@ -635,7 +637,7 @@ class RequestProposalScreen extends ConsumerWidget {
                       children: [
                         Text("Choose Pdf File",
                             style: GoogleFonts.montserrat(
-                              color: Color(0xff4D4D4D),
+                              color: const Color(0xff4D4D4D),
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w400,
                             )),
@@ -644,7 +646,7 @@ class RequestProposalScreen extends ConsumerWidget {
                           width: 311.w,
                           height: 43.h,
                           decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xff19A3A3))),
+                              border: Border.all(color: const Color(0xff19A3A3))),
                           child: Row(
                             children: [
                               GestureDetector(
@@ -666,16 +668,16 @@ class RequestProposalScreen extends ConsumerWidget {
                                   width: 76.w,
                                   height: 43.h,
                                   decoration: BoxDecoration(
-                                      color: Color(0xffF7F7F9),
+                                      color: const Color(0xffF7F7F9),
                                       border:
-                                          Border.all(color: Color(0xff19A3A3))),
+                                          Border.all(color: const Color(0xff19A3A3))),
                                   child: Center(
                                     child: Text(
                                       'Choose File',
                                       style: GoogleFonts.montserrat(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 10.sp,
-                                          color: Color(0xff657474)),
+                                          color: const Color(0xff657474)),
                                     ),
                                   ),
                                 ),
@@ -691,7 +693,7 @@ class RequestProposalScreen extends ConsumerWidget {
                                     style: GoogleFonts.montserrat(
                                         fontWeight: FontWeight.w600,
                                         fontSize: 12.sp,
-                                        color: Color(0xff657474)),
+                                        color: const Color(0xff657474)),
                                   ),
                                 ),
                               ],
@@ -704,7 +706,7 @@ class RequestProposalScreen extends ConsumerWidget {
                 ),
                 20.ph,
                 requestProposalState.isLoading
-                    ? Loader()
+                    ? const Loader()
                     : Center(
                         child: CustomButton(
                           onTap: () {
@@ -780,7 +782,7 @@ class RequestProposalScreen extends ConsumerWidget {
                           },
                           width: 200.w,
                           height: 48.h,
-                          color: Color(0xff27BCEB),
+                          color: const Color(0xff27BCEB),
                           text: 'Send Quotation',
                         ),
                       ),

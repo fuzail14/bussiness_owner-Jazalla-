@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 //import 'package:get/get.dart';
-import '../../../Constants/Person/person.dart';
-import '../../../Constants/Person/person_controller.dart';
 
 final mainHomeScreenProvider =
     StateNotifierProvider<MainHomeScreenNotifier, MainHomeScreenState>((ref) {
@@ -39,13 +37,13 @@ class MainHomeScreenNotifier extends StateNotifier<MainHomeScreenState> {
   void cardIndexChanged(int index) {
     state = state.copyWith(currentPage: index);
     pageController.animateToPage(index,
-        duration: Duration(milliseconds: 500), curve: Curves.easeOut);
+        duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
   }
 
   void _updatePageIndex() {
-    final int _currentIndex = pageController.page!.round();
-    if (_currentIndex != state.currentPage) {
-      state = state.copyWith(currentPage: _currentIndex);
+    final int currentIndex = pageController.page!.round();
+    if (currentIndex != state.currentPage) {
+      state = state.copyWith(currentPage: currentIndex);
     }
   }
 

@@ -12,12 +12,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import '../../../../Constants/constants.dart';
-import '../../../../Widgets/CustomButton/custom_button.dart';
 import '../../../../Widgets/DescriptionTextField/description_field_attachment.dart';
-import '../../../../Widgets/Loader/loader.dart';
-import '../../../../Widgets/My TextForm Field/my_textform_field.dart';
 
 class TenderResponseScreen extends ConsumerStatefulWidget {
+  const TenderResponseScreen({super.key});
+
   @override
   _TenderResponseScreenState createState() => _TenderResponseScreenState();
 }
@@ -89,7 +88,7 @@ class _TenderResponseScreenState extends ConsumerState<TenderResponseScreen>
           Expanded(
             child: TabBarView(
               controller: _tabController,
-              children: [
+              children: const [
                 ExpressInterestView(),
                 SubmitProposalView(),
               ],
@@ -102,6 +101,8 @@ class _TenderResponseScreenState extends ConsumerState<TenderResponseScreen>
 }
 
 class ExpressInterestView extends ConsumerWidget {
+  const ExpressInterestView({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tenderResponseNotifier = ref.watch(tenderResponseProvider.notifier);
@@ -153,6 +154,8 @@ class ExpressInterestView extends ConsumerWidget {
 }
 
 class SubmitProposalView extends ConsumerWidget {
+  const SubmitProposalView({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tenderResponseNotifier = ref.watch(tenderResponseProvider.notifier);
@@ -181,7 +184,7 @@ class SubmitProposalView extends ConsumerWidget {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 2,
                       blurRadius: 4,
-                      offset: Offset(0, 5), // changes position of shadow
+                      offset: const Offset(0, 5), // changes position of shadow
                     ),
                   ],
                   borderRadius: BorderRadius.circular(16).r,
@@ -189,10 +192,10 @@ class SubmitProposalView extends ConsumerWidget {
               child: Container(
                 width: 311.w,
                 height: 277.h,
-                margin: EdgeInsets.only(
+                margin: const EdgeInsets.only(
                         top: 16, bottom: 15, left: 24.66, right: 25.73)
                     .r,
-                padding: EdgeInsets.only(top: 20, left: 20, right: 20).r,
+                padding: const EdgeInsets.only(top: 20, left: 20, right: 20).r,
                 decoration: BoxDecoration(
                     color: HexColor('#F7F7F9'),
                     borderRadius: BorderRadius.circular(16).r),
@@ -313,7 +316,7 @@ class SubmitProposalView extends ConsumerWidget {
                     style: GoogleFonts.quicksand(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w600,
-                        color: Color(0xff4D4D4D)),
+                        color: const Color(0xff4D4D4D)),
                     maxLines: 2,
                   ),
                 ),
@@ -332,7 +335,7 @@ class SubmitProposalView extends ConsumerWidget {
                         style: GoogleFonts.quicksand(
                             fontSize: 10.sp,
                             fontWeight: FontWeight.w600,
-                            color: Color(0xff4D4D4D)),
+                            color: const Color(0xff4D4D4D)),
                       ),
                       Radio(
                         value: RadioCheck.no,
@@ -346,7 +349,7 @@ class SubmitProposalView extends ConsumerWidget {
                         style: GoogleFonts.quicksand(
                             fontSize: 10.sp,
                             fontWeight: FontWeight.w600,
-                            color: Color(0xff4D4D4D)),
+                            color: const Color(0xff4D4D4D)),
                       ),
                     ],
                   ),

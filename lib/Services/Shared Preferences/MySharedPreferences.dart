@@ -4,7 +4,7 @@ import '../../Constants/Person/person.dart';
 import '../../Constants/shared_preferences_constants.dart';
 
 deleteUserData() async {
-  Person _person = Person();
+  Person person = Person();
 
   await SharedPreferences.getInstance().then((value) {
     // value.remove(userIdSPKey);
@@ -20,7 +20,7 @@ deleteUserData() async {
 
 class MySharedPreferences {
   static deleteUserData() async {
-    Person _person = Person();
+    Person person = Person();
 
     await SharedPreferences.getInstance().then((value) {
       // value.remove(userIdSPKey);
@@ -64,7 +64,7 @@ class MySharedPreferences {
   }
 
   static Future<Person> getUserData() async {
-    var _person = Person();
+    var person = Person();
     await SharedPreferences.getInstance().then((value) {
       value.getInt(userIdSPKey) ?? value.setInt(userIdSPKey, 0);
       value.getInt(companyIdSPKey) ?? value.setInt(companyIdSPKey, 0);
@@ -83,7 +83,7 @@ class MySharedPreferences {
       value.getString(companyNameSPKEY) ??
           value.setString(companyNameSPKEY, '');
 
-      _person = Person(
+      person = Person(
         data: Data(
             id: value.getInt(userIdSPKey),
             companyId: value.getInt(companyIdSPKey),
@@ -99,7 +99,7 @@ class MySharedPreferences {
         Bearer: value.getString(bearerTokenSPKEY),
       );
     });
-    return _person;
+    return person;
   }
 
   static updateUserData({required fcmToken}) async {

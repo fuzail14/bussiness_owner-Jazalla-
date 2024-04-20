@@ -37,7 +37,8 @@ import '../Module/ProcurementManagment/RFP/Main/View/procurement_rfp_screen.dart
 import '../Module/ProcurementManagment/RFP/RFXManagmentRFPDetail/View/rfx_managment_rfp_detail_page.dart';
 import '../Module/ProcurementManagment/RFQ/Main/View/procurement_rfq_screen.dart';
 import '../Module/ProcurementManagment/RFQ/RFXManagmentRFQDetail/View/rfx_managment_rfq_detail_page.dart';
-import '../Module/SalaryPaySlip/View/salary_payslip_view.dart';
+import '../Module/SalaryPaySlip/Main/View/salary_payslip_view.dart';
+import '../Module/SalaryPaySlip/PaySlipDetail/View/salary_payslip_detail_page.dart';
 import '../Module/SalesManagment/RFIMain/RFI/View/sales_managment_rfi_screen.dart';
 import '../Module/SalesManagment/RFIMain/SalesManagmentRFIDetail/View/sales_managment_rfi_detail_page.dart';
 import '../Module/SalesManagment/RFIMain/SendRFIResponse/View/send_rfi_response.dart';
@@ -83,7 +84,7 @@ final router = GoRouter(
       name: verificationCodeScreen,
       path: '/VerificationCode',
       pageBuilder: (context, state) {
-        final page = VerificationCode();
+        const page = VerificationCode();
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
             context: context,
@@ -113,7 +114,7 @@ final router = GoRouter(
             personProvider
                 .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
-          child: HomeScreen(),
+          child: const HomeScreen(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -153,7 +154,7 @@ final router = GoRouter(
             routeArgsProvider.overrideWithValue(
                 {'companyId': id, 'bearerToken': bearerToken}),
           ],
-          child: BussinesCommunityDetailPage(),
+          child: const BussinesCommunityDetailPage(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -172,7 +173,7 @@ final router = GoRouter(
             personProvider
                 .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
-          child: OnlineStoreScreen(),
+          child: const OnlineStoreScreen(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -195,7 +196,7 @@ final router = GoRouter(
               (ref) => PersonController()..setPerson(person),
             ),
           ],
-          child: OnlineStoreDetailPage(),
+          child: const OnlineStoreDetailPage(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -236,7 +237,7 @@ final router = GoRouter(
             personProvider
                 .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
-          child: TendersView(),
+          child: const TendersView(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -257,7 +258,7 @@ final router = GoRouter(
             routeArgsProvider.overrideWithValue(
                 {'tenderId': id, 'bearerToken': bearerToken}),
           ],
-          child: TendersDetailPage(),
+          child: const TendersDetailPage(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -276,7 +277,7 @@ final router = GoRouter(
             personProvider
                 .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
-          child: GeneralServiceView(),
+          child: const GeneralServiceView(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -299,7 +300,7 @@ final router = GoRouter(
               (ref) => PersonController()..setPerson(person),
             ),
           ],
-          child: ServiceDetailPage(),
+          child: const ServiceDetailPage(),
         );
 
         return buildPageWithFadeTransition(
@@ -319,7 +320,7 @@ final router = GoRouter(
             personProvider
                 .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
-          child: BussinesForSale(),
+          child: const BussinesForSale(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -340,7 +341,7 @@ final router = GoRouter(
             routeArgsProvider
                 .overrideWithValue({'Id': id, 'bearerToken': bearerToken}),
           ],
-          child: SaleBussinesDetailPage(),
+          child: const SaleBussinesDetailPage(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -359,7 +360,7 @@ final router = GoRouter(
             personProvider
                 .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
-          child: InvestMentOpportunityView(),
+          child: const InvestMentOpportunityView(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -380,7 +381,7 @@ final router = GoRouter(
             routeArgsProvider
                 .overrideWithValue({'Id': id, 'bearerToken': bearerToken}),
           ],
-          child: InvestmentDetailPage(),
+          child: const InvestmentDetailPage(),
         );
         return buildPageWithFadeTransition(
           context: context,
@@ -417,7 +418,7 @@ final router = GoRouter(
           overrides: [
             routeArgsProvider.overrideWithValue(quoteData),
           ],
-          child: RequestQuoteScreen(),
+          child: const RequestQuoteScreen(),
         );
         return buildPageWithFadeTransition(
           fullscreenDialog: false,
@@ -474,7 +475,7 @@ final router = GoRouter(
           overrides: [
             routeArgsProvider.overrideWithValue(quoteData),
           ],
-          child: TenderResponseScreen(),
+          child: const TenderResponseScreen(),
         );
         return buildPageWithFadeTransition(
           fullscreenDialog: false,
@@ -494,7 +495,7 @@ final router = GoRouter(
             personProvider
                 .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
-          child: ProcuremenetSoiScreen(),
+          child: const ProcuremenetSoiScreen(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -513,7 +514,7 @@ final router = GoRouter(
             personProvider
                 .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
-          child: ProcurementRFQScreen(),
+          child: const ProcurementRFQScreen(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -532,7 +533,7 @@ final router = GoRouter(
             personProvider
                 .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
-          child: ProcurementRFPScreen(),
+          child: const ProcurementRFPScreen(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -570,7 +571,7 @@ final router = GoRouter(
             personProvider
                 .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
-          child: SalesManagmentRFQScreen(),
+          child: const SalesManagmentRFQScreen(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -627,7 +628,7 @@ final router = GoRouter(
           overrides: [
             routeArgsProvider.overrideWithValue({'rfiId': id}),
           ],
-          child: RFXManagmentRFIDetailPage(),
+          child: const RFXManagmentRFIDetailPage(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -646,7 +647,7 @@ final router = GoRouter(
           overrides: [
             routeArgsProvider.overrideWithValue({'rfqId': id}),
           ],
-          child: RFXManagmentRFQDetailPage(),
+          child: const RFXManagmentRFQDetailPage(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -665,7 +666,7 @@ final router = GoRouter(
           overrides: [
             routeArgsProvider.overrideWithValue({'rfpId': id}),
           ],
-          child: RFXManagmentRFPDetailPage(),
+          child: const RFXManagmentRFPDetailPage(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -687,7 +688,7 @@ final router = GoRouter(
             personProvider
                 .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
-          child: SalesManagmentRFIDetailPage(),
+          child: const SalesManagmentRFIDetailPage(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -709,7 +710,7 @@ final router = GoRouter(
             // personProvider
             //     .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
-          child: SalesManagmentRFQDetailPage(),
+          child: const SalesManagmentRFQDetailPage(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -728,7 +729,7 @@ final router = GoRouter(
           overrides: [
             routeArgsProvider.overrideWithValue({'rfiId': id}),
           ],
-          child: ServiceManagmentRFIDetailPage(),
+          child: const ServiceManagmentRFIDetailPage(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -747,7 +748,7 @@ final router = GoRouter(
           overrides: [
             routeArgsProvider.overrideWithValue({'rfpId': id}),
           ],
-          child: ServiceManagmentRFPDetailPage(),
+          child: const ServiceManagmentRFPDetailPage(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -767,7 +768,7 @@ final router = GoRouter(
             personProvider
                 .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
-          child: NotificationsScreen(),
+          child: const NotificationsScreen(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -790,7 +791,7 @@ final router = GoRouter(
             personProvider
                 .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
-          child: SendRFIResponseView(),
+          child: const SendRFIResponseView(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -808,7 +809,7 @@ final router = GoRouter(
 
       pageBuilder: (context, state) {
         // final person = state.extra as Person;
-        final page = ProviderScope(
+        const page = ProviderScope(
           // overrides: [
           // personProvider
           //     .overrideWith((ref) => PersonController()..setPerson(person)),
@@ -832,7 +833,7 @@ final router = GoRouter(
 
       pageBuilder: (context, state) {
         // final person = state.extra as Person;
-        final page = ProviderScope(
+        const page = ProviderScope(
           // overrides: [
           // personProvider
           //     .overrideWith((ref) => PersonController()..setPerson(person)),
@@ -858,7 +859,7 @@ final router = GoRouter(
             personProvider
                 .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
-          child: OrderPlacementScreen(),
+          child: const OrderPlacementScreen(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -896,7 +897,7 @@ final router = GoRouter(
             personProvider
                 .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
-          child: ApprovalManagmentScreen(),
+          child: const ApprovalManagmentScreen(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -929,7 +930,7 @@ final router = GoRouter(
       name: generatedOtpPage,
       path: '/GeneratedOtpPage',
       pageBuilder: (context, state) {
-        final page = GeneratedOtpPage();
+        const page = GeneratedOtpPage();
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
             context: context,
@@ -967,6 +968,26 @@ final router = GoRouter(
                 .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
           child: LeaveCreateScreen(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+
+    GoRoute(
+      name: salaryPaySlipDetailPage,
+      path: '/SalaryPaySlipDetailPage/:id',
+      pageBuilder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider.overrideWithValue({'sId': id}),
+          ],
+          child: const SalaryPaySlipDetailPage(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,

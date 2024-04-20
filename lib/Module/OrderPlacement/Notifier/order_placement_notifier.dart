@@ -15,7 +15,7 @@ class OrderPlacementStateNotifier extends StateNotifier<OrderPlacementState> {
   final request4InformationRepository = Request4InformationRepository();
   final Person person;
   OrderPlacementStateNotifier({required this.person})
-      : super(OrderPlacementState()) {}
+      : super(OrderPlacementState());
 }
 
 final orderPlacementProvider = StateNotifierProvider.autoDispose<

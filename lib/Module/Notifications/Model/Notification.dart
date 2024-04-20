@@ -14,11 +14,11 @@ class Notification {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['success'] = success;
-    _data['NotificationData'] =
+    final data = <String, dynamic>{};
+    data['success'] = success;
+    data['NotificationData'] =
         notificationData.map((e) => e.toJson()).toList();
-    return _data;
+    return data;
   }
 }
 
@@ -81,24 +81,24 @@ class NotificationData {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['user_id'] = userId;
-    _data['type'] = type;
-    _data['type_id'] = typeId;
-    _data['data'] = data;
-    _data['links'] = links;
-    _data['heading'] = heading;
-    _data['notification_type'] = notificationType;
-    _data['notification_from'] = notificationFrom;
-    _data['sender_id'] = senderId;
-    _data['sender_user_id'] = senderUserId;
-    _data['receiver_id'] = receiverId;
-    _data['notification_to'] = notificationTo;
-    _data['receiver_type'] = receiverType;
-    _data['is_read'] = isRead;
-    _data['created_at'] = createdAt;
-    _data['updated_at'] = updatedAt;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['user_id'] = userId;
+    data['type'] = type;
+    data['type_id'] = typeId;
+    data['data'] = data;
+    data['links'] = links;
+    data['heading'] = heading;
+    data['notification_type'] = notificationType;
+    data['notification_from'] = notificationFrom;
+    data['sender_id'] = senderId;
+    data['sender_user_id'] = senderUserId;
+    data['receiver_id'] = receiverId;
+    data['notification_to'] = notificationTo;
+    data['receiver_type'] = receiverType;
+    data['is_read'] = isRead;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    return data;
   }
 }

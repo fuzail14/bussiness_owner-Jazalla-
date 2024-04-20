@@ -1,18 +1,13 @@
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/Font/fonts.dart';
 import 'package:bussines_owner/Constants/constants.dart';
-import 'package:bussines_owner/Routes/set_routes.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../../Data/Api Resp/api_response.dart';
 import '../../../../../Widgets/Loader/loader.dart';
-import '../../../../Widgets/AppBar/my_app_bar.dart';
 import '../Controller/approval_history_notifier.dart';
 
 class ApprovalHistoryScreen extends ConsumerWidget {
@@ -23,7 +18,7 @@ class ApprovalHistoryScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(approvalHistoryProvider.notifier);
     final state = ref.watch(approvalHistoryProvider);
-    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     print('build check  ${buildcheck++}');
 
     return Scaffold(
@@ -147,7 +142,7 @@ class ApprovalHistoryScreen extends ConsumerWidget {
                                       style: GoogleFonts.poppins(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w600,
-                                          color: Color(0xff000000)),
+                                          color: const Color(0xff000000)),
                                     ),
                                   ),
                                   //40.pw,
@@ -159,12 +154,12 @@ class ApprovalHistoryScreen extends ConsumerWidget {
                                       style: GoogleFonts.poppins(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500,
-                                          color: Color(0xff707070)),
+                                          color: const Color(0xff707070)),
                                     ),
                                   ),
                                 ],
                               ),
-                              Divider(),
+                              const Divider(),
                               11.ph,
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -222,7 +217,7 @@ class ApprovalHistoryScreen extends ConsumerWidget {
                                       Icon(
                                         Icons.calendar_today,
                                         size: 14.h,
-                                        color: Color(0xffA7A7A7),
+                                        color: const Color(0xffA7A7A7),
                                       ),
                                       6.pw,
                                       SizedBox(

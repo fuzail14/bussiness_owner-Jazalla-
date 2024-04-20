@@ -1,14 +1,10 @@
-import 'dart:ui';
 
-import 'package:animate_do/animate_do.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hexcolor/hexcolor.dart';
 
 // ignore: must_be_immutable
 class CardMakretPlace extends StatelessWidget {
@@ -35,17 +31,17 @@ class CardMakretPlace extends StatelessWidget {
       child: Container(
         width: 160.w,
         height: 140.h,
-        padding: EdgeInsets.only(left: 20, top: 20, right: 5, bottom: 0).r,
+        padding: const EdgeInsets.only(left: 20, top: 20, right: 5, bottom: 0).r,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8).r,
           color: whiteColor,
-          border: Border.all(color: Color(0xff449FC6).withOpacity(0.6)),
+          border: Border.all(color: const Color(0xff449FC6).withOpacity(0.6)),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.1),
               spreadRadius: 2,
               blurRadius: 2,
-              offset: Offset(0, 4), // changes position of shadow
+              offset: const Offset(0, 4), // changes position of shadow
             ),
           ],
         ),
@@ -53,7 +49,7 @@ class CardMakretPlace extends StatelessWidget {
           children: [
             SvgPicture.asset(
               svgPath!,
-              color: Color(0xff1F3996),
+              color: const Color(0xff1F3996),
               height: 40.h,
               //width: 40.w,
             ),
@@ -67,7 +63,7 @@ class CardMakretPlace extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.roboto(
-                    color: Color(0xff1F3996),
+                    color: const Color(0xff1F3996),
                     fontWeight: FontWeight.bold,
                     fontSize: 14.sp),
               ),

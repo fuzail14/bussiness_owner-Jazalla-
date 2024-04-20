@@ -6,7 +6,7 @@ import 'package:hexcolor/hexcolor.dart';
 class EmptyList extends StatelessWidget {
   final String? name;
 
-  EmptyList({this.name});
+  const EmptyList({super.key, this.name});
 
   @override
   Widget build(BuildContext context) {

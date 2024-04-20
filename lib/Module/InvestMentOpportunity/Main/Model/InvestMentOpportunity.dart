@@ -26,10 +26,10 @@ class InvestMentOpportunity {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['success'] = success;
-    _data['investments'] = investments.map((e) => e.toJson()).toList();
-    return _data;
+    final data = <String, dynamic>{};
+    data['success'] = success;
+    data['investments'] = investments.map((e) => e.toJson()).toList();
+    return data;
   }
 }
 
@@ -269,84 +269,84 @@ class Investments {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['company_id'] = companyId;
-    _data['menuType'] = menuType;
-    _data['isPackage'] = isPackage;
-    _data['title'] = title;
-    _data['invest_size_from'] = investSizeFrom;
-    _data['invest_size_to'] = investSizeTo;
-    _data['invest_currency'] = investCurrency;
-    _data['your_company'] = yourCompany;
-    _data['company_website'] = companyWebsite;
-    _data['your_designation'] = yourDesignation;
-    _data['posted_designation'] = postedDesignation;
-    _data['established_date'] = establishedDate;
-    _data['interest'] = interest;
-    _data['total_employee'] = totalEmployee;
-    _data['isPromot'] = isPromot;
-    _data['emailShow'] = emailShow;
-    _data['phoneShow'] = phoneShow;
-    _data['business_overview'] = businessOverview;
-    _data['facilities_overview'] = facilitiesOverview;
-    _data['prodnserv_overview'] = prodnservOverview;
-    _data['reasonforsale'] = reasonforsale;
-    _data['industry_preference'] = industryPreference;
-    _data['location_preference'] = locationPreference;
-    _data['assets'] = assets;
-    _data['monthly_sale'] = monthlySale;
-    _data['monthly_sale_currency'] = monthlySaleCurrency;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['company_id'] = companyId;
+    data['menuType'] = menuType;
+    data['isPackage'] = isPackage;
+    data['title'] = title;
+    data['invest_size_from'] = investSizeFrom;
+    data['invest_size_to'] = investSizeTo;
+    data['invest_currency'] = investCurrency;
+    data['your_company'] = yourCompany;
+    data['company_website'] = companyWebsite;
+    data['your_designation'] = yourDesignation;
+    data['posted_designation'] = postedDesignation;
+    data['established_date'] = establishedDate;
+    data['interest'] = interest;
+    data['total_employee'] = totalEmployee;
+    data['isPromot'] = isPromot;
+    data['emailShow'] = emailShow;
+    data['phoneShow'] = phoneShow;
+    data['business_overview'] = businessOverview;
+    data['facilities_overview'] = facilitiesOverview;
+    data['prodnserv_overview'] = prodnservOverview;
+    data['reasonforsale'] = reasonforsale;
+    data['industry_preference'] = industryPreference;
+    data['location_preference'] = locationPreference;
+    data['assets'] = assets;
+    data['monthly_sale'] = monthlySale;
+    data['monthly_sale_currency'] = monthlySaleCurrency;
 
-    _data['reported_sale_currency'] = reportedSaleCurrency;
-    _data['target_selling_price'] = targetSellingPrice;
-    _data['target_selling_price_currency'] = targetSellingPriceCurrency;
-    _data['physical_assets_value'] = physicalAssetsValue;
-    _data['physical_assets_value_currency'] = physicalAssetsValueCurrency;
-    _data['isic4_main'] = isic4Main;
-    _data['isic4_category'] = isic4Category;
-    _data['isic4_activity'] = isic4Activity;
-    _data['image'] = image;
-    _data['attachment'] = attachment;
-    _data['shortDesc'] = shortDesc;
-    _data['categoryLevel1'] = categoryLevel1;
-    _data['categoryLevel2'] = categoryLevel2;
-    _data['categoryLevel3'] = categoryLevel3;
-    _data['country'] = country;
-    _data['state'] = state;
-    _data['city'] = city;
-    _data['professionalSummary'] = professionalSummary;
-    _data['investmentClito'] = investmentClito;
-    _data['investmentSize'] = investmentSize;
-    _data['transactionReference'] = transactionReference;
-    _data['financialInvestment'] = financialInvestment;
-    _data['runRateSales'] = runRateSales;
-    _data['ebitdaMargin'] = ebitdaMargin;
-    _data['established'] = established;
-    _data['employeeCapacity'] = employeeCapacity;
-    _data['legalEntry'] = legalEntry;
-    _data['reportedSales'] = reportedSales;
-    _data['industries'] = industries;
-    _data['looking_for'] = lookingFor;
-    _data['about_company'] = aboutCompany;
-    _data['listedBy'] = listedBy;
-    _data['longDesc'] = longDesc;
-    _data['latitude'] = latitude;
-    _data['longitude'] = longitude;
-    _data['timezone'] = timezone;
-    _data['local_time'] = localTime;
-    _data['status'] = status;
-    _data['created_at'] = createdAt;
-    _data['updated_at'] = updatedAt;
+    data['reported_sale_currency'] = reportedSaleCurrency;
+    data['target_selling_price'] = targetSellingPrice;
+    data['target_selling_price_currency'] = targetSellingPriceCurrency;
+    data['physical_assets_value'] = physicalAssetsValue;
+    data['physical_assets_value_currency'] = physicalAssetsValueCurrency;
+    data['isic4_main'] = isic4Main;
+    data['isic4_category'] = isic4Category;
+    data['isic4_activity'] = isic4Activity;
+    data['image'] = image;
+    data['attachment'] = attachment;
+    data['shortDesc'] = shortDesc;
+    data['categoryLevel1'] = categoryLevel1;
+    data['categoryLevel2'] = categoryLevel2;
+    data['categoryLevel3'] = categoryLevel3;
+    data['country'] = country;
+    data['state'] = state;
+    data['city'] = city;
+    data['professionalSummary'] = professionalSummary;
+    data['investmentClito'] = investmentClito;
+    data['investmentSize'] = investmentSize;
+    data['transactionReference'] = transactionReference;
+    data['financialInvestment'] = financialInvestment;
+    data['runRateSales'] = runRateSales;
+    data['ebitdaMargin'] = ebitdaMargin;
+    data['established'] = established;
+    data['employeeCapacity'] = employeeCapacity;
+    data['legalEntry'] = legalEntry;
+    data['reportedSales'] = reportedSales;
+    data['industries'] = industries;
+    data['looking_for'] = lookingFor;
+    data['about_company'] = aboutCompany;
+    data['listedBy'] = listedBy;
+    data['longDesc'] = longDesc;
+    data['latitude'] = latitude;
+    data['longitude'] = longitude;
+    data['timezone'] = timezone;
+    data['local_time'] = localTime;
+    data['status'] = status;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
 
-    _data['created_by'] = createdBy;
-    _data['updated_by'] = updatedBy;
-    _data['deleted_by'] = deletedBy;
-    _data['approval'] = approval;
-    _data['approved_at'] = approvedAt;
-    _data['reject_reason'] = rejectReason;
-    _data['companies'] = companies!.toJson();
-    return _data;
+    data['created_by'] = createdBy;
+    data['updated_by'] = updatedBy;
+    data['deleted_by'] = deletedBy;
+    data['approval'] = approval;
+    data['approved_at'] = approvedAt;
+    data['reject_reason'] = rejectReason;
+    data['companies'] = companies!.toJson();
+    return data;
   }
 }
 
@@ -544,70 +544,70 @@ class Companies {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['company_code'] = companyCode;
-    _data['company_name'] = companyName;
-    _data['ar_company_name'] = arCompanyName;
-    _data['business_type'] = businessType;
-    _data['description'] = description;
-    _data['website'] = website;
-    _data['country_code'] = countryCode;
-    _data['mobile_no'] = mobileNo;
-    _data['phone'] = phone;
-    _data['fax'] = fax;
-    _data['email'] = email;
-    _data['zip_code'] = zipCode;
-    _data['street'] = street;
-    _data['logo'] = logo;
-    _data['logo_path'] = logoPath;
-    _data['contact_person_name'] = contactPersonName;
-    _data['designation'] = designation;
-    _data['primary_activity'] = primaryActivity;
-    _data['industry'] = industry;
-    _data['vat_no'] = vatNo;
-    _data['vat_percentage'] = vatPercentage;
-    _data['is_verified'] = isVerified;
-    _data['is_public'] = isPublic;
-    _data['is_branch'] = isBranch;
-    _data['is_department'] = isDepartment;
-    _data['registration_no'] = registrationNo;
-    _data['registration_date'] = registrationDate;
-    _data['facebook_link'] = facebookLink;
-    _data['linkedin_link'] = linkedinLink;
-    _data['twitter_link'] = twitterLink;
-    _data['company_sector_id'] = companySectorId;
-    _data['legal_status_id'] = legalStatusId;
-    _data['status'] = status;
-    _data['created_by'] = createdBy;
-    _data['invited_id'] = invitedId;
-    _data['currency_id'] = currencyId;
-    _data['timezone_id'] = timezoneId;
-    _data['language_id'] = languageId;
-    _data['created_at'] = createdAt;
-    _data['updated_at'] = updatedAt;
-    _data['deleted_at'] = deletedAt;
-    _data['verification_link'] = verificationLink;
-    _data['otp'] = otp;
-    _data['main_segment_p'] = mainSegmentP;
-    _data['family_p'] = familyP;
-    _data['class_p'] = classP;
-    _data['commodity_p'] = commodityP;
-    _data['main_segment_s'] = mainSegmentS;
-    _data['family_s'] = familyS;
-    _data['class_s'] = classS;
-    _data['commodity_s'] = commodityS;
-    _data['isProfileEnabled'] = isProfileEnabled;
-    _data['isic4_main'] = isic4Main;
-    _data['isic4_category'] = isic4Category;
-    _data['activity'] = activity;
-    _data['subscription_id'] = subscriptionId;
-    _data['network'] = network;
-    _data['registration_requirement'] = registrationRequirement;
-    _data['govt_requirement'] = govtRequirement;
-    _data['company_requirement'] = companyRequirement;
-    _data['attached_file'] = attachedFile;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['company_code'] = companyCode;
+    data['company_name'] = companyName;
+    data['ar_company_name'] = arCompanyName;
+    data['business_type'] = businessType;
+    data['description'] = description;
+    data['website'] = website;
+    data['country_code'] = countryCode;
+    data['mobile_no'] = mobileNo;
+    data['phone'] = phone;
+    data['fax'] = fax;
+    data['email'] = email;
+    data['zip_code'] = zipCode;
+    data['street'] = street;
+    data['logo'] = logo;
+    data['logo_path'] = logoPath;
+    data['contact_person_name'] = contactPersonName;
+    data['designation'] = designation;
+    data['primary_activity'] = primaryActivity;
+    data['industry'] = industry;
+    data['vat_no'] = vatNo;
+    data['vat_percentage'] = vatPercentage;
+    data['is_verified'] = isVerified;
+    data['is_public'] = isPublic;
+    data['is_branch'] = isBranch;
+    data['is_department'] = isDepartment;
+    data['registration_no'] = registrationNo;
+    data['registration_date'] = registrationDate;
+    data['facebook_link'] = facebookLink;
+    data['linkedin_link'] = linkedinLink;
+    data['twitter_link'] = twitterLink;
+    data['company_sector_id'] = companySectorId;
+    data['legal_status_id'] = legalStatusId;
+    data['status'] = status;
+    data['created_by'] = createdBy;
+    data['invited_id'] = invitedId;
+    data['currency_id'] = currencyId;
+    data['timezone_id'] = timezoneId;
+    data['language_id'] = languageId;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    data['deleted_at'] = deletedAt;
+    data['verification_link'] = verificationLink;
+    data['otp'] = otp;
+    data['main_segment_p'] = mainSegmentP;
+    data['family_p'] = familyP;
+    data['class_p'] = classP;
+    data['commodity_p'] = commodityP;
+    data['main_segment_s'] = mainSegmentS;
+    data['family_s'] = familyS;
+    data['class_s'] = classS;
+    data['commodity_s'] = commodityS;
+    data['isProfileEnabled'] = isProfileEnabled;
+    data['isic4_main'] = isic4Main;
+    data['isic4_category'] = isic4Category;
+    data['activity'] = activity;
+    data['subscription_id'] = subscriptionId;
+    data['network'] = network;
+    data['registration_requirement'] = registrationRequirement;
+    data['govt_requirement'] = govtRequirement;
+    data['company_requirement'] = companyRequirement;
+    data['attached_file'] = attachedFile;
+    return data;
   }
 }
 
@@ -634,14 +634,14 @@ class Isic4MainActivities {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['main_activity_name'] = mainActivityName;
-    _data['sort'] = sort;
-    _data['icon'] = icon;
-    _data['status'] = status;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['main_activity_name'] = mainActivityName;
+    data['sort'] = sort;
+    data['icon'] = icon;
+    data['status'] = status;
 
-    return _data;
+    return data;
   }
 }
 
@@ -671,14 +671,14 @@ class Industries {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['name'] = name;
-    _data['description'] = description;
-    _data['sort'] = sort;
-    _data['icon'] = icon;
-    _data['status'] = status;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['description'] = description;
+    data['sort'] = sort;
+    data['icon'] = icon;
+    data['status'] = status;
 
-    return _data;
+    return data;
   }
 }

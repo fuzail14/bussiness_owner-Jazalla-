@@ -14,11 +14,11 @@ class Request4Quotation {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['success'] = success;
-    _data['RequestForQuotation'] =
+    final data = <String, dynamic>{};
+    data['success'] = success;
+    data['RequestForQuotation'] =
         requestForQuotation.map((e) => e.toJson()).toList();
-    return _data;
+    return data;
   }
 }
 
@@ -94,30 +94,30 @@ class RequestForQuotation {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['supplier_network'] = supplierNetwork;
-    _data['product_id'] = productId;
-    _data['user_id'] = userId;
-    _data['buyer_id'] = buyerId;
-    _data['supplier_id'] = supplierId;
-    _data['details'] = details;
-    _data['quantity'] = quantity;
-    _data['product_nature'] = productNature;
-    _data['title'] = title;
-    _data['unit'] = unit;
-    _data['delivery_date'] = deliveryDate;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['supplier_network'] = supplierNetwork;
+    data['product_id'] = productId;
+    data['user_id'] = userId;
+    data['buyer_id'] = buyerId;
+    data['supplier_id'] = supplierId;
+    data['details'] = details;
+    data['quantity'] = quantity;
+    data['product_nature'] = productNature;
+    data['title'] = title;
+    data['unit'] = unit;
+    data['delivery_date'] = deliveryDate;
 
-    _data['start_date'] = startDate;
-    _data['end_date'] = endDate;
-    _data['payment_mode'] = paymentMode;
-    _data['shipping_mode'] = shippingMode;
-    _data['shipping_address'] = shippingAddress;
-    _data['address'] = address;
-    _data['template_id'] = templateId;
+    data['start_date'] = startDate;
+    data['end_date'] = endDate;
+    data['payment_mode'] = paymentMode;
+    data['shipping_mode'] = shippingMode;
+    data['shipping_address'] = shippingAddress;
+    data['address'] = address;
+    data['template_id'] = templateId;
 
-    _data['status'] = status;
+    data['status'] = status;
 
-    return _data;
+    return data;
   }
 }

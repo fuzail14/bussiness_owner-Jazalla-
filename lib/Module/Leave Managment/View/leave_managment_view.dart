@@ -1,7 +1,5 @@
-import 'dart:ui';
 
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
-import 'package:bussines_owner/Constants/Font/fonts.dart';
 import 'package:bussines_owner/Constants/constants.dart';
 import 'package:bussines_owner/Routes/set_routes.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +12,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../../Data/Api Resp/api_response.dart';
 import '../../../../../Widgets/Loader/loader.dart';
-import '../../../Constants/Person/person_controller.dart';
 import '../../../Widgets/AppBar/my_app_bar.dart';
 import '../Notifier/leave_managment_notifier.dart';
 
@@ -97,7 +94,7 @@ class LeaveManagmentScreen extends ConsumerWidget {
                           decoration: BoxDecoration(
                               color: whiteColor,
                               borderRadius: BorderRadius.circular(14).r,
-                              border: Border.all(color: Color(0xffDCE2EF))),
+                              border: Border.all(color: const Color(0xffDCE2EF))),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -105,7 +102,7 @@ class LeaveManagmentScreen extends ConsumerWidget {
                                 'Pending',
                                 style: GoogleFonts.montserrat(
                                   fontSize: 16.sp,
-                                  color: Color(0xffFC0000),
+                                  color: const Color(0xffFC0000),
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -185,7 +182,7 @@ Widget leaveManagmentCardText(
         title,
         style: GoogleFonts.montserrat(
           fontSize: 13.sp,
-          color: Color(0xff9FA2AB),
+          color: const Color(0xff9FA2AB),
           fontWeight: FontWeight.w600,
         ),
       ),
@@ -193,7 +190,7 @@ Widget leaveManagmentCardText(
         subTitle,
         style: GoogleFonts.montserrat(
             fontSize: 14.sp,
-            color: Color(0xff313131),
+            color: const Color(0xff313131),
             fontWeight: FontWeight.bold),
       ),
     ],

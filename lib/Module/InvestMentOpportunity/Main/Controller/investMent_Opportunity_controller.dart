@@ -116,7 +116,7 @@ class InvestMentOpportunityController
               responseStatus: Status.completed,
             )
             .toString());
-      } catch (e, stackTrace) {
+      } catch (e) {
         setResponseStatus(Status.error);
 
         // log(e.toString());

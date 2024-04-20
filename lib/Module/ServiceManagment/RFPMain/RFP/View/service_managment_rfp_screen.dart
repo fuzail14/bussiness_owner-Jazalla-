@@ -1,13 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
-import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -25,7 +21,7 @@ class ServiceManagmentRFPScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(serviceManagmentRFPProvider.notifier);
     final state = ref.watch(serviceManagmentRFPProvider);
-    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     print('build check  ${buildcheck++}');
 
     return Scaffold(
@@ -40,7 +36,7 @@ class ServiceManagmentRFPScreen extends ConsumerWidget {
               style: GoogleFonts.sourceCodePro(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w600,
-                  color: Color(0xff000000)),
+                  color: const Color(0xff000000)),
             ),
           ),
           // 26.ph,
@@ -228,7 +224,7 @@ class ServiceManagmentRFPScreen extends ConsumerWidget {
                                           style: GoogleFonts.montserrat(
                                               fontSize: 12.sp,
                                               fontWeight: FontWeight.w400,
-                                              color: Color(0xff274EA0))),
+                                              color: const Color(0xff274EA0))),
                                     ),
                                   ] else if (state
                                           .requestForProposal[index].status ==
@@ -239,7 +235,7 @@ class ServiceManagmentRFPScreen extends ConsumerWidget {
                                           style: GoogleFonts.montserrat(
                                               fontSize: 12.sp,
                                               fontWeight: FontWeight.w400,
-                                              color: Color(0xff274EA0))),
+                                              color: const Color(0xff274EA0))),
                                     )
                                   ] else if (state
                                           .requestForProposal[index].status ==
@@ -250,7 +246,7 @@ class ServiceManagmentRFPScreen extends ConsumerWidget {
                                           style: GoogleFonts.montserrat(
                                               fontSize: 12.sp,
                                               fontWeight: FontWeight.w400,
-                                              color: Color(0xff4EBBD3))),
+                                              color: const Color(0xff4EBBD3))),
                                     )
                                   ] else if (state
                                           .requestForProposal[index].status ==
@@ -261,7 +257,7 @@ class ServiceManagmentRFPScreen extends ConsumerWidget {
                                           style: GoogleFonts.montserrat(
                                               fontSize: 12.sp,
                                               fontWeight: FontWeight.w400,
-                                              color: Color(0xffFF0000))),
+                                              color: const Color(0xffFF0000))),
                                     )
                                   ] else if (state
                                           .requestForProposal[index].status ==
@@ -272,7 +268,7 @@ class ServiceManagmentRFPScreen extends ConsumerWidget {
                                           style: GoogleFonts.montserrat(
                                               fontSize: 12.sp,
                                               fontWeight: FontWeight.w400,
-                                              color: Color(0xff4EBBD3))),
+                                              color: const Color(0xff4EBBD3))),
                                     )
                                   ]
                                 ],

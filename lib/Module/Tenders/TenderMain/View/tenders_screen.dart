@@ -16,16 +16,17 @@ import '../../../../Constants/constants.dart';
 import '../../../../Constants/provider/global_providers.dart';
 import '../../../../Data/Api Resp/api_response.dart';
 import '../../../../Widgets/Buttons/FilterButton/filter_button.dart';
-import '../../../../Widgets/CustomButton/custom_button.dart';
 import '../../../../Widgets/Loader/loader.dart';
 import '../Controller/tenders_controller.dart';
 
 class TendersView extends ConsumerWidget {
+  const TendersView({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(tendersProvider.notifier);
     final state = ref.watch(tendersProvider);
-    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
       endDrawer: Drawer(
@@ -38,7 +39,7 @@ class TendersView extends ConsumerWidget {
               child: Theme(
                 data: Theme.of(context).copyWith(
                   dividerColor: Colors.transparent,
-                  expansionTileTheme: ExpansionTileThemeData(
+                  expansionTileTheme: const ExpansionTileThemeData(
                     backgroundColor: Colors.transparent,
                   ),
                 ),
@@ -103,7 +104,7 @@ class TendersView extends ConsumerWidget {
               child: Theme(
                 data: Theme.of(context).copyWith(
                   dividerColor: Colors.transparent,
-                  expansionTileTheme: ExpansionTileThemeData(
+                  expansionTileTheme: const ExpansionTileThemeData(
                     backgroundColor: Colors.transparent,
                   ),
                 ),
@@ -136,7 +137,7 @@ class TendersView extends ConsumerWidget {
         ),
       ),
 
-      key: _scaffoldKey,
+      key: scaffoldKey,
 
       //backgroundColor: HexColor('#F5F5F5'),
       backgroundColor: Colors.white,
@@ -145,7 +146,7 @@ class TendersView extends ConsumerWidget {
           size: 50.h,
           showBell: false,
           filterOnPressed: () {
-            _scaffoldKey.currentState?.openEndDrawer();
+            scaffoldKey.currentState?.openEndDrawer();
           }),
 
       body: Column(
@@ -156,7 +157,7 @@ class TendersView extends ConsumerWidget {
               Container(
                 width: 281.w,
                 height: 36.h,
-                margin: EdgeInsets.only(left: 26).r,
+                margin: const EdgeInsets.only(left: 26).r,
 
                 // decoration: BoxDecoration(
                 //     color: Colors.white,
@@ -171,7 +172,7 @@ class TendersView extends ConsumerWidget {
                   // },
 
                   decoration: InputDecoration(
-                      contentPadding: EdgeInsets.only(left: 20).r,
+                      contentPadding: const EdgeInsets.only(left: 20).r,
                       fillColor: Colors.white,
                       disabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30.0),
@@ -188,7 +189,7 @@ class TendersView extends ConsumerWidget {
                               query: controller.searchController.text.trim());
                         },
                         child: Container(
-                          padding: EdgeInsets.only(right: 22).r,
+                          padding: const EdgeInsets.only(right: 22).r,
                           width: 22.w,
                           height: 21.h,
                           child: SvgPicture.asset(
@@ -206,7 +207,7 @@ class TendersView extends ConsumerWidget {
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30).r,
-                        borderSide: BorderSide(color: Color(0xffDEDEDE)),
+                        borderSide: const BorderSide(color: Color(0xffDEDEDE)),
                       ),
                       focusColor: blueColor),
                 ),
@@ -258,9 +259,9 @@ class TendersView extends ConsumerWidget {
 
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(14),
-                          color: Color(0xfff3f4f5)),
-                      margin: EdgeInsets.only(top: 10, left: 14, right: 14).r,
-                      padding: EdgeInsets.only(
+                          color: const Color(0xfff3f4f5)),
+                      margin: const EdgeInsets.only(top: 10, left: 14, right: 14).r,
+                      padding: const EdgeInsets.only(
                               left: 16, top: 22, right: 16, bottom: 30)
                           .r,
                       child: Column(
@@ -269,7 +270,7 @@ class TendersView extends ConsumerWidget {
                           Container(
                             // margin:
                             //     EdgeInsets.only(top: 22, left: 16, right: 16).r,
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                     left: 10, top: 10, right: 10, bottom: 13)
                                 .r,
 
@@ -301,7 +302,7 @@ class TendersView extends ConsumerWidget {
                                                 value:
                                                     downloadProgress.progress),
                                         errorWidget: (context, url, error) =>
-                                            Icon(Icons.error),
+                                            const Icon(Icons.error),
                                       ),
                                     ),
                                     // CircleAvatar(
@@ -473,7 +474,7 @@ class TendersView extends ConsumerWidget {
                                 borderRadius: BorderRadius.circular(16).r,
                                 color: Colors.white),
                             child: Card(
-                              margin: EdgeInsets.only(
+                              margin: const EdgeInsets.only(
                                       top: 16,
                                       bottom: 15,
                                       left: 24.66,
@@ -481,7 +482,7 @@ class TendersView extends ConsumerWidget {
                                   .r,
                               color: HexColor('#F3F4F5'),
                               child: Padding(
-                                padding: EdgeInsets.only(
+                                padding: const EdgeInsets.only(
                                         left: 20,
                                         top: 10,
                                         right: 20,
@@ -652,7 +653,7 @@ List<Widget> buildBusinessActivitiesFilter(
     Container(
       width: double.infinity,
       // height: 437,
-      padding: EdgeInsets.only(left: 30, top: 19, bottom: 20, right: 20),
+      padding: const EdgeInsets.only(left: 30, top: 19, bottom: 20, right: 20),
 
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(14),
@@ -684,7 +685,7 @@ List<Widget> buildSortFilter(TendersController controller, TendersState state) {
   return [
     Container(
       width: double.infinity,
-      padding: EdgeInsets.only(left: 30, top: 19, bottom: 20, right: 20),
+      padding: const EdgeInsets.only(left: 30, top: 19, bottom: 20, right: 20),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(14),
           color: HexColor('#FFFFFF'),

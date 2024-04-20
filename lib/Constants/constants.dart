@@ -60,13 +60,13 @@ String? passwordValidator(String? v) {
 
 String? emailValidator(String? v) {
   String string = v!.trim();
-  bool _emailValid = RegExp(
+  bool emailValid = RegExp(
           r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
       .hasMatch(string);
 
   if (string.isEmpty) {
     return 'Please enter your email';
-  } else if (!_emailValid) {
+  } else if (!emailValid) {
     return 'Please enter a valid email';
   } else {
     return null;
@@ -142,7 +142,7 @@ String? otpValidator(String? value) {
 }
 
 TextStyle montserratHeadingTextStyle = GoogleFonts.montserrat(
-    fontSize: 13.sp, fontWeight: FontWeight.w600, color: Color(0xff707070));
+    fontSize: 13.sp, fontWeight: FontWeight.w600, color: const Color(0xff707070));
 
 TextStyle montserratSubHeadingTextStyle = GoogleFonts.montserrat(
-    fontSize: 12.sp, fontWeight: FontWeight.w400, color: Color(0xff707070));
+    fontSize: 12.sp, fontWeight: FontWeight.w400, color: const Color(0xff707070));

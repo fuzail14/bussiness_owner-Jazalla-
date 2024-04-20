@@ -18,12 +18,12 @@ class ProductWithTemplate {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['success'] = success;
-    _data['productDetailForQuotation'] = productDetailForQuotation.toJson();
-    _data['quotationTemplate'] =
+    final data = <String, dynamic>{};
+    data['success'] = success;
+    data['productDetailForQuotation'] = productDetailForQuotation.toJson();
+    data['quotationTemplate'] =
         quotationTemplate.map((e) => e.toJson()).toList();
-    return _data;
+    return data;
   }
 }
 
@@ -53,14 +53,14 @@ class ProductDetailForQuotation {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['company_id'] = companyId;
-    _data['name'] = name;
-    _data['min_qty'] = minQty;
-    _data['unit'] = unit;
-    _data['payment_mode'] = paymentMode;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['company_id'] = companyId;
+    data['name'] = name;
+    data['min_qty'] = minQty;
+    data['unit'] = unit;
+    data['payment_mode'] = paymentMode;
+    return data;
   }
 }
 
@@ -102,17 +102,17 @@ class QuotationTemplate {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['company_id'] = companyId;
-    _data['title'] = title;
-    _data['request_type'] = requestType;
-    _data['content'] = content;
-    _data['status'] = status;
-    _data['created_by'] = createdBy;
-    _data['updated_by'] = updatedBy;
-    _data['created_at'] = createdAt;
-    _data['updated_at'] = updatedAt;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['company_id'] = companyId;
+    data['title'] = title;
+    data['request_type'] = requestType;
+    data['content'] = content;
+    data['status'] = status;
+    data['created_by'] = createdBy;
+    data['updated_by'] = updatedBy;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    return data;
   }
 }

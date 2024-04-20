@@ -15,12 +15,12 @@ class Person {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['success'] = success;
-    _data['data'] = data!.toJson();
-    _data['Bearer'] = Bearer;
+    final data = <String, dynamic>{};
+    data['success'] = success;
+    //data['data'] = data.toJson();
+    data['Bearer'] = Bearer;
 
-    return _data;
+    return data;
   }
 }
 
@@ -130,42 +130,42 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['company_id'] = companyId;
-    _data['location_id'] = locationId;
-    _data['current_location'] = currentLocation;
-    _data['login_type'] = loginType;
-    _data['name'] = name;
-    _data['first_name'] = firstName;
-    _data['last_name'] = lastName;
-    _data['mobile_no'] = mobileNo;
-    _data['user_role_id'] = userRoleId;
-    _data['email'] = email;
-    _data['email_verified_at'] = emailVerifiedAt;
-    _data['plan'] = plan;
-    _data['plan_expire_date'] = planExpireDate;
-    _data['requested_plan'] = requestedPlan;
-    _data['type'] = type;
-    _data['avatar'] = avatar;
-    _data['lang'] = lang;
-    _data['mode'] = mode;
-    _data['created_by'] = createdBy;
-    _data['default_pipeline'] = defaultPipeline;
-    _data['delete_status'] = deleteStatus;
-    _data['is_active'] = isActive;
-    _data['last_login_at'] = lastLoginAt;
-    _data['created_at'] = createdAt;
-    _data['updated_at'] = updatedAt;
-    _data['messenger_color'] = messengerColor;
-    _data['dark_mode'] = darkMode;
-    _data['active_status'] = activeStatus;
-    _data['is_email_verified'] = isEmailVerified;
-    _data['profile'] = profile;
-    _data['fcmtoken'] = fcmtoken;
-    _data['company'] = company!.toJson();
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['company_id'] = companyId;
+    data['location_id'] = locationId;
+    data['current_location'] = currentLocation;
+    data['login_type'] = loginType;
+    data['name'] = name;
+    data['first_name'] = firstName;
+    data['last_name'] = lastName;
+    data['mobile_no'] = mobileNo;
+    data['user_role_id'] = userRoleId;
+    data['email'] = email;
+    data['email_verified_at'] = emailVerifiedAt;
+    data['plan'] = plan;
+    data['plan_expire_date'] = planExpireDate;
+    data['requested_plan'] = requestedPlan;
+    data['type'] = type;
+    data['avatar'] = avatar;
+    data['lang'] = lang;
+    data['mode'] = mode;
+    data['created_by'] = createdBy;
+    data['default_pipeline'] = defaultPipeline;
+    data['delete_status'] = deleteStatus;
+    data['is_active'] = isActive;
+    data['last_login_at'] = lastLoginAt;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    data['messenger_color'] = messengerColor;
+    data['dark_mode'] = darkMode;
+    data['active_status'] = activeStatus;
+    data['is_email_verified'] = isEmailVerified;
+    data['profile'] = profile;
+    data['fcmtoken'] = fcmtoken;
+    data['company'] = company!.toJson();
 
-    return _data;
+    return data;
   }
 }
 
@@ -192,13 +192,13 @@ class Company {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['company_code'] = companyCode;
-    _data['company_name'] = companyName;
-    _data['ar_company_name'] = arCompanyName;
-    _data['business_type'] = businessType;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['company_code'] = companyCode;
+    data['company_name'] = companyName;
+    data['ar_company_name'] = arCompanyName;
+    data['business_type'] = businessType;
 
-    return _data;
+    return data;
   }
 }

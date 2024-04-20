@@ -55,20 +55,18 @@ class VerificationCodeController extends StateNotifier<VerificationCodeState> {
       UserCredential userCredential =
           await _auth.signInWithCredential(credential);
 
-      if (userCredential != null) {
-        log(userCredential.user!.phoneNumber.toString().trim());
-        myToast(
-            gravity: ToastGravity.CENTER,
-            msg: 'Otp Verified.',
-            backgroundColor: Color.fromARGB(255, 90, 172, 138));
-        context.go(
-          passwordScreen,
-        );
+      log(userCredential.user!.phoneNumber.toString().trim());
+      myToast(
+          gravity: ToastGravity.CENTER,
+          msg: 'Otp Verified.',
+          backgroundColor: const Color.fromARGB(255, 90, 172, 138));
+      context.go(
+        passwordScreen,
+      );
 
-        // Navigate to password screen or other logic
-        // Example: ref.read(routerProvider.notifier).state = '/passwordScreen';
-      }
-    } on FirebaseAuthException catch (e) {
+      // Navigate to password screen or other logic
+      // Example: ref.read(routerProvider.notifier).state = '/passwordScreen';
+        } on FirebaseAuthException catch (e) {
       if (e.code == 'session-expired') {
         myToast(
             msg: 'The SMS code has expired. Please request to resend the OTP.',
@@ -78,7 +76,7 @@ class VerificationCodeController extends StateNotifier<VerificationCodeState> {
         myToast(
             msg: e.message ?? 'An unknown error occurred', isNegative: true);
       }
-    } catch (e, stackTrace) {
+    } catch (e) {
       log(e.toString());
       myToast(
           msg: 'An error occurred while verifying OTP: $e', isNegative: true);

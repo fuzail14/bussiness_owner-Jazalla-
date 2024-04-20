@@ -22,7 +22,7 @@ class ServiceManagmentRFIScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(serviceManagmentRFIProvider.notifier);
     final state = ref.watch(serviceManagmentRFIProvider);
-    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     print('build check  ${buildcheck++}');
 
     return Scaffold(
@@ -30,7 +30,7 @@ class ServiceManagmentRFIScreen extends ConsumerWidget {
           showBell: false,
           title: "RFI Managemet",
           filterOnPressed: () {
-            _scaffoldKey.currentState?.openEndDrawer();
+            scaffoldKey.currentState?.openEndDrawer();
           }),
       backgroundColor: Colors.white,
       body: Column(
@@ -41,8 +41,8 @@ class ServiceManagmentRFIScreen extends ConsumerWidget {
               Container(
                 width: 281.w,
                 height: 36.h,
-                padding: EdgeInsets.only(left: 20).r,
-                margin: EdgeInsets.only(left: 26).r,
+                padding: const EdgeInsets.only(left: 20).r,
+                margin: const EdgeInsets.only(left: 26).r,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(30.0),
@@ -66,7 +66,7 @@ class ServiceManagmentRFIScreen extends ConsumerWidget {
                         //     query: controller.searchController.text.trim());
                       },
                       child: Container(
-                        padding: EdgeInsets.only(right: 22).r,
+                        padding: const EdgeInsets.only(right: 22).r,
                         width: 22.w,
                         height: 21.h,
                         child: SvgPicture.asset(
@@ -133,10 +133,10 @@ class ServiceManagmentRFIScreen extends ConsumerWidget {
                           //width: 360.w,
                           // height: 224.h,
                           margin:
-                              EdgeInsets.only(left: 26, right: 26, bottom: 20)
+                              const EdgeInsets.only(left: 26, right: 26, bottom: 20)
                                   .r,
                           decoration: BoxDecoration(
-                              color: Color(0xffF9F9F9),
+                              color: const Color(0xffF9F9F9),
                               borderRadius: BorderRadius.circular(8.0).r),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -219,7 +219,7 @@ class ServiceManagmentRFIScreen extends ConsumerWidget {
                                               .status ==
                                           '1') ...[
                                         Container(
-                                          padding: EdgeInsets.symmetric(
+                                          padding: const EdgeInsets.symmetric(
                                                   horizontal: 8.0)
                                               .r,
                                           decoration: BoxDecoration(
@@ -230,7 +230,7 @@ class ServiceManagmentRFIScreen extends ConsumerWidget {
                                               style: GoogleFonts.montserrat(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w400,
-                                                  color: Color(0xffFACC15))),
+                                                  color: const Color(0xffFACC15))),
                                         ),
                                       ],
                                       16.ph,
@@ -243,7 +243,7 @@ class ServiceManagmentRFIScreen extends ConsumerWidget {
                                               .status ==
                                           '1') ...[
                                         Container(
-                                          padding: EdgeInsets.symmetric(
+                                          padding: const EdgeInsets.symmetric(
                                                   horizontal: 8.0)
                                               .r,
                                           decoration: BoxDecoration(
@@ -254,7 +254,7 @@ class ServiceManagmentRFIScreen extends ConsumerWidget {
                                               style: GoogleFonts.montserrat(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w400,
-                                                  color: Color(0xff2DD4BF))),
+                                                  color: const Color(0xff2DD4BF))),
                                         ),
                                       ],
                                       16.ph,

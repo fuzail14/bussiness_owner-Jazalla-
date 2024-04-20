@@ -238,7 +238,7 @@ class TenderResponseNotifier extends StateNotifier<TenderResponseState> {
       "start_date": startDate,
       "status": '1',
     };
-    print('data  ${data}');
+    print('data  $data');
 
     try {
       await requestProposalRepository.sendProposal(data, pdfFile: pdfFile);

@@ -1,22 +1,17 @@
 import 'dart:io';
 
-import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
-import 'package:bussines_owner/Widgets/CustomButton/custom_button.dart';
-import 'package:bussines_owner/Widgets/Loader/loader.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../../../Constants/constants.dart';
 import '../../../../Widgets/DescriptionTextField/description_field_attachment.dart';
 import '../Controller/send_inquiry_controller.dart';
 
 class InquiryScreen extends ConsumerWidget {
   final Map<String, dynamic>? inquiryData;
   int buiuld = 0;
-  InquiryScreen({this.inquiryData});
+  InquiryScreen({super.key, this.inquiryData});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     print('send inquiry build check ${buiuld++}');

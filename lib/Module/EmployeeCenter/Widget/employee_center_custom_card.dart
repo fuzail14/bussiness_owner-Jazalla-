@@ -1,12 +1,9 @@
-import 'package:animate_do/animate_do.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hexcolor/hexcolor.dart';
 
 // ignore: must_be_immutable
 class CardEmployeeCenter extends StatelessWidget {
@@ -53,7 +50,7 @@ class CardEmployeeCenter extends StatelessWidget {
         // ),
         decoration: BoxDecoration(
           color: whiteColor,
-          border: Border.all(color: Color(0xff449FC6).withOpacity(0.6)),
+          border: Border.all(color: const Color(0xff449FC6).withOpacity(0.6)),
           borderRadius: BorderRadius.circular(8).r,
           boxShadow: [
             BoxShadow(
@@ -76,7 +73,7 @@ class CardEmployeeCenter extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: Color(0xff1F3996),
+                  color: const Color(0xff1F3996),
                 ),
                 // color: Color(0xffF9F9F9),
                 // gradient: LinearGradient(
@@ -112,7 +109,7 @@ class CardEmployeeCenter extends StatelessWidget {
               //     color: Color(0xff1C2827)
               //     ),
               style: GoogleFonts.roboto(
-                  color: Color(0xff1F3996),
+                  color: const Color(0xff1F3996),
                   fontWeight: FontWeight.bold,
                   fontSize: 14.sp),
             )

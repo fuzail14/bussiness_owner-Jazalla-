@@ -14,11 +14,11 @@ class Request4Information {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['success'] = success;
-    _data['RequestForInformation'] =
+    final data = <String, dynamic>{};
+    data['success'] = success;
+    data['RequestForInformation'] =
         requestForInformation.map((e) => e.toJson()).toList();
-    return _data;
+    return data;
   }
 }
 
@@ -72,23 +72,23 @@ class RequestForInformation {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['product_id'] = productId;
-    _data['service_id'] = serviceId;
-    _data['user_id'] = userId;
-    _data['buyer_id'] = buyerId;
-    _data['network'] = network;
-    _data['request_type'] = requestType;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['product_id'] = productId;
+    data['service_id'] = serviceId;
+    data['user_id'] = userId;
+    data['buyer_id'] = buyerId;
+    data['network'] = network;
+    data['request_type'] = requestType;
 
-    _data['request_for'] = requestFor;
-    _data['details'] = details;
-    _data['start_date'] = startdate;
+    data['request_for'] = requestFor;
+    data['details'] = details;
+    data['start_date'] = startdate;
 
-    _data['title'] = title;
-    _data['unit'] = unit;
-    _data['status'] = status;
+    data['title'] = title;
+    data['unit'] = unit;
+    data['status'] = status;
 
-    return _data;
+    return data;
   }
 }

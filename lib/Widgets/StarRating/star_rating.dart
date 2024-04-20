@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-typedef void RatingChangeCallback(double rating);
+typedef RatingChangeCallback = void Function(double rating);
 
 class StarRating extends StatelessWidget {
   final int starCount;
@@ -9,8 +9,8 @@ class StarRating extends StatelessWidget {
   //final RatingChangeCallback onRatingChanged;
   final Color color;
 
-  StarRating(
-      {this.starCount = 5,
+  const StarRating(
+      {super.key, this.starCount = 5,
       this.rating = .0,
       //required this.onRatingChanged,
       required this.color});

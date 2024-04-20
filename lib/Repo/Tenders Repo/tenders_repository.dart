@@ -9,7 +9,7 @@ class TendersRepository {
   Future<Tender> TendersResponse({
     required bearerToken,
   }) async {
-    var response = await networkServices.getReq("${Api.tendersApi}",
+    var response = await networkServices.getReq(Api.tendersApi,
         bearerToken: bearerToken);
     log(response.toString());
 

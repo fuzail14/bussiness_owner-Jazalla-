@@ -1,19 +1,11 @@
-import 'dart:ui';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
-import 'package:bussines_owner/Constants/Font/fonts.dart';
 import 'package:bussines_owner/Constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hexcolor/hexcolor.dart';
-import '../../../../../Data/Api Resp/api_response.dart';
-import '../../../../../Widgets/Loader/loader.dart';
-import '../../../Constants/Person/person_controller.dart';
 import '../../../Widgets/AppBar/my_app_bar.dart';
 import '../Notifier/leave_create_notifier.dart';
 
@@ -63,7 +55,7 @@ class LeaveCreateScreen extends ConsumerWidget {
                   style: GoogleFonts.montserrat(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: Color(0xff343434),
+                    color: const Color(0xff343434),
                   )),
             ),
             15.ph,
@@ -99,7 +91,7 @@ class LeaveCreateScreen extends ConsumerWidget {
                       style: GoogleFonts.montserrat(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: Color(0xff131925),
+                        color: const Color(0xff131925),
                       )),
                   5.ph,
                   Container(
@@ -108,7 +100,7 @@ class LeaveCreateScreen extends ConsumerWidget {
                         color: whiteColor,
                         borderRadius: BorderRadius.circular(6).r,
                         border: Border.all(
-                          color: Color(0xffE4E4E4),
+                          color: const Color(0xffE4E4E4),
                         ),
                         boxShadow: [
                           BoxShadow(
@@ -135,7 +127,7 @@ class LeaveCreateScreen extends ConsumerWidget {
                             color: Color(0xffBEBEC2),
                           ),
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
+                            contentPadding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 10)
                                 .r,
                             border: InputBorder.none,
@@ -150,7 +142,7 @@ class LeaveCreateScreen extends ConsumerWidget {
                                   style: GoogleFonts.montserrat(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w400,
-                                    color: Color(0xff131925),
+                                    color: const Color(0xff131925),
                                   )),
                             );
                           }).toList(),
@@ -164,7 +156,7 @@ class LeaveCreateScreen extends ConsumerWidget {
                       style: GoogleFonts.montserrat(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: Color(0xff131925),
+                        color: const Color(0xff131925),
                       )),
                   5.ph,
                   Container(
@@ -173,7 +165,7 @@ class LeaveCreateScreen extends ConsumerWidget {
                       color: whiteColor,
                       borderRadius: BorderRadius.circular(6).r,
                       border: Border.all(
-                        color: Color(0xffE4E4E4).withOpacity(0.5),
+                        color: const Color(0xffE4E4E4).withOpacity(0.5),
                       ),
                       boxShadow: [
                         BoxShadow(
@@ -193,7 +185,7 @@ class LeaveCreateScreen extends ConsumerWidget {
                       style: GoogleFonts.montserrat(
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
-                        color: Color(0xff131925),
+                        color: const Color(0xff131925),
                       ),
                       cursorHeight: 16,
                       onTap: () {
@@ -205,7 +197,7 @@ class LeaveCreateScreen extends ConsumerWidget {
                         hintStyle: GoogleFonts.montserrat(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
-                          color: Color(0xff131925),
+                          color: const Color(0xff131925),
                         ),
                         enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(
@@ -219,7 +211,7 @@ class LeaveCreateScreen extends ConsumerWidget {
                         ),
                         suffixIcon: Icon(
                           Icons.calendar_month,
-                          color: Color(0xff969799),
+                          color: const Color(0xff969799),
                           size: 20.h,
                         ),
                         contentPadding: const EdgeInsets.symmetric(
@@ -234,7 +226,7 @@ class LeaveCreateScreen extends ConsumerWidget {
                       style: GoogleFonts.montserrat(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: Color(0xff131925),
+                        color: const Color(0xff131925),
                       )),
                   5.ph,
                   Container(
@@ -243,7 +235,7 @@ class LeaveCreateScreen extends ConsumerWidget {
                       color: whiteColor,
                       borderRadius: BorderRadius.circular(6).r,
                       border: Border.all(
-                        color: Color(0xffE4E4E4).withOpacity(0.5),
+                        color: const Color(0xffE4E4E4).withOpacity(0.5),
                       ),
                       boxShadow: [
                         BoxShadow(
@@ -261,7 +253,7 @@ class LeaveCreateScreen extends ConsumerWidget {
                       style: GoogleFonts.montserrat(
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
-                        color: Color(0xff131925),
+                        color: const Color(0xff131925),
                       ),
                       //readOnly: true, // Remove this line
                       controller: controller.endDateController,
@@ -275,7 +267,7 @@ class LeaveCreateScreen extends ConsumerWidget {
                         hintStyle: GoogleFonts.montserrat(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
-                          color: Color(0xff131925),
+                          color: const Color(0xff131925),
                         ),
                         enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(
@@ -289,7 +281,7 @@ class LeaveCreateScreen extends ConsumerWidget {
                         ),
                         suffixIcon: Icon(
                           Icons.calendar_month,
-                          color: Color(0xff969799),
+                          color: const Color(0xff969799),
                           size: 20.h,
                         ),
                         contentPadding: const EdgeInsets.symmetric(
@@ -309,7 +301,7 @@ class LeaveCreateScreen extends ConsumerWidget {
                   style: GoogleFonts.montserrat(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: Color(0xff343434),
+                    color: const Color(0xff343434),
                   )),
             ),
             15.ph,
@@ -355,7 +347,7 @@ class LeaveCreateScreen extends ConsumerWidget {
                       style: GoogleFonts.poppins(
                         fontSize: 10,
                         fontWeight: FontWeight.w600,
-                        color: Color(0xff4D4D4D),
+                        color: const Color(0xff4D4D4D),
                       )),
                   5.pw,
                   Column(

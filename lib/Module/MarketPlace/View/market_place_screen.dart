@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
 import 'package:bussines_owner/Routes/set_routes.dart';
@@ -8,18 +7,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import '../../../Constants/Person/person_controller.dart';
 import '../../../Widgets/AppBar/my_app_bar.dart';
-import '../../../Widgets/HomeAppBar/home_app_bar.dart';
 import '../Widget/market_place_screen_card.dart';
 
 class MarketPlaceScreen extends ConsumerWidget {
   int buildCheck = 0;
+
+  MarketPlaceScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final person = ref.read(personProvider);
 
     print('marketplace');
     print(person!.data!.lastName!);
-    print(person!.data!.mobileNo!);
+    print(person.data!.mobileNo!);
     print('market place build check ${buildCheck++}');
 
     return Scaffold(
@@ -68,7 +68,7 @@ class MarketPlaceScreen extends ConsumerWidget {
                                 'It serves as a comprehensive directory, showcasing company profiles with industry, locations, products, services, and contact details for easy access and networking.'),
                         20.pw,
                         CardMakretPlace(
-                          textColor: Color(0xff188F71),
+                          textColor: const Color(0xff188F71),
                           svgPath: 'assets/images/tenders.svg',
                           headingText: 'Tenders',
                           boxText: '4',
@@ -86,7 +86,7 @@ class MarketPlaceScreen extends ConsumerWidget {
                       //mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CardMakretPlace(
-                            textColor: Color(0xffFCAB10),
+                            textColor: const Color(0xffFCAB10),
                             svgPath: 'assets/images/online_store.svg',
                             headingText: 'Online Store',
                             boxText: '2',
@@ -98,7 +98,7 @@ class MarketPlaceScreen extends ConsumerWidget {
                                 'It hosts an online store providing a platform for suppliers to showcase and sell their products online, catering to diverse customers worldwide.'),
                         20.pw,
                         CardMakretPlace(
-                          textColor: Color(0xff4B6FFF),
+                          textColor: const Color(0xff4B6FFF),
                           svgPath: 'assets/images/general_service.svg',
                           headingText: 'General Services',
                           boxText: '5',
@@ -116,7 +116,7 @@ class MarketPlaceScreen extends ConsumerWidget {
                       //mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CardMakretPlace(
-                          textColor: Color(0xffFCAB10),
+                          textColor: const Color(0xffFCAB10),
                           svgPath: 'assets/images/bussines_sale.svg',
                           headingText: 'Bussines For Sale',
                           boxText: '3',
@@ -129,7 +129,7 @@ class MarketPlaceScreen extends ConsumerWidget {
                         ),
                         20.pw,
                         CardMakretPlace(
-                          textColor: Color(0xff4B6FFF),
+                          textColor: const Color(0xff4B6FFF),
                           svgPath: 'assets/images/investment_opportunities.svg',
                           headingText: 'Invesetment Opportunities',
                           boxText: '6',

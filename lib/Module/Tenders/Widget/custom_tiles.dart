@@ -10,7 +10,7 @@ Widget custom_tile(firstText, secondText) {
     color: HexColor('#F9F9F9'),
     width: double.infinity,
     height: 39.h,
-    padding: EdgeInsets.only(left: 27, right: 27).r,
+    padding: const EdgeInsets.only(left: 27, right: 27).r,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -55,11 +55,11 @@ Widget productandServiceInfoCard(
         Container(
           width: width,
           //height: height,
-          padding: EdgeInsets.only(left: 15, top: 9, right: 17, bottom: 14).r,
+          padding: const EdgeInsets.only(left: 15, top: 9, right: 17, bottom: 14).r,
           decoration: BoxDecoration(
               border: Border.all(color: HexColor('#19A3A3')),
               borderRadius: BorderRadius.circular(8).r,
-              color: Color(0xfff9f9f9)),
+              color: const Color(0xfff9f9f9)),
           child: child,
         ),
         10.ph,

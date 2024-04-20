@@ -2,10 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
 import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -29,7 +26,7 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(bussinesCommunitiesProvider.notifier);
     final state = ref.watch(bussinesCommunitiesProvider);
-    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     print('build check  ${buildcheck++}');
 
     return Scaffold(
@@ -43,7 +40,7 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
               child: Theme(
                 data: Theme.of(context).copyWith(
                   dividerColor: Colors.transparent,
-                  expansionTileTheme: ExpansionTileThemeData(
+                  expansionTileTheme: const ExpansionTileThemeData(
                     backgroundColor: Colors.transparent,
                   ),
                 ),
@@ -71,7 +68,7 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
               child: Theme(
                 data: Theme.of(context).copyWith(
                   dividerColor: Colors.transparent,
-                  expansionTileTheme: ExpansionTileThemeData(
+                  expansionTileTheme: const ExpansionTileThemeData(
                     backgroundColor: Colors.transparent,
                   ),
                 ),
@@ -136,7 +133,7 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
               child: Theme(
                 data: Theme.of(context).copyWith(
                   dividerColor: Colors.transparent,
-                  expansionTileTheme: ExpansionTileThemeData(
+                  expansionTileTheme: const ExpansionTileThemeData(
                     backgroundColor: Colors.transparent,
                   ),
                 ),
@@ -173,7 +170,7 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
               child: Theme(
                 data: Theme.of(context).copyWith(
                   dividerColor: Colors.transparent,
-                  expansionTileTheme: ExpansionTileThemeData(
+                  expansionTileTheme: const ExpansionTileThemeData(
                     backgroundColor: Colors.transparent,
                   ),
                 ),
@@ -196,13 +193,13 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
         ),
       ),
 
-      key: _scaffoldKey,
+      key: scaffoldKey,
 
       appBar: MyAppBar(
           showBell: false,
           title: "Bussiness Communities",
           filterOnPressed: () {
-            _scaffoldKey.currentState?.openEndDrawer();
+            scaffoldKey.currentState?.openEndDrawer();
           }),
       backgroundColor: Colors.white,
       body: RefreshIndicator(
@@ -218,7 +215,7 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
                 Container(
                   width: 281.w,
                   height: 36.h,
-                  margin: EdgeInsets.only(left: 26).r,
+                  margin: const EdgeInsets.only(left: 26).r,
 
                   // decoration: BoxDecoration(
                   //     color: Colors.white,
@@ -233,7 +230,7 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
                     // },
 
                     decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(left: 20).r,
+                        contentPadding: const EdgeInsets.only(left: 20).r,
                         fillColor: Colors.white,
                         disabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30.0),
@@ -250,7 +247,7 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
                                 query: controller.searchController.text.trim());
                           },
                           child: Container(
-                            padding: EdgeInsets.only(right: 22).r,
+                            padding: const EdgeInsets.only(right: 22).r,
                             width: 22.w,
                             height: 21.h,
                             child: SvgPicture.asset(
@@ -268,7 +265,7 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30).r,
-                          borderSide: BorderSide(color: Color(0xffDEDEDE)),
+                          borderSide: const BorderSide(color: Color(0xffDEDEDE)),
                         ),
                         focusColor: blueColor),
                   ),
@@ -699,7 +696,7 @@ List<Widget> buildBusinessActivitiesFilter(
     Container(
       width: double.infinity,
       // height: 437,
-      padding: EdgeInsets.only(left: 30, top: 19, bottom: 20, right: 20),
+      padding: const EdgeInsets.only(left: 30, top: 19, bottom: 20, right: 20),
 
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(14),
@@ -733,7 +730,7 @@ List<Widget> buildIndustriesFilter(
     Container(
       width: double.infinity,
       // height: 437,
-      padding: EdgeInsets.only(left: 30, top: 19, bottom: 20, right: 20),
+      padding: const EdgeInsets.only(left: 30, top: 19, bottom: 20, right: 20),
 
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(14),
@@ -765,7 +762,7 @@ List<Widget> buildBusinessProvidersFilter(
   return [
     Container(
       width: double.infinity,
-      padding: EdgeInsets.only(left: 30, top: 19, bottom: 20, right: 20),
+      padding: const EdgeInsets.only(left: 30, top: 19, bottom: 20, right: 20),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(14),
           color: HexColor('#FFFFFF'),
@@ -812,7 +809,7 @@ List<Widget> buildSortFilter(
   return [
     Container(
       width: double.infinity,
-      padding: EdgeInsets.only(left: 30, top: 19, bottom: 20, right: 20),
+      padding: const EdgeInsets.only(left: 30, top: 19, bottom: 20, right: 20),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(14),
           color: HexColor('#FFFFFF'),

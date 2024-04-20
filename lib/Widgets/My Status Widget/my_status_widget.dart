@@ -9,8 +9,8 @@ class MyStatusWidget extends StatelessWidget {
   final double? width;
   final double? height;
 
-  MyStatusWidget(
-      this.status, this.color, this.textcolor, this.width, this.height);
+  const MyStatusWidget(
+      this.status, this.color, this.textcolor, this.width, this.height, {super.key});
   @override
   Widget build(BuildContext context) {
     return Container(

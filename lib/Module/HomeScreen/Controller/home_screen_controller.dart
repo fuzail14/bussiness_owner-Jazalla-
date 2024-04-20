@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 //import 'package:get/get.dart';
-import '../../../Constants/Person/person.dart';
-import '../../../Constants/Person/person_controller.dart';
 
 final homeScreenProvider =
     StateNotifierProvider<HomeScreenNotifier, HomeScreenState>((ref) {
@@ -42,7 +40,7 @@ class HomeScreenNotifier extends StateNotifier<HomeScreenState> {
       // Update the state only if the index changes
       state = state.copyWith(currentIndex: index);
       pageController.animateToPage(index,
-          duration: Duration(microseconds: 3), curve: Curves.easeInOut);
+          duration: const Duration(microseconds: 3), curve: Curves.easeInOut);
     }
   }
 

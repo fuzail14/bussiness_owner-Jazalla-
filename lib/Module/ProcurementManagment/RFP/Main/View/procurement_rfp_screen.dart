@@ -1,13 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
-import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -19,6 +15,8 @@ import '../../../../ServiceManagment/RFPMain/RFP/View/service_managment_rfp_scre
 import '../Controller/procurement_rfp_controller.dart';
 
 class ProcurementRFPScreen extends ConsumerStatefulWidget {
+  const ProcurementRFPScreen({super.key});
+
   @override
   _ProcurementRFPScreenState createState() => _ProcurementRFPScreenState();
 }
@@ -157,13 +155,13 @@ Widget _tabButton({
             ? [
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.5),
-                  offset: Offset(0, 2),
+                  offset: const Offset(0, 2),
                   blurRadius: 4.0,
                 ),
               ]
             : [], // Apply shadow only when selected
         border: Border.all(
-          color: isSelected ? Color(0xffDADADA) : Color(0xff4EBBD3),
+          color: isSelected ? const Color(0xffDADADA) : const Color(0xff4EBBD3),
           width: 1.w,
         ),
       ),
@@ -189,7 +187,7 @@ class SendRFPScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(ProcuremenetRFpProvider.notifier);
     final state = ref.watch(ProcuremenetRFpProvider);
-    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     print('build check  ${buildcheck++}');
 
     return Scaffold(
@@ -204,7 +202,7 @@ class SendRFPScreen extends ConsumerWidget {
               style: GoogleFonts.sourceCodePro(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w600,
-                  color: Color(0xff000000)),
+                  color: const Color(0xff000000)),
             ),
           ),
           // 26.ph,
@@ -392,7 +390,7 @@ class SendRFPScreen extends ConsumerWidget {
                                           style: GoogleFonts.montserrat(
                                               fontSize: 12.sp,
                                               fontWeight: FontWeight.w400,
-                                              color: Color(0xff274EA0))),
+                                              color: const Color(0xff274EA0))),
                                     ),
                                   ] else if (state
                                           .requestForProposal[index].status ==
@@ -403,7 +401,7 @@ class SendRFPScreen extends ConsumerWidget {
                                           style: GoogleFonts.montserrat(
                                               fontSize: 12.sp,
                                               fontWeight: FontWeight.w400,
-                                              color: Color(0xff274EA0))),
+                                              color: const Color(0xff274EA0))),
                                     )
                                   ] else if (state
                                           .requestForProposal[index].status ==
@@ -414,7 +412,7 @@ class SendRFPScreen extends ConsumerWidget {
                                           style: GoogleFonts.montserrat(
                                               fontSize: 12.sp,
                                               fontWeight: FontWeight.w400,
-                                              color: Color(0xff4EBBD3))),
+                                              color: const Color(0xff4EBBD3))),
                                     )
                                   ] else if (state
                                           .requestForProposal[index].status ==
@@ -425,7 +423,7 @@ class SendRFPScreen extends ConsumerWidget {
                                           style: GoogleFonts.montserrat(
                                               fontSize: 12.sp,
                                               fontWeight: FontWeight.w400,
-                                              color: Color(0xffFF0000))),
+                                              color: const Color(0xffFF0000))),
                                     )
                                   ] else if (state
                                           .requestForProposal[index].status ==
@@ -436,7 +434,7 @@ class SendRFPScreen extends ConsumerWidget {
                                           style: GoogleFonts.montserrat(
                                               fontSize: 12.sp,
                                               fontWeight: FontWeight.w400,
-                                              color: Color(0xff4EBBD3))),
+                                              color: const Color(0xff4EBBD3))),
                                     )
                                   ]
                                 ],

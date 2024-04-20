@@ -24,7 +24,7 @@ Widget specificationContainer(String firstText, String secondText) {
             style: GoogleFonts.poppins(
                 fontSize: 14.sp,
                 fontWeight: FontWeight.w500,
-                color: Color(0xff5A5A5A))),
+                color: const Color(0xff5A5A5A))),
         SizedBox(
           width: 60.w,
           child: AutoSizeText(secondText,
@@ -33,7 +33,7 @@ Widget specificationContainer(String firstText, String secondText) {
               style: GoogleFonts.poppins(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w500,
-                  color: Color(0xff5A5A5A))),
+                  color: const Color(0xff5A5A5A))),
         ),
       ],
     ),
@@ -65,7 +65,7 @@ Widget moreDetailsButton(
               style: GoogleFonts.poppins(
                   fontSize: 10.sp,
                   fontWeight: FontWeight.w500,
-                  color: Color(0xff5A5A5A))),
+                  color: const Color(0xff5A5A5A))),
         ],
       ),
     ),
