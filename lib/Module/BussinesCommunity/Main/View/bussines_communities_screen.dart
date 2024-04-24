@@ -197,6 +197,7 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
 
       appBar: MyAppBar(
           showBell: false,
+          showBackButton: true,
           title: "Bussiness Communities",
           filterOnPressed: () {
             scaffoldKey.currentState?.openEndDrawer();
@@ -265,7 +266,8 @@ class BussinesCommunitiesScreen extends ConsumerWidget {
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30).r,
-                          borderSide: const BorderSide(color: Color(0xffDEDEDE)),
+                          borderSide:
+                              const BorderSide(color: Color(0xffDEDEDE)),
                         ),
                         focusColor: blueColor),
                   ),

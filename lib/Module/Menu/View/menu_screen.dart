@@ -1,4 +1,3 @@
-
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
 import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
@@ -96,6 +95,13 @@ class Menu extends ConsumerWidget {
           } else if (item.title == 'Order Placement') {
             context.pushNamed(orderPlacementScreen, extra: person);
             // context.pushNamed(procuremenetRFQScreen, extra: person);
+          } else if (item.title == 'User Management') {
+            context.pushNamed(userManagementScreen, extra: person);
+            // context.pushNamed(procuremenetRFQScreen, extra: person);
+          } else if (item.title == 'Invoice and Billing') {
+            context.pushNamed(invoiceManagementScreen, extra: person);
+          } else if (item.title == 'Approvals and Workflows') {
+            context.pushNamed(approvalAuthorityScreen, extra: person);
           }
         }, // Pass the dynamic color
         children: _buildChildrenForItem(context, item, person),

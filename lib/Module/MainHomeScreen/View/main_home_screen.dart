@@ -2,12 +2,14 @@ import 'dart:ui';
 import 'package:badges/badges.dart' as badges;
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/Font/fonts.dart';
+import 'package:bussines_owner/Module/Approval%20Managment/Main/View/approval_managment_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../Constants/Person/person.dart';
 import '../../../Constants/Person/person_controller.dart';
 import '../../../Constants/constants.dart';
 import '../../../Routes/set_routes.dart';
@@ -15,6 +17,13 @@ import '../Notifier/main_home_screen_notifier.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 import '../Widget/main_home_screen_widget.dart';
+
+class ApprovalScreenArgs {
+  final Person person;
+  final bool showBackButton;
+
+  ApprovalScreenArgs({required this.person, this.showBackButton = false});
+}
 
 class MainHomeScreen extends ConsumerStatefulWidget {
   const MainHomeScreen({super.key});
@@ -461,8 +470,10 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                             InkWell(
                               onTap: () {
                                 GoRouter.of(context).pushNamed(
-                                    approvalManagmentScreen,
-                                    extra: person);
+                                  approvalManagmentScreen,
+                                  extra: ApprovalScreenArgs(
+                                      person: person, showBackButton: true),
+                                );
                               },
                               child: badges.Badge(
                                 badgeContent: Text('3',
@@ -501,6 +512,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                 ),
                               ),
                             ),
+
                             // Container(
                             //   width: 100.w,
                             //   height: 86.h,

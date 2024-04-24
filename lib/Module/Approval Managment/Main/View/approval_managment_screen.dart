@@ -1,4 +1,3 @@
-
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/Font/fonts.dart';
 import 'package:bussines_owner/Constants/constants.dart';
@@ -14,10 +13,14 @@ import '../../../../../Widgets/Loader/loader.dart';
 import '../../../../Widgets/AppBar/my_app_bar.dart';
 import '../../History/View/approval_managment_screen.dart';
 import '../Controller/approval_managment_controller.dart';
+import 'package:badges/badges.dart' as badges;
 
 // ignore: must_be_immutable
 class ApprovalManagmentScreen extends ConsumerStatefulWidget {
-  const ApprovalManagmentScreen({super.key});
+  final bool showBackButton;
+
+  const ApprovalManagmentScreen({Key? key, this.showBackButton = false})
+      : super(key: key);
 
   @override
   _ApprovalManagmentScreenState createState() =>
@@ -54,12 +57,78 @@ class _ApprovalManagmentScreenState
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: MyAppBar(
-          showFilter: false,
-          showBackButton: false,
-          title: (state.selectedIndex == 0)
-              ? "Approval Control"
-              : "Approval History"),
+      // appBar: MyAppBar(
+      //     showFilter: false,
+      //     showBackButton: false,
+      //     title: (state.selectedIndex == 0)
+      //         ? "Approval Control"
+      //         : "Approval History"),
+      // appBar: AppBar(
+      //   leading: widget.showBackButton ? BackButton() : null,
+      //   // Other AppBar properties...
+      // ),
+      appBar: AppBar(
+        toolbarHeight: 80,
+
+        automaticallyImplyLeading: true,
+        // iconTheme: const IconThemeData(
+        //   color: Colors.white,
+        // ),
+        //toolbarHeight: size,
+
+        leading: widget.showBackButton
+            ? Padding(
+                padding: const EdgeInsets.only(left: 12, right: 12).r,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: SvgPicture.asset(
+                    'assets/images/arrow_back.svg',
+                  ),
+                ),
+              )
+            : null,
+
+        title: Text(
+          (state.selectedIndex == 0) ? "Approval Control" : "Approval History",
+          style: GoogleFonts.poppins(
+              fontWeight: FontWeight.w500,
+              fontSize: 18.sp,
+              color: Colors.white),
+        ),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: <Color>[Color(0xff1F3996), Color(0xff4EBBD3)],
+            ),
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20, top: 0).r,
+            child: InkWell(
+              onTap: () {},
+              child: badges.Badge(
+                badgeContent: Text('3',
+                    style: GoogleFonts.roboto(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w600,
+                        color: const Color(0xffFFFFFF))),
+                position: badges.BadgePosition.topEnd(top: -10, end: -12),
+                showBadge: true,
+                ignorePointer: false,
+                child: SvgPicture.asset(
+                  'assets/images/bellicon.svg',
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+
       body: Column(
         children: [
           Container(
@@ -475,8 +544,8 @@ class CustomDialog extends StatelessWidget {
                                   width: 20.w,
                                   decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      border:
-                                          Border.all(color: const Color(0xffF5F5F5))),
+                                      border: Border.all(
+                                          color: const Color(0xffF5F5F5))),
                                   child: SvgPicture.asset(
                                     'assets/images/dialog_tick.svg',
                                   ),

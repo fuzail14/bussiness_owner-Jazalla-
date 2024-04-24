@@ -17,17 +17,23 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bussines_owner/Routes/set_routes.dart';
 import '../Constants/Person/person_controller.dart';
 import '../Module/Apprisal/View/apprisal_view.dart';
+import '../Module/Approval Authority/Create/View/approval_authority_create_view.dart';
+import '../Module/Approval Authority/Main/View/approval_authority_view.dart';
 import '../Module/Approval Managment/Main/View/approval_managment_screen.dart';
 import '../Module/Attendance Managment/View/attendance_managment_view.dart';
 import '../Module/BussinesCommunity/Detail/View/bussines_community_detail_page.dart';
 import '../Module/BussinesCommunity/Main/View/bussines_communities_screen.dart';
 import '../Module/BussinesForSale/Main/View/sale_bussines_screen.dart';
+import '../Module/General Information/View/general_information_page.dart';
 import '../Module/GeneralServices/RequestProposal/View/request_proposal_page.dart';
 import '../Module/GeneralServices/SendInquiry/View/service_send_inquiry_page.dart';
 import '../Module/GeneratedOtpScreen/view/generated_otp_screen.dart';
 import '../Module/InvestMentOpportunity/Main/View/investMent_Opportunity_screen.dart';
+import '../Module/InvoiceManagement/Detail/View/invoice_management_detail_page.dart';
+import '../Module/InvoiceManagement/Main/View/invoice_management_view.dart';
 import '../Module/Leave Managment/View/leave_managment_view.dart';
 import '../Module/LeaveCreate/View/leave_create_view.dart';
+import '../Module/MainHomeScreen/View/main_home_screen.dart';
 import '../Module/Notifications/View/notifications_screen.dart';
 import '../Module/OnlineStore/RequestQuote/View/request_quote_page.dart';
 import '../Module/OnlineStore/SendInquiry/View/send_inquiry_page.dart';
@@ -53,6 +59,7 @@ import '../Module/ServiceManagment/RFPMain/SendRFPResponse/View/send_rfp_respons
 import '../Module/ServiceManagment/RFPMain/ServiceManagmentRFPDetail/View/service_managment_rfp_detail_page.dart';
 import '../Module/Tenders/TenderMain/View/tenders_screen.dart';
 import '../Module/Tenders/TendersResponse/View/tender_response_page.dart';
+import '../Module/UserManagment/View/user_management_view.dart';
 import '../Providers/argument_provider.dart';
 
 final router = GoRouter(
@@ -888,17 +895,37 @@ final router = GoRouter(
             child: page);
       },
     ),
+    // GoRoute(
+    //   name: approvalManagmentScreen,
+    //   path: '/ApprovalManagmentScreen',
+    //   pageBuilder: (context, state) {
+    //     final person = state.extra as Person;
+
+    //     final page = ProviderScope(
+    //       overrides: [
+    //         personProvider
+    //             .overrideWith((ref) => PersonController()..setPerson(person)),
+    //       ],
+    //       child: const ApprovalManagmentScreen(),
+    //     );
+    //     return buildPageWithFadeTransition(
+    //         fullscreenDialog: false,
+    //         context: context,
+    //         state: state,
+    //         child: page);
+    //   },
+    // ),
     GoRoute(
       name: approvalManagmentScreen,
       path: '/ApprovalManagmentScreen',
       pageBuilder: (context, state) {
-        final person = state.extra as Person;
+        final args = state.extra as ApprovalScreenArgs;
         final page = ProviderScope(
           overrides: [
-            personProvider
-                .overrideWith((ref) => PersonController()..setPerson(person)),
+            personProvider.overrideWith(
+                (ref) => PersonController()..setPerson(args.person)),
           ],
-          child: const ApprovalManagmentScreen(),
+          child: ApprovalManagmentScreen(showBackButton: args.showBackButton),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -907,11 +934,13 @@ final router = GoRouter(
             child: page);
       },
     ),
+
     GoRoute(
       name: leaveManagmentScreen,
       path: '/LeaveManagmentScreen',
       pageBuilder: (context, state) {
         final person = state.extra as Person;
+
         final page = ProviderScope(
           overrides: [
             personProvider
@@ -1008,6 +1037,121 @@ final router = GoRouter(
                 .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
           child: ApprisalScreen(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: userManagementScreen,
+      path: '/UserManagementScreen',
+      pageBuilder: (context, state) {
+        final person = state.extra as Person;
+        final page = ProviderScope(
+          overrides: [
+            personProvider
+                .overrideWith((ref) => PersonController()..setPerson(person)),
+          ],
+          child: UserManagementScreen(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: invoiceManagementScreen,
+      path: '/InvoiceManagementScreen',
+      pageBuilder: (context, state) {
+        final person = state.extra as Person;
+        final page = ProviderScope(
+          overrides: [
+            personProvider
+                .overrideWith((ref) => PersonController()..setPerson(person)),
+          ],
+          child: InvoiceManagementScreen(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+
+    GoRoute(
+      name: invoiceManagementDetailPage,
+      path: '/InvoiceManagementDetailPage/:id',
+      pageBuilder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider.overrideWithValue({'iId': id}),
+          ],
+          child: const InvoiceManagementDetailPage(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: generalInformationPage,
+      path: '/GeneralInformationPage',
+      pageBuilder: (context, state) {
+        final person = state.extra as Person;
+        final page = ProviderScope(
+          overrides: [
+            personProvider
+                .overrideWith((ref) => PersonController()..setPerson(person)),
+          ],
+          child: GeneralInformationPage(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: approvalAuthorityScreen,
+      path: '/ApprovalAuthorityScreen',
+      pageBuilder: (context, state) {
+        final person = state.extra as Person;
+        final page = ProviderScope(
+          overrides: [
+            personProvider
+                .overrideWith((ref) => PersonController()..setPerson(person)),
+          ],
+          child: ApprovalAuthorityScreen(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: approvalAuthorityCreateScreen,
+      path: '/ApprovalAuthorityCreateScreen',
+      pageBuilder: (context, state) {
+        final person = state.extra as Person;
+        final page = ProviderScope(
+          overrides: [
+            personProvider
+                .overrideWith((ref) => PersonController()..setPerson(person)),
+          ],
+          child: ApprovalAuthorityCreateScreen(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,

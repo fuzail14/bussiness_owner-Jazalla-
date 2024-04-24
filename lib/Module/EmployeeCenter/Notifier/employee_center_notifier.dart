@@ -6,8 +6,6 @@ import '../State/employee_center_state.dart';
 class EmployeeCenterNotifier extends StateNotifier<EmployeeCenterState> {
   EmployeeCenterNotifier() : super(EmployeeCenterState());
 
-  final TextEditingController searchController = TextEditingController();
-
   void setResponseStatus(Status val) {
     state = state.copyWith(responseStatus: val);
   }

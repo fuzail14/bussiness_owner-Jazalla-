@@ -205,7 +205,10 @@ class EmployeeCenterPage extends ConsumerWidget {
                     textColor: const Color(0xffFCAB10),
                     svgPath: 'assets/images/employee_center_card_icon5.svg',
                     headingText: 'General Information',
-                    onTap: () {},
+                    onTap: () {
+                      GoRouter.of(context)
+                          .pushNamed(generalInformationPage, extra: person);
+                    },
                   ),
                 ],
               ),

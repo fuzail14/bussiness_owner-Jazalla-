@@ -145,7 +145,7 @@ class SalaryPaySlipDetailPage extends ConsumerWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                width: 162.2,
+                                // width: 162.2,
                                 // height: 104.h,
                                 padding: EdgeInsets.symmetric(
                                         horizontal: 16, vertical: 12)
@@ -207,6 +207,7 @@ class SalaryPaySlipDetailPage extends ConsumerWidget {
                                 padding: EdgeInsets.symmetric(
                                         horizontal: 16, vertical: 12)
                                     .r,
+
                                 decoration: BoxDecoration(
                                     border:
                                         Border.all(color: Color(0xffEBEDF2)),
