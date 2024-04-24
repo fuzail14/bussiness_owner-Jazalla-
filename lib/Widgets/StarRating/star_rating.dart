@@ -10,7 +10,8 @@ class StarRating extends StatelessWidget {
   final Color color;
 
   const StarRating(
-      {super.key, this.starCount = 5,
+      {super.key,
+      this.starCount = 5,
       this.rating = .0,
       //required this.onRatingChanged,
       required this.color});
@@ -20,7 +21,7 @@ class StarRating extends StatelessWidget {
     if (index >= rating) {
       icon = Icon(
         Icons.star_border,
-        color: HexColor('#B9B9B9'),
+        color: HexColor('#E3E1E4'),
       );
     } else if (index > rating - 1 && index < rating) {
       icon = Icon(Icons.star_half, color: color);

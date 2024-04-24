@@ -86,7 +86,8 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                           height: 48.h,
                           width: 48.w,
                           decoration: BoxDecoration(
-                              border: Border.all(color: const Color(0xff4EBBD3)),
+                              border:
+                                  Border.all(color: const Color(0xff4EBBD3)),
                               color: const Color(0xffF5F9F9),
                               shape: BoxShape.circle),
                           margin: const EdgeInsets.only(top: 0, left: 0).r,
@@ -765,7 +766,8 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                           Text(
                             'Revenue',
                             style: GoogleFonts.nunitoSans(
-                                fontSize: 16.sp, color: const Color(0xff7C828A)),
+                                fontSize: 16.sp,
+                                color: const Color(0xff7C828A)),
                           ),
                           25.2.pw,
                           Container(
@@ -779,7 +781,8 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                           Text(
                             'Expense',
                             style: GoogleFonts.nunitoSans(
-                                fontSize: 16.sp, color: const Color(0xff7C828A)),
+                                fontSize: 16.sp,
+                                color: const Color(0xff7C828A)),
                           ),
                         ],
                       )
@@ -933,8 +936,10 @@ class CheckInDialog extends StatelessWidget {
               children: <Widget>[
                 Container(
                   // height: 403.h,
-                  padding: const EdgeInsets.only(top: 18.0, right: 0, bottom: 50).r,
-                  margin: const EdgeInsets.only(top: 50.0, right: 8.0, bottom: 0).r,
+                  padding:
+                      const EdgeInsets.only(top: 18.0, right: 0, bottom: 50).r,
+                  margin:
+                      const EdgeInsets.only(top: 50.0, right: 8.0, bottom: 0).r,
 
                   decoration: BoxDecoration(
                       color: whiteColor,
@@ -1022,7 +1027,7 @@ class CheckInDialog extends StatelessWidget {
                               ])),
                           child: Center(
                             child: Text(
-                              'Done',
+                              'Confirm',
                               style: FontManagment().montserrat14White,
                             ),
                           ),
@@ -1053,138 +1058,6 @@ class CheckInDialog extends StatelessWidget {
             ),
           ),
         ));
-  }
-
-  Widget dialogContent(BuildContext context, title) {
-    return Container(
-      margin: const EdgeInsets.only(left: 0.0, right: 0.0),
-      width: 320.w,
-      height: 403.h,
-      child: Container(
-        child: Stack(
-          children: <Widget>[
-            Container(
-              // height: 403.h,
-              padding: const EdgeInsets.only(top: 18.0, right: 0, bottom: 50).r,
-              margin: const EdgeInsets.only(top: 50.0, right: 8.0, bottom: 0).r,
-
-              decoration: BoxDecoration(
-                  color: whiteColor,
-                  shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(16.0),
-                  boxShadow: const <BoxShadow>[
-                    BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 0.0,
-                      offset: Offset(0.0, 0.0),
-                    ),
-                  ]),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  16.2.ph,
-                  Center(
-                    child: Text(
-                      title!,
-                      style: GoogleFonts.montserrat(
-                          fontSize: 18.22.sp,
-                          color: const Color(0xff5F5656),
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                  28.4.ph,
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30).r,
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.calendar_month_rounded,
-                          color: const Color(0xffAFAFAF),
-                          size: 18.h,
-                        ),
-                        10.pw,
-                        SizedBox(
-                          width: 220.w,
-                          child: Text(
-                            'Saturday, October 22nd 2022',
-                            style: GoogleFonts.montserrat(
-                                color: const Color(0xff383333),
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w400),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30, top: 15).r,
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.timer_sharp,
-                          color: const Color(0xffAFAFAF),
-                          size: 18.h,
-                        ),
-                        10.pw,
-                        Text(
-                          '06:00 PM',
-                          style: GoogleFonts.montserrat(
-                              color: const Color(0xff383333),
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w400),
-                        )
-                      ],
-                    ),
-                  ),
-                  31.ph,
-                  InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Container(
-                      height: 30.h,
-                      width: 147.w,
-                      margin: const EdgeInsets.symmetric(horizontal: 75).r,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16).r,
-                          gradient: const LinearGradient(
-                              colors: [Color(0xff2751A1), Color(0xff4BB3CF)])),
-                      child: Center(
-                        child: Text(
-                          'Done',
-                          style: FontManagment().montserrat14White,
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Positioned(
-              top: 10
-                  .h, // This positions the top of the CircleAvatar at the top edge of the Stack.
-              left: (280.w / 2) -
-                  (41.8.w /
-                      2), // This centers the CircleAvatar horizontally in the Stack.
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                child: CircleAvatar(
-                  radius:
-                      61.8.h / 2, // This sets the radius of the CircleAvatar.
-                  backgroundColor: Colors.transparent,
-                  child: SvgPicture.asset(
-                    'assets/images/dialog_upper_circle.svg',
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 }
 

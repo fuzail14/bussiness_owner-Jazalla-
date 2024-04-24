@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
@@ -882,12 +883,14 @@ class SalaryPaySlipDetailPage extends ConsumerWidget {
 
     pdf.addPage(
       pw.MultiPage(
-        build: (context) => [
+        pageFormat: PdfPageFormat.a4,
+        margin: pw.EdgeInsets.all(32),
+        build: (pw.Context context) => [
           pw.Column(crossAxisAlignment: pw.CrossAxisAlignment.start, children: [
             pw.Text('Payslip Details',
                 style:
                     pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold)),
-            pw.SizedBox(height: 20),
+            pw.SizedBox(height: 10),
             pw.Container(
               decoration: pw.BoxDecoration(
                 color: PdfColors.white,
@@ -924,7 +927,7 @@ class SalaryPaySlipDetailPage extends ConsumerWidget {
                                     fontWeight: pw.FontWeight.bold)),
                           ]),
                     ),
-                    pw.SizedBox(height: 8),
+                    // pw.SizedBox(height: 8),
                     pw.Row(
                       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                       children: [
@@ -1041,6 +1044,581 @@ class SalaryPaySlipDetailPage extends ConsumerWidget {
                         ),
                       ],
                     ),
+                    pw.SizedBox(height: 15),
+                    pw.Text(
+                      'Earning Details',
+                      style: pw.TextStyle(
+                        fontSize: 12.sp,
+                        fontWeight: pw.FontWeight.bold,
+                      ),
+                    ),
+                    pw.SizedBox(height: 5),
+                    pw.Container(
+                      // padding: EdgeInsets.symmetric(
+                      //         horizontal: 10, vertical: 12)
+                      //     .r,
+                      decoration: pw.BoxDecoration(
+                          borderRadius: pw.BorderRadius.circular(3),
+                          border: pw.Border.all(color: PdfColors.grey300)),
+
+                      child: pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.start,
+                        children: [
+                          pw.Padding(
+                            padding: pw.EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 12),
+                            child: pw.Row(
+                              mainAxisAlignment:
+                                  pw.MainAxisAlignment.spaceBetween,
+                              children: [
+                                pw.Text(
+                                  'Description',
+                                  style: pw.TextStyle(
+                                    fontSize: 10.sp,
+                                    fontWeight: pw.FontWeight.bold,
+                                  ),
+                                ),
+                                pw.Text(
+                                  'Title',
+                                  style: pw.TextStyle(
+                                    fontSize: 10.sp,
+                                    fontWeight: pw.FontWeight.bold,
+                                  ),
+                                ),
+                                pw.Text(
+                                  'Type',
+                                  style: pw.TextStyle(
+                                    fontSize: 10.sp,
+                                    fontWeight: pw.FontWeight.bold,
+                                  ),
+                                ),
+                                pw.Text(
+                                  'Amount',
+                                  style: pw.TextStyle(
+                                    fontSize: 10.sp,
+                                    fontWeight: pw.FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          // 19.ph,
+                          pw.Divider(
+                            color: PdfColors.grey100,
+                          ),
+
+                          pw.Padding(
+                            padding: const pw.EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 12),
+                            child: pw.Row(
+                              mainAxisAlignment:
+                                  pw.MainAxisAlignment.spaceBetween,
+                              children: [
+                                pw.SizedBox(
+                                  width: 70.w,
+                                  child: pw.Text(
+                                    'Basic Salary',
+                                    maxLines: 1,
+                                    style: pw.TextStyle(
+                                      fontSize: 10.sp,
+                                      fontWeight: pw.FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                pw.SizedBox(
+                                  width: 50.w,
+                                  child: pw.Text(
+                                    'some title',
+                                    maxLines: 1,
+                                    style: pw.TextStyle(
+                                      fontSize: 10.sp,
+                                      fontWeight: pw.FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                pw.SizedBox(
+                                  width: 20.w,
+                                  child: pw.Text(
+                                    '%',
+                                    maxLines: 1,
+                                    style: pw.TextStyle(
+                                      fontSize: 10.sp,
+                                      fontWeight: pw.FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                pw.SizedBox(
+                                  width: 50.w,
+                                  child: pw.Text(
+                                    '\$2,000.00',
+                                    maxLines: 1,
+                                    style: pw.TextStyle(
+                                      fontSize: 10.sp,
+                                      fontWeight: pw.FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          pw.Divider(
+                            color: PdfColors.grey100,
+                          ),
+                          pw.Padding(
+                            padding: const pw.EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 12),
+                            child: pw.Row(
+                              mainAxisAlignment:
+                                  pw.MainAxisAlignment.spaceBetween,
+                              children: [
+                                pw.SizedBox(
+                                  width: 70.w,
+                                  child: pw.Text(
+                                    'Allowance',
+                                    maxLines: 1,
+                                    style: pw.TextStyle(
+                                      fontSize: 10.sp,
+                                      fontWeight: pw.FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                pw.SizedBox(
+                                  width: 50.w,
+                                  child: pw.Text(
+                                    'Health Allowance',
+                                    maxLines: 2,
+                                    style: pw.TextStyle(
+                                      fontSize: 10.sp,
+                                      fontWeight: pw.FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                pw.SizedBox(
+                                  width: 20.w,
+                                  child: pw.Text(
+                                    '%',
+                                    maxLines: 1,
+                                    style: pw.TextStyle(
+                                      fontSize: 10.sp,
+                                      fontWeight: pw.FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                pw.SizedBox(
+                                  width: 50.w,
+                                  child: pw.Text(
+                                    '\$2,000.00',
+                                    maxLines: 1,
+                                    style: pw.TextStyle(
+                                      fontSize: 10.sp,
+                                      fontWeight: pw.FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          pw.Divider(
+                            color: PdfColors.grey100,
+                          ),
+                          pw.Padding(
+                            padding: const pw.EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 12),
+                            child: pw.Row(
+                              mainAxisAlignment:
+                                  pw.MainAxisAlignment.spaceBetween,
+                              children: [
+                                pw.SizedBox(
+                                  width: 70.w,
+                                  child: pw.Text(
+                                    'Overtime',
+                                    maxLines: 1,
+                                    style: pw.TextStyle(
+                                      fontSize: 10.sp,
+                                      fontWeight: pw.FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                pw.SizedBox(
+                                  width: 50.w,
+                                  child: pw.Text(
+                                    'Increase Workable',
+                                    maxLines: 2,
+                                    style: pw.TextStyle(
+                                      fontSize: 10.sp,
+                                      fontWeight: pw.FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                pw.SizedBox(
+                                  width: 20.w,
+                                  child: pw.Text(
+                                    '%',
+                                    maxLines: 1,
+                                    style: pw.TextStyle(
+                                      fontSize: 10.sp,
+                                      fontWeight: pw.FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                pw.SizedBox(
+                                  width: 50.w,
+                                  child: pw.Text('\$2,000.00',
+                                      maxLines: 1,
+                                      style: pw.TextStyle(
+                                        fontSize: 10.sp,
+                                        fontWeight: pw.FontWeight.bold,
+                                      )),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    pw.SizedBox(height: 15),
+                    pw.Text(
+                      'Deduction Details',
+                      style: pw.TextStyle(
+                        fontSize: 12.sp,
+                        fontWeight: pw.FontWeight.bold,
+                      ),
+                    ),
+                    pw.SizedBox(height: 5),
+                    pw.Container(
+                      // padding: EdgeInsets.symmetric(
+                      //         horizontal: 10, vertical: 12)
+                      //     .r,
+                      decoration: pw.BoxDecoration(
+                          borderRadius: pw.BorderRadius.circular(3),
+                          border: pw.Border.all(color: PdfColors.grey300)),
+                      child: pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.start,
+                        children: [
+                          pw.Padding(
+                            padding: const pw.EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 12),
+                            child: pw.Row(
+                              mainAxisAlignment:
+                                  pw.MainAxisAlignment.spaceBetween,
+                              children: [
+                                pw.Text(
+                                  'Description',
+                                  style: pw.TextStyle(
+                                    fontSize: 10.sp,
+                                    fontWeight: pw.FontWeight.bold,
+                                  ),
+                                ),
+                                pw.Text(
+                                  'Title',
+                                  style: pw.TextStyle(
+                                    fontSize: 10.sp,
+                                    fontWeight: pw.FontWeight.bold,
+                                  ),
+                                ),
+                                pw.Text(
+                                  'Type',
+                                  style: pw.TextStyle(
+                                    fontSize: 10.sp,
+                                    fontWeight: pw.FontWeight.bold,
+                                  ),
+                                ),
+                                pw.Text(
+                                  'Amount',
+                                  style: pw.TextStyle(
+                                    fontSize: 10.sp,
+                                    fontWeight: pw.FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          // 19.ph,
+                          pw.Divider(
+                            color: PdfColors.grey100,
+                          ),
+
+                          pw.Padding(
+                            padding: const pw.EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 12),
+                            child: pw.Row(
+                              mainAxisAlignment:
+                                  pw.MainAxisAlignment.spaceBetween,
+                              children: [
+                                pw.SizedBox(
+                                  width: 70.w,
+                                  child: pw.Text(
+                                    'Loan',
+                                    maxLines: 1,
+                                    style: pw.TextStyle(
+                                      fontSize: 10.sp,
+                                      fontWeight: pw.FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                pw.SizedBox(
+                                  width: 50.w,
+                                  child: pw.Text(
+                                    'Emergency Loan',
+                                    maxLines: 2,
+                                    style: pw.TextStyle(
+                                      fontSize: 10.sp,
+                                      fontWeight: pw.FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                pw.SizedBox(
+                                  width: 20.w,
+                                  child: pw.Text(
+                                    '%',
+                                    maxLines: 1,
+                                    style: pw.TextStyle(
+                                      fontSize: 10.sp,
+                                      fontWeight: pw.FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                pw.SizedBox(
+                                  width: 50.w,
+                                  child: pw.Text(
+                                    '\$2,000.00',
+                                    maxLines: 1,
+                                    style: pw.TextStyle(
+                                      fontSize: 10.sp,
+                                      fontWeight: pw.FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          pw.Divider(
+                            color: PdfColors.grey100,
+                          ),
+                          pw.Padding(
+                            padding: const pw.EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 12),
+                            child: pw.Row(
+                              mainAxisAlignment:
+                                  pw.MainAxisAlignment.spaceBetween,
+                              children: [
+                                pw.SizedBox(
+                                  width: 70.w,
+                                  child: pw.Text(
+                                    'Deduction',
+                                    maxLines: 1,
+                                    style: pw.TextStyle(
+                                      fontSize: 10.sp,
+                                      fontWeight: pw.FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                pw.SizedBox(
+                                  width: 50.w,
+                                  child: pw.Text(
+                                    'Taxes',
+                                    maxLines: 2,
+                                    style: pw.TextStyle(
+                                      fontSize: 10.sp,
+                                      fontWeight: pw.FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                pw.SizedBox(
+                                  width: 20.w,
+                                  child: pw.Text(
+                                    '%',
+                                    maxLines: 1,
+                                    style: pw.TextStyle(
+                                      fontSize: 10.sp,
+                                      fontWeight: pw.FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                pw.SizedBox(
+                                  width: 50.w,
+                                  child: pw.Text(
+                                    '\$2,000.00',
+                                    maxLines: 1,
+                                    style: pw.TextStyle(
+                                      fontSize: 10.sp,
+                                      fontWeight: pw.FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    pw.SizedBox(height: 15),
+                    pw.Align(
+                      alignment: pw.Alignment.centerRight,
+                      child: pw.Container(
+                        width: 184.w,
+                        // height: 99.h,
+                        padding: pw.EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 9),
+                        decoration: pw.BoxDecoration(
+                            borderRadius: pw.BorderRadius.circular(4),
+                            border: pw.Border.all(color: PdfColors.grey500),
+                            color: PdfColors.white),
+                        child: pw.Column(
+                          children: [
+                            pw.Row(
+                              mainAxisAlignment:
+                                  pw.MainAxisAlignment.spaceBetween,
+                              children: [
+                                pw.Text(
+                                  'Subtotal',
+                                  style: pw.TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: pw.FontWeight.bold),
+                                ),
+                                pw.SizedBox(
+                                  width: 100.w,
+                                  child: pw.Text(
+                                    '\$2000.00',
+                                    maxLines: 1,
+                                    textAlign: pw.TextAlign.right,
+                                    style: pw.TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: pw.FontWeight.bold),
+                                  ),
+                                )
+                              ],
+                            ),
+                            pw.SizedBox(height: 8),
+                            pw.Row(
+                              mainAxisAlignment:
+                                  pw.MainAxisAlignment.spaceBetween,
+                              children: [
+                                pw.Text(
+                                  'Tax (0%)',
+                                  style: pw.TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: pw.FontWeight.bold),
+                                ),
+                                pw.SizedBox(
+                                  width: 100.w,
+                                  child: pw.Text(
+                                    '\$0.00',
+                                    maxLines: 1,
+                                    textAlign: pw.TextAlign.right,
+                                    style: pw.TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: pw.FontWeight.bold),
+                                  ),
+                                )
+                              ],
+                            ),
+                            pw.SizedBox(height: 8),
+                            pw.Row(
+                              mainAxisAlignment:
+                                  pw.MainAxisAlignment.spaceBetween,
+                              children: [
+                                pw.Text(
+                                  'Total Deduction',
+                                  style: pw.TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: pw.FontWeight.bold),
+                                ),
+                                pw.SizedBox(
+                                  width: 70.w,
+                                  child: pw.Text(
+                                    '\$2000.00',
+                                    textAlign: pw.TextAlign.right,
+                                    maxLines: 1,
+                                    style: pw.TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: pw.FontWeight.bold),
+                                  ),
+                                )
+                              ],
+                            ),
+                            pw.SizedBox(height: 8),
+                            pw.Row(
+                              mainAxisAlignment:
+                                  pw.MainAxisAlignment.spaceBetween,
+                              children: [
+                                pw.Text(
+                                  'Net Salary',
+                                  style: pw.TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: pw.FontWeight.bold),
+                                ),
+                                pw.SizedBox(
+                                  width: 100.w,
+                                  child: pw.Text(
+                                    'US \$2000.00',
+                                    textAlign: pw.TextAlign.right,
+                                    maxLines: 1,
+                                    style: pw.TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: pw.FontWeight.bold),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    // pw.SizedBox(
+                    //   height: 15,
+                    // ),
+                    // pw.SizedBox(
+                    //   height: 5,
+                    // ),
+                    pw.Divider(
+                      color: PdfColors.grey100,
+                    ),
+                    // pw.SizedBox(
+                    //   height: 5,
+                    // ),
+                    pw.Padding(
+                      padding: const pw.EdgeInsets.symmetric(horizontal: 20),
+                      child: pw.Row(
+                        mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                        children: [
+                          pw.Column(
+                            crossAxisAlignment: pw.CrossAxisAlignment.start,
+                            children: [
+                              pw.Text(
+                                'Employee Signature :',
+                                style: pw.TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: pw.FontWeight.bold),
+                              ),
+                              pw.Row(
+                                children: [
+                                  pw.Text(
+                                    'Paid By : ',
+                                    style: pw.TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: pw.FontWeight.bold),
+                                  ),
+                                  pw.SizedBox(
+                                    width: 150.w,
+                                    child: pw.Text(
+                                      'Muhammad (HR Manager)',
+                                      maxLines: 1,
+                                      style: pw.TextStyle(
+                                          fontSize: 10,
+                                          fontWeight: pw.FontWeight.bold),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                   ]),
             ),
           ]),
@@ -1050,15 +1628,23 @@ class SalaryPaySlipDetailPage extends ConsumerWidget {
 
     // Save the document
     try {
+      if (Platform.isAndroid) {
+        final String dir = (await getApplicationDocumentsDirectory()).path;
+
+        final String path = '$dir/payslip.pdf';
+        final File file = File(path);
+        await file.writeAsBytes(await pdf.save());
+        myToast(msg: 'PDF saved in Documents!');
+
+        await Printing.layoutPdf(
+          onLayout: (PdfPageFormat format) async => pdf.save(),
+        );
+      }
       final String dir = (await getApplicationDocumentsDirectory()).path;
       final String path = '$dir/payslip.pdf';
       final File file = File(path);
       await file.writeAsBytes(await pdf.save());
-      myToast(msg: 'PDF saved in Documents!');
-
-      await Printing.layoutPdf(
-        onLayout: (PdfPageFormat format) async => pdf.save(),
-      );
+      await Printing.sharePdf(bytes: await pdf.save(), filename: 'payslip.pdf');
     } catch (e) {
       print("Error saving document: $e");
     }

@@ -75,8 +75,8 @@ class EmployeeCenterPage extends ConsumerWidget {
                   // ),
                   decoration: BoxDecoration(
                     color: whiteColor,
-                    border:
-                        Border.all(color: const Color(0xff449FC6).withOpacity(0.6)),
+                    border: Border.all(
+                        color: const Color(0xff449FC6).withOpacity(0.6)),
                     borderRadius: BorderRadius.circular(8).r,
                     boxShadow: [
                       BoxShadow(
@@ -196,8 +196,8 @@ class EmployeeCenterPage extends ConsumerWidget {
                     svgPath: 'assets/images/employee_center_card_icon4.svg',
                     headingText: 'Appraisal',
                     onTap: () {
-                      // GoRouter.of(context)
-                      //     .pushNamed(tendersView, extra: person);
+                      GoRouter.of(context)
+                          .pushNamed(apprisalScreen, extra: person);
                     },
                   ),
                   //20.pw,

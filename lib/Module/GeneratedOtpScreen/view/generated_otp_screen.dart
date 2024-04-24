@@ -1,4 +1,3 @@
-
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +47,7 @@ class GeneratedOtpPage extends ConsumerWidget {
                   SizedBox(
                     width: 300.w,
                     child: Text(
-                      'We have sent the verification code to your email address',
+                      'Write this otp on jazalla web and logged in.',
                       style: GoogleFonts.montserrat(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.w400,

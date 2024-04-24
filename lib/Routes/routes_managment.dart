@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bussines_owner/Routes/set_routes.dart';
 import '../Constants/Person/person_controller.dart';
+import '../Module/Apprisal/View/apprisal_view.dart';
 import '../Module/Approval Managment/Main/View/approval_managment_screen.dart';
 import '../Module/Attendance Managment/View/attendance_managment_view.dart';
 import '../Module/BussinesCommunity/Detail/View/bussines_community_detail_page.dart';
@@ -988,6 +989,25 @@ final router = GoRouter(
             routeArgsProvider.overrideWithValue({'sId': id}),
           ],
           child: const SalaryPaySlipDetailPage(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: apprisalScreen,
+      path: '/ApprisalScreen',
+      pageBuilder: (context, state) {
+        final person = state.extra as Person;
+        final page = ProviderScope(
+          overrides: [
+            personProvider
+                .overrideWith((ref) => PersonController()..setPerson(person)),
+          ],
+          child: ApprisalScreen(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,

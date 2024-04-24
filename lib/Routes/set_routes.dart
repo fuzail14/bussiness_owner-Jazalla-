@@ -50,3 +50,4 @@ const String generatedOtpPage = '/GeneratedOtpPage';
 const String salaryPaySlipScreen = '/SalaryPaySlipScreen';
 const String leaveCreateScreen = '/LeaveCreateScreen';
 const String salaryPaySlipDetailPage = '/SalaryPaySlipDetailPage';
+const String apprisalScreen = '/ApprisalScreen';
