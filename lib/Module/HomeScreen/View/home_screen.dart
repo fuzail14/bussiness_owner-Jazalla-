@@ -48,20 +48,66 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     });
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   final PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
 
   //  _HomeScreenState({super.key});
 
-  List<Widget> _buildScreens() {
-    return [
-      // CustomLineChart(),
-      const MainHomeScreen(),
-      MarketPlaceScreen(),
-      const ApprovalManagmentScreen(),
-      const EmployeeCenterPage(),
-      const Menu(),
-    ];
+  // List<Widget> _buildScreens() {
+  //   return [
+  //     // CustomLineChart(),
+  //     const MainHomeScreen(),
+  //     MarketPlaceScreen(),
+  //     const ApprovalManagmentScreen(),
+
+  //     const EmployeeCenterPage(),
+  //     const Menu(),
+  //   ];
+  // }
+
+  List<Widget> _buildScreens(String userType) {
+    switch (userType) {
+      case userTypeCompany:
+        return [
+          // CustomLineChart(),
+          const MainHomeScreen(),
+          MarketPlaceScreen(),
+          const ApprovalManagmentScreen(),
+          const EmployeeCenterPage(),
+          const Menu(),
+        ];
+      case userTypeEmployee:
+        return [
+          // CustomLineChart(),
+          const MainHomeScreen(),
+          const EmployeeCenterPage(),
+          const Menu(),
+        ];
+      case userTypeProjectManager:
+        return [
+          // CustomLineChart(),
+          const MainHomeScreen(),
+          MarketPlaceScreen(),
+          const ApprovalManagmentScreen(),
+          const EmployeeCenterPage(),
+          const Menu(),
+        ];
+      case userTypeHR:
+        return [
+          // CustomLineChart(),
+          const MainHomeScreen(),
+          MarketPlaceScreen(),
+          const EmployeeCenterPage(),
+          const Menu(),
+        ];
+      default:
+        return []; // Handle unexpected user types
+    }
   }
 
   // List<PersistentBottomNavBarItem> _navBarsItems() {
@@ -110,34 +156,116 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   //   ];
   // }
 
-  List<BottomNavigationBarItem> _bottomNavBarItems() {
-    return [
-      const BottomNavigationBarItem(
-        icon: Icon(CupertinoIcons.home),
-        label: 'Home',
-        backgroundColor: Color(0xff49AECD), // used for active item background
-      ),
-      const BottomNavigationBarItem(
-        icon: Icon(CupertinoIcons.macwindow),
-        label: 'MarketPlace',
-        backgroundColor: Color(0xff49AECD),
-      ),
-      const BottomNavigationBarItem(
-        icon: Icon(CupertinoIcons.app_badge_fill),
-        label: 'Approvals',
-        backgroundColor: Color(0xff49AECD),
-      ),
-      const BottomNavigationBarItem(
-        icon: Icon(CupertinoIcons.waveform_circle),
-        label: 'Employee Center',
-        backgroundColor: Color(0xff49AECD),
-      ),
-      const BottomNavigationBarItem(
-        icon: Icon(CupertinoIcons.square_grid_2x2_fill),
-        label: 'Menu',
-        backgroundColor: Color(0xff49AECD),
-      ),
-    ];
+  // List<BottomNavigationBarItem> _bottomNavBarItems() {
+  //   return [
+  //     const BottomNavigationBarItem(
+  //       icon: Icon(CupertinoIcons.home),
+  //       label: 'Home',
+  //       backgroundColor: Color(0xff49AECD),
+  //     ),
+  //     const BottomNavigationBarItem(
+  //       icon: Icon(CupertinoIcons.macwindow),
+  //       label: 'MarketPlace',
+  //       backgroundColor: Color(0xff49AECD),
+  //     ),
+  //     const BottomNavigationBarItem(
+  //       icon: Icon(CupertinoIcons.app_badge_fill),
+  //       label: 'Approvals',
+  //       backgroundColor: Color(0xff49AECD),
+  //     ),
+  //     const BottomNavigationBarItem(
+  //       icon: Icon(CupertinoIcons.waveform_circle),
+  //       label: 'Employee Center',
+  //       backgroundColor: Color(0xff49AECD),
+  //     ),
+  //     const BottomNavigationBarItem(
+  //       icon: Icon(CupertinoIcons.square_grid_2x2_fill),
+  //       label: 'Menu',
+  //       backgroundColor: Color(0xff49AECD),
+  //     ),
+  //   ];
+  // }
+
+  List<BottomNavigationBarItem> _bottomNavBarItems(String userType) {
+    switch (userType) {
+      case userTypeCompany:
+        return [
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.home),
+            label: 'Home',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.macwindow),
+            label: 'MarketPlace',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.app_badge_fill),
+            label: 'Approvals',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.waveform_circle),
+            label: 'Employee Center',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.square_grid_2x2_fill),
+            label: 'Menu',
+            backgroundColor: Color(0xff49AECD),
+          ),
+        ];
+      case userTypeProjectManager:
+        return [
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.home),
+            label: 'Home',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.macwindow),
+            label: 'MarketPlace',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.app_badge_fill),
+            label: 'Approvals',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.waveform_circle),
+            label: 'Employee Center',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.square_grid_2x2_fill),
+            label: 'Menu',
+            backgroundColor: Color(0xff49AECD),
+          ),
+        ];
+      case userTypeEmployee:
+      case userTypeHR:
+        return [
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.home),
+            label: 'Home',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.waveform_circle),
+            label: 'Employee Center',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.square_grid_2x2_fill),
+            label: 'Menu',
+            backgroundColor: Color(0xff49AECD),
+          ),
+        ];
+      default:
+        return []; // Handle unexpected user types
+    }
   }
 
   @override
@@ -146,13 +274,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final state = ref.watch(homeScreenProvider);
     final notifier = ref.watch(homeScreenProvider.notifier);
     print('homescreen');
-    print(person!.data!.name);
+    print(person!.data!.id);
+
     // print(person!.data!.company!.companyName);
 
     return Scaffold(
         body: PageView(
           controller: notifier.pageController,
-          children: _buildScreens(),
+
+          children: _buildScreens(person.data!.type!),
+
           // onPageChanged: notifier.bottomIndexChanged,
           // onPageChanged: (index) {
           //   if (notifier.pageController.page?.round() != index) {
@@ -190,7 +321,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           //   //state.currentIndex = index;
           //   notifer.bottomIndexChanged(index);
           // },
-          items: _bottomNavBarItems(),
+          items: _bottomNavBarItems(person.data!.type!),
+
           selectedItemColor: blackColor,
           unselectedItemColor: whiteColor,
           selectedLabelStyle:

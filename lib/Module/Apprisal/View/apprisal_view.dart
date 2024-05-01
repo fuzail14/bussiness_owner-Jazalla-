@@ -12,6 +12,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../../Data/Api Resp/api_response.dart';
 import '../../../../../Widgets/Loader/loader.dart';
+import '../../../Constants/Font/fonts.dart';
 import '../../../Widgets/AppBar/my_app_bar.dart';
 import '../Notifier/apprisal_notifier.dart';
 
@@ -41,14 +42,9 @@ class ApprisalScreen extends ConsumerWidget {
             padding: const EdgeInsets.only(
               top: 25,
             ).r,
-            child: Text(
-              'Apprisal',
-              style: GoogleFonts.poppins(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: blackColor,
-              ),
-            ),
+            child: Text('Apprisal',
+                style: FontManagment()
+                    .montserrat18HeadingEmployeeCenterAllModules),
           ),
           if (state.responseStatus == Status.loading)
             const Loader()

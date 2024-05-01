@@ -10,6 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../Constants/Font/fonts.dart';
 import '../../../Constants/Person/person_controller.dart';
 import '../Notifier/general_information_notifier.dart';
 import '../Widget/general_information_custom_card.dart';
@@ -36,15 +37,15 @@ class GeneralInformationPage extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               25.ph,
-              Text(
-                'General Information',
-                style: GoogleFonts.montserrat(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w600,
-                    color: blackColor),
-              ),
-              30.ph,
+              Text('General Information',
+                  style: FontManagment()
+                      .montserrat18HeadingEmployeeCenterAllModules),
+              20.ph,
               CardGeneralInformation(
+                onTap: () {
+                  GoRouter.of(context)
+                      .pushNamed(companyPolicyScreen, extra: person);
+                },
                 upperIconsvgPath:
                     'assets/images/general_info_card_upper_icon.svg',
                 centerIconsvgPath:
@@ -57,6 +58,9 @@ class GeneralInformationPage extends ConsumerWidget {
               ),
               30.ph,
               CardGeneralInformation(
+                onTap: () {
+                  GoRouter.of(context).pushNamed(eventScreen, extra: person);
+                },
                 upperIconsvgPath:
                     'assets/images/general_info_card_upper_icon.svg',
                 centerIconsvgPath: 'assets/images/general_info_event.png',
@@ -68,6 +72,9 @@ class GeneralInformationPage extends ConsumerWidget {
               ),
               30.ph,
               CardGeneralInformation(
+                onTap: () {
+                  GoRouter.of(context).pushNamed(holidaysScreen, extra: person);
+                },
                 upperIconsvgPath:
                     'assets/images/general_info_card_upper_icon.svg',
                 centerIconsvgPath: 'assets/images/general_info_holiday.png',

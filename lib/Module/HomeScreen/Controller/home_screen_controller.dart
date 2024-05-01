@@ -3,7 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 //import 'package:get/get.dart';
 
 final homeScreenProvider =
-    StateNotifierProvider<HomeScreenNotifier, HomeScreenState>((ref) {
+    StateNotifierProvider.autoDispose<HomeScreenNotifier, HomeScreenState>(
+        (ref) {
   return HomeScreenNotifier();
 });
 

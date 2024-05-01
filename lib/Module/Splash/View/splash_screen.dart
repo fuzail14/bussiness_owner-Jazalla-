@@ -4,22 +4,26 @@ import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../Constants/Person/person.dart';
+import '../../../Constants/Person/person_controller.dart';
 import '../../../Services/Shared Preferences/MySharedPreferences.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  _SplashScreenConsumerState createState() => _SplashScreenConsumerState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenConsumerState extends ConsumerState<SplashScreen> {
+  PersonController? personController;
+
   @override
   void initState() {
     super.initState();
@@ -28,13 +32,18 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void getUserSharedPreferencesData() async {
     Person person = await MySharedPreferences.getUserData();
+    ref.read(personProvider.notifier).setPerson(person);
 
     if (person.data!.companyId == 0) {
       Timer(const Duration(seconds: 3),
           () => context.goNamed('/CheckPhoneNumber'));
     } else {
-      Timer(const Duration(seconds: 3),
-          () => context.goNamed('/HomeScreen', extra: person));
+      Timer(
+          const Duration(seconds: 3),
+          () => context.goNamed(
+                '/HomeScreen',
+                //extra: person
+              ));
     }
   }
 

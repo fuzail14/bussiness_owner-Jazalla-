@@ -12,6 +12,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../../../Data/Api Resp/api_response.dart';
 import '../../../../../../Widgets/Loader/loader.dart';
+import '../../../../Constants/Font/fonts.dart';
 import '../../../../Widgets/AppBar/my_app_bar.dart';
 import '../Notifier/invoice_management_notifier.dart';
 
@@ -41,14 +42,9 @@ class InvoiceManagementScreen extends ConsumerWidget {
             padding: const EdgeInsets.only(
               top: 25,
             ).r,
-            child: Text(
-              'Invoice Payable',
-              style: GoogleFonts.montserrat(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: blackColor,
-              ),
-            ),
+            child: Text('Invoice Payable',
+                style: FontManagment()
+                    .montserrat18HeadingEmployeeCenterAllModules),
           ),
           if (state.responseStatus == Status.loading)
             const Loader()

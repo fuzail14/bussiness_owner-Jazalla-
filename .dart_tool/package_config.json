@@ -662,6 +662,12 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "simple_gesture_detector",
+      "rootUri": "file:///Users/muhammadfuzail/.pub-cache/hosted/pub.dev/simple_gesture_detector-0.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "sky_engine",
       "rootUri": "file:///Users/muhammadfuzail/Desktop/FlutterDev/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
@@ -730,6 +736,12 @@
     {
       "name": "synchronized",
       "rootUri": "file:///Users/muhammadfuzail/.pub-cache/hosted/pub.dev/synchronized-3.1.0+1",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "table_calendar",
+      "rootUri": "file:///Users/muhammadfuzail/.pub-cache/hosted/pub.dev/table_calendar-3.1.1",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -884,7 +896,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2024-04-22T13:45:03.817248Z",
+  "generated": "2024-04-30T11:38:12.219861Z",
   "generator": "pub",
   "generatorVersion": "3.3.4"
 }

@@ -61,8 +61,9 @@ class MarketPlaceScreen extends ConsumerWidget {
                               //     arguments: controller.arguments);
                               // context.goNamed(bussinesCommunitiesScreen, extra: person);
                               GoRouter.of(context).pushNamed(
-                                  bussinesCommunitiesScreen,
-                                  extra: person);
+                                bussinesCommunitiesScreen,
+                                //extra: person
+                              );
                             },
                             subHeadingText:
                                 'It serves as a comprehensive directory, showcasing company profiles with industry, locations, products, services, and contact details for easy access and networking.'),

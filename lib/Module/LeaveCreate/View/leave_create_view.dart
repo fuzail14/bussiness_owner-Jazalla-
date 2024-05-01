@@ -1,12 +1,14 @@
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../Widgets/AppBar/my_app_bar.dart';
+
+import '../Model/leave_type.dart';
 import '../Notifier/leave_create_notifier.dart';
 
 // ignore: must_be_immutable
@@ -95,62 +97,51 @@ class LeaveCreateScreen extends ConsumerWidget {
                       )),
                   5.ph,
                   Container(
-                      // height: 42.h,
-                      decoration: BoxDecoration(
-                        color: whiteColor,
-                        borderRadius: BorderRadius.circular(6).r,
-                        border: Border.all(
-                          color: const Color(0xffE4E4E4),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(6),
+                      border: Border.all(color: Color(0xffE4E4E4)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.1),
+                          offset: Offset(1.0, 1.0),
+                          blurRadius: 10.0,
+                          spreadRadius: 1.0,
                         ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.1),
-                            offset: const Offset(
-                              1.0,
-                              1.0,
-                            ),
-                            blurRadius: 10.0,
-                            spreadRadius: 1.0,
-                          ),
-                        ],
+                      ],
+                    ),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButtonFormField<String>(
+                        isExpanded: true,
+                        value: state.leaveType,
+                        style: GoogleFonts.montserrat(
+                            fontSize: 16, fontWeight: FontWeight.w400),
+                        icon: Icon(Icons.arrow_drop_down,
+                            color: Color(0xffBEBEC2)),
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          border: InputBorder.none,
+                        ),
+                        items: state.leavetype.map<DropdownMenuItem<String>>(
+                            (Allleavetypes leavetype) {
+                          return DropdownMenuItem<String>(
+                            value: leavetype.title,
+                            child: Text(leavetype.title,
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xff131925),
+                                )),
+                          );
+                        }).toList(),
+                        onChanged: (String? newValue) {
+                          // Update the state with the selected leave type
+                          //context.read<LeaveCreateNotifier>().updateSelectedLeaveType(newValue!);
+                        },
                       ),
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButtonFormField<String>(
-                          isExpanded: true,
-                          value: state.leaveType,
-                          style: GoogleFonts.montserrat(
-                            fontSize: 25.sp,
-                            fontWeight: FontWeight.w800,
-                          ),
-                          icon: const Icon(
-                            Icons.arrow_drop_down,
-                            color: Color(0xffBEBEC2),
-                          ),
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 10)
-                                .r,
-                            border: InputBorder.none,
-                          ),
-                          items: controller.responseDurationTimeUnitLists
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: AutoSizeText(value,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400,
-                                    color: const Color(0xff131925),
-                                  )),
-                            );
-                          }).toList(),
-                          onChanged: (String? newValue) {
-                            //controller.updateresponseDurationTimeUnit(newValue!);
-                          },
-                        ),
-                      )),
+                    ),
+                  ),
                   15.ph,
                   Text('Leave Start Date',
                       style: GoogleFonts.montserrat(

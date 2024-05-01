@@ -1,18 +1,19 @@
 class Api {
-  // static const String imageBaseUrl = 'http://127.0.0.1:8000/uploads/logo/';
-  // static const String originalImageBaseUrl = 'http://127.0.0.1:8000';
-  // static const String baseUrl = 'http://127.0.0.1:8000/api/';
+  static const String imageBaseUrl = 'http://127.0.0.1:8000/uploads/logo/';
+  static const String originalImageBaseUrl = 'http://127.0.0.1:8000';
+  static const String baseUrl = 'http://127.0.0.1:8000/api/';
 
   // static const String imageBaseUrl = 'http://192.168.100.47:8000/uploads/logo/';
   // static const String originalImageBaseUrl = 'http://192.168.100.47:8000';
   // static const String baseUrl = 'http://192.168.100.47:8000/api/';
 
-  static const String imageBaseUrl =
-      'https://staging.jazalla.com/api/uploads/logo/';
-  static const String originalImageBaseUrl = 'https://staging.jazalla.com';
-  static const String baseUrl = 'https://staging.jazalla.com/api/';
+  // static const String imageBaseUrl =
+  //     'https://staging.jazalla.com/api/uploads/logo/';
+  // static const String originalImageBaseUrl = 'https://staging.jazalla.com';
+  // static const String baseUrl = 'https://staging.jazalla.com/api/';
 
   static const String login = "${baseUrl}loginWithMobileNumber";
+
   static const String fcmTokenRefresh = "${baseUrl}fcmtokenrefresh";
 
   static const String bussinesCommunities =
@@ -148,4 +149,11 @@ class Api {
       "${baseUrl}marketplace/Notification/getNotifications";
   static const String markNotificationAsRead =
       "${baseUrl}marketplace/Notification/markNotificationAsRead";
+
+  static const String getLeaveTypes =
+      "${baseUrl}employeeCenter/leaveManagment/getLeaveTypes";
+  static const String leaveCreateApi =
+      "${baseUrl}employeeCenter/leaveManagment/leaveCreateApi";
+  static const String getLeavesApi =
+      "${baseUrl}employeeCenter/leaveManagment/getLeavesApi";
 }

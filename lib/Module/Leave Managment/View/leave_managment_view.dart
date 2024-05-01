@@ -1,5 +1,5 @@
-
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
+import 'package:bussines_owner/Constants/Font/fonts.dart';
 import 'package:bussines_owner/Constants/constants.dart';
 import 'package:bussines_owner/Routes/set_routes.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +23,7 @@ class LeaveManagmentScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // print(person!.data!.id!);
+    //print(state.person!.data!.id!);
 
     final controller = ref.watch(leaveManagmentProvider.notifier);
     final state = ref.watch(leaveManagmentProvider);
@@ -38,18 +38,13 @@ class LeaveManagmentScreen extends ConsumerWidget {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 25, right: 30, left: 112).r,
+            padding: const EdgeInsets.only(top: 25, right: 0, left: 0).r,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(
-                  'Leave Management',
-                  style: GoogleFonts.poppins(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: blackColor,
-                  ),
-                ),
+                Text('Leave Management',
+                    style: FontManagment()
+                        .montserrat18HeadingEmployeeCenterAllModules),
                 InkWell(
                     onTap: () {
                       GoRouter.of(context).pushNamed(leaveCreateScreen,
@@ -63,7 +58,7 @@ class LeaveManagmentScreen extends ConsumerWidget {
             const Loader()
           else if (state.responseStatus == Status.completed) ...[
             10.ph,
-            if (state.request4Informatio.isEmpty) ...[
+            if (state.employeeleave.isEmpty) ...[
               Center(
                 child: Text(
                   'No Requests Found.',
@@ -77,7 +72,7 @@ class LeaveManagmentScreen extends ConsumerWidget {
               Expanded(
                 child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: state.request4Informatio.length,
+                    itemCount: state.employeeleave.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {},
@@ -94,12 +89,13 @@ class LeaveManagmentScreen extends ConsumerWidget {
                           decoration: BoxDecoration(
                               color: whiteColor,
                               borderRadius: BorderRadius.circular(14).r,
-                              border: Border.all(color: const Color(0xffDCE2EF))),
+                              border:
+                                  Border.all(color: const Color(0xffDCE2EF))),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Pending',
+                                state.employeeleave[index].status.toString(),
                                 style: GoogleFonts.montserrat(
                                   fontSize: 16.sp,
                                   color: const Color(0xffFC0000),
@@ -108,7 +104,11 @@ class LeaveManagmentScreen extends ConsumerWidget {
                               ),
                               5.ph,
                               Text(
-                                'Abdullah',
+                                controller.person!.data!.firstName.toString() +
+                                    controller.person!.data!.lastName
+                                        .toString(),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                                 style: GoogleFonts.montserrat(
                                   fontSize: 24.sp,
                                   color: blackColor,
@@ -119,32 +119,44 @@ class LeaveManagmentScreen extends ConsumerWidget {
                               Column(
                                 children: [
                                   leaveManagmentCardText(
-                                      title: 'Leave Type',
-                                      subTitle: 'Casual Leave'),
+                                    title: 'Leave Type',
+                                    subTitle: state
+                                        .employeeleave[index].leaveType.title
+                                        .toString(),
+                                  ),
                                   10.ph,
                                   leaveManagmentCardText(
                                     title: 'Applied On',
-                                    subTitle: '02 January 2024',
+                                    subTitle: state
+                                        .employeeleave[index].appliedOn
+                                        .toString(),
                                   ),
                                   10.ph,
                                   leaveManagmentCardText(
                                     title: 'Start Date',
-                                    subTitle: '02 January 2024',
+                                    subTitle: state
+                                        .employeeleave[index].startDate
+                                        .toString(),
                                   ),
                                   10.ph,
                                   leaveManagmentCardText(
                                     title: 'End Date',
-                                    subTitle: '02 March 2024',
+                                    subTitle: state.employeeleave[index].endDate
+                                        .toString(),
                                   ),
                                   10.ph,
                                   leaveManagmentCardText(
                                     title: 'Total Days',
-                                    subTitle: '15 Days',
+                                    subTitle: state
+                                        .employeeleave[index].totalLeaveDays
+                                        .toString(),
                                   ),
                                   10.ph,
                                   leaveManagmentCardText(
                                     title: 'Reason',
-                                    subTitle: 'Some',
+                                    subTitle: state
+                                        .employeeleave[index].leaveReason
+                                        .toString(),
                                   ),
                                 ],
                               )

@@ -64,6 +64,12 @@ class FontManagment {
       fontWeight: FontWeight.w500,
       color: const Color(0xff393939));
 
+  var montserrat18HeadingEmployeeCenterAllModules = GoogleFonts.montserrat(
+    fontSize: 18.sp,
+    fontWeight: FontWeight.w600,
+    color: blackColor,
+  );
+
   var quicksand4 = GoogleFonts.quicksand(
       fontSize: 14.sp,
       fontWeight: FontWeight.w600,

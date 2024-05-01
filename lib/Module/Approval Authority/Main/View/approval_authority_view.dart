@@ -39,18 +39,13 @@ class ApprovalAuthorityScreen extends ConsumerWidget {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 25, right: 30, left: 112).r,
+            padding: const EdgeInsets.only(top: 25, right: 0, left: 0).r,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(
-                  'Approval Authority',
-                  style: GoogleFonts.poppins(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w500,
-                    color: blackColor,
-                  ),
-                ),
+                Text('Approval Authority',
+                    style: FontManagment()
+                        .montserrat18HeadingEmployeeCenterAllModules),
                 InkWell(
                     onTap: () {
                       GoRouter.of(context).pushNamed(

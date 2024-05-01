@@ -16,7 +16,7 @@ class EmployeeCenterNotifier extends StateNotifier<EmployeeCenterState> {
 //   return LeaveManagmentNotifier();
 // });
 
-final employeeCenterProvider =
-    StateNotifierProvider<EmployeeCenterNotifier, EmployeeCenterState>((ref) {
+final employeeCenterProvider = StateNotifierProvider.autoDispose<
+    EmployeeCenterNotifier, EmployeeCenterState>((ref) {
   return EmployeeCenterNotifier();
 });

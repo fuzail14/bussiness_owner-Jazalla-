@@ -142,7 +142,16 @@ String? otpValidator(String? value) {
 }
 
 TextStyle montserratHeadingTextStyle = GoogleFonts.montserrat(
-    fontSize: 13.sp, fontWeight: FontWeight.w600, color: const Color(0xff707070));
+    fontSize: 13.sp,
+    fontWeight: FontWeight.w600,
+    color: const Color(0xff707070));
 
 TextStyle montserratSubHeadingTextStyle = GoogleFonts.montserrat(
-    fontSize: 12.sp, fontWeight: FontWeight.w400, color: const Color(0xff707070));
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w400,
+    color: const Color(0xff707070));
+
+const String userTypeCompany = 'company';
+const String userTypeEmployee = 'employee';
+const String userTypeHR = 'hr';
+const String userTypeProjectManager = 'project manager';

@@ -1,4 +1,3 @@
-
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/Font/fonts.dart';
 import 'package:bussines_owner/Constants/constants.dart';
@@ -40,8 +39,8 @@ class AttendanceManagmentScreen extends ConsumerWidget {
             padding: const EdgeInsets.only(top: 25).r,
             child: Text(
               'Attendance Management',
-              style: GoogleFonts.poppins(
-                fontSize: 18,
+              style: GoogleFonts.montserrat(
+                fontSize: 18.sp,
                 fontWeight: FontWeight.w600,
                 color: blackColor,
               ),
@@ -318,8 +317,10 @@ class CheckInDialog extends StatelessWidget {
               children: <Widget>[
                 Container(
                   // height: 403.h,
-                  padding: const EdgeInsets.only(top: 18.0, right: 0, bottom: 30).r,
-                  margin: const EdgeInsets.only(top: 50.0, right: 8.0, bottom: 0).r,
+                  padding:
+                      const EdgeInsets.only(top: 18.0, right: 0, bottom: 30).r,
+                  margin:
+                      const EdgeInsets.only(top: 50.0, right: 8.0, bottom: 0).r,
 
                   decoration: BoxDecoration(
                       color: whiteColor,

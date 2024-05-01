@@ -37,7 +37,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
 
       leading: showBackButton
           ? Padding(
-              padding: const EdgeInsets.only(top: 30),
+              padding: const EdgeInsets.only(top: 30).r,
               child: InkWell(
                 onTap: () {
                   Navigator.pop(context);

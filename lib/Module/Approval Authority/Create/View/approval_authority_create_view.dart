@@ -40,14 +40,9 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                 top: 25,
               ).r,
               child: Center(
-                child: Text(
-                  'Add New Approval Authority',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: blackColor,
-                  ),
-                ),
+                child: Text('Add New Approval Authority',
+                    style: FontManagment()
+                        .montserrat18HeadingEmployeeCenterAllModules),
               ),
             ),
             15.ph,

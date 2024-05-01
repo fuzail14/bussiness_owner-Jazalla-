@@ -13,6 +13,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:pdf/pdf.dart';
 import '../../../../../Data/Api Resp/api_response.dart';
 import '../../../../../Widgets/Loader/loader.dart';
+import '../../../../Constants/Font/fonts.dart';
 import '../Notifier/salary_payslip_detail_notifier.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:path_provider/path_provider.dart';
@@ -44,13 +45,9 @@ class SalaryPaySlipDetailPage extends ConsumerWidget {
                 return Column(
                   // crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Payslip Details',
-                      style: GoogleFonts.montserrat(
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.w500,
-                          color: blackColor),
-                    ),
+                    Text('Payslip Details',
+                        style: FontManagment()
+                            .montserrat18HeadingEmployeeCenterAllModules),
                     20.ph,
                     Container(
                       width: 363.w,

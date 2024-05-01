@@ -57,3 +57,6 @@ const String invoiceManagementDetailPage = '/InvoiceManagementDetailPage';
 const String generalInformationPage = '/GeneralInformationPage';
 const String approvalAuthorityScreen = '/ApprovalAuthorityScreen';
 const String approvalAuthorityCreateScreen = '/ApprovalAuthorityCreateScreen';
+const String companyPolicyScreen = '/CompanyPolicyScreen';
+const String eventScreen = '/EventScreen';
+const String holidaysScreen = '/HolidaysScreen';

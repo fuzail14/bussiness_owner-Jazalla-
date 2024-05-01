@@ -5,18 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import '../../../../../Data/Api Resp/api_response.dart';
-import '../../../../Repo/Approval Managment Repository/approval_managment_repository.dart';
 import '../../../Constants/Person/person.dart';
 import '../../../Constants/Person/person_controller.dart';
+import '../../../Repo/Leave Management/leave_managment_repository.dart';
 import '../State/leave_create_state.dart';
 
 class LeaveCreateNotifier extends StateNotifier<LeaveCreateState> {
   final Person? person;
-  final approvalManagmentRepository = ApprovalManagmentRepository();
+
+  final leaveManagmentRepository = LeaveManagmentRepository();
 
   LeaveCreateNotifier(this.person) : super(LeaveCreateState()) {
-    request4InformationViewApi(
-        userId: person!.data!.id!, bearerToken: person!.Bearer);
+    getLeaveTypesViewApi(
+        companyId: person!.data!.companyId!, bearerToken: person!.Bearer);
   }
 
   final TextEditingController searchController = TextEditingController();
@@ -49,18 +50,18 @@ class LeaveCreateNotifier extends StateNotifier<LeaveCreateState> {
     }
   }
 
-  Future<void> request4InformationViewApi(
-      {required userId, required bearerToken}) async {
+  Future<void> getLeaveTypesViewApi(
+      {required companyId, required bearerToken}) async {
     setResponseStatus(Status.loading);
     print('come here');
-    print(userId);
+    print(companyId);
     try {
-      final value = await approvalManagmentRepository.request4InformationApi(
-        userId: userId,
+      final value = await leaveManagmentRepository.getLeaveTypesApi(
+        companyId: companyId,
         bearerToken: bearerToken,
       );
       state = state.copyWith(
-        request4Informatio: value.requestForInformation,
+        leavetype: value.allleavetypes,
         responseStatus: Status.completed,
       );
     } catch (e, stackTrace) {
@@ -76,11 +77,6 @@ class LeaveCreateNotifier extends StateNotifier<LeaveCreateState> {
     state = state.copyWith(responseStatus: val);
   }
 }
-
-// final LeaveCreateProvider = StateNotifierProvider.autoDispose<
-//     LeaveCreateNotifier, LeaveCreateState>((ref) {
-//   return LeaveCreateNotifier();
-// });
 
 final leaveCreateProvider =
     StateNotifierProvider<LeaveCreateNotifier, LeaveCreateState>((ref) {

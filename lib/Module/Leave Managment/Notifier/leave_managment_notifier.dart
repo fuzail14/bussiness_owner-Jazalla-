@@ -4,34 +4,32 @@ import 'package:bussines_owner/Constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../Data/Api Resp/api_response.dart';
-import '../../../../Repo/Approval Managment Repository/approval_managment_repository.dart';
 import '../../../Constants/Person/person.dart';
 import '../../../Constants/Person/person_controller.dart';
+import '../../../Repo/Leave Management/leave_managment_repository.dart';
 import '../State/leave_managment_state.dart';
 
 class LeaveManagmentNotifier extends StateNotifier<LeaveManagmentState> {
   final Person? person;
-  final approvalManagmentRepository = ApprovalManagmentRepository();
+  final leaveManagmentRepository = LeaveManagmentRepository();
 
   LeaveManagmentNotifier(this.person) : super(LeaveManagmentState()) {
-    request4InformationViewApi(
-        userId: person!.data!.id!, bearerToken: person!.Bearer);
+    leavesViewApi(userId: person!.data!.id!, bearerToken: person!.Bearer);
   }
 
   final TextEditingController searchController = TextEditingController();
 
-  Future<void> request4InformationViewApi(
-      {required userId, required bearerToken}) async {
+  Future<void> leavesViewApi({required userId, required bearerToken}) async {
     setResponseStatus(Status.loading);
     print('come here');
     print(userId);
     try {
-      final value = await approvalManagmentRepository.request4InformationApi(
+      final value = await leaveManagmentRepository.getEmployeeLeavesApi(
         userId: userId,
         bearerToken: bearerToken,
       );
       state = state.copyWith(
-        request4Informatio: value.requestForInformation,
+        employeeleave: value.employeeleave,
         responseStatus: Status.completed,
       );
     } catch (e, stackTrace) {

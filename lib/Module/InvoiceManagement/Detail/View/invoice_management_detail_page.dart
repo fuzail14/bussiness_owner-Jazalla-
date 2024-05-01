@@ -15,6 +15,7 @@ import 'package:pdf/pdf.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import '../../../../../Data/Api Resp/api_response.dart';
 import '../../../../../Widgets/Loader/loader.dart';
+import '../../../../Constants/Font/fonts.dart';
 import '../Notifier/invoice_management_detail_notifier.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:path_provider/path_provider.dart';
@@ -46,13 +47,9 @@ class InvoiceManagementDetailPage extends ConsumerWidget {
                 return Column(
                   // crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Invoice Details',
-                      style: GoogleFonts.montserrat(
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.w500,
-                          color: blackColor),
-                    ),
+                    Text('Invoice Details',
+                        style: FontManagment()
+                            .montserrat18HeadingEmployeeCenterAllModules),
                     20.ph,
                     Container(
                       width: 363.w,
