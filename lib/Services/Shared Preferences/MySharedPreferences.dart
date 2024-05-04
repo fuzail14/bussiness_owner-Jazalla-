@@ -3,23 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../Constants/Person/person.dart';
 import '../../Constants/shared_preferences_constants.dart';
 
-deleteUserData() async {
-  Person person = Person();
-
-  await SharedPreferences.getInstance().then((value) {
-    // value.remove(userIdSPKey);
-    // value.remove(firstNameSPKey);
-    // value.remove(lastNameSPKey);
-    final success = value.remove(bearerTokenSPKEY);
-    print(success.then((value) => value));
-    // value.remove(cnicSPKey);
-    // value.remove(roleNameSPKey);
-    // value.remove(roleIdSPKey);
-  });
-}
-
 class MySharedPreferences {
-  static deleteUserData() async {
+  static Future<void> deleteUserData() async {
     Person person = Person();
 
     await SharedPreferences.getInstance().then((value) {

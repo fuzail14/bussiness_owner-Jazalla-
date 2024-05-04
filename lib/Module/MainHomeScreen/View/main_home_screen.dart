@@ -3,6 +3,7 @@ import 'package:badges/badges.dart' as badges;
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/Font/fonts.dart';
 import 'package:bussines_owner/Module/MainHomeScreen/Project%20Manager%20Dashboard/project_manager_dashboard.dart';
+import 'package:bussines_owner/Module/MainHomeScreen/Service%20Manager%20Dashboard/service_manager_dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,9 +14,12 @@ import '../../../Constants/Person/person.dart';
 import '../../../Constants/Person/person_controller.dart';
 import '../../../Constants/constants.dart';
 import '../../../Routes/set_routes.dart';
+import '../Accounting Manager Dashboard/accounting_manager_dashboard.dart';
 import '../Administrator Dashboard/administrator_dashboard.dart';
 import '../Employee Dashboard/employee_dashboard.dart';
 import '../Notifier/main_home_screen_notifier.dart';
+import '../Procurement Manager Dashboard/procurement_manager_dashboard.dart';
+import '../Sales Manager Dashboard/sales_manager_dashboard.dart';
 
 class ApprovalScreenArgs {
   final Person person;
@@ -661,6 +665,14 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                   const EmployeeDashboard()
                 ] else if (person.data!.type == 'project manager') ...[
                   const ProjectManagerDashboard()
+                ] else if (person.data!.type == 'procurement manager') ...[
+                  const ProcurementManagerDashboard()
+                ] else if (person.data!.type == 'service manager') ...[
+                  const ServiceManagerDashboard()
+                ] else if (person.data!.type == 'sales manager') ...[
+                  const SalesManagerDashboard()
+                ] else if (person.data!.type == 'accounting manager') ...[
+                  const AccountingManagerDashboard()
                 ]
               ],
             ),

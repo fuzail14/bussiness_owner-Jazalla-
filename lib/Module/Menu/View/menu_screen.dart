@@ -91,6 +91,7 @@ class Menu extends ConsumerWidget {
           ref.read(expandedStateProvider.notifier).toggle(index);
           if (item.title == 'Logout') {
             MySharedPreferences.deleteUserData();
+            ref.read(personProvider.notifier).clearPerson();
             context.pushReplacementNamed(checkPhoneNumber);
           } else if (item.title == 'Order Placement') {
             context.pushNamed(orderPlacementScreen, extra: person);

@@ -170,7 +170,7 @@ class LeaveManagmentScreen extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                "No Data Found",
+                "No Leave Found",
                 style: GoogleFonts.montserrat(
                     fontSize: 14,
                     fontWeight: FontWeight.w700,
@@ -192,18 +192,25 @@ Widget leaveManagmentCardText(
     children: [
       Text(
         title,
+        maxLines: 1,
         style: GoogleFonts.montserrat(
           fontSize: 13.sp,
           color: const Color(0xff9FA2AB),
           fontWeight: FontWeight.w600,
         ),
       ),
-      Text(
-        subTitle,
-        style: GoogleFonts.montserrat(
-            fontSize: 14.sp,
-            color: const Color(0xff313131),
-            fontWeight: FontWeight.bold),
+      SizedBox(
+        width: 150.w,
+        child: Text(
+          subTitle,
+          maxLines: 1,
+          textDirection: TextDirection.rtl,
+          overflow: TextOverflow.ellipsis,
+          style: GoogleFonts.montserrat(
+              fontSize: 14.sp,
+              color: const Color(0xff313131),
+              fontWeight: FontWeight.bold),
+        ),
       ),
     ],
   );

@@ -36,8 +36,6 @@ class LeaveManagmentNotifier extends StateNotifier<LeaveManagmentState> {
       setResponseStatus(Status.error);
       log(e.toString());
       log(stackTrace.toString());
-
-      myToast(msg: e.toString());
     }
   }
 

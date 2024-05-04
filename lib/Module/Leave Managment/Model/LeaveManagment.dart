@@ -32,7 +32,6 @@ class Employeeleave {
     required this.endDate,
     required this.totalLeaveDays,
     required this.leaveReason,
-    required this.remark,
     required this.status,
     required this.createdBy,
     required this.createdAt,
@@ -48,7 +47,7 @@ class Employeeleave {
   late final String endDate;
   late final String totalLeaveDays;
   late final String leaveReason;
-  late final String remark;
+
   late final String status;
   late final int createdBy;
   late final String createdAt;
@@ -65,7 +64,7 @@ class Employeeleave {
     endDate = json['end_date'];
     totalLeaveDays = json['total_leave_days'];
     leaveReason = json['leave_reason'];
-    remark = json['remark'];
+
     status = json['status'];
     createdBy = json['created_by'];
     createdAt = json['created_at'];
@@ -84,7 +83,7 @@ class Employeeleave {
     _data['end_date'] = endDate;
     _data['total_leave_days'] = totalLeaveDays;
     _data['leave_reason'] = leaveReason;
-    _data['remark'] = remark;
+
     _data['status'] = status;
     _data['created_by'] = createdBy;
     _data['created_at'] = createdAt;

@@ -97,6 +97,42 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           const EmployeeCenterPage(),
           const Menu(),
         ];
+      case userTypeProcurementManager:
+        return [
+          // CustomLineChart(),
+          const MainHomeScreen(),
+          MarketPlaceScreen(),
+          const ApprovalManagmentScreen(),
+          const EmployeeCenterPage(),
+          const Menu(),
+        ];
+      case userTypeServiceManager:
+        return [
+          // CustomLineChart(),
+          const MainHomeScreen(),
+          MarketPlaceScreen(),
+          const ApprovalManagmentScreen(),
+          const EmployeeCenterPage(),
+          const Menu(),
+        ];
+      case userTypeSalesManager:
+        return [
+          // CustomLineChart(),
+          const MainHomeScreen(),
+          MarketPlaceScreen(),
+          const ApprovalManagmentScreen(),
+          const EmployeeCenterPage(),
+          const Menu(),
+        ];
+      case userTypeAccountingManager:
+        return [
+          // CustomLineChart(),
+          const MainHomeScreen(),
+          MarketPlaceScreen(),
+          const ApprovalManagmentScreen(),
+          const EmployeeCenterPage(),
+          const Menu(),
+        ];
       case userTypeHR:
         return [
           // CustomLineChart(),
@@ -217,6 +253,118 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
         ];
       case userTypeProjectManager:
+        return [
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.home),
+            label: 'Home',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.macwindow),
+            label: 'MarketPlace',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.app_badge_fill),
+            label: 'Approvals',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.waveform_circle),
+            label: 'Employee Center',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.square_grid_2x2_fill),
+            label: 'Menu',
+            backgroundColor: Color(0xff49AECD),
+          ),
+        ];
+      case userTypeProcurementManager:
+        return [
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.home),
+            label: 'Home',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.macwindow),
+            label: 'MarketPlace',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.app_badge_fill),
+            label: 'Approvals',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.waveform_circle),
+            label: 'Employee Center',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.square_grid_2x2_fill),
+            label: 'Menu',
+            backgroundColor: Color(0xff49AECD),
+          ),
+        ];
+      case userTypeServiceManager:
+        return [
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.home),
+            label: 'Home',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.macwindow),
+            label: 'MarketPlace',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.app_badge_fill),
+            label: 'Approvals',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.waveform_circle),
+            label: 'Employee Center',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.square_grid_2x2_fill),
+            label: 'Menu',
+            backgroundColor: Color(0xff49AECD),
+          ),
+        ];
+      case userTypeSalesManager:
+        return [
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.home),
+            label: 'Home',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.macwindow),
+            label: 'MarketPlace',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.app_badge_fill),
+            label: 'Approvals',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.waveform_circle),
+            label: 'Employee Center',
+            backgroundColor: Color(0xff49AECD),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.square_grid_2x2_fill),
+            label: 'Menu',
+            backgroundColor: Color(0xff49AECD),
+          ),
+        ];
+      case userTypeAccountingManager:
         return [
           const BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.home),

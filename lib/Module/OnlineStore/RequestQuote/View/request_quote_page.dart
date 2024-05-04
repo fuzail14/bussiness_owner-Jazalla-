@@ -196,7 +196,8 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                                 vertical: 8.0, horizontal: 8.0),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
-                              border: Border.all(color: const Color(0xff19A3A3)),
+                              border:
+                                  Border.all(color: const Color(0xff19A3A3)),
                             ),
                             child: Center(
                               child: AutoSizeText(
@@ -622,7 +623,8 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                                   vertical: 8.0, horizontal: 8.0),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
-                                border: Border.all(color: const Color(0xff19A3A3)),
+                                border:
+                                    Border.all(color: const Color(0xff19A3A3)),
                               ),
                               child: TextFormField(
                                 controller:
@@ -697,7 +699,8 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                                   vertical: 8.0, horizontal: 8.0),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
-                                border: Border.all(color: const Color(0xff19A3A3)),
+                                border:
+                                    Border.all(color: const Color(0xff19A3A3)),
                               ),
                               child: TextFormField(
                                 controller:

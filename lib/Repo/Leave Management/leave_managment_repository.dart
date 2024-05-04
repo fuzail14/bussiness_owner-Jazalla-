@@ -24,4 +24,12 @@ class LeaveManagmentRepository {
 
     return LeaveTypes.fromJson(response);
   }
+
+  Future<dynamic> sendLeaveRequest(Map<String, String> data) async {
+    var response = await networkServices.postFormReq(
+      Api.leaveCreateApi,
+      data,
+    );
+    return response;
+  }
 }

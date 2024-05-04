@@ -19,6 +19,125 @@ class EmployeeDashboard extends StatelessWidget {
               fontSize: 16, color: blackColor, fontWeight: FontWeight.bold),
         ),
         10.ph,
+        Container(
+          //height: 353.h,
+
+          decoration: BoxDecoration(
+            color: whiteColor,
+            borderRadius: BorderRadius.circular(12).r,
+          ),
+          padding: const EdgeInsets.only(
+                  left: 17.8, top: 15, bottom: 36, right: 17.8)
+              .r,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                  child: Text(
+                'Events',
+                style: GoogleFonts.montserrat(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xff202046)),
+              )),
+              20.ph,
+              Text(
+                'Events Title',
+                style: GoogleFonts.montserrat(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff262627)),
+              ),
+              5.ph,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: 120.w,
+                    child: Text(
+                      'Wed, Aug 23',
+                      maxLines: 1,
+                      style: GoogleFonts.montserrat(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xff828282)),
+                    ),
+                  ),
+                  Text(
+                    'To',
+                    style: GoogleFonts.montserrat(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w500,
+                        color: Color(0xff828282)),
+                  ),
+                  SizedBox(
+                    width: 120.w,
+                    child: Text(
+                      'Wed, Aug 27',
+                      maxLines: 1,
+                      style: GoogleFonts.montserrat(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xff828282)),
+                    ),
+                  )
+                ],
+              ),
+              12.ph,
+              const Divider(
+                color: Color(0xffD6D9DC),
+              ),
+              12.ph,
+              Text(
+                'Events Title',
+                style: GoogleFonts.montserrat(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff262627)),
+              ),
+              5.ph,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: 120.w,
+                    child: Text(
+                      'Wed, Aug 23',
+                      maxLines: 1,
+                      style: GoogleFonts.montserrat(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xff828282)),
+                    ),
+                  ),
+                  Text(
+                    'To',
+                    style: GoogleFonts.montserrat(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w500,
+                        color: Color(0xff828282)),
+                  ),
+                  SizedBox(
+                    width: 120.w,
+                    child: Text(
+                      'Wed, Aug 27',
+                      maxLines: 1,
+                      style: GoogleFonts.montserrat(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xff828282)),
+                    ),
+                  )
+                ],
+              ),
+              12.ph,
+              const Divider(
+                color: Color(0xffD6D9DC),
+              ),
+            ],
+          ),
+        ),
+        10.ph,
         Text(
           'Announcement List',
           style: GoogleFonts.montserrat(

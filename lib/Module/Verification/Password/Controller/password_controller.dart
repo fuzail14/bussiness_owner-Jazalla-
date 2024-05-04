@@ -7,6 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../Constants/Global/Method/global_methods.dart';
 import '../../../../Constants/Person/person.dart';
+import '../../../../Constants/Person/person_controller.dart';
 import '../../../../Repo/Verification Repository/verification_repository.dart';
 import '../../../../Routes/set_routes.dart';
 import '../../../../Services/Notification Services/notification_services.dart';
@@ -45,8 +46,8 @@ class PasswordController extends StateNotifier<PasswordState> {
   var phoneNumController = TextEditingController();
   final _repository = LoginRepository();
 
-  Future<void> loginApi(
-      String mobileNo, String password, BuildContext context) async {
+  Future<void> loginApi(String mobileNo, String password, BuildContext context,
+      WidgetRef ref) async {
     setLoading(true);
 
     Map<String, String> data = {
@@ -79,8 +80,9 @@ class PasswordController extends StateNotifier<PasswordState> {
 
         print(person2);
         print(person2.data!.companyId);
+        ref.read(personProvider.notifier).setPerson(person2);
 
-        context.pushReplacementNamed(homescreen, extra: person2);
+        context.pushReplacementNamed(homescreen);
 
         setLoading(false);
       }

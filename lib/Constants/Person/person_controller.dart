@@ -7,6 +7,10 @@ class PersonController extends StateNotifier<Person?> {
   void setPerson(Person person) {
     state = person;
   }
+
+  void clearPerson() {
+    state = null;
+  }
 }
 
 final personProvider = StateNotifierProvider<PersonController, Person?>((ref) {

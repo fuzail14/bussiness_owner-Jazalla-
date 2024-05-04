@@ -9,6 +9,7 @@ Widget dashBoardFirstGrid({
   required String icon,
   required String title,
   required String subTitle,
+  TextAlign? titleTextAlign,
 }) {
   return Container(
     width: 156.w,
@@ -21,7 +22,7 @@ Widget dashBoardFirstGrid({
         10.ph,
         Text(
           title,
-          textAlign: TextAlign.start,
+          textAlign: titleTextAlign ?? TextAlign.start,
           style: GoogleFonts.poppins(
               fontSize: 14.sp,
               fontWeight: FontWeight.w600,
