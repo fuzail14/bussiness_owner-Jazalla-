@@ -30,6 +30,7 @@ class LeaveManagmentRepository {
       Api.leaveCreateApi,
       data,
     );
+
     return response;
   }
 }

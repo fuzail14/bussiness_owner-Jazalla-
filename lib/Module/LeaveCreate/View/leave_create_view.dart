@@ -20,8 +20,6 @@ class LeaveCreateScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // print(person!.data!.id!);
-
     final controller = ref.watch(leaveCreateProvider.notifier);
     final state = ref.watch(leaveCreateProvider);
     print('build check  ${buildcheck++}');
@@ -462,10 +460,11 @@ class LeaveCreateScreen extends ConsumerWidget {
               InkWell(
                 onTap: () {
                   //print('current date ${controller.appliedOn.toString()}');
+
                   if (controller.key.currentState!.validate()) {
                     ref.read(leaveCreateProvider.notifier).sendLeaveRequestApi(
                         companyId: controller.person!.data!.companyId,
-                        employeeId: controller.person!.data!.id,
+                        employeeId: controller.person!.employee!.id,
                         leaveTypeId: state.leaveTypeId,
                         appliedOn: controller.appliedOn,
                         startDate: controller.startDateController.text,

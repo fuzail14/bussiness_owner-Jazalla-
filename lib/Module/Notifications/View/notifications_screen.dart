@@ -127,8 +127,9 @@ class NotificationsScreen extends ConsumerWidget {
                                     Container(
                                       height: 8.h,
                                       width: 8.w,
-                                      margin:
-                                          const EdgeInsets.only(top: 20, left: 5).r,
+                                      margin: const EdgeInsets.only(
+                                              top: 20, left: 5)
+                                          .r,
                                       decoration: BoxDecoration(
                                           color: (notification.isRead == 0)
                                               ? const Color(0xff2E70E8)
@@ -205,7 +206,8 @@ class NotificationsScreen extends ConsumerWidget {
                                                 text: '  Type   ',
                                                 style: GoogleFonts.inter(
                                                     fontSize: 12.sp,
-                                                    color: const Color(0xff1E293B),
+                                                    color:
+                                                        const Color(0xff1E293B),
                                                     fontWeight:
                                                         FontWeight.w300),
                                               ),
@@ -215,7 +217,8 @@ class NotificationsScreen extends ConsumerWidget {
                                                   text: 'Request For Quotation',
                                                   style: GoogleFonts.inter(
                                                       fontSize: 14.sp,
-                                                      color: const Color(0xff1E293B),
+                                                      color: const Color(
+                                                          0xff1E293B),
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 ),
@@ -225,7 +228,8 @@ class NotificationsScreen extends ConsumerWidget {
                                                   text: 'Request For Proposal',
                                                   style: GoogleFonts.inter(
                                                       fontSize: 14.sp,
-                                                      color: const Color(0xff1E293B),
+                                                      color: const Color(
+                                                          0xff1E293B),
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 ),
@@ -236,7 +240,8 @@ class NotificationsScreen extends ConsumerWidget {
                                                       'Request For Information For Service',
                                                   style: GoogleFonts.inter(
                                                       fontSize: 14.sp,
-                                                      color: const Color(0xff1E293B),
+                                                      color: const Color(
+                                                          0xff1E293B),
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 ),
@@ -247,7 +252,8 @@ class NotificationsScreen extends ConsumerWidget {
                                                       'Request For Information For Product',
                                                   style: GoogleFonts.inter(
                                                       fontSize: 14.sp,
-                                                      color: const Color(0xff1E293B),
+                                                      color: const Color(
+                                                          0xff1E293B),
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 ),

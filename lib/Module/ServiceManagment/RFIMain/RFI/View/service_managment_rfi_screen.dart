@@ -132,9 +132,9 @@ class ServiceManagmentRFIScreen extends ConsumerWidget {
                         child: Container(
                           //width: 360.w,
                           // height: 224.h,
-                          margin:
-                              const EdgeInsets.only(left: 26, right: 26, bottom: 20)
-                                  .r,
+                          margin: const EdgeInsets.only(
+                                  left: 26, right: 26, bottom: 20)
+                              .r,
                           decoration: BoxDecoration(
                               color: const Color(0xffF9F9F9),
                               borderRadius: BorderRadius.circular(8.0).r),
@@ -230,7 +230,8 @@ class ServiceManagmentRFIScreen extends ConsumerWidget {
                                               style: GoogleFonts.montserrat(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w400,
-                                                  color: const Color(0xffFACC15))),
+                                                  color:
+                                                      const Color(0xffFACC15))),
                                         ),
                                       ],
                                       16.ph,
@@ -254,7 +255,8 @@ class ServiceManagmentRFIScreen extends ConsumerWidget {
                                               style: GoogleFonts.montserrat(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w400,
-                                                  color: const Color(0xff2DD4BF))),
+                                                  color:
+                                                      const Color(0xff2DD4BF))),
                                         ),
                                       ],
                                       16.ph,

@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:animate_do/animate_do.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/Font/fonts.dart';
@@ -838,15 +839,17 @@ class CheckInDialog extends StatelessWidget {
                   left: (280.w / 2) -
                       (41.8.w /
                           2), // This centers the CircleAvatar horizontally in the Stack.
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: CircleAvatar(
-                      radius: 61.8.h /
-                          2, // This sets the radius of the CircleAvatar.
-                      backgroundColor: Colors.transparent,
-                      child: SvgPicture.asset(svgPath),
+                  child: FadeInDown(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: CircleAvatar(
+                        radius: 61.8.h /
+                            2, // This sets the radius of the CircleAvatar.
+                        backgroundColor: Colors.transparent,
+                        child: SvgPicture.asset(svgPath),
+                      ),
                     ),
                   ),
                 ),

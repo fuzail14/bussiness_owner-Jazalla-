@@ -668,17 +668,16 @@ class SendRFPResponse extends ConsumerWidget {
   }
 }
 
-
 // class SendRFQResponse extends ConsumerStatefulWidget {
 //   @override
 //   _SendRFQResponseState createState() => _SendRFQResponseState();
 // }
 
 // class _SendRFQResponseState extends ConsumerState<SendRFQResponse> {
- 
+
 //   @override
 //   Widget build(BuildContext context) {
-    
+
 //     final sendRFQResponseState = ref.watch(sendRFQResponseProvider);
 //     final sendRFQResponseController = ref.watch(sendRFQResponseProvider.notifier);
 

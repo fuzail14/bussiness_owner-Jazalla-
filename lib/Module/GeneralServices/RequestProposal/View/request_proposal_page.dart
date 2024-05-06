@@ -442,7 +442,8 @@ class RequestProposalScreen extends ConsumerWidget {
                                 vertical: 8.0, horizontal: 8.0),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
-                              border: Border.all(color: const Color(0xff19A3A3)),
+                              border:
+                                  Border.all(color: const Color(0xff19A3A3)),
                             ),
                             child: TextFormField(
                               controller:
@@ -516,7 +517,8 @@ class RequestProposalScreen extends ConsumerWidget {
                                 vertical: 8.0, horizontal: 8.0),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
-                              border: Border.all(color: const Color(0xff19A3A3)),
+                              border:
+                                  Border.all(color: const Color(0xff19A3A3)),
                             ),
                             child: TextFormField(
                               controller: requestProposalcontroller
@@ -646,7 +648,8 @@ class RequestProposalScreen extends ConsumerWidget {
                           width: 311.w,
                           height: 43.h,
                           decoration: BoxDecoration(
-                              border: Border.all(color: const Color(0xff19A3A3))),
+                              border:
+                                  Border.all(color: const Color(0xff19A3A3))),
                           child: Row(
                             children: [
                               GestureDetector(
@@ -669,8 +672,8 @@ class RequestProposalScreen extends ConsumerWidget {
                                   height: 43.h,
                                   decoration: BoxDecoration(
                                       color: const Color(0xffF7F7F9),
-                                      border:
-                                          Border.all(color: const Color(0xff19A3A3))),
+                                      border: Border.all(
+                                          color: const Color(0xff19A3A3))),
                                   child: Center(
                                     child: Text(
                                       'Choose File',

@@ -1,4 +1,3 @@
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Routes/set_routes.dart';
@@ -172,7 +171,8 @@ class OnlineStoreScreen extends ConsumerWidget {
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30).r,
-                          borderSide: const BorderSide(color: Color(0xffDEDEDE)),
+                          borderSide:
+                              const BorderSide(color: Color(0xffDEDEDE)),
                         ),
                         focusColor: blueColor),
                   ),

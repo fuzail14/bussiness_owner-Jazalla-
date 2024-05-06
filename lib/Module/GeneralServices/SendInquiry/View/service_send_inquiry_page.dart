@@ -98,7 +98,8 @@ class ServiceSendInquiryScreen extends ConsumerWidget {
                             height: 23.h,
                             decoration: BoxDecoration(
                                 color: const Color(0xffF7F7F9),
-                                border: Border.all(color: const Color(0xff19A3A3))),
+                                border:
+                                    Border.all(color: const Color(0xff19A3A3))),
                             child: Center(
                               child: Text(
                                 'Choose File',

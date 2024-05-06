@@ -98,7 +98,10 @@ class LeaveManagmentScreen extends ConsumerWidget {
                                 state.employeeleave[index].status.toString(),
                                 style: GoogleFonts.montserrat(
                                   fontSize: 16.sp,
-                                  color: const Color(0xffFC0000),
+                                  color: (state.employeeleave[index].status ==
+                                          'Pending')
+                                      ? const Color(0xffFC0000)
+                                      : const Color(0xff22A527),
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),

@@ -55,7 +55,8 @@ Widget productandServiceInfoCard(
         Container(
           width: width,
           //height: height,
-          padding: const EdgeInsets.only(left: 15, top: 9, right: 17, bottom: 14).r,
+          padding:
+              const EdgeInsets.only(left: 15, top: 9, right: 17, bottom: 14).r,
           decoration: BoxDecoration(
               border: Border.all(color: HexColor('#19A3A3')),
               borderRadius: BorderRadius.circular(8).r,

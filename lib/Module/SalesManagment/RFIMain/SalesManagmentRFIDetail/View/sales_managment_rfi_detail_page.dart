@@ -1,4 +1,3 @@
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
@@ -173,7 +172,8 @@ class SalesManagmentRFIDetailPage extends ConsumerWidget {
                               decoration: BoxDecoration(
                                   color: whiteColor,
                                   borderRadius: BorderRadius.circular(12).r,
-                                  border: Border.all(color: const Color(0xffE1E3E8))),
+                                  border: Border.all(
+                                      color: const Color(0xffE1E3E8))),
                               padding: const EdgeInsets.symmetric(
                                       horizontal: 15, vertical: 12)
                                   .r,
@@ -373,7 +373,8 @@ class SalesManagmentRFIDetailPage extends ConsumerWidget {
                               decoration: BoxDecoration(
                                   color: whiteColor,
                                   borderRadius: BorderRadius.circular(12).r,
-                                  border: Border.all(color: const Color(0xffE1E3E8))),
+                                  border: Border.all(
+                                      color: const Color(0xffE1E3E8))),
                               padding: const EdgeInsets.symmetric(
                                       horizontal: 15, vertical: 12)
                                   .r,

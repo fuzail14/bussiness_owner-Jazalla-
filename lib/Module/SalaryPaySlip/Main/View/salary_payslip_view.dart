@@ -1,4 +1,5 @@
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
+import 'package:bussines_owner/Constants/Person/person_controller.dart';
 import 'package:bussines_owner/Constants/constants.dart';
 import 'package:bussines_owner/Routes/set_routes.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +48,7 @@ class SalaryPaySlipScreen extends ConsumerWidget {
             const Loader()
           else if (state.responseStatus == Status.completed) ...[
             10.ph,
-            if (state.request4Informatio.isEmpty) ...[
+            if (state.payslips.isEmpty) ...[
               Center(
                 child: Text(
                   'No Requests Found.',
@@ -61,7 +62,7 @@ class SalaryPaySlipScreen extends ConsumerWidget {
               Expanded(
                 child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: state.request4Informatio.length,
+                    itemCount: state.payslips.length,
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
@@ -101,7 +102,10 @@ class SalaryPaySlipScreen extends ConsumerWidget {
                                       SizedBox(
                                         width: 180.w,
                                         child: Text(
-                                          'Awais Ahmed',
+                                          controller.person!.data!.firstName
+                                                  .toString() +
+                                              controller.person!.data!.lastName
+                                                  .toString(),
                                           maxLines: 1,
                                           style: GoogleFonts.montserrat(
                                             fontSize: 24.sp,
@@ -111,7 +115,7 @@ class SalaryPaySlipScreen extends ConsumerWidget {
                                         ),
                                       ),
                                       Text(
-                                        '#EMP0000019',
+                                        state.payslips[index].id.toString(),
                                         style: GoogleFonts.montserrat(
                                           fontSize: 12.sp,
                                           color: const Color(0xff636363),
@@ -121,10 +125,14 @@ class SalaryPaySlipScreen extends ConsumerWidget {
                                     ],
                                   ),
                                   Text(
-                                    'Paid',
+                                    (state.payslips[index].status == 1)
+                                        ? 'Paid'
+                                        : 'Unpaid',
                                     style: GoogleFonts.montserrat(
                                       fontSize: 14.sp,
-                                      color: const Color(0xff22A527),
+                                      color: (state.payslips[index].status == 1)
+                                          ? const Color(0xff22A527)
+                                          : const Color(0xffBA1717),
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
@@ -141,17 +149,20 @@ class SalaryPaySlipScreen extends ConsumerWidget {
                               10.ph,
                               SalaryPaySlipCardText(
                                 title: 'Salary',
-                                subTitle: '\$5000.00',
+                                subTitle: state.payslips[index].basicSalary
+                                    .toString(),
                               ),
                               10.ph,
                               SalaryPaySlipCardText(
                                 title: 'Net Salary',
-                                subTitle: '\$15000000.00',
+                                subTitle:
+                                    state.payslips[index].netPayble.toString(),
                               ),
                               10.ph,
                               SalaryPaySlipCardText(
                                 title: 'Salary For',
-                                subTitle: '05 March 2022',
+                                subTitle: state.payslips[index].salaryMonth
+                                    .toString(),
                               ),
                             ],
                           ),

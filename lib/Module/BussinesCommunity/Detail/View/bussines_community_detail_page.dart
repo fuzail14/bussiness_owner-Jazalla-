@@ -74,7 +74,9 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                                 Container(
                                   width: double.infinity,
                                   height: 437.h,
-                                  padding: const EdgeInsets.only(left: 30, top: 19).r,
+                                  padding:
+                                      const EdgeInsets.only(left: 30, top: 19)
+                                          .r,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(14).r,
                                       color: HexColor('#FFFFFF'),
@@ -92,7 +94,8 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                                               decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(3),
-                                                  color: const Color(0x33e1e1e2)),
+                                                  color:
+                                                      const Color(0x33e1e1e2)),
                                               child: (state
                                                           .companyDetail[
                                                               outerIndex]
@@ -164,8 +167,8 @@ class BussinesCommunityDetailPage extends ConsumerWidget {
                                             myLocationButtonEnabled: false,
                                             markers: {
                                               Marker(
-                                                markerId:
-                                                    const MarkerId('some_marker'),
+                                                markerId: const MarkerId(
+                                                    'some_marker'),
                                                 position: controller.center,
                                               ),
                                             },

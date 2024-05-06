@@ -4,35 +4,35 @@ import 'package:bussines_owner/Constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../Data/Api Resp/api_response.dart';
-import '../../../../Repo/Approval Managment Repository/approval_managment_repository.dart';
 import '../../../Constants/Person/person.dart';
 import '../../../Constants/Person/person_controller.dart';
+import '../../../Repo/Attendance Employee Repository/attendance_employee_repository.dart';
 import '../State/attendance_managment_state.dart';
 
 class AttendanceManagmentNotifier
     extends StateNotifier<AttendanceManagmentState> {
   final Person? person;
-  final approvalManagmentRepository = ApprovalManagmentRepository();
+  final attendanceEmployeeRepository = AttendanceEmployeeRepository();
 
   AttendanceManagmentNotifier(this.person) : super(AttendanceManagmentState()) {
-    request4InformationViewApi(
-        userId: person!.data!.id!, bearerToken: person!.Bearer);
+    attendanceEmployeeViewApi(
+        employeeId: person!.employee!.id!, bearerToken: person!.Bearer);
   }
 
   final TextEditingController searchController = TextEditingController();
 
-  Future<void> request4InformationViewApi(
-      {required userId, required bearerToken}) async {
+  Future<void> attendanceEmployeeViewApi(
+      {required employeeId, required bearerToken}) async {
     setResponseStatus(Status.loading);
     print('come here');
-    print(userId);
+    print(employeeId);
     try {
-      final value = await approvalManagmentRepository.request4InformationApi(
-        userId: userId,
+      final value = await attendanceEmployeeRepository.getAttendanceEmployeeApi(
+        employeeId: employeeId,
         bearerToken: bearerToken,
       );
       state = state.copyWith(
-        request4Informatio: value.requestForInformation,
+        employeeattendance: value.employeeattendance,
         responseStatus: Status.completed,
       );
     } catch (e, stackTrace) {

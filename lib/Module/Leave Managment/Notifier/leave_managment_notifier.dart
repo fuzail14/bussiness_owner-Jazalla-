@@ -14,7 +14,7 @@ class LeaveManagmentNotifier extends StateNotifier<LeaveManagmentState> {
   final leaveManagmentRepository = LeaveManagmentRepository();
 
   LeaveManagmentNotifier(this.person) : super(LeaveManagmentState()) {
-    leavesViewApi(userId: person!.data!.id!, bearerToken: person!.Bearer);
+    leavesViewApi(userId: person!.employee!.id!, bearerToken: person!.Bearer);
   }
 
   final TextEditingController searchController = TextEditingController();

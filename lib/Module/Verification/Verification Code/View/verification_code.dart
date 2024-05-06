@@ -29,7 +29,8 @@ class VerificationCode extends ConsumerWidget {
           children: [
             Container(
               height: 441.h,
-              padding: const EdgeInsets.symmetric(vertical: 62, horizontal: 70).r,
+              padding:
+                  const EdgeInsets.symmetric(vertical: 62, horizontal: 70).r,
               width: double.infinity.w,
               decoration: const BoxDecoration(
                   gradient: LinearGradient(

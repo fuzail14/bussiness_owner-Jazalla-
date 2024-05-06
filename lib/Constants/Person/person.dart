@@ -1,17 +1,17 @@
 class Person {
-  Person({
-    this.success,
-    this.data,
-    this.Bearer,
-  });
+  Person({this.success, this.data, this.Bearer, this.employee});
   bool? success;
   Data? data;
+  Employee? employee;
   String? Bearer;
 
   Person.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     data = Data.fromJson(json['data']);
     Bearer = json['Bearer'];
+    // employee = Employee.fromJson(json['employee']);
+    employee =
+        json['employee'] != null ? Employee.fromJson(json['employee']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -19,7 +19,8 @@ class Person {
     data['success'] = success;
     //data['data'] = data.toJson();
     data['Bearer'] = Bearer;
-
+    // data['employee'] = employee!.toJson();
+    data['employee'] = employee != null ? employee!.toJson() : null;
     return data;
   }
 }
@@ -200,5 +201,51 @@ class Company {
     data['business_type'] = businessType;
 
     return data;
+  }
+}
+
+class Employee {
+  Employee({
+    this.id,
+    this.userId,
+    this.name,
+    this.departmentId,
+    this.designationId,
+    this.isActive,
+    this.createdBy,
+  });
+  int? id;
+  int? userId;
+  String? name;
+  int? departmentId;
+  int? designationId;
+  int? isActive;
+  int? createdBy;
+
+  Employee.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    userId = json['user_id'];
+    name = json['name'];
+
+    departmentId = json['department_id'];
+    designationId = json['designation_id'];
+
+    isActive = json['is_active'];
+    createdBy = json['created_by'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final _data = <String, dynamic>{};
+    _data['id'] = id;
+    _data['user_id'] = userId;
+    _data['name'] = name;
+
+    _data['department_id'] = departmentId;
+    _data['designation_id'] = designationId;
+
+    _data['is_active'] = isActive;
+    _data['created_by'] = createdBy;
+
+    return _data;
   }
 }

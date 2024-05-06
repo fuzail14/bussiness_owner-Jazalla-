@@ -19,7 +19,8 @@ class DescriptionFieldAttachment extends StatelessWidget {
   bool buttonLoading;
   bool attachmentContentShow;
 
-  DescriptionFieldAttachment({super.key, 
+  DescriptionFieldAttachment({
+    super.key,
     this.controller,
     this.text,
     this.hintText,
@@ -57,8 +58,10 @@ class DescriptionFieldAttachment extends StatelessWidget {
             controller: controller,
             decoration: InputDecoration(
               hintText: hintText ?? '',
-              enabledBorder: const UnderlineInputBorder(borderSide: BorderSide.none),
-              focusedBorder: const UnderlineInputBorder(borderSide: BorderSide.none),
+              enabledBorder:
+                  const UnderlineInputBorder(borderSide: BorderSide.none),
+              focusedBorder:
+                  const UnderlineInputBorder(borderSide: BorderSide.none),
             ),
           ),
         ),

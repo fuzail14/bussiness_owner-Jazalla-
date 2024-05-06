@@ -1,4 +1,3 @@
-
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +30,8 @@ class CardMakretPlace extends StatelessWidget {
       child: Container(
         width: 160.w,
         height: 140.h,
-        padding: const EdgeInsets.only(left: 20, top: 20, right: 5, bottom: 0).r,
+        padding:
+            const EdgeInsets.only(left: 20, top: 20, right: 5, bottom: 0).r,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8).r,
           color: whiteColor,

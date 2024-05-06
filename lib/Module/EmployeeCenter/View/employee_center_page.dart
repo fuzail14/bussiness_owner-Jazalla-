@@ -23,7 +23,9 @@ class EmployeeCenterPage extends ConsumerWidget {
     final state = ref.read(employeeCenterProvider);
 
     print(person!.data!.id!);
-    print(person.Bearer);
+    print('employee id ${person.employee!.id}');
+    print('company7 id ${person.data!.companyId}');
+
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(

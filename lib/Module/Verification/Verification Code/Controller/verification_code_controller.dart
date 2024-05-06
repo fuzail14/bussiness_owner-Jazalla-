@@ -66,7 +66,7 @@ class VerificationCodeController extends StateNotifier<VerificationCodeState> {
 
       // Navigate to password screen or other logic
       // Example: ref.read(routerProvider.notifier).state = '/passwordScreen';
-        } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (e) {
       if (e.code == 'session-expired') {
         myToast(
             msg: 'The SMS code has expired. Please request to resend the OTP.',

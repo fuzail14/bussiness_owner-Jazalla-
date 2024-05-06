@@ -156,4 +156,9 @@ class Api {
       "${baseUrl}employeeCenter/leaveManagment/leaveCreateApi";
   static const String getLeavesApi =
       "${baseUrl}employeeCenter/leaveManagment/getLeavesApi";
+  static const String getSalaryPaySlips =
+      "${baseUrl}employeeCenter/salaryPaySlip/getSalaryPaySlips";
+
+  static const String getEmployeeAttendance =
+      "${baseUrl}employeeCenter/employeeAttendance/getEmployeeAttendance";
 }

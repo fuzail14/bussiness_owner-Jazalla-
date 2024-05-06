@@ -1,26 +1,27 @@
 import '../../../../Constants/Person/person.dart';
 import '../../../../Data/Api Resp/api_response.dart';
 import '../../../ProcurementManagment/RFI/Main/Model/Request4Information.dart';
+import '../Model/SalaryPaySlip.dart';
 
 class SalaryPaySlipState {
   final Status responseStatus;
-  final List<RequestForInformation> request4Informatio;
+  final List<Payslips> payslips;
   final Person? person;
 
   SalaryPaySlipState({
     this.responseStatus = Status.loading,
-    this.request4Informatio = const [],
+    this.payslips = const [],
     this.person,
   });
 
   SalaryPaySlipState copyWith({
     Status? responseStatus,
-    List<RequestForInformation>? request4Informatio,
+    List<Payslips>? payslips,
     Person? person,
   }) {
     return SalaryPaySlipState(
       responseStatus: responseStatus ?? this.responseStatus,
-      request4Informatio: request4Informatio ?? this.request4Informatio,
+      payslips: payslips ?? this.payslips,
       person: person ?? this.person,
     );
   }

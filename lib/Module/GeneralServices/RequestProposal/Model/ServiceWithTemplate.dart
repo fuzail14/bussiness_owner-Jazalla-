@@ -21,8 +21,7 @@ class ServiceWithTemplate {
     final data = <String, dynamic>{};
     data['success'] = success;
     data['serviceDetailForProposal'] = serviceDetailForProposal.toJson();
-    data['proposalTemplate'] =
-        proposalTemplate.map((e) => e.toJson()).toList();
+    data['proposalTemplate'] = proposalTemplate.map((e) => e.toJson()).toList();
     return data;
   }
 }

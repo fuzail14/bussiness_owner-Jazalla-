@@ -260,7 +260,8 @@ class TendersView extends ConsumerWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(14),
                           color: const Color(0xfff3f4f5)),
-                      margin: const EdgeInsets.only(top: 10, left: 14, right: 14).r,
+                      margin:
+                          const EdgeInsets.only(top: 10, left: 14, right: 14).r,
                       padding: const EdgeInsets.only(
                               left: 16, top: 22, right: 16, bottom: 30)
                           .r,

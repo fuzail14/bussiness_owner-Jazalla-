@@ -112,8 +112,6 @@ class NotificationsNotifier extends StateNotifier<NotificationsState> {
   }
 }
 
-
-
 // class NotificationItem {
 //   bool isRead;
 //   final String title;

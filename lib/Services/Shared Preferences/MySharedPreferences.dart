@@ -26,6 +26,7 @@ class MySharedPreferences {
       value.remove(bearerTokenSPKEY);
       value.remove(fcmTokenSPKEY);
       value.remove(companyNameSPKEY);
+      value.remove(employeeIdSPKEY);
     });
   }
 
@@ -45,6 +46,8 @@ class MySharedPreferences {
       value.setString(fcmTokenSPKEY, fcmToken ?? '');
       value.setString(
           companyNameSPKEY, person.data!.company!.companyName! ?? '');
+
+      value.setInt(employeeIdSPKEY, person.employee!.id ?? 0);
     });
   }
 
@@ -67,22 +70,25 @@ class MySharedPreferences {
       value.getString(fcmTokenSPKEY) ?? value.setString(fcmTokenSPKEY, '');
       value.getString(companyNameSPKEY) ??
           value.setString(companyNameSPKEY, '');
+      value.getInt(employeeIdSPKEY) ?? value.setInt(employeeIdSPKEY, 0);
 
       person = Person(
-        data: Data(
-            id: value.getInt(userIdSPKey),
-            companyId: value.getInt(companyIdSPKey),
-            name: value.getString(nameSPKey),
-            firstName: value.getString(firstNameSPKey),
-            lastName: value.getString(lastNameSPKey),
-            mobileNo: value.getString(mobileNoSPKEY),
-            userRoleId: value.getInt(userRoleIdSPKey),
-            email: value.getString(emailSPKEY),
-            type: value.getString(typeSPKEY),
-            fcmtoken: value.getString(fcmTokenSPKEY),
-            company: Company(companyName: value.getString(companyNameSPKEY))),
-        Bearer: value.getString(bearerTokenSPKEY),
-      );
+          data: Data(
+              id: value.getInt(userIdSPKey),
+              companyId: value.getInt(companyIdSPKey),
+              name: value.getString(nameSPKey),
+              firstName: value.getString(firstNameSPKey),
+              lastName: value.getString(lastNameSPKey),
+              mobileNo: value.getString(mobileNoSPKEY),
+              userRoleId: value.getInt(userRoleIdSPKey),
+              email: value.getString(emailSPKEY),
+              type: value.getString(typeSPKEY),
+              fcmtoken: value.getString(fcmTokenSPKEY),
+              company: Company(companyName: value.getString(companyNameSPKEY))),
+          Bearer: value.getString(bearerTokenSPKEY),
+          employee: Employee(
+            id: value.getInt(employeeIdSPKEY),
+          ));
     });
     return person;
   }

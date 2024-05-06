@@ -386,8 +386,8 @@ class ServiceDetailPage extends ConsumerWidget {
                                 Container(
                                   width: 278.w,
                                   height: 75.h,
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 8.0),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0),
                                   // margin: EdgeInsets.all(16),
                                   decoration: BoxDecoration(
                                     border: Border.all(

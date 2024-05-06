@@ -16,8 +16,7 @@ class Notification {
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
     data['success'] = success;
-    data['NotificationData'] =
-        notificationData.map((e) => e.toJson()).toList();
+    data['NotificationData'] = notificationData.map((e) => e.toJson()).toList();
     return data;
   }
 }

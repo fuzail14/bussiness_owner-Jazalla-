@@ -111,7 +111,9 @@ class TendersDetailPage extends ConsumerWidget {
                                 Container(
                                   width: double.infinity,
                                   height: 230.h,
-                                  padding: const EdgeInsets.only(left: 30, top: 19).r,
+                                  padding:
+                                      const EdgeInsets.only(left: 30, top: 19)
+                                          .r,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(14).r,
                                       color: HexColor('#FFFFFF'),
@@ -129,7 +131,8 @@ class TendersDetailPage extends ConsumerWidget {
                                               decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(3),
-                                                  color: const Color(0x33e1e1e2)),
+                                                  color:
+                                                      const Color(0x33e1e1e2)),
                                               child: (state
                                                           .tenderDetail[
                                                               outerIndex]
@@ -139,8 +142,10 @@ class TendersDetailPage extends ConsumerWidget {
                                                   ? SvgPicture.asset(
                                                       'assets/images/building.svg')
                                                   : CachedNetworkImage(
-                                                      imageUrl:
-                                                          Api.imageBaseUrl + tender.companies!.logo.toString(),
+                                                      imageUrl: Api
+                                                              .imageBaseUrl +
+                                                          tender.companies!.logo
+                                                              .toString(),
                                                       fit: BoxFit.contain,
                                                     ),
                                             ),
@@ -509,7 +514,8 @@ class TendersDetailPage extends ConsumerWidget {
                                     width: double.infinity,
                                     // height: 437.h,
 
-                                    padding: const EdgeInsets.only(bottom: 36).r,
+                                    padding:
+                                        const EdgeInsets.only(bottom: 36).r,
                                     decoration: BoxDecoration(
                                         borderRadius:
                                             BorderRadius.circular(14).r,
@@ -963,7 +969,8 @@ class TendersDetailPage extends ConsumerWidget {
                                     width: double.infinity,
                                     // height: 437.h,
 
-                                    padding: const EdgeInsets.only(bottom: 36).r,
+                                    padding:
+                                        const EdgeInsets.only(bottom: 36).r,
                                     decoration: BoxDecoration(
                                         borderRadius:
                                             BorderRadius.circular(14).r,
@@ -981,7 +988,8 @@ class TendersDetailPage extends ConsumerWidget {
                                           padding: const EdgeInsets.only(
                                                   left: 27, right: 27)
                                               .r,
-                                          margin: const EdgeInsets.only(top: 10).r,
+                                          margin:
+                                              const EdgeInsets.only(top: 10).r,
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,

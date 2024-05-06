@@ -175,7 +175,8 @@ class GeneralServiceView extends ConsumerWidget {
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30).r,
-                          borderSide: const BorderSide(color: Color(0xffDEDEDE)),
+                          borderSide:
+                              const BorderSide(color: Color(0xffDEDEDE)),
                         ),
                         focusColor: blueColor),
                   ),

@@ -1,6 +1,7 @@
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/Font/fonts.dart';
 import 'package:bussines_owner/Constants/constants.dart';
+import 'package:bussines_owner/Module/Attendance%20Managment/Model/AttendanceEmployee.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -50,7 +51,7 @@ class AttendanceManagmentScreen extends ConsumerWidget {
             const Loader()
           else if (state.responseStatus == Status.completed) ...[
             10.ph,
-            if (state.request4Informatio.isEmpty) ...[
+            if (state.employeeattendance.isEmpty) ...[
               Center(
                 child: Text(
                   'No Requests Found.',
@@ -64,17 +65,18 @@ class AttendanceManagmentScreen extends ConsumerWidget {
               Expanded(
                 child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: state.request4Informatio.length,
+                    itemCount: state.employeeattendance.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
                           showDialog(
                               context: context,
                               builder: (BuildContext context) => CheckInDialog(
-                                    title: 'Details',
-                                    svgPath:
-                                        'assets/images/attendance_managment_dialog_icon.svg',
-                                  ));
+                                  title: 'Details',
+                                  svgPath:
+                                      'assets/images/attendance_managment_dialog_icon.svg',
+                                  employeeattendance:
+                                      state.employeeattendance[index]));
                         },
                         child: Container(
                           //width: 360.w,
@@ -108,16 +110,15 @@ class AttendanceManagmentScreen extends ConsumerWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    '10-05-2024 (SUN)',
+                                    state.employeeattendance[index].date ?? '',
                                     style: GoogleFonts.montserrat(
                                       fontSize: 16.sp,
                                       color: blackColor,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                  (state.request4Informatio[index]
-                                              .requestType ==
-                                          'product')
+                                  (state.employeeattendance[index].status ==
+                                          '0')
                                       ? Text(
                                           'Absent',
                                           style: GoogleFonts.montserrat(
@@ -167,7 +168,9 @@ class AttendanceManagmentScreen extends ConsumerWidget {
                                           ),
                                         ),
                                         Text(
-                                          '10:00 AM',
+                                          state.employeeattendance[index]
+                                                  .clockIn ??
+                                              '',
                                           style: GoogleFonts.montserrat(
                                             fontSize: 12.sp,
                                             color: const Color(0xff4B4F54),
@@ -190,7 +193,9 @@ class AttendanceManagmentScreen extends ConsumerWidget {
                                           ),
                                         ),
                                         Text(
-                                          '05:00 PM',
+                                          state.employeeattendance[index]
+                                                  .clockOut ??
+                                              '',
                                           style: GoogleFonts.montserrat(
                                             fontSize: 12.sp,
                                             color: const Color(0xff4B4F54),
@@ -300,7 +305,13 @@ class AttendanceManagmentScreen extends ConsumerWidget {
 class CheckInDialog extends StatelessWidget {
   String title;
   String svgPath;
-  CheckInDialog({super.key, required this.title, required this.svgPath});
+  Employeeattendance? employeeattendance;
+  CheckInDialog(
+      {super.key,
+      required this.title,
+      required this.svgPath,
+      this.employeeattendance});
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -354,16 +365,20 @@ class CheckInDialog extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Emp-2882',
+                              'Emp-${employeeattendance!.id}',
                               style: GoogleFonts.montserrat(
                                   color: blackColor,
                                   fontSize: 16.sp,
                                   fontWeight: FontWeight.w600),
                             ),
                             Text(
-                              'Present',
+                              (employeeattendance!.status == '1')
+                                  ? 'Present'
+                                  : 'Absent',
                               style: GoogleFonts.montserrat(
-                                  color: const Color(0xff22A527),
+                                  color: (employeeattendance!.status == '1')
+                                      ? const Color(0xff22A527)
+                                      : const Color(0xffBA1717),
                                   fontSize: 16.sp,
                                   fontWeight: FontWeight.w600),
                             ),
@@ -381,31 +396,39 @@ class CheckInDialog extends StatelessWidget {
                         child: Column(
                           children: [
                             attendanceManagmentDialog(
-                                title: 'Date', subTitle: '03 April 2023'),
+                                title: 'Date',
+                                subTitle: employeeattendance!.date ?? ''),
                             const Divider(),
                             6.ph,
                             attendanceManagmentDialog(
-                                title: 'Check In ', subTitle: '08:00 AM'),
+                                title: 'Check In ',
+                                subTitle: employeeattendance!.clockIn ?? ''),
                             const Divider(),
                             6.ph,
                             attendanceManagmentDialog(
-                                title: 'Check Out ', subTitle: '05:00 AM'),
+                                title: 'Check Out ',
+                                subTitle: employeeattendance!.clockOut ?? ''),
                             const Divider(),
                             6.ph,
                             attendanceManagmentDialog(
-                                title: 'Late', subTitle: '30 Min'),
+                                title: 'Late',
+                                subTitle: employeeattendance!.late ?? ''),
                             const Divider(),
                             6.ph,
                             attendanceManagmentDialog(
-                                title: 'Early Leaving', subTitle: '00:00:00'),
+                                title: 'Early Leaving',
+                                subTitle:
+                                    employeeattendance!.earlyLeaving ?? ''),
                             const Divider(),
                             6.ph,
                             attendanceManagmentDialog(
-                                title: 'Overtime', subTitle: '00:00:00'),
+                                title: 'Overtime',
+                                subTitle: employeeattendance!.overtime ?? ''),
                             const Divider(),
                             6.ph,
                             attendanceManagmentDialog(
-                                title: 'Total Hours', subTitle: '12H 45M'),
+                                title: 'Total Hours',
+                                subTitle: employeeattendance!.overtime ?? ''),
                             const Divider(),
                             6.ph,
                           ],

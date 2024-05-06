@@ -127,12 +127,22 @@ class LeaveCreateNotifier extends StateNotifier<LeaveCreateState> {
       GoRouter.of(context).pop();
     } catch (error, stackTrace) {
       state = state.copyWith(isLoading: false);
-      myToast(msg: 'Something Went Wrong', gravity: ToastGravity.CENTER);
+      print('check catch error $error');
+
+      // myToast(msg: 'Something Went Wrong', gravity: ToastGravity.CENTER);
+      Fluttertoast.showToast(
+          msg: 'You Already Have Leave Request',
+          gravity: ToastGravity.CENTER,
+          fontSize: 20,
+          timeInSecForIosWeb: 3,
+          backgroundColor: const Color(0xffEF2E61));
+
       if (kDebugMode) {
         print(error.toString());
         print(stackTrace.toString());
-        Fluttertoast.showToast(
-            msg: error.toString(), gravity: ToastGravity.CENTER);
+
+        // Fluttertoast.showToast(
+        //     msg: error.toString(), gravity: ToastGravity.CENTER);
       }
     }
   }
@@ -141,6 +151,7 @@ class LeaveCreateNotifier extends StateNotifier<LeaveCreateState> {
 final leaveCreateProvider =
     StateNotifierProvider<LeaveCreateNotifier, LeaveCreateState>((ref) {
   final person = ref.watch(personProvider);
+  print('company id ${person!.data!.companyId}');
   if (person == null) {
     throw Exception('Person data is not available');
   }

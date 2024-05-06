@@ -82,8 +82,8 @@ class SalesManagmentRFQDetailPage extends ConsumerWidget {
                                   decoration: BoxDecoration(
                                       color: whiteColor,
                                       borderRadius: BorderRadius.circular(12).r,
-                                      border:
-                                          Border.all(color: const Color(0xffE1E3E8))),
+                                      border: Border.all(
+                                          color: const Color(0xffE1E3E8))),
                                   padding: const EdgeInsets.symmetric(
                                           horizontal: 15, vertical: 12)
                                       .r,
@@ -115,7 +115,8 @@ class SalesManagmentRFQDetailPage extends ConsumerWidget {
                                               style: GoogleFonts.montserrat(
                                                   fontSize: 14.sp,
                                                   fontWeight: FontWeight.w500,
-                                                  color: const Color(0xff3A3A3A)),
+                                                  color:
+                                                      const Color(0xff3A3A3A)),
                                             ),
                                           ),
                                         ],
@@ -148,7 +149,8 @@ class SalesManagmentRFQDetailPage extends ConsumerWidget {
                                               style: GoogleFonts.montserrat(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w500,
-                                                  color: const Color(0xff3A3A3A)),
+                                                  color:
+                                                      const Color(0xff3A3A3A)),
                                             ),
                                           ),
                                         ],
@@ -181,7 +183,8 @@ class SalesManagmentRFQDetailPage extends ConsumerWidget {
                                               style: GoogleFonts.montserrat(
                                                   fontSize: 14.sp,
                                                   fontWeight: FontWeight.w500,
-                                                  color: const Color(0xff3A3A3A)),
+                                                  color:
+                                                      const Color(0xff3A3A3A)),
                                             ),
                                           ),
                                         ],
@@ -214,7 +217,8 @@ class SalesManagmentRFQDetailPage extends ConsumerWidget {
                                               style: GoogleFonts.montserrat(
                                                   fontSize: 14.sp,
                                                   fontWeight: FontWeight.w500,
-                                                  color: const Color(0xff3A3A3A)),
+                                                  color:
+                                                      const Color(0xff3A3A3A)),
                                             ),
                                           ),
                                         ],
@@ -246,7 +250,8 @@ class SalesManagmentRFQDetailPage extends ConsumerWidget {
                                               style: GoogleFonts.montserrat(
                                                   fontSize: 14.sp,
                                                   fontWeight: FontWeight.w500,
-                                                  color: const Color(0xff3A3A3A)),
+                                                  color:
+                                                      const Color(0xff3A3A3A)),
                                             ),
                                           ),
                                         ],
@@ -275,7 +280,8 @@ class SalesManagmentRFQDetailPage extends ConsumerWidget {
                                               style: GoogleFonts.montserrat(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w500,
-                                                  color: const Color(0xff3A3A3A)),
+                                                  color:
+                                                      const Color(0xff3A3A3A)),
                                             ),
                                           ),
                                         ],
@@ -308,7 +314,8 @@ class SalesManagmentRFQDetailPage extends ConsumerWidget {
                                               style: GoogleFonts.montserrat(
                                                   fontSize: 14.sp,
                                                   fontWeight: FontWeight.w500,
-                                                  color: const Color(0xff3A3A3A)),
+                                                  color:
+                                                      const Color(0xff3A3A3A)),
                                             ),
                                           ),
                                         ],
@@ -335,8 +342,8 @@ class SalesManagmentRFQDetailPage extends ConsumerWidget {
                                   decoration: BoxDecoration(
                                       color: whiteColor,
                                       borderRadius: BorderRadius.circular(12).r,
-                                      border:
-                                          Border.all(color: const Color(0xffE1E3E8))),
+                                      border: Border.all(
+                                          color: const Color(0xffE1E3E8))),
                                   padding: const EdgeInsets.symmetric(
                                           horizontal: 15, vertical: 12)
                                       .r,

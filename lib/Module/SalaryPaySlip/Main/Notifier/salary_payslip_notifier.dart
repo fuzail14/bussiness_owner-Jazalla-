@@ -4,34 +4,35 @@ import 'package:bussines_owner/Constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../../Data/Api Resp/api_response.dart';
-import '../../../../../Repo/Approval Managment Repository/approval_managment_repository.dart';
 import '../../../../Constants/Person/person.dart';
 import '../../../../Constants/Person/person_controller.dart';
+import '../../../../Repo/SalaryPaySlip Repository/salarypayslip_repository.dart';
 import '../State/salary_payslip_state.dart';
 
 class SalaryPaySlipNotifier extends StateNotifier<SalaryPaySlipState> {
   final Person? person;
-  final approvalManagmentRepository = ApprovalManagmentRepository();
+  final salaryPaySlipRepository = SalaryPaySlipRepository();
 
   SalaryPaySlipNotifier(this.person) : super(SalaryPaySlipState()) {
-    request4InformationViewApi(
-        userId: person!.data!.id!, bearerToken: person!.Bearer);
+    salaryPaySlipViewApi(
+        employeeId: person!.employee!.id!, bearerToken: person!.Bearer);
   }
 
   final TextEditingController searchController = TextEditingController();
 
-  Future<void> request4InformationViewApi(
-      {required userId, required bearerToken}) async {
+  Future<void> salaryPaySlipViewApi(
+      {required employeeId, required bearerToken}) async {
     setResponseStatus(Status.loading);
     print('come here');
-    print(userId);
+    print(employeeId);
+
     try {
-      final value = await approvalManagmentRepository.request4InformationApi(
-        userId: userId,
+      final value = await salaryPaySlipRepository.getSalaryPaySlipsApi(
+        employeeId: employeeId,
         bearerToken: bearerToken,
       );
       state = state.copyWith(
-        request4Informatio: value.requestForInformation,
+        payslips: value.payslips,
         responseStatus: Status.completed,
       );
     } catch (e, stackTrace) {

@@ -227,7 +227,8 @@ class BussinesForSale extends ConsumerWidget {
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30).r,
-                          borderSide: const BorderSide(color: Color(0xffDEDEDE)),
+                          borderSide:
+                              const BorderSide(color: Color(0xffDEDEDE)),
                         ),
                         focusColor: blueColor),
                   ),
@@ -283,14 +284,16 @@ class BussinesForSale extends ConsumerWidget {
                       },
                       child: Container(
                         // height: 461.h,
-                        margin: const EdgeInsets.only(top: 26, left: 27, right: 27).r,
+                        margin:
+                            const EdgeInsets.only(top: 26, left: 27, right: 27)
+                                .r,
                         padding: const EdgeInsets.only(
                                 top: 15, left: 21, right: 25, bottom: 30)
                             .r,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5).r,
-                          border:
-                              Border.all(color: const Color(0xff26BDEB), width: 2),
+                          border: Border.all(
+                              color: const Color(0xff26BDEB), width: 2),
                           color: HexColor('#FFFFFF'),
                         ),
                         child: Column(
