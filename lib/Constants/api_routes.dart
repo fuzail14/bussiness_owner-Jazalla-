@@ -161,4 +161,9 @@ class Api {
 
   static const String getEmployeeAttendance =
       "${baseUrl}employeeCenter/employeeAttendance/getEmployeeAttendance";
+
+  static const String clockInApi =
+      "${baseUrl}employeeCenter/employeeAttendance/clockInApi";
+  static const String getCompanyStartTime =
+      "${baseUrl}employeeCenter/employeeAttendance/getCompanyStartTime";
 }

@@ -36,7 +36,7 @@ import '../Module/InvoiceManagement/Detail/View/invoice_management_detail_page.d
 import '../Module/InvoiceManagement/Main/View/invoice_management_view.dart';
 import '../Module/Leave Managment/View/leave_managment_view.dart';
 import '../Module/LeaveCreate/View/leave_create_view.dart';
-import '../Module/MainHomeScreen/View/main_home_screen.dart';
+import '../Module/MainHomeScreen/Main/View/main_home_screen.dart';
 import '../Module/Notifications/View/notifications_screen.dart';
 import '../Module/OnlineStore/RequestQuote/View/request_quote_page.dart';
 import '../Module/OnlineStore/SendInquiry/View/send_inquiry_page.dart';
