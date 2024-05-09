@@ -276,15 +276,15 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                                               index]
                                                           ['widget_title1'] ==
                                                       'Check In') {
-                                                    notifier.lateTime = notifier
-                                                        .calculateLateTime(
-                                                            notifier
-                                                                .formattedTime!,
-                                                            state.companytime!);
-                                                    print(
-                                                        'Late Time: ${notifier.lateTime}');
-                                                    print(
-                                                        'company id: ${notifier.person!.data!.companyId}');
+                                                    // notifier.lateTime = notifier
+                                                    //     .calculateLateTime(
+                                                    //         notifier
+                                                    //             .formattedTime!,
+                                                    //         state.companytime!);
+                                                    // print(
+                                                    //     'Late Time: ${notifier.lateTime}');
+                                                    // print(
+                                                    //     'company id: ${notifier.person!.data!.companyId}');
                                                     showDialog(
                                                         context: context,
                                                         builder: (BuildContext
@@ -309,6 +309,8 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                                                         notifier
                                                                             .formattedTime
                                                                             .toString(),
+                                                                    late: notifier
+                                                                        .lateTime,
                                                                     context:
                                                                         context);
                                                               },
@@ -412,6 +414,20 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                                                   'Check Out',
                                                               svgPath:
                                                                   'assets/images/check_out_dialog_icon.svg',
+                                                              onTap: () {
+                                                                notifier.sendClockOutApi(
+                                                                    employeeId: notifier
+                                                                        .person!
+                                                                        .employee!
+                                                                        .id,
+                                                                    date: notifier
+                                                                        .formattedDate,
+                                                                    clockOut: notifier
+                                                                        .formattedTime
+                                                                        .toString(),
+                                                                    context:
+                                                                        context);
+                                                              },
                                                             ));
                                                   }
                                                 },

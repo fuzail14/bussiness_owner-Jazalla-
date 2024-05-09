@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:bussines_owner/Constants/constants.dart';
+import 'package:bussines_owner/Repo/Company%20Policy%20Repository/company_policy_managment_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../../Data/Api Resp/api_response.dart';
@@ -11,27 +12,26 @@ import '../State/company_policy_state.dart';
 
 class CompanyPolicyNotifier extends StateNotifier<CompanyPolicyState> {
   final Person? person;
-  final approvalManagmentRepository = ApprovalManagmentRepository();
+  final companyPoliciesRepository = CompanyPoliciesRepository();
 
   CompanyPolicyNotifier(this.person) : super(CompanyPolicyState()) {
-    request4InformationViewApi(
-        userId: person!.data!.id!, bearerToken: person!.Bearer);
+    companyPoliciesApi(
+        companyId: person!.data!.companyId!, bearerToken: person!.Bearer);
   }
 
   final TextEditingController searchController = TextEditingController();
 
-  Future<void> request4InformationViewApi(
-      {required userId, required bearerToken}) async {
+  Future<void> companyPoliciesApi(
+      {required companyId, required bearerToken}) async {
     setResponseStatus(Status.loading);
-    print('come here');
-    print(userId);
+
     try {
-      final value = await approvalManagmentRepository.request4InformationApi(
-        userId: userId,
+      final value = await companyPoliciesRepository.getCompanyPoliciesApi(
+        companyId: companyId,
         bearerToken: bearerToken,
       );
       state = state.copyWith(
-        request4Informatio: value.requestForInformation,
+        companypolicies: value.companypolicies,
         responseStatus: Status.completed,
       );
     } catch (e, stackTrace) {

@@ -60,6 +60,8 @@ class NetworkServices implements BaseNetworkServices {
         throw UnAuthorizedException(response.statusCode);
       case 409:
         throw ConflictException(response.statusCode);
+      case 422:
+        throw ConflictException(response.statusCode);
     }
   }
 

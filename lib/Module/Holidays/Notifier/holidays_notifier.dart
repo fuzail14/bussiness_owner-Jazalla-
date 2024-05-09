@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:bussines_owner/Constants/constants.dart';
+import 'package:bussines_owner/Repo/Holidays%20Repository/holidays_managment_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../../Data/Api Resp/api_response.dart';
@@ -11,27 +12,26 @@ import '../State/holidays_state.dart';
 
 class HolidaysNotifier extends StateNotifier<HolidaysState> {
   final Person? person;
-  final approvalManagmentRepository = ApprovalManagmentRepository();
+  final holidaysManagmentRepository = HolidaysManagmentRepository();
 
   HolidaysNotifier(this.person) : super(HolidaysState()) {
-    request4InformationViewApi(
-        userId: person!.data!.id!, bearerToken: person!.Bearer);
+    getCompanyHolidays(
+        companyId: person!.data!.companyId!, bearerToken: person!.Bearer);
   }
 
   final TextEditingController searchController = TextEditingController();
 
-  Future<void> request4InformationViewApi(
-      {required userId, required bearerToken}) async {
+  Future<void> getCompanyHolidays(
+      {required companyId, required bearerToken}) async {
     setResponseStatus(Status.loading);
-    print('come here');
-    print(userId);
+
     try {
-      final value = await approvalManagmentRepository.request4InformationApi(
-        userId: userId,
+      final value = await holidaysManagmentRepository.getCompanyHolidaysApi(
+        companyId: companyId,
         bearerToken: bearerToken,
       );
       state = state.copyWith(
-        request4Informatio: value.requestForInformation,
+        holidays: value.holidays,
         responseStatus: Status.completed,
       );
     } catch (e, stackTrace) {

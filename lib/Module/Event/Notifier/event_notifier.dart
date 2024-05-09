@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:bussines_owner/Constants/constants.dart';
+import 'package:bussines_owner/Repo/Events%20Repository/events_managment_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../../Data/Api Resp/api_response.dart';
@@ -11,27 +12,24 @@ import '../State/event_state.dart';
 
 class EventNotifier extends StateNotifier<EventState> {
   final Person? person;
-  final approvalManagmentRepository = ApprovalManagmentRepository();
+  final eventsRepository = EventsRepository();
 
   EventNotifier(this.person) : super(EventState()) {
-    request4InformationViewApi(
-        userId: person!.data!.id!, bearerToken: person!.Bearer);
+    getEvents(employeeId: person!.employee!.id!, bearerToken: person!.Bearer);
   }
 
   final TextEditingController searchController = TextEditingController();
 
-  Future<void> request4InformationViewApi(
-      {required userId, required bearerToken}) async {
+  Future<void> getEvents({required employeeId, required bearerToken}) async {
     setResponseStatus(Status.loading);
-    print('come here');
-    print(userId);
+
     try {
-      final value = await approvalManagmentRepository.request4InformationApi(
-        userId: userId,
+      final value = await eventsRepository.getEmployeeEventApi(
+        employeeId: employeeId,
         bearerToken: bearerToken,
       );
       state = state.copyWith(
-        request4Informatio: value.requestForInformation,
+        event: value.employeeevent,
         responseStatus: Status.completed,
       );
     } catch (e, stackTrace) {

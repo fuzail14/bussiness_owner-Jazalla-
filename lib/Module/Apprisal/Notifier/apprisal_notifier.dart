@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:bussines_owner/Constants/constants.dart';
+import 'package:bussines_owner/Repo/Appraisals%20Repository/appraisal_managment_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../Data/Api Resp/api_response.dart';
@@ -11,27 +12,27 @@ import '../State/apprisal_state.dart';
 
 class ApprisalNotifier extends StateNotifier<ApprisalState> {
   final Person? person;
-  final approvalManagmentRepository = ApprovalManagmentRepository();
+  final appraisalManagmentRepository = AppraisalManagmentRepository();
 
   ApprisalNotifier(this.person) : super(ApprisalState()) {
-    request4InformationViewApi(
-        userId: person!.data!.id!, bearerToken: person!.Bearer);
+    employeeAppraisalApi(
+        employeeId: person!.employee!.id!, bearerToken: person!.Bearer);
   }
 
   final TextEditingController searchController = TextEditingController();
 
-  Future<void> request4InformationViewApi(
-      {required userId, required bearerToken}) async {
+  Future<void> employeeAppraisalApi(
+      {required employeeId, required bearerToken}) async {
     setResponseStatus(Status.loading);
     print('come here');
-    print(userId);
+    print(employeeId);
     try {
-      final value = await approvalManagmentRepository.request4InformationApi(
-        userId: userId,
+      final value = await appraisalManagmentRepository.getAppraisalApi(
+        employeeId: employeeId,
         bearerToken: bearerToken,
       );
       state = state.copyWith(
-        request4Informatio: value.requestForInformation,
+        appraisals: value.appraisals,
         responseStatus: Status.completed,
       );
     } catch (e, stackTrace) {

@@ -10,10 +10,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:http/http.dart';
 import '../../../../../../Data/Api Resp/api_response.dart';
 import '../../../../../../Widgets/Loader/loader.dart';
 import '../../../../Constants/Font/fonts.dart';
 import '../../../../Widgets/AppBar/my_app_bar.dart';
+import '../Model/CompanyPolicy.dart';
 import '../Notifier/company_policy_notifier.dart';
 
 // ignore: must_be_immutable
@@ -50,7 +52,7 @@ class CompanyPolicyScreen extends ConsumerWidget {
             const Loader()
           else if (state.responseStatus == Status.completed) ...[
             10.ph,
-            if (state.request4Informatio.isEmpty) ...[
+            if (state.companypolicies.isEmpty) ...[
               Center(
                 child: Text(
                   'No Requests Found.',
@@ -64,7 +66,7 @@ class CompanyPolicyScreen extends ConsumerWidget {
               Expanded(
                 child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: state.request4Informatio.length,
+                    itemCount: state.companypolicies.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
@@ -74,6 +76,8 @@ class CompanyPolicyScreen extends ConsumerWidget {
                                     title: 'Company Policy Details',
                                     svgPath:
                                         'assets/images/company_policy_popup_icon.svg',
+                                    companypolicies:
+                                        state.companypolicies[index],
                                   ));
                         },
                         child: Container(
@@ -141,7 +145,9 @@ class CompanyPolicyScreen extends ConsumerWidget {
                                           SizedBox(
                                             width: 150.w,
                                             child: Text(
-                                              'Order Managemennt',
+                                              state.companypolicies[index]
+                                                      .title ??
+                                                  '',
                                               maxLines: 1,
                                               textDirection: TextDirection.ltr,
                                               style: GoogleFonts.montserrat(
@@ -182,7 +188,9 @@ class CompanyPolicyScreen extends ConsumerWidget {
                                           SizedBox(
                                             width: 150.w,
                                             child: Text(
-                                              'Performance management and disciplinary procedures',
+                                              state.companypolicies[index]
+                                                      .description ??
+                                                  '',
                                               maxLines: 2,
                                               textDirection: TextDirection.ltr,
                                               style: GoogleFonts.montserrat(
@@ -231,9 +239,16 @@ class CompanyPolicyScreen extends ConsumerWidget {
 class CheckInDialog extends StatelessWidget {
   String title;
   String svgPath;
-  CheckInDialog({super.key, required this.title, required this.svgPath});
+  Companypolicies companypolicies;
+  CheckInDialog(
+      {super.key,
+      required this.title,
+      required this.svgPath,
+      required this.companypolicies});
+
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.sizeOf(context).width;
     return Dialog(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
@@ -300,9 +315,9 @@ class CheckInDialog extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(
-                                  width: 175.w,
+                                  width: width * 0.4,
                                   child: Text(
-                                    'Lorem Ispum',
+                                    companypolicies.departments!.name ?? "",
                                     maxLines: 1,
                                     textDirection: TextDirection.rtl,
                                     style: GoogleFonts.montserrat(
@@ -331,9 +346,9 @@ class CheckInDialog extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(
-                                  width: 175.w,
+                                  width: width * 0.4,
                                   child: Text(
-                                    'Leave Policies',
+                                    companypolicies.title ?? "",
                                     maxLines: 1,
                                     textDirection: TextDirection.rtl,
                                     style: GoogleFonts.montserrat(
@@ -374,7 +389,7 @@ class CheckInDialog extends StatelessWidget {
                         margin: const EdgeInsets.only(
                             top: 0, right: 23, left: 22.4, bottom: 0),
                         child: Text(
-                          'Performance management and disciplinary procedures .....',
+                          companypolicies.description ?? "",
                           maxLines: 4,
                           overflow: TextOverflow.ellipsis,
                           style: GoogleFonts.montserrat(

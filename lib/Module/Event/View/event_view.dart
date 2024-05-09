@@ -14,6 +14,7 @@ import '../../../../../../Data/Api Resp/api_response.dart';
 import '../../../../../../Widgets/Loader/loader.dart';
 import '../../../../Constants/Font/fonts.dart';
 import '../../../../Widgets/AppBar/my_app_bar.dart';
+import '../Model/EmployeeEvenyt.dart';
 import '../Notifier/event_notifier.dart';
 
 // ignore: must_be_immutable
@@ -50,7 +51,7 @@ class EventScreen extends ConsumerWidget {
             const Loader()
           else if (state.responseStatus == Status.completed) ...[
             //10.ph,
-            if (state.request4Informatio.isEmpty) ...[
+            if (state.event.isEmpty) ...[
               Center(
                 child: Text(
                   'No Requests Found.',
@@ -64,21 +65,15 @@ class EventScreen extends ConsumerWidget {
               Expanded(
                 child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: state.request4Informatio.length,
+                    itemCount: state.event.length,
                     itemBuilder: (context, index) {
                       List<String> imagePaths = [
                         'assets/images/event_new_icon.png',
                         'assets/images/event_icon.png',
                       ];
-                      List<String> title = [
-                        'Qawali Night',
-                        'Musical Concert',
-                        '50 Year Anniversary'
-                      ];
 
-                      // Ensure index wraps around if fewer images than items
                       String imagePath = imagePaths[index % imagePaths.length];
-                      String titlePath = title[index % title.length];
+
                       return GestureDetector(
                         onTap: () {
                           showDialog(
@@ -87,6 +82,7 @@ class EventScreen extends ConsumerWidget {
                                     title: 'Event Details',
                                     svgPath:
                                         'assets/images/event_popup_icon.svg',
+                                    employeeevent: state.event[index],
                                   ));
                         },
                         child: Container(
@@ -129,7 +125,10 @@ class EventScreen extends ConsumerWidget {
                                   SizedBox(
                                     width: 175.w,
                                     child: Text(
-                                      'Thu, Apr 19 to Apr 23 , 2024.',
+                                      ('${state.event[index].event!.startDate} To ' ??
+                                              "") +
+                                          (state.event[index].event!.endDate ??
+                                              ""),
                                       overflow: TextOverflow.ellipsis,
                                       maxLines: 1,
                                       style: GoogleFonts.montserrat(
@@ -143,7 +142,7 @@ class EventScreen extends ConsumerWidget {
                                   SizedBox(
                                     width: 175.w,
                                     child: Text(
-                                      titlePath,
+                                      state.event[index].event!.title ?? '',
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: GoogleFonts.montserrat(
@@ -157,7 +156,8 @@ class EventScreen extends ConsumerWidget {
                                   SizedBox(
                                     width: 175.w,
                                     child: Text(
-                                      'This event for specific ...',
+                                      state.event[index].event!.description ??
+                                          '',
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: GoogleFonts.montserrat(
@@ -197,9 +197,15 @@ class EventScreen extends ConsumerWidget {
 class CheckInDialog extends StatelessWidget {
   String title;
   String svgPath;
-  CheckInDialog({super.key, required this.title, required this.svgPath});
+  Employeeevent employeeevent;
+  CheckInDialog(
+      {super.key,
+      required this.title,
+      required this.svgPath,
+      required this.employeeevent});
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.sizeOf(context).width;
     return Dialog(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
@@ -266,9 +272,9 @@ class CheckInDialog extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(
-                                  width: 175.w,
+                                  width: width * 0.4,
                                   child: Text(
-                                    'Qawali Night',
+                                    employeeevent.event!.title ?? "",
                                     maxLines: 1,
                                     textDirection: TextDirection.rtl,
                                     style: GoogleFonts.montserrat(
@@ -299,7 +305,7 @@ class CheckInDialog extends StatelessWidget {
                                 SizedBox(
                                   width: 175.w,
                                   child: Text(
-                                    'Apr 21, 2024',
+                                    employeeevent.event!.startDate ?? "",
                                     maxLines: 1,
                                     textDirection: TextDirection.rtl,
                                     style: GoogleFonts.montserrat(
@@ -330,7 +336,7 @@ class CheckInDialog extends StatelessWidget {
                                 SizedBox(
                                   width: 175.w,
                                   child: Text(
-                                    'Apr 21, 2024',
+                                    employeeevent.event!.endDate ?? "",
                                     maxLines: 1,
                                     textDirection: TextDirection.rtl,
                                     style: GoogleFonts.montserrat(
@@ -371,7 +377,7 @@ class CheckInDialog extends StatelessWidget {
                         margin: const EdgeInsets.only(
                             top: 0, right: 23, left: 22.4, bottom: 0),
                         child: Text(
-                          'This event is specific for...',
+                          employeeevent.event!.description ?? "",
                           maxLines: 4,
                           overflow: TextOverflow.ellipsis,
                           style: GoogleFonts.montserrat(

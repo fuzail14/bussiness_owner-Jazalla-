@@ -426,9 +426,16 @@ class CheckInDialog extends StatelessWidget {
                                 subTitle: employeeattendance!.overtime ?? ''),
                             const Divider(),
                             6.ph,
+                            // attendanceManagmentDialog(
+                            //     title: 'Total Hours',
+                            //     subTitle: employeeattendance!.overtime ?? ''),
                             attendanceManagmentDialog(
-                                title: 'Total Hours',
-                                subTitle: employeeattendance!.overtime ?? ''),
+                              title: 'Total Hours',
+                              subTitle: calculateTotalHours(
+                                employeeattendance!.clockIn,
+                                employeeattendance!.clockOut,
+                              ),
+                            ),
                             const Divider(),
                             6.ph,
                           ],
@@ -483,6 +490,34 @@ class CheckInDialog extends StatelessWidget {
           ),
         ));
   }
+
+  String calculateTotalHours(String? clockIn, String? clockOut) {
+    if (clockIn == null || clockOut == null) {
+      return 'N/A';
+    }
+
+    List<String> clockInParts = clockIn.split(':');
+    List<String> clockOutParts = clockOut.split(':');
+
+    int hoursIn = int.parse(clockInParts[0]);
+    int minutesIn = int.parse(clockInParts[1]);
+    int secondsIn = int.parse(clockInParts[2]);
+
+    int hoursOut = int.parse(clockOutParts[0]);
+    int minutesOut = int.parse(clockOutParts[1]);
+    int secondsOut = int.parse(clockOutParts[2]);
+
+    Duration difference = Duration(
+      hours: hoursOut - hoursIn,
+      minutes: minutesOut - minutesIn,
+      seconds: secondsOut - secondsIn,
+    );
+
+    int totalHours = difference.inHours;
+    int remainingMinutes = difference.inMinutes.remainder(60);
+
+    return '$totalHours hours ${remainingMinutes} minutes';
+  }
 }
 
 Widget attendanceManagmentDialog(
@@ -497,12 +532,17 @@ Widget attendanceManagmentDialog(
             fontSize: 14.sp,
             fontWeight: FontWeight.w400),
       ),
-      Text(
-        subTitle,
-        style: GoogleFonts.montserrat(
-            color: const Color(0xff383333),
-            fontSize: 14.sp,
-            fontWeight: FontWeight.w400),
+      SizedBox(
+        width: 140.w,
+        child: Text(
+          subTitle,
+          maxLines: 1,
+          textDirection: TextDirection.rtl,
+          style: GoogleFonts.montserrat(
+              color: const Color(0xff383333),
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w400),
+        ),
       ),
     ],
   );

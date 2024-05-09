@@ -50,7 +50,7 @@ class ApprisalScreen extends ConsumerWidget {
             const Loader()
           else if (state.responseStatus == Status.completed) ...[
             10.ph,
-            if (state.request4Informatio.isEmpty) ...[
+            if (state.appraisals.isEmpty) ...[
               Center(
                 child: Text(
                   'No Requests Found.',
@@ -64,7 +64,7 @@ class ApprisalScreen extends ConsumerWidget {
               Expanded(
                 child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: state.request4Informatio.length,
+                    itemCount: state.appraisals.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {},
@@ -97,7 +97,8 @@ class ApprisalScreen extends ConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Department',
+                                state.appraisals[index].departments!.name ?? "",
+                                maxLines: 1,
                                 style: GoogleFonts.montserrat(
                                   fontSize: 16.sp,
                                   color: const Color(0xff453F3F),
@@ -158,12 +159,19 @@ class ApprisalScreen extends ConsumerWidget {
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
-                                        Text(
-                                          'Appraisal Date',
-                                          style: GoogleFonts.montserrat(
-                                            fontSize: 12.sp,
-                                            color: const Color(0xff4B4F54),
-                                            fontWeight: FontWeight.w400,
+                                        SizedBox(
+                                          width: 100.w,
+                                          child: Text(
+                                            state.appraisals[index]
+                                                    .appraisalDate! ??
+                                                "",
+                                            textDirection: TextDirection.rtl,
+                                            maxLines: 1,
+                                            style: GoogleFonts.montserrat(
+                                              fontSize: 12.sp,
+                                              color: const Color(0xff4B4F54),
+                                              fontWeight: FontWeight.w400,
+                                            ),
                                           ),
                                         )
                                       ],

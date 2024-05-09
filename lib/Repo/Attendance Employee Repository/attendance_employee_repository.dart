@@ -22,25 +22,26 @@ class AttendanceEmployeeRepository {
       Api.clockInApi,
       data,
     );
+    log('response show from repo $response');
 
     return response;
   }
 
   Future<dynamic> clockOutRequest(Map<String, String> data) async {
     var response = await networkServices.postFormReq(
-      Api.leaveCreateApi,
+      Api.clockOutApi,
       data,
     );
 
     return response;
   }
 
-  Future<CompanyTimings> getCompanyTimingsApi({required companyId}) async {
-    var response = await networkServices.getReq(
-      "${Api.getCompanyStartTime}/$companyId",
-    );
-    log(response.toString());
+  // Future<CompanyTimings> getCompanyTimingsApi({required companyId}) async {
+  //   var response = await networkServices.getReq(
+  //     "${Api.getCompanyStartTime}/$companyId",
+  //   );
+  //   log(response.toString());
 
-    return CompanyTimings.fromJson(response);
-  }
+  //   return CompanyTimings.fromJson(response);
+  // }
 }

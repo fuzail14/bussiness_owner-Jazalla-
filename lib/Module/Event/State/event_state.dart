@@ -1,26 +1,27 @@
+import 'package:bussines_owner/Module/Event/Model/EmployeeEvenyt.dart';
+
 import '../../../../Constants/Person/person.dart';
 import '../../../../Data/Api Resp/api_response.dart';
-import '../../ProcurementManagment/RFI/Main/Model/Request4Information.dart';
 
 class EventState {
   final Status responseStatus;
-  final List<RequestForInformation> request4Informatio;
+  final List<Employeeevent> event;
   final Person? person;
 
   EventState({
     this.responseStatus = Status.loading,
-    this.request4Informatio = const [],
+    this.event = const [],
     this.person,
   });
 
   EventState copyWith({
     Status? responseStatus,
-    List<RequestForInformation>? request4Informatio,
+    List<Employeeevent>? event,
     Person? person,
   }) {
     return EventState(
       responseStatus: responseStatus ?? this.responseStatus,
-      request4Informatio: request4Informatio ?? this.request4Informatio,
+      event: event ?? this.event,
       person: person ?? this.person,
     );
   }

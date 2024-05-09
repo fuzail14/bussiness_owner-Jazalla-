@@ -30,7 +30,7 @@ class MainHomeScreenNotifier extends StateNotifier<MainHomeScreenState> {
     pageController.addListener(_updatePageIndex);
     formatDateTime();
 
-    companyTimingApi(companyId: person!.data!.companyId);
+    // companyTimingApi(companyId: person!.data!.companyId);
   }
   String? formattedDate;
   String? lateTime;
@@ -56,6 +56,18 @@ class MainHomeScreenNotifier extends StateNotifier<MainHomeScreenState> {
     }
   }
 
+  // void formatDateTime() {
+  //   var timeZoneOffset = DateTime.now().timeZoneOffset;
+
+  //   dateTime = dateTime.add(timeZoneOffset);
+
+  //   formattedDate = DateFormat('yyyy-MM-dd').format(dateTime);
+
+  //   formattedTime = DateFormat('HH:mm:ss').format(dateTime);
+
+  //   print('date $formattedDate');
+  //   print('time ${formattedTime}');
+  // }
   void formatDateTime() {
     // Get the current time zone offset from UTC
     var timeZoneOffset = DateTime.now().timeZoneOffset;
@@ -72,45 +84,36 @@ class MainHomeScreenNotifier extends StateNotifier<MainHomeScreenState> {
         'time ${formattedTime}'); // This will now print the local time in Dhahran
   }
 
-  // Assuming formattedTime is in the format 'HH:mm:ss'
-  String calculateLateTime(String formattedTime, String companyStartTime) {
-    // Parse formattedTime to DateTime object
-    DateTime clockIn = DateTime.parse(formattedTime);
-
-    // Parse companyStartTime to DateTime object
-    DateTime startTime = DateTime.parse('2024-05-07 $companyStartTime');
-
-    // Calculate the difference in seconds
-    int diffSeconds = clockIn.difference(startTime).inSeconds;
-
-    // Convert the difference to HH:mm:ss format
-    String lateHours = (diffSeconds ~/ 3600).toString().padLeft(2, '0');
-    String lateMinutes =
-        ((diffSeconds % 3600) ~/ 60).toString().padLeft(2, '0');
-    String lateSeconds = (diffSeconds % 60).toString().padLeft(2, '0');
-
-    return '$lateHours:$lateMinutes:$lateSeconds';
-  }
-
   Future<void> sendClockInApi({
     required companyId,
     required employeeId,
     required date,
     required clockInTime,
+    required late,
     required BuildContext context,
   }) async {
     state = state.copyWith(isLoading: true);
 
-    String formattedClockInTime =
-        DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.parse(clockInTime!));
-    print(clockInTime.toString());
+    DateTime dateTimeNow = DateTime.now().toUtc();
+    // Get the current time zone offset from UTC
+    var timeZoneOffset = DateTime.now().timeZoneOffset;
+
+    // Add the time zone offset to the UTC time to get the local time
+    dateTimeNow = dateTimeNow.add(timeZoneOffset);
+
+    // String formattedClockInTime =
+    //     DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.parse(clockInTime!));
+
+    String formattedTime = DateFormat('HH:mm:ss').format(dateTimeNow);
+
+    print(formattedTime.toString());
     Map<String, String> data = {
       "company_id": companyId.toString(),
       "employee_id": employeeId.toString(),
       "date": date.toString(),
-      "clock_in": formattedClockInTime,
-      "late": lateTime.toString(),
-      "status": '1',
+      "clock_in": formattedTime,
+      // "late": lateTime.toString(),
+      "status": 'Present',
     };
 
     print(data);
@@ -118,6 +121,7 @@ class MainHomeScreenNotifier extends StateNotifier<MainHomeScreenState> {
       await attendanceEmployeeRepository.clockInRequest(
         data,
       );
+      print('data try $data');
       state = state.copyWith(isLoading: false);
 
       Fluttertoast.showToast(
@@ -126,22 +130,41 @@ class MainHomeScreenNotifier extends StateNotifier<MainHomeScreenState> {
           fontSize: 20,
           timeInSecForIosWeb: 3,
           backgroundColor: const Color(0xff6FD943));
+      state = state.copyWith(isLoading: false);
       // ignore: use_build_context_synchronously
       Navigator.pop(context);
     } catch (error, stackTrace) {
       state = state.copyWith(isLoading: false);
-      print('check catch error $error');
-
-      Fluttertoast.showToast(
-          msg: 'Attendance Not Marked',
-          gravity: ToastGravity.CENTER,
-          fontSize: 20,
-          timeInSecForIosWeb: 3,
-          backgroundColor: const Color(0xffEF2E61));
+      print('check catch error message $error');
+      if (error.toString().contains('409')) {
+        Fluttertoast.showToast(
+            msg: 'Attendance Already Marked',
+            gravity: ToastGravity.CENTER,
+            fontSize: 20,
+            timeInSecForIosWeb: 3,
+            backgroundColor: const Color(0xff203C97));
+        Navigator.pop(context);
+      } else if (error.toString().contains('422')) {
+        Fluttertoast.showToast(
+            msg: 'You Cannot Marked Attendance At This Time',
+            gravity: ToastGravity.CENTER,
+            fontSize: 20,
+            timeInSecForIosWeb: 3,
+            backgroundColor: const Color(0xffEF2E61));
+        Navigator.pop(context);
+      } else if (error.toString().contains('40')) {
+        Fluttertoast.showToast(
+            msg: 'Attendance Not Marked Server Error',
+            gravity: ToastGravity.CENTER,
+            fontSize: 20,
+            timeInSecForIosWeb: 3,
+            backgroundColor: const Color(0xffEF2E61));
+        Navigator.pop(context);
+      }
 
       if (kDebugMode) {
-        print(error.toString());
-        print(stackTrace.toString());
+        // print(error.toString());
+        // print(stackTrace.toString());
 
         // Fluttertoast.showToast(
         //     msg: error.toString(), gravity: ToastGravity.CENTER);
@@ -149,24 +172,106 @@ class MainHomeScreenNotifier extends StateNotifier<MainHomeScreenState> {
     }
   }
 
-  Future<void> companyTimingApi({required companyId}) async {
-    setResponseStatus(Status.loading);
-    print('come here');
-    print(companyId);
+  Future<void> sendClockOutApi({
+    required employeeId,
+    required date,
+    required clockOut,
+    required BuildContext context,
+  }) async {
+    state = state.copyWith(isLoading: true);
+    DateTime dateTimeNow = DateTime.now().toUtc();
+    // Get the current time zone offset from UTC
+    var timeZoneOffset = DateTime.now().timeZoneOffset;
+
+    // Add the time zone offset to the UTC time to get the local time
+    dateTimeNow = dateTimeNow.add(timeZoneOffset);
+
+    // String formattedClockInTime =
+    //     DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.parse(clockInTime!));
+
+    String formattedTime = DateFormat('HH:mm:ss').format(dateTimeNow);
+
+    print(formattedTime.toString());
+    Map<String, String> data = {
+      "employee_id": employeeId.toString(),
+      "date": date.toString(),
+      "clock_out": formattedTime,
+    };
+
+    print(data);
     try {
-      final value = await attendanceEmployeeRepository.getCompanyTimingsApi(
-        companyId: companyId,
+      await attendanceEmployeeRepository.clockOutRequest(
+        data,
       );
-      state = state.copyWith(
-        companytime: value.companytime,
-        responseStatus: Status.completed,
-      );
-    } catch (e, stackTrace) {
-      setResponseStatus(Status.error);
-      log(e.toString());
-      log(stackTrace.toString());
+      print('data try $data');
+      state = state.copyWith(isLoading: false);
+
+      Fluttertoast.showToast(
+          msg: 'Clock Out successfully',
+          gravity: ToastGravity.CENTER,
+          fontSize: 20,
+          timeInSecForIosWeb: 3,
+          backgroundColor: const Color(0xff6FD943));
+      state = state.copyWith(isLoading: false);
+      // ignore: use_build_context_synchronously
+      Navigator.pop(context);
+    } catch (error, stackTrace) {
+      state = state.copyWith(isLoading: false);
+      print('check catch error message $error');
+      if (error.toString().contains('409')) {
+        Fluttertoast.showToast(
+            msg: 'Clock Out Already Marked',
+            gravity: ToastGravity.CENTER,
+            fontSize: 20,
+            timeInSecForIosWeb: 3,
+            backgroundColor: const Color(0xff203C97));
+        Navigator.pop(context);
+      } else if (error.toString().contains('422')) {
+        Fluttertoast.showToast(
+            msg: 'You Cannot Marked Attendance At This Time',
+            gravity: ToastGravity.CENTER,
+            fontSize: 20,
+            timeInSecForIosWeb: 3,
+            backgroundColor: const Color(0xffEF2E61));
+        Navigator.pop(context);
+      } else if (error.toString().contains('40')) {
+        Fluttertoast.showToast(
+            msg: 'Attendance Not Marked Server Error',
+            gravity: ToastGravity.CENTER,
+            fontSize: 20,
+            timeInSecForIosWeb: 3,
+            backgroundColor: const Color(0xffEF2E61));
+        Navigator.pop(context);
+      }
+
+      if (kDebugMode) {
+        // print(error.toString());
+        // print(stackTrace.toString());
+
+        // Fluttertoast.showToast(
+        //     msg: error.toString(), gravity: ToastGravity.CENTER);
+      }
     }
   }
+
+  // Future<void> companyTimingApi({required companyId}) async {
+  //   setResponseStatus(Status.loading);
+  //   print('come here');
+  //   print(companyId);
+  //   try {
+  //     final value = await attendanceEmployeeRepository.getCompanyTimingsApi(
+  //       companyId: companyId,
+  //     );
+  //     state = state.copyWith(
+  //       companytime: value.companytime,
+  //       responseStatus: Status.completed,
+  //     );
+  //   } catch (e, stackTrace) {
+  //     setResponseStatus(Status.error);
+  //     log(e.toString());
+  //     log(stackTrace.toString());
+  //   }
+  // }
 
   void setResponseStatus(Status val) {
     state = state.copyWith(responseStatus: val);
