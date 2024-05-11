@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../Constants/Person/person.dart';
+import '../../../Constants/Person/person_controller.dart';
+
 class MenuItem {
   // final String title;
   // final SvgPicture icon;
@@ -32,12 +35,44 @@ class MenuState {
 }
 
 class MenuController extends StateNotifier<MenuState> {
-  MenuController() : super(MenuState(menuItems: [])) {
+  final Person person;
+  MenuController(this.person) : super(MenuState(menuItems: [])) {
     loadMenuItems();
   }
 
   void loadMenuItems() {
-    state = MenuState(menuItems: [
+    List<MenuItem> items = [];
+
+    // Common items for all types
+
+    // Add specific items based on the person's type
+    if (person.data!.type == 'employee') {
+      items.addAll([
+        MenuItem(
+          title: 'Settings',
+          iconPath: 'assets/images/menu11.svg',
+          trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+        ),
+        MenuItem(
+          title: 'Logout',
+          iconPath: 'assets/images/menu10.svg',
+          trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+        ),
+      ]);
+      state = MenuState(menuItems: items);
+
+      state = MenuState(menuItems: items);
+    } else if (person.data!.type == 'projectManager') {
+      // Show 'Order Placement', 'Settings', and 'Logout' for project managers
+      items.insert(
+          0,
+          MenuItem(
+            title: 'Order Placement',
+            iconPath: 'assets/images/menu3.svg',
+            trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+          ));
+      state = MenuState(menuItems: items);
+    } else if (person.data!.type == 'company') {
       // MenuItem(
       //   title: 'Dashboard',
       //   iconPath: 'assets/images/menu1.svg',
@@ -49,12 +84,45 @@ class MenuController extends StateNotifier<MenuState> {
       //   trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
       //   //onTap: () {},
       // ),
-      MenuItem(
-        title: 'Order Placement',
-        iconPath: 'assets/images/menu3.svg',
-        trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
-        //onTap: () {},
-      ),
+      items.addAll([
+        MenuItem(
+          title: 'Order Placement',
+          iconPath: 'assets/images/menu3.svg',
+          trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+          //onTap: () {},
+        ),
+        MenuItem(
+          title: 'Invoice and Billing',
+          iconPath: 'assets/images/menu7.svg',
+          trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+          // onTap: () {},
+        ),
+        MenuItem(
+          title: 'User Management',
+          iconPath: 'assets/images/menu8.svg',
+          trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+          // onTap: () {},
+        ),
+        MenuItem(
+          title: 'Approvals and Workflows',
+          iconPath: 'assets/images/menu7.svg',
+          trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+          // onTap: () {},
+        ),
+        MenuItem(
+          title: 'Settings',
+          iconPath: 'assets/images/menu11.svg',
+          trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+          // onTap: () {},
+        ),
+        MenuItem(
+          title: 'Logout',
+          iconPath: 'assets/images/menu10.svg',
+          trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+          // onTap: () {},
+        ),
+      ]);
+
       // MenuItem(
       //   title: 'Sales Management',
       //   iconPath: 'assets/images/menu4.svg',
@@ -67,44 +135,83 @@ class MenuController extends StateNotifier<MenuState> {
       //   trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
       //   //onTap: () {},
       // ),
-      MenuItem(
-        title: 'Invoice and Billing',
-        iconPath: 'assets/images/menu7.svg',
-        trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
-        // onTap: () {},
-      ),
-      MenuItem(
-        title: 'User Management',
-        iconPath: 'assets/images/menu8.svg',
-        trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
-        // onTap: () {},
-      ),
-      MenuItem(
-        title: 'Approvals and Workflows',
-        iconPath: 'assets/images/menu7.svg',
-        trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
-        // onTap: () {},
-      ),
-      MenuItem(
-        title: 'Settings',
-        iconPath: 'assets/images/menu11.svg',
-        trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
-        // onTap: () {},
-      ),
-      MenuItem(
-        title: 'Logout',
-        iconPath: 'assets/images/menu10.svg',
-        trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
-        // onTap: () {},
-      ),
-    ]);
+    }
   }
+
+  // void loadMenuItems() {
+
+  //   state = MenuState(menuItems: [
+  //     // MenuItem(
+  //     //   title: 'Dashboard',
+  //     //   iconPath: 'assets/images/menu1.svg',
+  //     //   trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+  //     // ),
+  //     // MenuItem(
+  //     //   title: 'Marketplace',
+  //     //   iconPath: 'assets/images/menu2.svg',
+  //     //   trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+  //     //   //onTap: () {},
+  //     // ),
+  //     MenuItem(
+  //       title: 'Order Placement',
+  //       iconPath: 'assets/images/menu3.svg',
+  //       trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+  //       //onTap: () {},
+  //     ),
+  //     // MenuItem(
+  //     //   title: 'Sales Management',
+  //     //   iconPath: 'assets/images/menu4.svg',
+  //     //   trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+  //     //   // onTap: () {},
+  //     // ),
+  //     // MenuItem(
+  //     //   title: 'Services Management',
+  //     //   iconPath: 'assets/images/menu5.svg',
+  //     //   trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+  //     //   //onTap: () {},
+  //     // ),
+  //     MenuItem(
+  //       title: 'Invoice and Billing',
+  //       iconPath: 'assets/images/menu7.svg',
+  //       trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+  //       // onTap: () {},
+  //     ),
+  //     MenuItem(
+  //       title: 'User Management',
+  //       iconPath: 'assets/images/menu8.svg',
+  //       trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+  //       // onTap: () {},
+  //     ),
+  //     MenuItem(
+  //       title: 'Approvals and Workflows',
+  //       iconPath: 'assets/images/menu7.svg',
+  //       trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+  //       // onTap: () {},
+  //     ),
+  //     MenuItem(
+  //       title: 'Settings',
+  //       iconPath: 'assets/images/menu11.svg',
+  //       trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+  //       // onTap: () {},
+  //     ),
+  //     MenuItem(
+  //       title: 'Logout',
+  //       iconPath: 'assets/images/menu10.svg',
+  //       trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+  //       // onTap: () {},
+  //     ),
+  //   ]);
+  // }
 }
 
 final menuControllerProvider =
     StateNotifierProvider.autoDispose<MenuController, MenuState>((ref) {
-  return MenuController();
-});
+  final person = ref.read(personProvider);
+  if (person == null) {
+    throw Exception('Person data is not available');
+  }
+  return MenuController(person);
+}, dependencies: [personProvider]);
 
 // final expandedStateProvider =
 //     StateNotifierProvider<ExpandedStateNotifier, List<bool>>((ref) {

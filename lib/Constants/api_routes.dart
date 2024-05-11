@@ -1,16 +1,16 @@
 class Api {
-  // static const String imageBaseUrl = 'http://127.0.0.1:8000/uploads/logo/';
-  // static const String originalImageBaseUrl = 'http://127.0.0.1:8000';
-  // static const String baseUrl = 'http://127.0.0.1:8000/api/';
+  static const String imageBaseUrl = 'http://127.0.0.1:8000/uploads/logo/';
+  static const String originalImageBaseUrl = 'http://127.0.0.1:8000';
+  static const String baseUrl = 'http://127.0.0.1:8000/api/';
 
   // static const String imageBaseUrl = 'http://192.168.100.47:8000/uploads/logo/';
   // static const String originalImageBaseUrl = 'http://192.168.100.47:8000';
   // static const String baseUrl = 'http://192.168.100.47:8000/api/';
 
-  static const String imageBaseUrl =
-      'https://staging.jazalla.com/api/uploads/logo/';
-  static const String originalImageBaseUrl = 'https://staging.jazalla.com';
-  static const String baseUrl = 'https://staging.jazalla.com/api/';
+  // static const String imageBaseUrl =
+  //     'https://staging.jazalla.com/api/uploads/logo/';
+  // static const String originalImageBaseUrl = 'https://staging.jazalla.com';
+  // static const String baseUrl = 'https://staging.jazalla.com/api/';
 
   static const String login = "${baseUrl}loginWithMobileNumber";
 
@@ -178,4 +178,10 @@ class Api {
       "${baseUrl}employeeCenter/holidays/getEmployeeHolidays";
   static const String getEmployeeEvents =
       "${baseUrl}employeeCenter/events/getEmployeeEvents";
+
+  static const String getEmployeeMeetings =
+      "${baseUrl}employeeCenter/meetings/getEmployeeMeetings";
+
+  static const String getEmployeeAnnouncment =
+      "${baseUrl}employeeCenter/announcment/getEmployeeAnnouncment";
 }

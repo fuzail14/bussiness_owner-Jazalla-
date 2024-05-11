@@ -18,7 +18,7 @@ import '../../../../Constants/constants.dart';
 import '../../../../Routes/set_routes.dart';
 import '../../Accounting Manager Dashboard/accounting_manager_dashboard.dart';
 import '../../Administrator Dashboard/administrator_dashboard.dart';
-import '../../Employee Dashboard/employee_dashboard.dart';
+import '../../Employee Dashboard/View/employee_dashboard.dart';
 import '../Notifier/main_home_screen_notifier.dart';
 import '../../Procurement Manager Dashboard/procurement_manager_dashboard.dart';
 import '../../Sales Manager Dashboard/sales_manager_dashboard.dart';
