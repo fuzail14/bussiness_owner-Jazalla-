@@ -372,13 +372,14 @@ class CheckInDialog extends StatelessWidget {
                                   fontWeight: FontWeight.w600),
                             ),
                             Text(
-                              (employeeattendance!.status == '1')
+                              (employeeattendance!.status == 'Present')
                                   ? 'Present'
                                   : 'Absent',
                               style: GoogleFonts.montserrat(
-                                  color: (employeeattendance!.status == '1')
-                                      ? const Color(0xff22A527)
-                                      : const Color(0xffBA1717),
+                                  color:
+                                      (employeeattendance!.status == 'Present')
+                                          ? const Color(0xff22A527)
+                                          : const Color(0xffBA1717),
                                   fontSize: 16.sp,
                                   fontWeight: FontWeight.w600),
                             ),

@@ -164,7 +164,6 @@ class Data {
     data['is_email_verified'] = isEmailVerified;
     data['profile'] = profile;
     data['fcmtoken'] = fcmtoken;
-    data['company'] = company!.toJson();
 
     return data;
   }
@@ -175,11 +174,14 @@ class Company {
     this.id,
     this.companyCode,
     this.companyName,
+    this.primaryActivity,
     this.arCompanyName,
     this.businessType,
   });
   int? id;
   String? companyCode;
+  String? primaryActivity;
+
   String? companyName;
   String? arCompanyName;
   String? businessType;
@@ -188,19 +190,9 @@ class Company {
     id = json['id'];
     companyCode = json['company_code'];
     companyName = json['company_name'];
+    primaryActivity = json['primary_activity'];
     arCompanyName = null;
     businessType = null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['id'] = id;
-    data['company_code'] = companyCode;
-    data['company_name'] = companyName;
-    data['ar_company_name'] = arCompanyName;
-    data['business_type'] = businessType;
-
-    return data;
   }
 }
 

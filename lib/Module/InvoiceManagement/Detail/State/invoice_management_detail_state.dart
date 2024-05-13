@@ -1,23 +1,25 @@
+import 'package:bussines_owner/Module/InvoiceManagement/Main/Model/Invoice.dart';
+
 import '../../../../Data/Api Resp/api_response.dart';
 import '../../../ProcurementManagment/RFI/RfxManagmentRFIDetail/Model/RFIDetail.dart';
+import '../Model/InvoiceDetail.dart';
 
 class InvoiceManagementDetailState {
   final Status responseStatus;
-  final List<RequestForInformationDetail> InvoiceManagementDetail;
+  final Invoicedetail? invoice;
 
   InvoiceManagementDetailState({
     this.responseStatus = Status.loading,
-    this.InvoiceManagementDetail = const [],
+    this.invoice,
   });
 
   InvoiceManagementDetailState copyWith({
     Status? responseStatus,
-    List<RequestForInformationDetail>? InvoiceManagementDetail,
+    Invoicedetail? invoice,
   }) {
     return InvoiceManagementDetailState(
       responseStatus: responseStatus ?? this.responseStatus,
-      InvoiceManagementDetail:
-          InvoiceManagementDetail ?? this.InvoiceManagementDetail,
+      invoice: invoice ?? this.invoice,
     );
   }
 }

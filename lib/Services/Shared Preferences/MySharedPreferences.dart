@@ -27,6 +27,7 @@ class MySharedPreferences {
       value.remove(fcmTokenSPKEY);
       value.remove(companyNameSPKEY);
       value.remove(employeeIdSPKEY);
+      value.remove(primaryActivitySPKEY);
     });
   }
 
@@ -45,7 +46,10 @@ class MySharedPreferences {
       value.setString(bearerTokenSPKEY, person.Bearer ?? '');
       value.setString(fcmTokenSPKEY, fcmToken ?? '');
       value.setString(
-          companyNameSPKEY, person.data!.company!.companyName! ?? '');
+          companyNameSPKEY, person.data!.company!.companyName ?? '');
+
+      value.setString(
+          primaryActivitySPKEY, person.data!.company!.primaryActivity ?? '');
 
       value.setInt(employeeIdSPKEY, person.employee!.id ?? 0);
     });
@@ -71,6 +75,8 @@ class MySharedPreferences {
       value.getString(companyNameSPKEY) ??
           value.setString(companyNameSPKEY, '');
       value.getInt(employeeIdSPKEY) ?? value.setInt(employeeIdSPKEY, 0);
+      value.getString(primaryActivitySPKEY) ??
+          value.setString(primaryActivitySPKEY, '');
 
       person = Person(
           data: Data(
@@ -84,7 +90,9 @@ class MySharedPreferences {
               email: value.getString(emailSPKEY),
               type: value.getString(typeSPKEY),
               fcmtoken: value.getString(fcmTokenSPKEY),
-              company: Company(companyName: value.getString(companyNameSPKEY))),
+              company: Company(
+                  companyName: value.getString(companyNameSPKEY),
+                  primaryActivity: value.getString(primaryActivitySPKEY))),
           Bearer: value.getString(bearerTokenSPKEY),
           employee: Employee(
             id: value.getInt(employeeIdSPKEY),

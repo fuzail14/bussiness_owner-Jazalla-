@@ -1091,18 +1091,12 @@ final router = GoRouter(
             child: page);
       },
     ),
+
     GoRoute(
       name: invoiceManagementScreen,
       path: '/InvoiceManagementScreen',
       pageBuilder: (context, state) {
-        final person = state.extra as Person;
-        final page = ProviderScope(
-          overrides: [
-            personProvider
-                .overrideWith((ref) => PersonController()..setPerson(person)),
-          ],
-          child: InvoiceManagementScreen(),
-        );
+        final page = InvoiceManagementScreen();
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
             context: context,
@@ -1119,7 +1113,7 @@ final router = GoRouter(
 
         final page = ProviderScope(
           overrides: [
-            routeArgsProvider.overrideWithValue({'iId': id}),
+            routeArgsProvider.overrideWithValue({'invoiceId': id}),
           ],
           child: const InvoiceManagementDetailPage(),
         );

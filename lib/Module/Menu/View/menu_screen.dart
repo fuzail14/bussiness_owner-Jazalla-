@@ -100,7 +100,7 @@ class Menu extends ConsumerWidget {
             context.pushNamed(userManagementScreen, extra: person);
             // context.pushNamed(procuremenetRFQScreen, extra: person);
           } else if (item.title == 'Invoice and Billing') {
-            context.pushNamed(invoiceManagementScreen, extra: person);
+            context.pushNamed(invoiceManagementScreen);
           } else if (item.title == 'Approvals and Workflows') {
             context.pushNamed(approvalAuthorityScreen, extra: person);
           }

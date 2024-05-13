@@ -1,26 +1,26 @@
 import '../../../../Constants/Person/person.dart';
 import '../../../../Data/Api Resp/api_response.dart';
-import '../../../ProcurementManagment/RFI/Main/Model/Request4Information.dart';
+import '../Model/Invoice.dart';
 
 class InvoiceManagementState {
   final Status responseStatus;
-  final List<RequestForInformation> request4Informatio;
+  final List<Invoices> invoices;
   final Person? person;
 
   InvoiceManagementState({
     this.responseStatus = Status.loading,
-    this.request4Informatio = const [],
+    this.invoices = const [],
     this.person,
   });
 
   InvoiceManagementState copyWith({
     Status? responseStatus,
-    List<RequestForInformation>? request4Informatio,
+    List<Invoices>? invoices,
     Person? person,
   }) {
     return InvoiceManagementState(
       responseStatus: responseStatus ?? this.responseStatus,
-      request4Informatio: request4Informatio ?? this.request4Informatio,
+      invoices: invoices ?? this.invoices,
       person: person ?? this.person,
     );
   }

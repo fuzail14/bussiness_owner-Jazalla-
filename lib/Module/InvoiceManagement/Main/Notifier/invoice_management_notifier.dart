@@ -7,31 +7,39 @@ import '../../../../../../Data/Api Resp/api_response.dart';
 import '../../../../../Repo/Approval Managment Repository/approval_managment_repository.dart';
 import '../../../../Constants/Person/person.dart';
 import '../../../../Constants/Person/person_controller.dart';
+import '../../../../Repo/Invoice Managemet/invoice_managment_repository.dart';
 import '../State/invoice_management_state.dart';
 
 class InvoiceManagementNotifier extends StateNotifier<InvoiceManagementState> {
   final Person? person;
-  final approvalManagmentRepository = ApprovalManagmentRepository();
+  final invoiceManagmentRepository = InvoiceManagmentRepository();
 
   InvoiceManagementNotifier(this.person) : super(InvoiceManagementState()) {
-    request4InformationViewApi(
-        userId: person!.data!.id!, bearerToken: person!.Bearer);
+    invoiceForBuyerView(
+        companyId: person!.data!.companyId!,
+        companyActivity: person!.data!.company!.primaryActivity,
+        bearerToken: person!.Bearer);
+    print(person!.data!.company!.primaryActivity);
   }
 
   final TextEditingController searchController = TextEditingController();
 
-  Future<void> request4InformationViewApi(
-      {required userId, required bearerToken}) async {
+  Future<void> invoiceForBuyerView(
+      {required companyId,
+      required companyActivity,
+      required bearerToken}) async {
     setResponseStatus(Status.loading);
     print('come here');
+    print(companyActivity);
 
     try {
-      final value = await approvalManagmentRepository.request4InformationApi(
-        userId: userId,
+      final value = await invoiceManagmentRepository.invoiceForBuyerApi(
+        companyId: companyId,
+        companyActivity: companyActivity,
         bearerToken: bearerToken,
       );
       state = state.copyWith(
-        request4Informatio: value.requestForInformation,
+        invoices: value.invoices,
         responseStatus: Status.completed,
       );
     } catch (e, stackTrace) {
@@ -56,9 +64,9 @@ class InvoiceManagementNotifier extends StateNotifier<InvoiceManagementState> {
 final invoiceManagementProvider =
     StateNotifierProvider<InvoiceManagementNotifier, InvoiceManagementState>(
         (ref) {
-  final person = ref.watch(personProvider);
+  final person = ref.read(personProvider);
   if (person == null) {
     throw Exception('Person data is not available');
   }
   return InvoiceManagementNotifier(person);
-}, dependencies: [personProvider]);
+});

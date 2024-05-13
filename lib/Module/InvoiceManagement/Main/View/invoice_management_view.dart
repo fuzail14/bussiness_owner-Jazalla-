@@ -50,7 +50,7 @@ class InvoiceManagementScreen extends ConsumerWidget {
             const Loader()
           else if (state.responseStatus == Status.completed) ...[
             15.ph,
-            if (state.request4Informatio.isEmpty) ...[
+            if (state.invoices.isEmpty) ...[
               Center(
                 child: Text(
                   'No Requests Found.',
@@ -64,13 +64,15 @@ class InvoiceManagementScreen extends ConsumerWidget {
               Expanded(
                 child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: state.request4Informatio.length,
+                    itemCount: state.invoices.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
                           GoRouter.of(context).pushNamed(
                             invoiceManagementDetailPage,
-                            pathParameters: {'id': '4'},
+                            pathParameters: {
+                              'id': '${state.invoices[index].id!}'
+                            },
                           );
                         },
                         child: Container(
@@ -101,20 +103,17 @@ class InvoiceManagementScreen extends ConsumerWidget {
                                         CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      SizedBox(
-                                        width: 180.w,
-                                        child: Text(
-                                          'Invoice',
-                                          maxLines: 1,
-                                          style: GoogleFonts.montserrat(
-                                            fontSize: 20.sp,
-                                            color: Color(0xff181818),
-                                            fontWeight: FontWeight.w600,
-                                          ),
+                                      Text(
+                                        'Invoice',
+                                        maxLines: 1,
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 20.sp,
+                                          color: Color(0xff181818),
+                                          fontWeight: FontWeight.w600,
                                         ),
                                       ),
                                       Text(
-                                        '#INV0004444000000',
+                                        state.invoices[index].refNumber ?? "",
                                         style: GoogleFonts.montserrat(
                                           fontSize: 12.sp,
                                           color: const Color(0xff909090),
@@ -123,14 +122,56 @@ class InvoiceManagementScreen extends ConsumerWidget {
                                       ),
                                     ],
                                   ),
-                                  Text(
-                                    'Paid',
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xff22A527),
-                                      fontWeight: FontWeight.w600,
+                                  if (state.invoices[index].status == 1) ...[
+                                    Text(
+                                      'Draft',
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 14.sp,
+                                        color: const Color(0xff22A527),
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
-                                  ),
+                                  ] else if (state.invoices[index].status ==
+                                      2) ...[
+                                    Text(
+                                      'Sent',
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 14.sp,
+                                        color: const Color(0xff22A527),
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ] else if (state.invoices[index].status ==
+                                      3) ...[
+                                    Text(
+                                      'UnPaid',
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 14.sp,
+                                        color: const Color(0xffEF2E61),
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ] else if (state.invoices[index].status ==
+                                      4) ...[
+                                    Text(
+                                      'Partialy Paid',
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 14.sp,
+                                        color: const Color(0xff22A527),
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ] else if (state.invoices[index].status ==
+                                      4) ...[
+                                    Text(
+                                      'Paid',
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 14.sp,
+                                        color: const Color(0xff22A527),
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ]
                                 ],
                               ),
                               11.ph,
@@ -155,7 +196,7 @@ class InvoiceManagementScreen extends ConsumerWidget {
                                         ),
                                       ),
                                       Text(
-                                        'Mar 23,2024',
+                                        state.invoices[index].issueDate ?? "",
                                         style: GoogleFonts.montserrat(
                                           fontSize: 12.sp,
                                           color: const Color(0xff909090),
@@ -177,7 +218,7 @@ class InvoiceManagementScreen extends ConsumerWidget {
                                         ),
                                       ),
                                       Text(
-                                        'Mar 23,2024',
+                                        state.invoices[index].dueDate ?? "",
                                         style: GoogleFonts.montserrat(
                                           fontSize: 12.sp,
                                           color: const Color(0xff909090),
@@ -199,7 +240,9 @@ class InvoiceManagementScreen extends ConsumerWidget {
                                         ),
                                       ),
                                       Text(
-                                        '\$0.00',
+                                        state.invoices[index].dueAmount
+                                                .toString() ??
+                                            "",
                                         style: GoogleFonts.montserrat(
                                           fontSize: 12.sp,
                                           color: const Color(0xff909090),

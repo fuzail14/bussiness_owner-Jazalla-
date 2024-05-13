@@ -60,8 +60,6 @@ class MenuController extends StateNotifier<MenuState> {
         ),
       ]);
       state = MenuState(menuItems: items);
-
-      state = MenuState(menuItems: items);
     } else if (person.data!.type == 'projectManager') {
       // Show 'Order Placement', 'Settings', and 'Logout' for project managers
       items.insert(
@@ -122,6 +120,7 @@ class MenuController extends StateNotifier<MenuState> {
           // onTap: () {},
         ),
       ]);
+      state = MenuState(menuItems: items);
 
       // MenuItem(
       //   title: 'Sales Management',

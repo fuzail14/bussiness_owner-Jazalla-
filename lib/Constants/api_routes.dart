@@ -184,4 +184,7 @@ class Api {
 
   static const String getEmployeeAnnouncment =
       "${baseUrl}employeeCenter/announcment/getEmployeeAnnouncment";
+
+  static const String getInvocies = "${baseUrl}invoices/getInvocies";
+  static const String getInvocieDetail = "${baseUrl}invoices/getInvocieDetail";
 }

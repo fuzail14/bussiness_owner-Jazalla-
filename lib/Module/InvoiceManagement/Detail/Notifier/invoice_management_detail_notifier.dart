@@ -3,27 +3,28 @@ import 'dart:developer';
 import 'package:bussines_owner/Data/Api%20Resp/api_response.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../Providers/argument_provider.dart';
+import '../../../../Repo/Invoice Managemet/invoice_managment_repository.dart';
 import '../../../../Repo/Procurement Managment/RFI/DetailRepo/rfx_managment_rfi_detail_repository.dart';
 import '../State/invoice_management_detail_state.dart';
 
 class InvoiceManagementDetailNotifier
     extends StateNotifier<InvoiceManagementDetailState> {
   InvoiceManagementDetailNotifier({
-    required int rfiId,
+    required int invoiceId,
   }) : super(InvoiceManagementDetailState()) {
-    rfiDetailViewApi(rfiId: rfiId);
+    invoiceDetailViewApi(invoiceId: invoiceId);
   }
 
-  final rFXManagmentRFIDetailRepository = RFXManagmentRFIDetailRepository();
+  final invoiceManagmentRepository = InvoiceManagmentRepository();
 
-  Future<void> rfiDetailViewApi({required int rfiId}) async {
+  Future<void> invoiceDetailViewApi({required int invoiceId}) async {
     setResponseStatus(Status.loading);
 
     try {
       final value =
-          await rFXManagmentRFIDetailRepository.rfiDetailApi(rfiId: rfiId);
+          await invoiceManagmentRepository.invoiceDetail(invoiceId: invoiceId);
       state = state.copyWith(
-        InvoiceManagementDetail: value.requestForInformationDetail,
+        invoice: value.invoicedetail,
         responseStatus: Status.completed,
       );
     } catch (e, stackTrace) {
@@ -42,9 +43,9 @@ class InvoiceManagementDetailNotifier
 final invoiceManagementDetailProvider = StateNotifierProvider<
     InvoiceManagementDetailNotifier, InvoiceManagementDetailState>((ref) {
   final args = ref.watch(routeArgsProvider);
-  final rfiId = args['iId'] as int;
+  final invoiceId = args['invoiceId'] as int;
 
   return InvoiceManagementDetailNotifier(
-    rfiId: rfiId,
+    invoiceId: invoiceId,
   );
 }, dependencies: [routeArgsProvider]);

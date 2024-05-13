@@ -40,675 +40,735 @@ class InvoiceManagementDetailPage extends ConsumerWidget {
           else if (state.responseStatus == Status.completed) ...[
             25.ph,
             Expanded(
-                child: ListView.builder(
-              itemCount: state.InvoiceManagementDetail.length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return Column(
-                  // crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Invoice Details',
-                        style: FontManagment()
-                            .montserrat18HeadingEmployeeCenterAllModules),
-                    20.ph,
-                    Container(
-                      width: 363.w,
-                      padding: const EdgeInsets.only(
-                              bottom: 17, left: 11, right: 11, top: 17)
-                          .r,
-                      margin:
-                          const EdgeInsets.only(bottom: 60, left: 26, right: 25)
-                              .r,
-                      decoration: BoxDecoration(
-                        color: whiteColor,
-                        borderRadius: BorderRadius.circular(10).r,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.4),
-                            offset: const Offset(
-                              1.0,
-                              3.0,
+                child: ListView(
+                    //itemCount: state.invoice.length,
+                    shrinkWrap: true,
+                    children: [
+                  Column(
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Invoice Details',
+                          style: FontManagment()
+                              .montserrat18HeadingEmployeeCenterAllModules),
+                      20.ph,
+                      Container(
+                        width: 363.w,
+                        padding: const EdgeInsets.only(
+                                bottom: 17, left: 11, right: 11, top: 17)
+                            .r,
+                        margin: const EdgeInsets.only(
+                                bottom: 60, left: 26, right: 25)
+                            .r,
+                        decoration: BoxDecoration(
+                          color: whiteColor,
+                          borderRadius: BorderRadius.circular(10).r,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.4),
+                              offset: const Offset(
+                                1.0,
+                                3.0,
+                              ),
+                              blurRadius: 10.0,
+                              spreadRadius: 1.0,
                             ),
-                            blurRadius: 10.0,
-                            spreadRadius: 1.0,
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.only(
-                              left: 16,
-                            ).r,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4).r,
-                                border: Border.all(color: Color(0xffB7C9E2)),
-                                color: whiteColor),
-                            child: Row(
+                          ],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            //INVOICE BASIC DETAIL
+                            Container(
+                              padding: const EdgeInsets.only(
+                                left: 16,
+                              ).r,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4).r,
+                                  border: Border.all(color: Color(0xffB7C9E2)),
+                                  color: whiteColor),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Invoice ',
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: GoogleFonts.montserrat(
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.w400,
+                                            color: Color(0xff131315)),
+                                      ),
+                                      7.ph,
+                                      SizedBox(
+                                        width: 100.w,
+                                        child: Text(
+                                          state.invoice!.refNumber ?? "",
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 1,
+                                          style: GoogleFonts.montserrat(
+                                              fontSize: 14.sp,
+                                              fontWeight: FontWeight.bold,
+                                              color: Color(0xff131315)),
+                                        ),
+                                      ),
+                                      13.ph,
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                'Issue Date',
+                                                maxLines: 1,
+                                                style: GoogleFonts.montserrat(
+                                                    fontSize: 12.sp,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: Color(0xff131315)),
+                                              ),
+                                              7.ph,
+                                              SizedBox(
+                                                width: 80.w,
+                                                child: Text(
+                                                  state.invoice!.issueDate
+                                                      .toString(),
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  maxLines: 1,
+                                                  style: GoogleFonts.montserrat(
+                                                      fontSize: 14.sp,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      color: Color(0xff131315)),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          10.pw,
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                'Due Date',
+                                                maxLines: 1,
+                                                style: GoogleFonts.montserrat(
+                                                    fontSize: 12.sp,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: Color(0xff131315)),
+                                              ),
+                                              7.ph,
+                                              SizedBox(
+                                                width: 80.w,
+                                                child: Text(
+                                                  state.invoice!.dueDate
+                                                      .toString(),
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  maxLines: 1,
+                                                  style: GoogleFonts.montserrat(
+                                                      fontSize: 14.sp,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      color: Color(0xff131315)),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  20.pw,
+                                  Container(
+                                    height: 127.h,
+                                    width: 1,
+                                    color: Color(0xffB7C9E2),
+                                  ),
+                                  10.pw,
+                                  QrImageView(
+                                    data: 'This is a simple QR code',
+                                    version: QrVersions.auto,
+                                    size: 78.h,
+                                    gapless: false,
+                                  )
+                                ],
+                              ),
+                            ),
+                            8.ph,
+
+                            //Buyer Company DETAIL
+                            Container(
+                              width: double.infinity,
+                              padding:
+                                  EdgeInsets.only(left: 14, top: 18, bottom: 18)
+                                      .r,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4).r,
+                                  border: Border.all(color: Color(0xffB7C9E2)),
+                                  color: whiteColor),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Billed to',
+                                    style: GoogleFonts.montserrat(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color(0xff131315)),
+                                  ),
+                                  7.ph,
+                                  Text(
+                                    state.invoice!.company.companyName
+                                        .toString(),
+                                    style: GoogleFonts.montserrat(
+                                        fontSize: 13.sp,
+                                        fontWeight: FontWeight.w500,
+                                        color: Color(0xff46454A)),
+                                  ),
+                                  5.ph,
+                                  Text(
+                                    'Address :Saudi Arabia, ${state.invoice!.company.address.address.toString()}',
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: GoogleFonts.montserrat(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w500,
+                                        color: Color(0xff46454A)),
+                                  ),
+                                  5.ph,
+                                  Text(
+                                    'Contact : ${state.invoice!.company.mobileNo.toString()}',
+                                    style: GoogleFonts.montserrat(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w500,
+                                        color: Color(0xff46454A)),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            15.ph,
+
+                            //Supplier Company DETAIL
+                            Container(
+                              width: double.infinity,
+                              padding: EdgeInsets.only(
+                                      left: 14, top: 18, bottom: 18, right: 25)
+                                  .r,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4).r,
+                                  border: Border.all(color: Color(0xffB7C9E2)),
+                                  color: whiteColor),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Shipped To',
+                                    style: GoogleFonts.montserrat(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color(0xff131315)),
+                                  ),
+                                  7.ph,
+                                  Text(
+                                    state.invoice!.vendor.companyName
+                                        .toString(),
+                                    style: GoogleFonts.montserrat(
+                                        fontSize: 13.sp,
+                                        fontWeight: FontWeight.w500,
+                                        color: Color(0xff46454A)),
+                                  ),
+                                  5.ph,
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'Contact : ${state.invoice!.vendor.mobileNo.toString()}',
+                                        maxLines: 2,
+                                        style: GoogleFonts.montserrat(
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.w500,
+                                            color: Color(0xff46454A)),
+                                      ),
+                                      Text(
+                                        'Paid',
+                                        maxLines: 2,
+                                        style: GoogleFonts.montserrat(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w500,
+                                            color: Color(0xff22A527)),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            15.ph,
+
+                            Container(
+                              padding: EdgeInsets.only(bottom: 12).r,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(7).r,
+                                  border: Border.all(color: Color(0xffB7C9E2))),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: Color(0xff326DAE),
+                                      borderRadius: BorderRadius.circular(7).r,
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                              horizontal: 10, vertical: 12)
+                                          .r,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Product',
+                                            style: GoogleFonts.montserrat(
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.w600,
+                                                color: whiteColor),
+                                          ),
+                                          Text(
+                                            'QTY',
+                                            style: GoogleFonts.montserrat(
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.w600,
+                                                color: whiteColor),
+                                          ),
+                                          Text(
+                                            'Rate',
+                                            style: GoogleFonts.montserrat(
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.w600,
+                                                color: whiteColor),
+                                          ),
+                                          Text(
+                                            'Discount',
+                                            style: GoogleFonts.montserrat(
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.w600,
+                                                color: whiteColor),
+                                          ),
+                                          Text(
+                                            'Tax',
+                                            style: GoogleFonts.montserrat(
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.w600,
+                                                color: whiteColor),
+                                          ),
+                                          Text(
+                                            'Price',
+                                            style: GoogleFonts.montserrat(
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.w600,
+                                                color: whiteColor),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  11.ph,
+
+                                  SizedBox(
+                                    height: 100.h,
+                                    child: ListView.builder(
+                                        itemCount: state
+                                            .invoice!.purchase.items.length,
+                                        itemBuilder: (context, index) {
+                                          return Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                    horizontal: 10, vertical: 5)
+                                                .r,
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                SizedBox(
+                                                  width: 40.w,
+                                                  child: Text(
+                                                    state
+                                                        .invoice!
+                                                        .purchase
+                                                        .items[index]
+                                                        .product2
+                                                        .name
+                                                        .toString(),
+                                                    maxLines: 2,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style:
+                                                        GoogleFonts.montserrat(
+                                                            fontSize: 10.sp,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            color: Color(
+                                                                0xff46454A)),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: 40.w,
+                                                  child: Text(
+                                                    state.invoice!.purchase
+                                                        .items[index].quantity
+                                                        .toString(),
+                                                    style:
+                                                        GoogleFonts.montserrat(
+                                                            fontSize: 10.sp,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            color: Color(
+                                                                0xff46454A)),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: 40.w,
+                                                  child: Text(
+                                                    '\$${state.invoice!.purchase.items[index].price.toString()}',
+                                                    maxLines: 2,
+                                                    style:
+                                                        GoogleFonts.montserrat(
+                                                            fontSize: 10.sp,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            color: Color(
+                                                                0xff46454A)),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: 40.w,
+                                                  child: Text(
+                                                    '\$${state.invoice!.purchase.items[index].discount.toString()}',
+                                                    style:
+                                                        GoogleFonts.montserrat(
+                                                            fontSize: 10.sp,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            color: Color(
+                                                                0xff46454A)),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: 40.w,
+                                                  child: Text(
+                                                    '${state.invoice!.purchase.items[index].price.toString()}%',
+                                                    style:
+                                                        GoogleFonts.montserrat(
+                                                            fontSize: 10.sp,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            color: Color(
+                                                                0xff46454A)),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: 40.w,
+                                                  child: Text(
+                                                    '\$${state.invoice!.purchase.items[index].price.toString()}',
+                                                    maxLines: 2,
+                                                    style:
+                                                        GoogleFonts.montserrat(
+                                                            fontSize: 10.sp,
+                                                            fontWeight:
+                                                                FontWeight.w700,
+                                                            color: Color(
+                                                                0xff46454A)),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          );
+                                        }),
+                                  ),
+
+                                  // 19.ph,
+                                  const Divider(color: Color(0xffB7C9E2)),
+                                  9.5.ph,
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: Container(
+                                      width: 184.w,
+                                      // height: 99.h,
+                                      padding: EdgeInsets.symmetric(
+                                              horizontal: 10, vertical: 9)
+                                          .r,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(4).r,
+                                          border: Border.all(
+                                              color: Color(0xffEBEDF2)),
+                                          color: Color(0xffF9F9FA)),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                'Subtotal',
+                                                style: GoogleFonts.inter(
+                                                    fontSize: 10,
+                                                    color: Color(0xff1A1C21),
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                              ),
+                                              SizedBox(
+                                                width: 100.w,
+                                                child: Text(
+                                                  '\$2000.00',
+                                                  maxLines: 1,
+                                                  textAlign: TextAlign.right,
+                                                  style: GoogleFonts.inter(
+                                                      fontSize: 10,
+                                                      color: Color(0xff5E6470),
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          8.ph,
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                'Discount',
+                                                style: GoogleFonts.inter(
+                                                    fontSize: 10,
+                                                    color: Color(0xff1A1C21),
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                              ),
+                                              SizedBox(
+                                                width: 100.w,
+                                                child: Text(
+                                                  '\$95000.00',
+                                                  maxLines: 1,
+                                                  textAlign: TextAlign.right,
+                                                  style: GoogleFonts.inter(
+                                                      fontSize: 10,
+                                                      color: Color(0xff5E6470),
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          8.ph,
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                'Tax',
+                                                style: GoogleFonts.inter(
+                                                    fontSize: 10,
+                                                    color: Color(0xff1A1C21),
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                              ),
+                                              SizedBox(
+                                                width: 70.w,
+                                                child: Text(
+                                                  '\$2000.00',
+                                                  textAlign: TextAlign.right,
+                                                  maxLines: 1,
+                                                  style: GoogleFonts.inter(
+                                                      fontSize: 10,
+                                                      color: Color(0xff1A1C21),
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          8.ph,
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                'Total',
+                                                style: GoogleFonts.inter(
+                                                    fontSize: 10,
+                                                    color: Color(0xff1A1C21),
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              SizedBox(
+                                                width: 100.w,
+                                                child: Text(
+                                                  '\$20000.00',
+                                                  textAlign: TextAlign.right,
+                                                  maxLines: 1,
+                                                  style: GoogleFonts.inter(
+                                                      fontSize: 10,
+                                                      color: Color(0xff1A1C21),
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          8.ph,
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                'Paid',
+                                                style: GoogleFonts.inter(
+                                                    fontSize: 10,
+                                                    color: Color(0xff1A1C21),
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              SizedBox(
+                                                width: 100.w,
+                                                child: Text(
+                                                  '\$1252000.00',
+                                                  textAlign: TextAlign.right,
+                                                  maxLines: 1,
+                                                  style: GoogleFonts.inter(
+                                                      fontSize: 10,
+                                                      color: Color(0xff1A1C21),
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          8.ph,
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                'Credit Note',
+                                                style: GoogleFonts.inter(
+                                                    fontSize: 10,
+                                                    color: Color(0xff1A1C21),
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              SizedBox(
+                                                width: 100.w,
+                                                child: Text(
+                                                  '\$0.00',
+                                                  textAlign: TextAlign.right,
+                                                  maxLines: 1,
+                                                  style: GoogleFonts.inter(
+                                                      fontSize: 10,
+                                                      color: Color(0xff1A1C21),
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          8.ph,
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                'Due',
+                                                style: GoogleFonts.inter(
+                                                    fontSize: 10,
+                                                    color: Color(0xff1A1C21),
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              SizedBox(
+                                                width: 100.w,
+                                                child: Text(
+                                                  '\$0.00',
+                                                  textAlign: TextAlign.right,
+                                                  maxLines: 1,
+                                                  style: GoogleFonts.inter(
+                                                      fontSize: 10,
+                                                      color: Color(0xff1A1C21),
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            15.ph,
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Invoice ',
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
+                                      'Employee Signature :',
                                       style: GoogleFonts.montserrat(
-                                          fontSize: 12.sp,
-                                          fontWeight: FontWeight.w400,
-                                          color: Color(0xff131315)),
+                                          fontSize: 10,
+                                          color: Color(0xff1A1C21),
+                                          fontWeight: FontWeight.w700),
                                     ),
-                                    7.ph,
-                                    SizedBox(
-                                      width: 100.w,
-                                      child: Text(
-                                        '#AB55555-01',
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 1,
-                                        style: GoogleFonts.montserrat(
-                                            fontSize: 14.sp,
-                                            fontWeight: FontWeight.bold,
-                                            color: Color(0xff131315)),
-                                      ),
-                                    ),
-                                    13.ph,
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Issue Date',
-                                              maxLines: 1,
-                                              style: GoogleFonts.montserrat(
-                                                  fontSize: 12.sp,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Color(0xff131315)),
-                                            ),
-                                            7.ph,
-                                            SizedBox(
-                                              width: 80.w,
-                                              child: Text(
-                                                '02-10-2024',
-                                                overflow: TextOverflow.ellipsis,
-                                                maxLines: 1,
-                                                style: GoogleFonts.montserrat(
-                                                    fontSize: 14.sp,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: Color(0xff131315)),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        10.pw,
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Due Date',
-                                              maxLines: 1,
-                                              style: GoogleFonts.montserrat(
-                                                  fontSize: 12.sp,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Color(0xff131315)),
-                                            ),
-                                            7.ph,
-                                            SizedBox(
-                                              width: 80.w,
-                                              child: Text(
-                                                '02-10-2024',
-                                                overflow: TextOverflow.ellipsis,
-                                                maxLines: 1,
-                                                style: GoogleFonts.montserrat(
-                                                    fontSize: 14.sp,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: Color(0xff131315)),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                20.pw,
-                                Container(
-                                  height: 127.h,
-                                  width: 1,
-                                  color: Color(0xffB7C9E2),
-                                ),
-                                10.pw,
-                                QrImageView(
-                                  data: 'This is a simple QR code',
-                                  version: QrVersions.auto,
-                                  size: 78.h,
-                                  gapless: false,
-                                )
-                              ],
-                            ),
-                          ),
-                          8.ph,
-                          Container(
-                            width: double.infinity,
-                            padding:
-                                EdgeInsets.only(left: 14, top: 18, bottom: 18)
-                                    .r,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4).r,
-                                border: Border.all(color: Color(0xffB7C9E2)),
-                                color: whiteColor),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Billed to',
-                                  style: GoogleFonts.montserrat(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w600,
-                                      color: Color(0xff131315)),
-                                ),
-                                7.ph,
-                                Text(
-                                  'Company Name',
-                                  style: GoogleFonts.montserrat(
-                                      fontSize: 13.sp,
-                                      fontWeight: FontWeight.w500,
-                                      color: Color(0xff46454A)),
-                                ),
-                                5.ph,
-                                Text(
-                                  'Address :Saudi Arabia, Khobar, Eastern Province',
-                                  maxLines: 2,
-                                  style: GoogleFonts.montserrat(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w500,
-                                      color: Color(0xff46454A)),
-                                ),
-                                5.ph,
-                                Text(
-                                  'Contact : 05584726739',
-                                  style: GoogleFonts.montserrat(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w500,
-                                      color: Color(0xff46454A)),
-                                ),
-                              ],
-                            ),
-                          ),
-                          15.ph,
-                          Container(
-                            width: double.infinity,
-                            padding: EdgeInsets.only(
-                                    left: 14, top: 18, bottom: 18, right: 25)
-                                .r,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4).r,
-                                border: Border.all(color: Color(0xffB7C9E2)),
-                                color: whiteColor),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Shipped To',
-                                  style: GoogleFonts.montserrat(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w600,
-                                      color: Color(0xff131315)),
-                                ),
-                                7.ph,
-                                Text(
-                                  'Fuzail',
-                                  style: GoogleFonts.montserrat(
-                                      fontSize: 13.sp,
-                                      fontWeight: FontWeight.w500,
-                                      color: Color(0xff46454A)),
-                                ),
-                                5.ph,
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'Contact : 05584726739',
-                                      maxLines: 2,
-                                      style: GoogleFonts.montserrat(
-                                          fontSize: 12.sp,
-                                          fontWeight: FontWeight.w500,
-                                          color: Color(0xff46454A)),
-                                    ),
-                                    Text(
-                                      'Paid',
-                                      maxLines: 2,
-                                      style: GoogleFonts.montserrat(
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w500,
-                                          color: Color(0xff22A527)),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          15.ph,
-                          Container(
-                            padding: EdgeInsets.only(bottom: 12).r,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(7).r,
-                                border: Border.all(color: Color(0xffB7C9E2))),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: Color(0xff326DAE),
-                                    borderRadius: BorderRadius.circular(7).r,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                            horizontal: 10, vertical: 12)
-                                        .r,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Product',
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w600,
-                                              color: whiteColor),
-                                        ),
-                                        Text(
-                                          'QTY',
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w600,
-                                              color: whiteColor),
-                                        ),
-                                        Text(
-                                          'Rate',
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w600,
-                                              color: whiteColor),
-                                        ),
-                                        Text(
-                                          'Discount',
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w600,
-                                              color: whiteColor),
-                                        ),
-                                        Text(
-                                          'Tax',
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w600,
-                                              color: whiteColor),
-                                        ),
-                                        Text(
-                                          'Price',
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w600,
-                                              color: whiteColor),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                11.ph,
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 10)
-                                          .r,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        width: 40.w,
-                                        child: Text(
-                                          'Engine Fan',
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 10.sp,
-                                              fontWeight: FontWeight.w500,
-                                              color: Color(0xff46454A)),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 40.w,
-                                        child: Text(
-                                          '150KG',
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 10.sp,
-                                              fontWeight: FontWeight.w500,
-                                              color: Color(0xff46454A)),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 40.w,
-                                        child: Text(
-                                          '\$1,000.00',
-                                          maxLines: 2,
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 10.sp,
-                                              fontWeight: FontWeight.w500,
-                                              color: Color(0xff46454A)),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 40.w,
-                                        child: Text(
-                                          '\$950.0',
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 10.sp,
-                                              fontWeight: FontWeight.w500,
-                                              color: Color(0xff46454A)),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 40.w,
-                                        child: Text(
-                                          '15%',
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 10.sp,
-                                              fontWeight: FontWeight.w500,
-                                              color: Color(0xff46454A)),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 40.w,
-                                        child: Text(
-                                          '\$175000.00',
-                                          maxLines: 2,
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 10.sp,
-                                              fontWeight: FontWeight.w700,
-                                              color: Color(0xff46454A)),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-
-                                // 19.ph,
-                                Divider(color: Color(0xffB7C9E2)),
-                                9.5.ph,
-                                Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Container(
-                                    width: 184.w,
-                                    // height: 99.h,
-                                    padding: EdgeInsets.symmetric(
-                                            horizontal: 10, vertical: 9)
-                                        .r,
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(4).r,
-                                        border: Border.all(
-                                            color: Color(0xffEBEDF2)),
-                                        color: Color(0xffF9F9FA)),
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              'Subtotal',
-                                              style: GoogleFonts.inter(
-                                                  fontSize: 10,
-                                                  color: Color(0xff1A1C21),
-                                                  fontWeight: FontWeight.w700),
-                                            ),
-                                            SizedBox(
-                                              width: 100.w,
-                                              child: Text(
-                                                '\$2000.00',
-                                                maxLines: 1,
-                                                textAlign: TextAlign.right,
-                                                style: GoogleFonts.inter(
-                                                    fontSize: 10,
-                                                    color: Color(0xff5E6470),
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        8.ph,
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              'Discount',
-                                              style: GoogleFonts.inter(
-                                                  fontSize: 10,
-                                                  color: Color(0xff1A1C21),
-                                                  fontWeight: FontWeight.w700),
-                                            ),
-                                            SizedBox(
-                                              width: 100.w,
-                                              child: Text(
-                                                '\$95000.00',
-                                                maxLines: 1,
-                                                textAlign: TextAlign.right,
-                                                style: GoogleFonts.inter(
-                                                    fontSize: 10,
-                                                    color: Color(0xff5E6470),
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        8.ph,
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              'Tax',
-                                              style: GoogleFonts.inter(
-                                                  fontSize: 10,
-                                                  color: Color(0xff1A1C21),
-                                                  fontWeight: FontWeight.w700),
-                                            ),
-                                            SizedBox(
-                                              width: 70.w,
-                                              child: Text(
-                                                '\$2000.00',
-                                                textAlign: TextAlign.right,
-                                                maxLines: 1,
-                                                style: GoogleFonts.inter(
-                                                    fontSize: 10,
-                                                    color: Color(0xff1A1C21),
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        8.ph,
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              'Total',
-                                              style: GoogleFonts.inter(
-                                                  fontSize: 10,
-                                                  color: Color(0xff1A1C21),
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            SizedBox(
-                                              width: 100.w,
-                                              child: Text(
-                                                '\$20000.00',
-                                                textAlign: TextAlign.right,
-                                                maxLines: 1,
-                                                style: GoogleFonts.inter(
-                                                    fontSize: 10,
-                                                    color: Color(0xff1A1C21),
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        8.ph,
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              'Paid',
-                                              style: GoogleFonts.inter(
-                                                  fontSize: 10,
-                                                  color: Color(0xff1A1C21),
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            SizedBox(
-                                              width: 100.w,
-                                              child: Text(
-                                                '\$1252000.00',
-                                                textAlign: TextAlign.right,
-                                                maxLines: 1,
-                                                style: GoogleFonts.inter(
-                                                    fontSize: 10,
-                                                    color: Color(0xff1A1C21),
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        8.ph,
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              'Credit Note',
-                                              style: GoogleFonts.inter(
-                                                  fontSize: 10,
-                                                  color: Color(0xff1A1C21),
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            SizedBox(
-                                              width: 100.w,
-                                              child: Text(
-                                                '\$0.00',
-                                                textAlign: TextAlign.right,
-                                                maxLines: 1,
-                                                style: GoogleFonts.inter(
-                                                    fontSize: 10,
-                                                    color: Color(0xff1A1C21),
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        8.ph,
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              'Due',
-                                              style: GoogleFonts.inter(
-                                                  fontSize: 10,
-                                                  color: Color(0xff1A1C21),
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            SizedBox(
-                                              width: 100.w,
-                                              child: Text(
-                                                '\$0.00',
-                                                textAlign: TextAlign.right,
-                                                maxLines: 1,
-                                                style: GoogleFonts.inter(
-                                                    fontSize: 10,
-                                                    color: Color(0xff1A1C21),
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          15.ph,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Employee Signature :',
-                                    style: GoogleFonts.montserrat(
-                                        fontSize: 10,
-                                        color: Color(0xff1A1C21),
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        'Paid By : ',
-                                        style: GoogleFonts.montserrat(
-                                            fontSize: 10,
-                                            color: Color(0xff1A1C21),
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                      SizedBox(
-                                        width: 150.w,
-                                        child: Text(
-                                          'Muhammad (HR Manager)',
-                                          maxLines: 1,
+                                          'Paid By : ',
                                           style: GoogleFonts.montserrat(
                                               fontSize: 10,
                                               color: Color(0xff1A1C21),
-                                              fontWeight: FontWeight.w500),
+                                              fontWeight: FontWeight.w700),
                                         ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                              InkWell(
-                                onTap:
-                                    createPDF, // Call the createPDF function when the button is tapped
-                                child: SvgPicture.asset(
-                                    'assets/images/download_button.svg'),
-                              )
-                            ],
-                          )
-                        ],
+                                        SizedBox(
+                                          width: 150.w,
+                                          child: Text(
+                                            'Muhammad (HR Manager)',
+                                            maxLines: 1,
+                                            style: GoogleFonts.montserrat(
+                                                fontSize: 10,
+                                                color: Color(0xff1A1C21),
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                                InkWell(
+                                  onTap:
+                                      createPDF, // Call the createPDF function when the button is tapped
+                                  child: SvgPicture.asset(
+                                      'assets/images/download_button.svg'),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                );
-              },
-            ))
+                    ],
+                  )
+                ]))
           ] else
             Padding(
               padding: const EdgeInsets.all(16.0),

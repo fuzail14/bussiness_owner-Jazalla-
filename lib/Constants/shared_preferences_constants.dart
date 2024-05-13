@@ -12,3 +12,4 @@ const String bearerTokenSPKEY = 'bearerToken';
 const String fcmTokenSPKEY = 'fcmToken';
 const String companyNameSPKEY = 'companyName';
 const String employeeIdSPKEY = 'employeeId';
+const String primaryActivitySPKEY = 'primaryActivity';
