@@ -422,9 +422,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final state = ref.watch(homeScreenProvider);
     final notifier = ref.watch(homeScreenProvider.notifier);
     print('homescreen');
-    print(person!.data!.id);
-    print(person!.data!.companyId);
-    print(person!.employee!.id);
+    print("logged in user Id ${person!.data!.id}");
+    print("company Id ${person!.data!.companyId}");
+    print("company primary activity ${person!.data!.company!.primaryActivity}");
+
+    print("if employee log in Id ${person!.employee!.id}");
 
     // print(person!.data!.company!.companyName);
 

@@ -14,17 +14,17 @@ import 'package:flutter/foundation.dart';
 
 final mainHomeScreenProvider =
     StateNotifierProvider<MainHomeScreenNotifier, MainHomeScreenState>((ref) {
-  final person = ref.read(personProvider);
-  return MainHomeScreenNotifier(person);
+  //final person = ref.read(personProvider);
+  return MainHomeScreenNotifier();
 });
 
 class MainHomeScreenNotifier extends StateNotifier<MainHomeScreenState> {
   late PageController pageController;
-  final Person? person;
+  // final Person? person;
   final attendanceEmployeeRepository = AttendanceEmployeeRepository();
   DateTime dateTime = DateTime.now().toUtc();
 
-  MainHomeScreenNotifier(this.person) : super(MainHomeScreenState()) {
+  MainHomeScreenNotifier() : super(MainHomeScreenState()) {
     pageController = PageController(initialPage: 0, viewportFraction: 1.1);
 
     pageController.addListener(_updatePageIndex);
@@ -38,7 +38,7 @@ class MainHomeScreenNotifier extends StateNotifier<MainHomeScreenState> {
 
   @override
   void dispose() {
-    pageController.removeListener(_updatePageIndex); // Clean up listener
+    pageController.removeListener(_updatePageIndex);
     pageController.dispose();
     super.dispose();
   }

@@ -14,6 +14,7 @@ class MySharedPreferences {
       final success = value.remove(bearerTokenSPKEY);
 
       print(success.then((value) => value));
+
       value.remove(userIdSPKey);
       value.remove(companyIdSPKey);
       value.remove(nameSPKey);
@@ -26,6 +27,9 @@ class MySharedPreferences {
       value.remove(bearerTokenSPKEY);
       value.remove(fcmTokenSPKEY);
       value.remove(companyNameSPKEY);
+      value.remove(logoSPKEY);
+      value.remove(logoPathSPKEY);
+
       value.remove(employeeIdSPKEY);
       value.remove(primaryActivitySPKEY);
     });
@@ -50,6 +54,9 @@ class MySharedPreferences {
 
       value.setString(
           primaryActivitySPKEY, person.data!.company!.primaryActivity ?? '');
+
+      value.setString(logoSPKEY, person.data!.company!.logo ?? '');
+      value.setString(logoPathSPKEY, person.data!.company!.logoPath ?? '');
 
       value.setInt(employeeIdSPKEY, person.employee!.id ?? 0);
     });
@@ -91,8 +98,11 @@ class MySharedPreferences {
               type: value.getString(typeSPKEY),
               fcmtoken: value.getString(fcmTokenSPKEY),
               company: Company(
-                  companyName: value.getString(companyNameSPKEY),
-                  primaryActivity: value.getString(primaryActivitySPKEY))),
+                companyName: value.getString(companyNameSPKEY),
+                primaryActivity: value.getString(primaryActivitySPKEY),
+                logo: value.getString(logoSPKEY),
+                logoPath: value.getString(logoPathSPKEY),
+              )),
           Bearer: value.getString(bearerTokenSPKEY),
           employee: Employee(
             id: value.getInt(employeeIdSPKEY),

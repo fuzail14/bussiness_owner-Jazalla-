@@ -143,7 +143,7 @@ class InvoiceManagementDetailPage extends ConsumerWidget {
                                                       TextOverflow.ellipsis,
                                                   maxLines: 1,
                                                   style: GoogleFonts.montserrat(
-                                                      fontSize: 14.sp,
+                                                      fontSize: 12.sp,
                                                       fontWeight:
                                                           FontWeight.w400,
                                                       color: Color(0xff131315)),
@@ -174,7 +174,7 @@ class InvoiceManagementDetailPage extends ConsumerWidget {
                                                       TextOverflow.ellipsis,
                                                   maxLines: 1,
                                                   style: GoogleFonts.montserrat(
-                                                      fontSize: 14.sp,
+                                                      fontSize: 12.sp,
                                                       fontWeight:
                                                           FontWeight.w400,
                                                       color: Color(0xff131315)),
@@ -381,130 +381,150 @@ class InvoiceManagementDetailPage extends ConsumerWidget {
                                     ),
                                   ),
                                   11.ph,
-
-                                  SizedBox(
-                                    height: 100.h,
-                                    child: ListView.builder(
-                                        itemCount: state
-                                            .invoice!.purchase.items.length,
-                                        itemBuilder: (context, index) {
-                                          return Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                    horizontal: 10, vertical: 5)
-                                                .r,
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                SizedBox(
-                                                  width: 40.w,
-                                                  child: Text(
-                                                    state
-                                                        .invoice!
-                                                        .purchase
-                                                        .items[index]
-                                                        .product2
-                                                        .name
-                                                        .toString(),
-                                                    maxLines: 2,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    style:
-                                                        GoogleFonts.montserrat(
-                                                            fontSize: 10.sp,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            color: Color(
-                                                                0xff46454A)),
+                                  if (state
+                                      .invoice!.purchase.items.isEmpty) ...[
+                                    Center(
+                                      child: Text(
+                                        'No Products Found.',
+                                        style: GoogleFonts.montserrat(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w700,
+                                            color: HexColor('#EB2F2F')),
+                                      ),
+                                    ),
+                                  ] else
+                                    SizedBox(
+                                      height: 100.h,
+                                      child: ListView.builder(
+                                          itemCount: state
+                                              .invoice!.purchase.items.length,
+                                          itemBuilder: (context, index) {
+                                            return Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                          horizontal: 10,
+                                                          vertical: 5)
+                                                      .r,
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  SizedBox(
+                                                    width: 40.w,
+                                                    child: Text(
+                                                      state
+                                                          .invoice!
+                                                          .purchase
+                                                          .items[index]
+                                                          .product2
+                                                          .name
+                                                          .toString(),
+                                                      maxLines: 2,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style: GoogleFonts
+                                                          .montserrat(
+                                                              fontSize: 10.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              color: Color(
+                                                                  0xff46454A)),
+                                                    ),
                                                   ),
-                                                ),
-                                                SizedBox(
-                                                  width: 40.w,
-                                                  child: Text(
-                                                    state.invoice!.purchase
-                                                        .items[index].quantity
-                                                        .toString(),
-                                                    style:
-                                                        GoogleFonts.montserrat(
-                                                            fontSize: 10.sp,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            color: Color(
-                                                                0xff46454A)),
+                                                  SizedBox(
+                                                    width: 40.w,
+                                                    child: Text(
+                                                      state.invoice!.purchase
+                                                          .items[index].quantity
+                                                          .toString(),
+                                                      style: GoogleFonts
+                                                          .montserrat(
+                                                              fontSize: 10.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              color: Color(
+                                                                  0xff46454A)),
+                                                    ),
                                                   ),
-                                                ),
-                                                SizedBox(
-                                                  width: 40.w,
-                                                  child: Text(
-                                                    '\$${state.invoice!.purchase.items[index].price.toString()}',
-                                                    maxLines: 2,
-                                                    style:
-                                                        GoogleFonts.montserrat(
-                                                            fontSize: 10.sp,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            color: Color(
-                                                                0xff46454A)),
+                                                  SizedBox(
+                                                    width: 40.w,
+                                                    child: Text(
+                                                      '\$${state.invoice!.purchase.items[index].price.toString()}',
+                                                      maxLines: 2,
+                                                      style: GoogleFonts
+                                                          .montserrat(
+                                                              fontSize: 10.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              color: Color(
+                                                                  0xff46454A)),
+                                                    ),
                                                   ),
-                                                ),
-                                                SizedBox(
-                                                  width: 40.w,
-                                                  child: Text(
-                                                    '\$${state.invoice!.purchase.items[index].discount.toString()}',
-                                                    style:
-                                                        GoogleFonts.montserrat(
-                                                            fontSize: 10.sp,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            color: Color(
-                                                                0xff46454A)),
+                                                  SizedBox(
+                                                    width: 40.w,
+                                                    child: Text(
+                                                      '\$${state.invoice!.purchase.items[index].discount.toString()}',
+                                                      style: GoogleFonts
+                                                          .montserrat(
+                                                              fontSize: 10.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              color: Color(
+                                                                  0xff46454A)),
+                                                    ),
                                                   ),
-                                                ),
-                                                SizedBox(
-                                                  width: 40.w,
-                                                  child: Text(
-                                                    '${state.invoice!.purchase.items[index].price.toString()}%',
-                                                    style:
-                                                        GoogleFonts.montserrat(
-                                                            fontSize: 10.sp,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            color: Color(
-                                                                0xff46454A)),
+                                                  SizedBox(
+                                                    width: 40.w,
+                                                    child: Text(
+                                                      '${state.invoice!.purchase.items[index].price.toString()}%',
+                                                      style: GoogleFonts
+                                                          .montserrat(
+                                                              fontSize: 10.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              color: Color(
+                                                                  0xff46454A)),
+                                                    ),
                                                   ),
-                                                ),
-                                                SizedBox(
-                                                  width: 40.w,
-                                                  child: Text(
-                                                    '\$${state.invoice!.purchase.items[index].price.toString()}',
-                                                    maxLines: 2,
-                                                    style:
-                                                        GoogleFonts.montserrat(
-                                                            fontSize: 10.sp,
-                                                            fontWeight:
-                                                                FontWeight.w700,
-                                                            color: Color(
-                                                                0xff46454A)),
+                                                  SizedBox(
+                                                    width: 40.w,
+                                                    child: Text(
+                                                      '\$${state.invoice!.purchase.items[index].price.toString()}',
+                                                      maxLines: 2,
+                                                      style: GoogleFonts
+                                                          .montserrat(
+                                                              fontSize: 10.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w700,
+                                                              color: Color(
+                                                                  0xff46454A)),
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                          );
-                                        }),
-                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          }),
+                                    ),
 
                                   // 19.ph,
                                   const Divider(color: Color(0xffB7C9E2)),
                                   9.5.ph,
+                                  //Total
                                   Align(
                                     alignment: Alignment.centerRight,
                                     child: Container(
                                       width: 184.w,
                                       // height: 99.h,
-                                      padding: EdgeInsets.symmetric(
+                                      padding: const EdgeInsets.symmetric(
                                               horizontal: 10, vertical: 9)
                                           .r,
                                       decoration: BoxDecoration(

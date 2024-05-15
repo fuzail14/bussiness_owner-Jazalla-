@@ -56,21 +56,30 @@ class PasswordController extends StateNotifier<PasswordState> {
     };
 
     _repository.loginApi(data).then((value) async {
+      // Person person = null;
       setLoading(true);
 
       if (kDebugMode) {
         print('value $value');
         final person = Person.fromJson(value);
 
-        log(person.toString());
+        print('logged in user detail');
+
+        print(person.toString());
+        print(person.data!.company!.logo);
+        print(person.data!.company!.logoPath);
+
         //log(person.data!.company!.companyName!);
+        print('-----------------');
 
         final NotificationServices notificationServices =
             NotificationServices();
         final String? token = await notificationServices.getDeviceToken();
+
         MySharedPreferences.setUserData(person: person, fcmToken: token);
 
         Person person2 = await MySharedPreferences.getUserData();
+
         print('shared prefernces fcm token');
         print(person2.data!.fcmtoken);
         print('get  device fcm token');
@@ -80,6 +89,7 @@ class PasswordController extends StateNotifier<PasswordState> {
 
         print(person2);
         print(person2.data!.companyId);
+
         ref.read(personProvider.notifier).setPerson(person2);
 
         context.pushReplacementNamed(homescreen);

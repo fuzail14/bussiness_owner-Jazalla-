@@ -3,14 +3,17 @@ import 'package:animate_do/animate_do.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/Font/fonts.dart';
+import 'package:bussines_owner/Constants/api_routes.dart';
 import 'package:bussines_owner/Module/MainHomeScreen/Project%20Manager%20Dashboard/project_manager_dashboard.dart';
 import 'package:bussines_owner/Module/MainHomeScreen/Service%20Manager%20Dashboard/service_manager_dashboard.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
 import '../../../../Constants/Person/person.dart';
 import '../../../../Constants/Person/person_controller.dart';
@@ -64,6 +67,11 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
   Widget build(BuildContext context) {
     final state = ref.watch(mainHomeScreenProvider);
     final notifier = ref.watch(mainHomeScreenProvider.notifier);
+    final person = ref.read(personProvider);
+    print('logo');
+    print(person!.data!.company!.logo);
+    print(person!.data!.company!.logoPath);
+    print('-----------------');
     return Scaffold(
       backgroundColor: const Color(0xffF9F9F9),
       body: SingleChildScrollView(
@@ -100,18 +108,73 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          height: 48.h,
-                          width: 48.w,
-                          decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: const Color(0xff4EBBD3)),
-                              color: const Color(0xffF5F9F9),
-                              shape: BoxShape.circle),
-                          margin: const EdgeInsets.only(top: 0, left: 0).r,
-                          child: SvgPicture.asset(
-                            'assets/images/default_company_logo.svg',
-                            fit: BoxFit.contain,
+                        // Container(
+                        //   height: 48.h,
+                        //   width: 48.w,
+                        //   decoration: BoxDecoration(
+                        //       border:
+                        //           Border.all(color: const Color(0xff4EBBD3)),
+                        //       color: const Color(0xffF5F9F9),
+                        //       shape: BoxShape.circle),
+                        //   margin: const EdgeInsets.only(top: 0, left: 0).r,
+                        //   child: SvgPicture.asset(
+                        //     'assets/images/default_company_logo.svg',
+                        //     fit: BoxFit.contain,
+                        //   ),
+                        // ),
+                        SizedBox(
+                          // width: double.infinity,
+                          //height: 200.h,
+                          child: Wrap(
+                            children: [
+                              //if (person.data!.company!.logo != null) ...[
+                              Container(
+                                height: 48.h,
+                                width: 48.w,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: const Color(0xff4EBBD3)),
+                                    color: const Color(0xffF5F9F9),
+                                    shape: BoxShape.circle),
+                                child: (person.data!.company!.logo != null)
+                                    ? CachedNetworkImage(
+                                        imageUrl: Api.originalImageBaseUrl +
+                                            person.data!.company!.logoPath
+                                                .toString() +
+                                            person.data!.company!.logo
+                                                .toString(),
+                                        fit: BoxFit.fill,
+                                      )
+                                    : Container(
+                                        height: 48.h,
+                                        width: 48.w,
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: const Color(0xff4EBBD3)),
+                                            color: const Color(0xffF5F9F9),
+                                            shape: BoxShape.circle),
+                                        child: SvgPicture.asset(
+                                          'assets/images/default_company_logo.svg',
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                              ),
+                              //]
+                              // else
+                              // Container(
+                              //   height: 48.h,
+                              //   width: 48.w,
+                              //   decoration: BoxDecoration(
+                              //       border: Border.all(
+                              //           color: const Color(0xff4EBBD3)),
+                              //       color: const Color(0xffF5F9F9),
+                              //       shape: BoxShape.circle),
+                              //   child: SvgPicture.asset(
+                              //     'assets/images/default_company_logo.svg',
+                              //     fit: BoxFit.contain,
+                              //   ),
+                              // ),
+                            ],
                           ),
                         ),
                         10.pw,
@@ -119,8 +182,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              notifier.person!.data!.company!.companyName
-                                  .toString(),
+                              person!.data!.company!.companyName.toString(),
                               style: GoogleFonts.roboto(
                                   fontSize: 18.sp,
                                   fontWeight: FontWeight.w800,
@@ -130,7 +192,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                             SizedBox(
                               width: 150.w,
                               child: Text(
-                                "Hi,${"${notifier.person!.data!.firstName} ${notifier.person!.data!.lastName}"}",
+                                "Hi,${"${person!.data!.firstName} ${person!.data!.lastName}"}",
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: GoogleFonts.roboto(
@@ -140,7 +202,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                               ),
                             ),
                             Text(
-                              notifier.person!.data!.type.toString(),
+                              person!.data!.type.toString(),
                               style: GoogleFonts.mulish(
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.w300,
@@ -152,8 +214,8 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                     ),
                     InkWell(
                       onTap: () {
-                        GoRouter.of(context).pushNamed(notificationsScreen,
-                            extra: notifier.person);
+                        GoRouter.of(context)
+                            .pushNamed(notificationsScreen, extra: person);
                       },
                       child: badges.Badge(
                         badgeContent: Text('3',
@@ -295,14 +357,13 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                                                   'assets/images/check_in_dialog_icon.svg',
                                                               onTap: () {
                                                                 notifier.sendClockInApi(
-                                                                    companyId: notifier
-                                                                        .person!
+                                                                    companyId: person!
                                                                         .data!
                                                                         .companyId,
-                                                                    employeeId: notifier
-                                                                        .person!
-                                                                        .employee!
-                                                                        .id,
+                                                                    employeeId:
+                                                                        person!
+                                                                            .employee!
+                                                                            .id,
                                                                     date: notifier
                                                                         .formattedDate,
                                                                     clockInTime:
@@ -416,10 +477,10 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                                                   'assets/images/check_out_dialog_icon.svg',
                                                               onTap: () {
                                                                 notifier.sendClockOutApi(
-                                                                    employeeId: notifier
-                                                                        .person!
-                                                                        .employee!
-                                                                        .id,
+                                                                    employeeId:
+                                                                        person!
+                                                                            .employee!
+                                                                            .id,
                                                                     date: notifier
                                                                         .formattedDate,
                                                                     clockOut: notifier
@@ -517,12 +578,11 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                     ),
                     10.ph,
                     Row(
-                      mainAxisAlignment:
-                          (notifier.person!.data!.type == 'company')
-                              ? MainAxisAlignment.spaceBetween
-                              : MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: (person!.data!.type == 'company')
+                          ? MainAxisAlignment.spaceBetween
+                          : MainAxisAlignment.spaceAround,
                       children: [
-                        if (notifier.person!.data!.type == 'company') ...[
+                        if (person!.data!.type == 'company') ...[
                           Column(
                             children: [
                               InkWell(
@@ -530,8 +590,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                   GoRouter.of(context).pushNamed(
                                     approvalManagmentScreen,
                                     extra: ApprovalScreenArgs(
-                                        person: notifier.person!,
-                                        showBackButton: true),
+                                        person: person!, showBackButton: true),
                                   );
                                 },
                                 child: badges.Badge(
@@ -708,23 +767,19 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                 //       color: blackColor,
                 //       fontWeight: FontWeight.bold),
                 // ),
-                if (notifier.person!.data!.type == 'company') ...[
+                if (person!.data!.type == 'company') ...[
                   const AdministratorDashboard(),
-                ] else if (notifier.person!.data!.type == 'employee') ...[
+                ] else if (person!.data!.type == 'employee') ...[
                   const EmployeeDashboard()
-                ] else if (notifier.person!.data!.type ==
-                    'project manager') ...[
+                ] else if (person!.data!.type == 'project manager') ...[
                   const ProjectManagerDashboard()
-                ] else if (notifier.person!.data!.type ==
-                    'procurement manager') ...[
+                ] else if (person!.data!.type == 'procurement manager') ...[
                   const ProcurementManagerDashboard()
-                ] else if (notifier.person!.data!.type ==
-                    'service manager') ...[
+                ] else if (person!.data!.type == 'service manager') ...[
                   const ServiceManagerDashboard()
-                ] else if (notifier.person!.data!.type == 'sales manager') ...[
+                ] else if (person!.data!.type == 'sales manager') ...[
                   const SalesManagerDashboard()
-                ] else if (notifier.person!.data!.type ==
-                    'accounting manager') ...[
+                ] else if (person!.data!.type == 'accounting manager') ...[
                   const AccountingManagerDashboard()
                 ]
               ],

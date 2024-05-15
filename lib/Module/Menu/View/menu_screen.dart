@@ -18,7 +18,8 @@ class Menu extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final menuItems = ref.watch(menuControllerProvider).menuItems;
-    final person = ref.read(personProvider);
+    final controller = ref.watch(menuControllerProvider.notifier);
+
     return Scaffold(
       appBar: MyAppBar(
         title: 'Menu',
@@ -44,7 +45,8 @@ class Menu extends ConsumerWidget {
               itemCount: menuItems.length,
               itemBuilder: (context, index) {
                 final item = menuItems[index];
-                return _buildExpansionTile(context, ref, item, index, person);
+                return _buildExpansionTile(
+                    context, ref, item, index, controller.person);
               },
             ),
           ),
@@ -92,17 +94,24 @@ class Menu extends ConsumerWidget {
           if (item.title == 'Logout') {
             MySharedPreferences.deleteUserData();
             ref.read(personProvider.notifier).clearPerson();
+            person = null;
+
+            // ref.read(personProvider.notifier).factoryClearPerson(person);
+
+            //ref.invalidate(personProvider);
+
             context.pushReplacementNamed(checkPhoneNumber);
           } else if (item.title == 'Order Placement') {
             context.pushNamed(orderPlacementScreen, extra: person);
-            // context.pushNamed(procuremenetRFQScreen, extra: person);
           } else if (item.title == 'User Management') {
             context.pushNamed(userManagementScreen, extra: person);
             // context.pushNamed(procuremenetRFQScreen, extra: person);
           } else if (item.title == 'Invoice and Billing') {
             context.pushNamed(invoiceManagementScreen);
           } else if (item.title == 'Approvals and Workflows') {
-            context.pushNamed(approvalAuthorityScreen, extra: person);
+            context.pushNamed(
+              approvalAuthorityScreen,
+            );
           }
         }, // Pass the dynamic color
         children: _buildChildrenForItem(context, item, person),

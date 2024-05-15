@@ -7,31 +7,32 @@ import '../../../../../../Data/Api Resp/api_response.dart';
 import '../../../../../Repo/Approval Managment Repository/approval_managment_repository.dart';
 import '../../../../Constants/Person/person.dart';
 import '../../../../Constants/Person/person_controller.dart';
+import '../../../../Repo/Approval Authority Repository/approval_authority_repository.dart';
 import '../State/approval_authority_state.dart';
 
 class ApprovalAuthorityNotifier extends StateNotifier<ApprovalAuthorityState> {
   final Person? person;
-  final approvalManagmentRepository = ApprovalManagmentRepository();
+  final approvalAuthorityRepository = ApprovalAuthorityRepository();
 
   ApprovalAuthorityNotifier(this.person) : super(ApprovalAuthorityState()) {
-    request4InformationViewApi(
-        userId: person!.data!.id!, bearerToken: person!.Bearer);
+    approvalAuthorityViewApi(
+        companyId: person!.data!.companyId!, bearerToken: person!.Bearer);
   }
 
   final TextEditingController searchController = TextEditingController();
 
-  Future<void> request4InformationViewApi(
-      {required userId, required bearerToken}) async {
+  Future<void> approvalAuthorityViewApi(
+      {required companyId, required bearerToken}) async {
     setResponseStatus(Status.loading);
     print('come here');
-    print(userId);
+    print(companyId);
     try {
-      final value = await approvalManagmentRepository.request4InformationApi(
-        userId: userId,
+      final value = await approvalAuthorityRepository.getApprovalAuthorityApi(
+        companyId: companyId,
         bearerToken: bearerToken,
       );
       state = state.copyWith(
-        request4Informatio: value.requestForInformation,
+        approvalauthorities: value.approvalauthorities,
         responseStatus: Status.completed,
       );
     } catch (e, stackTrace) {
@@ -56,7 +57,7 @@ class ApprovalAuthorityNotifier extends StateNotifier<ApprovalAuthorityState> {
 final approvalAuthorityProvider =
     StateNotifierProvider<ApprovalAuthorityNotifier, ApprovalAuthorityState>(
         (ref) {
-  final person = ref.watch(personProvider);
+  final person = ref.read(personProvider);
   if (person == null) {
     throw Exception('Person data is not available');
   }

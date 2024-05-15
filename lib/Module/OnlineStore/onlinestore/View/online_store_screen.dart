@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Routes/set_routes.dart';
 import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import '../../../../Constants/api_routes.dart';
 import '../../../../Constants/constants.dart';
 import '../../../../Data/Api Resp/api_response.dart';
 import '../../../../Widgets/Loader/loader.dart';
@@ -251,11 +253,71 @@ class OnlineStoreScreen extends ConsumerWidget {
                               ),
                               child: Stack(
                                 children: [
-                                  SvgPicture.asset(
-                                    'assets/images/bussines_sale.svg',
-                                    width: 100.w,
-                                    height: 105.h,
+                                  SizedBox(
+                                    width: double.infinity,
+                                    //height: 200.h,
+                                    child: Wrap(
+                                      children: [
+                                        if (product.photos!.isNotEmpty) ...[
+                                          Container(
+                                            width: 100.w,
+                                            height: 100.h,
+                                            // margin: const EdgeInsets.symmetric(
+                                            //         horizontal: 10)
+                                            //     .r,
+                                            padding: const EdgeInsets.all(10).r,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    color:
+                                                        detailCradBorderColor)),
+                                            child: product.photos!.isNotEmpty
+                                                ? CachedNetworkImage(
+                                                    imageUrl:
+                                                        Api.originalImageBaseUrl +
+                                                            product
+                                                                .photos!
+                                                                .first
+                                                                .image_path
+                                                                .toString() +
+                                                            product
+                                                                .photos!
+                                                                .first
+                                                                .image_name
+                                                                .toString(),
+                                                    fit: BoxFit.fill,
+                                                  )
+                                                : SvgPicture.asset(
+                                                    'assets/images/bussines_sale.svg',
+                                                    width: 100.w,
+                                                    height: 100.h,
+                                                  ),
+                                          ),
+                                        ] else
+                                          Container(
+                                            width: 100.w,
+                                            height: 100.h,
+                                            // margin: const EdgeInsets.symmetric(
+                                            //         horizontal: 10)
+                                            //     .r,
+                                            padding: const EdgeInsets.all(10).r,
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  color: HexColor('#08B783')),
+                                            ),
+                                            child: SvgPicture.asset(
+                                              'assets/images/bussines_sale.svg',
+                                              fit: BoxFit.contain,
+                                            ),
+                                          ),
+                                      ],
+                                    ),
                                   ),
+
+                                  // SvgPicture.asset(
+                                  //   'assets/images/bussines_sale.svg',
+                                  //   width: 100.w,
+                                  //   height: 105.h,
+                                  // ),
 
                                   Padding(
                                     padding: const EdgeInsets.only(

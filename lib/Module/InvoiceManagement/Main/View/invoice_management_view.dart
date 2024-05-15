@@ -42,7 +42,10 @@ class InvoiceManagementScreen extends ConsumerWidget {
             padding: const EdgeInsets.only(
               top: 25,
             ).r,
-            child: Text('Invoice Payable',
+            child: Text(
+                (controller.person!.data!.company!.primaryActivity == 'buyer')
+                    ? 'Invoice Payable'
+                    : 'Receivable Invoices',
                 style: FontManagment()
                     .montserrat18HeadingEmployeeCenterAllModules),
           ),

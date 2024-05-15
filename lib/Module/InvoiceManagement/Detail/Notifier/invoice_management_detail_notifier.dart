@@ -40,7 +40,7 @@ class InvoiceManagementDetailNotifier
   }
 }
 
-final invoiceManagementDetailProvider = StateNotifierProvider<
+final invoiceManagementDetailProvider = StateNotifierProvider.autoDispose<
     InvoiceManagementDetailNotifier, InvoiceManagementDetailState>((ref) {
   final args = ref.watch(routeArgsProvider);
   final invoiceId = args['invoiceId'] as int;

@@ -23,6 +23,10 @@ class Person {
     data['employee'] = employee != null ? employee!.toJson() : null;
     return data;
   }
+
+  factory Person.clear() {
+    return Person(success: null, data: null, Bearer: null, employee: null);
+  }
 }
 
 class Data {
@@ -175,24 +179,28 @@ class Company {
     this.companyCode,
     this.companyName,
     this.primaryActivity,
-    this.arCompanyName,
-    this.businessType,
+    this.logo,
+    this.logoPath,
   });
   int? id;
   String? companyCode;
   String? primaryActivity;
 
   String? companyName;
-  String? arCompanyName;
-  String? businessType;
+  // String? arCompanyName;
+  // String? businessType;
+
+  String? logo;
+  String? logoPath;
 
   Company.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     companyCode = json['company_code'];
     companyName = json['company_name'];
     primaryActivity = json['primary_activity'];
-    arCompanyName = null;
-    businessType = null;
+
+    logo = json['logo'];
+    logoPath = json['logo_path'];
   }
 }
 

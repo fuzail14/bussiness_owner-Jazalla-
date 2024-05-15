@@ -115,7 +115,7 @@ class ApprovalManagmentController
 
 final ApprovalManagmentProvider = StateNotifierProvider.autoDispose<
     ApprovalManagmentController, ApprovalManagmentState>((ref) {
-  final person = ref.watch(personProvider);
+  final person = ref.read(personProvider);
   if (person == null) {
     throw Exception('Person data is not available');
   }

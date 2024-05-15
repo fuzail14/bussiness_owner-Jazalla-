@@ -11,13 +11,6 @@ class Product {
     products =
         List.from(json['products']).map((e) => Products.fromJson(e)).toList();
   }
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['success'] = success;
-    data['products'] = products.map((e) => e.toJson()).toList();
-    return data;
-  }
 }
 
 class Products {
@@ -74,6 +67,7 @@ class Products {
     this.serviceCharge,
     this.noServiceBooked,
     required this.companies,
+    required this.photos,
   });
   int? id;
   int? companyId;
@@ -127,6 +121,7 @@ class Products {
   String? serviceCharge;
   String? noServiceBooked;
   Companies? companies;
+  List<Photos>? photos;
 
   Products.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -181,63 +176,9 @@ class Products {
     serviceCharge = null;
     noServiceBooked = null;
     companies = Companies.fromJson(json['companies']);
-  }
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['id'] = id;
-    data['company_id'] = companyId;
-    data['name'] = name;
-    data['manufacturer'] = manufacturer;
-    data['manufacturer_part_no'] = manufacturerPartNo;
-    data['country_id'] = countryId;
-    data['description'] = description;
-    data['status'] = status;
-    data['code'] = code;
-    data['alert_quantity'] = alertQuantity;
-    data['quantity'] = quantity;
-    data['p_details'] = pDetails;
-    data['tax_rate'] = taxRate;
-    data['hide'] = hide;
-    data['barcode_symbology'] = barcodeSymbology;
-    data['tax_method'] = taxMethod;
-    data['family'] = family;
-    data['commodity'] = commodity;
-    data['inventory_info'] = inventoryInfo;
-    data['segment'] = segment;
-    // _data['class'] = class;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
-    data['deleted_at'] = deletedAt;
-    data['product_type'] = productType;
-    data['specification'] = specification;
-    data['warranty'] = warranty;
-    data['refund_policy'] = refundPolicy;
-    data['promotion'] = promotion;
-    data['price_visibility'] = priceVisibility;
-    data['national_product'] = nationalProduct;
-    data['product_nature'] = productNature;
-    data['min_qty'] = minQty;
-    data['sale_price'] = salePrice;
-    data['purchase_price'] = purchasePrice;
-    data['unit'] = unit;
-    data['unit_price'] = unitPrice;
-    data['max_price'] = maxPrice;
-    data['min_price'] = minPrice;
-    data['vat'] = vat;
-    data['payment_mode'] = paymentMode;
-    data['video_path'] = videoPath;
-    data['video_name'] = videoName;
-    data['product_doc_path'] = productDocPath;
-    data['product_doc_name'] = productDocName;
-    data['model_no'] = modelNo;
-    data['brand_id'] = brandId;
-    data['package_id'] = packageId;
-    data['sku_code'] = skuCode;
-    data['service_charge'] = serviceCharge;
-    data['no_service_booked'] = noServiceBooked;
-    data['companies'] = companies!.toJson();
-    return data;
+    photos = json['photos'] != null
+        ? List<Photos>.from(json['photos'].map((x) => Photos.fromJson(x)))
+        : null;
   }
 }
 
@@ -499,5 +440,32 @@ class Companies {
     data['company_requirement'] = companyRequirement;
     data['attached_file'] = attachedFile;
     return data;
+  }
+}
+
+class Photos {
+  Photos({
+    required this.id,
+    required this.product_id,
+    required this.image_path,
+    this.image_name,
+    this.image_type,
+    this.status,
+  });
+
+  int? id;
+  int? product_id;
+  String? image_path;
+  String? image_name;
+  String? image_type;
+  String? status;
+
+  Photos.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    product_id = json['product_id'];
+    image_path = json['image_path'];
+    image_name = json['image_name'];
+    image_type = json['image_type'];
+    status = json['status'];
   }
 }

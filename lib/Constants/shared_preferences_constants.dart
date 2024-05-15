@@ -13,3 +13,5 @@ const String fcmTokenSPKEY = 'fcmToken';
 const String companyNameSPKEY = 'companyName';
 const String employeeIdSPKEY = 'employeeId';
 const String primaryActivitySPKEY = 'primaryActivity';
+const String logoSPKEY = 'logo';
+const String logoPathSPKEY = 'logo_path';

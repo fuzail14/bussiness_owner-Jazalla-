@@ -14,6 +14,7 @@ import '../../../../../../Data/Api Resp/api_response.dart';
 import '../../../../../../Widgets/Loader/loader.dart';
 import '../../../../Constants/Font/fonts.dart';
 import '../../../../Widgets/AppBar/my_app_bar.dart';
+import '../Model/ApprovalAuthority.dart';
 import '../Notifier/approval_authority_notifier.dart';
 
 // ignore: must_be_immutable
@@ -60,7 +61,7 @@ class ApprovalAuthorityScreen extends ConsumerWidget {
             const Loader()
           else if (state.responseStatus == Status.completed) ...[
             10.ph,
-            if (state.request4Informatio.isEmpty) ...[
+            if (state.approvalauthorities.isEmpty) ...[
               Center(
                 child: Text(
                   'No Requests Found.',
@@ -74,16 +75,19 @@ class ApprovalAuthorityScreen extends ConsumerWidget {
               Expanded(
                 child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: state.request4Informatio.length,
+                    itemCount: state.approvalauthorities.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
                           showDialog(
                               context: context,
-                              builder: (BuildContext context) => CheckInDialog(
+                              builder: (BuildContext context) =>
+                                  ApprovalAuthorityDialog(
                                     title: 'Approval Details',
                                     svgPath:
                                         'assets/images/attendance_managment_dialog_icon.svg',
+                                    approvalAuthority:
+                                        state.approvalauthorities[index],
                                   ));
                         },
                         child: Container(
@@ -124,7 +128,8 @@ class ApprovalAuthorityScreen extends ConsumerWidget {
                               ),
                               3.ph,
                               Text(
-                                'Procurememt Management',
+                                state.approvalauthorities[index].module!.name ??
+                                    "",
                                 maxLines: 1,
                                 style: GoogleFonts.montserrat(
                                   fontSize: 18.sp,
@@ -151,7 +156,9 @@ class ApprovalAuthorityScreen extends ConsumerWidget {
                                       SizedBox(
                                         width: 150.w,
                                         child: Text(
-                                          'Order Management',
+                                          state.approvalauthorities[index]
+                                                  .submodule!.name ??
+                                              "",
                                           maxLines: 1,
                                           textDirection: TextDirection.rtl,
                                           style: GoogleFonts.montserrat(
@@ -183,7 +190,9 @@ class ApprovalAuthorityScreen extends ConsumerWidget {
                                       SizedBox(
                                         width: 150.w,
                                         child: Text(
-                                          'Fuzail Fuzail',
+                                          state.approvalauthorities[index].user!
+                                                  .name ??
+                                              "",
                                           maxLines: 1,
                                           textDirection: TextDirection.rtl,
                                           style: GoogleFonts.montserrat(
@@ -215,7 +224,9 @@ class ApprovalAuthorityScreen extends ConsumerWidget {
                                       SizedBox(
                                         width: 150.w,
                                         child: Text(
-                                          'Muhammad Ahmed',
+                                          state.approvalauthorities[index]
+                                                  .firstApprover!.name ??
+                                              "",
                                           maxLines: 1,
                                           textDirection: TextDirection.rtl,
                                           style: GoogleFonts.montserrat(
@@ -247,7 +258,9 @@ class ApprovalAuthorityScreen extends ConsumerWidget {
                                       SizedBox(
                                         width: 150.w,
                                         child: Text(
-                                          'Ahmed Ahmed',
+                                          state.approvalauthorities[index]
+                                                  .finalApprover!.name ??
+                                              "",
                                           maxLines: 1,
                                           textDirection: TextDirection.rtl,
                                           style: GoogleFonts.montserrat(
@@ -291,10 +304,16 @@ class ApprovalAuthorityScreen extends ConsumerWidget {
   }
 }
 
-class CheckInDialog extends StatelessWidget {
+class ApprovalAuthorityDialog extends StatelessWidget {
   String title;
   String svgPath;
-  CheckInDialog({super.key, required this.title, required this.svgPath});
+  Approvalauthorities approvalAuthority;
+
+  ApprovalAuthorityDialog(
+      {super.key,
+      required this.title,
+      required this.svgPath,
+      required this.approvalAuthority});
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -365,7 +384,7 @@ class CheckInDialog extends StatelessWidget {
                                 SizedBox(
                                   width: 175.w,
                                   child: Text(
-                                    'Procurement Management',
+                                    approvalAuthority.module!.name ?? "",
                                     maxLines: 1,
                                     textDirection: TextDirection.rtl,
                                     style: GoogleFonts.montserrat(
@@ -396,7 +415,7 @@ class CheckInDialog extends StatelessWidget {
                                 SizedBox(
                                   width: 175.w,
                                   child: Text(
-                                    'Order Management',
+                                    approvalAuthority.submodule!.name ?? "",
                                     maxLines: 1,
                                     textDirection: TextDirection.rtl,
                                     style: GoogleFonts.montserrat(
@@ -427,7 +446,7 @@ class CheckInDialog extends StatelessWidget {
                                 SizedBox(
                                   width: 175.w,
                                   child: Text(
-                                    'Abu Aban (CPO)',
+                                    approvalAuthority.user!.name ?? "",
                                     maxLines: 1,
                                     textDirection: TextDirection.rtl,
                                     style: GoogleFonts.montserrat(
@@ -458,7 +477,7 @@ class CheckInDialog extends StatelessWidget {
                                 SizedBox(
                                   width: 175.w,
                                   child: Text(
-                                    'Purchase Order',
+                                    approvalAuthority.subaction!.name ?? "",
                                     maxLines: 1,
                                     textDirection: TextDirection.rtl,
                                     style: GoogleFonts.montserrat(
@@ -489,7 +508,9 @@ class CheckInDialog extends StatelessWidget {
                                 SizedBox(
                                   width: 175.w,
                                   child: Text(
-                                    'Amount > 500.00',
+                                    'Amount ${approvalAuthority.condOperator} ' +
+                                            '${approvalAuthority.amount}' ??
+                                        "",
                                     maxLines: 1,
                                     textDirection: TextDirection.rtl,
                                     style: GoogleFonts.montserrat(
@@ -520,7 +541,7 @@ class CheckInDialog extends StatelessWidget {
                                 SizedBox(
                                   width: 175.w,
                                   child: Text(
-                                    '\$ 5000.00',
+                                    approvalAuthority.amount ?? "",
                                     maxLines: 1,
                                     textDirection: TextDirection.rtl,
                                     style: GoogleFonts.montserrat(
@@ -567,7 +588,9 @@ class CheckInDialog extends StatelessWidget {
                                     ),
                                     SizedBox(
                                       width: 60.w,
-                                      child: Text('Abdullah Abdullah',
+                                      child: Text(
+                                          approvalAuthority.initiator!.name ??
+                                              "",
                                           maxLines: 2,
                                           style: GoogleFonts.montserrat(
                                             fontSize: 9.sp,
@@ -594,7 +617,10 @@ class CheckInDialog extends StatelessWidget {
                                     ),
                                     SizedBox(
                                       width: 70.w,
-                                      child: Text('Muhammad(Services Manager)',
+                                      child: Text(
+                                          approvalAuthority
+                                                  .firstApprover!.name ??
+                                              "",
                                           maxLines: 2,
                                           style: GoogleFonts.montserrat(
                                             fontSize: 9.sp,
@@ -620,7 +646,10 @@ class CheckInDialog extends StatelessWidget {
                                     ),
                                     SizedBox(
                                       width: 70.w,
-                                      child: Text('Muhammad(Sales Manager)',
+                                      child: Text(
+                                          approvalAuthority
+                                                  .finalApprover!.name ??
+                                              "",
                                           maxLines: 2,
                                           style: GoogleFonts.montserrat(
                                             fontSize: 9.sp,
