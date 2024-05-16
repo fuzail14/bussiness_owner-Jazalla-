@@ -7,18 +7,19 @@ import 'package:intl/intl.dart';
 import '../../../../../Data/Api Resp/api_response.dart';
 import '../../../../Constants/Person/person.dart';
 import '../../../../Constants/Person/person_controller.dart';
+import '../../../../Repo/Approval Authority Repository/approval_authority_repository.dart';
 import '../../../../Repo/Approval Managment Repository/approval_managment_repository.dart';
+import '../Model/AddSubModule.dart';
 import '../State/approval_authority_create_state.dart';
 
 class ApprovalAuthorityCreateNotifier
     extends StateNotifier<ApprovalAuthorityCreateState> {
   final Person? person;
-  final approvalManagmentRepository = ApprovalManagmentRepository();
+  final approvalAuthorityRepository = ApprovalAuthorityRepository();
 
   ApprovalAuthorityCreateNotifier(this.person)
       : super(ApprovalAuthorityCreateState()) {
-    request4InformationViewApi(
-        userId: person!.data!.id!, bearerToken: person!.Bearer);
+    moduleViewApi();
   }
 
   final TextEditingController searchController = TextEditingController();
@@ -30,44 +31,122 @@ class ApprovalAuthorityCreateNotifier
     'Casual ApprovalAuthority',
     'Medical ApprovalAuthority'
   ];
-  Future StartDate(context) async {
-    DateTime? picked = await showDatePicker(
-        initialDate: DateTime.now(),
-        firstDate: DateTime(
-            DateTime.now().year, DateTime.now().month, DateTime.now().day),
-        lastDate: DateTime(2080),
-        context: context);
-    if (picked != null) {
-      startDateController.text = DateFormat('yyyy-MM-dd').format(picked);
-    }
-  }
 
-  Future endDate(context) async {
-    DateTime? picked = await showDatePicker(
-        initialDate: DateTime.now(),
-        firstDate: DateTime(
-            DateTime.now().year, DateTime.now().month, DateTime.now().day),
-        lastDate: DateTime(2080),
-        context: context);
-    if (picked != null) {
-      endDateController.text = DateFormat('yyyy-MM-dd').format(picked);
-    }
-  }
-
-  Future<void> request4InformationViewApi(
-      {required userId, required bearerToken}) async {
+  Future<void> moduleViewApi() async {
     setResponseStatus(Status.loading);
-    print('come here');
-    print(userId);
+
     try {
-      final value = await approvalManagmentRepository.request4InformationApi(
-        userId: userId,
-        bearerToken: bearerToken,
-      );
+      final value = await approvalAuthorityRepository
+          .getModuleForAddApprovalAuthorityApi();
       state = state.copyWith(
-        request4Informatio: value.requestForInformation,
+        moduleforadd: value.moduleforadd,
+        responseStatus: Status.completed,
+        selectedSubmodule: null,
+      );
+    } catch (e, stackTrace) {
+      setResponseStatus(Status.error);
+      log(e.toString());
+      log(stackTrace.toString());
+
+      myToast(msg: e.toString());
+    }
+  }
+
+  Future<void> submoduleViewApi({required moduleId}) async {
+    state = state.copyWith(
+        submoduleforadd: [],
+        selectedSubmodule: null,
+        responseStatus: Status.loading);
+
+    try {
+      final value = await approvalAuthorityRepository
+          .getSubModuleForAddApprovalAuthorityApi(moduleId: moduleId);
+      // state = state.copyWith(
+      //   submoduleforadd: value.submoduleforadd,
+      //   selectedSubmodule: null,
+      //   responseStatus: Status.completed,
+      // );
+      state = state.copyWith(
+          submoduleforadd: value.submoduleforadd,
+          selectedSubmodule: value.submoduleforadd.isNotEmpty
+              ? value.submoduleforadd.first
+              : null,
+          responseStatus: Status.completed);
+    } catch (e, stackTrace) {
+      setResponseStatus(Status.error);
+      log(e.toString());
+      log(stackTrace.toString());
+
+      myToast(msg: e.toString());
+    }
+  }
+
+  void setSelectedmoduleName(String? module) {
+    state = state.copyWith(
+      selectedmodule: module,
+    );
+  }
+
+  Future<void> userViewApi({required companyId, required type}) async {
+    String? modifytype;
+    if (type == 'Procurement Management') {
+      modifytype = 'Procurement manager';
+    }
+    if (type == 'Sales Management') {
+      modifytype = 'Sales manager';
+    }
+    if (type == 'Service Management') {
+      modifytype = 'Service manager';
+    }
+    if (type == 'Accounting Management') {
+      modifytype = 'Accounting manager';
+    }
+    if (type == 'HR Management') {
+      modifytype = 'HR manager';
+    }
+    if (type == 'Project Management') {
+      modifytype = 'Project manager';
+    }
+
+    setResponseStatus(Status.loading);
+
+    try {
+      final value =
+          await approvalAuthorityRepository.getUserForAddApprovalAuthorityApi(
+              companyId: companyId, type: modifytype);
+      state = state.copyWith(
+        approvalauthorityuser: value.approvalauthorityuser,
         responseStatus: Status.completed,
       );
+    } catch (e, stackTrace) {
+      setResponseStatus(Status.error);
+      log(e.toString());
+      log(stackTrace.toString());
+
+      myToast(msg: e.toString());
+    }
+  }
+
+  Future<void> actionViewApi({required moduleFunctionId}) async {
+    state = state.copyWith(
+        submoduleforadd: [],
+        selectedSubmodule: null,
+        responseStatus: Status.loading);
+
+    try {
+      final value = await approvalAuthorityRepository
+          .getSubModuleForAddApprovalAuthorityApi(moduleId: moduleFunctionId);
+      // state = state.copyWith(
+      //   submoduleforadd: value.submoduleforadd,
+      //   selectedSubmodule: null,
+      //   responseStatus: Status.completed,
+      // );
+      state = state.copyWith(
+          submoduleforadd: value.submoduleforadd,
+          selectedSubmodule: value.submoduleforadd.isNotEmpty
+              ? value.submoduleforadd.first
+              : null,
+          responseStatus: Status.completed);
     } catch (e, stackTrace) {
       setResponseStatus(Status.error);
       log(e.toString());
@@ -80,16 +159,17 @@ class ApprovalAuthorityCreateNotifier
   void setResponseStatus(Status val) {
     state = state.copyWith(responseStatus: val);
   }
+
+  void setSelectedSubmodule(Submoduleforadd? submodule) {
+    state = state.copyWith(
+      selectedSubmodule: submodule,
+    );
+  }
 }
 
-// final ApprovalAuthorityCreateProvider = StateNotifierProvider.autoDispose<
-//     ApprovalAuthorityCreateNotifier, ApprovalAuthorityCreateState>((ref) {
-//   return ApprovalAuthorityCreateNotifier();
-// });
-
-final approvalAuthorityCreateProvider = StateNotifierProvider<
+final approvalAuthorityCreateProvider = StateNotifierProvider.autoDispose<
     ApprovalAuthorityCreateNotifier, ApprovalAuthorityCreateState>((ref) {
-  final person = ref.watch(personProvider);
+  final person = ref.read(personProvider);
   if (person == null) {
     throw Exception('Person data is not available');
   }

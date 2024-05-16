@@ -50,8 +50,8 @@ class ApprovalAuthorityScreen extends ConsumerWidget {
                 InkWell(
                     onTap: () {
                       GoRouter.of(context).pushNamed(
-                          approvalAuthorityCreateScreen,
-                          extra: controller.person);
+                        approvalAuthorityCreateScreen,
+                      );
                     },
                     child: SvgPicture.asset('assets/images/plus_button.svg'))
               ],

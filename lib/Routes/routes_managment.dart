@@ -1160,14 +1160,7 @@ final router = GoRouter(
       name: approvalAuthorityCreateScreen,
       path: '/ApprovalAuthorityCreateScreen',
       pageBuilder: (context, state) {
-        final person = state.extra as Person;
-        final page = ProviderScope(
-          overrides: [
-            personProvider
-                .overrideWith((ref) => PersonController()..setPerson(person)),
-          ],
-          child: ApprovalAuthorityCreateScreen(),
-        );
+        final page = ApprovalAuthorityCreateScreen();
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
             context: context,

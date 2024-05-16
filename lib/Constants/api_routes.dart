@@ -1,17 +1,17 @@
 class Api {
-  // static const String imageBaseUrl = 'http://127.0.0.1:8000/uploads/logo/';
-  // static const String originalImageBaseUrl = 'http://127.0.0.1:8000';
-  // static const String baseUrl = 'http://127.0.0.1:8000/api/';
+  static const String imageBaseUrl = 'http://127.0.0.1:8000/uploads/logo/';
+  static const String originalImageBaseUrl = 'http://127.0.0.1:8000';
+  static const String baseUrl = 'http://127.0.0.1:8000/api/';
 
   // static const String imageBaseUrl = 'http://192.168.100.47:8000/uploads/logo/';
   // static const String originalImageBaseUrl = 'http://192.168.100.47:8000';
   // static const String baseUrl = 'http://192.168.100.47:8000/api/';
 
-  static const String imageBaseUrl =
-      'https://staging.jazalla.com/api/uploads/logo/';
-  static const String originalImageBaseUrl =
-      'https://staging.jazalla.com/public';
-  static const String baseUrl = 'https://staging.jazalla.com/api/';
+  // static const String imageBaseUrl =
+  //     'https://staging.jazalla.com/api/uploads/logo/';
+  // static const String originalImageBaseUrl =
+  //     'https://staging.jazalla.com/public';
+  // static const String baseUrl = 'https://staging.jazalla.com/api/';
 
   static const String login = "${baseUrl}loginWithMobileNumber";
 
@@ -190,4 +190,16 @@ class Api {
   static const String getInvocieDetail = "${baseUrl}invoices/getInvocieDetail";
   static const String getApprovalAuthority =
       "${baseUrl}company/getApprovalAuthority";
+
+  static const String getModuleForAddApprovalAuthority =
+      "${baseUrl}company/getModuleForAddApprovalAuthority";
+
+  static const String getsubModuleFunctionForAddApprovalAuthority =
+      "${baseUrl}company/getsubModuleFunctionForAddApprovalAuthority";
+  static const String getModuleActionForAddApprovalAuthority =
+      "${baseUrl}company/getModuleActionForAddApprovalAuthority";
+  static const String getUserForAddApprovalAuthority =
+      "${baseUrl}company/getUserForAddApprovalAuthority";
+  static const String getApproverUserForAddApprovalAuthority =
+      "${baseUrl}company/getApproverUserForAddApprovalAuthority";
 }
