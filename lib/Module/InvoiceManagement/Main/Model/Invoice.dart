@@ -56,7 +56,7 @@ class Invoices {
   late final int createdBy;
   late final String createdAt;
   late final String updatedAt;
-  late final double dueAmount;
+  late final int dueAmount;
 
   Invoices.fromJson(Map<String, dynamic> json) {
     id = json['id'];

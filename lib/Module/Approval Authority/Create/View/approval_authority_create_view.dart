@@ -10,7 +10,9 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../../Constants/Font/fonts.dart';
 import '../../../../Widgets/AppBar/my_app_bar.dart';
 import '../Model/AddApprovalAuthorityUser.dart';
+import '../Model/AddApproverUser.dart';
 import '../Model/AddModule.dart';
+import '../Model/AddModuleAction.dart';
 import '../Model/AddSubModule.dart';
 import '../Notifier/approval_authority_create_notifier.dart';
 
@@ -136,10 +138,10 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                           onChanged: (Moduleforadd? newValue) {
                             if (newValue != null) {
                               print(newValue.name);
-                              controller.setSelectedSubmodule(null);
+                              //controller.setSelectedSubmodule();
+                              controller.setSelectedmoduleNameAndId(newValue);
                               controller.submoduleViewApi(
                                   moduleId: newValue.id);
-                              controller.setSelectedmoduleName(newValue.name);
                             }
                           },
                         ),
@@ -173,7 +175,7 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                         ],
                       ),
                       child: DropdownButtonHideUnderline(
-                        child: DropdownButtonFormField<Submoduleforadd>(
+                        child: DropdownButtonFormField<Submoduleforadd?>(
                           isExpanded: true,
                           value: state.selectedSubmodule,
                           style: GoogleFonts.montserrat(
@@ -191,11 +193,11 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                             border: InputBorder.none,
                           ),
                           items: state.submoduleforadd
-                              .map<DropdownMenuItem<Submoduleforadd>>(
-                                  (Submoduleforadd value) {
-                            return DropdownMenuItem<Submoduleforadd>(
+                              .map<DropdownMenuItem<Submoduleforadd?>>(
+                                  (Submoduleforadd? value) {
+                            return DropdownMenuItem<Submoduleforadd?>(
                               value: value,
-                              child: AutoSizeText(value.name ?? "",
+                              child: AutoSizeText(value?.name ?? "",
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.montserrat(
@@ -206,9 +208,14 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                             );
                           }).toList(),
                           onChanged: (Submoduleforadd? newValue) {
+                            controller.setSelectedApprovalauthorityuser(null);
+                            controller.setSelectedModuleaction(null);
+                            controller.setSelectedSubModuleId(newValue!);
                             controller.userViewApi(
                                 companyId: controller.person!.data!.companyId,
                                 type: state.selectedmodule);
+                            controller.actionViewApi(
+                                moduleFunctionId: newValue.id);
                           },
                         ),
                       )),
@@ -244,6 +251,7 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                         child: DropdownButtonFormField<Approvalauthorityuser>(
                           isExpanded: true,
                           // value: state.ApprovalAuthorityType,
+                          value: state.selectedApprovalauthorityuser,
                           style: GoogleFonts.montserrat(
                             fontSize: 25.sp,
                             fontWeight: FontWeight.w800,
@@ -274,7 +282,7 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                             );
                           }).toList(),
                           onChanged: (Approvalauthorityuser? newValue) {
-                            //controller.updateresponseDurationTimeUnit(newValue!);
+                            controller.setSelectedUserId(newValue!);
                           },
                         ),
                       )),
@@ -307,9 +315,9 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                         ],
                       ),
                       child: DropdownButtonHideUnderline(
-                        child: DropdownButtonFormField<String>(
+                        child: DropdownButtonFormField<Moduleactionforadd>(
                           isExpanded: true,
-                          // value: state.ApprovalAuthorityType,
+                          value: state.selectedmoduleactionforadd,
                           style: GoogleFonts.montserrat(
                             fontSize: 25.sp,
                             fontWeight: FontWeight.w800,
@@ -324,11 +332,12 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                                 .r,
                             border: InputBorder.none,
                           ),
-                          items: controller.responseDurationTimeUnitLists
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
+                          items: state.moduleactionforadd
+                              .map<DropdownMenuItem<Moduleactionforadd>>(
+                                  (Moduleactionforadd value) {
+                            return DropdownMenuItem<Moduleactionforadd>(
                               value: value,
-                              child: AutoSizeText(value,
+                              child: AutoSizeText(value.name ?? "",
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.montserrat(
@@ -338,8 +347,14 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                                   )),
                             );
                           }).toList(),
-                          onChanged: (String? newValue) {
-                            //controller.updateresponseDurationTimeUnit(newValue!);
+                          onChanged: (Moduleactionforadd? newValue) {
+                            controller.setSelectedActionId(newValue!);
+                            if (state.approveruser.isEmpty) {
+                              controller.firstNFinalApproverViewApi(
+                                  companyId:
+                                      controller.person!.data!.companyId);
+                            }
+                            print('approver user data there in List');
                           },
                         ),
                       )),
@@ -381,7 +396,7 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                               child: DropdownButtonHideUnderline(
                                 child: DropdownButtonFormField<String>(
                                   isExpanded: true,
-                                  // value: state.ApprovalAuthorityType,
+                                  value: state.selectedCondition,
                                   style: GoogleFonts.montserrat(
                                     fontSize: 25.sp,
                                     fontWeight: FontWeight.w800,
@@ -396,8 +411,7 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                                         .r,
                                     border: InputBorder.none,
                                   ),
-                                  items: controller
-                                      .responseDurationTimeUnitLists
+                                  items: controller.conditionList
                                       .map<DropdownMenuItem<String>>(
                                           (String value) {
                                     return DropdownMenuItem<String>(
@@ -413,7 +427,7 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                                     );
                                   }).toList(),
                                   onChanged: (String? newValue) {
-                                    //controller.updateresponseDurationTimeUnit(newValue!);
+                                    controller.setSelectedCondition(newValue!);
                                   },
                                 ),
                               )),
@@ -530,7 +544,7 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                         ],
                       ),
                       child: DropdownButtonHideUnderline(
-                        child: DropdownButtonFormField<String>(
+                        child: DropdownButtonFormField<Approveruser>(
                           isExpanded: true,
                           //value: state.ApprovalAuthorityType,
                           style: GoogleFonts.montserrat(
@@ -547,11 +561,12 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                                 .r,
                             border: InputBorder.none,
                           ),
-                          items: controller.responseDurationTimeUnitLists
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
+                          items: state.firstApproverUsers
+                              .map<DropdownMenuItem<Approveruser>>(
+                                  (Approveruser value) {
+                            return DropdownMenuItem<Approveruser>(
                               value: value,
-                              child: AutoSizeText(value,
+                              child: AutoSizeText(value.name ?? "",
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.montserrat(
@@ -561,8 +576,8 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                                   )),
                             );
                           }).toList(),
-                          onChanged: (String? newValue) {
-                            //controller.updateresponseDurationTimeUnit(newValue!);
+                          onChanged: (Approveruser? newValue) {
+                            controller.updateFirstApprover(newValue);
                           },
                         ),
                       )),
@@ -595,7 +610,7 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                         ],
                       ),
                       child: DropdownButtonHideUnderline(
-                        child: DropdownButtonFormField<String>(
+                        child: DropdownButtonFormField<Approveruser>(
                           isExpanded: true,
                           // value: state.ApprovalAuthorityType,
                           style: GoogleFonts.montserrat(
@@ -612,11 +627,12 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                                 .r,
                             border: InputBorder.none,
                           ),
-                          items: controller.responseDurationTimeUnitLists
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
+                          items: state.finalApproverUsers
+                              .map<DropdownMenuItem<Approveruser>>(
+                                  (Approveruser value) {
+                            return DropdownMenuItem<Approveruser>(
                               value: value,
-                              child: AutoSizeText(value,
+                              child: AutoSizeText(value.name ?? "",
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: GoogleFonts.montserrat(
@@ -626,8 +642,8 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                                   )),
                             );
                           }).toList(),
-                          onChanged: (String? newValue) {
-                            //controller.updateresponseDurationTimeUnit(newValue!);
+                          onChanged: (Approveruser? newValue) {
+                            controller.updateFinalApprover(newValue);
                           },
                         ),
                       )),
@@ -659,7 +675,19 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.pop(context);
+                          controller.saveApprovalAuthority(
+                              companyId: controller.person!.data!.companyId,
+                              moduleId: state.selectedmoduleId,
+                              moduleFunctionId: state.selectedSubModuleId,
+                              moduleActionId: state.selectedActionId,
+                              userId: state.selectedUserId,
+                              amount:
+                                  controller.totalPriceAmountController.text,
+                              condOperator: state.selectedConditionOperator,
+                              firstApproverId: state.selectedFirstApproverId,
+                              finalApproverId: state.selectedFinalApproverId,
+                              createdBy: controller.person!.data!.id,
+                              context: context);
                         },
                         child: Container(
                           height: 25.h,

@@ -54,9 +54,8 @@ class ApprovalAuthorityNotifier extends StateNotifier<ApprovalAuthorityState> {
 //   return ApprovalAuthorityNotifier();
 // });
 
-final approvalAuthorityProvider =
-    StateNotifierProvider<ApprovalAuthorityNotifier, ApprovalAuthorityState>(
-        (ref) {
+final approvalAuthorityProvider = StateNotifierProvider.autoDispose<
+    ApprovalAuthorityNotifier, ApprovalAuthorityState>((ref) {
   final person = ref.read(personProvider);
   if (person == null) {
     throw Exception('Person data is not available');

@@ -71,7 +71,10 @@ class Approvalauthorities {
     submodule = Submodule.fromJson(json['submodule']);
     user = User.fromJson(json['user']);
     subaction = Subaction.fromJson(json['subaction']);
-    initiator = Initiator.fromJson(json['initiator']);
+    // initiator = Initiator.fromJson(json['initiator']);
+    initiator = json['initiator'] != null
+        ? Initiator.fromJson(json['initiator'])
+        : null;
   }
 }
 

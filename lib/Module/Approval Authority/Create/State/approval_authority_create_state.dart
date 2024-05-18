@@ -9,21 +9,64 @@ class ApprovalAuthorityCreateState {
   final Status responseStatus;
   final List<Moduleforadd> moduleforadd;
   final String? selectedmodule;
-  final List<Submoduleforadd> submoduleforadd;
+  final int? selectedmoduleId;
+  List<Submoduleforadd> submoduleforadd;
   final List<Approvalauthorityuser> approvalauthorityuser;
   Submoduleforadd? selectedSubmodule;
+  Approvalauthorityuser? selectedApprovalauthorityuser;
+  Moduleactionforadd? selectedmoduleactionforadd;
   final List<Moduleactionforadd> moduleactionforadd;
+
   final List<Approveruser> approveruser;
-  ApprovalAuthorityCreateState({
-    this.responseStatus = Status.loading,
-    this.moduleforadd = const [],
-    this.submoduleforadd = const [],
-    this.approvalauthorityuser = const [],
-    this.selectedSubmodule,
-    this.selectedmodule,
-    this.moduleactionforadd = const [],
-    this.approveruser = const [],
-  });
+  final List<Approveruser> firstApproverUsers;
+  final List<Approveruser> finalApproverUsers;
+  final Approveruser? selectedFirstApprover;
+  final Approveruser? selectedFinalApprover;
+  final String? selectedCondition;
+  final String? selectedConditionOperator;
+
+  final Map<String, String> conditionMap;
+  final int? selectedSubModuleId;
+
+  final int? selectedUserId;
+  final int? selectedActionId;
+  final int? selectedFirstApproverId;
+  final int? selectedFinalApproverId;
+  bool isLoading;
+
+  ApprovalAuthorityCreateState(
+      {this.responseStatus = Status.loading,
+      this.moduleforadd = const [],
+      List<Submoduleforadd>? submoduleforadd,
+      this.approvalauthorityuser = const [],
+      this.selectedSubmodule,
+      this.selectedmodule,
+      this.selectedmoduleId,
+      this.selectedApprovalauthorityuser,
+      this.selectedmoduleactionforadd,
+      this.moduleactionforadd = const [],
+      this.approveruser = const [],
+      this.firstApproverUsers = const [],
+      this.finalApproverUsers = const [],
+      this.selectedFirstApprover,
+      this.selectedFinalApprover,
+      this.selectedCondition,
+      this.conditionMap = const {
+        'Greater Than': '>',
+        'Less Than': '<',
+        'Greater Than or equal to': '>=',
+        'Less Than or equal to': '<=',
+        'Equal to': '==',
+        'Not Equal to': '!=',
+      },
+      this.selectedSubModuleId,
+      this.selectedUserId,
+      this.selectedActionId,
+      this.selectedFirstApproverId,
+      this.selectedFinalApproverId,
+      this.isLoading = false,
+      this.selectedConditionOperator})
+      : submoduleforadd = submoduleforadd ?? [];
 
   ApprovalAuthorityCreateState copyWith(
       {Status? responseStatus,
@@ -32,18 +75,55 @@ class ApprovalAuthorityCreateState {
       List<Approvalauthorityuser>? approvalauthorityuser,
       Submoduleforadd? selectedSubmodule,
       String? selectedmodule,
+      int? selectedmoduleId,
+      String? selectedCondition,
+      Approvalauthorityuser? selectedApprovalauthorityuser,
       List<Moduleactionforadd>? moduleactionforadd,
-      List<Approveruser>? approveruser}) {
+      Moduleactionforadd? selectedmoduleactionforadd,
+      List<Approveruser>? approveruser,
+      List<Approveruser>? firstApproverUsers,
+      List<Approveruser>? finalApproverUsers,
+      Approveruser? selectedFirstApprover,
+      Approveruser? selectedFinalApprover,
+      int? selectedSubModuleId,
+      int? selectedUserId,
+      int? selectedActionId,
+      int? selectedFirstApproverId,
+      int? selectedFinalApproverId,
+      bool? isLoading,
+      String? selectedConditionOperator}) {
     return ApprovalAuthorityCreateState(
-      responseStatus: responseStatus ?? this.responseStatus,
-      moduleforadd: moduleforadd ?? this.moduleforadd,
-      submoduleforadd: submoduleforadd ?? this.submoduleforadd,
-      approvalauthorityuser:
-          approvalauthorityuser ?? this.approvalauthorityuser,
-      selectedSubmodule: selectedSubmodule ?? this.selectedSubmodule,
-      selectedmodule: selectedmodule ?? this.selectedmodule,
-      moduleactionforadd: moduleactionforadd ?? this.moduleactionforadd,
-      approveruser: approveruser ?? this.approveruser,
-    );
+        responseStatus: responseStatus ?? this.responseStatus,
+        moduleforadd: moduleforadd ?? this.moduleforadd,
+        submoduleforadd: submoduleforadd ?? this.submoduleforadd,
+        approvalauthorityuser:
+            approvalauthorityuser ?? this.approvalauthorityuser,
+        selectedSubmodule: selectedSubmodule ?? this.selectedSubmodule,
+        selectedApprovalauthorityuser:
+            selectedApprovalauthorityuser ?? this.selectedApprovalauthorityuser,
+        selectedmodule: selectedmodule ?? this.selectedmodule,
+        selectedmoduleactionforadd:
+            selectedmoduleactionforadd ?? this.selectedmoduleactionforadd,
+        moduleactionforadd: moduleactionforadd ?? this.moduleactionforadd,
+        selectedCondition: selectedCondition ?? this.selectedCondition,
+        conditionMap: conditionMap,
+        approveruser: approveruser ?? this.approveruser,
+        firstApproverUsers: firstApproverUsers ?? this.firstApproverUsers,
+        finalApproverUsers: finalApproverUsers ?? this.finalApproverUsers,
+        selectedFirstApprover:
+            selectedFirstApprover ?? this.selectedFirstApprover,
+        selectedFinalApprover:
+            selectedFinalApprover ?? this.selectedFinalApprover,
+        selectedmoduleId: selectedmoduleId ?? this.selectedmoduleId,
+        selectedSubModuleId: selectedSubModuleId ?? this.selectedSubModuleId,
+        selectedUserId: selectedUserId ?? this.selectedUserId,
+        selectedActionId: selectedActionId ?? this.selectedActionId,
+        selectedFirstApproverId:
+            selectedFirstApproverId ?? this.selectedFirstApproverId,
+        selectedFinalApproverId:
+            selectedFinalApproverId ?? this.selectedFinalApproverId,
+        isLoading: isLoading ?? this.isLoading,
+        selectedConditionOperator:
+            selectedConditionOperator ?? this.selectedConditionOperator);
   }
 }
