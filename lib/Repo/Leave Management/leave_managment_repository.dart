@@ -7,10 +7,13 @@ import '../../Module/LeaveCreate/Model/leave_type.dart';
 class LeaveManagmentRepository {
   final networkServices = NetworkServices();
 
-  Future<LeaveManagement> getEmployeeLeavesApi(
-      {required bearerToken, required userId}) async {
-    var response = await networkServices.getReq("${Api.getLeavesApi}/$userId",
-        bearerToken: bearerToken);
+  Future<LeaveManagement> getEmployeeLeavesApi({
+    required bearerToken,
+    required userId,
+    required type,
+  }) async {
+    var response = await networkServices
+        .getReq("${Api.getLeavesApi}/$userId/$type", bearerToken: bearerToken);
     log(response.toString());
 
     return LeaveManagement.fromJson(response);

@@ -40,17 +40,22 @@ class LeaveManagmentScreen extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.only(top: 25, right: 0, left: 0).r,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: (controller.person!.data!.type == 'company')
+                  ? MainAxisAlignment.center
+                  : MainAxisAlignment.spaceAround,
               children: [
                 Text('Leave Management',
                     style: FontManagment()
                         .montserrat18HeadingEmployeeCenterAllModules),
-                InkWell(
-                    onTap: () {
-                      GoRouter.of(context).pushNamed(leaveCreateScreen,
-                          extra: controller.person);
-                    },
-                    child: SvgPicture.asset('assets/images/plus_button.svg'))
+                (controller.person!.data!.type == 'company')
+                    ? Container()
+                    : InkWell(
+                        onTap: () {
+                          GoRouter.of(context).pushNamed(leaveCreateScreen,
+                              extra: controller.person);
+                        },
+                        child:
+                            SvgPicture.asset('assets/images/plus_button.svg'))
               ],
             ),
           ),
@@ -99,17 +104,15 @@ class LeaveManagmentScreen extends ConsumerWidget {
                                 style: GoogleFonts.montserrat(
                                   fontSize: 16.sp,
                                   color: (state.employeeleave[index].status ==
-                                          'Pending')
-                                      ? const Color(0xffFC0000)
-                                      : const Color(0xff22A527),
+                                          'Approved')
+                                      ? const Color(0xff22A527)
+                                      : const Color(0xffFC0000),
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
                               5.ph,
                               Text(
-                                controller.person!.data!.firstName.toString() +
-                                    controller.person!.data!.lastName
-                                        .toString(),
+                                state.employeeleave[index].employee!.name ?? "",
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: GoogleFonts.montserrat(
@@ -124,7 +127,7 @@ class LeaveManagmentScreen extends ConsumerWidget {
                                   leaveManagmentCardText(
                                     title: 'Leave Type',
                                     subTitle: state
-                                        .employeeleave[index].leaveType.title
+                                        .employeeleave[index].leaveType!.title
                                         .toString(),
                                   ),
                                   10.ph,

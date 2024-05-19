@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:bussines_owner/Constants/constants.dart';
+import 'package:bussines_owner/Repo/User%20Management%20Repository/users_managment_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../Data/Api Resp/api_response.dart';
@@ -11,11 +12,11 @@ import '../State/user_management_state.dart';
 
 class UserManagementNotifier extends StateNotifier<UserManagementState> {
   final Person? person;
-  final approvalManagmentRepository = ApprovalManagmentRepository();
+  final usersManagmentRepository = UsersManagmentRepository();
 
   UserManagementNotifier(this.person) : super(UserManagementState()) {
-    request4InformationViewApi(
-        userId: person!.data!.id!, bearerToken: person!.Bearer);
+    usersViewApi(
+        companyId: person!.data!.companyId!, bearerToken: person!.Bearer);
   }
 
   final TextEditingController searchController = TextEditingController();
@@ -34,18 +35,16 @@ class UserManagementNotifier extends StateNotifier<UserManagementState> {
     'HR Management',
   ];
 
-  Future<void> request4InformationViewApi(
-      {required userId, required bearerToken}) async {
+  Future<void> usersViewApi({required companyId, required bearerToken}) async {
     setResponseStatus(Status.loading);
-    print('come here');
-    print(userId);
+
     try {
-      final value = await approvalManagmentRepository.request4InformationApi(
-        userId: userId,
+      final value = await usersManagmentRepository.getUsersApi(
+        companyId: companyId,
         bearerToken: bearerToken,
       );
       state = state.copyWith(
-        request4Informatio: value.requestForInformation,
+        companyusers: value.companyusers,
         responseStatus: Status.completed,
       );
     } catch (e, stackTrace) {
@@ -79,9 +78,9 @@ class UserManagementNotifier extends StateNotifier<UserManagementState> {
 //   return UserManagementNotifier();
 // });
 
-final userManagementProvider =
-    StateNotifierProvider<UserManagementNotifier, UserManagementState>((ref) {
-  final person = ref.watch(personProvider);
+final userManagementProvider = StateNotifierProvider.autoDispose<
+    UserManagementNotifier, UserManagementState>((ref) {
+  final person = ref.read(personProvider);
   if (person == null) {
     throw Exception('Person data is not available');
   }

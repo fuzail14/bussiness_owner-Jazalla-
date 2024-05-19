@@ -8,9 +8,9 @@ class AttendanceEmployeeRepository {
   final networkServices = NetworkServices();
 
   Future<AttendanceEmployee> getAttendanceEmployeeApi(
-      {required bearerToken, required employeeId}) async {
+      {required bearerToken, required employeeId, required type}) async {
     var response = await networkServices.getReq(
-        "${Api.getEmployeeAttendance}/$employeeId",
+        "${Api.getEmployeeAttendance}/$employeeId/$type",
         bearerToken: bearerToken);
     log(response.toString());
 

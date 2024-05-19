@@ -14,14 +14,23 @@ class SalaryPaySlipNotifier extends StateNotifier<SalaryPaySlipState> {
   final salaryPaySlipRepository = SalaryPaySlipRepository();
 
   SalaryPaySlipNotifier(this.person) : super(SalaryPaySlipState()) {
-    salaryPaySlipViewApi(
-        employeeId: person!.employee!.id!, bearerToken: person!.Bearer);
+    if (person!.data!.type == 'company') {
+      salaryPaySlipViewApi(
+          employeeId: person!.data!.companyId!,
+          bearerToken: person!.Bearer,
+          type: person!.data!.type);
+    } else {
+      salaryPaySlipViewApi(
+          employeeId: person!.employee!.id!,
+          bearerToken: person!.Bearer,
+          type: person!.data!.type);
+    }
   }
 
   final TextEditingController searchController = TextEditingController();
 
   Future<void> salaryPaySlipViewApi(
-      {required employeeId, required bearerToken}) async {
+      {required employeeId, required type, required bearerToken}) async {
     setResponseStatus(Status.loading);
     print('come here');
     print(employeeId);
@@ -29,6 +38,7 @@ class SalaryPaySlipNotifier extends StateNotifier<SalaryPaySlipState> {
     try {
       final value = await salaryPaySlipRepository.getSalaryPaySlipsApi(
         employeeId: employeeId,
+        type: type,
         bearerToken: bearerToken,
       );
       state = state.copyWith(
@@ -49,8 +59,8 @@ class SalaryPaySlipNotifier extends StateNotifier<SalaryPaySlipState> {
   }
 }
 
-final salaryPaySlipProvider =
-    StateNotifierProvider<SalaryPaySlipNotifier, SalaryPaySlipState>((ref) {
+final salaryPaySlipProvider = StateNotifierProvider.autoDispose<
+    SalaryPaySlipNotifier, SalaryPaySlipState>((ref) {
   final person = ref.watch(personProvider);
   if (person == null) {
     throw Exception('Person data is not available');

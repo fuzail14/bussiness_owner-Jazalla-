@@ -1,3 +1,5 @@
+import '../../../Constants/Person/person.dart';
+
 class AttendanceEmployee {
   AttendanceEmployee({
     required this.success,
@@ -15,21 +17,18 @@ class AttendanceEmployee {
 }
 
 class Employeeattendance {
-  Employeeattendance({
-    this.id,
-    this.employeeId,
-    this.date,
-    this.status,
-    this.clockIn,
-    this.clockOut,
-    this.late,
-    this.earlyLeaving,
-    this.overtime,
-    this.totalRest,
-    this.createdBy,
-    this.createdAt,
-    this.updatedAt,
-  });
+  Employeeattendance(
+      {this.id,
+      this.employeeId,
+      this.date,
+      this.status,
+      this.clockIn,
+      this.clockOut,
+      this.late,
+      this.earlyLeaving,
+      this.overtime,
+      this.totalRest,
+      this.employee});
   int? id;
   int? employeeId;
   String? date;
@@ -40,9 +39,8 @@ class Employeeattendance {
   String? earlyLeaving;
   String? overtime;
   String? totalRest;
-  int? createdBy;
-  String? createdAt;
-  String? updatedAt;
+
+  Employee? employee;
 
   Employeeattendance.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -55,8 +53,9 @@ class Employeeattendance {
     earlyLeaving = json['early_leaving'];
     overtime = json['overtime'];
     totalRest = json['total_rest'];
-    createdBy = json['created_by'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+
+    //employee = Employee.fromJson(json['employee']);
+    employee =
+        json['employee'] != null ? Employee.fromJson(json['employee']) : null;
   }
 }

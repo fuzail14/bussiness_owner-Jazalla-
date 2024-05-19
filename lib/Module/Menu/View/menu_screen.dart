@@ -104,7 +104,7 @@ class Menu extends ConsumerWidget {
           } else if (item.title == 'Order Placement') {
             context.pushNamed(orderPlacementScreen, extra: person);
           } else if (item.title == 'User Management') {
-            context.pushNamed(userManagementScreen, extra: person);
+            context.pushNamed(userManagementScreen);
             // context.pushNamed(procuremenetRFQScreen, extra: person);
           } else if (item.title == 'Invoice and Billing') {
             context.pushNamed(invoiceManagementScreen);

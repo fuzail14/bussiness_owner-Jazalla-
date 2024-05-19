@@ -15,20 +15,30 @@ class AttendanceManagmentNotifier
   final attendanceEmployeeRepository = AttendanceEmployeeRepository();
 
   AttendanceManagmentNotifier(this.person) : super(AttendanceManagmentState()) {
-    attendanceEmployeeViewApi(
-        employeeId: person!.employee!.id!, bearerToken: person!.Bearer);
+    if (person!.data!.type == 'company') {
+      attendanceEmployeeViewApi(
+          employeeId: person!.data!.companyId!,
+          type: person!.data!.type!,
+          bearerToken: person!.Bearer);
+    } else {
+      attendanceEmployeeViewApi(
+          employeeId: person!.employee!.id!,
+          type: person!.data!.type!,
+          bearerToken: person!.Bearer);
+    }
   }
 
   final TextEditingController searchController = TextEditingController();
 
   Future<void> attendanceEmployeeViewApi(
-      {required employeeId, required bearerToken}) async {
+      {required employeeId, required type, required bearerToken}) async {
     setResponseStatus(Status.loading);
     print('come here');
     print(employeeId);
     try {
       final value = await attendanceEmployeeRepository.getAttendanceEmployeeApi(
         employeeId: employeeId,
+        type: type,
         bearerToken: bearerToken,
       );
       state = state.copyWith(
@@ -54,7 +64,7 @@ class AttendanceManagmentNotifier
 //   return AttendanceManagmentNotifier();
 // });
 
-final attendanceManagmentProvider = StateNotifierProvider<
+final attendanceManagmentProvider = StateNotifierProvider.autoDispose<
     AttendanceManagmentNotifier, AttendanceManagmentState>((ref) {
   final person = ref.watch(personProvider);
   if (person == null) {

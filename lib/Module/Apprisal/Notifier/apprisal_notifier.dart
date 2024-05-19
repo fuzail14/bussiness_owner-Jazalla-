@@ -15,20 +15,30 @@ class ApprisalNotifier extends StateNotifier<ApprisalState> {
   final appraisalManagmentRepository = AppraisalManagmentRepository();
 
   ApprisalNotifier(this.person) : super(ApprisalState()) {
-    employeeAppraisalApi(
-        employeeId: person!.employee!.id!, bearerToken: person!.Bearer);
+    if (person!.data!.type == 'company') {
+      employeeAppraisalApi(
+          employeeId: person!.data!.companyId!,
+          type: person!.data!.type,
+          bearerToken: person!.Bearer);
+    } else {
+      employeeAppraisalApi(
+          employeeId: person!.employee!.id!,
+          type: person!.data!.type,
+          bearerToken: person!.Bearer);
+    }
   }
 
   final TextEditingController searchController = TextEditingController();
 
   Future<void> employeeAppraisalApi(
-      {required employeeId, required bearerToken}) async {
+      {required employeeId, required type, required bearerToken}) async {
     setResponseStatus(Status.loading);
     print('come here');
     print(employeeId);
     try {
       final value = await appraisalManagmentRepository.getAppraisalApi(
         employeeId: employeeId,
+        type: type,
         bearerToken: bearerToken,
       );
       state = state.copyWith(
@@ -55,7 +65,7 @@ class ApprisalNotifier extends StateNotifier<ApprisalState> {
 // });
 
 final apprisalProvider =
-    StateNotifierProvider<ApprisalNotifier, ApprisalState>((ref) {
+    StateNotifierProvider.autoDispose<ApprisalNotifier, ApprisalState>((ref) {
   final person = ref.watch(personProvider);
   if (person == null) {
     throw Exception('Person data is not available');

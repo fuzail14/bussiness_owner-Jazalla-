@@ -14,18 +14,30 @@ class LeaveManagmentNotifier extends StateNotifier<LeaveManagmentState> {
   final leaveManagmentRepository = LeaveManagmentRepository();
 
   LeaveManagmentNotifier(this.person) : super(LeaveManagmentState()) {
-    leavesViewApi(userId: person!.employee!.id!, bearerToken: person!.Bearer);
+    if (person!.data!.type == 'company') {
+      leavesViewApi(
+          userId: person!.data!.companyId!,
+          type: person!.data!.type,
+          bearerToken: person!.Bearer);
+    } else {
+      leavesViewApi(
+          userId: person!.employee!.id!,
+          type: person!.data!.type,
+          bearerToken: person!.Bearer);
+    }
   }
 
   final TextEditingController searchController = TextEditingController();
 
-  Future<void> leavesViewApi({required userId, required bearerToken}) async {
+  Future<void> leavesViewApi(
+      {required userId, required type, required bearerToken}) async {
     setResponseStatus(Status.loading);
     print('come here');
     print(userId);
     try {
       final value = await leaveManagmentRepository.getEmployeeLeavesApi(
         userId: userId,
+        type: type,
         bearerToken: bearerToken,
       );
       state = state.copyWith(
@@ -49,8 +61,8 @@ class LeaveManagmentNotifier extends StateNotifier<LeaveManagmentState> {
 //   return LeaveManagmentNotifier();
 // });
 
-final leaveManagmentProvider =
-    StateNotifierProvider<LeaveManagmentNotifier, LeaveManagmentState>((ref) {
+final leaveManagmentProvider = StateNotifierProvider.autoDispose<
+    LeaveManagmentNotifier, LeaveManagmentState>((ref) {
   final person = ref.watch(personProvider);
   if (person == null) {
     throw Exception('Person data is not available');

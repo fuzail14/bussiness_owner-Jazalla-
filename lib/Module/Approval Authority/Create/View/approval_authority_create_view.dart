@@ -135,6 +135,9 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                                   )),
                             );
                           }).toList(),
+                          onTap: () {
+                            controller.clearSubModule();
+                          },
                           onChanged: (Moduleforadd? newValue) {
                             if (newValue != null) {
                               print(newValue.name);

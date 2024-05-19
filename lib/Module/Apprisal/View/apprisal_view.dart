@@ -97,7 +97,7 @@ class ApprisalScreen extends ConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                state.appraisals[index].departments!.name ?? "",
+                                state.appraisals[index].employee!.name ?? "",
                                 maxLines: 1,
                                 style: GoogleFonts.montserrat(
                                   fontSize: 16.sp,
@@ -125,19 +125,26 @@ class ApprisalScreen extends ConsumerWidget {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Designation',
+                                          'Department',
                                           style: GoogleFonts.montserrat(
                                             fontSize: 12.sp,
                                             color: const Color(0xff4B4F54),
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
-                                        Text(
-                                          'Department',
-                                          style: GoogleFonts.montserrat(
-                                            fontSize: 12.sp,
-                                            color: const Color(0xff4B4F54),
-                                            fontWeight: FontWeight.w400,
+                                        SizedBox(
+                                          width: 150.w,
+                                          child: Text(
+                                            state.appraisals[index].departments!
+                                                    .name ??
+                                                "",
+                                            maxLines: 1,
+                                            textDirection: TextDirection.rtl,
+                                            style: GoogleFonts.montserrat(
+                                              fontSize: 12.sp,
+                                              color: const Color(0xff4B4F54),
+                                              fontWeight: FontWeight.w400,
+                                            ),
                                           ),
                                         )
                                       ],

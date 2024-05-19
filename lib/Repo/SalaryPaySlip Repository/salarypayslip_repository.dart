@@ -7,9 +7,9 @@ class SalaryPaySlipRepository {
   final networkServices = NetworkServices();
 
   Future<SalaryPaySlip> getSalaryPaySlipsApi(
-      {required bearerToken, required employeeId}) async {
+      {required bearerToken, required employeeId, required type}) async {
     var response = await networkServices.getReq(
-        "${Api.getSalaryPaySlips}/$employeeId",
+        "${Api.getSalaryPaySlips}/$employeeId/$type",
         bearerToken: bearerToken);
     log(response.toString());
 

@@ -57,8 +57,8 @@ class ApprovalAuthorityCreateNotifier
       state = state.copyWith(
         moduleforadd: value.moduleforadd,
         responseStatus: Status.completed,
-        selectedSubmodule: null,
-        submoduleforadd: [],
+        // selectedSubmodule: null,
+        // submoduleforadd: [],
       );
     } catch (e, stackTrace) {
       setResponseStatus(Status.error);
@@ -101,6 +101,18 @@ class ApprovalAuthorityCreateNotifier
 
       myToast(msg: e.toString());
     }
+  }
+
+  void clearSubModule() {
+    // state.submoduleforadd.clear();
+    // state.selectedSubmodule = null;
+
+    state = state.copyWith(submoduleforadd: [], selectedSubmodule: null);
+
+    print('sub module list');
+    print(state.submoduleforadd);
+    print(state.selectedSubmodule);
+    print(state.selectedSubmodule.runtimeType);
   }
 
   void setSelectedmoduleNameAndId(Moduleforadd module) {

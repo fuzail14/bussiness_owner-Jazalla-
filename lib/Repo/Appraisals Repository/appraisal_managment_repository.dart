@@ -7,9 +7,9 @@ class AppraisalManagmentRepository {
   final networkServices = NetworkServices();
 
   Future<EmployeeAppraisal> getAppraisalApi(
-      {required bearerToken, required employeeId}) async {
+      {required bearerToken, required employeeId, required type}) async {
     var response = await networkServices.getReq(
-        "${Api.getEmployeeAppraisals}/$employeeId",
+        "${Api.getEmployeeAppraisals}/$employeeId/$type",
         bearerToken: bearerToken);
     log(response.toString());
 

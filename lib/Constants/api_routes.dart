@@ -205,4 +205,6 @@ class Api {
 
   static const String addApprovalAuthority =
       "${baseUrl}company/addApprovalAuthority";
+
+  static const String getAllCompanyUsers = "${baseUrl}user/getAllCompanyUsers";
 }

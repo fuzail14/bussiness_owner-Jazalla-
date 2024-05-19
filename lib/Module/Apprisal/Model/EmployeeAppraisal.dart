@@ -1,3 +1,5 @@
+import 'package:bussines_owner/Constants/Person/person.dart';
+
 class EmployeeAppraisal {
   EmployeeAppraisal({
     required this.success,
@@ -20,7 +22,7 @@ class Appraisals {
     required this.companyId,
     required this.branch,
     required this.department,
-    required this.employee,
+    // required this.employee,
     required this.rating,
     required this.appraisalDate,
     required this.customerExperience,
@@ -36,7 +38,7 @@ class Appraisals {
   int? companyId;
   int? branch;
   int? department;
-  int? employee;
+  int? employeeId;
   String? rating;
   String? appraisalDate;
   int? customerExperience;
@@ -48,13 +50,14 @@ class Appraisals {
   String? remark;
   int? createdBy;
   Departments? departments;
+  Employees? employee;
 
   Appraisals.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     companyId = json['company_id'];
     branch = json['branch'];
     department = json['department'];
-    employee = json['employee'];
+    employeeId = json['employee'];
     rating = json['rating'];
     appraisalDate = json['appraisal_date'];
     customerExperience = json['customer_experience'];
@@ -66,6 +69,9 @@ class Appraisals {
     remark = json['remark'];
     createdBy = json['created_by'];
     departments = Departments.fromJson(json['departments']);
+    employee = json['employees'] != null
+        ? Employees.fromJson(json['employees'])
+        : null;
   }
 }
 
@@ -78,24 +84,17 @@ class Departments {
     required this.name,
     required this.slug,
     required this.sortOrder,
-    this.description,
-    required this.createdBy,
-    required this.createdAt,
-    required this.updatedAt,
     required this.status,
   });
-  late final int id;
-  late final int companyId;
-  late final Null branchId;
-  late final int moduleId;
-  late final String name;
-  late final String slug;
-  late final int sortOrder;
-  late final Null description;
-  late final int createdBy;
-  late final String createdAt;
-  late final String updatedAt;
-  late final String status;
+  int? id;
+  int? companyId;
+  int? branchId;
+  int? moduleId;
+  String? name;
+  String? slug;
+  int? sortOrder;
+
+  String? status;
 
   Departments.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -105,27 +104,21 @@ class Departments {
     name = json['name'];
     slug = json['slug'];
     sortOrder = json['sort_order'];
-    description = null;
-    createdBy = json['created_by'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+
     status = json['status'];
   }
+}
 
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['company_id'] = companyId;
-    _data['branch_id'] = branchId;
-    _data['module_id'] = moduleId;
-    _data['name'] = name;
-    _data['slug'] = slug;
-    _data['sort_order'] = sortOrder;
-    _data['description'] = description;
-    _data['created_by'] = createdBy;
-    _data['created_at'] = createdAt;
-    _data['updated_at'] = updatedAt;
-    _data['status'] = status;
-    return _data;
+class Employees {
+  Employees({
+    this.id,
+    this.name,
+  });
+  int? id;
+  String? name;
+
+  Employees.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
   }
 }

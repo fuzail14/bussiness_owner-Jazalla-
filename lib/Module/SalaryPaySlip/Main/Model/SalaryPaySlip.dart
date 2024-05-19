@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import '../../../../Constants/Person/person.dart';
+
 class SalaryPaySlip {
   SalaryPaySlip({
     required this.success,
@@ -12,13 +14,6 @@ class SalaryPaySlip {
     success = json['success'];
     payslips =
         List.from(json['payslips']).map((e) => Payslips.fromJson(e)).toList();
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['success'] = success;
-    _data['payslips'] = payslips.map((e) => e.toJson()).toList();
-    return _data;
   }
 }
 
@@ -41,13 +36,15 @@ class Payslips {
     // required this.createdAt,
     // required this.updatedAt,
   });
-  late final int id;
-  late final int companyId;
-  late final int employeeId;
-  late final int netPayble;
-  late final String salaryMonth;
-  late final int status;
-  late final int basicSalary;
+  int? id;
+  int? companyId;
+  int? employeeId;
+  int? netPayble;
+  String? salaryMonth;
+  int? status;
+  int? basicSalary;
+  Employee? employee;
+
   // late final String allowance;
   // late final List<Allowance> allowance;
   // late final String commission;
@@ -67,6 +64,8 @@ class Payslips {
     salaryMonth = json['salary_month'];
     status = json['status'];
     basicSalary = json['basic_salary'];
+    employee =
+        json['employee'] != null ? Employee.fromJson(json['employee']) : null;
     // allowance = json['allowance'];
 
     // allowance = (jsonDecode(json['allowance']) as List<dynamic>)
@@ -81,29 +80,6 @@ class Payslips {
     // createdBy = json['created_by'];
     // createdAt = json['created_at'];
     // updatedAt = json['updated_at'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['company_id'] = companyId;
-    _data['employee_id'] = employeeId;
-    _data['net_payble'] = netPayble;
-    _data['salary_month'] = salaryMonth;
-    _data['status'] = status;
-    _data['basic_salary'] = basicSalary;
-    // _data['allowance'] = allowance;
-    // _data['allowance'] = allowance.map((x) => x.toJson()).toList();
-    // _data['commission'] = commission;
-    // _data['loan'] = loan;
-    // _data['saturation_deduction'] = saturationDeduction;
-    // _data['other_payment'] = otherPayment;
-    // _data['overtime'] = overtime;
-    // _data['created_by'] = createdBy;
-    // _data['created_at'] = createdAt;
-    // _data['updated_at'] = updatedAt;
-
-    return _data;
   }
 }
 

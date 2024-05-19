@@ -1,14 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
-import 'package:bussines_owner/Routes/set_routes.dart';
-import 'package:bussines_owner/Widgets/StarRating/star_rating.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../../Data/Api Resp/api_response.dart';
@@ -57,7 +55,7 @@ class UserManagementScreen extends ConsumerWidget {
             const Loader()
           else if (state.responseStatus == Status.completed) ...[
             15.ph,
-            if (state.request4Informatio.isEmpty) ...[
+            if (state.companyusers.isEmpty) ...[
               Center(
                 child: Text(
                   'No Requests Found.',
@@ -68,13 +66,13 @@ class UserManagementScreen extends ConsumerWidget {
                 ),
               ),
             ] else
-              Flexible(
+              Expanded(
                 child: GridView.builder(
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2, mainAxisSpacing: 20),
                     shrinkWrap: true,
-                    itemCount: state.request4Informatio.length,
+                    itemCount: state.companyusers.length,
                     itemBuilder: (context, index) {
                       // List of images from assets
                       List<String> imagePaths = [
@@ -111,12 +109,12 @@ class UserManagementScreen extends ConsumerWidget {
                                   ));
                         },
                         child: Container(
-                          height: 198.h,
+                          //  height: 198.h,
                           margin: const EdgeInsets.only(
                                   bottom: 0, left: 15, right: 15, top: 0)
                               .r,
-                          padding: const EdgeInsets.only(
-                                  left: 8, right: 8, bottom: 0, top: 22.5)
+                          padding: EdgeInsets.only(
+                                  left: 8, right: 8, bottom: 0, top: 10)
                               .r,
                           decoration: BoxDecoration(
                             color: whiteColor,
@@ -139,14 +137,18 @@ class UserManagementScreen extends ConsumerWidget {
                               SizedBox(
                                   width: 78.16.w,
                                   height: 78.16.h,
-                                  child: CircleAvatar(
-                                      backgroundImage:
-                                          NetworkImage(imagePath))),
+                                  child: const CircleAvatar(
+                                      backgroundImage: AssetImage(
+                                          'assets/images/user_avatar.png'))),
                               10.8.ph,
                               Text(
-                                titlePath,
-                                maxLines: 1,
+                                state.companyusers[index].firstName.toString() +
+                                    " " +
+                                    state.companyusers[index].lastName
+                                        .toString(),
+                                maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.center,
                                 style: GoogleFonts.poppins(
                                   fontSize: 16.sp,
                                   color: const Color(0xff222B45),
@@ -154,7 +156,7 @@ class UserManagementScreen extends ConsumerWidget {
                                 ),
                               ),
                               Text(
-                                'accounting@gmail.com',
+                                state.companyusers[index].email.toString(),
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: GoogleFonts.poppins(
@@ -163,29 +165,39 @@ class UserManagementScreen extends ConsumerWidget {
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.star,
-                                    size: 15.h,
-                                    color: Color(0xffD4983E).withOpacity(0.7),
-                                  ),
-                                  SizedBox(
-                                    width: 110.w,
-                                    child: Text(
-                                      '4.3 (130 reviews)',
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 12.sp,
-                                        color: const Color(0xff6B779A),
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                              Text(
+                                state.companyusers[index].type.toString(),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 12.sp,
+                                  color: const Color(0xff6B779A),
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
+                              // Row(
+                              //   mainAxisAlignment: MainAxisAlignment.center,
+                              //   children: [
+                              //     Icon(
+                              //       Icons.star,
+                              //       size: 15.h,
+                              //       color: Color(0xffD4983E).withOpacity(0.7),
+                              //     ),
+                              //     SizedBox(
+                              //       width: 110.w,
+                              //       child: Text(
+                              //         '4.3 (130 reviews)',
+                              //         maxLines: 1,
+                              //         overflow: TextOverflow.ellipsis,
+                              //         style: GoogleFonts.poppins(
+                              //           fontSize: 12.sp,
+                              //           color: const Color(0xff6B779A),
+                              //           fontWeight: FontWeight.w400,
+                              //         ),
+                              //       ),
+                              //     ),
+                              //   ],
+                              // ),
                             ],
                           ),
                         ),

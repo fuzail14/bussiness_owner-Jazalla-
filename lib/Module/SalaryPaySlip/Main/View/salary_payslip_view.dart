@@ -102,10 +102,9 @@ class SalaryPaySlipScreen extends ConsumerWidget {
                                       SizedBox(
                                         width: 180.w,
                                         child: Text(
-                                          controller.person!.data!.firstName
-                                                  .toString() +
-                                              controller.person!.data!.lastName
-                                                  .toString(),
+                                          state.payslips[index].employee!
+                                                  .name ??
+                                              "",
                                           maxLines: 1,
                                           style: GoogleFonts.montserrat(
                                             fontSize: 24.sp,

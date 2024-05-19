@@ -110,7 +110,9 @@ class AttendanceManagmentScreen extends ConsumerWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    state.employeeattendance[index].date ?? '',
+                                    state.employeeattendance[index].employee!
+                                        .name
+                                        .toString(),
                                     style: GoogleFonts.montserrat(
                                       fontSize: 16.sp,
                                       color: blackColor,

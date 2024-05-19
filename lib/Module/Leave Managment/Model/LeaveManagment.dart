@@ -1,3 +1,5 @@
+import '../../../Constants/Person/person.dart';
+
 class LeaveManagement {
   LeaveManagement({
     required this.success,
@@ -11,13 +13,6 @@ class LeaveManagement {
     employeeleave = List.from(json['employeeleave'])
         .map((e) => Employeeleave.fromJson(e))
         .toList();
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['success'] = success;
-    _data['employeeleave'] = employeeleave.map((e) => e.toJson()).toList();
-    return _data;
   }
 }
 
@@ -38,21 +33,22 @@ class Employeeleave {
     required this.updatedAt,
     required this.leaveType,
   });
-  late final int id;
-  late final int companyId;
-  late final int employeeId;
-  late final int leaveTypeId;
-  late final String appliedOn;
-  late final String startDate;
-  late final String endDate;
-  late final String totalLeaveDays;
-  late final String leaveReason;
+  int? id;
+  int? companyId;
+  int? employeeId;
+  int? leaveTypeId;
+  String? appliedOn;
+  String? startDate;
+  String? endDate;
+  String? totalLeaveDays;
+  String? leaveReason;
 
-  late final String status;
-  late final int createdBy;
-  late final String createdAt;
-  late final String updatedAt;
-  late final LeaveType leaveType;
+  String? status;
+  int? createdBy;
+  String? createdAt;
+  String? updatedAt;
+  LeaveType? leaveType;
+  Employee? employee;
 
   Employeeleave.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -70,26 +66,8 @@ class Employeeleave {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     leaveType = LeaveType.fromJson(json['leave_type']);
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['company_id'] = companyId;
-    _data['employee_id'] = employeeId;
-    _data['leave_type_id'] = leaveTypeId;
-    _data['applied_on'] = appliedOn;
-    _data['start_date'] = startDate;
-    _data['end_date'] = endDate;
-    _data['total_leave_days'] = totalLeaveDays;
-    _data['leave_reason'] = leaveReason;
-
-    _data['status'] = status;
-    _data['created_by'] = createdBy;
-    _data['created_at'] = createdAt;
-    _data['updated_at'] = updatedAt;
-    _data['leave_type'] = leaveType.toJson();
-    return _data;
+    employee =
+        json['employee'] != null ? Employee.fromJson(json['employee']) : null;
   }
 }
 
@@ -99,37 +77,16 @@ class LeaveType {
     required this.companyId,
     required this.title,
     required this.days,
-    required this.createdBy,
-    required this.createdAt,
-    required this.updatedAt,
   });
-  late final int id;
-  late final int companyId;
-  late final String title;
-  late final int days;
-  late final int createdBy;
-  late final String createdAt;
-  late final String updatedAt;
+  int? id;
+  int? companyId;
+  String? title;
+  int? days;
 
   LeaveType.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     companyId = json['company_id'];
     title = json['title'];
     days = json['days'];
-    createdBy = json['created_by'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['company_id'] = companyId;
-    _data['title'] = title;
-    _data['days'] = days;
-    _data['created_by'] = createdBy;
-    _data['created_at'] = createdAt;
-    _data['updated_at'] = updatedAt;
-    return _data;
   }
 }
