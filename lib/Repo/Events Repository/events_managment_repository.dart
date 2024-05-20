@@ -7,9 +7,9 @@ class EventsRepository {
   final networkServices = NetworkServices();
 
   Future<EmployeeEvent> getEmployeeEventApi(
-      {required bearerToken, required employeeId}) async {
+      {required bearerToken, required employeeId, required type}) async {
     var response = await networkServices.getReq(
-        "${Api.getEmployeeEvents}/$employeeId",
+        "${Api.getEmployeeEvents}/$employeeId/$type",
         bearerToken: bearerToken);
     log(response.toString());
 

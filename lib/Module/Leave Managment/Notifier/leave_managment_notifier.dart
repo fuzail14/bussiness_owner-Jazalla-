@@ -21,7 +21,7 @@ class LeaveManagmentNotifier extends StateNotifier<LeaveManagmentState> {
           bearerToken: person!.Bearer);
     } else {
       leavesViewApi(
-          userId: person!.employee!.id!,
+          userId: person!.data!.employee!.id!,
           type: person!.data!.type,
           bearerToken: person!.Bearer);
     }

@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:animate_do/animate_do.dart';
+import 'package:app_settings/app_settings.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/Font/fonts.dart';
@@ -15,6 +16,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
+import 'package:location/location.dart';
 import '../../../../Constants/Person/person.dart';
 import '../../../../Constants/Person/person_controller.dart';
 import '../../../../Constants/constants.dart';
@@ -333,51 +335,207 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                           Column(
                                             children: [
                                               InkWell(
-                                                onTap: () {
+                                                onTap: () async {
                                                   if (notifier.glassCardList[
                                                               index]
                                                           ['widget_title1'] ==
                                                       'Check In') {
-                                                    // notifier.lateTime = notifier
-                                                    //     .calculateLateTime(
-                                                    //         notifier
-                                                    //             .formattedTime!,
-                                                    //         state.companytime!);
-                                                    // print(
-                                                    //     'Late Time: ${notifier.lateTime}');
-                                                    // print(
-                                                    //     'company id: ${notifier.person!.data!.companyId}');
-                                                    showDialog(
-                                                        context: context,
-                                                        builder: (BuildContext
-                                                                context) =>
-                                                            CheckInDialog(
-                                                              title: 'Check In',
-                                                              svgPath:
-                                                                  'assets/images/check_in_dialog_icon.svg',
-                                                              onTap: () {
-                                                                notifier.sendClockInApi(
-                                                                    companyId: person!
-                                                                        .data!
-                                                                        .companyId,
-                                                                    employeeId:
-                                                                        person!
-                                                                            .employee!
-                                                                            .id,
-                                                                    date: notifier
-                                                                        .formattedDate,
-                                                                    clockInTime:
-                                                                        notifier
-                                                                            .formattedTime
-                                                                            .toString(),
-                                                                    late: notifier
-                                                                        .lateTime,
-                                                                    context:
-                                                                        context);
+                                                    Location location =
+                                                        Location();
+
+                                                    // Check if location services are enabled
+                                                    bool _serviceEnabled =
+                                                        await location
+                                                            .serviceEnabled();
+                                                    if (!_serviceEnabled) {
+                                                      _serviceEnabled =
+                                                          await location
+                                                              .requestService();
+                                                      if (!_serviceEnabled) {
+                                                        // Show a message to the user that location services need to be enabled
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                          SnackBar(
+                                                              content: Text(
+                                                                  'Please enable location services')),
+                                                        );
+                                                        return;
+                                                      }
+                                                    }
+
+                                                    // Check if location permissions are granted
+                                                    PermissionStatus
+                                                        _permissionGranted =
+                                                        await location
+                                                            .hasPermission();
+                                                    if (_permissionGranted ==
+                                                            PermissionStatus
+                                                                .denied ||
+                                                        _permissionGranted ==
+                                                            PermissionStatus
+                                                                .deniedForever) {
+                                                      _permissionGranted =
+                                                          await location
+                                                              .requestPermission();
+                                                      if (_permissionGranted !=
+                                                          PermissionStatus
+                                                              .granted) {
+                                                        // Show a message to the user and redirect to settings
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                          SnackBar(
+                                                            content: Text(
+                                                                'Location permissions are required. Please enable them in settings.'),
+                                                            action:
+                                                                SnackBarAction(
+                                                              label: 'Settings',
+                                                              onPressed: () {
+                                                                AppSettings
+                                                                    .openAppSettings();
                                                               },
-                                                            ));
+                                                            ),
+                                                          ),
+                                                        );
+                                                        return;
+                                                      }
+                                                    }
+
+                                                    // Re-check permissions after returning from settings
+                                                    _permissionGranted =
+                                                        await location
+                                                            .hasPermission();
+                                                    if (_permissionGranted ==
+                                                            PermissionStatus
+                                                                .granted ||
+                                                        _permissionGranted ==
+                                                            PermissionStatus
+                                                                .grantedLimited) {
+                                                      try {
+                                                        print(
+                                                            'Getting location...');
+                                                        LocationData
+                                                            _locationData =
+                                                            await location
+                                                                .getLocation();
+                                                        print(
+                                                            'Latitude: ${_locationData.latitude}, Longitude: ${_locationData.longitude}');
+
+                                                        // Store coordinates in a variable (if needed)
+                                                        double latitude =
+                                                            _locationData
+                                                                .latitude!;
+                                                        double longitude =
+                                                            _locationData
+                                                                .longitude!;
+
+                                                        // Proceed to show the dialog
+                                                        showDialog(
+                                                          context: context,
+                                                          builder: (BuildContext
+                                                                  context) =>
+                                                              CheckInDialog(
+                                                            title: 'Check In',
+                                                            svgPath:
+                                                                'assets/images/check_in_dialog_icon.svg',
+                                                            onTap: () {
+                                                              notifier
+                                                                  .sendClockInApi(
+                                                                companyId: person!
+                                                                    .data!
+                                                                    .companyId,
+                                                                employeeId: person
+                                                                    .data!
+                                                                    .employee!
+                                                                    .id,
+                                                                date: notifier
+                                                                    .formattedDate,
+                                                                clockInTime: notifier
+                                                                    .formattedTime
+                                                                    .toString(),
+                                                                late: notifier
+                                                                    .lateTime,
+                                                                latitude:
+                                                                    latitude,
+                                                                longitude:
+                                                                    longitude,
+                                                                context:
+                                                                    context,
+                                                              );
+                                                            },
+                                                          ),
+                                                        );
+                                                      } catch (e) {
+                                                        print(
+                                                            'Error getting location: $e');
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                          SnackBar(
+                                                              content: Text(
+                                                                  'Failed to get location. Please try again.')),
+                                                        );
+                                                      }
+                                                    } else {
+                                                      // Show a message if permissions are still not granted
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                        SnackBar(
+                                                            content: Text(
+                                                                'Location permissions are required.')),
+                                                      );
+                                                    }
                                                   }
-                                                },
+                                                }
+
+                                                // onTap: () {
+                                                //   if (notifier.glassCardList[
+                                                //               index]
+                                                //           ['widget_title1'] ==
+                                                //       'Check In') {
+                                                //     // notifier.lateTime = notifier
+                                                //     //     .calculateLateTime(
+                                                //     //         notifier
+                                                //     //             .formattedTime!,
+                                                //     //         state.companytime!);
+                                                //     // print(
+                                                //     //     'Late Time: ${notifier.lateTime}');
+                                                //     // print(
+                                                //     //     'company id: ${notifier.person!.data!.companyId}');
+                                                //     showDialog(
+                                                //         context: context,
+                                                //         builder: (BuildContext
+                                                //                 context) =>
+                                                //             CheckInDialog(
+                                                //               title: 'Check In',
+                                                //               svgPath:
+                                                //                   'assets/images/check_in_dialog_icon.svg',
+                                                //               onTap: () {
+                                                //                 notifier.sendClockInApi(
+                                                //                     companyId: person!
+                                                //                         .data!
+                                                //                         .companyId,
+                                                //                     employeeId: person
+                                                //                         .data!
+                                                //                         .employee!
+                                                //                         .id,
+                                                //                     date: notifier
+                                                //                         .formattedDate,
+                                                //                     clockInTime:
+                                                //                         notifier
+                                                //                             .formattedTime
+                                                //                             .toString(),
+                                                //                     late: notifier
+                                                //                         .lateTime,
+                                                //                     context:
+                                                //                         context);
+                                                //               },
+                                                //             ));
+                                                //   }
+                                                // },
+                                                ,
                                                 child: Container(
                                                   height: 60.h,
                                                   width: 110.w,
@@ -477,10 +635,10 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                                                   'assets/images/check_out_dialog_icon.svg',
                                                               onTap: () {
                                                                 notifier.sendClockOutApi(
-                                                                    employeeId:
-                                                                        person!
-                                                                            .employee!
-                                                                            .id,
+                                                                    employeeId: person
+                                                                        .data!
+                                                                        .employee!
+                                                                        .id,
                                                                     date: notifier
                                                                         .formattedDate,
                                                                     clockOut: notifier
@@ -533,6 +691,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                         );
                       }),
                 ),
+
                 17.ph,
 
                 Row(
@@ -773,7 +932,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                   const EmployeeDashboard()
                 ] else if (person!.data!.type == 'project manager') ...[
                   const ProjectManagerDashboard()
-                ] else if (person!.data!.type == 'procurement manager') ...[
+                ] else if (person!.data!.type == 'buyer') ...[
                   const ProcurementManagerDashboard()
                 ] else if (person!.data!.type == 'service manager') ...[
                   const ServiceManagerDashboard()

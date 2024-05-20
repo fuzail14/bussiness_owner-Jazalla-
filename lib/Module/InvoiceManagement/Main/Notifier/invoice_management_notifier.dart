@@ -61,9 +61,8 @@ class InvoiceManagementNotifier extends StateNotifier<InvoiceManagementState> {
 //   return InvoiceManagementNotifier();
 // });
 
-final invoiceManagementProvider =
-    StateNotifierProvider<InvoiceManagementNotifier, InvoiceManagementState>(
-        (ref) {
+final invoiceManagementProvider = StateNotifierProvider.autoDispose<
+    InvoiceManagementNotifier, InvoiceManagementState>((ref) {
   final person = ref.read(personProvider);
   if (person == null) {
     throw Exception('Person data is not available');

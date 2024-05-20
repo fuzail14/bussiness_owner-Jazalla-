@@ -12,9 +12,9 @@ class PersonController extends StateNotifier<Person?> {
     state = person;
   }
 
-  void factoryClearPerson(Person person) {
-    state = Person.clear();
-  }
+  // void factoryClearPerson(Person person) {
+  //   state = Person.clear();
+  // }
 
   void clearPerson() {
     //state?.data = null;

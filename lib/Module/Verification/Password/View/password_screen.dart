@@ -155,19 +155,24 @@ class PasswordScreen extends ConsumerWidget {
                       ),
                     ),
                     60.71.ph,
-                    MyButton(
-                      loading: state.isLoading,
-                      width: 286.w,
-                      height: 50.h,
-                      color: HexColor('#4CB5D0'),
-                      name: 'Submit',
-                      onPressed: () {
-                        if (_key.currentState!.validate()) {
-                          controller.loginApi(phoneNumberController.text,
-                              controller.passwordController.text, context, ref);
-                        }
-                      },
-                    ),
+                    (state.isLoading)
+                        ? const Center(child: CircularProgressIndicator())
+                        : MyButton(
+                            loading: state.isLoading,
+                            width: 286.w,
+                            height: 50.h,
+                            color: HexColor('#4CB5D0'),
+                            name: 'Submit',
+                            onPressed: () {
+                              if (_key.currentState!.validate()) {
+                                controller.loginApi(
+                                    phoneNumberController.text,
+                                    controller.passwordController.text,
+                                    context,
+                                    ref);
+                              }
+                            },
+                          ),
                   ],
                 ),
               ),

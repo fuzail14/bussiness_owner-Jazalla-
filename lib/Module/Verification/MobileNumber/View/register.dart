@@ -139,24 +139,28 @@ class CheckPhoneNumber extends ConsumerWidget {
                     onTap: () {},
                   ),
                   90.ph,
-                  MyButton(
-                    width: 324.w,
+                  (state.isLoading)
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : MyButton(
+                          width: 324.w,
 
-                    height: 50.h,
-                    name: 'Next',
-                    color: HexColor('#4CB5D0'),
-                    //textColor: HexColor('#8518FF'),
-                    loading: state.isLoading,
-                    onPressed: () {
-                      if (controller.key.currentState!.validate()) {
-                        state.phoneNumber =
-                            "+${state.countryCode}${controller.phoneNumberController.text}";
-                        if (!state.isLoading) {
-                          controller.verifyUserPhoneNumber(context);
-                        }
-                      }
-                    },
-                  ),
+                          height: 50.h,
+                          name: 'Next',
+                          color: HexColor('#4CB5D0'),
+                          //textColor: HexColor('#8518FF'),
+                          loading: state.isLoading,
+                          onPressed: () {
+                            if (controller.key.currentState!.validate()) {
+                              state.phoneNumber =
+                                  "+${state.countryCode}${controller.phoneNumberController.text}";
+                              if (!state.isLoading) {
+                                controller.verifyUserPhoneNumber(context);
+                              }
+                            }
+                          },
+                        ),
                 ],
               ),
             ),

@@ -1,3 +1,4 @@
+import 'package:bussines_owner/Constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
@@ -71,17 +72,6 @@ class MenuController extends StateNotifier<MenuState> {
           ));
       state = MenuState(menuItems: items);
     } else if (person.data!.type == 'company') {
-      // MenuItem(
-      //   title: 'Dashboard',
-      //   iconPath: 'assets/images/menu1.svg',
-      //   trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
-      // ),
-      // MenuItem(
-      //   title: 'Marketplace',
-      //   iconPath: 'assets/images/menu2.svg',
-      //   trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
-      //   //onTap: () {},
-      // ),
       items.addAll([
         MenuItem(
           title: 'Order Placement',
@@ -121,19 +111,34 @@ class MenuController extends StateNotifier<MenuState> {
         ),
       ]);
       state = MenuState(menuItems: items);
-
-      // MenuItem(
-      //   title: 'Sales Management',
-      //   iconPath: 'assets/images/menu4.svg',
-      //   trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
-      //   // onTap: () {},
-      // ),
-      // MenuItem(
-      //   title: 'Services Management',
-      //   iconPath: 'assets/images/menu5.svg',
-      //   trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
-      //   //onTap: () {},
-      // ),
+    } else if (person.data!.type == userTypeProcurementManager) {
+      items.addAll([
+        MenuItem(
+          title: 'Order Placement',
+          iconPath: 'assets/images/menu3.svg',
+          trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+          //onTap: () {},
+        ),
+        MenuItem(
+          title: 'Invoice and Billing',
+          iconPath: 'assets/images/menu7.svg',
+          trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+          // onTap: () {},
+        ),
+        MenuItem(
+          title: 'Settings',
+          iconPath: 'assets/images/menu11.svg',
+          trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+          // onTap: () {},
+        ),
+        MenuItem(
+          title: 'Logout',
+          iconPath: 'assets/images/menu10.svg',
+          trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+          // onTap: () {},
+        ),
+      ]);
+      state = MenuState(menuItems: items);
     }
   }
 

@@ -17,8 +17,9 @@ class EmployeeDashboardNotifier extends StateNotifier<EmployeeDashboardState> {
 
   EmployeeDashboardNotifier(this.person) : super(EmployeeDashboardState()) {
     getannouncements(
-        employeeId: person!.employee!.id!, bearerToken: person!.Bearer);
-    getmeetings(employeeId: person!.employee!.id!, bearerToken: person!.Bearer);
+        employeeId: person!.data!.employee!.id!, bearerToken: person!.Bearer);
+    getmeetings(
+        employeeId: person!.data!.employee!.id!, bearerToken: person!.Bearer);
   }
 
   final TextEditingController searchController = TextEditingController();

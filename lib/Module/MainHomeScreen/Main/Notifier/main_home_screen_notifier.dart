@@ -90,6 +90,8 @@ class MainHomeScreenNotifier extends StateNotifier<MainHomeScreenState> {
     required date,
     required clockInTime,
     required late,
+    required latitude,
+    required longitude,
     required BuildContext context,
   }) async {
     state = state.copyWith(isLoading: true);
@@ -112,7 +114,8 @@ class MainHomeScreenNotifier extends StateNotifier<MainHomeScreenState> {
       "employee_id": employeeId.toString(),
       "date": date.toString(),
       "clock_in": formattedTime,
-      // "late": lateTime.toString(),
+      "latitude": latitude.toString(),
+      "longitude": longitude.toString(),
       "status": 'Present',
     };
 
@@ -152,7 +155,7 @@ class MainHomeScreenNotifier extends StateNotifier<MainHomeScreenState> {
             timeInSecForIosWeb: 3,
             backgroundColor: const Color(0xffEF2E61));
         Navigator.pop(context);
-      } else if (error.toString().contains('40')) {
+      } else if (error.toString().contains('403')) {
         Fluttertoast.showToast(
             msg: 'Attendance Not Marked Server Error',
             gravity: ToastGravity.CENTER,

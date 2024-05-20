@@ -5,7 +5,6 @@ import 'package:bussines_owner/Repo/Company%20Policy%20Repository/company_policy
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../../Data/Api Resp/api_response.dart';
-import '../../../../../Repo/Approval Managment Repository/approval_managment_repository.dart';
 import '../../../../Constants/Person/person.dart';
 import '../../../../Constants/Person/person_controller.dart';
 import '../State/company_policy_state.dart';
@@ -53,8 +52,8 @@ class CompanyPolicyNotifier extends StateNotifier<CompanyPolicyState> {
 //   return CompanyPolicyNotifier();
 // });
 
-final companyPolicyProvider =
-    StateNotifierProvider<CompanyPolicyNotifier, CompanyPolicyState>((ref) {
+final companyPolicyProvider = StateNotifierProvider.autoDispose<
+    CompanyPolicyNotifier, CompanyPolicyState>((ref) {
   final person = ref.watch(personProvider);
   if (person == null) {
     throw Exception('Person data is not available');

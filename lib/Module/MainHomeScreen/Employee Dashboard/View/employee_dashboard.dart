@@ -29,8 +29,8 @@ class EmployeeDashboard extends ConsumerWidget {
         10.ph,
         //EVENTS
         Consumer(builder: (context, ref, child) {
-          final controller = ref.watch(EventProvider.notifier);
-          final state = ref.watch(EventProvider);
+          final controller = ref.watch(eventProvider.notifier);
+          final state = ref.watch(eventProvider);
           return Container(
             decoration: BoxDecoration(
               color: whiteColor,

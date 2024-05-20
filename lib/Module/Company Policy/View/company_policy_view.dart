@@ -133,8 +133,11 @@ class CompanyPolicyScreen extends ConsumerWidget {
                                           SizedBox(
                                             width: 150.w,
                                             child: Text(
-                                              'Title',
+                                              state.companypolicies[index]
+                                                      .title ??
+                                                  '',
                                               maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
                                               style: GoogleFonts.montserrat(
                                                 fontSize: 14.sp,
                                                 color: const Color(0xff212121),
@@ -145,9 +148,7 @@ class CompanyPolicyScreen extends ConsumerWidget {
                                           SizedBox(
                                             width: 150.w,
                                             child: Text(
-                                              state.companypolicies[index]
-                                                      .title ??
-                                                  '',
+                                              'Title',
                                               maxLines: 1,
                                               textDirection: TextDirection.ltr,
                                               style: GoogleFonts.montserrat(
@@ -176,7 +177,9 @@ class CompanyPolicyScreen extends ConsumerWidget {
                                           SizedBox(
                                             width: 150.w,
                                             child: Text(
-                                              'Description',
+                                              state.companypolicies[index]
+                                                      .description ??
+                                                  '',
                                               maxLines: 1,
                                               style: GoogleFonts.montserrat(
                                                 fontSize: 14.sp,
@@ -188,9 +191,7 @@ class CompanyPolicyScreen extends ConsumerWidget {
                                           SizedBox(
                                             width: 150.w,
                                             child: Text(
-                                              state.companypolicies[index]
-                                                      .description ??
-                                                  '',
+                                              'Description',
                                               maxLines: 2,
                                               textDirection: TextDirection.ltr,
                                               style: GoogleFonts.montserrat(

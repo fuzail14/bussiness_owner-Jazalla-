@@ -21,7 +21,7 @@ class SalaryPaySlipNotifier extends StateNotifier<SalaryPaySlipState> {
           type: person!.data!.type);
     } else {
       salaryPaySlipViewApi(
-          employeeId: person!.employee!.id!,
+          employeeId: person!.data!.employee!.id!,
           bearerToken: person!.Bearer,
           type: person!.data!.type);
     }

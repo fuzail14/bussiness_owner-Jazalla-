@@ -464,7 +464,7 @@ class LeaveCreateScreen extends ConsumerWidget {
                   if (controller.key.currentState!.validate()) {
                     ref.read(leaveCreateProvider.notifier).sendLeaveRequestApi(
                         companyId: controller.person!.data!.companyId,
-                        employeeId: controller.person!.employee!.id,
+                        employeeId: controller.person!.data!.employee!.id,
                         leaveTypeId: state.leaveTypeId,
                         appliedOn: controller.appliedOn,
                         startDate: controller.startDateController.text,

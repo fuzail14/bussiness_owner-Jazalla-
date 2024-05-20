@@ -36,6 +36,7 @@ class MySharedPreferences {
   }
 
   static setUserData({required Person person, required fcmToken}) async {
+    print('set user data in shared pref ${person.data!.employee!.id}');
     await SharedPreferences.getInstance().then((value) {
       value.setInt(userIdSPKey, person.data!.id ?? 0);
       value.setInt(companyIdSPKey, person.data!.companyId ?? 0);
@@ -58,7 +59,7 @@ class MySharedPreferences {
       value.setString(logoSPKEY, person.data!.company!.logo ?? '');
       value.setString(logoPathSPKEY, person.data!.company!.logoPath ?? '');
 
-      value.setInt(employeeIdSPKEY, person.employee!.id ?? 0);
+      value.setInt(employeeIdSPKEY, person.data!.employee!.id ?? 0);
     });
   }
 
@@ -86,27 +87,28 @@ class MySharedPreferences {
           value.setString(primaryActivitySPKEY, '');
 
       person = Person(
-          data: Data(
-              id: value.getInt(userIdSPKey),
-              companyId: value.getInt(companyIdSPKey),
-              name: value.getString(nameSPKey),
-              firstName: value.getString(firstNameSPKey),
-              lastName: value.getString(lastNameSPKey),
-              mobileNo: value.getString(mobileNoSPKEY),
-              userRoleId: value.getInt(userRoleIdSPKey),
-              email: value.getString(emailSPKEY),
-              type: value.getString(typeSPKEY),
-              fcmtoken: value.getString(fcmTokenSPKEY),
-              company: Company(
-                companyName: value.getString(companyNameSPKEY),
-                primaryActivity: value.getString(primaryActivitySPKEY),
-                logo: value.getString(logoSPKEY),
-                logoPath: value.getString(logoPathSPKEY),
-              )),
-          Bearer: value.getString(bearerTokenSPKEY),
-          employee: Employee(
-            id: value.getInt(employeeIdSPKEY),
-          ));
+        data: Data(
+            id: value.getInt(userIdSPKey),
+            companyId: value.getInt(companyIdSPKey),
+            name: value.getString(nameSPKey),
+            firstName: value.getString(firstNameSPKey),
+            lastName: value.getString(lastNameSPKey),
+            mobileNo: value.getString(mobileNoSPKEY),
+            userRoleId: value.getInt(userRoleIdSPKey),
+            email: value.getString(emailSPKEY),
+            type: value.getString(typeSPKEY),
+            fcmtoken: value.getString(fcmTokenSPKEY),
+            company: Company(
+              companyName: value.getString(companyNameSPKEY),
+              primaryActivity: value.getString(primaryActivitySPKEY),
+              logo: value.getString(logoSPKEY),
+              logoPath: value.getString(logoPathSPKEY),
+            ),
+            employee: Employee(
+              id: value.getInt(employeeIdSPKEY),
+            )),
+        Bearer: value.getString(bearerTokenSPKEY),
+      );
     });
     return person;
   }

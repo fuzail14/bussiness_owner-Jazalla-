@@ -10,13 +10,6 @@ class IndividualInvoiceDetail {
     success = json['success'];
     invoicedetail = Invoicedetail.fromJson(json['invoicedetail']);
   }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['success'] = success;
-    _data['invoicedetail'] = invoicedetail.toJson();
-    return _data;
-  }
 }
 
 class Invoicedetail {
@@ -35,33 +28,30 @@ class Invoicedetail {
     required this.shippingDisplay,
     required this.discountApply,
     required this.createdBy,
-    required this.createdAt,
-    required this.updatedAt,
     required this.company,
     required this.vendor,
     required this.payments,
     required this.purchase,
   });
-  late final int id;
-  late final int invoiceId;
-  late final int venderId;
-  late final int purchaseId;
-  late final int customerId;
-  late final String issueDate;
-  late final String dueDate;
-  late final String sendDate;
-  late final int categoryId;
-  late final String refNumber;
-  late final int status;
-  late final int shippingDisplay;
-  late final int discountApply;
-  late final int createdBy;
-  late final String createdAt;
-  late final String updatedAt;
-  late final Company company;
-  late final Vendor vendor;
-  late final List<Payments> payments;
-  late final Purchase purchase;
+  int? id;
+  int? invoiceId;
+  int? venderId;
+  int? purchaseId;
+  int? customerId;
+  String? issueDate;
+  String? dueDate;
+  String? sendDate;
+  int? categoryId;
+  String? refNumber;
+  int? status;
+  int? shippingDisplay;
+  int? discountApply;
+  int? createdBy;
+
+  Company? company;
+  Vendor? vendor;
+  List<Payments>? payments;
+  Purchase? purchase;
 
   Invoicedetail.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -78,38 +68,12 @@ class Invoicedetail {
     shippingDisplay = json['shipping_display'];
     discountApply = json['discount_apply'];
     createdBy = json['created_by'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+
     company = Company.fromJson(json['company']);
     vendor = Vendor.fromJson(json['vendor']);
     payments =
         List.from(json['payments']).map((e) => Payments.fromJson(e)).toList();
     purchase = Purchase.fromJson(json['purchase']);
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['invoice_id'] = invoiceId;
-    _data['vender_id'] = venderId;
-    _data['purchase_id'] = purchaseId;
-    _data['customer_id'] = customerId;
-    _data['issue_date'] = issueDate;
-    _data['due_date'] = dueDate;
-    _data['send_date'] = sendDate;
-    _data['category_id'] = categoryId;
-    _data['ref_number'] = refNumber;
-    _data['status'] = status;
-    _data['shipping_display'] = shippingDisplay;
-    _data['discount_apply'] = discountApply;
-    _data['created_by'] = createdBy;
-    _data['created_at'] = createdAt;
-    _data['updated_at'] = updatedAt;
-    _data['company'] = company.toJson();
-    _data['vendor'] = vendor.toJson();
-    _data['payments'] = payments.map((e) => e.toJson()).toList();
-    _data['purchase'] = purchase.toJson();
-    return _data;
   }
 }
 
@@ -120,25 +84,16 @@ class Company {
     required this.mobileNo,
     required this.address,
   });
-  late final int id;
-  late final String companyName;
-  late final String mobileNo;
-  late final Address address;
+  int? id;
+  String? companyName;
+  String? mobileNo;
+  Address? address;
 
   Company.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     companyName = json['company_name'];
     mobileNo = json['mobile_no'];
     address = Address.fromJson(json['address']);
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['company_name'] = companyName;
-    _data['mobile_no'] = mobileNo;
-    _data['address'] = address.toJson();
-    return _data;
   }
 }
 
@@ -148,22 +103,14 @@ class Address {
     required this.addressId,
     required this.address,
   });
-  late final int id;
-  late final int addressId;
-  late final String address;
+  int? id;
+  int? addressId;
+  String? address;
 
   Address.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     addressId = json['address_id'];
     address = json['address'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['address_id'] = addressId;
-    _data['address'] = address;
-    return _data;
   }
 }
 
@@ -174,25 +121,18 @@ class Vendor {
     required this.mobileNo,
     required this.address,
   });
-  late final int id;
-  late final String companyName;
-  late final String mobileNo;
-  late final Address address;
+  int? id;
+  String? companyName;
+  String? mobileNo;
+  Address? address;
 
   Vendor.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     companyName = json['company_name'];
     mobileNo = json['mobile_no'];
-    address = Address.fromJson(json['address']);
-  }
 
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['company_name'] = companyName;
-    _data['mobile_no'] = mobileNo;
-    _data['address'] = address.toJson();
-    return _data;
+    address =
+        json['address'] != null ? Address.fromJson(json['address']) : null;
   }
 }
 
@@ -212,25 +152,21 @@ class Payments {
     this.addReceipt,
     this.reference,
     this.description,
-    required this.createdAt,
-    required this.updatedAt,
   });
-  late final int id;
-  late final int invoiceId;
-  late final String date;
-  late final String amount;
-  late final int accountId;
-  late final int paymentMethod;
-  late final Null orderId;
-  late final Null currency;
-  late final Null txnId;
-  late final String paymentType;
-  late final Null receipt;
-  late final Null addReceipt;
-  late final Null reference;
-  late final Null description;
-  late final String createdAt;
-  late final String updatedAt;
+  int? id;
+  int? invoiceId;
+  String? date;
+  String? amount;
+  int? accountId;
+  int? paymentMethod;
+  int? orderId;
+  String? currency;
+  int? txnId;
+  String? paymentType;
+  String? receipt;
+  String? addReceipt;
+  String? reference;
+  String? description;
 
   Payments.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -247,29 +183,6 @@ class Payments {
     addReceipt = null;
     reference = null;
     description = null;
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['invoice_id'] = invoiceId;
-    _data['date'] = date;
-    _data['amount'] = amount;
-    _data['account_id'] = accountId;
-    _data['payment_method'] = paymentMethod;
-    _data['order_id'] = orderId;
-    _data['currency'] = currency;
-    _data['txn_id'] = txnId;
-    _data['payment_type'] = paymentType;
-    _data['receipt'] = receipt;
-    _data['add_receipt'] = addReceipt;
-    _data['reference'] = reference;
-    _data['description'] = description;
-    _data['created_at'] = createdAt;
-    _data['updated_at'] = updatedAt;
-    return _data;
   }
 }
 
@@ -363,39 +276,6 @@ class Purchase {
     updatedAt = json['updated_at'];
     items = List.from(json['items']).map((e) => Items.fromJson(e)).toList();
   }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['purchase_id'] = purchaseId;
-    _data['company_id'] = companyId;
-    _data['supplier_network'] = supplierNetwork;
-    _data['vender_id'] = venderId;
-    _data['warehouse_id'] = warehouseId;
-    _data['purchase_date'] = purchaseDate;
-    _data['order_date'] = orderDate;
-    _data['delivery_date'] = deliveryDate;
-    _data['purchase_number'] = purchaseNumber;
-    _data['shipping_mode'] = shippingMode;
-    _data['note'] = note;
-    _data['status'] = status;
-    _data['address'] = address;
-    _data['attachment'] = attachment;
-    _data['shipping_display'] = shippingDisplay;
-    _data['send_date'] = sendDate;
-    _data['discount_apply'] = discountApply;
-    _data['total_amount'] = totalAmount;
-    _data['category_id'] = categoryId;
-    _data['invoice_received'] = invoiceReceived;
-    _data['accepted_at'] = acceptedAt;
-    _data['reject_reason'] = rejectReason;
-    _data['rejected_at'] = rejectedAt;
-    _data['created_by'] = createdBy;
-    _data['created_at'] = createdAt;
-    _data['updated_at'] = updatedAt;
-    _data['items'] = items.map((e) => e.toJson()).toList();
-    return _data;
-  }
 }
 
 class Items {
@@ -436,22 +316,6 @@ class Items {
     createdAt = null;
     updatedAt = null;
     product2 = Product2.fromJson(json['product2']);
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['purchase_id'] = purchaseId;
-    _data['product_id'] = productId;
-    _data['quantity'] = quantity;
-    _data['tax'] = tax;
-    _data['discount'] = discount;
-    _data['price'] = price;
-    _data['description'] = description;
-    _data['created_at'] = createdAt;
-    _data['updated_at'] = updatedAt;
-    _data['product2'] = product2.toJson();
-    return _data;
   }
 }
 

@@ -65,9 +65,8 @@ class PasswordController extends StateNotifier<PasswordState> {
 
         print('logged in user detail');
 
-        print(person.toString());
-        print(person.data!.company!.logo);
-        print(person.data!.company!.logoPath);
+        log(person.data!.company.toString());
+        log(person.data!.employee.toString());
 
         //log(person.data!.company!.companyName!);
         print('-----------------');
@@ -91,8 +90,10 @@ class PasswordController extends StateNotifier<PasswordState> {
         print(person2.data!.companyId);
 
         ref.read(personProvider.notifier).setPerson(person2);
-
-        context.pushReplacementNamed(homescreen);
+        // Use the context only if the widget is still mounted
+        if (context.mounted) {
+          GoRouter.of(context).pushReplacementNamed(homescreen);
+        }
 
         setLoading(false);
       }

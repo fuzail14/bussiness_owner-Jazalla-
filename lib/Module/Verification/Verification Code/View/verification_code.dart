@@ -152,26 +152,31 @@ class VerificationCode extends ConsumerWidget {
                       ),
                     ),
                     102.ph,
-                    MyButton(
-                        width: 324.w,
-                        height: 50.h,
-                        color: HexColor('#4CB5D0'),
-                        loading: verificationCodeState.isLoading,
-                        name: 'Next',
-                        onPressed: () {
-                          if (verificationCodeController.key.currentState!
-                              .validate()) {
-                            if (!verificationCodeState.isLoading) {
-                              print(verificationCodeController.verificatioCode);
+                    (verificationCodeState.isLoading)
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : MyButton(
+                            width: 324.w,
+                            height: 50.h,
+                            color: HexColor('#4CB5D0'),
+                            loading: verificationCodeState.isLoading,
+                            name: 'Next',
+                            onPressed: () {
+                              if (verificationCodeController.key.currentState!
+                                  .validate()) {
+                                if (!verificationCodeState.isLoading) {
+                                  print(verificationCodeController
+                                      .verificatioCode);
 
-                              verificationCodeController.verifyUserOtp(
-                                  context,
-                                  verificationCodeController
-                                      .otpCodeController.text,
-                                  checkPhoneNumberState.verificationId);
-                            }
-                          }
-                        })
+                                  verificationCodeController.verifyUserOtp(
+                                      context,
+                                      verificationCodeController
+                                          .otpCodeController.text,
+                                      checkPhoneNumberState.verificationId);
+                                }
+                              }
+                            })
                   ],
                 ),
               ),

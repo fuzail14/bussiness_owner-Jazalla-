@@ -60,5 +60,11 @@
   </array>
   <key>NSPhotoLibraryAddUsageDescription</key>
 <string>Allow access to save PDFs</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Reason why we need access to your location,because user have to marked attendance so i want user current location of office if user is in company's location then attendance marked successfully otherwise i shown a snackbar that you are not in company location</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>We need your location to provide better service even when the app is in the background.</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>We need your location to provide better service.</string>
 </dict>
 </plist>

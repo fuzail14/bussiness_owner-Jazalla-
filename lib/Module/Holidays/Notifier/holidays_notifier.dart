@@ -54,7 +54,7 @@ class HolidaysNotifier extends StateNotifier<HolidaysState> {
 // });
 
 final holidaysProvider =
-    StateNotifierProvider<HolidaysNotifier, HolidaysState>((ref) {
+    StateNotifierProvider.autoDispose<HolidaysNotifier, HolidaysState>((ref) {
   final person = ref.watch(personProvider);
   if (person == null) {
     throw Exception('Person data is not available');

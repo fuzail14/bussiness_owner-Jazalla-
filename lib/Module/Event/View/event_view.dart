@@ -27,8 +27,8 @@ class EventScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // print(person!.data!.id!);
 
-    final controller = ref.watch(EventProvider.notifier);
-    final state = ref.watch(EventProvider);
+    final controller = ref.watch(eventProvider.notifier);
+    final state = ref.watch(eventProvider);
     print('build check  ${buildcheck++}');
 
     return Scaffold(

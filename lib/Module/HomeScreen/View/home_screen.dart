@@ -426,7 +426,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     print("company Id ${person!.data!.companyId}");
     print("company primary activity ${person!.data!.company!.primaryActivity}");
 
-    print("if employee log in Id ${person!.employee!.id}");
+    print("if employee log in Id ${person!.data!.employee!.id}");
 
     // print(person!.data!.company!.companyName);
 

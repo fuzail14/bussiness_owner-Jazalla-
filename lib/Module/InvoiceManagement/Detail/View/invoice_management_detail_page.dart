@@ -226,7 +226,7 @@ class InvoiceManagementDetailPage extends ConsumerWidget {
                                   ),
                                   7.ph,
                                   Text(
-                                    state.invoice!.company.companyName
+                                    state.invoice!.company!.companyName
                                         .toString(),
                                     style: GoogleFonts.montserrat(
                                         fontSize: 13.sp,
@@ -235,7 +235,7 @@ class InvoiceManagementDetailPage extends ConsumerWidget {
                                   ),
                                   5.ph,
                                   Text(
-                                    'Address :Saudi Arabia, ${state.invoice!.company.address.address.toString()}',
+                                    'Address :Saudi Arabia, ${state.invoice!.company!.address!.address.toString()}',
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                     style: GoogleFonts.montserrat(
@@ -245,7 +245,7 @@ class InvoiceManagementDetailPage extends ConsumerWidget {
                                   ),
                                   5.ph,
                                   Text(
-                                    'Contact : ${state.invoice!.company.mobileNo.toString()}',
+                                    'Contact : ${state.invoice!.company!.mobileNo.toString()}',
                                     style: GoogleFonts.montserrat(
                                         fontSize: 12.sp,
                                         fontWeight: FontWeight.w500,
@@ -278,7 +278,7 @@ class InvoiceManagementDetailPage extends ConsumerWidget {
                                   ),
                                   7.ph,
                                   Text(
-                                    state.invoice!.vendor.companyName
+                                    state.invoice!.vendor!.companyName
                                         .toString(),
                                     style: GoogleFonts.montserrat(
                                         fontSize: 13.sp,
@@ -291,7 +291,7 @@ class InvoiceManagementDetailPage extends ConsumerWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'Contact : ${state.invoice!.vendor.mobileNo.toString()}',
+                                        'Contact : ${state.invoice!.vendor!.mobileNo.toString()}',
                                         maxLines: 2,
                                         style: GoogleFonts.montserrat(
                                             fontSize: 12.sp,
@@ -382,7 +382,7 @@ class InvoiceManagementDetailPage extends ConsumerWidget {
                                   ),
                                   11.ph,
                                   if (state
-                                      .invoice!.purchase.items.isEmpty) ...[
+                                      .invoice!.purchase!.items.isEmpty) ...[
                                     Center(
                                       child: Text(
                                         'No Products Found.',
@@ -397,7 +397,7 @@ class InvoiceManagementDetailPage extends ConsumerWidget {
                                       height: 100.h,
                                       child: ListView.builder(
                                           itemCount: state
-                                              .invoice!.purchase.items.length,
+                                              .invoice!.purchase!.items.length,
                                           itemBuilder: (context, index) {
                                             return Padding(
                                               padding:
@@ -417,7 +417,7 @@ class InvoiceManagementDetailPage extends ConsumerWidget {
                                                     child: Text(
                                                       state
                                                           .invoice!
-                                                          .purchase
+                                                          .purchase!
                                                           .items[index]
                                                           .product2
                                                           .name
@@ -438,7 +438,7 @@ class InvoiceManagementDetailPage extends ConsumerWidget {
                                                   SizedBox(
                                                     width: 40.w,
                                                     child: Text(
-                                                      state.invoice!.purchase
+                                                      state.invoice!.purchase!
                                                           .items[index].quantity
                                                           .toString(),
                                                       style: GoogleFonts
@@ -454,7 +454,7 @@ class InvoiceManagementDetailPage extends ConsumerWidget {
                                                   SizedBox(
                                                     width: 40.w,
                                                     child: Text(
-                                                      '\$${state.invoice!.purchase.items[index].price.toString()}',
+                                                      '\$${state.invoice!.purchase!.items[index].price.toString()}',
                                                       maxLines: 2,
                                                       style: GoogleFonts
                                                           .montserrat(
@@ -469,7 +469,7 @@ class InvoiceManagementDetailPage extends ConsumerWidget {
                                                   SizedBox(
                                                     width: 40.w,
                                                     child: Text(
-                                                      '\$${state.invoice!.purchase.items[index].discount.toString()}',
+                                                      '\$${state.invoice!.purchase!.items[index].discount.toString()}',
                                                       style: GoogleFonts
                                                           .montserrat(
                                                               fontSize: 10.sp,
@@ -483,7 +483,7 @@ class InvoiceManagementDetailPage extends ConsumerWidget {
                                                   SizedBox(
                                                     width: 40.w,
                                                     child: Text(
-                                                      '${state.invoice!.purchase.items[index].price.toString()}%',
+                                                      '${state.invoice!.purchase!.items[index].price.toString()}%',
                                                       style: GoogleFonts
                                                           .montserrat(
                                                               fontSize: 10.sp,
@@ -497,7 +497,7 @@ class InvoiceManagementDetailPage extends ConsumerWidget {
                                                   SizedBox(
                                                     width: 40.w,
                                                     child: Text(
-                                                      '\$${state.invoice!.purchase.items[index].price.toString()}',
+                                                      '\$${state.invoice!.purchase!.items[index].price.toString()}',
                                                       maxLines: 2,
                                                       style: GoogleFonts
                                                           .montserrat(

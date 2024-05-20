@@ -22,7 +22,7 @@ class AttendanceManagmentNotifier
           bearerToken: person!.Bearer);
     } else {
       attendanceEmployeeViewApi(
-          employeeId: person!.employee!.id!,
+          employeeId: person!.data!.employee!.id!,
           type: person!.data!.type!,
           bearerToken: person!.Bearer);
     }
