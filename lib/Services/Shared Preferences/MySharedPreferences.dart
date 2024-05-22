@@ -36,7 +36,9 @@ class MySharedPreferences {
   }
 
   static setUserData({required Person person, required fcmToken}) async {
-    print('set user data in shared pref ${person.data!.employee!.id}');
+    print('set user shared pref function ${person.data!.type}');
+    //  print('set user data in shared pref ${person.data!.employee!.id}');
+
     await SharedPreferences.getInstance().then((value) {
       value.setInt(userIdSPKey, person.data!.id ?? 0);
       value.setInt(companyIdSPKey, person.data!.companyId ?? 0);
@@ -58,8 +60,9 @@ class MySharedPreferences {
 
       value.setString(logoSPKEY, person.data!.company!.logo ?? '');
       value.setString(logoPathSPKEY, person.data!.company!.logoPath ?? '');
-
-      value.setInt(employeeIdSPKEY, person.data!.employee!.id ?? 0);
+      if (person.data!.employee != null) {
+        value.setInt(employeeIdSPKEY, person.data!.employee!.id ?? 0);
+      }
     });
   }
 

@@ -67,6 +67,7 @@ class PasswordController extends StateNotifier<PasswordState> {
 
         log(person.data!.company.toString());
         log(person.data!.employee.toString());
+        log(person.data!.type.toString());
 
         //log(person.data!.company!.companyName!);
         print('-----------------');
@@ -75,22 +76,22 @@ class PasswordController extends StateNotifier<PasswordState> {
             NotificationServices();
         final String? token = await notificationServices.getDeviceToken();
 
-        MySharedPreferences.setUserData(person: person, fcmToken: token);
+        await MySharedPreferences.setUserData(person: person, fcmToken: token);
 
         Person person2 = await MySharedPreferences.getUserData();
 
         print('shared prefernces fcm token');
-        print(person2.data!.fcmtoken);
+        print(person2.data!.type);
         print('get  device fcm token');
         print(token);
 
         fcmtokenrefresh(person2.data!.id!, token!, person2.Bearer!);
 
-        print(person2);
         print(person2.data!.companyId);
+        print('user type check  ${person2.data!.type}');
 
         ref.read(personProvider.notifier).setPerson(person2);
-        // Use the context only if the widget is still mounted
+
         if (context.mounted) {
           GoRouter.of(context).pushReplacementNamed(homescreen);
         }

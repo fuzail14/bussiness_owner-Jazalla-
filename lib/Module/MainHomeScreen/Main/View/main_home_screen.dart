@@ -7,6 +7,7 @@ import 'package:bussines_owner/Constants/Font/fonts.dart';
 import 'package:bussines_owner/Constants/api_routes.dart';
 import 'package:bussines_owner/Module/MainHomeScreen/Project%20Manager%20Dashboard/project_manager_dashboard.dart';
 import 'package:bussines_owner/Module/MainHomeScreen/Service%20Manager%20Dashboard/service_manager_dashboard.dart';
+import 'package:bussines_owner/Widgets/SnackBar/custom_snackbar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -302,31 +303,6 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                             style: FontManagment().poppins28),
                                       ),
 
-                                      //  29.ph,
-                                      // Container(
-                                      //   width: 53.w,
-                                      //   height: 20.h,
-                                      //   padding: EdgeInsets.only(left: 4).r,
-                                      //   decoration: BoxDecoration(
-                                      //       color: Color(0xffFFFFFF)
-                                      //           .withOpacity(0.30),
-                                      //       borderRadius:
-                                      //           BorderRadius.circular(10).r),
-                                      //   child: Row(
-                                      //     mainAxisAlignment:
-                                      //         MainAxisAlignment.center,
-                                      //     children: [
-                                      //       Text(
-                                      //         'View',
-                                      //         style: FontManagment()
-                                      //             .poppins10White,
-                                      //       ),
-                                      //       2.pw,
-                                      //       SvgPicture.asset(
-                                      //           'assets/images/arrow_down.svg')
-                                      //     ],
-                                      //   ),
-                                      // ),
                                       15.8.ph,
                                       const Divider(),
                                       14.8.ph,
@@ -340,26 +316,25 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                                               index]
                                                           ['widget_title1'] ==
                                                       'Check In') {
-                                                    Location location =
-                                                        Location();
-
                                                     // Check if location services are enabled
                                                     bool _serviceEnabled =
-                                                        await location
+                                                        await notifier.location
                                                             .serviceEnabled();
                                                     if (!_serviceEnabled) {
                                                       _serviceEnabled =
-                                                          await location
+                                                          await notifier
+                                                              .location
                                                               .requestService();
                                                       if (!_serviceEnabled) {
                                                         // Show a message to the user that location services need to be enabled
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          SnackBar(
-                                                              content: Text(
-                                                                  'Please enable location services')),
-                                                        );
+
+                                                        CustomSnackBar(
+                                                            msg:
+                                                                'Please enable location services',
+                                                            snackBarBackgroundColor:
+                                                                const Color(
+                                                                    0xff203C97));
+
                                                         return;
                                                       }
                                                     }
@@ -367,7 +342,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                                     // Check if location permissions are granted
                                                     PermissionStatus
                                                         _permissionGranted =
-                                                        await location
+                                                        await notifier.location
                                                             .hasPermission();
                                                     if (_permissionGranted ==
                                                             PermissionStatus
@@ -376,7 +351,8 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                                             PermissionStatus
                                                                 .deniedForever) {
                                                       _permissionGranted =
-                                                          await location
+                                                          await notifier
+                                                              .location
                                                               .requestPermission();
                                                       if (_permissionGranted !=
                                                           PermissionStatus
@@ -386,7 +362,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                                                 context)
                                                             .showSnackBar(
                                                           SnackBar(
-                                                            content: Text(
+                                                            content: const Text(
                                                                 'Location permissions are required. Please enable them in settings.'),
                                                             action:
                                                                 SnackBarAction(
@@ -402,9 +378,8 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                                       }
                                                     }
 
-                                                    // Re-check permissions after returning from settings
                                                     _permissionGranted =
-                                                        await location
+                                                        await notifier.location
                                                             .hasPermission();
                                                     if (_permissionGranted ==
                                                             PermissionStatus
@@ -417,7 +392,8 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                                             'Getting location...');
                                                         LocationData
                                                             _locationData =
-                                                            await location
+                                                            await notifier
+                                                                .location
                                                                 .getLocation();
                                                         print(
                                                             'Latitude: ${_locationData.latitude}, Longitude: ${_locationData.longitude}');
@@ -472,7 +448,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                                         ScaffoldMessenger.of(
                                                                 context)
                                                             .showSnackBar(
-                                                          SnackBar(
+                                                          const SnackBar(
                                                               content: Text(
                                                                   'Failed to get location. Please try again.')),
                                                         );
@@ -482,60 +458,25 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                                       ScaffoldMessenger.of(
                                                               context)
                                                           .showSnackBar(
-                                                        SnackBar(
+                                                        const SnackBar(
                                                             content: Text(
                                                                 'Location permissions are required.')),
                                                       );
                                                     }
+                                                  } else if (notifier
+                                                                  .glassCardList[
+                                                              index]
+                                                          ['widget_title1'] ==
+                                                      'Profile') {
+                                                    GoRouter.of(context)
+                                                        .pushNamed(profilePage,
+                                                            pathParameters: {
+                                                              'id': '1'
+                                                            },
+                                                            extra:
+                                                                person.Bearer);
                                                   }
-                                                }
-
-                                                // onTap: () {
-                                                //   if (notifier.glassCardList[
-                                                //               index]
-                                                //           ['widget_title1'] ==
-                                                //       'Check In') {
-                                                //     // notifier.lateTime = notifier
-                                                //     //     .calculateLateTime(
-                                                //     //         notifier
-                                                //     //             .formattedTime!,
-                                                //     //         state.companytime!);
-                                                //     // print(
-                                                //     //     'Late Time: ${notifier.lateTime}');
-                                                //     // print(
-                                                //     //     'company id: ${notifier.person!.data!.companyId}');
-                                                //     showDialog(
-                                                //         context: context,
-                                                //         builder: (BuildContext
-                                                //                 context) =>
-                                                //             CheckInDialog(
-                                                //               title: 'Check In',
-                                                //               svgPath:
-                                                //                   'assets/images/check_in_dialog_icon.svg',
-                                                //               onTap: () {
-                                                //                 notifier.sendClockInApi(
-                                                //                     companyId: person!
-                                                //                         .data!
-                                                //                         .companyId,
-                                                //                     employeeId: person
-                                                //                         .data!
-                                                //                         .employee!
-                                                //                         .id,
-                                                //                     date: notifier
-                                                //                         .formattedDate,
-                                                //                     clockInTime:
-                                                //                         notifier
-                                                //                             .formattedTime
-                                                //                             .toString(),
-                                                //                     late: notifier
-                                                //                         .lateTime,
-                                                //                     context:
-                                                //                         context);
-                                                //               },
-                                                //             ));
-                                                //   }
-                                                // },
-                                                ,
+                                                },
                                                 child: Container(
                                                   height: 60.h,
                                                   width: 110.w,

@@ -1,14 +1,12 @@
-import 'dart:developer';
-
-import 'package:bussines_owner/Constants/Person/person_controller.dart';
 import 'package:bussines_owner/Data/Api%20Resp/api_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:intl/intl.dart';
-import '../../../../Constants/Person/person.dart';
+import 'package:location/location.dart';
 import '../../../../Repo/Attendance Employee Repository/attendance_employee_repository.dart';
+import '../../../../Widgets/SnackBar/custom_snackbar.dart';
 import '../State/main_home_screen_state.dart';
 import 'package:flutter/foundation.dart';
 
@@ -23,6 +21,7 @@ class MainHomeScreenNotifier extends StateNotifier<MainHomeScreenState> {
   // final Person? person;
   final attendanceEmployeeRepository = AttendanceEmployeeRepository();
   DateTime dateTime = DateTime.now().toUtc();
+  Location location = Location();
 
   MainHomeScreenNotifier() : super(MainHomeScreenState()) {
     pageController = PageController(initialPage: 0, viewportFraction: 1.1);
@@ -124,15 +123,26 @@ class MainHomeScreenNotifier extends StateNotifier<MainHomeScreenState> {
       await attendanceEmployeeRepository.clockInRequest(
         data,
       );
-      print('data try $data');
+
       state = state.copyWith(isLoading: false);
 
-      Fluttertoast.showToast(
-          msg: 'Attendance Marked successfully',
-          gravity: ToastGravity.CENTER,
-          fontSize: 20,
-          timeInSecForIosWeb: 3,
-          backgroundColor: const Color(0xff6FD943));
+      final snackBar = SnackBar(
+        content: Text(
+          'Attendance Marked successfully',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 20.0, color: Colors.white),
+        ),
+        backgroundColor: const Color(0xff6FD943),
+        duration: const Duration(seconds: 5),
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24),
+        ),
+        margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+      );
+
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
       state = state.copyWith(isLoading: false);
       // ignore: use_build_context_synchronously
       Navigator.pop(context);
@@ -140,28 +150,78 @@ class MainHomeScreenNotifier extends StateNotifier<MainHomeScreenState> {
       state = state.copyWith(isLoading: false);
       print('check catch error message $error');
       if (error.toString().contains('409')) {
-        Fluttertoast.showToast(
-            msg: 'Attendance Already Marked',
-            gravity: ToastGravity.CENTER,
-            fontSize: 20,
-            timeInSecForIosWeb: 3,
-            backgroundColor: const Color(0xff203C97));
+        final snackBar = SnackBar(
+          content: Text(
+            'Attendance Already Marked',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 20.0, color: Colors.white),
+          ),
+          backgroundColor: const Color(0xff203C97),
+          duration: const Duration(seconds: 5),
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
+          margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+        );
+
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
         Navigator.pop(context);
       } else if (error.toString().contains('422')) {
-        Fluttertoast.showToast(
-            msg: 'You Cannot Marked Attendance At This Time',
-            gravity: ToastGravity.CENTER,
-            fontSize: 20,
-            timeInSecForIosWeb: 3,
-            backgroundColor: const Color(0xffEF2E61));
+        final snackBar = SnackBar(
+          content: Text(
+            'You Cannot Marked Attendance At This Time',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 20.0, color: Colors.white),
+          ),
+          backgroundColor: const Color(0xffEF2E61),
+          duration: const Duration(seconds: 5),
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
+          margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+        );
+
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
         Navigator.pop(context);
       } else if (error.toString().contains('403')) {
-        Fluttertoast.showToast(
-            msg: 'Attendance Not Marked Server Error',
-            gravity: ToastGravity.CENTER,
-            fontSize: 20,
-            timeInSecForIosWeb: 3,
-            backgroundColor: const Color(0xffEF2E61));
+        final snackBar = SnackBar(
+          content: Text(
+            'Attendance Not Marked Server Error',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 20.0, color: Colors.white),
+          ),
+          backgroundColor: const Color(0xffEF2E61),
+          duration: const Duration(seconds: 5),
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
+          margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+        );
+
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        Navigator.pop(context);
+      } else if (error.toString().contains('401')) {
+        final snackBar = SnackBar(
+          content: Text(
+            'You Are Not On Company Location',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 20.0, color: Colors.white),
+          ),
+          backgroundColor: const Color(0xff203C97),
+          duration: const Duration(seconds: 5),
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
+          margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+        );
+
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
         Navigator.pop(context);
       }
 

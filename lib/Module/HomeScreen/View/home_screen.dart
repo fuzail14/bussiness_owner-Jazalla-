@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+// import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import '../../../Constants/Global/Method/global_methods.dart';
 import '../../../Constants/Person/person.dart';
 import '../../../Constants/Person/person_controller.dart';
@@ -53,22 +53,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     super.dispose();
   }
 
-  final PersistentTabController _controller =
-      PersistentTabController(initialIndex: 0);
-
-  //  _HomeScreenState({super.key});
-
-  // List<Widget> _buildScreens() {
-  //   return [
-  //     // CustomLineChart(),
-  //     const MainHomeScreen(),
-  //     MarketPlaceScreen(),
-  //     const ApprovalManagmentScreen(),
-
-  //     const EmployeeCenterPage(),
-  //     const Menu(),
-  //   ];
-  // }
+  // final PersistentTabController _controller =
+  //     PersistentTabController(initialIndex: 0);
 
   List<Widget> _buildScreens(String userType) {
     switch (userType) {
@@ -145,82 +131,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         return []; // Handle unexpected user types
     }
   }
-
-  // List<PersistentBottomNavBarItem> _navBarsItems() {
-  //   return [
-  //     PersistentBottomNavBarItem(
-  //       icon: const Icon(CupertinoIcons.home),
-  //       title: ("Home"),
-  //       textStyle:
-  //           GoogleFonts.ubuntu(fontSize: 10.sp, fontWeight: FontWeight.w600),
-  //       activeColorPrimary: Color(0xff49AECD),
-  //       inactiveColorPrimary: Colors.black,
-  //     ),
-  //     PersistentBottomNavBarItem(
-  //       icon: const Icon(CupertinoIcons.macwindow),
-  //       title: ("MarketPlace"),
-  //       textStyle:
-  //           GoogleFonts.ubuntu(fontSize: 10.sp, fontWeight: FontWeight.w600),
-  //       activeColorPrimary: Color(0xff49AECD),
-  //       inactiveColorPrimary: Colors.black,
-  //     ),
-  //     PersistentBottomNavBarItem(
-  //       icon: const Icon(CupertinoIcons.app_badge_fill),
-  //       title: ("Approvals"),
-  //       textStyle:
-  //           GoogleFonts.ubuntu(fontSize: 10.sp, fontWeight: FontWeight.w600),
-  //       activeColorPrimary: Color(0xff49AECD),
-  //       inactiveColorPrimary: Colors.black,
-  //     ),
-  //     PersistentBottomNavBarItem(
-  //       icon: const Icon(CupertinoIcons.waveform_circle),
-  //       title: ("Employee Center"),
-  //       textStyle:
-  //           GoogleFonts.ubuntu(fontSize: 10.sp, fontWeight: FontWeight.w600),
-  //       activeColorPrimary: Color(0xff49AECD),
-  //       inactiveColorPrimary: Colors.black,
-  //     ),
-  //     PersistentBottomNavBarItem(
-  //       icon: const Icon(CupertinoIcons.square_grid_2x2_fill),
-  //       title: ("Menu"),
-  //       textStyle:
-  //           GoogleFonts.ubuntu(fontSize: 10.sp, fontWeight: FontWeight.w600),
-  //       activeColorPrimary: Color(0xff49AECD),
-  //       inactiveColorPrimary: Colors.black,
-  //     ),
-  //     // Add more items as needed
-  //   ];
-  // }
-
-  // List<BottomNavigationBarItem> _bottomNavBarItems() {
-  //   return [
-  //     const BottomNavigationBarItem(
-  //       icon: Icon(CupertinoIcons.home),
-  //       label: 'Home',
-  //       backgroundColor: Color(0xff49AECD),
-  //     ),
-  //     const BottomNavigationBarItem(
-  //       icon: Icon(CupertinoIcons.macwindow),
-  //       label: 'MarketPlace',
-  //       backgroundColor: Color(0xff49AECD),
-  //     ),
-  //     const BottomNavigationBarItem(
-  //       icon: Icon(CupertinoIcons.app_badge_fill),
-  //       label: 'Approvals',
-  //       backgroundColor: Color(0xff49AECD),
-  //     ),
-  //     const BottomNavigationBarItem(
-  //       icon: Icon(CupertinoIcons.waveform_circle),
-  //       label: 'Employee Center',
-  //       backgroundColor: Color(0xff49AECD),
-  //     ),
-  //     const BottomNavigationBarItem(
-  //       icon: Icon(CupertinoIcons.square_grid_2x2_fill),
-  //       label: 'Menu',
-  //       backgroundColor: Color(0xff49AECD),
-  //     ),
-  //   ];
-  // }
 
   List<BottomNavigationBarItem> _bottomNavBarItems(String userType) {
     switch (userType) {
@@ -426,7 +336,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     print("company Id ${person!.data!.companyId}");
     print("company primary activity ${person!.data!.company!.primaryActivity}");
 
-    print("if employee log in Id ${person!.data!.employee!.id}");
+    //print("if employee log in Id ${person!.data!.employee!.id}");
 
     // print(person!.data!.company!.companyName);
 
@@ -484,51 +394,5 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           type: BottomNavigationBarType
               .shifting, // or fixed, depending on your preference
         ));
-
-    // bottomNavigationBar: BottomNavigationBar(
-    //   currentIndex: _currentIndex,
-    //   onTap: (index) {
-    //     _pageController.animateToPage(index,
-    //         duration: Duration(milliseconds: 500), curve: Curves.easeOut);
-    //   },
-    //   items: _bottomNavBarItems(),
-
-    //   // bottomNavigationBar:
-
-    //   //    PersistentTabView(
-    //   //     context,
-    //   //     controller: _controller,
-    //   //     screens: _buildScreens(),
-    //   //     items: _navBarsItems(),
-    //   //     confineInSafeArea: true,
-    //   //     backgroundColor: Colors.white,
-    //   //     handleAndroidBackButtonPress: true,
-    //   //     resizeToAvoidBottomInset: true,
-    //   //     stateManagement: true,
-    //   //     hideNavigationBarWhenKeyboardShows: true,
-    //   //     decoration: NavBarDecoration(
-    //   //       borderRadius: BorderRadius.circular(10.0),
-    //   //       colorBehindNavBar: Colors.white,
-    //   //     ),
-    //   //     popAllScreensOnTapOfSelectedTab: true,
-    //   //     popActionScreens: PopActionScreensType.all,
-    //   //     itemAnimationProperties: const ItemAnimationProperties(
-    //   //       duration: Duration(milliseconds: 100),
-    //   //       curve: Curves.ease,
-    //   //     ),
-    //   //     screenTransitionAnimation: const ScreenTransitionAnimation(
-    //   //       animateTabTransition: true,
-    //   //       curve: Curves.ease,
-    //   //       duration: Duration(milliseconds: 200),
-    //   //     ),
-    //   //     navBarStyle: NavBarStyle.style6,
-    //   //         onItemSelected: (index) {
-    //   //     setState(() {
-    //   //       _controller.index = index;  // Update the current index on tap
-    //   //     });
-    //   //   },
-
-    //   //   ),
-    // ));
   }
 }

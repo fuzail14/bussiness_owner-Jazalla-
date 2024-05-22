@@ -52,7 +52,8 @@ dependencies:
   go_router: ^13.0.0
   riverpod: ^2.4.9
   flutter_riverpod: ^2.4.9
-  persistent_bottom_nav_bar: ^5.0.2
+  #persistent_bottom_nav_bar: ^5.0.2
+  
   fl_chart: ^0.67.0
   cached_network_image: ^3.3.0
   google_maps_flutter: ^2.5.0

@@ -47,6 +47,7 @@ import '../Module/ProcurementManagment/RFP/Main/View/procurement_rfp_screen.dart
 import '../Module/ProcurementManagment/RFP/RFXManagmentRFPDetail/View/rfx_managment_rfp_detail_page.dart';
 import '../Module/ProcurementManagment/RFQ/Main/View/procurement_rfq_screen.dart';
 import '../Module/ProcurementManagment/RFQ/RFXManagmentRFQDetail/View/rfx_managment_rfq_detail_page.dart';
+import '../Module/Profile/View/profile_page.dart';
 import '../Module/SalaryPaySlip/Main/View/salary_payslip_view.dart';
 import '../Module/SalaryPaySlip/PaySlipDetail/View/salary_payslip_detail_page.dart';
 import '../Module/SalesManagment/RFIMain/RFI/View/sales_managment_rfi_screen.dart';
@@ -1211,6 +1212,27 @@ final router = GoRouter(
                 .overrideWith((ref) => PersonController()..setPerson(person)),
           ],
           child: HolidaysScreen(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: profilePage,
+      path: '/ProfilePage/:id',
+      pageBuilder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+
+        final bearerToken = state.extra as String;
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider
+                .overrideWithValue({'Id': id, 'bearerToken': bearerToken}),
+          ],
+          child: const ProfilePage(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
