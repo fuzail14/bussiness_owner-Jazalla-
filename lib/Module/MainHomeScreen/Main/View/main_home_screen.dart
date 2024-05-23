@@ -217,8 +217,7 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                     ),
                     InkWell(
                       onTap: () {
-                        GoRouter.of(context)
-                            .pushNamed(notificationsScreen, extra: person);
+                        GoRouter.of(context).pushNamed(notificationsScreen);
                       },
                       child: badges.Badge(
                         badgeContent: Text('3',
@@ -327,11 +326,10 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                                               .requestService();
                                                       if (!_serviceEnabled) {
                                                         // Show a message to the user that location services need to be enabled
-
-                                                        CustomSnackBar(
+                                                        myToast(
                                                             msg:
                                                                 'Please enable location services',
-                                                            snackBarBackgroundColor:
+                                                            backgroundColor:
                                                                 const Color(
                                                                     0xff203C97));
 
@@ -560,35 +558,149 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                           Column(
                                             children: [
                                               InkWell(
-                                                onTap: () {
+                                                onTap: () async {
                                                   if (notifier.glassCardList[
                                                               index]
                                                           ['widget_title2'] ==
                                                       'Check Out') {
-                                                    showDialog(
-                                                        context: context,
-                                                        builder: (BuildContext
-                                                                context) =>
-                                                            CheckInDialog(
-                                                              title:
-                                                                  'Check Out',
-                                                              svgPath:
-                                                                  'assets/images/check_out_dialog_icon.svg',
-                                                              onTap: () {
-                                                                notifier.sendClockOutApi(
-                                                                    employeeId: person
-                                                                        .data!
-                                                                        .employee!
-                                                                        .id,
-                                                                    date: notifier
-                                                                        .formattedDate,
-                                                                    clockOut: notifier
-                                                                        .formattedTime
-                                                                        .toString(),
-                                                                    context:
-                                                                        context);
+                                                    bool _serviceEnabled =
+                                                        await notifier.location
+                                                            .serviceEnabled();
+                                                    if (!_serviceEnabled) {
+                                                      _serviceEnabled =
+                                                          await notifier
+                                                              .location
+                                                              .requestService();
+                                                      if (!_serviceEnabled) {
+                                                        // Show a message to the user that location services need to be enabled
+                                                        myToast(
+                                                            msg:
+                                                                'Please enable location services',
+                                                            backgroundColor:
+                                                                const Color(
+                                                                    0xff203C97));
+
+                                                        return;
+                                                      }
+                                                    }
+
+                                                    // Check if location permissions are granted
+                                                    PermissionStatus
+                                                        _permissionGranted =
+                                                        await notifier.location
+                                                            .hasPermission();
+                                                    if (_permissionGranted ==
+                                                            PermissionStatus
+                                                                .denied ||
+                                                        _permissionGranted ==
+                                                            PermissionStatus
+                                                                .deniedForever) {
+                                                      _permissionGranted =
+                                                          await notifier
+                                                              .location
+                                                              .requestPermission();
+                                                      if (_permissionGranted !=
+                                                          PermissionStatus
+                                                              .granted) {
+                                                        // Show a message to the user and redirect to settings
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                          SnackBar(
+                                                            content: const Text(
+                                                                'Location permissions are required. Please enable them in settings.'),
+                                                            action:
+                                                                SnackBarAction(
+                                                              label: 'Settings',
+                                                              onPressed: () {
+                                                                AppSettings
+                                                                    .openAppSettings();
                                                               },
-                                                            ));
+                                                            ),
+                                                          ),
+                                                        );
+                                                        return;
+                                                      }
+                                                    }
+
+                                                    _permissionGranted =
+                                                        await notifier.location
+                                                            .hasPermission();
+                                                    if (_permissionGranted ==
+                                                            PermissionStatus
+                                                                .granted ||
+                                                        _permissionGranted ==
+                                                            PermissionStatus
+                                                                .grantedLimited) {
+                                                      try {
+                                                        print(
+                                                            'Getting location...');
+                                                        LocationData
+                                                            _locationData =
+                                                            await notifier
+                                                                .location
+                                                                .getLocation();
+                                                        print(
+                                                            'Latitude: ${_locationData.latitude}, Longitude: ${_locationData.longitude}');
+
+                                                        // Store coordinates in a variable (if needed)
+                                                        double latitude =
+                                                            _locationData
+                                                                .latitude!;
+                                                        double longitude =
+                                                            _locationData
+                                                                .longitude!;
+
+                                                        // Proceed to show the dialog
+                                                        showDialog(
+                                                            context: context,
+                                                            builder: (BuildContext
+                                                                    context) =>
+                                                                CheckInDialog(
+                                                                  title:
+                                                                      'Check Out',
+                                                                  svgPath:
+                                                                      'assets/images/check_out_dialog_icon.svg',
+                                                                  onTap: () {
+                                                                    notifier.sendClockOutApi(
+                                                                        employeeId: person
+                                                                            .data!
+                                                                            .employee!
+                                                                            .id,
+                                                                        date: notifier
+                                                                            .formattedDate,
+                                                                        clockOut: notifier
+                                                                            .formattedTime
+                                                                            .toString(),
+                                                                        latitude:
+                                                                            latitude,
+                                                                        longitude:
+                                                                            longitude,
+                                                                        context:
+                                                                            context);
+                                                                  },
+                                                                ));
+                                                      } catch (e) {
+                                                        print(
+                                                            'Error getting location: $e');
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                          const SnackBar(
+                                                              content: Text(
+                                                                  'Failed to get location. Please try again.')),
+                                                        );
+                                                      }
+                                                    } else {
+                                                      // Show a message if permissions are still not granted
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                        const SnackBar(
+                                                            content: Text(
+                                                                'Location permissions are required.')),
+                                                      );
+                                                    }
                                                   }
                                                 },
                                                 child: Container(

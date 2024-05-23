@@ -29,10 +29,13 @@ class EmployeeCenterPage extends ConsumerWidget {
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-        backgroundColor: whiteColor,
+        backgroundColor: const Color(0xffF9F9F9),
         appBar: MyAppBar(
           title: 'Employee Center',
           showBackButton: false,
+          bellOnTap: () {
+            GoRouter.of(context).pushNamed(notificationsScreen);
+          },
         ),
         //backgroundColor: Colors.red,
         body: Container(

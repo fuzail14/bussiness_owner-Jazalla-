@@ -97,190 +97,274 @@ class ProfilePage extends ConsumerWidget {
                               color: whiteColor),
                         )),
                   ),
-                  Container(
-                    padding: const EdgeInsets.only(
-                            top: 16, left: 21, right: 22, bottom: 30)
-                        .r,
-                    margin: const EdgeInsets.only(
-                            left: 22, right: 22, top: 266, bottom: 55)
-                        .r,
-                    decoration: BoxDecoration(
-                      color: whiteColor,
-                      borderRadius: BorderRadius.circular(20).r,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.4),
-                          offset: const Offset(
-                            2.0,
-                            2.0,
-                          ),
-                          blurRadius: 22.0,
-                          spreadRadius: 4.5,
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        headingText('Personal Info'),
-                        20.ph,
-                        subHeadingText(
-                          text: 'First Name',
-                        ),
-                        12.ph,
-                        customTextField(
-                          'Fuzail',
-                        ),
-                        20.ph,
-                        subHeadingText(
-                          text: 'Last Name',
-                        ),
-                        12.ph,
-                        customTextField(
-                          'Raza',
-                        ),
-                        20.ph,
-                        subHeadingText(
-                          text: 'Email',
-                        ),
-                        12.ph,
-                        customTextField(
-                          'email@gmail.com',
-                        ),
-                        20.ph,
-                        subHeadingText(
-                          text: 'Phone Number',
-                        ),
-                        12.ph,
-                        customTextField(
-                          '0534473508',
-                        ),
-                        20.ph,
-                        headingText('Change Password'),
-                        20.ph,
-                        subHeadingText(
-                          text: 'Old Password',
-                        ),
-                        12.ph,
-                        customPasswordTextField(
-                            'Enter Old Password', ref, controller.oldPassword),
-                        20.ph,
-                        subHeadingText(
-                          text: 'New Password',
-                        ),
-                        12.ph,
-                        customPasswordTextField(
-                            'Enter New Password', ref, controller.newPassword),
-                        20.ph,
-                        subHeadingText(
-                          text: 'Confirm Password',
-                        ),
-                        12.ph,
-                        customPasswordTextField('Enter Confirm Password', ref,
-                            controller.confirmPassword),
-                        20.ph,
-                        Container(
-                          height: 58.h,
-                          width: 327.w,
-                          decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              colors: [Color(0xff1F3996), Color(0xff45A1C4)],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
+                  Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.only(
+                                top: 16, left: 21, right: 22, bottom: 30)
+                            .r,
+                        margin: const EdgeInsets.only(
+                                left: 22, right: 22, top: 266, bottom: 0)
+                            .r,
+                        decoration: BoxDecoration(
+                          color: whiteColor,
+                          borderRadius: BorderRadius.circular(20).r,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.4),
+                              offset: const Offset(
+                                2.0,
+                                2.0,
+                              ),
+                              blurRadius: 22.0,
+                              spreadRadius: 4.5,
                             ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(1),
-                            child: Container(
+                          ],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            headingText('Personal Info'),
+                            20.ph,
+                            subHeadingText(
+                              text: 'First Name',
+                            ),
+                            12.ph,
+                            customTextField(
+                              'Fuzail',
+                            ),
+                            20.ph,
+                            subHeadingText(
+                              text: 'Last Name',
+                            ),
+                            12.ph,
+                            customTextField(
+                              'Raza',
+                            ),
+                            20.ph,
+                            subHeadingText(
+                              text: 'Email',
+                            ),
+                            12.ph,
+                            customTextField(
+                              'email@gmail.com',
+                            ),
+                            20.ph,
+                            subHeadingText(
+                              text: 'Phone Number',
+                            ),
+                            12.ph,
+                            customTextField(
+                              '0534473508',
+                            ),
+                            // 20.ph,
+                            // headingText('Change Password'),
+                            // 20.ph,
+                            // subHeadingText(
+                            //   text: 'Old Password',
+                            // ),
+                            // 12.ph,
+                            // customPasswordTextField(
+                            //     'Enter Old Password', ref, controller.oldPassword),
+                            // 20.ph,
+                            // subHeadingText(
+                            //   text: 'New Password',
+                            // ),
+                            // 12.ph,
+                            // customPasswordTextField(
+                            //     'Enter New Password', ref, controller.newPassword),
+                            // 20.ph,
+                            // subHeadingText(
+                            //   text: 'Confirm Password',
+                            // ),
+                            // 12.ph,
+                            // customPasswordTextField('Enter Confirm Password', ref,
+                            //     controller.confirmPassword),
+                            // 20.ph,
+                            // Container(
+                            //   height: 58.h,
+                            //   width: 327.w,
+                            //   decoration: BoxDecoration(
+                            //     gradient: const LinearGradient(
+                            //       colors: [Color(0xff1F3996), Color(0xff45A1C4)],
+                            //       begin: Alignment.topLeft,
+                            //       end: Alignment.bottomRight,
+                            //     ),
+                            //     borderRadius: BorderRadius.circular(12.0),
+                            //   ),
+                            //   child: Padding(
+                            //     padding: const EdgeInsets.all(1),
+                            //     child: Container(
+                            //       decoration: BoxDecoration(
+                            //         color: Colors.white,
+                            //         borderRadius: BorderRadius.circular(12.0),
+                            //       ),
+                            //       child: Center(
+                            //           child: headingText(
+                            //         'Change Password',
+                            //       )),
+                            //     ),
+                            //   ),
+                            // ),
+                            // 20.ph,
+                            // headingText('Company Info'),
+                            // 20.ph,
+                            // companyInfo(
+                            //   heading: 'Employee ID',
+                            //   subHeading: 'General Worker',
+                            // ),
+                            // 10.ph,
+                            // companyInfo(
+                            //   heading: 'Designation',
+                            //   subHeading: 'General Worker',
+                            // ),
+                            // 10.ph,
+                            // companyInfo(
+                            //   heading: 'Phone',
+                            //   subHeading: '96852365870',
+                            // ),
+                            // 10.ph,
+                            // companyInfo(
+                            //   heading: 'Date Of Joining',
+                            //   subHeading: '05-05-2023',
+                            // ),
+                            // 10.ph,
+                            // companyInfo(
+                            //   heading: 'Salary Type',
+                            //   subHeading: 'Monthly Payslip',
+                            // ),
+                            // 10.ph,
+                            // companyInfo(
+                            //   heading: 'Basic Salary',
+                            //   subHeading: '1500 SR',
+                            // ),
+                            // 10.ph,
+                            // companyInfo(
+                            //   heading: 'Date Of Birth',
+                            //   subHeading: '05-05-1987',
+                            // ),
+                            // 10.ph,
+                            // companyInfo(
+                            //   heading: 'Address',
+                            //   subHeading: 'Olaya, Al Khobar 34448',
+                            // ),
+                            // 20.ph,
+                            // headingText('Bank Info'),
+                            // 20.ph,
+                            // bankInfo(
+                            //   heading: 'Account Holder Name',
+                            //   subHeading: 'Abdur Rahim',
+                            // ),
+                            // 15.ph,
+                            // bankInfo(
+                            //   heading: 'Account Number',
+                            //   subHeading: '9876543211',
+                            // ),
+                            // 15.ph,
+                            // bankInfo(
+                            //   heading: 'Bank Name',
+                            //   subHeading: 'SAAB',
+                            // ),
+                            // 15.ph,
+                            // bankInfo(
+                            //   heading: 'Bank Identifier Code',
+                            //   subHeading: '05052023',
+                            // ),
+                            // 15.ph,
+                            // bankInfo(
+                            //   heading: 'Branch Location',
+                            //   subHeading: 'Olaya, Al Khobar',
+                            // ),
+                            // 15.ph,
+                            // bankInfo(
+                            //   heading: 'Tax Payer Id',
+                            //   subHeading: '95682',
+                            // ),
+                          ],
+                        ),
+                      ),
+                      20.ph,
+                      Container(
+                        padding: const EdgeInsets.only(
+                                top: 16, left: 21, right: 22, bottom: 30)
+                            .r,
+                        margin: const EdgeInsets.only(
+                                left: 22, right: 22, top: 0, bottom: 55)
+                            .r,
+                        decoration: BoxDecoration(
+                          color: whiteColor,
+                          borderRadius: BorderRadius.circular(20).r,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.4),
+                              offset: const Offset(
+                                2.0,
+                                2.0,
+                              ),
+                              blurRadius: 22.0,
+                              spreadRadius: 4.5,
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            headingText('Change Password'),
+                            20.ph,
+                            subHeadingText(
+                              text: 'Old Password',
+                            ),
+                            12.ph,
+                            customPasswordTextField('Enter Old Password', ref,
+                                controller.oldPassword),
+                            20.ph,
+                            subHeadingText(
+                              text: 'New Password',
+                            ),
+                            12.ph,
+                            customPasswordTextField('Enter New Password', ref,
+                                controller.newPassword),
+                            20.ph,
+                            subHeadingText(
+                              text: 'Confirm Password',
+                            ),
+                            12.ph,
+                            customPasswordTextField('Enter Confirm Password',
+                                ref, controller.confirmPassword),
+                            20.ph,
+                            Container(
+                              height: 58.h,
+                              width: 327.w,
                               decoration: BoxDecoration(
-                                color: Colors.white,
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    Color(0xff1F3996),
+                                    Color(0xff45A1C4)
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
-                              child: Center(
-                                  child: headingText(
-                                'Change Password',
-                              )),
+                              child: Padding(
+                                padding: const EdgeInsets.all(1),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(12.0),
+                                  ),
+                                  child: Center(
+                                      child: headingText(
+                                    'Change Password',
+                                  )),
+                                ),
+                              ),
                             ),
-                          ),
+                          ],
                         ),
-                        20.ph,
-                        headingText('Company Info'),
-                        20.ph,
-                        companyInfo(
-                          heading: 'Employee ID',
-                          subHeading: 'General Worker',
-                        ),
-                        10.ph,
-                        companyInfo(
-                          heading: 'Designation',
-                          subHeading: 'General Worker',
-                        ),
-                        10.ph,
-                        companyInfo(
-                          heading: 'Phone',
-                          subHeading: '96852365870',
-                        ),
-                        10.ph,
-                        companyInfo(
-                          heading: 'Date Of Joining',
-                          subHeading: '05-05-2023',
-                        ),
-                        10.ph,
-                        companyInfo(
-                          heading: 'Salary Type',
-                          subHeading: 'Monthly Payslip',
-                        ),
-                        10.ph,
-                        companyInfo(
-                          heading: 'Basic Salary',
-                          subHeading: '1500 SR',
-                        ),
-                        10.ph,
-                        companyInfo(
-                          heading: 'Date Of Birth',
-                          subHeading: '05-05-1987',
-                        ),
-                        10.ph,
-                        companyInfo(
-                          heading: 'Address',
-                          subHeading: 'Olaya, Al Khobar 34448',
-                        ),
-                        20.ph,
-                        headingText('Bank Info'),
-                        20.ph,
-                        bankInfo(
-                          heading: 'Account Holder Name',
-                          subHeading: 'Abdur Rahim',
-                        ),
-                        15.ph,
-                        bankInfo(
-                          heading: 'Account Number',
-                          subHeading: '9876543211',
-                        ),
-                        15.ph,
-                        bankInfo(
-                          heading: 'Bank Name',
-                          subHeading: 'SAAB',
-                        ),
-                        15.ph,
-                        bankInfo(
-                          heading: 'Bank Identifier Code',
-                          subHeading: '05052023',
-                        ),
-                        15.ph,
-                        bankInfo(
-                          heading: 'Branch Location',
-                          subHeading: 'Olaya, Al Khobar',
-                        ),
-                        15.ph,
-                        bankInfo(
-                          heading: 'Tax Payer Id',
-                          subHeading: '95682',
-                        ),
-                      ],
-                    ),
-                  )
+                      )
+                    ],
+                  ),
                 ],
               )
             ] else

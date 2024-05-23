@@ -36,6 +36,9 @@ class CompanyPolicyScreen extends ConsumerWidget {
       appBar: MyAppBar(
         showFilter: false,
         title: "Employee Center",
+        bellOnTap: () {
+          GoRouter.of(context).pushNamed(notificationsScreen);
+        },
       ),
       backgroundColor: Colors.white,
       body: Column(

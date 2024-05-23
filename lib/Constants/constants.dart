@@ -80,11 +80,11 @@ Future<bool?> myToast(
     ToastGravity? gravity}) async {
   bool? toast = await Fluttertoast.showToast(
       msg: msg,
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: gravity ?? ToastGravity.BOTTOM,
-      backgroundColor: isNegative ? Colors.red : Colors.black,
+      toastLength: Toast.LENGTH_LONG,
+      gravity: gravity ?? ToastGravity.CENTER,
+      backgroundColor: backgroundColor ?? Colors.black,
       textColor: Colors.white,
-      fontSize: 16.0.sp);
+      fontSize: 20.0.sp);
   return toast;
 }
 

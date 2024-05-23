@@ -30,6 +30,9 @@ class GeneralInformationPage extends ConsumerWidget {
         appBar: MyAppBar(
           title: 'Employee Center',
           showBackButton: true,
+          bellOnTap: () {
+            GoRouter.of(context).pushNamed(notificationsScreen);
+          },
         ),
         //backgroundColor: Colors.red,
         body: SingleChildScrollView(

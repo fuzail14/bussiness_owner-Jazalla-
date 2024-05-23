@@ -61,13 +61,13 @@ class _ProcurementRFPScreenState extends ConsumerState<ProcurementRFPScreen>
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 _tabButton(
-                  title: 'RFI Sent',
+                  title: 'RFP Sent',
                   index: 0,
                   isSelected: state.selectedIndex == 0,
                   controller: controller,
                 ),
                 _tabButton(
-                  title: 'RFI Received',
+                  title: 'RFP Received',
                   index: 1,
                   isSelected: state.selectedIndex == 1,
                   controller: controller,

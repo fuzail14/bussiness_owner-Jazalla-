@@ -30,6 +30,9 @@ class OnlineStoreDetailPage extends ConsumerWidget {
     return Scaffold(
       appBar: MyAppBar(
         title: "Detail",
+        bellOnTap: () {
+          GoRouter.of(context).pushNamed(notificationsScreen);
+        },
       ),
       backgroundColor: Colors.white,
       body: Column(

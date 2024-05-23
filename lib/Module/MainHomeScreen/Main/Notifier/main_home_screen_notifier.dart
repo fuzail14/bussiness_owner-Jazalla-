@@ -1,4 +1,7 @@
+import 'package:app_settings/app_settings.dart';
+import 'package:bussines_owner/Constants/constants.dart';
 import 'package:bussines_owner/Data/Api%20Resp/api_response.dart';
+import 'package:bussines_owner/Module/MainHomeScreen/Main/View/main_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -21,15 +24,12 @@ class MainHomeScreenNotifier extends StateNotifier<MainHomeScreenState> {
   // final Person? person;
   final attendanceEmployeeRepository = AttendanceEmployeeRepository();
   DateTime dateTime = DateTime.now().toUtc();
-  Location location = Location();
-
+  final Location location = Location();
   MainHomeScreenNotifier() : super(MainHomeScreenState()) {
     pageController = PageController(initialPage: 0, viewportFraction: 1.1);
 
     pageController.addListener(_updatePageIndex);
     formatDateTime();
-
-    // companyTimingApi(companyId: person!.data!.companyId);
   }
   String? formattedDate;
   String? lateTime;
@@ -126,102 +126,40 @@ class MainHomeScreenNotifier extends StateNotifier<MainHomeScreenState> {
 
       state = state.copyWith(isLoading: false);
 
-      final snackBar = SnackBar(
-        content: Text(
-          'Attendance Marked successfully',
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 20.0, color: Colors.white),
-        ),
+      myToast(
+        msg: 'Attendance Marked successfully',
         backgroundColor: const Color(0xff6FD943),
-        duration: const Duration(seconds: 5),
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
-        ),
-        margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
       );
-
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-
-      state = state.copyWith(isLoading: false);
       // ignore: use_build_context_synchronously
       Navigator.pop(context);
     } catch (error, stackTrace) {
       state = state.copyWith(isLoading: false);
       print('check catch error message $error');
       if (error.toString().contains('409')) {
-        final snackBar = SnackBar(
-          content: Text(
-            'Attendance Already Marked',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 20.0, color: Colors.white),
-          ),
+        myToast(
+          msg: 'Attendance Already Marked',
           backgroundColor: const Color(0xff203C97),
-          duration: const Duration(seconds: 5),
-          behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
-          ),
-          margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
         );
-
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
         Navigator.pop(context);
       } else if (error.toString().contains('422')) {
-        final snackBar = SnackBar(
-          content: Text(
-            'You Cannot Marked Attendance At This Time',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 20.0, color: Colors.white),
-          ),
+        myToast(
+          msg: 'You Cannot Marked Attendance At This Time',
           backgroundColor: const Color(0xffEF2E61),
-          duration: const Duration(seconds: 5),
-          behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
-          ),
-          margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
         );
-
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
         Navigator.pop(context);
       } else if (error.toString().contains('403')) {
-        final snackBar = SnackBar(
-          content: Text(
-            'Attendance Not Marked Server Error',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 20.0, color: Colors.white),
-          ),
+        myToast(
+          msg: 'Attendance Not Marked Server Error',
           backgroundColor: const Color(0xffEF2E61),
-          duration: const Duration(seconds: 5),
-          behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
-          ),
-          margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
         );
-
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
         Navigator.pop(context);
       } else if (error.toString().contains('401')) {
-        final snackBar = SnackBar(
-          content: Text(
-            'You Are Not On Company Location',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 20.0, color: Colors.white),
-          ),
-          backgroundColor: const Color(0xff203C97),
-          duration: const Duration(seconds: 5),
-          behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
-          ),
-          margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+        myToast(
+          msg: 'You Are Not On Company Location',
+          backgroundColor: const Color(0xffEF2E61),
         );
-
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
         Navigator.pop(context);
       }
 
@@ -239,6 +177,8 @@ class MainHomeScreenNotifier extends StateNotifier<MainHomeScreenState> {
     required employeeId,
     required date,
     required clockOut,
+    required latitude,
+    required longitude,
     required BuildContext context,
   }) async {
     state = state.copyWith(isLoading: true);
@@ -259,6 +199,8 @@ class MainHomeScreenNotifier extends StateNotifier<MainHomeScreenState> {
       "employee_id": employeeId.toString(),
       "date": date.toString(),
       "clock_out": formattedTime,
+      "latitude": latitude.toString(),
+      "longitude": longitude.toString(),
     };
 
     print(data);
@@ -269,40 +211,38 @@ class MainHomeScreenNotifier extends StateNotifier<MainHomeScreenState> {
       print('data try $data');
       state = state.copyWith(isLoading: false);
 
-      Fluttertoast.showToast(
+      myToast(
           msg: 'Clock Out successfully',
-          gravity: ToastGravity.CENTER,
-          fontSize: 20,
-          timeInSecForIosWeb: 3,
           backgroundColor: const Color(0xff6FD943));
-      state = state.copyWith(isLoading: false);
       // ignore: use_build_context_synchronously
       Navigator.pop(context);
     } catch (error, stackTrace) {
       state = state.copyWith(isLoading: false);
       print('check catch error message $error');
       if (error.toString().contains('409')) {
-        Fluttertoast.showToast(
+        myToast(
             msg: 'Clock Out Already Marked',
-            gravity: ToastGravity.CENTER,
-            fontSize: 20,
-            timeInSecForIosWeb: 3,
             backgroundColor: const Color(0xff203C97));
+
         Navigator.pop(context);
       } else if (error.toString().contains('422')) {
-        Fluttertoast.showToast(
+        myToast(
             msg: 'You Cannot Marked Attendance At This Time',
-            gravity: ToastGravity.CENTER,
-            fontSize: 20,
-            timeInSecForIosWeb: 3,
             backgroundColor: const Color(0xffEF2E61));
         Navigator.pop(context);
-      } else if (error.toString().contains('40')) {
-        Fluttertoast.showToast(
+      } else if (error.toString().contains('403')) {
+        myToast(
             msg: 'Attendance Not Marked Server Error',
-            gravity: ToastGravity.CENTER,
-            fontSize: 20,
-            timeInSecForIosWeb: 3,
+            backgroundColor: const Color(0xffEF2E61));
+        Navigator.pop(context);
+      } else if (error.toString().contains('404')) {
+        myToast(
+            msg: 'Attendance Record Not Found',
+            backgroundColor: const Color(0xffEF2E61));
+        Navigator.pop(context);
+      } else if (error.toString().contains('401')) {
+        myToast(
+            msg: 'You Are Not At Company Location',
             backgroundColor: const Color(0xffEF2E61));
         Navigator.pop(context);
       }
@@ -363,4 +303,79 @@ class MainHomeScreenNotifier extends StateNotifier<MainHomeScreenState> {
       'widget_title2': 'Company',
     }
   ];
+
+  // Future<void> checkLocationAndShowDialog({
+  //   required BuildContext context,
+  //   required String dialogTitle,
+  //   required String svgPath,
+  //   required Function(double latitude, double longitude) onTap,
+  // }) async {
+  //   bool serviceEnabled = await location.serviceEnabled();
+  //   if (!serviceEnabled) {
+  //     serviceEnabled = await location.requestService();
+  //     if (!serviceEnabled) {
+  //       myToast(
+  //         msg: 'Please enable location services',
+  //         backgroundColor: const Color(0xff203C97),
+  //       );
+  //       return;
+  //     }
+  //   }
+
+  //   PermissionStatus permissionGranted = await location.hasPermission();
+  //   if (permissionGranted == PermissionStatus.denied ||
+  //       permissionGranted == PermissionStatus.deniedForever) {
+  //     permissionGranted = await location.requestPermission();
+  //     if (permissionGranted != PermissionStatus.granted) {
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         SnackBar(
+  //           content: const Text(
+  //               'Location permissions are required. Please enable them in settings.'),
+  //           action: SnackBarAction(
+  //             label: 'Settings',
+  //             onPressed: () {
+  //               AppSettings.openAppSettings();
+  //             },
+  //           ),
+  //         ),
+  //       );
+  //       return;
+  //     }
+  //   }
+
+  //   if (permissionGranted == PermissionStatus.granted ||
+  //       permissionGranted == PermissionStatus.grantedLimited) {
+  //     try {
+  //       print('Getting location...');
+  //       LocationData locationData = await location.getLocation();
+  //       print(
+  //           'Latitude: ${locationData.latitude}, Longitude: ${locationData.longitude}');
+
+  //       double latitude = locationData.latitude!;
+  //       double longitude = locationData.longitude!;
+
+  //       // Ensure the dialog is triggered on the main UI thread
+  //       WidgetsBinding.instance.addPostFrameCallback((_) {
+  //         showDialog(
+  //           context: context,
+  //           builder: (BuildContext context) => CheckInDialog(
+  //             title: dialogTitle,
+  //             svgPath: svgPath,
+  //             onTap: () => onTap(latitude, longitude),
+  //           ),
+  //         );
+  //       });
+  //     } catch (e) {
+  //       print('Error getting location: $e');
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         const SnackBar(
+  //             content: Text('Failed to get location. Please try again.')),
+  //       );
+  //     }
+  //   } else {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(content: Text('Location permissions are required.')),
+  //     );
+  //   }
+  // }
 }

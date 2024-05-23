@@ -84,7 +84,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           Padding(
             padding: const EdgeInsets.only(right: 20, top: 30).r,
             child: InkWell(
-              onTap: () {},
+              onTap: bellOnTap,
               child: badges.Badge(
                 badgeContent: Text('3',
                     style: GoogleFonts.roboto(

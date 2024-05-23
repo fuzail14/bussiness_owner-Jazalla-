@@ -4,10 +4,12 @@ import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../Constants/constants.dart';
 import '../../../../Data/Api Resp/api_response.dart';
+import '../../../../Routes/set_routes.dart';
 import '../../../../Widgets/CustomButton/custom_button.dart';
 import '../../../../Widgets/Loader/loader.dart';
 import '../../../../Widgets/StarRating/star_rating.dart';
@@ -22,6 +24,9 @@ class SaleBussinesDetailPage extends ConsumerWidget {
     return Scaffold(
       appBar: MyAppBar(
         title: "Detail",
+        bellOnTap: () {
+          GoRouter.of(context).pushNamed(notificationsScreen);
+        },
       ),
       backgroundColor: Colors.white,
       body: Column(

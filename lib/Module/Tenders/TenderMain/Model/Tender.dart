@@ -16,13 +16,6 @@ class Tender {
             .toList() ??
         [];
   }
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['success'] = success;
-    data['tenders'] = tenders!.map((e) => e.toJson()).toList();
-    return data;
-  }
 }
 
 class Tenders {
@@ -331,110 +324,6 @@ class Tenders {
     approvedAt = json['approved_at'];
     companies = Companies.fromJson(json['companies']);
   }
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['id'] = id;
-    data['company_id'] = companyId;
-    data['menuType'] = menuType;
-    data['isPackage'] = isPackage;
-    data['title'] = title;
-    data['type'] = type;
-    data['end_date'] = endDate;
-    data['end_time'] = endTime;
-    data['promotion'] = promotion;
-    data['emailshow'] = emailshow;
-    data['phoneshow'] = phoneshow;
-    data['budget'] = budget;
-    data['isPromot'] = isPromot;
-    data['business_overview'] = businessOverview;
-    data['facilities_overview'] = facilitiesOverview;
-    data['prodnserv_overview'] = prodnservOverview;
-    data['reasonforsale'] = reasonforsale;
-    data['industry_preference'] = industryPreference;
-    data['location_preference'] = locationPreference;
-    data['assets'] = assets;
-    data['monthly_sale'] = monthlySale;
-    data['monthly_sale_currency'] = monthlySaleCurrency;
-    data['reported_sales'] = reportedSales;
-    data['reported_sale_currency'] = reportedSaleCurrency;
-    data['target_selling_price'] = targetSellingPrice;
-    data['target_selling_price_currency'] = targetSellingPriceCurrency;
-    data['physical_assets_value'] = physicalAssetsValue;
-    data['physical_assets_value_currency'] = physicalAssetsValueCurrency;
-    data['isic4_main'] = isic4Main;
-    data['isic4_category'] = isic4Category;
-    data['isic4_activity'] = isic4Activity;
-    data['govt_requirement'] = govtRequirement;
-    data['company_requirement'] = companyRequirement;
-    data['image'] = image;
-    data['attachment'] = attachment;
-    data['shortDesc'] = shortDesc;
-    data['categoryLevel1'] = categoryLevel1;
-    data['categoryLevel2'] = categoryLevel2;
-    data['categoryLevel3'] = categoryLevel3;
-    data['tender_type'] = tenderType;
-    data['segment'] = segment;
-    data['family'] = family;
-    data['class'] = classobj;
-    data['commodity'] = commodity;
-    data['payment_mode'] = paymentMode;
-    data['unit'] = unit;
-    data['quantity'] = quantity;
-    data['shipping_mode'] = shippingMode;
-    data['request_type'] = requestType;
-    data['local_content_target'] = localContentTarget;
-    data['agreement_period'] = agreementPeriod;
-    data['agreement_start_date'] = agreementStartDate;
-    data['delivery_start_date'] = deliveryStartDate;
-    data['delivery_end_date'] = deliveryEndDate;
-    data['location_type'] = locationType;
-    data['country'] = country;
-    data['state'] = state;
-    data['district'] = district;
-    data['street_name'] = streetName;
-    data['zip_code'] = zipCode;
-    data['building_no'] = buildingNo;
-    data['unit_no'] = unitNo;
-    data['city'] = city;
-    data['professionalSummary'] = professionalSummary;
-    data['investmentClito'] = investmentClito;
-    data['investmentSize'] = investmentSize;
-    data['transactionReference'] = transactionReference;
-    data['financialInvestment'] = financialInvestment;
-    data['runRateSales'] = runRateSales;
-    data['ebitdaMargin'] = ebitdaMargin;
-    data['established'] = established;
-    data['employeeCapacity'] = employeeCapacity;
-    data['legalEntry'] = legalEntry;
-    data['reportedSales'] = reportedSales;
-    data['industries'] = industries;
-    data['qualified_sectors'] = qualifiedSectors;
-    data['description'] = description;
-    data['scope_of_work'] = scopeOfWork;
-    data['required_documents'] = requiredDocuments;
-    data['advance_payment'] = advancePayment;
-    data['payment_distribution'] = paymentDistribution;
-    data['contract_start_date'] = contractStartDate;
-    data['contract_end_date'] = contractEndDate;
-    data['listedBy'] = listedBy;
-    data['longDesc'] = longDesc;
-    data['latitude'] = latitude;
-    data['longitude'] = longitude;
-    data['timezone'] = timezone;
-    data['local_time'] = localTime;
-    data['status'] = status;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
-
-    data['created_by'] = createdBy;
-    data['updated_by'] = updatedBy;
-    data['deleted_by'] = deletedBy;
-    data['approval'] = approval;
-    data['approved_at'] = approvedAt;
-    data['companies'] = companies!.toJson();
-    return data;
-  }
 }
 
 class Companies {
@@ -628,73 +517,6 @@ class Companies {
     companyRequirement = null;
     attachedFile = null;
   }
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['id'] = id;
-    data['company_code'] = companyCode;
-    data['company_name'] = companyName;
-    data['ar_company_name'] = arCompanyName;
-    data['business_type'] = businessType;
-    data['description'] = description;
-    data['website'] = website;
-    data['country_code'] = countryCode;
-    data['mobile_no'] = mobileNo;
-    data['phone'] = phone;
-    data['fax'] = fax;
-    data['email'] = email;
-    data['zip_code'] = zipCode;
-    data['street'] = street;
-    data['logo'] = logo;
-    data['logo_path'] = logoPath;
-    data['contact_person_name'] = contactPersonName;
-    data['designation'] = designation;
-    data['primary_activity'] = primaryActivity;
-    data['industry'] = industry;
-    data['vat_no'] = vatNo;
-    data['vat_percentage'] = vatPercentage;
-    data['is_verified'] = isVerified;
-    data['is_public'] = isPublic;
-    data['is_branch'] = isBranch;
-    data['is_department'] = isDepartment;
-    data['registration_no'] = registrationNo;
-    data['registration_date'] = registrationDate;
-    data['facebook_link'] = facebookLink;
-    data['linkedin_link'] = linkedinLink;
-    data['twitter_link'] = twitterLink;
-    data['company_sector_id'] = companySectorId;
-    data['legal_status_id'] = legalStatusId;
-    data['status'] = status;
-    data['created_by'] = createdBy;
-    data['invited_id'] = invitedId;
-    data['currency_id'] = currencyId;
-    data['timezone_id'] = timezoneId;
-    data['language_id'] = languageId;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
-
-    data['verification_link'] = verificationLink;
-    data['otp'] = otp;
-    data['main_segment_p'] = mainSegmentP;
-    data['family_p'] = familyP;
-    data['class_p'] = classP;
-    data['commodity_p'] = commodityP;
-    data['main_segment_s'] = mainSegmentS;
-    data['family_s'] = familyS;
-    data['class_s'] = classS;
-    data['commodity_s'] = commodityS;
-    data['isProfileEnabled'] = isProfileEnabled;
-    data['isic4_main'] = isic4Main;
-    data['isic4_category'] = isic4Category;
-    data['activity'] = activity;
-    data['subscription_id'] = subscriptionId;
-    data['network'] = network;
-    data['registration_requirement'] = registrationRequirement;
-    data['govt_requirement'] = govtRequirement;
-    data['company_requirement'] = companyRequirement;
-    data['attached_file'] = attachedFile;
-    return data;
-  }
 }
 
 class CustomMainCategory {
@@ -712,14 +534,5 @@ class CustomMainCategory {
     id = json['id'];
     isic4_main_activity_id = json['isic4_main_activity_id'];
     custom_activity_name = json['custom_activity_name'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['id'] = id;
-    data['isic4_main_activity_id'] = isic4_main_activity_id;
-    data['custom_activity_name'] = custom_activity_name;
-
-    return data;
   }
 }

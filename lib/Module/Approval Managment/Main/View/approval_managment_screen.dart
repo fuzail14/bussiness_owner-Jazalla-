@@ -6,10 +6,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../../Data/Api Resp/api_response.dart';
 import '../../../../../Widgets/Loader/loader.dart';
+import '../../../../Routes/set_routes.dart';
 import '../../../../Widgets/AppBar/my_app_bar.dart';
 import '../../History/View/approval_managment_screen.dart';
 import '../Controller/approval_managment_controller.dart';
@@ -56,7 +58,7 @@ class _ApprovalManagmentScreenState
     // final salesManagmentRFPstate = ref.watch(SalesManagmentRFIProvider);
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xffF9F9F9),
       // appBar: MyAppBar(
       //     showFilter: false,
       //     showBackButton: false,
@@ -71,6 +73,7 @@ class _ApprovalManagmentScreenState
         toolbarHeight: 80,
 
         automaticallyImplyLeading: true,
+
         // iconTheme: const IconThemeData(
         //   color: Colors.white,
         // ),
@@ -110,7 +113,9 @@ class _ApprovalManagmentScreenState
           Padding(
             padding: const EdgeInsets.only(right: 20, top: 0).r,
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                GoRouter.of(context).pushNamed(notificationsScreen);
+              },
               child: badges.Badge(
                 badgeContent: Text('3',
                     style: GoogleFonts.roboto(

@@ -35,6 +35,9 @@ class ApprovalAuthorityScreen extends ConsumerWidget {
       appBar: MyAppBar(
         showFilter: false,
         title: "Administrator Center",
+        bellOnTap: () {
+          GoRouter.of(context).pushNamed(notificationsScreen);
+        },
       ),
       backgroundColor: Colors.white,
       body: Column(

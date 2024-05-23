@@ -12,12 +12,12 @@ import '../Model/Notification.dart';
 
 final notificationsProvider = StateNotifierProvider.autoDispose<
     NotificationsNotifier, NotificationsState>((ref) {
-  final person = ref.watch(personProvider);
+  final person = ref.read(personProvider);
   if (person == null) {
     throw Exception('Person data is not available');
   }
   return NotificationsNotifier(person: person);
-}, dependencies: [personProvider]);
+});
 
 class NotificationsState {
   final Status responseStatus;

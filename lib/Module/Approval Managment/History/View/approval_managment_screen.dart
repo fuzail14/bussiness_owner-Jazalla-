@@ -30,7 +30,7 @@ class ApprovalHistoryScreen extends ConsumerWidget {
       //   //   _scaffoldKey.currentState?.openEndDrawer();
       //   // }
       // ),
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xffF9F9F9),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

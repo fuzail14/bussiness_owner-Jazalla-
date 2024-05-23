@@ -21,9 +21,13 @@ class Menu extends ConsumerWidget {
     final controller = ref.watch(menuControllerProvider.notifier);
 
     return Scaffold(
+      backgroundColor: Color(0xffF9F9F9),
       appBar: MyAppBar(
         title: 'Menu',
         showBackButton: false,
+        bellOnTap: () {
+          GoRouter.of(context).pushNamed(notificationsScreen);
+        },
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

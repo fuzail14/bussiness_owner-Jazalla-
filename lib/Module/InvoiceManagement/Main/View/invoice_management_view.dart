@@ -34,6 +34,9 @@ class InvoiceManagementScreen extends ConsumerWidget {
       appBar: MyAppBar(
         showFilter: false,
         title: "Invoice Mangement",
+        bellOnTap: () {
+          GoRouter.of(context).pushNamed(notificationsScreen);
+        },
       ),
       backgroundColor: Colors.white,
       body: Column(

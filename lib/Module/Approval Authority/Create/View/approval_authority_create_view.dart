@@ -34,6 +34,7 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
       appBar: MyAppBar(
         showFilter: false,
         title: "Administrator Center",
+        showBell: false,
       ),
       backgroundColor: whiteColor,
       body: SingleChildScrollView(

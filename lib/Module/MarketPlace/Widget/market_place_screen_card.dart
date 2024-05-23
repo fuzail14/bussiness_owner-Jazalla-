@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
 import 'package:flutter/material.dart';
@@ -27,59 +29,64 @@ class CardMakretPlace extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Container(
-        width: 160.w,
-        height: 140.h,
-        padding:
-            const EdgeInsets.only(left: 20, top: 20, right: 5, bottom: 0).r,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8).r,
-          color: whiteColor,
-          border: Border.all(color: const Color(0xff449FC6).withOpacity(0.6)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.1),
-              spreadRadius: 2,
-              blurRadius: 2,
-              offset: const Offset(0, 4), // changes position of shadow
-            ),
-          ],
-        ),
-        child: Column(
-          children: [
-            SvgPicture.asset(
-              svgPath!,
-              color: const Color(0xff1F3996),
-              height: 40.h,
-              //width: 40.w,
-            ),
+      child: ClipRRect(
+        borderRadius: const BorderRadius.all(Radius.circular(25)),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+          child: Container(
+            width: 160.w,
+            height: 140.h,
+            padding:
+                const EdgeInsets.only(left: 20, top: 20, right: 5, bottom: 0).r,
+            decoration: BoxDecoration(
+                color: const Color(0xffF9F9F9),
+                border: Border.all(
+                    color: const Color(0xffF6F6F6).withOpacity(0.15)),
+                borderRadius: const BorderRadius.all(Radius.circular(15)).r),
 
-            8.ph,
-            SizedBox(
-              width: 120.w,
-              child: Text(
-                headingText!,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
-                style: GoogleFonts.roboto(
-                    color: const Color(0xff1F3996),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14.sp),
-              ),
+            // decoration: BoxDecoration(
+            //     color: const Color(0xffF6F6F6).withOpacity(0.15),
+            //     border: Border.all(
+            //         color: const Color(0xffF6F6F6).withOpacity(0.15)),
+            //     borderRadius: const BorderRadius.all(Radius.circular(15)).r),
+
+            child: Column(
+              children: [
+                SvgPicture.asset(
+                  svgPath!,
+                  color: const Color(0xff1F3996),
+                  height: 40.h,
+                  //width: 40.w,
+                ),
+
+                8.ph,
+                SizedBox(
+                  width: 120.w,
+                  child: Text(
+                    headingText!,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.roboto(
+                        color: const Color(0xff1F3996),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14.sp),
+                  ),
+                ),
+                // 4.ph,
+                // AutoSizeText(
+                //   subHeadingText!,
+                //   maxLines: 3,
+                //   textAlign: TextAlign.center,
+                //   overflow: TextOverflow.ellipsis,
+                //   style: GoogleFonts.roboto(
+                //       color: Color(0xff8DAEAE),
+                //       fontWeight: FontWeight.w400,
+                //       fontSize: 10.sp),
+                // )
+              ],
             ),
-            // 4.ph,
-            // AutoSizeText(
-            //   subHeadingText!,
-            //   maxLines: 3,
-            //   textAlign: TextAlign.center,
-            //   overflow: TextOverflow.ellipsis,
-            //   style: GoogleFonts.roboto(
-            //       color: Color(0xff8DAEAE),
-            //       fontWeight: FontWeight.w400,
-            //       fontSize: 10.sp),
-            // )
-          ],
+          ),
         ),
       ),
     );

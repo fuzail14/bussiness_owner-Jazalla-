@@ -6,12 +6,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../../../Data/Api Resp/api_response.dart';
 import '../../../../../Widgets/Loader/loader.dart';
 import '../../../Constants/Font/fonts.dart';
+import '../../../Routes/set_routes.dart';
 import '../../../Widgets/AppBar/my_app_bar.dart';
 import '../Notifier/user_management_notifier.dart';
 import '../State/user_management_state.dart';
@@ -34,6 +36,9 @@ class UserManagementScreen extends ConsumerWidget {
       appBar: MyAppBar(
         showFilter: false,
         title: "User Management",
+        bellOnTap: () {
+          GoRouter.of(context).pushNamed(notificationsScreen);
+        },
       ),
       backgroundColor: whiteColor,
 
