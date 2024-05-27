@@ -137,12 +137,12 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                             );
                           }).toList(),
                           onTap: () {
-                            controller.clearSubModule();
+                            //controller.clearSubModule();
                           },
                           onChanged: (Moduleforadd? newValue) {
                             if (newValue != null) {
                               print(newValue.name);
-                              //controller.setSelectedSubmodule();
+
                               controller.setSelectedmoduleNameAndId(newValue);
                               controller.submoduleViewApi(
                                   moduleId: newValue.id);
@@ -211,10 +211,12 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                                   )),
                             );
                           }).toList(),
+                          onTap: () {
+                            // controller.clearUser();
+                          },
                           onChanged: (Submoduleforadd? newValue) {
-                            controller.setSelectedApprovalauthorityuser(null);
-                            controller.setSelectedModuleaction(null);
                             controller.setSelectedSubModuleId(newValue!);
+
                             controller.userViewApi(
                                 companyId: controller.person!.data!.companyId,
                                 type: state.selectedmodule);
@@ -286,7 +288,7 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                             );
                           }).toList(),
                           onChanged: (Approvalauthorityuser? newValue) {
-                            controller.setSelectedUserId(newValue!);
+                            controller.setSelectedUserId(newValue);
                           },
                         ),
                       )),
@@ -652,70 +654,79 @@ class ApprovalAuthorityCreateScreen extends ConsumerWidget {
                         ),
                       )),
                   56.ph,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Container(
-                          height: 25.h,
-                          width: 90.w,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5).r,
-                              color: Color(0xffF6F6F6)),
-                          child: Center(
-                            child: Text(
-                              'Cancel',
-                              style: GoogleFonts.montserrat(
-                                color: const Color(0xff504A4A),
-                                fontWeight: FontWeight.w600,
-                                fontSize: 12,
+                  state.isLoading
+                      ? const CircularProgressIndicator()
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: Container(
+                                height: 25.h,
+                                width: 90.w,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5).r,
+                                    color: Color(0xffF6F6F6)),
+                                child: Center(
+                                  child: Text(
+                                    'Cancel',
+                                    style: GoogleFonts.montserrat(
+                                      color: const Color(0xff504A4A),
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          controller.saveApprovalAuthority(
-                              companyId: controller.person!.data!.companyId,
-                              moduleId: state.selectedmoduleId,
-                              moduleFunctionId: state.selectedSubModuleId,
-                              moduleActionId: state.selectedActionId,
-                              userId: state.selectedUserId,
-                              amount:
-                                  controller.totalPriceAmountController.text,
-                              condOperator: state.selectedConditionOperator,
-                              firstApproverId: state.selectedFirstApproverId,
-                              finalApproverId: state.selectedFinalApproverId,
-                              createdBy: controller.person!.data!.id,
-                              context: context);
-                        },
-                        child: Container(
-                          height: 25.h,
-                          width: 90.w,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5).r,
-                              gradient: const LinearGradient(colors: [
-                                Color(0xff2751A1),
-                                Color(0xff4BB3CF)
-                              ])),
-                          child: Center(
-                            child: Text(
-                              'Save',
-                              style: GoogleFonts.montserrat(
-                                color: whiteColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 12,
+                            InkWell(
+                              onTap: () {
+                                controller.saveApprovalAuthority(
+                                    companyId:
+                                        controller.person!.data!.companyId,
+                                    moduleId: state.selectedmoduleId,
+                                    moduleFunctionId:
+                                        state.selectedSubmodule!.id,
+                                    moduleActionId:
+                                        state.selectedmoduleactionforadd!.id,
+                                    userId:
+                                        state.selectedApprovalauthorityuser!.id,
+                                    amount: controller
+                                        .totalPriceAmountController.text,
+                                    condOperator:
+                                        state.selectedConditionOperator,
+                                    firstApproverId:
+                                        state.selectedFirstApproverId,
+                                    finalApproverId:
+                                        state.selectedFinalApproverId,
+                                    createdBy: controller.person!.data!.id,
+                                    context: context);
+                              },
+                              child: Container(
+                                height: 25.h,
+                                width: 90.w,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5).r,
+                                    gradient: const LinearGradient(colors: [
+                                      Color(0xff2751A1),
+                                      Color(0xff4BB3CF)
+                                    ])),
+                                child: Center(
+                                  child: Text(
+                                    'Save',
+                                    style: GoogleFonts.montserrat(
+                                      color: whiteColor,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
                 ],
               ),
             ),

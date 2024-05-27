@@ -1,0 +1,61 @@
+{
+	"info": {
+		"_postman_id": "3f970ca7-ba5f-4914-bd06-d17cc1fb7f88",
+		"name": "Leave Managment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30528304"
+	},
+	"item": [
+		{
+			"name": "Get",
+			"item": [
+				{
+					"name": "getLeavesApi",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "POST",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/employeeCenter/leaveManagment/leaveCreateApi",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"employeeCenter",
+								"leaveManagment",
+								"leaveCreateApi"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

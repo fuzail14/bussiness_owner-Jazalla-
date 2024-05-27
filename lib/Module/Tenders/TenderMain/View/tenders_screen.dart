@@ -17,6 +17,7 @@ import '../../../../Constants/provider/global_providers.dart';
 import '../../../../Data/Api Resp/api_response.dart';
 import '../../../../Widgets/Buttons/FilterButton/filter_button.dart';
 import '../../../../Widgets/Loader/loader.dart';
+import '../../../MainHomeScreen/Main/Notifier/main_home_screen_notifier.dart';
 import '../Controller/tenders_controller.dart';
 
 class TendersView extends ConsumerWidget {
@@ -26,6 +27,7 @@ class TendersView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(tendersProvider.notifier);
     final state = ref.watch(tendersProvider);
+    final homeScreennotifier = ref.watch(mainHomeScreenProvider.notifier);
     final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
@@ -244,14 +246,20 @@ class TendersView extends ConsumerWidget {
                 itemCount: state.tendersList.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
+                  DateTime currentDate = DateTime.parse(
+                      homeScreennotifier.formattedDate.toString());
+                  DateTime endDate = DateTime.parse(
+                      state.tendersList[index].endDate.toString());
+
                   var tenders = state.tendersList[index];
                   return GestureDetector(
                     onTap: () {
-                      GoRouter.of(context).pushNamed(tendersDetailPage,
-                          pathParameters: {
-                            'id': state.tendersList[index].id.toString()
-                          },
-                          extra: controller.person.Bearer);
+                      GoRouter.of(context).pushNamed(
+                        tendersDetailPage,
+                        pathParameters: {
+                          'id': state.tendersList[index].id.toString()
+                        },
+                      );
                     },
                     child: Container(
                       //height: 686.h,
@@ -294,8 +302,13 @@ class TendersView extends ConsumerWidget {
                                               color: HexColor('#E1E3E6')),
                                           shape: BoxShape.circle),
                                       child: CachedNetworkImage(
-                                        imageUrl: Api.imageBaseUrl +
-                                            tenders.companies!.logo.toString(),
+                                        imageUrl: Api.originalImageBaseUrl +
+                                            state.tendersList[index].companies!
+                                                .logoPath
+                                                .toString() +
+                                            state.tendersList[index].companies!
+                                                .logo
+                                                .toString(),
                                         fit: BoxFit.contain,
                                         progressIndicatorBuilder: (context, url,
                                                 downloadProgress) =>
@@ -321,8 +334,7 @@ class TendersView extends ConsumerWidget {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            tenders.title
-                                                .toString(), // Replace with actual title
+                                            tenders.title.toString(),
                                             style: GoogleFonts.quicksand(
                                               fontWeight: FontWeight.w600,
                                               fontSize: 12.sp,
@@ -361,13 +373,23 @@ class TendersView extends ConsumerWidget {
                                         height: 14.h,
                                         width: 15.01.w,
                                       ),
-                                      Text(
-                                        'Closed',
-                                        style: GoogleFonts.quicksand(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 12.sp,
-                                            color: HexColor('#EB2F2F')),
-                                      ),
+                                      (currentDate.isAfter(endDate) ||
+                                              currentDate
+                                                  .isAtSameMomentAs(endDate))
+                                          ? Text(
+                                              'Closed',
+                                              style: GoogleFonts.quicksand(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 12.sp,
+                                                  color: HexColor('#EB2F2F')),
+                                            )
+                                          : Text(
+                                              'Open',
+                                              style: GoogleFonts.quicksand(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 12.sp,
+                                                  color: HexColor('#27D959')),
+                                            ),
                                       VerticalDivider(
                                         color: HexColor('#E1E3E6'),
                                       ),
@@ -389,7 +411,8 @@ class TendersView extends ConsumerWidget {
                                         height: 14.h,
                                         width: 15.01.w,
                                       ),
-                                      Text('Product',
+                                      Text(
+                                          state.tendersList[index].type ?? "NA",
                                           style: GoogleFonts.quicksand(
                                               fontWeight: FontWeight.w600,
                                               fontSize: 12.sp,
@@ -398,17 +421,20 @@ class TendersView extends ConsumerWidget {
                                   ),
                                 ),
                                 13.ph,
-                                Text('Construction the road',
-                                    style: GoogleFonts.quicksand(
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 14.sp,
-                                        color: HexColor('#686868'))),
-                                6.ph,
+                                // Text('Construction the road',
+                                //     style: GoogleFonts.quicksand(
+                                //         fontWeight: FontWeight.w700,
+                                //         fontSize: 14.sp,
+                                //         color: HexColor('#686868'))),
+                                // 6.ph,
                                 Row(
                                   children: [
                                     Container(
                                       height: 24.h,
-                                      width: 101.w,
+                                      width: 150.w,
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 10)
+                                              .r,
                                       decoration: BoxDecoration(
                                           color: Colors.transparent,
                                           borderRadius:
@@ -417,7 +443,11 @@ class TendersView extends ConsumerWidget {
                                               color: HexColor('#27BCEB'))),
                                       child: Center(
                                         child: Text(
-                                          'Email Protected',
+                                          state.tendersList[index].companies!
+                                                  .email ??
+                                              "NA",
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 1,
                                           style: GoogleFonts.quicksand(
                                               fontWeight: FontWeight.w700,
                                               fontSize: 10.sp,
@@ -428,14 +458,21 @@ class TendersView extends ConsumerWidget {
                                     21.23.pw,
                                     Container(
                                       height: 24.h,
-                                      width: 63.w,
+                                      width: 80.w,
+                                      padding: const EdgeInsets.symmetric(
+                                              horizontal: 10)
+                                          .r,
                                       decoration: BoxDecoration(
                                         color: HexColor('#27BCEB'),
                                         borderRadius: BorderRadius.circular(16),
                                       ),
                                       child: Center(
                                         child: Text(
-                                          'contact',
+                                          state.tendersList[index].companies!
+                                                  .mobileNo ??
+                                              "NA",
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
                                           style: GoogleFonts.quicksand(
                                               fontWeight: FontWeight.w700,
                                               fontSize: 10.sp,
@@ -450,8 +487,7 @@ class TendersView extends ConsumerWidget {
                           ),
                           10.ph,
                           Text(
-                            'Description'
-                                .toString(), // Replace with actual title
+                            'Description'.toString(),
                             style: GoogleFonts.quicksand(
                               fontWeight: FontWeight.w700,
                               fontSize: 16.sp,
@@ -512,13 +548,20 @@ class TendersView extends ConsumerWidget {
                                               color: HexColor('#6A7380')),
                                         ),
                                         //16.pw,
-                                        Text(
-                                          tenders.companies!.companyName
-                                              .toString(),
-                                          style: GoogleFonts.quicksand(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 14.sp,
-                                              color: HexColor('#0D0B0C')),
+                                        SizedBox(
+                                          width: 140.w,
+                                          child: Text(
+                                            state.tendersList[index].companies!
+                                                    .companyName ??
+                                                "NA",
+                                            maxLines: 1,
+                                            textDirection: TextDirection.rtl,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: GoogleFonts.quicksand(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 14.sp,
+                                                color: HexColor('#0D0B0C')),
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -534,13 +577,18 @@ class TendersView extends ConsumerWidget {
                                               fontSize: 14.sp,
                                               color: HexColor('#6A7380')),
                                         ),
-                                        //16.pw,
-                                        Text(
-                                          tenders.endDate.toString(),
-                                          style: GoogleFonts.quicksand(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 14.sp,
-                                              color: HexColor('#0D0B0C')),
+                                        SizedBox(
+                                          width: 140.w,
+                                          child: Text(
+                                            tenders.endDate ?? "NA",
+                                            maxLines: 1,
+                                            textDirection: TextDirection.rtl,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: GoogleFonts.quicksand(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 14.sp,
+                                                color: HexColor('#0D0B0C')),
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -556,14 +604,20 @@ class TendersView extends ConsumerWidget {
                                               fontSize: 14.sp,
                                               color: HexColor('#6A7380')),
                                         ),
-                                        //16.pw,
-                                        Text(
-                                          tenders.companies!.primaryActivity
-                                              .toString(),
-                                          style: GoogleFonts.quicksand(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 14.sp,
-                                              color: HexColor('#0D0B0C')),
+                                        SizedBox(
+                                          width: 140.w,
+                                          child: Text(
+                                            tenders.companies!
+                                                    .primaryActivity ??
+                                                "NA",
+                                            maxLines: 1,
+                                            textDirection: TextDirection.rtl,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: GoogleFonts.quicksand(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 14.sp,
+                                                color: HexColor('#0D0B0C')),
+                                          ),
                                         ),
                                       ],
                                     ),

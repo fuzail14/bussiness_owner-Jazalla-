@@ -1,6 +1,9 @@
 # This is a generated file; do not edit or check into version control.
 app_settings=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/app_settings-5.1.1/
 file_picker=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/file_picker-6.2.1/
+file_selector_linux=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/file_selector_linux-0.9.2+1/
+file_selector_macos=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/file_selector_macos-0.9.4/
+file_selector_windows=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/file_selector_windows-0.9.3+1/
 firebase_auth=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/firebase_auth-4.19.6/
 firebase_auth_web=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/firebase_auth_web-5.11.6/
 firebase_core=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/firebase_core-2.31.1/
@@ -14,6 +17,13 @@ google_maps_flutter=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/google_maps_
 google_maps_flutter_android=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/google_maps_flutter_android-2.8.0/
 google_maps_flutter_ios=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/google_maps_flutter_ios-2.6.0/
 google_maps_flutter_web=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/google_maps_flutter_web-0.5.7/
+image_picker=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/image_picker-1.1.1/
+image_picker_android=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+1/
+image_picker_for_web=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/image_picker_for_web-3.0.4/
+image_picker_ios=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.11+2/
+image_picker_linux=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/image_picker_linux-0.2.1+1/
+image_picker_macos=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/image_picker_macos-0.2.1+1/
+image_picker_windows=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/image_picker_windows-0.2.1+1/
 location=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/location-6.0.2/
 location_web=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/location_web-5.0.1/
 path_provider=/Users/muhammadfuzail/.pub-cache/hosted/pub.dev/path_provider-2.1.3/

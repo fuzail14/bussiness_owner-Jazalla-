@@ -17,6 +17,7 @@ import '../../../../Widgets/CustomButton/custom_button.dart';
 import '../../../../Widgets/Loader/loader.dart';
 
 import '../../../../Widgets/StarRating/star_rating.dart';
+import '../../../MainHomeScreen/Main/Notifier/main_home_screen_notifier.dart';
 import '../../Widget/custom_tiles.dart';
 import '../Controller/tenders_detail_controller.dart';
 
@@ -27,6 +28,8 @@ class TendersDetailPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(tenderDetailProvider.notifier);
     final state = ref.watch(tenderDetailProvider);
+    final homeScreennotifier = ref.watch(mainHomeScreenProvider.notifier);
+
     return Scaffold(
       appBar: MyAppBar(
         title: "Tender Detail",
@@ -42,44 +45,55 @@ class TendersDetailPage extends ConsumerWidget {
             const Loader()
           else if (state.responseStatus == Status.completed) ...[
             //20.ph,
-            CustomButton(
-              onTap: () {
-                // tenders.id;
-                // controller.person.data!.id;
-                // tenders.companyId;
-                // controller.person.data!.companyId;
-                // print(tenders.id);
-                // print("user id ${controller.person.data!.id}");
-                // print(tenders.companyId);
-                // print(
-                //     "buyer id ${controller.person.data!.companyId}");
 
-                // final quoteData = {
-                //   'tenderId': tenders.id,
-                //   'tenderCompanyId': tenders.companyId,
-                //   'userId': controller.person.data!.id,
-                //   'userCompanyId':
-                //       controller.person.data!.companyId
-                // };
-
-                GoRouter.of(context).pushNamed(
-                  tenderResponseScreen,
-                  // extra: quoteData,
-                );
-              },
-              width: 140.w,
-              height: 32.h,
-              text: 'Response',
-              color: HexColor('#1F3996'),
-            ),
             Expanded(
                 child: ListView.builder(
               itemCount: state.tenderDetail.length,
               shrinkWrap: true,
               itemBuilder: (context, outerIndex) {
+                DateTime currentDate =
+                    DateTime.parse(homeScreennotifier.formattedDate.toString());
+                DateTime endDate =
+                    DateTime.parse(state.tenderDetail.first.endDate.toString());
+
                 var tender = state.tenderDetail[outerIndex];
                 return Column(
                   children: [
+                    (currentDate!.isAfter(endDate!) ||
+                            currentDate!.isAtSameMomentAs(endDate!))
+                        ? SizedBox()
+                        : CustomButton(
+                            onTap: () {
+                              // tenders.id;
+                              // controller.person.data!.id;
+                              // tenders.companyId;
+                              // controller.person.data!.companyId;
+                              // print(tenders.id);
+                              // print("user id ${controller.person.data!.id}");
+                              // print(tenders.companyId);
+                              // print(
+                              //     "buyer id ${controller.person.data!.companyId}");
+
+                              final quoteData = {
+                                'tenderId': state.tenderDetail.first.id,
+                                'tenderCompanyId':
+                                    state.tenderDetail.first.companyId,
+                                'userId': controller.person!.data!.id,
+                                'userCompanyId':
+                                    controller.person!.data!.companyId
+                              };
+
+                              GoRouter.of(context).pushNamed(
+                                tenderResponseScreen,
+                                extra: quoteData,
+                              );
+                            },
+                            width: 140.w,
+                            height: 32.h,
+                            text: 'Response',
+                            color: HexColor('#1F3996'),
+                          ),
+
                     20.ph,
 
                     //GENERAL INFORMATION
@@ -129,29 +143,48 @@ class TendersDetailPage extends ConsumerWidget {
                                         Row(
                                           children: [
                                             Container(
-                                              width: 22.w,
-                                              height: 22.h,
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(3),
-                                                  color:
-                                                      const Color(0x33e1e1e2)),
-                                              child: (state
-                                                          .tenderDetail[
-                                                              outerIndex]
-                                                          .companies!
-                                                          .logo ==
-                                                      null)
-                                                  ? SvgPicture.asset(
-                                                      'assets/images/building.svg')
-                                                  : CachedNetworkImage(
-                                                      imageUrl: Api
-                                                              .imageBaseUrl +
-                                                          tender.companies!.logo
-                                                              .toString(),
-                                                      fit: BoxFit.contain,
-                                                    ),
-                                            ),
+                                                width: 22.w,
+                                                height: 22.h,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            3),
+                                                    color: const Color(
+                                                        0x33e1e1e2)),
+                                                child: (state
+                                                            .tenderDetail[
+                                                                outerIndex]
+                                                            .companies!
+                                                            .logo ==
+                                                        null)
+                                                    ? SvgPicture.asset(
+                                                        'assets/images/building.svg')
+                                                    : CachedNetworkImage(
+                                                        imageUrl: Api
+                                                                .originalImageBaseUrl +
+                                                            state
+                                                                .tenderDetail[
+                                                                    outerIndex]
+                                                                .companies!
+                                                                .logoPath
+                                                                .toString() +
+                                                            state
+                                                                .tenderDetail[
+                                                                    outerIndex]
+                                                                .companies!
+                                                                .logo
+                                                                .toString(),
+                                                        fit: BoxFit.fill,
+                                                      )
+
+                                                //  CachedNetworkImage(
+                                                //     imageUrl: Api
+                                                //             .imageBaseUrl +
+                                                //         tender.companies!.logo
+                                                //             .toString(),
+                                                //     fit: BoxFit.contain,
+                                                //   ),
+                                                ),
                                             16.pw,
                                             Text('Details',
                                                 style: TextStyle(
@@ -165,26 +198,25 @@ class TendersDetailPage extends ConsumerWidget {
                                         _generalInfoTileRow(
                                           Icons.location_city,
                                           'Title - ',
-                                          tender.title.toString(),
+                                          tender.title ?? "NA",
                                         ),
                                         10.ph,
                                         _generalInfoTileRow(
                                           Icons.date_range_sharp,
                                           'Tender End Date - ',
-                                          tender.endDate.toString(),
+                                          tender.endDate ?? "NA",
                                         ),
                                         10.ph,
                                         _generalInfoTileRow(
                                           Icons.timer_sharp,
                                           'Tender End Time - ',
-                                          tender.endTime.toString(),
+                                          tender.endTime ?? "NA",
                                         ),
                                         10.ph,
                                         _generalInfoTileRow(
                                           Icons.post_add_rounded,
                                           'Posted By - ',
-                                          tender.companies!.companyName
-                                              .toString(),
+                                          tender.companies!.companyName ?? "NA",
                                         ),
                                         11.ph,
                                         const Divider(),
@@ -247,7 +279,7 @@ class TendersDetailPage extends ConsumerWidget {
                                             ),
                                             13.pw,
                                             Text(
-                                              'Product',
+                                              tender.type ?? "NA",
                                               style: GoogleFonts.ubuntu(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.w400,
@@ -1004,13 +1036,13 @@ class TendersDetailPage extends ConsumerWidget {
                                                     fontWeight: FontWeight.w500,
                                                     color: HexColor('#3F3939')),
                                               ),
-                                              Text(
-                                                'UPLOADED AT',
-                                                style: GoogleFonts.quicksand(
-                                                    fontSize: 12.sp,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: HexColor('#3F3939')),
-                                              ),
+                                              // Text(
+                                              //   'UPLOADED AT',
+                                              //   style: GoogleFonts.quicksand(
+                                              //       fontSize: 12.sp,
+                                              //       fontWeight: FontWeight.w500,
+                                              //       color: HexColor('#3F3939')),
+                                              // ),
                                               Text(
                                                 'SIZE',
                                                 style: GoogleFonts.quicksand(
@@ -1035,7 +1067,7 @@ class TendersDetailPage extends ConsumerWidget {
                                             color: HexColor('#FFFFF'),
                                           ),
                                           width: double.infinity,
-                                          height: 39.h,
+                                          // height: 39.h,
                                           padding: const EdgeInsets.only(
                                                   left: 27, right: 27)
                                               .r,
@@ -1043,21 +1075,33 @@ class TendersDetailPage extends ConsumerWidget {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Text(
-                                                'index.html',
-                                                style: GoogleFonts.quicksand(
-                                                    fontSize: 12.sp,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: HexColor('#3F3939')),
+                                              SizedBox(
+                                                width: 100.w,
+                                                child: Text(
+                                                  tender.attachment
+                                                      .toString()
+                                                      .split('/')
+                                                      .last,
+                                                  maxLines: 3,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: GoogleFonts.quicksand(
+                                                      fontSize: 12.sp,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color:
+                                                          HexColor('#3F3939')),
+                                                ),
                                               ),
-                                              Text(
-                                                tender.contractStartDate
-                                                    .toString(),
-                                                style: GoogleFonts.quicksand(
-                                                    fontSize: 12.sp,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: HexColor('#3F3939')),
-                                              ),
+
+                                              // Text(
+                                              //   tender.contractStartDate
+                                              //       .toString(),
+                                              //   style: GoogleFonts.quicksand(
+                                              //       fontSize: 12.sp,
+                                              //       fontWeight: FontWeight.w500,
+                                              //       color: HexColor('#3F3939')),
+                                              // ),
                                               Text(
                                                 '01 MB',
                                                 style: GoogleFonts.quicksand(
@@ -1065,6 +1109,7 @@ class TendersDetailPage extends ConsumerWidget {
                                                     fontWeight: FontWeight.w500,
                                                     color: HexColor('#3F3939')),
                                               ),
+                                              20.pw,
                                               IconButton(
                                                 icon: const Icon(
                                                     Icons.download_rounded),
@@ -1301,21 +1346,46 @@ Widget _generalInfoTileRow(icon, firstText, SecondText) {
         color: HexColor('#19A3A3'),
       ),
       16.pw,
-      Text.rich(TextSpan(
-          text: firstText,
-          style: GoogleFonts.ubuntu(
-              fontSize: 12,
-              fontWeight: FontWeight.w300,
-              color: HexColor('#757A8E')),
-          children: <InlineSpan>[
-            TextSpan(
-              text: SecondText,
+      Row(
+        children: [
+          Text(
+            firstText,
+            style: GoogleFonts.ubuntu(
+                fontSize: 12,
+                fontWeight: FontWeight.w300,
+                color: HexColor('#757A8E')),
+          ),
+
+          SizedBox(
+            width: 150.w,
+            child: Text(
+              SecondText,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: GoogleFonts.ubuntu(
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                   color: HexColor('#0D0B0C')),
-            )
-          ])),
+            ),
+          ),
+
+          // Text.rich(TextSpan(
+          //     text: firstText,
+          //     style: GoogleFonts.ubuntu(
+          //         fontSize: 12,
+          //         fontWeight: FontWeight.w300,
+          //         color: HexColor('#757A8E')),
+          //     children: <InlineSpan>[
+          //       TextSpan(
+          //         text: SecondText,
+          //         style: GoogleFonts.ubuntu(
+          //             fontSize: 12,
+          //             fontWeight: FontWeight.w400,
+          //             color: HexColor('#0D0B0C')),
+          //       )
+          //     ])),
+        ],
+      ),
     ],
   );
 }

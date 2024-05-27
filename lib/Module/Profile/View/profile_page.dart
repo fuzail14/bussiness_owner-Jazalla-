@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/Font/fonts.dart';
 import 'package:flutter/material.dart';
@@ -9,15 +11,19 @@ import 'package:hexcolor/hexcolor.dart';
 import '../../../../Constants/constants.dart';
 import '../../../../Data/Api Resp/api_response.dart';
 import '../../../../Widgets/Loader/loader.dart';
+import '../../../Constants/api_routes.dart';
 import '../Notifier/profile_notifier.dart';
 
 class ProfilePage extends ConsumerWidget {
-  const ProfilePage({super.key});
+  ProfilePage({super.key});
+  int buildCheck = 0;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(profilePageProvider);
     final controller = ref.watch(profilePageProvider.notifier);
+    print(controller.person!.data!.avatar);
+    print('build check ${buildCheck++}');
 
     return Scaffold(
       backgroundColor: whiteColor,
@@ -25,7 +31,26 @@ class ProfilePage extends ConsumerWidget {
         child: Column(
           children: [
             if (state.responseStatus == Status.loading)
-              const Loader()
+              Container(
+                  height: 396,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30),
+                    ).r,
+                    gradient: const LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Color.fromRGBO(34, 67, 154, 1),
+                          Color.fromRGBO(74, 176, 206, 1),
+                        ]),
+                  ),
+                  child: Center(
+                      child: CircularProgressIndicator(
+                    color: whiteColor,
+                  )))
             else if (state.responseStatus == Status.completed) ...[
               Stack(
                 children: [
@@ -56,32 +81,168 @@ class ProfilePage extends ConsumerWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 58).r,
-                    child: Align(
+                      padding: const EdgeInsets.only(top: 58).r,
+                      child: Align(
                         alignment: Alignment.center,
                         child: Stack(
                           alignment: Alignment.center,
                           children: [
-                            SizedBox(
-                              height: 139.h,
-                              width: 139.w,
-                              child: const CircleAvatar(
-                                backgroundImage:
-                                    AssetImage('assets/images/user_avatar.png'),
-                              ),
-                            ),
+                            (state.profileDetail.isNotEmpty &&
+                                    state.profileDetail.first.avatar != null)
+                                ? SizedBox(
+                                    height: 139.h,
+                                    width: 139.w,
+                                    child: state.pickedFile != null
+                                        ? CircleAvatar(
+                                            backgroundImage: FileImage(
+                                                File(state.pickedFile!.path)),
+                                          )
+                                        : CircleAvatar(
+                                            backgroundImage: NetworkImage(
+                                              Api.imageBaseUrlAvatar +
+                                                  state.profileDetail.first
+                                                      .avatar
+                                                      .toString(),
+                                            ),
+                                          ),
+                                  )
+                                : const SizedBox(
+                                    height: 139.0,
+                                    width: 139.0,
+                                    child: CircleAvatar(
+                                      backgroundImage: AssetImage(
+                                          'assets/images/user_avatar.png'),
+                                    ),
+                                  ),
                             Padding(
                               padding:
-                                  const EdgeInsets.only(top: 110, left: 100).r,
-                              child: Image.asset(
-                                'assets/images/edit_button.png',
-                                width: 31.w,
-                                height: 31.h,
+                                  const EdgeInsets.only(top: 50, left: 110).r,
+                              child: InkWell(
+                                onTap: () async {
+                                  await controller.pickImage();
+                                },
+                                child: Image.asset(
+                                  'assets/images/edit_button.png',
+                                  width: 31.w,
+                                  height: 31.h,
+                                ),
                               ),
                             ),
+                            if (state.updateButton == true) ...[
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 130, left: 150)
+                                        .r,
+                                child: InkWell(
+                                  child: state.isLoading
+                                      ? CircularProgressIndicator(
+                                          color: whiteColor,
+                                        )
+                                      : Container(
+                                          width: 60.w,
+                                          height: 20.h,
+                                          decoration: BoxDecoration(
+                                            color:
+                                                Colors.white.withOpacity(0.8),
+                                            borderRadius:
+                                                BorderRadius.circular(5).r,
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              "Update",
+                                              style: GoogleFonts.inter(
+                                                  fontWeight: FontWeight.bold,
+                                                  color:
+                                                      const Color(0xff03781D),
+                                                  fontSize: 10.sp),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        ),
+                                  onTap: () {
+                                    controller.updateAvatar(
+                                        userId: controller.person!.data!.id,
+                                        avatarFile: state.pickedFile,
+                                        context: context);
+                                  },
+                                ),
+                              )
+                            ]
                           ],
-                        )),
-                  ),
+                        ),
+                        //   (state.profileDetail.first.avatar != null)
+                        //       ? SizedBox(
+                        //           height: 139.h,
+                        //           width: 139.w,
+                        //           child: state.avatarPath != null
+                        //               ? CircleAvatar(
+                        //                   backgroundImage: FileImage(
+                        //                       File(state.pickedFile!.path)),
+                        //                 )
+                        //               : CircleAvatar(
+                        //                   backgroundImage: NetworkImage(
+                        //                   Api.imageBaseUrlAvatar +
+                        //                       state.profileDetail.first.avatar
+                        //                           .toString(),
+                        //                 )),
+                        //         )
+                        //       : const SizedBox(
+                        //           height: 139.0,
+                        //           width: 139.0,
+                        //           child: CircleAvatar(
+                        //             backgroundImage: AssetImage(
+                        //                 'assets/images/user_avatar.png'),
+                        //           ),
+                        //         ),
+                        //   Padding(
+                        //     padding:
+                        //         const EdgeInsets.only(top: 50, left: 110).r,
+                        //     child: InkWell(
+                        //       onTap: () async {
+                        //         await controller.pickImage();
+                        //       },
+                        //       child: Image.asset(
+                        //         'assets/images/edit_button.png',
+                        //         width: 31.w,
+                        //         height: 31.h,
+                        //       ),
+                        //     ),
+                        //   ),
+                        //   if (state.pickedFile != null) ...[
+                        //     Padding(
+                        //       padding:
+                        //           const EdgeInsets.only(top: 130, left: 150)
+                        //               .r,
+                        //       child: InkWell(
+                        //         child: Container(
+                        //           width: 60.w,
+                        //           height: 20.h,
+                        //           decoration: BoxDecoration(
+                        //             color: whiteColor.withOpacity(0.8),
+                        //             borderRadius: BorderRadius.circular(5).r,
+                        //           ),
+                        //           child: Center(
+                        //             child: Text(
+                        //               "Update",
+                        //               style: GoogleFonts.inter(
+                        //                   fontWeight: FontWeight.bold,
+                        //                   color: const Color(0xff03781D),
+                        //                   fontSize: 10.sp),
+                        //               textAlign: TextAlign.center,
+                        //             ),
+                        //           ),
+                        //         ),
+                        //         onTap: () {
+                        //           controller.updateAvatar(
+                        //               userId: controller.person!.data!.id,
+                        //               avatarFile: state.pickedFile,
+                        //               context: context);
+                        //         },
+                        //       ),
+                        //     )
+                        //   ]
+                        // ],
+                      )),
                   Padding(
                     padding:
                         const EdgeInsets.only(top: 214.5, left: 50, right: 50)
@@ -89,7 +250,7 @@ class ProfilePage extends ConsumerWidget {
                     child: Align(
                         alignment: Alignment.center,
                         child: Text(
-                          'Dammam User',
+                          "${state.profileDetail.first.firstName ?? "NA"} ${state.profileDetail.first.lastName ?? "NA"}",
                           maxLines: 1,
                           style: GoogleFonts.montserrat(
                               fontSize: 20.sp,
@@ -131,32 +292,28 @@ class ProfilePage extends ConsumerWidget {
                             ),
                             12.ph,
                             customTextField(
-                              'Fuzail',
-                            ),
+                                state.profileDetail.first.firstName ?? ""),
                             20.ph,
                             subHeadingText(
                               text: 'Last Name',
                             ),
                             12.ph,
                             customTextField(
-                              'Raza',
-                            ),
+                                state.profileDetail.first.lastName ?? "NA"),
                             20.ph,
                             subHeadingText(
                               text: 'Email',
                             ),
                             12.ph,
                             customTextField(
-                              'email@gmail.com',
-                            ),
+                                state.profileDetail.first.email ?? ""),
                             20.ph,
                             subHeadingText(
                               text: 'Phone Number',
                             ),
                             12.ph,
                             customTextField(
-                              '0534473508',
-                            ),
+                                state.profileDetail.first.mobileNo ?? ""),
                             // 20.ph,
                             // headingText('Change Password'),
                             // 20.ph,
@@ -306,61 +463,100 @@ class ProfilePage extends ConsumerWidget {
                             ),
                           ],
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            headingText('Change Password'),
-                            20.ph,
-                            subHeadingText(
-                              text: 'Old Password',
-                            ),
-                            12.ph,
-                            customPasswordTextField('Enter Old Password', ref,
-                                controller.oldPassword),
-                            20.ph,
-                            subHeadingText(
-                              text: 'New Password',
-                            ),
-                            12.ph,
-                            customPasswordTextField('Enter New Password', ref,
-                                controller.newPassword),
-                            20.ph,
-                            subHeadingText(
-                              text: 'Confirm Password',
-                            ),
-                            12.ph,
-                            customPasswordTextField('Enter Confirm Password',
-                                ref, controller.confirmPassword),
-                            20.ph,
-                            Container(
-                              height: 58.h,
-                              width: 327.w,
-                              decoration: BoxDecoration(
-                                gradient: const LinearGradient(
-                                  colors: [
-                                    Color(0xff1F3996),
-                                    Color(0xff45A1C4)
-                                  ],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                ),
-                                borderRadius: BorderRadius.circular(12.0),
+                        child: Form(
+                          key: controller.key,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              headingText('Change Password'),
+                              20.ph,
+                              subHeadingText(
+                                text: 'Old Password',
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(1),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  child: Center(
-                                      child: headingText(
-                                    'Change Password',
-                                  )),
-                                ),
+                              12.ph,
+                              customPasswordTextField('Enter Old Password', ref,
+                                  controller.oldPassword),
+                              20.ph,
+                              subHeadingText(
+                                text: 'New Password',
                               ),
-                            ),
-                          ],
+                              12.ph,
+                              customPasswordTextField('Enter New Password', ref,
+                                  controller.newPassword),
+                              20.ph,
+                              subHeadingText(
+                                text: 'Confirm Password',
+                              ),
+                              12.ph,
+                              customPasswordTextField('Enter Confirm Password',
+                                  ref, controller.confirmPassword),
+                              20.ph,
+                              (state.isLoading)
+                                  ? const Center(
+                                      child: CircularProgressIndicator())
+                                  : InkWell(
+                                      onTap: () {
+                                        if (ref
+                                            .read(profilePageProvider.notifier)
+                                            .key
+                                            .currentState!
+                                            .validate()) {
+                                          if (controller.newPassword.text ==
+                                              controller.confirmPassword.text) {
+                                            print(controller.newPassword.text);
+                                            print(controller
+                                                .confirmPassword.text);
+
+                                            controller.updatePassword(
+                                              userId:
+                                                  controller.person!.data!.id,
+                                              old_Password:
+                                                  controller.oldPassword.text,
+                                              new_Password:
+                                                  controller.newPassword.text,
+                                            );
+                                          } else {
+                                            myToast(
+                                                msg:
+                                                    'New password and confirm password do not match',
+                                                fontSize: 30,
+                                                backgroundColor: primaryColor);
+                                          }
+                                        }
+                                      },
+                                      child: Container(
+                                        height: 58.h,
+                                        width: 327.w,
+                                        decoration: BoxDecoration(
+                                          gradient: const LinearGradient(
+                                            colors: [
+                                              Color(0xff1F3996),
+                                              Color(0xff45A1C4)
+                                            ],
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(12.0),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(1),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(12.0),
+                                            ),
+                                            child: Center(
+                                                child: headingText(
+                                              'Change Password',
+                                            )),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                            ],
+                          ),
                         ),
                       )
                     ],
@@ -368,14 +564,49 @@ class ProfilePage extends ConsumerWidget {
                 ],
               )
             ] else
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  "No Data Found",
-                  style: GoogleFonts.montserrat(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700,
-                      color: HexColor('#EB2F2F')),
+              Container(
+                height: 396,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30),
+                  ).r,
+                  gradient: const LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Color.fromRGBO(34, 67, 154, 1),
+                        Color.fromRGBO(74, 176, 206, 1),
+                      ]),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 50, left: 20).r,
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: SvgPicture.asset(
+                          'assets/images/arrow_back.svg',
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 100).r,
+                      child: Center(
+                        child: Text(
+                          "No User Data Found",
+                          style: GoogleFonts.montserrat(
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
           ],
@@ -496,8 +727,9 @@ Widget customPasswordTextField(
     String hintText, WidgetRef ref, TextEditingController controller) {
   final state = ref.watch(profilePageProvider);
   final notifier = ref.watch(profilePageProvider.notifier);
-  return TextField(
+  return TextFormField(
     controller: controller,
+    validator: emptyStringValidator,
     obscureText: state.isHidden ? false : true,
     decoration: InputDecoration(
         hintText: hintText,

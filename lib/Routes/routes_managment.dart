@@ -1,3 +1,4 @@
+import 'package:bussines_owner/Module/Calendar/View/calendar_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:bussines_owner/Constants/Person/person.dart';
 import 'package:bussines_owner/Module/BussinesForSale/Detail/View/bussines_for_sale_detail_page.dart';
@@ -288,13 +289,11 @@ final router = GoRouter(
       pageBuilder: (context, state) {
         final id = int.parse(state.pathParameters['id']!);
 
-        final bearerToken = state.extra as String;
         final page = ProviderScope(
           overrides: [
-            routeArgsProvider.overrideWithValue(
-                {'tenderId': id, 'bearerToken': bearerToken}),
+            routeArgsProvider.overrideWithValue({'tenderId': id}),
           ],
-          child: const TendersDetailPage(),
+          child: TendersDetailPage(),
         );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
@@ -1225,8 +1224,21 @@ final router = GoRouter(
             routeArgsProvider
                 .overrideWithValue({'Id': id, 'bearerToken': bearerToken}),
           ],
-          child: const ProfilePage(),
+          child: ProfilePage(),
         );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: calendarScreen,
+      path: '/CalendarScreen',
+      pageBuilder: (context, state) {
+        final page = CalendarScreen();
+
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
             context: context,

@@ -11,11 +11,11 @@ class ApprovalAuthorityCreateState {
   final String? selectedmodule;
   final int? selectedmoduleId;
   List<Submoduleforadd> submoduleforadd;
-  final List<Approvalauthorityuser> approvalauthorityuser;
+  List<Approvalauthorityuser> approvalauthorityuser;
   Submoduleforadd? selectedSubmodule;
   Approvalauthorityuser? selectedApprovalauthorityuser;
   Moduleactionforadd? selectedmoduleactionforadd;
-  final List<Moduleactionforadd> moduleactionforadd;
+  List<Moduleactionforadd> moduleactionforadd;
 
   final List<Approveruser> approveruser;
   final List<Approveruser> firstApproverUsers;
@@ -26,25 +26,26 @@ class ApprovalAuthorityCreateState {
   final String? selectedConditionOperator;
 
   final Map<String, String> conditionMap;
-  final int? selectedSubModuleId;
 
+  final int? selectedSubModuleId;
   final int? selectedUserId;
   final int? selectedActionId;
   final int? selectedFirstApproverId;
   final int? selectedFinalApproverId;
+
   bool isLoading;
 
   ApprovalAuthorityCreateState(
       {this.responseStatus = Status.loading,
       this.moduleforadd = const [],
       List<Submoduleforadd>? submoduleforadd,
-      this.approvalauthorityuser = const [],
+      List<Approvalauthorityuser>? approvalauthorityuser,
       this.selectedSubmodule,
       this.selectedmodule,
       this.selectedmoduleId,
       this.selectedApprovalauthorityuser,
       this.selectedmoduleactionforadd,
-      this.moduleactionforadd = const [],
+      List<Moduleactionforadd>? moduleactionforadd,
       this.approveruser = const [],
       this.firstApproverUsers = const [],
       this.finalApproverUsers = const [],
@@ -66,7 +67,9 @@ class ApprovalAuthorityCreateState {
       this.selectedFinalApproverId,
       this.isLoading = false,
       this.selectedConditionOperator})
-      : submoduleforadd = submoduleforadd ?? [];
+      : submoduleforadd = submoduleforadd ?? [],
+        approvalauthorityuser = approvalauthorityuser ?? [],
+        moduleactionforadd = moduleactionforadd ?? [];
 
   ApprovalAuthorityCreateState copyWith(
       {Status? responseStatus,

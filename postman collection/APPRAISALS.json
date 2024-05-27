@@ -1,0 +1,23 @@
+{
+	"info": {
+		"_postman_id": "7c62bf21-b32f-423f-9f2a-e42a266d1a60",
+		"name": "APPRAISALS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30528304"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "getEmployeeAppraisals",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

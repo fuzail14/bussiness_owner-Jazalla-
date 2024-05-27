@@ -1,0 +1,23 @@
+{
+	"info": {
+		"_postman_id": "d9336b37-4bd1-4102-a368-7df864d7cf7a",
+		"name": "Company Policies",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30528304"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "getCompanyPolicies",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

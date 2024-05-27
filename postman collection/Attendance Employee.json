@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "a7b6bf69-0783-43ff-b5a3-8e34b53a2098",
+		"name": "Attendance Employee",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30528304"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "POST",
+			"item": [
+				{
+					"name": "clockInApi",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/employeeCenter/employeeAttendance/clockInApi",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"employeeCenter",
+								"employeeAttendance",
+								"clockInApi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "clockOutApi",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.100.47:8000/api/employeeCenter/employeeAttendance/clockOutApi?company_id=52&employee_id=11&date=2024-05-06&clock_out=05:00:00&status=Present&latitude=37.4219983&longitude=longitude",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"100",
+								"47"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"employeeCenter",
+								"employeeAttendance",
+								"clockOutApi"
+							],
+							"query": [
+								{
+									"key": "company_id",
+									"value": "52"
+								},
+								{
+									"key": "employee_id",
+									"value": "11"
+								},
+								{
+									"key": "date",
+									"value": "2024-05-06"
+								},
+								{
+									"key": "clock_out",
+									"value": "05:00:00"
+								},
+								{
+									"key": "status",
+									"value": "Present"
+								},
+								{
+									"key": "latitude",
+									"value": "37.4219983"
+								},
+								{
+									"key": "longitude",
+									"value": "longitude"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -28,6 +28,7 @@ class GeneralServiceView extends ConsumerWidget {
     final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
+      backgroundColor: whiteColor,
       endDrawer: Drawer(
         child: ListView(
           children: [

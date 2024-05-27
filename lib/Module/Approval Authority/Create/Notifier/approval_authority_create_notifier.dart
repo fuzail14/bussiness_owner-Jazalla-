@@ -103,47 +103,67 @@ class ApprovalAuthorityCreateNotifier
     }
   }
 
-  void clearSubModule() {
-    // state.submoduleforadd.clear();
-    // state.selectedSubmodule = null;
+  // void clearSubModule() {
+  //   // state.submoduleforadd.clear();
+  //   // state.selectedSubmodule = null;
 
-    state = state.copyWith(submoduleforadd: [], selectedSubmodule: null);
+  //   state = state.copyWith(submoduleforadd: [], selectedSubmodule: null);
 
-    print('sub module list');
-    print(state.submoduleforadd);
-    print(state.selectedSubmodule);
-    print(state.selectedSubmodule.runtimeType);
+  //   print('sub module list');
+  //   print(state.submoduleforadd);
+  //   print(state.selectedSubmodule);
+  //   print(state.selectedSubmodule.runtimeType);
+  // }
+
+  void clearUser() {
+    state.approvalauthorityuser.clear();
+    state.selectedApprovalauthorityuser = null;
+    state = state.copyWith(
+        approvalauthorityuser: state.approvalauthorityuser,
+        selectedApprovalauthorityuser: state.selectedApprovalauthorityuser);
   }
 
   void setSelectedmoduleNameAndId(Moduleforadd module) {
     state.submoduleforadd.clear();
     state.selectedSubmodule = null;
+    state.approvalauthorityuser.clear();
+    state.selectedApprovalauthorityuser = null;
+    state.moduleactionforadd.clear();
+    state.selectedmoduleactionforadd = null;
 
     state = state.copyWith(
       selectedmodule: module.name,
       selectedmoduleId: module.id,
       submoduleforadd: state.submoduleforadd,
       selectedSubmodule: state.selectedSubmodule,
+      approvalauthorityuser: state.approvalauthorityuser,
+      selectedApprovalauthorityuser: state.selectedApprovalauthorityuser,
+      moduleactionforadd: state.moduleactionforadd,
+      selectedmoduleactionforadd: state.selectedmoduleactionforadd,
     );
-    print('module Id ${state.selectedmoduleId}');
-    print('sub module list');
-    print(state.submoduleforadd);
-    print(state.selectedSubmodule);
-    print(state.selectedSubmodule.runtimeType);
   }
 
-  void setSelectedSubModuleId(Submoduleforadd submodule) {
-    state = state.copyWith(selectedSubModuleId: submodule.id);
-    print('sub module Id ${state.selectedSubModuleId}');
+  void setSelectedSubModuleId(Submoduleforadd? submodule) {
+    state.approvalauthorityuser.clear();
+    state.selectedApprovalauthorityuser = null;
+    state.moduleactionforadd.clear();
+    state.selectedmoduleactionforadd = null;
+
+    state = state.copyWith(
+        selectedSubmodule: submodule,
+        approvalauthorityuser: state.approvalauthorityuser,
+        selectedApprovalauthorityuser: state.selectedApprovalauthorityuser,
+        moduleactionforadd: state.moduleactionforadd,
+        selectedmoduleactionforadd: state.selectedmoduleactionforadd);
   }
 
-  void setSelectedUserId(Approvalauthorityuser approvalauthorityuser) {
-    state = state.copyWith(selectedUserId: approvalauthorityuser.id);
-    print('User Id ${state.selectedUserId}');
+  void setSelectedUserId(Approvalauthorityuser? approvalauthorityuser) {
+    state =
+        state.copyWith(selectedApprovalauthorityuser: approvalauthorityuser);
   }
 
-  void setSelectedActionId(Moduleactionforadd moduleactionforadd) {
-    state = state.copyWith(selectedActionId: moduleactionforadd.id);
+  void setSelectedActionId(Moduleactionforadd? moduleactionforadd) {
+    state = state.copyWith(selectedmoduleactionforadd: moduleactionforadd);
     print('Action Id ${state.selectedActionId}');
   }
 
@@ -152,6 +172,7 @@ class ApprovalAuthorityCreateNotifier
         approvalauthorityuser: [],
         selectedApprovalauthorityuser: null,
         responseStatus: Status.loading);
+
     String? modifytype;
     if (type == 'Procurement Management') {
       modifytype = 'buyer';
@@ -178,9 +199,7 @@ class ApprovalAuthorityCreateNotifier
               companyId: companyId, type: modifytype);
       state = state.copyWith(
         approvalauthorityuser: value.approvalauthorityuser,
-        selectedApprovalauthorityuser: value.approvalauthorityuser.isNotEmpty
-            ? value.approvalauthorityuser.first
-            : null,
+        // selectedApprovalauthorityuser: null,
         responseStatus: Status.completed,
       );
     } catch (e, stackTrace) {
@@ -208,9 +227,6 @@ class ApprovalAuthorityCreateNotifier
       // );
       state = state.copyWith(
           moduleactionforadd: value.moduleactionforadd,
-          selectedmoduleactionforadd: value.moduleactionforadd.isNotEmpty
-              ? value.moduleactionforadd.first
-              : null,
           responseStatus: Status.completed);
     } catch (e, stackTrace) {
       setResponseStatus(Status.error);

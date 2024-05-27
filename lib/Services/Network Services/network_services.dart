@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../Data/App Exceptions/app_exception.dart';
 
 abstract class BaseNetworkServices {
@@ -92,7 +93,7 @@ class NetworkServices implements BaseNetworkServices {
   // Don't forget to import this
 
   Future<dynamic> postFormReq(String url, Map<String, String> data,
-      {File? pdfFile, String? bearerToken}) async {
+      {File? pdfFile, XFile? imageFile, String? bearerToken}) async {
     dynamic futureData;
     try {
       var request = http.MultipartRequest('POST', Uri.parse(url));
@@ -112,6 +113,16 @@ class NetworkServices implements BaseNetworkServices {
           contentType: MediaType('application', 'pdf'),
         ));
       }
+      if (imageFile != null) {
+        String mimeType = _getMimeType(imageFile.path);
+        request.files.add(http.MultipartFile(
+          'attachment',
+          imageFile.readAsBytes().asStream(),
+          await imageFile.length(),
+          filename: imageFile.path.split('/').last,
+          contentType: MediaType.parse(mimeType),
+        ));
+      }
 
       var streamedResponse = await request.send();
 
@@ -125,6 +136,21 @@ class NetworkServices implements BaseNetworkServices {
     }
 
     return futureData;
+  }
+
+  String _getMimeType(String filePath) {
+    final extension = filePath.split('.').last.toLowerCase();
+    switch (extension) {
+      case 'jpeg':
+      case 'jpg':
+        return 'image/jpeg';
+      case 'png':
+        return 'image/png';
+      case 'gif':
+        return 'image/gif';
+      default:
+        return 'application/octet-stream';
+    }
   }
 
   // Future postFormReq(url, data, {String? bearerToken}) async {

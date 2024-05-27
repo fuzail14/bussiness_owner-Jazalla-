@@ -37,7 +37,20 @@ class SendRFIResponseView extends ConsumerWidget {
                 controller: controller.descriptionController,
                 attachmentContentShow: true,
                 buttonLoading: state.isLoading,
-                onTap: () async {
+                pdfOnTap: () async {
+                  FilePickerResult? result =
+                      await FilePicker.platform.pickFiles(
+                    type: FileType.custom,
+                    allowedExtensions: ['pdf'],
+                  );
+
+                  if (result != null) {
+                    File file = File(result.files.single.path!);
+
+                    controller.setPdfFile(file);
+                  }
+                },
+                browseButtonOnTap: () async {
                   FilePickerResult? result =
                       await FilePicker.platform.pickFiles(
                     type: FileType.custom,

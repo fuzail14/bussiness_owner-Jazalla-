@@ -61,3 +61,4 @@ const String companyPolicyScreen = '/CompanyPolicyScreen';
 const String eventScreen = '/EventScreen';
 const String holidaysScreen = '/HolidaysScreen';
 const String profilePage = '/ProfilePage';
+const String calendarScreen = '/CalendarScreen';

@@ -9,7 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../../Constants/Font/fonts.dart';
 import '../../../../Constants/constants.dart';
+import '../../../../Widgets/DescriptionTextField/description_field_attachment.dart';
 import '../Controller/service_send_inquiry_controller.dart';
 
 class ServiceSendInquiryScreen extends ConsumerWidget {
@@ -34,127 +36,60 @@ class ServiceSendInquiryScreen extends ConsumerWidget {
     print(inquiryData);
 
     return Scaffold(
+      backgroundColor: whiteColor,
       appBar: MyAppBar(
         title: 'Send Service Inquiry',
         showBell: false,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 50, left: 20, right: 20).r,
+        padding: const EdgeInsets.only(top: 20, left: 20, right: 20).r,
         child: Form(
           key: inquirycontroller.key,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                'Request Details*',
-                style: GoogleFonts.montserrat(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w400,
-                    color: const Color(0xff4D4D4D)),
-              ),
-              5.ph,
-              Container(
-                height: 117.h,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: const Color(0x7fefeff4)),
-                child: TextFormField(
-                  maxLines: 5,
-                  controller: inquirycontroller.descriptionController,
-                  validator: emptyStringValidator,
-                  decoration: const InputDecoration(
-                    hintText: 'Enter your description here',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-              16.ph,
-              Row(
-                children: [
-                  Container(
-                    width: 300.w,
-                    height: 23.h,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: const Color(0xff19A3A3))),
-                    child: Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () async {
-                            FilePickerResult? result =
-                                await FilePicker.platform.pickFiles(
-                              type: FileType.custom,
-                              allowedExtensions: ['pdf'],
-                            );
+          child: DescriptionFieldAttachment(
+            firstTextstyle: FontManagment().poppins16,
+            text: 'Request Detail',
+            hintText: 'Enter Your Details Here...',
+            controller: inquirycontroller.descriptionController,
+            containerFillColor: Colors.white,
+            borderColor: borderColor,
+            attachmentContentShow: true,
+            buttonLoading: inquiryState.isLoading,
+            pdfOnTap: () async {
+              FilePickerResult? result = await FilePicker.platform.pickFiles(
+                type: FileType.custom,
+                allowedExtensions: ['pdf'],
+              );
 
-                            if (result != null) {
-                              File file = File(result.files.single.path!);
-                              ref
-                                  .read(serviceinquiryProvider.notifier)
-                                  .setPdfFile(file);
-                            }
-                          },
-                          child: Container(
-                            width: 76.w,
-                            height: 23.h,
-                            decoration: BoxDecoration(
-                                color: const Color(0xffF7F7F9),
-                                border:
-                                    Border.all(color: const Color(0xff19A3A3))),
-                            child: Center(
-                              child: Text(
-                                'Choose File',
-                                style: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 10.sp,
-                                    color: const Color(0xff657474)),
-                              ),
-                            ),
-                          ),
-                        ),
-                        20.pw,
-                        if (inquiryState.pdfFile != null) ...[
-                          Container(
-                            child: Text(
-                              inquiryState.pdfFile?.path.split('/').last ??
-                                  'No file selected',
-                              style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 12.sp,
-                                  color: const Color(0xff657474)),
-                            ),
-                          ),
-                        ],
-                      ],
-                    ),
-                  )
-                ],
-              ),
-              20.ph,
-              GestureDetector(
-                onTap: () {
-                  if (inquirycontroller.key.currentState!.validate()) {
-                    ref.read(serviceinquiryProvider.notifier).saveInquiry(
-                        title: title,
-                        serviceId: serviceId,
-                        userId: userId,
-                        userCompanyId: userCompanyId,
-                        supplierId: companyId,
-                        description:
-                            inquirycontroller.descriptionController.text,
-                        pdfFile: inquiryState.pdfFile,
-                        context: context);
-                  }
-                },
-                child: inquiryState.isLoading
-                    ? const Loader()
-                    : CustomButton(
-                        width: 119.w,
-                        height: 28.h,
-                        color: const Color(0xff27BCEB),
-                        text: 'Save Inquiry',
-                      ),
-              ),
-            ],
+              if (result != null) {
+                File file = File(result.files.single.path!);
+                ref.read(serviceinquiryProvider.notifier).setPdfFile(file);
+              }
+            },
+            browseButtonOnTap: () async {
+              FilePickerResult? result = await FilePicker.platform.pickFiles(
+                type: FileType.custom,
+                allowedExtensions: ['pdf'],
+              );
+
+              if (result != null) {
+                File file = File(result.files.single.path!);
+                ref.read(serviceinquiryProvider.notifier).setPdfFile(file);
+              }
+            },
+            fileName: inquiryState.pdfFile?.path.split('/').last,
+            buttonOnTap: () {
+              if (inquirycontroller.key.currentState!.validate()) {
+                ref.read(serviceinquiryProvider.notifier).saveInquiry(
+                    title: title,
+                    serviceId: serviceId,
+                    userId: userId,
+                    userCompanyId: userCompanyId,
+                    supplierId: companyId,
+                    description: inquirycontroller.descriptionController.text,
+                    pdfFile: inquiryState.pdfFile,
+                    context: context);
+              }
+            },
           ),
         ),
       ),

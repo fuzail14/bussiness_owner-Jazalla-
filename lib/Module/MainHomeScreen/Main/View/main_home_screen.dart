@@ -18,6 +18,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
 import 'package:location/location.dart';
+
 import '../../../../Constants/Person/person.dart';
 import '../../../../Constants/Person/person_controller.dart';
 import '../../../../Constants/constants.dart';
@@ -75,6 +76,11 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
     print(person!.data!.company!.logo);
     print(person!.data!.company!.logoPath);
     print('-----------------');
+    print(
+      Api.originalImageBaseUrl +
+          person.data!.company!.logoPath.toString() +
+          person.data!.company!.logo.toString(),
+    );
     return Scaffold(
       backgroundColor: const Color(0xffF9F9F9),
       body: SingleChildScrollView(
@@ -469,7 +475,9 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                                                     GoRouter.of(context)
                                                         .pushNamed(profilePage,
                                                             pathParameters: {
-                                                              'id': '1'
+                                                              'id': person
+                                                                  .data!.id
+                                                                  .toString()
                                                             },
                                                             extra:
                                                                 person.Bearer);
@@ -880,35 +888,40 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
                             ),
                           ],
                         ),
-                        Column(
-                          children: [
-                            Container(
-                              width: 80.w,
-                              height: 66.h,
-                              decoration: BoxDecoration(
-                                color: whiteColor,
-                                borderRadius: BorderRadius.circular(12).r,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.1),
-                                    offset: const Offset(
-                                      1.0,
-                                      1.0,
+                        InkWell(
+                          onTap: () {
+                            GoRouter.of(context).pushNamed(calendarScreen);
+                          },
+                          child: Column(
+                            children: [
+                              Container(
+                                width: 80.w,
+                                height: 66.h,
+                                decoration: BoxDecoration(
+                                  color: whiteColor,
+                                  borderRadius: BorderRadius.circular(12).r,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.1),
+                                      offset: const Offset(
+                                        1.0,
+                                        1.0,
+                                      ),
+                                      blurRadius: 10.0,
+                                      spreadRadius: 1.0,
                                     ),
-                                    blurRadius: 10.0,
-                                    spreadRadius: 1.0,
-                                  ),
-                                ],
+                                  ],
+                                ),
+                                child: Image.asset(
+                                    'assets/images/calendar_icon.png'),
                               ),
-                              child: Image.asset(
-                                  'assets/images/calendar_icon.png'),
-                            ),
-                            7.ph,
-                            Text(
-                              'Calander',
-                              style: FontManagment().montserrat16,
-                            ),
-                          ],
+                              7.ph,
+                              Text(
+                                'Calander',
+                                style: FontManagment().montserrat16,
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     )

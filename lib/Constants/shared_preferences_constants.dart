@@ -15,3 +15,4 @@ const String employeeIdSPKEY = 'employeeId';
 const String primaryActivitySPKEY = 'primaryActivity';
 const String logoSPKEY = 'logo';
 const String logoPathSPKEY = 'logo_path';
+const String userAvatarPathSPKEY = 'avatar';

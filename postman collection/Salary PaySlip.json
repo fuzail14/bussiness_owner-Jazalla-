@@ -1,0 +1,23 @@
+{
+	"info": {
+		"_postman_id": "012c9467-a0fc-4b32-90eb-dbed2cedf832",
+		"name": "Salary PaySlip",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30528304"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

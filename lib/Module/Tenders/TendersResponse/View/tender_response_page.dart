@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
+import 'package:bussines_owner/Constants/Font/fonts.dart';
 import 'package:bussines_owner/Module/Tenders/TendersResponse/Notifier/tender_response_controller.dart';
 import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
 import 'package:file_picker/file_picker.dart';
@@ -42,6 +43,7 @@ class _TenderResponseScreenState extends ConsumerState<TenderResponseScreen>
     final tenderResponseNotifier = ref.watch(tenderResponseProvider.notifier);
     final tenderResponseState = ref.watch(tenderResponseProvider);
     return Scaffold(
+      backgroundColor: whiteColor,
       appBar: MyAppBar(
         title: 'Tender Response',
       ),
@@ -110,17 +112,30 @@ class ExpressInterestView extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 20, left: 20, right: 20).r,
       child: Form(
-        //  key: inquirycontroller.key,
+        key: tenderResponseNotifier.key,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             DescriptionFieldAttachment(
               text: 'Description',
+              firstTextstyle: FontManagment().poppins16,
               hintText: 'Enter Description',
               controller: tenderResponseNotifier.descriptionController,
               attachmentContentShow: true,
               buttonLoading: tenderResponseState.isLoading,
-              onTap: () async {
+              pdfOnTap: () async {
+                FilePickerResult? result = await FilePicker.platform.pickFiles(
+                  type: FileType.custom,
+                  allowedExtensions: ['pdf'],
+                );
+
+                if (result != null) {
+                  File file = File(result.files.single.path!);
+
+                  tenderResponseNotifier.setPdfFile(file);
+                }
+              },
+              browseButtonOnTap: () async {
                 FilePickerResult? result = await FilePicker.platform.pickFiles(
                   type: FileType.custom,
                   allowedExtensions: ['pdf'],
@@ -135,14 +150,17 @@ class ExpressInterestView extends ConsumerWidget {
               fileName: tenderResponseState.pdfFile?.path.split('/').last,
               buttonOnTap: () {
                 if (tenderResponseNotifier.key.currentState!.validate()) {
-                  ref.read(tenderResponseProvider.notifier).saveInquiry(
-                      productId: '',
-                      userId: '',
-                      companyId: '',
-                      description:
-                          tenderResponseNotifier.descriptionController.text,
-                      pdfFile: tenderResponseState.pdfFile,
-                      context: context);
+                  ref
+                      .read(tenderResponseProvider.notifier)
+                      .sendTenderExpressInterest(
+                          tenderId: tenderResponseNotifier.tenderId,
+                          postCompanyId: tenderResponseNotifier.tenderCompanyId,
+                          userId: tenderResponseNotifier.userId,
+                          companyId: tenderResponseNotifier.userCompanyId,
+                          description:
+                              tenderResponseNotifier.descriptionController.text,
+                          pdfFile: tenderResponseState.pdfFile,
+                          context: context);
                 }
               },
             ),
@@ -364,7 +382,19 @@ class SubmitProposalView extends ConsumerWidget {
               hintText: 'Enter Description',
               //borderColor: borderColor,
               controller: tenderResponseNotifier.descriptionController,
-              onTap: () async {
+              pdfOnTap: () async {
+                FilePickerResult? result = await FilePicker.platform.pickFiles(
+                  type: FileType.custom,
+                  allowedExtensions: ['pdf'],
+                );
+
+                if (result != null) {
+                  File file = File(result.files.single.path!);
+
+                  tenderResponseNotifier.setPdfFile(file);
+                }
+              },
+              browseButtonOnTap: () async {
                 FilePickerResult? result = await FilePicker.platform.pickFiles(
                   type: FileType.custom,
                   allowedExtensions: ['pdf'],
@@ -387,7 +417,19 @@ class SubmitProposalView extends ConsumerWidget {
               borderColor: borderColor,
               attachmentContentShow: true,
               buttonLoading: tenderResponseState.isLoading,
-              onTap: () async {
+              pdfOnTap: () async {
+                FilePickerResult? result = await FilePicker.platform.pickFiles(
+                  type: FileType.custom,
+                  allowedExtensions: ['pdf'],
+                );
+
+                if (result != null) {
+                  File file = File(result.files.single.path!);
+
+                  tenderResponseNotifier.setPdfFile(file);
+                }
+              },
+              browseButtonOnTap: () async {
                 FilePickerResult? result = await FilePicker.platform.pickFiles(
                   type: FileType.custom,
                   allowedExtensions: ['pdf'],
@@ -402,14 +444,14 @@ class SubmitProposalView extends ConsumerWidget {
               fileName: tenderResponseState.pdfFile?.path.split('/').last,
               buttonOnTap: () {
                 if (tenderResponseNotifier.key.currentState!.validate()) {
-                  ref.read(tenderResponseProvider.notifier).saveInquiry(
-                      productId: '',
-                      userId: '',
-                      companyId: '',
-                      description:
-                          tenderResponseNotifier.descriptionController.text,
-                      pdfFile: tenderResponseState.pdfFile,
-                      context: context);
+                  // ref.read(tenderResponseProvider.notifier).sendTenderExpressInterest(
+                  //     productId: '',
+                  //     userId: '',
+                  //     companyId: '',
+                  //     description:
+                  //         tenderResponseNotifier.descriptionController.text,
+                  //     pdfFile: tenderResponseState.pdfFile,
+                  //     context: context);
                 }
               },
             ),

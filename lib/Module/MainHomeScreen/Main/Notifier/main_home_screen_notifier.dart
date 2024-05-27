@@ -144,7 +144,7 @@ class MainHomeScreenNotifier extends StateNotifier<MainHomeScreenState> {
         Navigator.pop(context);
       } else if (error.toString().contains('422')) {
         myToast(
-          msg: 'You Cannot Marked Attendance At This Time',
+          msg: 'You Cannot Marked Attendance After Company End Time',
           backgroundColor: const Color(0xffEF2E61),
         );
 

@@ -28,7 +28,7 @@ var detailCradBorderColor = const Color(0xff46A5C9);
 
 /* Validations */
 
-String? emptyStringValidator(String? val) {
+String? emptyStringValidator(val) {
   String string = val!.trim();
 
   if (string.isEmpty) {
@@ -77,14 +77,16 @@ Future<bool?> myToast(
     {required msg,
     Color? backgroundColor,
     bool isNegative = false,
+    double? fontSize,
     ToastGravity? gravity}) async {
   bool? toast = await Fluttertoast.showToast(
       msg: msg,
       toastLength: Toast.LENGTH_LONG,
+      timeInSecForIosWeb: 3,
       gravity: gravity ?? ToastGravity.CENTER,
       backgroundColor: backgroundColor ?? Colors.black,
       textColor: Colors.white,
-      fontSize: 20.0.sp);
+      fontSize: fontSize ?? 20.0.sp);
   return toast;
 }
 

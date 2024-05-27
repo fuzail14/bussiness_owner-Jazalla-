@@ -1,17 +1,21 @@
 class Api {
-  // static const String imageBaseUrl = 'http://127.0.0.1:8000/uploads/logo/';
-  // static const String originalImageBaseUrl = 'http://127.0.0.1:8000';
-  // static const String baseUrl = 'http://127.0.0.1:8000/api/';
+  static const String imageBaseUrlAvatar =
+      'https://staging.jazalla.com//storage/uploads/avatar/';
+
+  static const String imageBaseUrl = 'http://127.0.0.1:8000/uploads/logo/';
+  static const String originalImageBaseUrl = 'http://127.0.0.1:8000';
+  static const String baseUrl = 'http://127.0.0.1:8000/api/';
 
   // static const String imageBaseUrl = 'http://192.168.100.47:8000/uploads/logo/';
+
   // static const String originalImageBaseUrl = 'http://192.168.100.47:8000';
   // static const String baseUrl = 'http://192.168.100.47:8000/api/';
 
-  static const String imageBaseUrl =
-      'https://staging.jazalla.com/api/uploads/logo/';
-  static const String originalImageBaseUrl =
-      'https://staging.jazalla.com/public';
-  static const String baseUrl = 'https://staging.jazalla.com/api/';
+  // static const String imageBaseUrl =
+  //     'https://staging.jazalla.com/api/uploads/logo/';
+  // static const String originalImageBaseUrl =
+  //     'https://staging.jazalla.com/public';
+  // static const String baseUrl = 'https://staging.jazalla.com/api/';
 
   static const String login = "${baseUrl}loginWithMobileNumber";
 
@@ -207,4 +211,9 @@ class Api {
       "${baseUrl}company/addApprovalAuthority";
 
   static const String getAllCompanyUsers = "${baseUrl}user/getAllCompanyUsers";
+  static const String userProfile = "${baseUrl}user/userProfile";
+  static const String updateUserAvatar = "${baseUrl}user/updateUserAvatar";
+  static const String updatepasswordApi = "${baseUrl}user/updatepasswordApi";
+  static const String tendersExpressInterestApi =
+      "${baseUrl}marketplace/Tenders/tendersExpressInterestApi";
 }

@@ -32,6 +32,7 @@ class MySharedPreferences {
 
       value.remove(employeeIdSPKEY);
       value.remove(primaryActivitySPKEY);
+      value.remove(userAvatarPathSPKEY);
     });
   }
 
@@ -60,6 +61,8 @@ class MySharedPreferences {
 
       value.setString(logoSPKEY, person.data!.company!.logo ?? '');
       value.setString(logoPathSPKEY, person.data!.company!.logoPath ?? '');
+      value.setString(userAvatarPathSPKEY, person.data!.avatar ?? '');
+
       if (person.data!.employee != null) {
         value.setInt(employeeIdSPKEY, person.data!.employee!.id ?? 0);
       }
@@ -89,6 +92,13 @@ class MySharedPreferences {
       value.getString(primaryActivitySPKEY) ??
           value.setString(primaryActivitySPKEY, '');
 
+      value.getString(logoSPKEY) ?? value.setString(logoSPKEY, '');
+
+      value.getString(logoPathSPKEY) ?? value.setString(logoPathSPKEY, '');
+
+      value.getString(userAvatarPathSPKEY) ??
+          value.setString(userAvatarPathSPKEY, '');
+
       person = Person(
         data: Data(
             id: value.getInt(userIdSPKey),
@@ -101,6 +111,7 @@ class MySharedPreferences {
             email: value.getString(emailSPKEY),
             type: value.getString(typeSPKEY),
             fcmtoken: value.getString(fcmTokenSPKEY),
+            avatar: value.getString(userAvatarPathSPKEY),
             company: Company(
               companyName: value.getString(companyNameSPKEY),
               primaryActivity: value.getString(primaryActivitySPKEY),

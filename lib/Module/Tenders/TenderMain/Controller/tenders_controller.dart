@@ -45,6 +45,7 @@ class TendersController extends StateNotifier<TendersState> {
   final tendersRepository = TendersRepository();
   final Person person;
   final TextEditingController searchController = TextEditingController();
+  DateTime currentDate = DateTime.now();
 
   TendersController({required this.person}) : super(TendersState()) {
     loadTenders();
