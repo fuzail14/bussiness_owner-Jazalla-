@@ -23,7 +23,7 @@ class CalendarScreen extends StatelessWidget {
               GoogleFonts.poppins(fontSize: 16.sp, fontWeight: FontWeight.bold),
           headerHeight: 75.h,
           headerStyle: CalendarHeaderStyle(
-              backgroundColor: Color(0xff1F3996).withOpacity(0.4),
+              backgroundColor: const Color(0xff1F3996).withOpacity(0.4),
               textStyle: FontManagment().poppins24),
           backgroundColor: whiteColor,
           view: CalendarView.month,

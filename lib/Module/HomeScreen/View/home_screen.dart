@@ -12,6 +12,7 @@ import '../../../Constants/constants.dart';
 import '../../../Services/Notification Services/notification_services.dart';
 import '../../../Services/Shared Preferences/MySharedPreferences.dart';
 import '../../Approval Managment/Main/View/approval_managment_screen.dart';
+import '../../Dynamic Modules/AdministratorModule/View/administrator_module_screen.dart';
 import '../../EmployeeCenter/View/employee_center_page.dart';
 import '../../MainHomeScreen/Main/View/main_home_screen.dart';
 import '../../Menu/View/menu_screen.dart';
@@ -63,7 +64,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           // CustomLineChart(),
           const MainHomeScreen(),
           MarketPlaceScreen(),
-          const ApprovalManagmentScreen(),
+          AdministratorModuleScreen(),
           const EmployeeCenterPage(),
           const Menu(),
         ];
@@ -79,7 +80,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           // CustomLineChart(),
           const MainHomeScreen(),
           MarketPlaceScreen(),
-          const ApprovalManagmentScreen(),
+          MarketPlaceScreen(),
           const EmployeeCenterPage(),
           const Menu(),
         ];
@@ -88,7 +89,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           // CustomLineChart(),
           const MainHomeScreen(),
           MarketPlaceScreen(),
-          const ApprovalManagmentScreen(),
+          MarketPlaceScreen(),
           const EmployeeCenterPage(),
           const Menu(),
         ];
@@ -97,7 +98,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           // CustomLineChart(),
           const MainHomeScreen(),
           MarketPlaceScreen(),
-          const ApprovalManagmentScreen(),
+          MarketPlaceScreen(),
           const EmployeeCenterPage(),
           const Menu(),
         ];
@@ -106,7 +107,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           // CustomLineChart(),
           const MainHomeScreen(),
           MarketPlaceScreen(),
-          const ApprovalManagmentScreen(),
+          MarketPlaceScreen(),
           const EmployeeCenterPage(),
           const Menu(),
         ];
@@ -115,7 +116,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           // CustomLineChart(),
           const MainHomeScreen(),
           MarketPlaceScreen(),
-          const ApprovalManagmentScreen(),
+          MarketPlaceScreen(),
           const EmployeeCenterPage(),
           const Menu(),
         ];
@@ -148,7 +149,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
           const BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.app_badge_fill),
-            label: 'Approvals',
+            label: 'Modules',
             backgroundColor: Color(0xff49AECD),
           ),
           const BottomNavigationBarItem(
@@ -176,7 +177,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
           const BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.app_badge_fill),
-            label: 'Approvals',
+            label: 'Modules',
             backgroundColor: Color(0xff49AECD),
           ),
           const BottomNavigationBarItem(
@@ -204,7 +205,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
           const BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.app_badge_fill),
-            label: 'Approvals',
+            label: 'Modules',
             backgroundColor: Color(0xff49AECD),
           ),
           const BottomNavigationBarItem(
@@ -232,7 +233,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
           const BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.app_badge_fill),
-            label: 'Approvals',
+            label: 'Modules',
             backgroundColor: Color(0xff49AECD),
           ),
           const BottomNavigationBarItem(
@@ -260,7 +261,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
           const BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.app_badge_fill),
-            label: 'Approvals',
+            label: 'Modules',
             backgroundColor: Color(0xff49AECD),
           ),
           const BottomNavigationBarItem(
@@ -288,7 +289,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
           const BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.app_badge_fill),
-            label: 'Approvals',
+            label: 'Modules',
             backgroundColor: Color(0xff49AECD),
           ),
           const BottomNavigationBarItem(

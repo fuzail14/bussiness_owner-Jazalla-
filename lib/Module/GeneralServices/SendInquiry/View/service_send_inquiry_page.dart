@@ -46,7 +46,7 @@ class ServiceSendInquiryScreen extends ConsumerWidget {
         child: Form(
           key: inquirycontroller.key,
           child: DescriptionFieldAttachment(
-            firstTextstyle: FontManagment().poppins16,
+            firstTextstyle: FontManagment().poppins16WithColor(),
             text: 'Request Detail',
             hintText: 'Enter Your Details Here...',
             controller: inquirycontroller.descriptionController,

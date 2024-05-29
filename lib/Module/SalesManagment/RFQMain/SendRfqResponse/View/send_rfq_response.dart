@@ -39,7 +39,8 @@ class SendRFQResponse extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Item Detail', style: FontManagment().poppins16),
+                Text('Item Detail',
+                    style: FontManagment().poppins16WithColor()),
                 15.ph,
                 Container(
                   // height: 429.h,
@@ -304,7 +305,8 @@ class SendRFQResponse extends ConsumerWidget {
                   ),
                 ),
                 20.ph,
-                Text('Response Details', style: FontManagment().poppins16),
+                Text('Response Details',
+                    style: FontManagment().poppins16WithColor()),
                 15.ph,
                 Container(
                   // height: 100.h,
@@ -335,7 +337,7 @@ class SendRFQResponse extends ConsumerWidget {
                   ),
                 ),
                 16.ph,
-                Text('Attachment', style: FontManagment().poppins16),
+                Text('Attachment', style: FontManagment().poppins16WithColor()),
                 15.ph,
                 InkWell(
                   onTap: () async {

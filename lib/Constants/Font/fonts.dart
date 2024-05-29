@@ -4,14 +4,26 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FontManagment {
-  var poppins16 = GoogleFonts.poppins(
-      fontSize: 16.sp,
-      fontWeight: FontWeight.w500,
-      color: const Color(0xff414141));
-  var poppins10 = GoogleFonts.poppins(
-      fontSize: 10.sp,
+  TextStyle poppins16WithColor(
+      {double? fontSize, Color? color, FontWeight? fontWeight}) {
+    return GoogleFonts.poppins(
+        fontSize: fontSize ?? 16.sp,
+        fontWeight: fontWeight ?? FontWeight.w600,
+        color: color ?? const Color(0xff414141));
+  }
+
+  TextStyle poppins10WithColor({Color? color, FontWeight? fontWeight}) {
+    return GoogleFonts.poppins(
+        fontSize: 10.sp,
+        fontWeight: fontWeight ?? FontWeight.w600,
+        color: color ?? const Color(0xff3E3434));
+  }
+
+  var poppins18 = GoogleFonts.poppins(
+      fontSize: 18.sp,
       fontWeight: FontWeight.w600,
-      color: const Color(0xff3E3434));
+      color: const Color(0xffFFFFFF));
+
   var poppins10White = GoogleFonts.poppins(
       fontSize: 10.sp,
       fontWeight: FontWeight.w500,

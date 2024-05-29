@@ -37,7 +37,7 @@ class SendRFPResponse extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Client', style: FontManagment().poppins16),
+                Text('Client', style: FontManagment().poppins16WithColor()),
                 15.ph,
                 Container(
                   width: double.infinity,
@@ -66,7 +66,7 @@ class SendRFPResponse extends ConsumerWidget {
                         width: 200.w,
                         child: Text(
                           'Khobar Company',
-                          style: FontManagment().poppins16,
+                          style: FontManagment().poppins16WithColor(),
                         ),
                       ),
                       SvgPicture.asset('assets/images/forward_arrow.svg')
@@ -144,7 +144,7 @@ class SendRFPResponse extends ConsumerWidget {
                   ),
                 ),
                 20.ph,
-                Text('Pricing', style: FontManagment().poppins16),
+                Text('Pricing', style: FontManagment().poppins16WithColor()),
                 11.ph,
                 Container(
                   // height: 429.h,
@@ -496,7 +496,8 @@ class SendRFPResponse extends ConsumerWidget {
                   ),
                 ),
                 20.ph,
-                Text('Response Details', style: FontManagment().poppins16),
+                Text('Response Details',
+                    style: FontManagment().poppins16WithColor()),
                 15.ph,
                 Container(
                   // height: 100.h,
@@ -527,7 +528,7 @@ class SendRFPResponse extends ConsumerWidget {
                   ),
                 ),
                 16.ph,
-                Text('Attachment', style: FontManagment().poppins16),
+                Text('Attachment', style: FontManagment().poppins16WithColor()),
                 15.ph,
                 InkWell(
                   onTap: () async {

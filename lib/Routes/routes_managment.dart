@@ -26,6 +26,12 @@ import '../Module/BussinesCommunity/Detail/View/bussines_community_detail_page.d
 import '../Module/BussinesCommunity/Main/View/bussines_communities_screen.dart';
 import '../Module/BussinesForSale/Main/View/sale_bussines_screen.dart';
 import '../Module/Company Policy/View/company_policy_view.dart';
+import '../Module/Dynamic Modules/Accounting Manager Module/View/accounting_manager_module_screen.dart';
+import '../Module/Dynamic Modules/HR Manager Module/View/Hr_manager_module_screen.dart';
+import '../Module/Dynamic Modules/Procurement Manager Module/View/procurement_manager_module_screen.dart';
+import '../Module/Dynamic Modules/Project Manager Module/View/project_manager_module_screen.dart';
+import '../Module/Dynamic Modules/Sales Manager Module/View/sales_manager_module_screen.dart';
+import '../Module/Dynamic Modules/Service Manager Module/View/service_manager_module_screen.dart';
 import '../Module/Event/View/event_view.dart';
 import '../Module/General Information/View/general_information_page.dart';
 import '../Module/GeneralServices/RequestProposal/View/request_proposal_page.dart';
@@ -935,18 +941,13 @@ final router = GoRouter(
     //         child: page);
     //   },
     // ),
+
     GoRoute(
       name: approvalManagmentScreen,
       path: '/ApprovalManagmentScreen',
       pageBuilder: (context, state) {
-        final args = state.extra as ApprovalScreenArgs;
-        final page = ProviderScope(
-          overrides: [
-            personProvider.overrideWith(
-                (ref) => PersonController()..setPerson(args.person)),
-          ],
-          child: ApprovalManagmentScreen(showBackButton: args.showBackButton),
-        );
+        final page = ApprovalManagmentScreen();
+
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
             context: context,
@@ -954,7 +955,6 @@ final router = GoRouter(
             child: page);
       },
     ),
-
     GoRoute(
       name: leaveManagmentScreen,
       path: '/LeaveManagmentScreen',
@@ -1238,6 +1238,85 @@ final router = GoRouter(
       path: '/CalendarScreen',
       pageBuilder: (context, state) {
         final page = CalendarScreen();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: procurementManagerModuleScreen,
+      path: '/ProcurementManagerModuleScreen',
+      pageBuilder: (context, state) {
+        const page = ProcurementManagerModuleScreen();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: salesManagerModuleScreen,
+      path: '/SalesManagerModuleScreen',
+      pageBuilder: (context, state) {
+        const page = SalesManagerModuleScreen();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: serviceManagerModuleScreen,
+      path: '/ServiceManagerModuleScreen',
+      pageBuilder: (context, state) {
+        const page = ServiceManagerModuleScreen();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+
+    GoRoute(
+      name: hrManagerModuleScreen,
+      path: '/HrManagerModuleScreen',
+      pageBuilder: (context, state) {
+        const page = HrManagerModuleScreen();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: accountingManagerModuleScreen,
+      path: '/AccountingManagerModuleScreen',
+      pageBuilder: (context, state) {
+        const page = AccountingManagerModuleScreen();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: projectManagerModuleScreen,
+      path: '/ProjectManagerModuleScreen',
+      pageBuilder: (context, state) {
+        const page = ProjectManagerModuleScreen();
 
         return buildPageWithFadeTransition(
             fullscreenDialog: false,

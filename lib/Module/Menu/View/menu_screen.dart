@@ -116,6 +116,10 @@ class Menu extends ConsumerWidget {
             context.pushNamed(
               approvalAuthorityScreen,
             );
+          } else if (item.title == 'Approval Mangement') {
+            context.pushNamed(
+              approvalManagmentScreen,
+            );
           }
         }, // Pass the dynamic color
         children: _buildChildrenForItem(context, item, person),

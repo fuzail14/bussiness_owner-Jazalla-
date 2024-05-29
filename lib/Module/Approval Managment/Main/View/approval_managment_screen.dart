@@ -59,80 +59,82 @@ class _ApprovalManagmentScreenState
 
     return Scaffold(
       backgroundColor: const Color(0xffF9F9F9),
-      // appBar: MyAppBar(
-      //     showFilter: false,
-      //     showBackButton: false,
-      //     title: (state.selectedIndex == 0)
-      //         ? "Approval Control"
-      //         : "Approval History"),
+      appBar: MyAppBar(
+          showFilter: false,
+          bellOnTap: () {
+            context.pushNamed(notificationsScreen);
+          },
+          title: (state.selectedIndex == 0)
+              ? "Approval Control"
+              : "Approval History"),
       // appBar: AppBar(
       //   leading: widget.showBackButton ? BackButton() : null,
       //   // Other AppBar properties...
       // ),
-      appBar: AppBar(
-        toolbarHeight: 80,
+      // appBar: AppBar(
+      //   toolbarHeight: 80,
 
-        automaticallyImplyLeading: true,
+      //   automaticallyImplyLeading: true,
 
-        // iconTheme: const IconThemeData(
-        //   color: Colors.white,
-        // ),
-        //toolbarHeight: size,
+      //   // iconTheme: const IconThemeData(
+      //   //   color: Colors.white,
+      //   // ),
+      //   //toolbarHeight: size,
 
-        leading: widget.showBackButton
-            ? Padding(
-                padding: const EdgeInsets.only(left: 12, right: 12).r,
-                child: InkWell(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: SvgPicture.asset(
-                    'assets/images/arrow_back.svg',
-                  ),
-                ),
-              )
-            : null,
+      //   leading: widget.showBackButton
+      //       ? Padding(
+      //           padding: const EdgeInsets.only(left: 12, right: 12).r,
+      //           child: InkWell(
+      //             onTap: () {
+      //               Navigator.pop(context);
+      //             },
+      //             child: SvgPicture.asset(
+      //               'assets/images/arrow_back.svg',
+      //             ),
+      //           ),
+      //         )
+      //       : null,
 
-        title: Text(
-          (state.selectedIndex == 0) ? "Approval Control" : "Approval History",
-          style: GoogleFonts.poppins(
-              fontWeight: FontWeight.w500,
-              fontSize: 18.sp,
-              color: Colors.white),
-        ),
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: <Color>[Color(0xff1F3996), Color(0xff4EBBD3)],
-            ),
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 20, top: 0).r,
-            child: InkWell(
-              onTap: () {
-                GoRouter.of(context).pushNamed(notificationsScreen);
-              },
-              child: badges.Badge(
-                badgeContent: Text('3',
-                    style: GoogleFonts.roboto(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w600,
-                        color: const Color(0xffFFFFFF))),
-                position: badges.BadgePosition.topEnd(top: -10, end: -12),
-                showBadge: true,
-                ignorePointer: false,
-                child: SvgPicture.asset(
-                  'assets/images/bellicon.svg',
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
+      //   title: Text(
+      //     (state.selectedIndex == 0) ? "Approval Control" : "Approval History",
+      //     style: GoogleFonts.poppins(
+      //         fontWeight: FontWeight.w500,
+      //         fontSize: 18.sp,
+      //         color: Colors.white),
+      //   ),
+      //   flexibleSpace: Container(
+      //     decoration: const BoxDecoration(
+      //       gradient: LinearGradient(
+      //         begin: Alignment.centerLeft,
+      //         end: Alignment.centerRight,
+      //         colors: <Color>[Color(0xff1F3996), Color(0xff4EBBD3)],
+      //       ),
+      //     ),
+      //   ),
+      //   actions: [
+      //     Padding(
+      //       padding: const EdgeInsets.only(right: 20, top: 0).r,
+      //       child: InkWell(
+      //         onTap: () {
+      //           GoRouter.of(context).pushNamed(notificationsScreen);
+      //         },
+      //         child: badges.Badge(
+      //           badgeContent: Text('3',
+      //               style: GoogleFonts.roboto(
+      //                   fontSize: 12.sp,
+      //                   fontWeight: FontWeight.w600,
+      //                   color: const Color(0xffFFFFFF))),
+      //           position: badges.BadgePosition.topEnd(top: -10, end: -12),
+      //           showBadge: true,
+      //           ignorePointer: false,
+      //           child: SvgPicture.asset(
+      //             'assets/images/bellicon.svg',
+      //           ),
+      //         ),
+      //       ),
+      //     )
+      //   ],
+      // ),
 
       body: Column(
         children: [
@@ -563,7 +565,8 @@ class CustomDialog extends StatelessWidget {
                                       child: Text(
                                         '20 Sept',
                                         maxLines: 1,
-                                        style: FontManagment().poppins10,
+                                        style: FontManagment()
+                                            .poppins10WithColor(),
                                       ),
                                     ),
                                     SizedBox(
@@ -597,7 +600,8 @@ class CustomDialog extends StatelessWidget {
                                       child: Text(
                                         '20 Sept',
                                         maxLines: 1,
-                                        style: FontManagment().poppins10,
+                                        style: FontManagment()
+                                            .poppins10WithColor(),
                                       ),
                                     ),
                                     SizedBox(
@@ -654,7 +658,8 @@ class CustomDialog extends StatelessWidget {
                                     child: Text(
                                       'Abu Muhammad',
                                       maxLines: 1,
-                                      style: FontManagment().poppins10,
+                                      style:
+                                          FontManagment().poppins10WithColor(),
                                     ),
                                   ),
                                   4.ph,
@@ -689,7 +694,8 @@ class CustomDialog extends StatelessWidget {
                                     child: Text(
                                       'Fuzail Fuzail',
                                       maxLines: 1,
-                                      style: FontManagment().poppins10,
+                                      style:
+                                          FontManagment().poppins10WithColor(),
                                     ),
                                   ),
                                   4.ph,
@@ -724,7 +730,8 @@ class CustomDialog extends StatelessWidget {
                                     child: Text(
                                       'Ahmed Ahmed',
                                       maxLines: 1,
-                                      style: FontManagment().poppins10,
+                                      style:
+                                          FontManagment().poppins10WithColor(),
                                     ),
                                   ),
                                   4.ph,

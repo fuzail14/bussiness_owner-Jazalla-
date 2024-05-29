@@ -97,7 +97,7 @@ class DescriptionFieldAttachment extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               16.ph,
-              Text('Attachment', style: FontManagment().poppins16),
+              Text('Attachment', style: FontManagment().poppins16WithColor()),
               15.ph,
               InkWell(
                 onTap: pdfOnTap,

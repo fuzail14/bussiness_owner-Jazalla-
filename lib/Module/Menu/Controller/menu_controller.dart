@@ -86,6 +86,12 @@ class MenuController extends StateNotifier<MenuState> {
           // onTap: () {},
         ),
         MenuItem(
+          title: 'Approval Mangement',
+          iconPath: 'assets/images/menu7.svg',
+          trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),
+          // onTap: () {},
+        ),
+        MenuItem(
           title: 'User Management',
           iconPath: 'assets/images/menu8.svg',
           trailingIcon: SvgPicture.asset('assets/images/forward_arrow.svg'),

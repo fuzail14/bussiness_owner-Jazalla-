@@ -118,7 +118,7 @@ class ExpressInterestView extends ConsumerWidget {
           children: [
             DescriptionFieldAttachment(
               text: 'Description',
-              firstTextstyle: FontManagment().poppins16,
+              firstTextstyle: FontManagment().poppins16WithColor(),
               hintText: 'Enter Description',
               controller: tenderResponseNotifier.descriptionController,
               attachmentContentShow: true,

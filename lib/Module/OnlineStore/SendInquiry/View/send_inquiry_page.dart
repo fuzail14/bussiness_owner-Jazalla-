@@ -50,7 +50,7 @@ class InquiryScreen extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 DescriptionFieldAttachment(
-                  firstTextstyle: FontManagment().poppins16,
+                  firstTextstyle: FontManagment().poppins16WithColor(),
                   text: 'Request Detail',
                   hintText: 'Enter Your Details Here...',
                   controller: inquirycontroller.descriptionController,
