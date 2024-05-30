@@ -14,6 +14,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../Constants/constants.dart';
 import '../../../../Data/Api Resp/api_response.dart';
+import '../../../../Widgets/DescriptionTextField/description_field_attachment.dart';
 import '../../../../Widgets/My TextForm Field/my_textform_field.dart';
 import '../Controller/request_quote_controller.dart';
 import '../Model/ProductWithTemplate.dart';
@@ -99,6 +100,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
     final requestQuotecontroller = ref.watch(requestQuoteProvider.notifier);
 
     return Scaffold(
+      backgroundColor: whiteColor,
       appBar: MyAppBar(
         title: 'Request For Quote',
         showBell: false,
@@ -110,7 +112,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
           child: Form(
             key: requestQuotecontroller.key,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 if (requestQuoteState.responseStatus == Status.loading)
                   const Loader()
@@ -119,27 +121,47 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                   Text(
                     'Request Details*',
                     style: GoogleFonts.montserrat(
-                        fontSize: 12.sp,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w400,
                         color: const Color(0xff4D4D4D)),
                   ),
-                  5.ph,
+                  10.ph,
                   Container(
                     height: 117.h,
+                    padding: const EdgeInsets.only(
+                            top: 12.5, left: 16, right: 16, bottom: 23)
+                        .r,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: const Color(0xff19A3A3)),
+                      color: whiteColor,
+                      borderRadius: BorderRadius.circular(7).r,
+                      border: Border.all(color: Color(0xffEFEFF2)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.1),
+                          offset: const Offset(
+                            1.0,
+                            1.0,
+                          ),
+                          blurRadius: 12.0,
+                          spreadRadius: 1.0,
+                        ),
+                      ],
                     ),
                     child: TextFormField(
+                      validator: emptyStringValidator,
                       maxLines: 5,
                       controller: requestQuotecontroller.descriptionController,
-                      validator: emptyStringValidator,
-                      decoration: const InputDecoration(
-                        hintText: 'Enter your description here',
-                        border: OutlineInputBorder(borderSide: BorderSide.none),
-                      ),
+                      decoration: InputDecoration(
+                          hintText: 'Enter Your Details Here...',
+                          hintStyle: GoogleFonts.poppins(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: const Color(0xffC8C7CC)),
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none),
                     ),
                   ),
+
                   16.ph,
                   Row(
                     children: [
@@ -154,62 +176,138 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                               )),
                           7.ph,
                           Container(
-                            width: 140.w,
-                            height: 43.h,
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 4.0),
+                            width: 154.w,
+                            height: 32.h,
+                            padding: const EdgeInsets.only(
+                                    top: 0, left: 16, right: 16, bottom: 0)
+                                .r,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6.0),
-                              border:
-                                  Border.all(color: const Color(0xFF19A3A3)),
+                              color: whiteColor,
+                              borderRadius: BorderRadius.circular(7).r,
+                              border: Border.all(color: Color(0xffEFEFF2)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.1),
+                                  offset: const Offset(
+                                    1.0,
+                                    1.0,
+                                  ),
+                                  blurRadius: 12.0,
+                                  spreadRadius: 1.0,
+                                ),
+                              ],
                             ),
                             child: TextFormField(
+                              validator: emptyStringValidator,
+                              maxLines: 1,
                               controller: quantityController,
                               focusNode: quantityFocusNode,
                               keyboardType: TextInputType.number,
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide.none),
-                              ),
-                              // onChanged: (value) {
-                              //   onQuantityChanged(value);
-                              // },
+                              cursorHeight: 10,
+                              decoration: InputDecoration(
+                                  hintText: 'Enter Quantity...',
+                                  hintStyle: GoogleFonts.poppins(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500,
+                                      color: const Color(0xffC8C7CC)),
+                                  contentPadding: EdgeInsets.only(
+                                    bottom: 10.h,
+                                  ),
+                                  enabledBorder: InputBorder.none,
+                                  focusedBorder: InputBorder.none),
                             ),
-                          )
+                          ),
+                          // Container(
+                          //   width: 140.w,
+                          //   height: 43.h,
+                          //   padding:
+                          //       const EdgeInsets.symmetric(horizontal: 4.0),
+                          //   decoration: BoxDecoration(
+                          //     borderRadius: BorderRadius.circular(6.0),
+                          //     border:
+                          //         Border.all(color: const Color(0xFF19A3A3)),
+                          //   ),
+                          //   child: TextFormField(
+                          //     controller: quantityController,
+                          //     focusNode: quantityFocusNode,
+                          //     keyboardType: TextInputType.number,
+                          //     decoration: const InputDecoration(
+                          //       border: OutlineInputBorder(
+                          //           borderSide: BorderSide.none),
+                          //     ),
+                          //     // onChanged: (value) {
+                          //     //   onQuantityChanged(value);
+                          //     // },
+                          //   ),
+                          // )
                         ],
                       ),
                       20.pw,
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Item Unit*",
-                              style: GoogleFonts.montserrat(
-                                color: const Color(0xff4D4D4D),
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w400,
-                              )),
-                          7.ph,
-                          Container(
-                            width: 140.w,
-                            height: 43.h,
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 8.0, horizontal: 8.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              border:
-                                  Border.all(color: const Color(0xff19A3A3)),
-                            ),
-                            child: Center(
-                              child: AutoSizeText(
-                                requestQuoteState.productDetail!.unit
-                                    .toString(),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Item Unit*",
                                 style: GoogleFonts.montserrat(
-                                    fontSize: 12.sp,
-                                    fontWeight: FontWeight.w400),
+                                  color: const Color(0xff4D4D4D),
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w400,
+                                )),
+                            7.ph,
+                            Container(
+                              // width: 154.w,
+                              height: 32.h,
+                              padding: const EdgeInsets.only(
+                                      top: 0, left: 16, right: 16, bottom: 0)
+                                  .r,
+                              decoration: BoxDecoration(
+                                color: Color(0xffE4E4E4).withOpacity(0.4),
+                                borderRadius: BorderRadius.circular(7).r,
+                                border: Border.all(color: Color(0xffEFEFF2)),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.1),
+                                    offset: const Offset(
+                                      1.0,
+                                      1.0,
+                                    ),
+                                    blurRadius: 12.0,
+                                    spreadRadius: 1.0,
+                                  ),
+                                ],
+                              ),
+                              child: Center(
+                                child: AutoSizeText(
+                                  requestQuoteState.productDetail!.unit
+                                      .toString(),
+                                  style: GoogleFonts.montserrat(
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w400),
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                            // Container(
+                            //   width: 140.w,
+                            //   height: 43.h,
+                            //   padding: const EdgeInsets.symmetric(
+                            //       vertical: 8.0, horizontal: 8.0),
+                            //   decoration: BoxDecoration(
+                            //     borderRadius: BorderRadius.circular(8),
+                            //     border:
+                            //         Border.all(color: const Color(0xff19A3A3)),
+                            //   ),
+                            //   child: Center(
+                            //     child: AutoSizeText(
+                            //       requestQuoteState.productDetail!.unit
+                            //           .toString(),
+                            //       style: GoogleFonts.montserrat(
+                            //           fontSize: 12.sp,
+                            //           fontWeight: FontWeight.w400),
+                            //     ),
+                            //   ),
+                            // ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -226,103 +324,178 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                                 fontWeight: FontWeight.w400,
                               )),
                           7.ph,
-                          MyTextFormField(
-                            fillColor: Colors.transparent,
-                            borderSideColor: borderColor,
-                            width: 150.w,
-                            // height: 83.h,
-                            onTap: () {
-                              requestQuotecontroller.StartDate(context);
-                            },
-                            suffixIcon: const Icon(Icons.calendar_month,
-                                size: 20, color: Color(0xFF19A3A3)),
-                            controller: requestQuotecontroller.dateController,
-                            validator: emptyStringValidator,
-                            hintText: 'Delivery Date',
-                            labelText: 'Date',
+                          Container(
+                            width: 154.w,
+                            height: 32.h,
+                            padding: const EdgeInsets.only(
+                                    top: 0, left: 16, right: 0, bottom: 0)
+                                .r,
+                            decoration: BoxDecoration(
+                              color: whiteColor,
+                              borderRadius: BorderRadius.circular(7).r,
+                              border: Border.all(color: Color(0xffEFEFF2)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.1),
+                                  offset: const Offset(
+                                    1.0,
+                                    1.0,
+                                  ),
+                                  blurRadius: 12.0,
+                                  spreadRadius: 1.0,
+                                ),
+                              ],
+                            ),
+                            child: TextFormField(
+                              onTap: () {
+                                requestQuotecontroller.StartDate(context);
+                              },
+                              validator: emptyStringValidator,
+                              maxLines: 1,
+                              keyboardType: TextInputType.number,
+                              controller: requestQuotecontroller.dateController,
+                              cursorHeight: 10,
+                              decoration: InputDecoration(
+                                  suffixIcon: const Icon(Icons.calendar_month,
+                                      size: 20, color: Color(0xFF19A3A3)),
+                                  hintText: 'Delivery Date',
+                                  hintStyle: GoogleFonts.poppins(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500,
+                                      color: const Color(0xffC8C7CC)),
+                                  contentPadding: EdgeInsets.only(
+                                    bottom: 10.h,
+                                  ),
+                                  enabledBorder: InputBorder.none,
+                                  focusedBorder: InputBorder.none),
+                            ),
+
+                            //  MyTextFormField(
+                            //   fillColor: Colors.transparent,
+                            //   //borderSideColor: borderColor,
+                            //   width: 150.w,
+                            //   // height: 83.h,
+                            //   onTap: () {
+                            //     requestQuotecontroller.StartDate(context);
+                            //   },
+                            //   suffixIcon: const Icon(Icons.calendar_month,
+                            //       size: 20, color: Color(0xFF19A3A3)),
+                            //   controller: requestQuotecontroller.dateController,
+                            //   validator: emptyStringValidator,
+                            //   hintText: 'Delivery Date',
+                            //   labelText: 'Date',
+                            // ),
                           ),
                         ],
                       ),
                       20.pw,
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Select Payment Mode*",
-                              style: GoogleFonts.montserrat(
-                                color: const Color(0xff4D4D4D),
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w400,
-                              )),
-                          7.ph,
-                          if (requestQuoteState.productDetail!.paymentMode ==
-                              null) ...[
-                            Container(
-                              width: 140.w,
-                              // height: 43.h,
-                              padding:
-                                  const EdgeInsets.only(left: 4.0, right: 4.0)
-                                      .r,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6.0).r,
-                                border: Border.all(color: borderColor),
-                              ),
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButtonFormField<String>(
-                                  isExpanded: true,
-                                  value: requestQuoteState.paymentValue,
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 25.sp,
-                                    fontWeight: FontWeight.w800,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Select Payment Mode*",
+                                style: GoogleFonts.montserrat(
+                                  color: const Color(0xff4D4D4D),
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w400,
+                                )),
+                            7.ph,
+                            if (requestQuoteState.productDetail!.paymentMode ==
+                                null) ...[
+                              Container(
+                                //  width: 154.w,
+                                height: 32.h,
+                                padding: const EdgeInsets.only(
+                                        top: 0, left: 16, right: 0, bottom: 0)
+                                    .r,
+                                decoration: BoxDecoration(
+                                  color: whiteColor,
+                                  borderRadius: BorderRadius.circular(7).r,
+                                  border: Border.all(color: Color(0xffEFEFF2)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.1),
+                                      offset: const Offset(
+                                        1.0,
+                                        1.0,
+                                      ),
+                                      blurRadius: 12.0,
+                                      spreadRadius: 1.0,
+                                    ),
+                                  ],
+                                ),
+                                child: DropdownButtonHideUnderline(
+                                  child: DropdownButtonFormField<String>(
+                                    isExpanded: true,
+                                    value: requestQuoteState.paymentValue,
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 2.sp,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                    icon: const Icon(Icons.arrow_drop_down,
+                                        color: Color(0xFF19A3A3)),
+                                    decoration: const InputDecoration(
+                                      contentPadding:
+                                          EdgeInsets.fromLTRB(0, 0, 0, 20),
+                                      border: InputBorder.none,
+                                    ),
+                                    items: requestQuotecontroller.paymentMode
+                                        .map<DropdownMenuItem<String>>(
+                                            (String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: AutoSizeText(value,
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: GoogleFonts.montserrat(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w400,
+                                                color:
+                                                    const Color(0xFF657474))),
+                                      );
+                                    }).toList(),
+                                    onChanged: (String? newValue) {
+                                      requestQuotecontroller
+                                          .updatePaymentModeValue(newValue!);
+                                    },
                                   ),
-                                  icon: const Icon(Icons.arrow_drop_down,
-                                      color: Color(0xFF19A3A3)),
-                                  decoration: const InputDecoration(
-                                    contentPadding:
-                                        EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                    border: InputBorder.none,
+                                ),
+                              )
+                            ] else
+                              Container(
+                                height: 32.h,
+                                padding: const EdgeInsets.only(
+                                        top: 0, left: 16, right: 0, bottom: 0)
+                                    .r,
+                                decoration: BoxDecoration(
+                                  color: Color(0xffE4E4E4).withOpacity(0.4),
+                                  borderRadius: BorderRadius.circular(7).r,
+                                  border: Border.all(color: Color(0xffEFEFF2)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.1),
+                                      offset: const Offset(
+                                        1.0,
+                                        1.0,
+                                      ),
+                                      blurRadius: 12.0,
+                                      spreadRadius: 1.0,
+                                    ),
+                                  ],
+                                ),
+                                child: Center(
+                                  child: AutoSizeText(
+                                    requestQuoteState.productDetail!.paymentMode
+                                        .toString(),
+                                    maxLines: 2,
+                                    style: GoogleFonts.montserrat(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w400),
                                   ),
-                                  items: requestQuotecontroller.paymentMode
-                                      .map<DropdownMenuItem<String>>(
-                                          (String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: AutoSizeText(value,
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w400,
-                                              color: const Color(0xFF657474))),
-                                    );
-                                  }).toList(),
-                                  onChanged: (String? newValue) {
-                                    requestQuotecontroller
-                                        .updatePaymentModeValue(newValue!);
-                                  },
                                 ),
                               ),
-                            )
-                          ] else
-                            Container(
-                              width: 140.w,
-                              height: 43.h,
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 8.0, horizontal: 8.0),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                border: Border.all(color: borderColor),
-                              ),
-                              child: Center(
-                                child: AutoSizeText(
-                                  requestQuoteState.productDetail!.paymentMode
-                                      .toString(),
-                                  style: GoogleFonts.montserrat(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ),
-                            ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -340,13 +513,26 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                               )),
                           7.ph,
                           Container(
-                            width: 140.w,
-                            // height: 43.h,
-                            padding:
-                                const EdgeInsets.only(left: 4.0, right: 4.0).r,
+                            width: 154.w,
+                            height: 32.h,
+                            padding: const EdgeInsets.only(
+                                    top: 0, left: 16, right: 05, bottom: 0)
+                                .r,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6.0).r,
-                              border: Border.all(color: borderColor),
+                              color: whiteColor,
+                              borderRadius: BorderRadius.circular(7).r,
+                              border: Border.all(color: Color(0xffEFEFF2)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.1),
+                                  offset: const Offset(
+                                    1.0,
+                                    1.0,
+                                  ),
+                                  blurRadius: 12.0,
+                                  spreadRadius: 1.0,
+                                ),
+                              ],
                             ),
                             child: DropdownButtonHideUnderline(
                               child: DropdownButtonFormField<String>(
@@ -360,7 +546,7 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                                     color: Color(0xFF19A3A3)),
                                 decoration: const InputDecoration(
                                   contentPadding:
-                                      EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                      EdgeInsets.fromLTRB(0, 0, 0, 20),
                                   border: InputBorder.none,
                                 ),
                                 items: requestQuotecontroller.shippingMode
@@ -387,77 +573,11 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                         ],
                       ),
                       20.pw,
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Select Template*',
-                              style: GoogleFonts.montserrat(
-                                color: const Color(0xff4D4D4D),
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w400,
-                              )),
-                          7.ph,
-                          Container(
-                            width: 140.w,
-                            padding:
-                                const EdgeInsets.only(left: 4.0, right: 4.0).r,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6.0).r,
-                              border: Border.all(color: borderColor),
-                            ),
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButtonFormField<int>(
-                                isExpanded: true,
-                                value: requestQuoteState.selectedTemplateId,
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 25.sp,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                                icon: const Icon(Icons.arrow_drop_down,
-                                    color: Color(0xFF19A3A3)),
-                                decoration: const InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                  border: InputBorder.none,
-                                ),
-                                items: requestQuoteState.quotationTemplate
-                                    .map<DropdownMenuItem<int>>(
-                                        (QuotationTemplate template) {
-                                  return DropdownMenuItem<int>(
-                                    value: template.id,
-                                    child: AutoSizeText(
-                                      template.title.toString(),
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: GoogleFonts.montserrat(
-                                          fontSize: 12.sp,
-                                          fontWeight: FontWeight.w400,
-                                          color: const Color(0xFF657474)),
-                                    ),
-                                  );
-                                }).toList(),
-                                onChanged: (int? newValue) {
-                                  print(newValue);
-                                  requestQuotecontroller
-                                      .updateTemplateValue(newValue!);
-                                },
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                  20.ph,
-
-                  if (requestQuoteState.shippingModeValue ==
-                      'DAP (Delivered at Place)') ...[
-                    Row(
-                      children: [
-                        Column(
+                      Expanded(
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Shipping Address*",
+                            Text('Select Template*',
                                 style: GoogleFonts.montserrat(
                                   color: const Color(0xff4D4D4D),
                                   fontSize: 12.sp,
@@ -465,19 +585,31 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                                 )),
                             7.ph,
                             Container(
-                              width: 300.w,
-                              // height: 43.h,
-                              padding:
-                                  const EdgeInsets.only(left: 4.0, right: 4.0)
-                                      .r,
+                              // width: 154.w,
+                              height: 32.h,
+                              padding: const EdgeInsets.only(
+                                      top: 0, left: 16, right: 05, bottom: 0)
+                                  .r,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6.0).r,
-                                border: Border.all(color: borderColor),
+                                color: whiteColor,
+                                borderRadius: BorderRadius.circular(7).r,
+                                border: Border.all(color: Color(0xffEFEFF2)),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.1),
+                                    offset: const Offset(
+                                      1.0,
+                                      1.0,
+                                    ),
+                                    blurRadius: 12.0,
+                                    spreadRadius: 1.0,
+                                  ),
+                                ],
                               ),
                               child: DropdownButtonHideUnderline(
-                                child: DropdownButtonFormField<String>(
+                                child: DropdownButtonFormField<int>(
                                   isExpanded: true,
-                                  value: requestQuoteState.shippingAddressValue,
+                                  value: requestQuoteState.selectedTemplateId,
                                   style: GoogleFonts.montserrat(
                                     fontSize: 25.sp,
                                     fontWeight: FontWeight.w800,
@@ -486,33 +618,116 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                                       color: Color(0xFF19A3A3)),
                                   decoration: const InputDecoration(
                                     contentPadding:
-                                        EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                        EdgeInsets.fromLTRB(0, 0, 0, 10),
                                     border: InputBorder.none,
                                   ),
-                                  items: requestQuotecontroller.shippingAddress
-                                      .map<DropdownMenuItem<String>>(
-                                          (String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: AutoSizeText(value,
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w400,
-                                              color: const Color(0xFF657474))),
+                                  items: requestQuoteState.quotationTemplate
+                                      .map<DropdownMenuItem<int>>(
+                                          (QuotationTemplate template) {
+                                    return DropdownMenuItem<int>(
+                                      value: template.id,
+                                      child: AutoSizeText(
+                                        template.title.toString(),
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: GoogleFonts.montserrat(
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.w400,
+                                            color: const Color(0xFF657474)),
+                                      ),
                                     );
                                   }).toList(),
-                                  onChanged: (String? newValue) {
+                                  onChanged: (int? newValue) {
+                                    print(newValue);
                                     requestQuotecontroller
-                                        .updateShippingAddressValue(newValue!);
+                                        .updateTemplateValue(newValue!);
                                   },
                                 ),
                               ),
-                            ),
-                            20.ph,
+                            )
                           ],
                         ),
+                      ),
+                    ],
+                  ),
+                  20.ph,
+
+                  if (requestQuoteState.shippingModeValue ==
+                      'DAP (Delivered at Place)') ...[
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Shipping Address*",
+                            style: GoogleFonts.montserrat(
+                              color: const Color(0xff4D4D4D),
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w400,
+                            )),
+                        7.ph,
+                        Container(
+                          // width: 359.w,
+                          // height: 43.h,
+
+                          height: 32.h,
+                          // padding: const EdgeInsets.only(
+                          //         top: 0, left: 16, right: 0, bottom: 0)
+                          //     .r,
+                          padding: const EdgeInsets.only(
+                                  top: 12.5, left: 16, right: 05, bottom: 23)
+                              .r,
+                          decoration: BoxDecoration(
+                            color: whiteColor,
+                            borderRadius: BorderRadius.circular(7).r,
+                            border: Border.all(color: Color(0xffEFEFF2)),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.1),
+                                offset: const Offset(
+                                  1.0,
+                                  1.0,
+                                ),
+                                blurRadius: 12.0,
+                                spreadRadius: 1.0,
+                              ),
+                            ],
+                          ),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButtonFormField<String>(
+                              isExpanded: true,
+                              value: requestQuoteState.shippingAddressValue,
+                              style: GoogleFonts.montserrat(
+                                fontSize: 25.sp,
+                                fontWeight: FontWeight.w800,
+                              ),
+                              icon: const Icon(Icons.arrow_drop_down,
+                                  color: Color(0xFF19A3A3)),
+                              decoration: const InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.fromLTRB(0, 0, 0, 10),
+                                border: InputBorder.none,
+                              ),
+                              items: requestQuotecontroller.shippingAddress
+                                  .map<DropdownMenuItem<String>>(
+                                      (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: AutoSizeText(value,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: GoogleFonts.montserrat(
+                                          fontSize: 12.sp,
+                                          fontWeight: FontWeight.w400,
+                                          color: const Color(0xFF657474))),
+                                );
+                              }).toList(),
+                              onChanged: (String? newValue) {
+                                requestQuotecontroller
+                                    .updateShippingAddressValue(newValue!);
+                              },
+                            ),
+                          ),
+                        ),
+                        20.ph,
                       ],
                     ),
                   ],
@@ -754,135 +969,222 @@ class _RequestQuoteScreenState extends ConsumerState<RequestQuoteScreen> {
                   ],
 
                   //Pdf File
-                  Row(
-                    children: [
-                      Container(
-                        width: 300.w,
-                        height: 43.h,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: const Color(0xff19A3A3))),
-                        child: Row(
-                          children: [
-                            GestureDetector(
-                              onTap: () async {
-                                FilePickerResult? result =
-                                    await FilePicker.platform.pickFiles(
-                                  type: FileType.custom,
-                                  allowedExtensions: ['pdf'],
-                                );
 
-                                if (result != null) {
-                                  File file = File(result.files.single.path!);
-                                  ref
-                                      .read(requestQuoteProvider.notifier)
-                                      .setPdfFile(file);
-                                }
-                              },
-                              child: Container(
-                                width: 76.w,
-                                height: 43.h,
-                                decoration: BoxDecoration(
-                                    color: const Color(0xffF7F7F9),
-                                    border: Border.all(
-                                        color: const Color(0xff19A3A3))),
-                                child: Center(
-                                  child: Text(
-                                    'Choose File',
-                                    style: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 10.sp,
-                                        color: const Color(0xff657474)),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            20.pw,
-                            if (requestQuoteState.pdfFile != null) ...[
-                              Container(
-                                child: Text(
-                                  requestQuoteState.pdfFile?.path
-                                          .split('/')
-                                          .last ??
-                                      'No file selected',
-                                  style: GoogleFonts.montserrat(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12.sp,
-                                      color: const Color(0xff657474)),
-                                ),
-                              ),
-                            ],
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  20.ph,
-                  requestQuoteState.isLoading
-                      ? const Loader()
-                      : CustomButton(
-                          onTap: () {
-                            String rawCountryName =
-                                requestQuotecontroller.countryName;
+                  attachmentCustom(
+                    pdfOnTap: () async {
+                      FilePickerResult? result =
+                          await FilePicker.platform.pickFiles(
+                        type: FileType.custom,
+                        allowedExtensions: ['pdf'],
+                      );
 
-                            RegExp regExp = RegExp(r'[A-Za-z ]+$');
-                            Match? match = regExp.firstMatch(rawCountryName);
+                      if (result != null) {
+                        File file = File(result.files.single.path!);
+                        ref
+                            .read(requestQuoteProvider.notifier)
+                            .setPdfFile(file);
+                      }
+                    },
+                    fileName: requestQuoteState.pdfFile?.path.split('/').last,
+                    browseButtonOnTap: () async {
+                      FilePickerResult? result =
+                          await FilePicker.platform.pickFiles(
+                        type: FileType.custom,
+                        allowedExtensions: ['pdf'],
+                      );
 
-                            String countryName = "";
-                            if (match != null) {
-                              countryName = match.group(0)!.trim();
-                            }
+                      if (result != null) {
+                        File file = File(result.files.single.path!);
+                        ref
+                            .read(requestQuoteProvider.notifier)
+                            .setPdfFile(file);
+                      }
+                    },
+                    buttonLoading: requestQuoteState.isLoading,
+                    buttonName: 'Send Quotation',
+                    buttonOnTap: () {
+                      String rawCountryName =
+                          requestQuotecontroller.countryName;
 
-                            print(countryName);
+                      RegExp regExp = RegExp(r'[A-Za-z ]+$');
+                      Match? match = regExp.firstMatch(rawCountryName);
 
-                            if (requestQuotecontroller.key.currentState!
-                                .validate()) {
-                              ref
-                                  .read(requestQuoteProvider.notifier)
-                                  .sendQuotation(
-                                    productId: requestQuotecontroller.productId,
-                                    userId: requestQuotecontroller.userId,
-                                    userCompanyId:
-                                        requestQuotecontroller.userCompanyId,
-                                    companyId: requestQuoteState
-                                        .productDetail!.companyId,
-                                    title:
-                                        requestQuoteState.productDetail!.name,
-                                    description: requestQuotecontroller
-                                        .descriptionController.text,
-                                    quantity: quantityController.text,
-                                    unit: requestQuoteState.productDetail!.unit,
-                                    paymentMode: requestQuoteState.paymentValue,
-                                    shippingMode:
-                                        requestQuoteState.shippingModeValue,
-                                    templateId:
-                                        requestQuoteState.selectedTemplateId,
-                                    shippingAddress:
-                                        requestQuoteState.shippingAddressValue,
-                                    deliveryDate: requestQuotecontroller
-                                        .dateController.text,
-                                    pdfFile: requestQuoteState.pdfFile,
-                                    context: context,
-                                    countryName: countryName,
-                                    stateName: requestQuotecontroller.stateName,
-                                    cityName: requestQuotecontroller.cityName,
-                                    district: requestQuotecontroller
-                                        .districtController.text,
-                                    streetName: requestQuotecontroller
-                                        .streetController.text,
-                                    zipCode: requestQuotecontroller
-                                        .zipCodeController.text,
-                                    buildingNo: requestQuotecontroller
-                                        .buildingNoController.text,
-                                    unitNo: requestQuotecontroller
-                                        .unitNoController.text,
-                                  );
-                            }
-                          },
-                          width: 200.w,
-                          height: 48.h,
-                          color: const Color(0xff27BCEB),
-                          text: 'Send Quotation',
-                        ),
+                      String countryName = "";
+                      if (match != null) {
+                        countryName = match.group(0)!.trim();
+                      }
+
+                      print(countryName);
+
+                      if (requestQuotecontroller.key.currentState!.validate()) {
+                        ref.read(requestQuoteProvider.notifier).sendQuotation(
+                              productId: requestQuotecontroller.productId,
+                              userId: requestQuotecontroller.userId,
+                              userCompanyId:
+                                  requestQuotecontroller.userCompanyId,
+                              companyId:
+                                  requestQuoteState.productDetail!.companyId,
+                              title: requestQuoteState.productDetail!.name,
+                              description: requestQuotecontroller
+                                  .descriptionController.text,
+                              quantity: quantityController.text,
+                              unit: requestQuoteState.productDetail!.unit,
+                              paymentMode: requestQuoteState.paymentValue,
+                              shippingMode: requestQuoteState.shippingModeValue,
+                              templateId: requestQuoteState.selectedTemplateId,
+                              shippingAddress:
+                                  requestQuoteState.shippingAddressValue,
+                              deliveryDate:
+                                  requestQuotecontroller.dateController.text,
+                              pdfFile: requestQuoteState.pdfFile,
+                              context: context,
+                              countryName: countryName,
+                              stateName: requestQuotecontroller.stateName,
+                              cityName: requestQuotecontroller.cityName,
+                              district: requestQuotecontroller
+                                  .districtController.text,
+                              streetName:
+                                  requestQuotecontroller.streetController.text,
+                              zipCode:
+                                  requestQuotecontroller.zipCodeController.text,
+                              buildingNo: requestQuotecontroller
+                                  .buildingNoController.text,
+                              unitNo:
+                                  requestQuotecontroller.unitNoController.text,
+                            );
+                      }
+                    },
+                  )
+
+                  // Row(
+                  //   children: [
+                  //     Container(
+                  //       width: 300.w,
+                  //       height: 43.h,
+                  //       decoration: BoxDecoration(
+                  //           border: Border.all(color: const Color(0xff19A3A3))),
+                  //       child: Row(
+                  //         children: [
+                  //           GestureDetector(
+                  //             onTap: () async {
+                  //               FilePickerResult? result =
+                  //                   await FilePicker.platform.pickFiles(
+                  //                 type: FileType.custom,
+                  //                 allowedExtensions: ['pdf'],
+                  //               );
+
+                  //               if (result != null) {
+                  //                 File file = File(result.files.single.path!);
+                  //                 ref
+                  //                     .read(requestQuoteProvider.notifier)
+                  //                     .setPdfFile(file);
+                  //               }
+                  //             },
+                  //             child: Container(
+                  //               width: 76.w,
+                  //               height: 43.h,
+                  //               decoration: BoxDecoration(
+                  //                   color: const Color(0xffF7F7F9),
+                  //                   border: Border.all(
+                  //                       color: const Color(0xff19A3A3))),
+                  //               child: Center(
+                  //                 child: Text(
+                  //                   'Choose File',
+                  //                   style: GoogleFonts.montserrat(
+                  //                       fontWeight: FontWeight.w400,
+                  //                       fontSize: 10.sp,
+                  //                       color: const Color(0xff657474)),
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //           ),
+                  //           20.pw,
+                  //           if (requestQuoteState.pdfFile != null) ...[
+                  //             Container(
+                  //               child: Text(
+                  //                 requestQuoteState.pdfFile?.path
+                  //                         .split('/')
+                  //                         .last ??
+                  //                     'No file selected',
+                  //                 style: GoogleFonts.montserrat(
+                  //                     fontWeight: FontWeight.w600,
+                  //                     fontSize: 12.sp,
+                  //                     color: const Color(0xff657474)),
+                  //               ),
+                  //             ),
+                  //           ],
+                  //         ],
+                  //       ),
+                  //     )
+                  //   ],
+                  // ),
+                  // 20.ph,
+                  // requestQuoteState.isLoading
+                  //     ? const Loader()
+                  //     : CustomButton(
+                  //         onTap: () {
+                  //           String rawCountryName =
+                  //               requestQuotecontroller.countryName;
+
+                  //           RegExp regExp = RegExp(r'[A-Za-z ]+$');
+                  //           Match? match = regExp.firstMatch(rawCountryName);
+
+                  //           String countryName = "";
+                  //           if (match != null) {
+                  //             countryName = match.group(0)!.trim();
+                  //           }
+
+                  //           print(countryName);
+
+                  //           if (requestQuotecontroller.key.currentState!
+                  //               .validate()) {
+                  //             ref
+                  //                 .read(requestQuoteProvider.notifier)
+                  //                 .sendQuotation(
+                  //                   productId: requestQuotecontroller.productId,
+                  //                   userId: requestQuotecontroller.userId,
+                  //                   userCompanyId:
+                  //                       requestQuotecontroller.userCompanyId,
+                  //                   companyId: requestQuoteState
+                  //                       .productDetail!.companyId,
+                  //                   title:
+                  //                       requestQuoteState.productDetail!.name,
+                  //                   description: requestQuotecontroller
+                  //                       .descriptionController.text,
+                  //                   quantity: quantityController.text,
+                  //                   unit: requestQuoteState.productDetail!.unit,
+                  //                   paymentMode: requestQuoteState.paymentValue,
+                  //                   shippingMode:
+                  //                       requestQuoteState.shippingModeValue,
+                  //                   templateId:
+                  //                       requestQuoteState.selectedTemplateId,
+                  //                   shippingAddress:
+                  //                       requestQuoteState.shippingAddressValue,
+                  //                   deliveryDate: requestQuotecontroller
+                  //                       .dateController.text,
+                  //                   pdfFile: requestQuoteState.pdfFile,
+                  //                   context: context,
+                  //                   countryName: countryName,
+                  //                   stateName: requestQuotecontroller.stateName,
+                  //                   cityName: requestQuotecontroller.cityName,
+                  //                   district: requestQuotecontroller
+                  //                       .districtController.text,
+                  //                   streetName: requestQuotecontroller
+                  //                       .streetController.text,
+                  //                   zipCode: requestQuotecontroller
+                  //                       .zipCodeController.text,
+                  //                   buildingNo: requestQuotecontroller
+                  //                       .buildingNoController.text,
+                  //                   unitNo: requestQuotecontroller
+                  //                       .unitNoController.text,
+                  //                 );
+                  //           }
+                  //         },
+                  //         width: 200.w,
+                  //         height: 48.h,
+                  //         color: const Color(0xff27BCEB),
+                  //         text: 'Send Quotation',
+                  //       ),
                 ]
               ],
             ),

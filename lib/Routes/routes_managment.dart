@@ -210,14 +210,7 @@ final router = GoRouter(
       name: onlineStoreScreen,
       path: '/OnlineStoreScreen',
       pageBuilder: (context, state) {
-        final person = state.extra as Person;
-        final page = ProviderScope(
-          overrides: [
-            personProvider
-                .overrideWith((ref) => PersonController()..setPerson(person)),
-          ],
-          child: const OnlineStoreScreen(),
-        );
+        const page = OnlineStoreScreen();
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
             context: context,
@@ -274,14 +267,7 @@ final router = GoRouter(
       name: tendersView,
       path: '/TendersView',
       pageBuilder: (context, state) {
-        final person = state.extra as Person;
-        final page = ProviderScope(
-          overrides: [
-            personProvider
-                .overrideWith((ref) => PersonController()..setPerson(person)),
-          ],
-          child: const TendersView(),
-        );
+        const page = TendersView();
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
             context: context,
@@ -312,14 +298,7 @@ final router = GoRouter(
       name: generalServiceView,
       path: '/GeneralServiceView',
       pageBuilder: (context, state) {
-        final person = state.extra as Person;
-        final page = ProviderScope(
-          overrides: [
-            personProvider
-                .overrideWith((ref) => PersonController()..setPerson(person)),
-          ],
-          child: const GeneralServiceView(),
-        );
+        const page = GeneralServiceView();
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
             context: context,
@@ -355,14 +334,7 @@ final router = GoRouter(
       name: bussinesForSale,
       path: '/BussinesForSale',
       pageBuilder: (context, state) {
-        final person = state.extra as Person;
-        final page = ProviderScope(
-          overrides: [
-            personProvider
-                .overrideWith((ref) => PersonController()..setPerson(person)),
-          ],
-          child: const BussinesForSale(),
-        );
+        const page = BussinesForSale();
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
             context: context,
@@ -395,14 +367,7 @@ final router = GoRouter(
       name: investMentOpportunityView,
       path: '/InvestMentOpportunityView',
       pageBuilder: (context, state) {
-        final person = state.extra as Person;
-        final page = ProviderScope(
-          overrides: [
-            personProvider
-                .overrideWith((ref) => PersonController()..setPerson(person)),
-          ],
-          child: const InvestMentOpportunityView(),
-        );
+        const page = InvestMentOpportunityView();
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
             context: context,
@@ -902,18 +867,12 @@ final router = GoRouter(
             child: page);
       },
     ),
+
     GoRoute(
       name: attendanceManagmentScreen,
       path: '/AttendanceManagmentScreen',
       pageBuilder: (context, state) {
-        final person = state.extra as Person;
-        final page = ProviderScope(
-          overrides: [
-            personProvider
-                .overrideWith((ref) => PersonController()..setPerson(person)),
-          ],
-          child: AttendanceManagmentScreen(),
-        );
+        final page = AttendanceManagmentScreen();
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
             context: context,
@@ -959,15 +918,8 @@ final router = GoRouter(
       name: leaveManagmentScreen,
       path: '/LeaveManagmentScreen',
       pageBuilder: (context, state) {
-        final person = state.extra as Person;
+        final page = LeaveManagmentScreen();
 
-        final page = ProviderScope(
-          overrides: [
-            personProvider
-                .overrideWith((ref) => PersonController()..setPerson(person)),
-          ],
-          child: LeaveManagmentScreen(),
-        );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
             context: context,
@@ -992,14 +944,7 @@ final router = GoRouter(
       name: salaryPaySlipScreen,
       path: '/SalaryPaySlipScreen',
       pageBuilder: (context, state) {
-        final person = state.extra as Person;
-        final page = ProviderScope(
-          overrides: [
-            personProvider
-                .overrideWith((ref) => PersonController()..setPerson(person)),
-          ],
-          child: SalaryPaySlipScreen(),
-        );
+        final page = SalaryPaySlipScreen();
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
             context: context,
@@ -1050,14 +995,7 @@ final router = GoRouter(
       name: apprisalScreen,
       path: '/ApprisalScreen',
       pageBuilder: (context, state) {
-        final person = state.extra as Person;
-        final page = ProviderScope(
-          overrides: [
-            personProvider
-                .overrideWith((ref) => PersonController()..setPerson(person)),
-          ],
-          child: ApprisalScreen(),
-        );
+        final page = ApprisalScreen();
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
             context: context,
@@ -1114,14 +1052,7 @@ final router = GoRouter(
       name: generalInformationPage,
       path: '/GeneralInformationPage',
       pageBuilder: (context, state) {
-        final person = state.extra as Person;
-        final page = ProviderScope(
-          overrides: [
-            personProvider
-                .overrideWith((ref) => PersonController()..setPerson(person)),
-          ],
-          child: GeneralInformationPage(),
-        );
+        const page = GeneralInformationPage();
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
             context: context,

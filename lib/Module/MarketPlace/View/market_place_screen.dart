@@ -1,63 +1,27 @@
-import 'dart:ui';
-
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
-import 'package:bussines_owner/Constants/Font/fonts.dart';
-import 'package:bussines_owner/Constants/constants.dart';
 import 'package:bussines_owner/Routes/set_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../../Constants/Person/person_controller.dart';
-import '../../../Widgets/AppBar/my_app_bar.dart';
 import '../../../Widgets/CustomGlassCardScreen/custom_glass_card_screen.dart';
 import '../Widget/market_place_screen_card.dart';
-import 'package:badges/badges.dart' as badges;
 
-class MarketPlaceScreen extends ConsumerWidget {
-  int buildCheck = 0;
-
-  MarketPlaceScreen({super.key});
+class MarketPlaceScreen extends StatelessWidget {
+  const MarketPlaceScreen({super.key});
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final person = ref.read(personProvider);
-
-    print('marketplace');
-    print(person!.data!.lastName!);
-    print(person.data!.mobileNo!);
-    print('market place build check ${buildCheck++}');
-
+  Widget build(BuildContext context) {
     return Scaffold(
       body: CustomGlassCardScreen(
         mainTitle: 'Market Place',
         children: [
-          Center(
-            child: Text(
-              'All in One Solution',
-              style: GoogleFonts.poppins(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: const Color(0xffFFFFFF).withOpacity(0.5)),
-            ),
-          ),
-          13.ph,
-          Divider(color: const Color(0xffFFFFFF).withOpacity(0.5)),
-          15.ph,
-          Text(
-            'Jazalla',
-            style: FontManagment().poppins16WithColor(
-                color: const Color(0xffFFFFFF), fontWeight: FontWeight.bold),
-          ),
-          20.ph,
           CardMakretPlace(
             svgPath: 'assets/images/tenders1.svg',
             headingText: 'Tenders',
             subHeadingText:
                 'It serves as a comprehensive directory, showcasing company profiles.mon',
             onTap: () {
-              GoRouter.of(context).pushNamed(tendersView, extra: person);
+              GoRouter.of(context).pushNamed(
+                tendersView,
+              );
             },
           ),
           15.ph,
@@ -83,7 +47,7 @@ class MarketPlaceScreen extends ConsumerWidget {
             subHeadingText:
                 'It serves as a comprehensive directory, showcasing company profiles.mon',
             onTap: () {
-              GoRouter.of(context).pushNamed(onlineStoreScreen, extra: person);
+              GoRouter.of(context).pushNamed(onlineStoreScreen);
             },
           ),
           15.ph,
@@ -93,7 +57,9 @@ class MarketPlaceScreen extends ConsumerWidget {
             subHeadingText:
                 'It serves as a comprehensive directory, showcasing company profiles.mon',
             onTap: () {
-              GoRouter.of(context).pushNamed(generalServiceView, extra: person);
+              GoRouter.of(context).pushNamed(
+                generalServiceView,
+              );
             },
           ),
           15.ph,
@@ -103,7 +69,9 @@ class MarketPlaceScreen extends ConsumerWidget {
             subHeadingText:
                 'It serves as a comprehensive directory, showcasing company profiles.mon',
             onTap: () {
-              GoRouter.of(context).pushNamed(bussinesForSale, extra: person);
+              GoRouter.of(context).pushNamed(
+                bussinesForSale,
+              );
             },
           ),
           15.ph,
@@ -113,13 +81,15 @@ class MarketPlaceScreen extends ConsumerWidget {
             subHeadingText:
                 'It serves as a comprehensive directory, showcasing company profiles.mon',
             onTap: () {
-              GoRouter.of(context)
-                  .pushNamed(investMentOpportunityView, extra: person);
+              GoRouter.of(context).pushNamed(
+                investMentOpportunityView,
+              );
             },
           ),
         ],
       ),
     );
+
     // return Scaffold(
     //     backgroundColor: const Color(0xffF9F9F9),
     //     // appBar: MyAppBar(

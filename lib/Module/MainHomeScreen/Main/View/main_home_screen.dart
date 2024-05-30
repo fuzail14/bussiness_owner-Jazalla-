@@ -83,698 +83,663 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
     );
     return Scaffold(
       backgroundColor: const Color(0xffF9F9F9),
-      body: SingleChildScrollView(
-        child: Stack(children: [
-          Container(
-            height: 600.h,
-            padding:
-                const EdgeInsets.only(left: 24, top: 50, right: 24, bottom: 20)
-                    .r,
-            width: double.infinity.w,
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Color(0xff2751A1), Color(0xff4BB3CF)])),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //   children: [
-                //     Text('Sales Manager', style: FontManagment().poppins14),
-                //     SvgPicture.asset('assets/images/notification_icon.svg')
-                //   ],
-                // ),
-                // Text(
-                //   'Ahmend Ahmed',
-                //   style: FontManagment().poppins24,
-                // ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Container(
-                        //   height: 48.h,
-                        //   width: 48.w,
-                        //   decoration: BoxDecoration(
-                        //       border:
-                        //           Border.all(color: const Color(0xff4EBBD3)),
-                        //       color: const Color(0xffF5F9F9),
-                        //       shape: BoxShape.circle),
-                        //   margin: const EdgeInsets.only(top: 0, left: 0).r,
-                        //   child: SvgPicture.asset(
-                        //     'assets/images/default_company_logo.svg',
-                        //     fit: BoxFit.contain,
-                        //   ),
-                        // ),
-                        SizedBox(
-                          // width: double.infinity,
-                          //height: 200.h,
-                          child: Wrap(
-                            children: [
-                              //if (person.data!.company!.logo != null) ...[
-                              Container(
-                                height: 48.h,
-                                width: 48.w,
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: const Color(0xff4EBBD3)),
-                                    color: const Color(0xffF5F9F9),
-                                    shape: BoxShape.circle),
-                                child: (person.data!.company!.logo != null)
-                                    ? CachedNetworkImage(
-                                        imageUrl: Api.originalImageBaseUrl +
-                                            person.data!.company!.logoPath
-                                                .toString() +
-                                            person.data!.company!.logo
-                                                .toString(),
-                                        fit: BoxFit.fill,
-                                      )
-                                    : Container(
-                                        height: 48.h,
-                                        width: 48.w,
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: const Color(0xff4EBBD3)),
-                                            color: const Color(0xffF5F9F9),
-                                            shape: BoxShape.circle),
-                                        child: SvgPicture.asset(
-                                          'assets/images/default_company_logo.svg',
-                                          fit: BoxFit.contain,
-                                        ),
-                                      ),
-                              ),
-                              //]
-                              // else
-                              // Container(
-                              //   height: 48.h,
-                              //   width: 48.w,
-                              //   decoration: BoxDecoration(
-                              //       border: Border.all(
-                              //           color: const Color(0xff4EBBD3)),
-                              //       color: const Color(0xffF5F9F9),
-                              //       shape: BoxShape.circle),
-                              //   child: SvgPicture.asset(
-                              //     'assets/images/default_company_logo.svg',
-                              //     fit: BoxFit.contain,
-                              //   ),
-                              // ),
-                            ],
-                          ),
-                        ),
-                        10.pw,
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+      body: Stack(children: [
+        Container(
+          //height: 600.h,
+          padding:
+              const EdgeInsets.only(left: 24, top: 50, right: 24, bottom: 20).r,
+          width: double.infinity.w,
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Color(0xff2751A1), Color(0xff4BB3CF)])),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Container(
+                      //   height: 48.h,
+                      //   width: 48.w,
+                      //   decoration: BoxDecoration(
+                      //       border:
+                      //           Border.all(color: const Color(0xff4EBBD3)),
+                      //       color: const Color(0xffF5F9F9),
+                      //       shape: BoxShape.circle),
+                      //   margin: const EdgeInsets.only(top: 0, left: 0).r,
+                      //   child: SvgPicture.asset(
+                      //     'assets/images/default_company_logo.svg',
+                      //     fit: BoxFit.contain,
+                      //   ),
+                      // ),
+                      SizedBox(
+                        // width: double.infinity,
+                        //height: 200.h,
+                        child: Wrap(
                           children: [
-                            Text(
-                              person!.data!.company!.companyName.toString(),
-                              style: GoogleFonts.roboto(
-                                  fontSize: 18.sp,
-                                  fontWeight: FontWeight.w800,
-                                  color: whiteColor),
+                            //if (person.data!.company!.logo != null) ...[
+                            Container(
+                              height: 48.h,
+                              width: 48.w,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: const Color(0xff4EBBD3)),
+                                  color: const Color(0xffF5F9F9),
+                                  shape: BoxShape.circle),
+                              child: (person.data!.company!.logo != null)
+                                  ? CachedNetworkImage(
+                                      imageUrl: Api.originalImageBaseUrl +
+                                          person.data!.company!.logoPath
+                                              .toString() +
+                                          person.data!.company!.logo.toString(),
+                                      fit: BoxFit.fill,
+                                    )
+                                  : Container(
+                                      height: 48.h,
+                                      width: 48.w,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: const Color(0xff4EBBD3)),
+                                          color: const Color(0xffF5F9F9),
+                                          shape: BoxShape.circle),
+                                      child: SvgPicture.asset(
+                                        'assets/images/default_company_logo.svg',
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ),
                             ),
-                            //5.ph,
-                            SizedBox(
-                              width: 150.w,
-                              child: Text(
-                                "Hi,${"${person!.data!.firstName} ${person!.data!.lastName}"}",
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.roboto(
-                                    fontSize: 15.sp,
-                                    fontWeight: FontWeight.w500,
-                                    color: whiteColor),
-                              ),
-                            ),
-                            Text(
-                              person!.data!.type.toString(),
-                              style: GoogleFonts.mulish(
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.w300,
-                                  color: whiteColor),
-                            ),
+                            //]
+                            // else
+                            // Container(
+                            //   height: 48.h,
+                            //   width: 48.w,
+                            //   decoration: BoxDecoration(
+                            //       border: Border.all(
+                            //           color: const Color(0xff4EBBD3)),
+                            //       color: const Color(0xffF5F9F9),
+                            //       shape: BoxShape.circle),
+                            //   child: SvgPicture.asset(
+                            //     'assets/images/default_company_logo.svg',
+                            //     fit: BoxFit.contain,
+                            //   ),
+                            // ),
                           ],
                         ),
-                      ],
-                    ),
-                    InkWell(
-                      onTap: () {
-                        GoRouter.of(context).pushNamed(notificationsScreen);
-                      },
-                      child: badges.Badge(
-                        badgeContent: Text('3',
-                            style: GoogleFonts.roboto(
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w600,
-                                color: const Color(0xffFFFFFF))),
-                        position:
-                            badges.BadgePosition.topEnd(top: -10, end: -12),
-                        showBadge: true,
-                        ignorePointer: false,
-                        child: Container(
-                            child: SvgPicture.asset(
-                          'assets/images/bellicon.svg',
-                        )),
                       ),
+                      10.pw,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            person!.data!.company!.companyName.toString(),
+                            style: GoogleFonts.roboto(
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.w800,
+                                color: whiteColor),
+                          ),
+                          //5.ph,
+                          SizedBox(
+                            width: 150.w,
+                            child: Text(
+                              "Hi,${"${person!.data!.firstName} ${person!.data!.lastName}"}",
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: GoogleFonts.roboto(
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeight.w500,
+                                  color: whiteColor),
+                            ),
+                          ),
+                          Text(
+                            person!.data!.type.toString(),
+                            style: GoogleFonts.mulish(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w300,
+                                color: whiteColor),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  InkWell(
+                    onTap: () {
+                      GoRouter.of(context).pushNamed(notificationsScreen);
+                    },
+                    child: badges.Badge(
+                      badgeContent: Text('3',
+                          style: GoogleFonts.roboto(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w600,
+                              color: const Color(0xffFFFFFF))),
+                      position: badges.BadgePosition.topEnd(top: -10, end: -12),
+                      showBadge: true,
+                      ignorePointer: false,
+                      child: Container(
+                          child: SvgPicture.asset(
+                        'assets/images/bellicon.svg',
+                      )),
                     ),
-                  ],
-                ),
-                const Divider(),
+                  ),
+                ],
+              ),
+              const Divider(),
+              10.ph,
+              SizedBox(
+                // height: 400,
+                width: 427.w,
+                height: 210.h,
+                child: PageView.builder(
+                    controller: notifier.pageController,
+                    pageSnapping: true,
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    clipBehavior: Clip.none,
+                    itemCount: notifier.glassCardList.length,
+                    onPageChanged: notifier.cardIndexChanged,
+                    itemBuilder: (context, index) {
+                      return FractionallySizedBox(
+                        widthFactor:
+                            1 / notifier.pageController.viewportFraction,
+                        child: Center(
+                          child: ClipRRect(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(25)),
+                            child: BackdropFilter(
+                              filter:
+                                  ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+                              child: Container(
+                                //width: 427.w,
+                                //height: 280.h,
+                                padding: const EdgeInsets.only(
+                                        top: 22, left: 40, right: 40, bottom: 2)
+                                    .r,
 
-                10.ph,
-                SizedBox(
-                  // height: 400,
-                  width: 427.w,
-                  height: 210.h,
-                  child: PageView.builder(
-                      controller: notifier.pageController,
-                      pageSnapping: true,
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      scrollDirection: Axis.horizontal,
-                      clipBehavior: Clip.none,
-                      itemCount: notifier.glassCardList.length,
-                      onPageChanged: notifier.cardIndexChanged,
-                      itemBuilder: (context, index) {
-                        return FractionallySizedBox(
-                          widthFactor:
-                              1 / notifier.pageController.viewportFraction,
-                          child: Center(
-                            child: ClipRRect(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(25)),
-                              child: BackdropFilter(
-                                filter:
-                                    ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                                child: Container(
-                                  //width: 427.w,
-                                  //height: 280.h,
-                                  padding: const EdgeInsets.only(
-                                          top: 22,
-                                          left: 40,
-                                          right: 40,
-                                          bottom: 2)
-                                      .r,
+                                decoration: BoxDecoration(
+                                    color: const Color(0xffF6F6F6)
+                                        .withOpacity(0.15),
+                                    border: Border.all(
+                                        color: const Color(0xffF6F6F6)
+                                            .withOpacity(0.15)),
+                                    borderRadius: const BorderRadius.all(
+                                            Radius.circular(15))
+                                        .r),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    // Text('Dashboard',
+                                    //     style: FontManagment().poppins14),
+                                    // 10.ph,
+                                    // Text('Attendees',
+                                    //     style: FontManagment().poppins28),
+                                    SizedBox(
+                                      width: 250.w,
+                                      child: Text(
+                                          notifier.glassCardList[index]
+                                              ['title'],
+                                          textAlign: TextAlign.center,
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 1,
+                                          style: FontManagment().poppins28),
+                                    ),
 
-                                  decoration: BoxDecoration(
-                                      color: const Color(0xffF6F6F6)
-                                          .withOpacity(0.15),
-                                      border: Border.all(
-                                          color: const Color(0xffF6F6F6)
-                                              .withOpacity(0.15)),
-                                      borderRadius: const BorderRadius.all(
-                                              Radius.circular(15))
-                                          .r),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      // Text('Dashboard',
-                                      //     style: FontManagment().poppins14),
-                                      // 10.ph,
-                                      // Text('Attendees',
-                                      //     style: FontManagment().poppins28),
-                                      SizedBox(
-                                        width: 250.w,
-                                        child: Text(
-                                            notifier.glassCardList[index]
-                                                ['title'],
-                                            textAlign: TextAlign.center,
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 1,
-                                            style: FontManagment().poppins28),
-                                      ),
-
-                                      15.8.ph,
-                                      const Divider(),
-                                      14.8.ph,
-                                      Row(
-                                        children: [
-                                          Column(
-                                            children: [
-                                              InkWell(
-                                                onTap: () async {
-                                                  if (notifier.glassCardList[
-                                                              index]
-                                                          ['widget_title1'] ==
-                                                      'Check In') {
-                                                    // Check if location services are enabled
-                                                    bool _serviceEnabled =
+                                    15.8.ph,
+                                    const Divider(),
+                                    14.8.ph,
+                                    Row(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            InkWell(
+                                              onTap: () async {
+                                                if (notifier.glassCardList[
+                                                            index]
+                                                        ['widget_title1'] ==
+                                                    'Check In') {
+                                                  // Check if location services are enabled
+                                                  bool _serviceEnabled =
+                                                      await notifier.location
+                                                          .serviceEnabled();
+                                                  if (!_serviceEnabled) {
+                                                    _serviceEnabled =
                                                         await notifier.location
-                                                            .serviceEnabled();
+                                                            .requestService();
                                                     if (!_serviceEnabled) {
-                                                      _serviceEnabled =
-                                                          await notifier
-                                                              .location
-                                                              .requestService();
-                                                      if (!_serviceEnabled) {
-                                                        // Show a message to the user that location services need to be enabled
-                                                        myToast(
-                                                            msg:
-                                                                'Please enable location services',
-                                                            backgroundColor:
-                                                                const Color(
-                                                                    0xff203C97));
+                                                      // Show a message to the user that location services need to be enabled
+                                                      myToast(
+                                                          msg:
+                                                              'Please enable location services',
+                                                          backgroundColor:
+                                                              const Color(
+                                                                  0xff203C97));
 
-                                                        return;
-                                                      }
+                                                      return;
                                                     }
+                                                  }
 
-                                                    // Check if location permissions are granted
-                                                    PermissionStatus
-                                                        _permissionGranted =
-                                                        await notifier.location
-                                                            .hasPermission();
-                                                    if (_permissionGranted ==
-                                                            PermissionStatus
-                                                                .denied ||
-                                                        _permissionGranted ==
-                                                            PermissionStatus
-                                                                .deniedForever) {
+                                                  // Check if location permissions are granted
+                                                  PermissionStatus
                                                       _permissionGranted =
-                                                          await notifier
-                                                              .location
-                                                              .requestPermission();
-                                                      if (_permissionGranted !=
+                                                      await notifier.location
+                                                          .hasPermission();
+                                                  if (_permissionGranted ==
                                                           PermissionStatus
-                                                              .granted) {
-                                                        // Show a message to the user and redirect to settings
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          SnackBar(
-                                                            content: const Text(
-                                                                'Location permissions are required. Please enable them in settings.'),
-                                                            action:
-                                                                SnackBarAction(
-                                                              label: 'Settings',
-                                                              onPressed: () {
-                                                                AppSettings
-                                                                    .openAppSettings();
-                                                              },
-                                                            ),
-                                                          ),
-                                                        );
-                                                        return;
-                                                      }
-                                                    }
-
+                                                              .denied ||
+                                                      _permissionGranted ==
+                                                          PermissionStatus
+                                                              .deniedForever) {
                                                     _permissionGranted =
                                                         await notifier.location
-                                                            .hasPermission();
-                                                    if (_permissionGranted ==
-                                                            PermissionStatus
-                                                                .granted ||
-                                                        _permissionGranted ==
-                                                            PermissionStatus
-                                                                .grantedLimited) {
-                                                      try {
-                                                        print(
-                                                            'Getting location...');
-                                                        LocationData
-                                                            _locationData =
-                                                            await notifier
-                                                                .location
-                                                                .getLocation();
-                                                        print(
-                                                            'Latitude: ${_locationData.latitude}, Longitude: ${_locationData.longitude}');
+                                                            .requestPermission();
+                                                    if (_permissionGranted !=
+                                                        PermissionStatus
+                                                            .granted) {
+                                                      // Show a message to the user and redirect to settings
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                        SnackBar(
+                                                          content: const Text(
+                                                              'Location permissions are required. Please enable them in settings.'),
+                                                          action:
+                                                              SnackBarAction(
+                                                            label: 'Settings',
+                                                            onPressed: () {
+                                                              AppSettings
+                                                                  .openAppSettings();
+                                                            },
+                                                          ),
+                                                        ),
+                                                      );
+                                                      return;
+                                                    }
+                                                  }
 
-                                                        // Store coordinates in a variable (if needed)
-                                                        double latitude =
-                                                            _locationData
-                                                                .latitude!;
-                                                        double longitude =
-                                                            _locationData
-                                                                .longitude!;
+                                                  _permissionGranted =
+                                                      await notifier.location
+                                                          .hasPermission();
+                                                  if (_permissionGranted ==
+                                                          PermissionStatus
+                                                              .granted ||
+                                                      _permissionGranted ==
+                                                          PermissionStatus
+                                                              .grantedLimited) {
+                                                    try {
+                                                      print(
+                                                          'Getting location...');
+                                                      LocationData
+                                                          _locationData =
+                                                          await notifier
+                                                              .location
+                                                              .getLocation();
+                                                      print(
+                                                          'Latitude: ${_locationData.latitude}, Longitude: ${_locationData.longitude}');
 
-                                                        // Proceed to show the dialog
-                                                        showDialog(
+                                                      // Store coordinates in a variable (if needed)
+                                                      double latitude =
+                                                          _locationData
+                                                              .latitude!;
+                                                      double longitude =
+                                                          _locationData
+                                                              .longitude!;
+
+                                                      // Proceed to show the dialog
+                                                      showDialog(
+                                                        context: context,
+                                                        builder: (BuildContext
+                                                                context) =>
+                                                            CheckInDialog(
+                                                          title: 'Check In',
+                                                          svgPath:
+                                                              'assets/images/check_in_dialog_icon.svg',
+                                                          onTap: () {
+                                                            notifier
+                                                                .sendClockInApi(
+                                                              companyId: person!
+                                                                  .data!
+                                                                  .companyId,
+                                                              employeeId: person
+                                                                  .data!
+                                                                  .employee!
+                                                                  .id,
+                                                              date: notifier
+                                                                  .formattedDate,
+                                                              clockInTime: notifier
+                                                                  .formattedTime
+                                                                  .toString(),
+                                                              late: notifier
+                                                                  .lateTime,
+                                                              latitude:
+                                                                  latitude,
+                                                              longitude:
+                                                                  longitude,
+                                                              context: context,
+                                                            );
+                                                          },
+                                                        ),
+                                                      );
+                                                    } catch (e) {
+                                                      print(
+                                                          'Error getting location: $e');
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                        const SnackBar(
+                                                            content: Text(
+                                                                'Failed to get location. Please try again.')),
+                                                      );
+                                                    }
+                                                  } else {
+                                                    // Show a message if permissions are still not granted
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                      const SnackBar(
+                                                          content: Text(
+                                                              'Location permissions are required.')),
+                                                    );
+                                                  }
+                                                } else if (notifier
+                                                                .glassCardList[
+                                                            index]
+                                                        ['widget_title1'] ==
+                                                    'Profile') {
+                                                  GoRouter.of(context)
+                                                      .pushNamed(profilePage,
+                                                          pathParameters: {
+                                                            'id': person
+                                                                .data!.id
+                                                                .toString()
+                                                          },
+                                                          extra: person.Bearer);
+                                                }
+                                              },
+                                              child: Container(
+                                                height: 60.h,
+                                                width: 110.w,
+                                                padding: const EdgeInsets.only(
+                                                        left: 0,
+                                                        top: 15,
+                                                        bottom: 15)
+                                                    .r,
+                                                decoration: BoxDecoration(
+                                                    color: whiteColor,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                                12)
+                                                            .r),
+                                                child: notifier.glassCardList[
+                                                                index]
+                                                            ['widget_title1'] ==
+                                                        'Vacation Balance'
+                                                    ? ShaderMask(
+                                                        shaderCallback:
+                                                            (bounds) {
+                                                          return const LinearGradient(
+                                                            begin: Alignment
+                                                                .topCenter,
+                                                            end: Alignment
+                                                                .bottomCenter,
+                                                            colors: [
+                                                              Color(0xFF47A8CA),
+                                                              Color(0xFF22429A),
+                                                            ],
+                                                          ).createShader(
+                                                              Rect.fromLTWH(
+                                                                  0,
+                                                                  0,
+                                                                  bounds.width,
+                                                                  bounds
+                                                                      .height));
+                                                        },
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(4.0),
+                                                          child: Text(
+                                                            '10 Days',
+                                                            style: GoogleFonts
+                                                                .poppins(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontSize: 16.0.sp,
+                                                            ),
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                          ),
+                                                        ),
+                                                      )
+                                                    : SvgPicture.asset(notifier
+                                                            .glassCardList[
+                                                        index]['widget_icon1']),
+                                              ),
+                                            ),
+                                            7.ph,
+                                            Text(
+                                              notifier.glassCardList[index]
+                                                  ['widget_title1'],
+                                              style: FontManagment()
+                                                  .poppins12White,
+                                            ),
+                                          ],
+                                        ),
+                                        19.pw,
+                                        Column(
+                                          children: [
+                                            InkWell(
+                                              onTap: () async {
+                                                if (notifier.glassCardList[
+                                                            index]
+                                                        ['widget_title2'] ==
+                                                    'Check Out') {
+                                                  bool _serviceEnabled =
+                                                      await notifier.location
+                                                          .serviceEnabled();
+                                                  if (!_serviceEnabled) {
+                                                    _serviceEnabled =
+                                                        await notifier.location
+                                                            .requestService();
+                                                    if (!_serviceEnabled) {
+                                                      // Show a message to the user that location services need to be enabled
+                                                      myToast(
+                                                          msg:
+                                                              'Please enable location services',
+                                                          backgroundColor:
+                                                              const Color(
+                                                                  0xff203C97));
+
+                                                      return;
+                                                    }
+                                                  }
+
+                                                  // Check if location permissions are granted
+                                                  PermissionStatus
+                                                      _permissionGranted =
+                                                      await notifier.location
+                                                          .hasPermission();
+                                                  if (_permissionGranted ==
+                                                          PermissionStatus
+                                                              .denied ||
+                                                      _permissionGranted ==
+                                                          PermissionStatus
+                                                              .deniedForever) {
+                                                    _permissionGranted =
+                                                        await notifier.location
+                                                            .requestPermission();
+                                                    if (_permissionGranted !=
+                                                        PermissionStatus
+                                                            .granted) {
+                                                      // Show a message to the user and redirect to settings
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                        SnackBar(
+                                                          content: const Text(
+                                                              'Location permissions are required. Please enable them in settings.'),
+                                                          action:
+                                                              SnackBarAction(
+                                                            label: 'Settings',
+                                                            onPressed: () {
+                                                              AppSettings
+                                                                  .openAppSettings();
+                                                            },
+                                                          ),
+                                                        ),
+                                                      );
+                                                      return;
+                                                    }
+                                                  }
+
+                                                  _permissionGranted =
+                                                      await notifier.location
+                                                          .hasPermission();
+                                                  if (_permissionGranted ==
+                                                          PermissionStatus
+                                                              .granted ||
+                                                      _permissionGranted ==
+                                                          PermissionStatus
+                                                              .grantedLimited) {
+                                                    try {
+                                                      print(
+                                                          'Getting location...');
+                                                      LocationData
+                                                          _locationData =
+                                                          await notifier
+                                                              .location
+                                                              .getLocation();
+                                                      print(
+                                                          'Latitude: ${_locationData.latitude}, Longitude: ${_locationData.longitude}');
+
+                                                      // Store coordinates in a variable (if needed)
+                                                      double latitude =
+                                                          _locationData
+                                                              .latitude!;
+                                                      double longitude =
+                                                          _locationData
+                                                              .longitude!;
+
+                                                      // Proceed to show the dialog
+                                                      showDialog(
                                                           context: context,
                                                           builder: (BuildContext
                                                                   context) =>
                                                               CheckInDialog(
-                                                            title: 'Check In',
-                                                            svgPath:
-                                                                'assets/images/check_in_dialog_icon.svg',
-                                                            onTap: () {
-                                                              notifier
-                                                                  .sendClockInApi(
-                                                                companyId: person!
-                                                                    .data!
-                                                                    .companyId,
-                                                                employeeId: person
-                                                                    .data!
-                                                                    .employee!
-                                                                    .id,
-                                                                date: notifier
-                                                                    .formattedDate,
-                                                                clockInTime: notifier
-                                                                    .formattedTime
-                                                                    .toString(),
-                                                                late: notifier
-                                                                    .lateTime,
-                                                                latitude:
-                                                                    latitude,
-                                                                longitude:
-                                                                    longitude,
-                                                                context:
-                                                                    context,
-                                                              );
-                                                            },
-                                                          ),
-                                                        );
-                                                      } catch (e) {
-                                                        print(
-                                                            'Error getting location: $e');
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          const SnackBar(
-                                                              content: Text(
-                                                                  'Failed to get location. Please try again.')),
-                                                        );
-                                                      }
-                                                    } else {
-                                                      // Show a message if permissions are still not granted
+                                                                title:
+                                                                    'Check Out',
+                                                                svgPath:
+                                                                    'assets/images/check_out_dialog_icon.svg',
+                                                                onTap: () {
+                                                                  notifier.sendClockOutApi(
+                                                                      employeeId: person
+                                                                          .data!
+                                                                          .employee!
+                                                                          .id,
+                                                                      date: notifier
+                                                                          .formattedDate,
+                                                                      clockOut: notifier
+                                                                          .formattedTime
+                                                                          .toString(),
+                                                                      latitude:
+                                                                          latitude,
+                                                                      longitude:
+                                                                          longitude,
+                                                                      context:
+                                                                          context);
+                                                                },
+                                                              ));
+                                                    } catch (e) {
+                                                      print(
+                                                          'Error getting location: $e');
                                                       ScaffoldMessenger.of(
                                                               context)
                                                           .showSnackBar(
                                                         const SnackBar(
                                                             content: Text(
-                                                                'Location permissions are required.')),
+                                                                'Failed to get location. Please try again.')),
                                                       );
                                                     }
-                                                  } else if (notifier
-                                                                  .glassCardList[
-                                                              index]
-                                                          ['widget_title1'] ==
-                                                      'Profile') {
-                                                    GoRouter.of(context)
-                                                        .pushNamed(profilePage,
-                                                            pathParameters: {
-                                                              'id': person
-                                                                  .data!.id
-                                                                  .toString()
-                                                            },
-                                                            extra:
-                                                                person.Bearer);
+                                                  } else {
+                                                    // Show a message if permissions are still not granted
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                      const SnackBar(
+                                                          content: Text(
+                                                              'Location permissions are required.')),
+                                                    );
                                                   }
-                                                },
-                                                child: Container(
-                                                  height: 60.h,
-                                                  width: 110.w,
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                              left: 0,
-                                                              top: 15,
-                                                              bottom: 15)
-                                                          .r,
-                                                  decoration: BoxDecoration(
-                                                      color: whiteColor,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                                  12)
-                                                              .r),
-                                                  child: notifier.glassCardList[
-                                                                  index][
-                                                              'widget_title1'] ==
-                                                          'Vacation Balance'
-                                                      ? ShaderMask(
-                                                          shaderCallback:
-                                                              (bounds) {
-                                                            return const LinearGradient(
-                                                              begin: Alignment
-                                                                  .topCenter,
-                                                              end: Alignment
-                                                                  .bottomCenter,
-                                                              colors: [
-                                                                Color(
-                                                                    0xFF47A8CA),
-                                                                Color(
-                                                                    0xFF22429A),
-                                                              ],
-                                                            ).createShader(
-                                                                Rect.fromLTWH(
-                                                                    0,
-                                                                    0,
-                                                                    bounds
-                                                                        .width,
-                                                                    bounds
-                                                                        .height));
-                                                          },
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .all(4.0),
-                                                            child: Text(
-                                                              '10 Days',
-                                                              style: GoogleFonts
-                                                                  .poppins(
-                                                                color: Colors
-                                                                    .white,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontSize:
-                                                                    16.0.sp,
-                                                              ),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
-                                                            ),
-                                                          ),
-                                                        )
-                                                      : SvgPicture.asset(
-                                                          notifier.glassCardList[
-                                                                  index]
-                                                              ['widget_icon1']),
-                                                ),
+                                                }
+                                              },
+                                              child: Container(
+                                                padding: const EdgeInsets.only(
+                                                        left: 0,
+                                                        top: 12,
+                                                        bottom: 12)
+                                                    .r,
+                                                height: 60.h,
+                                                width: 110.w,
+                                                decoration: BoxDecoration(
+                                                    color: whiteColor,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                                12)
+                                                            .r),
+                                                child: SvgPicture.asset(notifier
+                                                        .glassCardList[index]
+                                                    ['widget_icon2']),
                                               ),
-                                              7.ph,
-                                              Text(
-                                                notifier.glassCardList[index]
-                                                    ['widget_title1'],
-                                                style: FontManagment()
-                                                    .poppins12White,
-                                              ),
-                                            ],
-                                          ),
-                                          19.pw,
-                                          Column(
-                                            children: [
-                                              InkWell(
-                                                onTap: () async {
-                                                  if (notifier.glassCardList[
-                                                              index]
-                                                          ['widget_title2'] ==
-                                                      'Check Out') {
-                                                    bool _serviceEnabled =
-                                                        await notifier.location
-                                                            .serviceEnabled();
-                                                    if (!_serviceEnabled) {
-                                                      _serviceEnabled =
-                                                          await notifier
-                                                              .location
-                                                              .requestService();
-                                                      if (!_serviceEnabled) {
-                                                        // Show a message to the user that location services need to be enabled
-                                                        myToast(
-                                                            msg:
-                                                                'Please enable location services',
-                                                            backgroundColor:
-                                                                const Color(
-                                                                    0xff203C97));
-
-                                                        return;
-                                                      }
-                                                    }
-
-                                                    // Check if location permissions are granted
-                                                    PermissionStatus
-                                                        _permissionGranted =
-                                                        await notifier.location
-                                                            .hasPermission();
-                                                    if (_permissionGranted ==
-                                                            PermissionStatus
-                                                                .denied ||
-                                                        _permissionGranted ==
-                                                            PermissionStatus
-                                                                .deniedForever) {
-                                                      _permissionGranted =
-                                                          await notifier
-                                                              .location
-                                                              .requestPermission();
-                                                      if (_permissionGranted !=
-                                                          PermissionStatus
-                                                              .granted) {
-                                                        // Show a message to the user and redirect to settings
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          SnackBar(
-                                                            content: const Text(
-                                                                'Location permissions are required. Please enable them in settings.'),
-                                                            action:
-                                                                SnackBarAction(
-                                                              label: 'Settings',
-                                                              onPressed: () {
-                                                                AppSettings
-                                                                    .openAppSettings();
-                                                              },
-                                                            ),
-                                                          ),
-                                                        );
-                                                        return;
-                                                      }
-                                                    }
-
-                                                    _permissionGranted =
-                                                        await notifier.location
-                                                            .hasPermission();
-                                                    if (_permissionGranted ==
-                                                            PermissionStatus
-                                                                .granted ||
-                                                        _permissionGranted ==
-                                                            PermissionStatus
-                                                                .grantedLimited) {
-                                                      try {
-                                                        print(
-                                                            'Getting location...');
-                                                        LocationData
-                                                            _locationData =
-                                                            await notifier
-                                                                .location
-                                                                .getLocation();
-                                                        print(
-                                                            'Latitude: ${_locationData.latitude}, Longitude: ${_locationData.longitude}');
-
-                                                        // Store coordinates in a variable (if needed)
-                                                        double latitude =
-                                                            _locationData
-                                                                .latitude!;
-                                                        double longitude =
-                                                            _locationData
-                                                                .longitude!;
-
-                                                        // Proceed to show the dialog
-                                                        showDialog(
-                                                            context: context,
-                                                            builder: (BuildContext
-                                                                    context) =>
-                                                                CheckInDialog(
-                                                                  title:
-                                                                      'Check Out',
-                                                                  svgPath:
-                                                                      'assets/images/check_out_dialog_icon.svg',
-                                                                  onTap: () {
-                                                                    notifier.sendClockOutApi(
-                                                                        employeeId: person
-                                                                            .data!
-                                                                            .employee!
-                                                                            .id,
-                                                                        date: notifier
-                                                                            .formattedDate,
-                                                                        clockOut: notifier
-                                                                            .formattedTime
-                                                                            .toString(),
-                                                                        latitude:
-                                                                            latitude,
-                                                                        longitude:
-                                                                            longitude,
-                                                                        context:
-                                                                            context);
-                                                                  },
-                                                                ));
-                                                      } catch (e) {
-                                                        print(
-                                                            'Error getting location: $e');
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          const SnackBar(
-                                                              content: Text(
-                                                                  'Failed to get location. Please try again.')),
-                                                        );
-                                                      }
-                                                    } else {
-                                                      // Show a message if permissions are still not granted
-                                                      ScaffoldMessenger.of(
-                                                              context)
-                                                          .showSnackBar(
-                                                        const SnackBar(
-                                                            content: Text(
-                                                                'Location permissions are required.')),
-                                                      );
-                                                    }
-                                                  }
-                                                },
-                                                child: Container(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                              left: 0,
-                                                              top: 12,
-                                                              bottom: 12)
-                                                          .r,
-                                                  height: 60.h,
-                                                  width: 110.w,
-                                                  decoration: BoxDecoration(
-                                                      color: whiteColor,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                                  12)
-                                                              .r),
-                                                  child: SvgPicture.asset(
-                                                      notifier.glassCardList[
-                                                              index]
-                                                          ['widget_icon2']),
-                                                ),
-                                              ),
-                                              7.ph,
-                                              Text(
-                                                notifier.glassCardList[index]
-                                                    ['widget_title2'],
-                                                style: FontManagment()
-                                                    .poppins12White,
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                                            ),
+                                            7.ph,
+                                            Text(
+                                              notifier.glassCardList[index]
+                                                  ['widget_title2'],
+                                              style: FontManagment()
+                                                  .poppins12White,
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
                           ),
-                        );
-                      }),
+                        ),
+                      );
+                    }),
+              ),
+              17.ph,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  notifier.glassCardList.length,
+                  (index) =>
+                      buildDot(index: index, context: context, state: state),
                 ),
-
-                17.ph,
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(
-                    notifier.glassCardList.length,
-                    (index) =>
-                        buildDot(index: index, context: context, state: state),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-          Container(
-            // height: 662.h,
-            margin: const EdgeInsets.only(top: 400, bottom: 25).r,
-            padding: const EdgeInsets.only(left: 24, right: 24).r,
-            decoration: BoxDecoration(
-                color: const Color(0xffF9F9F9),
-                borderRadius: BorderRadius.only(
-                    topLeft: const Radius.circular(30).r,
-                    topRight: const Radius.circular(30).r)),
+        ),
+        Container(
+          // height: 662.h,
+          margin: const EdgeInsets.only(top: 400, bottom: 0).r,
+          padding: const EdgeInsets.only(left: 24, right: 24, bottom: 0).r,
+          decoration: BoxDecoration(
+              color: const Color(0xffF9F9F9),
+              borderRadius: BorderRadius.only(
+                  topLeft: const Radius.circular(30).r,
+                  topRight: const Radius.circular(30).r)),
+          child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -1010,8 +975,8 @@ class _MainHomeScreenState extends ConsumerState<MainHomeScreen> {
               ],
             ),
           ),
-        ]),
-      ),
+        ),
+      ]),
     );
   }
 
