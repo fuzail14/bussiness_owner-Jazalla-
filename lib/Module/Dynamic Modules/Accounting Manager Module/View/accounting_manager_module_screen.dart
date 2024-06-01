@@ -10,8 +10,20 @@ class AccountingManagerModuleScreen extends StatelessWidget {
     return Scaffold(
       body: CustomGlassCardScreen(
         showBackButton: true,
+        heightofGlass: 600,
         mainTitle: 'Accounting Management',
         children: [
+          CardMakretPlace(
+            svgPath: 'assets/images/procurement_module_icon5.svg',
+            headingText: 'Banking',
+            subHeadingText:
+                'It serves as a comprehensive directory, showcasing company profiles.mon',
+            onTap: () {
+              // GoRouter.of(context)
+              //     .pushNamed(tendersView, extra: person);
+            },
+          ),
+          15.ph,
           CardMakretPlace(
             svgPath: 'assets/images/procurement_module_icon5.svg',
             headingText: 'Invoice Payable',
@@ -22,7 +34,7 @@ class AccountingManagerModuleScreen extends StatelessWidget {
               //     .pushNamed(tendersView, extra: person);
             },
           ),
-          30.ph,
+          15.ph,
           CardMakretPlace(
             svgPath: 'assets/images/accounting_manager_module_icon3.svg',
             headingText: 'Invoice Receivable',
@@ -35,7 +47,7 @@ class AccountingManagerModuleScreen extends StatelessWidget {
               // );
             },
           ),
-          30.ph,
+          15.ph,
           CardMakretPlace(
             svgPath: 'assets/images/accounting_manager_module_icon2.svg',
             headingText: 'Expresses',
@@ -45,7 +57,7 @@ class AccountingManagerModuleScreen extends StatelessWidget {
               // GoRouter.of(context).pushNamed(onlineStoreScreen, extra: person);
             },
           ),
-          30.ph,
+          15.ph,
           CardMakretPlace(
             svgPath: 'assets/images/accounting_manager_module_icon4.svg',
             headingText: 'Reports',

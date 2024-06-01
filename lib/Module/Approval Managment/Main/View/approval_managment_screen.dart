@@ -311,7 +311,7 @@ class ApprovalControlScreen extends ConsumerWidget {
 
                           decoration: BoxDecoration(
                             color: whiteColor,
-                            borderRadius: BorderRadius.circular(20).r,
+                            borderRadius: BorderRadius.circular(7).r,
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.grey.withOpacity(0.5),

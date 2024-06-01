@@ -12,6 +12,7 @@ class SalesManagerModuleScreen extends StatelessWidget {
     return Scaffold(
       body: CustomGlassCardScreen(
         showBackButton: true,
+        heightofGlass: 600,
         mainTitle: 'Sales Management',
         children: [
           CardMakretPlace(

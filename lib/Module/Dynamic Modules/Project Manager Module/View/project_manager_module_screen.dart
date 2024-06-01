@@ -12,6 +12,7 @@ class ProjectManagerModuleScreen extends StatelessWidget {
     return Scaffold(
       body: CustomGlassCardScreen(
         showBackButton: true,
+        heightofGlass: 600,
         mainTitle: 'Project Management',
         children: [
           CardMakretPlace(

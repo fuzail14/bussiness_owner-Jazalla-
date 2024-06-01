@@ -12,6 +12,7 @@ class ServiceManagerModuleScreen extends StatelessWidget {
     return Scaffold(
       body: CustomGlassCardScreen(
         showBackButton: true,
+        heightofGlass: 600,
         mainTitle: 'Service Management',
         children: [
           CardMakretPlace(

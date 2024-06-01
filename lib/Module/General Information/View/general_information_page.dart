@@ -59,7 +59,7 @@ class GeneralInformationPage extends ConsumerWidget {
                 lowerIconsvgPath:
                     'assets/images/general_info_card_lower_icon.svg',
               ),
-              30.ph,
+              20.ph,
               CardGeneralInformation(
                 onTap: () {
                   GoRouter.of(context).pushNamed(eventScreen, extra: person);
@@ -73,7 +73,7 @@ class GeneralInformationPage extends ConsumerWidget {
                 lowerIconsvgPath:
                     'assets/images/general_info_card_lower_icon.svg',
               ),
-              30.ph,
+              20.ph,
               CardGeneralInformation(
                 onTap: () {
                   GoRouter.of(context).pushNamed(holidaysScreen, extra: person);

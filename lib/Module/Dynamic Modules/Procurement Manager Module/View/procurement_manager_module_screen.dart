@@ -12,6 +12,7 @@ class ProcurementManagerModuleScreen extends StatelessWidget {
     return Scaffold(
       body: CustomGlassCardScreen(
         showBackButton: true,
+        heightofGlass: 600,
         mainTitle: 'Procurement Management',
         children: [
           CardMakretPlace(

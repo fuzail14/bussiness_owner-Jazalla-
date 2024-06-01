@@ -12,6 +12,7 @@ class HrManagerModuleScreen extends StatelessWidget {
     return Scaffold(
       body: CustomGlassCardScreen(
         showBackButton: true,
+        heightofGlass: 600,
         mainTitle: 'HR Management',
         children: [
           CardMakretPlace(
