@@ -1,30 +1,17 @@
-import 'dart:ui';
-
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
 import 'package:bussines_owner/Routes/set_routes.dart';
 import 'package:bussines_owner/Widgets/AppBar/my_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../Constants/Font/fonts.dart';
-import '../../../Constants/Person/person_controller.dart';
-import '../Notifier/general_information_notifier.dart';
 import '../Widget/general_information_custom_card.dart';
 
-class GeneralInformationPage extends ConsumerWidget {
+class GeneralInformationPage extends StatelessWidget {
   const GeneralInformationPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final person = ref.read(personProvider);
-    final notifier = ref.read(generalInformationProvider.notifier);
-
-    final state = ref.read(generalInformationProvider);
-
+  Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: whiteColor,
         appBar: MyAppBar(
@@ -46,46 +33,112 @@ class GeneralInformationPage extends ConsumerWidget {
               20.ph,
               CardGeneralInformation(
                 onTap: () {
-                  GoRouter.of(context)
-                      .pushNamed(companyPolicyScreen, extra: person);
+                  GoRouter.of(context).pushNamed(
+                    employeeInformationView,
+                  );
                 },
-                upperIconsvgPath:
-                    'assets/images/general_info_card_upper_icon.svg',
-                centerIconsvgPath:
-                    'assets/images/general_info_company_policy.png',
-                headingText: 'Company Policy',
-                subHeadingText:
-                    'Discover valuable insights into your organizations practices by exploring the Company Policy section.',
-                lowerIconsvgPath:
-                    'assets/images/general_info_card_lower_icon.svg',
+                iconPath: 'assets/images/general_info_icon1.png',
+                headingText: 'Employee Information',
               ),
               20.ph,
               CardGeneralInformation(
                 onTap: () {
-                  GoRouter.of(context).pushNamed(eventScreen, extra: person);
+                  GoRouter.of(context).pushNamed(
+                    awardView,
+                  );
                 },
-                upperIconsvgPath:
-                    'assets/images/general_info_card_upper_icon.svg',
-                centerIconsvgPath: 'assets/images/general_info_event.png',
-                headingText: 'Events',
-                subHeadingText:
-                    'Gain valuable insights and stay consistently informed about upcoming events within your company.',
-                lowerIconsvgPath:
-                    'assets/images/general_info_card_lower_icon.svg',
+                iconPath: 'assets/images/general_info_icon2.png',
+                headingText: 'Award',
               ),
               20.ph,
               CardGeneralInformation(
                 onTap: () {
-                  GoRouter.of(context).pushNamed(holidaysScreen, extra: person);
+                  GoRouter.of(context).pushNamed(
+                    transferView,
+                  );
                 },
-                upperIconsvgPath:
-                    'assets/images/general_info_card_upper_icon.svg',
-                centerIconsvgPath: 'assets/images/general_info_holiday.png',
+                iconPath: 'assets/images/general_info_icon3.png',
+                headingText: 'Transfer',
+              ),
+              20.ph,
+              CardGeneralInformation(
+                onTap: () {
+                  GoRouter.of(context).pushNamed(
+                    registrationView,
+                  );
+                },
+                iconPath: 'assets/images/general_info_icon4.png',
+                headingText: 'Registration',
+              ),
+              20.ph,
+              CardGeneralInformation(
+                onTap: () {
+                  GoRouter.of(context).pushNamed(
+                    tripView,
+                  );
+                },
+                iconPath: 'assets/images/general_info_icon5.png',
+                headingText: 'Trip',
+              ),
+              20.ph,
+              CardGeneralInformation(
+                onTap: () {
+                  GoRouter.of(context).pushNamed(
+                    promotionView,
+                  );
+                },
+                iconPath: 'assets/images/general_info_icon6.png',
+                headingText: 'Promotion',
+              ),
+              20.ph,
+              CardGeneralInformation(
+                onTap: () {},
+                iconPath: 'assets/images/general_info_icon7.png',
+                headingText: 'Complaints',
+              ),
+              20.ph,
+              CardGeneralInformation(
+                onTap: () {},
+                iconPath: 'assets/images/general_info_icon8.png',
+                headingText: 'Warning',
+              ),
+              20.ph,
+              CardGeneralInformation(
+                onTap: () {},
+                iconPath: 'assets/images/general_info_icon9.png',
+                headingText: 'Termination',
+              ),
+              20.ph,
+              CardGeneralInformation(
+                onTap: () {},
+                iconPath: 'assets/images/general_info_icon10.png',
+                headingText: 'Announcement',
+              ),
+              20.ph,
+              CardGeneralInformation(
+                onTap: () {
+                  GoRouter.of(context).pushNamed(
+                    holidaysScreen,
+                  );
+                },
+                iconPath: 'assets/images/general_info_icon11.png',
                 headingText: 'Holidays',
-                subHeadingText:
-                    'Stay informed about your companys upcoming holidays and planned for time-off .',
-                lowerIconsvgPath:
-                    'assets/images/general_info_card_lower_icon.svg',
+              ),
+              20.ph,
+              CardGeneralInformation(
+                onTap: () {},
+                iconPath: 'assets/images/general_info_icon12.png',
+                headingText: 'Employee Asset',
+              ),
+              20.ph,
+              CardGeneralInformation(
+                onTap: () {
+                  GoRouter.of(context).pushNamed(
+                    companyPolicyScreen,
+                  );
+                },
+                iconPath: 'assets/images/general_info_icon13.png',
+                headingText: 'Company Policy',
               ),
               40.ph,
             ],

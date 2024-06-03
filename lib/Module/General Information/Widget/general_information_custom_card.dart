@@ -1,41 +1,38 @@
-import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // ignore: must_be_immutable
 class CardGeneralInformation extends StatelessWidget {
-  CardGeneralInformation({
-    super.key,
-    this.headingText,
-    this.subHeadingText,
-    this.onTap,
-    this.upperIconsvgPath,
-    this.centerIconsvgPath,
-    this.lowerIconsvgPath,
-  });
+  CardGeneralInformation(
+      {super.key,
+      this.iconPath,
+      this.headingText,
+      this.subHeadingText,
+      this.onTap,
+      this.trailingIconPath});
+  String? iconPath;
   String? headingText;
   String? subHeadingText;
-
+  String? trailingIconPath;
   void Function()? onTap;
-  Color? color;
-  String? upperIconsvgPath;
-  String? centerIconsvgPath;
-  String? lowerIconsvgPath;
+
+  // Color? color;
+  // String? upperIconsvgPath;
+  // String? centerIconsvgPath;
+  // String? lowerIconsvgPath;
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-
     return GestureDetector(
       onTap: onTap,
       child: Container(
         //width: 363.w,
 
         padding: const EdgeInsets.only(
-          left: 22,
+          //left: 22,
+          // right: 21.7,
           top: 13,
           bottom: 13,
         ).r,
@@ -57,7 +54,39 @@ class CardGeneralInformation extends StatelessWidget {
             ),
           ],
         ),
-        child: ListTile(),
+        child: ListTile(
+          leading: Container(
+            decoration: BoxDecoration(
+              color: const Color(0xffF7F7F7),
+              borderRadius: BorderRadius.circular(7),
+            ),
+            height: 56.h,
+            width: 56.w,
+            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 7).r,
+            child: Image.asset(iconPath!),
+          ),
+          title: Text(
+            headingText!,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: GoogleFonts.poppins(
+                fontSize: 15,
+                color: const Color(0xff12175E),
+                fontWeight: FontWeight.w500),
+          ),
+          subtitle: Text(
+            'General Information For',
+            style: GoogleFonts.poppins(
+                fontSize: 12,
+                color: const Color(0xff12175E),
+                fontWeight: FontWeight.w300),
+          ),
+          trailing: Icon(
+            Icons.arrow_forward,
+            color: blackColor,
+            size: 22,
+          ),
+        ),
         // child: Stack(
         //   children: [
         //     Align(

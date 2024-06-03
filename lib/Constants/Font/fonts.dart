@@ -19,6 +19,16 @@ class FontManagment {
         color: color ?? const Color(0xff3E3434));
   }
 
+  var poppins14 = GoogleFonts.poppins(
+      fontSize: 14.sp,
+      fontWeight: FontWeight.w700,
+      color: const Color(0xff313131));
+
+  var poppins13 = GoogleFonts.poppins(
+      fontSize: 13.sp,
+      fontWeight: FontWeight.w500,
+      color: const Color(0xff9FA2AB));
+
   var poppins18 = GoogleFonts.poppins(
       fontSize: 18.sp,
       fontWeight: FontWeight.w600,
@@ -103,9 +113,6 @@ class FontManagment {
 
   var quicksand12 = GoogleFonts.inter(
       fontSize: 12.sp, fontWeight: FontWeight.w600, color: whiteColor);
-
-  var poppins14 = GoogleFonts.poppins(
-      fontSize: 14.sp, fontWeight: FontWeight.w300, color: whiteColor);
 
   var poppins12Grey = GoogleFonts.poppins(
       fontSize: 12.sp,

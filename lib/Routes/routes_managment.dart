@@ -22,6 +22,7 @@ import '../Module/Approval Authority/Create/View/approval_authority_create_view.
 import '../Module/Approval Authority/Main/View/approval_authority_view.dart';
 import '../Module/Approval Managment/Main/View/approval_managment_screen.dart';
 import '../Module/Attendance Managment/View/attendance_managment_view.dart';
+import '../Module/Award/View/award_view.dart';
 import '../Module/BussinesCommunity/Detail/View/bussines_community_detail_page.dart';
 import '../Module/BussinesCommunity/Main/View/bussines_communities_screen.dart';
 import '../Module/BussinesForSale/Main/View/sale_bussines_screen.dart';
@@ -32,6 +33,7 @@ import '../Module/Dynamic Modules/Procurement Manager Module/View/procurement_ma
 import '../Module/Dynamic Modules/Project Manager Module/View/project_manager_module_screen.dart';
 import '../Module/Dynamic Modules/Sales Manager Module/View/sales_manager_module_screen.dart';
 import '../Module/Dynamic Modules/Service Manager Module/View/service_manager_module_screen.dart';
+import '../Module/Employee Information/View/employee_information_view.dart';
 import '../Module/Event/View/event_view.dart';
 import '../Module/General Information/View/general_information_page.dart';
 import '../Module/GeneralServices/RequestProposal/View/request_proposal_page.dart';
@@ -55,6 +57,8 @@ import '../Module/ProcurementManagment/RFP/RFXManagmentRFPDetail/View/rfx_managm
 import '../Module/ProcurementManagment/RFQ/Main/View/procurement_rfq_screen.dart';
 import '../Module/ProcurementManagment/RFQ/RFXManagmentRFQDetail/View/rfx_managment_rfq_detail_page.dart';
 import '../Module/Profile/View/profile_page.dart';
+import '../Module/Promotion/View/promotion_view.dart';
+import '../Module/Registration/View/registration_view.dart';
 import '../Module/SalaryPaySlip/Main/View/salary_payslip_view.dart';
 import '../Module/SalaryPaySlip/PaySlipDetail/View/salary_payslip_detail_page.dart';
 import '../Module/SalesManagment/RFIMain/RFI/View/sales_managment_rfi_screen.dart';
@@ -70,6 +74,8 @@ import '../Module/ServiceManagment/RFPMain/SendRFPResponse/View/send_rfp_respons
 import '../Module/ServiceManagment/RFPMain/ServiceManagmentRFPDetail/View/service_managment_rfp_detail_page.dart';
 import '../Module/Tenders/TenderMain/View/tenders_screen.dart';
 import '../Module/Tenders/TendersResponse/View/tender_response_page.dart';
+import '../Module/Transfer/View/transfer_view.dart';
+import '../Module/Trip/View/trip_view.dart';
 import '../Module/UserManagment/View/user_management_view.dart';
 import '../Providers/argument_provider.dart';
 
@@ -1248,6 +1254,84 @@ final router = GoRouter(
       path: '/ProjectManagerModuleScreen',
       pageBuilder: (context, state) {
         const page = ProjectManagerModuleScreen();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: employeeInformationView,
+      path: '/EmployeeInformationView',
+      pageBuilder: (context, state) {
+        final page = EmployeeInformationView();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: awardView,
+      path: '/AwardView',
+      pageBuilder: (context, state) {
+        final page = AwardView();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: transferView,
+      path: '/TransferView',
+      pageBuilder: (context, state) {
+        final page = TransferView();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: registrationView,
+      path: '/RegistrationView',
+      pageBuilder: (context, state) {
+        final page = RegistrationView();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: tripView,
+      path: '/TripView',
+      pageBuilder: (context, state) {
+        final page = TripView();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: promotionView,
+      path: '/PromotionView',
+      pageBuilder: (context, state) {
+        final page = PromotionView();
 
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
