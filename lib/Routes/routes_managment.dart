@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bussines_owner/Routes/set_routes.dart';
 import '../Constants/Person/person_controller.dart';
+import '../Module/Announcement/View/announcement_view.dart';
 import '../Module/Apprisal/View/apprisal_view.dart';
 import '../Module/Approval Authority/Create/View/approval_authority_create_view.dart';
 import '../Module/Approval Authority/Main/View/approval_authority_view.dart';
@@ -27,13 +28,16 @@ import '../Module/BussinesCommunity/Detail/View/bussines_community_detail_page.d
 import '../Module/BussinesCommunity/Main/View/bussines_communities_screen.dart';
 import '../Module/BussinesForSale/Main/View/sale_bussines_screen.dart';
 import '../Module/Company Policy/View/company_policy_view.dart';
+import '../Module/Complaints/View/complaints_view.dart';
 import '../Module/Dynamic Modules/Accounting Manager Module/View/accounting_manager_module_screen.dart';
 import '../Module/Dynamic Modules/HR Manager Module/View/Hr_manager_module_screen.dart';
 import '../Module/Dynamic Modules/Procurement Manager Module/View/procurement_manager_module_screen.dart';
 import '../Module/Dynamic Modules/Project Manager Module/View/project_manager_module_screen.dart';
 import '../Module/Dynamic Modules/Sales Manager Module/View/sales_manager_module_screen.dart';
 import '../Module/Dynamic Modules/Service Manager Module/View/service_manager_module_screen.dart';
-import '../Module/Employee Information/View/employee_information_view.dart';
+import '../Module/Employee Information/Detail/EmployeeInformationDetail/View/employee_information_detail_page.dart';
+import '../Module/Employee Information/Main/View/employee_information_view.dart';
+import '../Module/EmployeesAsset/View/employees_asset_view.dart';
 import '../Module/Event/View/event_view.dart';
 import '../Module/General Information/View/general_information_page.dart';
 import '../Module/GeneralServices/RequestProposal/View/request_proposal_page.dart';
@@ -74,9 +78,11 @@ import '../Module/ServiceManagment/RFPMain/SendRFPResponse/View/send_rfp_respons
 import '../Module/ServiceManagment/RFPMain/ServiceManagmentRFPDetail/View/service_managment_rfp_detail_page.dart';
 import '../Module/Tenders/TenderMain/View/tenders_screen.dart';
 import '../Module/Tenders/TendersResponse/View/tender_response_page.dart';
+import '../Module/Termination/View/termination_view.dart';
 import '../Module/Transfer/View/transfer_view.dart';
 import '../Module/Trip/View/trip_view.dart';
 import '../Module/UserManagment/View/user_management_view.dart';
+import '../Module/Warning/View/warning_view.dart';
 import '../Providers/argument_provider.dart';
 
 final router = GoRouter(
@@ -1096,14 +1102,7 @@ final router = GoRouter(
       name: companyPolicyScreen,
       path: '/CompanyPolicyScreen',
       pageBuilder: (context, state) {
-        final person = state.extra as Person;
-        final page = ProviderScope(
-          overrides: [
-            personProvider
-                .overrideWith((ref) => PersonController()..setPerson(person)),
-          ],
-          child: CompanyPolicyScreen(),
-        );
+        final page = CompanyPolicyScreen();
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
             context: context,
@@ -1134,14 +1133,7 @@ final router = GoRouter(
       name: holidaysScreen,
       path: '/HolidaysScreen',
       pageBuilder: (context, state) {
-        final person = state.extra as Person;
-        final page = ProviderScope(
-          overrides: [
-            personProvider
-                .overrideWith((ref) => PersonController()..setPerson(person)),
-          ],
-          child: HolidaysScreen(),
-        );
+        final page = HolidaysScreen();
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
             context: context,
@@ -1333,6 +1325,92 @@ final router = GoRouter(
       pageBuilder: (context, state) {
         final page = PromotionView();
 
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: complaintsView,
+      path: '/ComplaintsView',
+      pageBuilder: (context, state) {
+        final page = ComplaintsView();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: warningView,
+      path: '/WarningView',
+      pageBuilder: (context, state) {
+        final page = WarningView();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: terminationView,
+      path: '/TerminationView',
+      pageBuilder: (context, state) {
+        final page = TerminationView();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: announcementView,
+      path: '/AnnouncementView',
+      pageBuilder: (context, state) {
+        final page = AnnouncementView();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: employeesAssetView,
+      path: '/EmployeesAssetView',
+      pageBuilder: (context, state) {
+        final page = EmployeesAssetView();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: employeeInformationDetailView,
+      path: '/EmployeeInformationDetailView/:id',
+      pageBuilder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider.overrideWithValue({
+              'Id': id,
+            }),
+          ],
+          child: EmployeeInformationDetailView(),
+        );
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
             context: context,

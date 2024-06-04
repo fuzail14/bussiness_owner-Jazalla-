@@ -54,7 +54,7 @@ class CompanyPolicyNotifier extends StateNotifier<CompanyPolicyState> {
 
 final companyPolicyProvider = StateNotifierProvider.autoDispose<
     CompanyPolicyNotifier, CompanyPolicyState>((ref) {
-  final person = ref.watch(personProvider);
+  final person = ref.read(personProvider);
   if (person == null) {
     throw Exception('Person data is not available');
   }

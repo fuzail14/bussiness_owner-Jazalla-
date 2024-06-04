@@ -215,4 +215,9 @@ class Api {
   static const String updatepasswordApi = "${baseUrl}user/updatepasswordApi";
   static const String tendersExpressInterestApi =
       "${baseUrl}marketplace/Tenders/tendersExpressInterestApi";
+
+  static const String getEmployeeInformation =
+      "${baseUrl}generalinfo/getEmployeeInformation";
+  static const String getEmployeeInformationDetail =
+      "${baseUrl}generalinfo/getEmployeeInformationDetail";
 }

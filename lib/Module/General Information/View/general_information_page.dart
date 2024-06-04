@@ -92,25 +92,41 @@ class GeneralInformationPage extends StatelessWidget {
               ),
               20.ph,
               CardGeneralInformation(
-                onTap: () {},
+                onTap: () {
+                  GoRouter.of(context).pushNamed(
+                    complaintsView,
+                  );
+                },
                 iconPath: 'assets/images/general_info_icon7.png',
                 headingText: 'Complaints',
               ),
               20.ph,
               CardGeneralInformation(
-                onTap: () {},
+                onTap: () {
+                  GoRouter.of(context).pushNamed(
+                    warningView,
+                  );
+                },
                 iconPath: 'assets/images/general_info_icon8.png',
                 headingText: 'Warning',
               ),
               20.ph,
               CardGeneralInformation(
-                onTap: () {},
+                onTap: () {
+                  GoRouter.of(context).pushNamed(
+                    terminationView,
+                  );
+                },
                 iconPath: 'assets/images/general_info_icon9.png',
                 headingText: 'Termination',
               ),
               20.ph,
               CardGeneralInformation(
-                onTap: () {},
+                onTap: () {
+                  GoRouter.of(context).pushNamed(
+                    announcementView,
+                  );
+                },
                 iconPath: 'assets/images/general_info_icon10.png',
                 headingText: 'Announcement',
               ),
@@ -126,7 +142,11 @@ class GeneralInformationPage extends StatelessWidget {
               ),
               20.ph,
               CardGeneralInformation(
-                onTap: () {},
+                onTap: () {
+                  GoRouter.of(context).pushNamed(
+                    employeesAssetView,
+                  );
+                },
                 iconPath: 'assets/images/general_info_icon12.png',
                 headingText: 'Employee Asset',
               ),
