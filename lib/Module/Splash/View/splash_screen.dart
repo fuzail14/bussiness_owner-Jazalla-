@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
 import 'package:bussines_owner/Constants/constants.dart';
+import 'package:bussines_owner/Routes/set_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -36,12 +37,12 @@ class _SplashScreenConsumerState extends ConsumerState<SplashScreen> {
 
     if (person.data!.companyId == 0) {
       Timer(const Duration(seconds: 3),
-          () => context.goNamed('/CheckPhoneNumber'));
+          () => context.pushReplacementNamed(checkPhoneNumber));
     } else {
       Timer(
           const Duration(seconds: 3),
-          () => context.goNamed(
-                '/HomeScreen',
+          () => context.pushReplacementNamed(
+                homescreen,
                 //extra: person
               ));
     }

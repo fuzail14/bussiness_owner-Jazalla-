@@ -106,7 +106,9 @@ class Menu extends ConsumerWidget {
 
             context.pushReplacementNamed(checkPhoneNumber);
           } else if (item.title == 'Order Placement') {
-            context.pushNamed(orderPlacementScreen, extra: person);
+            context.pushNamed(
+              orderPlacementScreen,
+            );
           } else if (item.title == 'User Management') {
             context.pushNamed(userManagementScreen);
             // context.pushNamed(procuremenetRFQScreen, extra: person);

@@ -20,7 +20,7 @@ class OrderPlacementStateNotifier extends StateNotifier<OrderPlacementState> {
 
 final orderPlacementProvider = StateNotifierProvider.autoDispose<
     OrderPlacementStateNotifier, OrderPlacementState>((ref) {
-  final person = ref.watch(personProvider);
+  final person = ref.read(personProvider);
   if (person == null) {
     throw Exception('Person data is not available');
   }

@@ -80,3 +80,16 @@ const String terminationView = '/TerminationView';
 const String announcementView = '/AnnouncementView';
 const String employeesAssetView = '/EmployeesAssetView';
 const String employeeInformationDetailView = '/EmployeeInformationDetailView';
+const String vendorManagementMainTabPage = '/VendorManagementMainTabPage';
+const String bidManagementProcurementView = '/BidManagementProcurementView';
+const String bidManagementProcurementDetailPage =
+    '/BidManagementProcurementDetailPage';
+const String bidProcurementResponseRecieveView =
+    '/BidProcurementResponseRecieveView';
+
+const String orderManagementProcurementView = '/OrderManagementProcurementView';
+const String inventoryManagementProcurementView =
+    '/InventoryManagementProcurementView';
+
+const String contractManagementProcurementView =
+    '/ContractManagementProcurementView';

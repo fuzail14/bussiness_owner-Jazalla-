@@ -114,13 +114,15 @@ class TransferView extends ConsumerWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text('Employee',
-                                      style: FontManagment().poppins13),
+                                      style:
+                                          FontManagment().poppins13WithColor()),
                                   SizedBox(
                                     width: 150.w,
                                     child: Text("Abu Ahmad",
                                         maxLines: 1,
                                         textDirection: TextDirection.rtl,
-                                        style: FontManagment().poppins14),
+                                        style: FontManagment()
+                                            .poppins14WithColor()),
                                   )
                                 ],
                               ),
@@ -134,13 +136,15 @@ class TransferView extends ConsumerWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text('Department',
-                                      style: FontManagment().poppins13),
+                                      style:
+                                          FontManagment().poppins13WithColor()),
                                   SizedBox(
                                     width: 150.w,
                                     child: Text("Sales Department",
                                         textDirection: TextDirection.rtl,
                                         maxLines: 1,
-                                        style: FontManagment().poppins14),
+                                        style: FontManagment()
+                                            .poppins14WithColor()),
                                   )
                                 ],
                               ),
@@ -154,13 +158,15 @@ class TransferView extends ConsumerWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text('Transfer Date',
-                                      style: FontManagment().poppins13),
+                                      style:
+                                          FontManagment().poppins13WithColor()),
                                   SizedBox(
                                     width: 100.w,
                                     child: Text("2024-09-08",
                                         textDirection: TextDirection.rtl,
                                         maxLines: 1,
-                                        style: FontManagment().poppins14),
+                                        style: FontManagment()
+                                            .poppins14WithColor()),
                                   )
                                 ],
                               ),

@@ -114,13 +114,15 @@ class RegistrationView extends ConsumerWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text('Employee',
-                                      style: FontManagment().poppins13),
+                                      style:
+                                          FontManagment().poppins13WithColor()),
                                   SizedBox(
                                     width: 150.w,
                                     child: Text("Abu Ahmad",
                                         maxLines: 1,
                                         textDirection: TextDirection.rtl,
-                                        style: FontManagment().poppins14),
+                                        style: FontManagment()
+                                            .poppins14WithColor()),
                                   )
                                 ],
                               ),
@@ -134,13 +136,15 @@ class RegistrationView extends ConsumerWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text('Notice Date',
-                                      style: FontManagment().poppins13),
+                                      style:
+                                          FontManagment().poppins13WithColor()),
                                   SizedBox(
                                     width: 100.w,
                                     child: Text("05 April 2024",
                                         textDirection: TextDirection.rtl,
                                         maxLines: 1,
-                                        style: FontManagment().poppins14),
+                                        style: FontManagment()
+                                            .poppins14WithColor()),
                                   )
                                 ],
                               ),
@@ -154,13 +158,15 @@ class RegistrationView extends ConsumerWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text('Last Working Date',
-                                      style: FontManagment().poppins13),
+                                      style:
+                                          FontManagment().poppins13WithColor()),
                                   SizedBox(
                                     width: 100.w,
                                     child: Text("05 April 2024",
                                         textDirection: TextDirection.rtl,
                                         maxLines: 1,
-                                        style: FontManagment().poppins14),
+                                        style: FontManagment()
+                                            .poppins14WithColor()),
                                   )
                                 ],
                               ),
@@ -267,7 +273,7 @@ class CheckInDialog extends StatelessWidget {
                             'Through the "Award" feature, you can specify the type of award, provide a description of why the recipient is being recognized, and even attach any relevant documents or files. Additionally.',
                             maxLines: 5,
                             overflow: TextOverflow.ellipsis,
-                            style: FontManagment().poppins13),
+                            style: FontManagment().poppins13WithColor()),
                       ),
                       31.ph,
                       InkWell(

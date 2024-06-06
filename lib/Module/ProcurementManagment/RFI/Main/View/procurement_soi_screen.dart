@@ -35,17 +35,23 @@ class ProcuremenetSoiScreen extends ConsumerWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _tabButton(
+                tabButton(
                   title: 'RFI Sent',
                   index: 0,
                   isSelected: state.selectedIndex == 0,
-                  controller: controller,
+                  onTap: () {
+                    controller.setTabBarStatus(0);
+                  },
+                  // controller: controller,
                 ),
-                _tabButton(
+                tabButton(
                   title: 'RFI Received',
                   index: 1,
                   isSelected: state.selectedIndex == 1,
-                  controller: controller,
+                  // controller: controller,
+                  onTap: () {
+                    controller.setTabBarStatus(1);
+                  },
                 ),
               ],
             ),
@@ -65,14 +71,14 @@ class ProcuremenetSoiScreen extends ConsumerWidget {
   }
 }
 
-Widget _tabButton({
-  required String title,
-  required int index,
-  required bool isSelected,
-  required ProcuremenetSoiController controller,
-}) {
+Widget tabButton(
+    {required String title,
+    required int index,
+    required bool isSelected,
+    //required ProcuremenetSoiController controller,
+    required void Function()? onTap}) {
   return GestureDetector(
-    onTap: () => controller.setTabBarStatus(index),
+    onTap: onTap,
     child: AnimatedContainer(
       width: 150.w,
       duration: const Duration(milliseconds: 500),
@@ -99,7 +105,7 @@ Widget _tabButton({
           title,
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
-            fontSize: 12.sp,
+            fontSize: 10,
             color: isSelected ? Colors.white : const Color(0xff4EBBD3),
           ),
         ),

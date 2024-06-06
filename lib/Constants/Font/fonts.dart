@@ -4,6 +4,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FontManagment {
+  TextStyle montserrat13WithColor(
+      {double? fontSize, Color? color, FontWeight? fontWeight}) {
+    return GoogleFonts.poppins(
+        fontSize: fontSize ?? 13.sp,
+        fontWeight: fontWeight ?? FontWeight.w700,
+        color: color ?? const Color(0xff9FA2AB));
+  }
+
+  TextStyle montserrat14WithColor(
+      {double? fontSize, Color? color, FontWeight? fontWeight}) {
+    return GoogleFonts.poppins(
+        fontSize: fontSize ?? 14.sp,
+        fontWeight: fontWeight ?? FontWeight.bold,
+        color: color ?? const Color(0xff313131));
+  }
+
   TextStyle poppins16WithColor(
       {double? fontSize, Color? color, FontWeight? fontWeight}) {
     return GoogleFonts.poppins(
@@ -19,15 +35,19 @@ class FontManagment {
         color: color ?? const Color(0xff3E3434));
   }
 
-  var poppins14 = GoogleFonts.poppins(
-      fontSize: 14.sp,
-      fontWeight: FontWeight.w700,
-      color: const Color(0xff313131));
+  TextStyle poppins14WithColor({Color? color, FontWeight? fontWeight}) {
+    return GoogleFonts.poppins(
+        fontSize: 14.sp,
+        fontWeight: fontWeight ?? FontWeight.w700,
+        color: color ?? const Color(0xff313131));
+  }
 
-  var poppins13 = GoogleFonts.poppins(
-      fontSize: 13.sp,
-      fontWeight: FontWeight.w500,
-      color: const Color(0xff9FA2AB));
+  TextStyle poppins13WithColor({Color? color, FontWeight? fontWeight}) {
+    return GoogleFonts.poppins(
+        fontSize: 13,
+        fontWeight: fontWeight ?? FontWeight.w500,
+        color: color ?? const Color(0xff9FA2AB));
+  }
 
   var poppins18 = GoogleFonts.poppins(
       fontSize: 18.sp,

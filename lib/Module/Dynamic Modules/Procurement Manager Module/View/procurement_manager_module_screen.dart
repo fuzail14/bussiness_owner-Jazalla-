@@ -1,5 +1,7 @@
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
+import 'package:bussines_owner/Routes/set_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../Widgets/CustomGlassCardScreen/custom_glass_card_screen.dart';
 import '../../../MarketPlace/Widget/market_place_screen_card.dart';
 
@@ -21,8 +23,7 @@ class ProcurementManagerModuleScreen extends StatelessWidget {
             subHeadingText:
                 'It serves as a comprehensive directory, showcasing company profiles.mon',
             onTap: () {
-              // GoRouter.of(context)
-              //     .pushNamed(tendersView, extra: person);
+              GoRouter.of(context).pushNamed(vendorManagementMainTabPage);
             },
           ),
           15.ph,
@@ -32,13 +33,7 @@ class ProcurementManagerModuleScreen extends StatelessWidget {
             subHeadingText:
                 'It serves as a comprehensive directory, showcasing company profiles.mon',
             onTap: () {
-              // Get.toNamed(bussinesCommunitiesScreen,
-              //     arguments: controller.arguments);
-              // context.goNamed(bussinesCommunitiesScreen, extra: person);
-              // GoRouter.of(context).pushNamed(
-              //   bussinesCommunitiesScreen,
-              //   //extra: person
-              // );
+              GoRouter.of(context).pushNamed(bidManagementProcurementView);
             },
           ),
           15.ph,
@@ -48,7 +43,7 @@ class ProcurementManagerModuleScreen extends StatelessWidget {
             subHeadingText:
                 'It serves as a comprehensive directory, showcasing company profiles.mon',
             onTap: () {
-              //GoRouter.of(context).pushNamed(onlineStoreScreen, extra: person);
+              GoRouter.of(context).pushNamed(orderPlacementScreen);
             },
           ),
           15.ph,
@@ -58,7 +53,7 @@ class ProcurementManagerModuleScreen extends StatelessWidget {
             subHeadingText:
                 'It serves as a comprehensive directory, showcasing company profiles.mon',
             onTap: () {
-              // GoRouter.of(context).pushNamed(generalServiceView, extra: person);
+              GoRouter.of(context).pushNamed(orderManagementProcurementView);
             },
           ),
           15.ph,
@@ -68,7 +63,7 @@ class ProcurementManagerModuleScreen extends StatelessWidget {
             subHeadingText:
                 'It serves as a comprehensive directory, showcasing company profiles.mon',
             onTap: () {
-              // GoRouter.of(context).pushNamed(bussinesForSale, extra: person);
+              GoRouter.of(context).pushNamed(contractManagementProcurementView);
             },
           ),
           15.ph,
@@ -89,8 +84,8 @@ class ProcurementManagerModuleScreen extends StatelessWidget {
             subHeadingText:
                 'It serves as a comprehensive directory, showcasing company profiles.mon',
             onTap: () {
-              // GoRouter.of(context)
-              //     .pushNamed(investMentOpportunityView, extra: person);
+              GoRouter.of(context)
+                  .pushNamed(inventoryManagementProcurementView);
             },
           ),
           15.ph,

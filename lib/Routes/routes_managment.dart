@@ -54,6 +54,12 @@ import '../Module/Notifications/View/notifications_screen.dart';
 import '../Module/OnlineStore/RequestQuote/View/request_quote_page.dart';
 import '../Module/OnlineStore/SendInquiry/View/send_inquiry_page.dart';
 import '../Module/OrderPlacement/View/order_placement_screen.dart';
+import '../Module/Procurement Management Module/Bid Management Procurement/BidResponseRecieve/View/bid_procurement_response_recieve_view.dart';
+import '../Module/Procurement Management Module/Bid Management Procurement/Detail/View/bid_management_procurement_detail_page.dart';
+import '../Module/Procurement Management Module/Bid Management Procurement/Main/View/bid_management_procurement_view.dart';
+import '../Module/Procurement Management Module/Contract Management Procurement/Main/View/contract_management_procurement_view.dart';
+import '../Module/Procurement Management Module/Inventory Management Procurement/Main/View/inventory_management_procurement_view.dart';
+import '../Module/Procurement Management Module/Order Management Procurement/Main/View/order_management_procurement_view.dart';
 import '../Module/ProcurementManagment/RFI/RfxManagmentRFIDetail/View/rfx_managment_rfi_detail_page.dart';
 import '../Module/ProcurementManagment/RFI/Main/View/procurement_soi_screen.dart';
 import '../Module/ProcurementManagment/RFP/Main/View/procurement_rfp_screen.dart';
@@ -82,6 +88,7 @@ import '../Module/Termination/View/termination_view.dart';
 import '../Module/Transfer/View/transfer_view.dart';
 import '../Module/Trip/View/trip_view.dart';
 import '../Module/UserManagment/View/user_management_view.dart';
+import '../Module/Procurement Management Module/Vendor Management/MainTabPage/View/vendor_management_maintabpage_screen.dart';
 import '../Module/Warning/View/warning_view.dart';
 import '../Providers/argument_provider.dart';
 
@@ -864,14 +871,8 @@ final router = GoRouter(
       name: orderPlacementScreen,
       path: '/OrderPlacementScreen',
       pageBuilder: (context, state) {
-        final person = state.extra as Person;
-        final page = ProviderScope(
-          overrides: [
-            personProvider
-                .overrideWith((ref) => PersonController()..setPerson(person)),
-          ],
-          child: const OrderPlacementScreen(),
-        );
+        const page = OrderPlacementScreen();
+
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
             context: context,
@@ -1411,6 +1412,109 @@ final router = GoRouter(
           ],
           child: EmployeeInformationDetailView(),
         );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: vendorManagementMainTabPage,
+      path: '/VendorManagementMainTabPage',
+      pageBuilder: (context, state) {
+        const page = VendorManagementMainTabPage();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: bidManagementProcurementView,
+      path: '/BidManagementProcurementView',
+      pageBuilder: (context, state) {
+        final page = BidManagementProcurementView();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: bidManagementProcurementDetailPage,
+      path: '/BidManagementProcurementDetailPage/:id',
+      pageBuilder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider.overrideWithValue({'invoiceId': id}),
+          ],
+          child: const BidManagementProcurementDetailPage(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: bidProcurementResponseRecieveView,
+      path: '/BidProcurementResponseRecieveView/:id',
+      pageBuilder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider.overrideWithValue({'invoiceId': id}),
+          ],
+          child: BidProcurementResponseRecieveView(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: orderManagementProcurementView,
+      path: '/OrderManagementProcurementView',
+      pageBuilder: (context, state) {
+        final page = OrderManagementProcurementView();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: inventoryManagementProcurementView,
+      path: '/InventoryManagementProcurementView',
+      pageBuilder: (context, state) {
+        final page = InventoryManagementProcurementView();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: contractManagementProcurementView,
+      path: '/ContractManagementProcurementView',
+      pageBuilder: (context, state) {
+        final page = ContractManagementProcurementView();
+
         return buildPageWithFadeTransition(
             fullscreenDialog: false,
             context: context,
