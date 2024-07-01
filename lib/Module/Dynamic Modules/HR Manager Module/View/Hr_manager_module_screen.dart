@@ -1,7 +1,9 @@
 import 'package:bussines_owner/Constants/Extensions/extensions.dart';
+import 'package:bussines_owner/Routes/set_routes.dart';
 import 'package:flutter/material.dart';
 import '../../../../Widgets/CustomGlassCardScreen/custom_glass_card_screen.dart';
 import '../../../MarketPlace/Widget/market_place_screen_card.dart';
+import 'package:go_router/go_router.dart';
 
 class HrManagerModuleScreen extends StatelessWidget {
   const HrManagerModuleScreen({super.key});
@@ -21,8 +23,7 @@ class HrManagerModuleScreen extends StatelessWidget {
             subHeadingText:
                 'It serves as a comprehensive directory, showcasing company profiles.mon',
             onTap: () {
-              // GoRouter.of(context)
-              //     .pushNamed(tendersView, extra: person);
+              GoRouter.of(context).pushNamed(employeeInformationView);
             },
           ),
           15.ph,

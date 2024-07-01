@@ -93,3 +93,42 @@ const String inventoryManagementProcurementView =
 
 const String contractManagementProcurementView =
     '/ContractManagementProcurementView';
+
+const String orderManagementDetailPage = '/OrderManagementDetailPage';
+const String invoiceManagementProcurementView =
+    '/InvoiceManagementProcurementView';
+const String invoiceManagementDetailProcurementPage =
+    '/InvoiceManagementDetailProcurementPage';
+
+const String bidManagementSalesView = '/BidManagementSalesView';
+const String bidManagementSalesDetailPage = '/BidManagementSalesDetailPage';
+const String bidSalesResponseRecieveView = '/BidSalesResponseRecieveView';
+const String orderManagementSalesView = '/OrderManagementSalesView';
+const String orderManagementDetailSalesPage = '/OrderManagementDetailSalesPage';
+const String inventoryManagementSalesView = '/InventoryManagementSalesView';
+const String invoiceManagementSalesView = '/InvoiceManagementSalesView';
+const String invoiceManagementDetailSalesPage =
+    '/InvoiceManagementDetailSalesPage';
+const String bidManagementServiceView = '/BidManagementServiceView';
+const String bidManagementServiceDetailPage = '/BidManagementServiceDetailPage';
+const String bidServiceResponseRecieveView = '/BidServiceResponseRecieveView';
+const String contractManagementServiceView = '/ContractManagementServiceView';
+
+const String invoiceManagementServiceView = '/InvoiceManagementServiceView';
+const String invoiceManagementDetailServicePage =
+    '/InvoiceManagementDetailServicePage';
+
+const String supplierManagementTabPage = '/ClientManagementMainTabPage';
+const String productCatalougeSalesScreen = '/ProductCatalougeSalesScreen';
+const String productCatalougeDetailSalesPage =
+    '/ProductCatalougeDetailSalesPage';
+
+const String clientManagementServiceMainTabPage =
+    '/ClientManagementServiceMainTabPage';
+
+const String serviceCatalougeView = '/ServiceCatalougeView';
+
+const String serviceCatalougeDetailPage = '/ServiceCatalougeDetailPage';
+
+const String spendAnalyticsProcurementPage = '/SpendAnalyticsProcurementPage';
+const String manageSalaryMainHrView = '/ManageSalaryMainHrView';

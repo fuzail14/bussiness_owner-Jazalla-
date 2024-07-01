@@ -44,6 +44,7 @@ import '../Module/GeneralServices/RequestProposal/View/request_proposal_page.dar
 import '../Module/GeneralServices/SendInquiry/View/service_send_inquiry_page.dart';
 import '../Module/GeneratedOtpScreen/view/generated_otp_screen.dart';
 import '../Module/Holidays/View/holidays_view.dart';
+import '../Module/Hr Management Module/Payroll Mangement Hr/Manage Salary/Main/View/manage_salary_main_hr_view.dart';
 import '../Module/InvestMentOpportunity/Main/View/investMent_Opportunity_screen.dart';
 import '../Module/InvoiceManagement/Detail/View/invoice_management_detail_page.dart';
 import '../Module/InvoiceManagement/Main/View/invoice_management_view.dart';
@@ -59,7 +60,12 @@ import '../Module/Procurement Management Module/Bid Management Procurement/Detai
 import '../Module/Procurement Management Module/Bid Management Procurement/Main/View/bid_management_procurement_view.dart';
 import '../Module/Procurement Management Module/Contract Management Procurement/Main/View/contract_management_procurement_view.dart';
 import '../Module/Procurement Management Module/Inventory Management Procurement/Main/View/inventory_management_procurement_view.dart';
+import '../Module/Procurement Management Module/InvoiceManagement Procurement/Detail/View/invoice_management_detail_procurement_page.dart';
+import '../Module/Procurement Management Module/InvoiceManagement Procurement/Main/View/invoice_management_procurement_view.dart';
+import '../Module/Procurement Management Module/Order Management Procurement/Detail/View/order_management_detail_page.dart';
 import '../Module/Procurement Management Module/Order Management Procurement/Main/View/order_management_procurement_view.dart';
+import '../Module/Procurement Management Module/SpendAnalytics/View/spend_analytics_procurement_page.dart';
+import '../Module/Procurement Management Module/Vendor Management/Supplier Management/Main/View/supplier_management_mainpage_screen.dart';
 import '../Module/ProcurementManagment/RFI/RfxManagmentRFIDetail/View/rfx_managment_rfi_detail_page.dart';
 import '../Module/ProcurementManagment/RFI/Main/View/procurement_soi_screen.dart';
 import '../Module/ProcurementManagment/RFP/Main/View/procurement_rfp_screen.dart';
@@ -71,12 +77,32 @@ import '../Module/Promotion/View/promotion_view.dart';
 import '../Module/Registration/View/registration_view.dart';
 import '../Module/SalaryPaySlip/Main/View/salary_payslip_view.dart';
 import '../Module/SalaryPaySlip/PaySlipDetail/View/salary_payslip_detail_page.dart';
+import '../Module/Sales Management Module/Bid Management Sales/BidResponseRecieve/View/bid_sales_response_recieve_view.dart';
+import '../Module/Sales Management Module/Bid Management Sales/Detail/View/bid_management_sales_detail_page.dart';
+import '../Module/Sales Management Module/Bid Management Sales/Main/View/bid_management_sales_view.dart';
+import '../Module/Sales Management Module/Client Management Sales/Main/View/client_management_mainpage_screen.dart';
+import '../Module/Sales Management Module/Inventory Management Sales/Main/View/inventory_management_sales_view.dart';
+import '../Module/Sales Management Module/InvoiceManagement Sales/Detail/View/invoice_management_detail_sales_page.dart';
+import '../Module/Sales Management Module/InvoiceManagement Sales/Main/View/invoice_management_sales_view.dart';
+import '../Module/Sales Management Module/Order Management Sales/Detail/View/order_management_detail_sales_page.dart';
+import '../Module/Sales Management Module/Order Management Sales/Main/View/order_management_sales_view.dart';
+import '../Module/Sales Management Module/ProductCatalouge Sales/Product Catalouge/View/product_catalouge_sales_screen.dart';
+import '../Module/Sales Management Module/ProductCatalouge Sales/ProductCatalougeDetail/View/product_catalouge_detail_sales_page.dart';
 import '../Module/SalesManagment/RFIMain/RFI/View/sales_managment_rfi_screen.dart';
 import '../Module/SalesManagment/RFIMain/SalesManagmentRFIDetail/View/sales_managment_rfi_detail_page.dart';
 import '../Module/SalesManagment/RFIMain/SendRFIResponse/View/send_rfi_response.dart';
 import '../Module/SalesManagment/RFQMain/RFQ/View/sales_managment_rfq_screen.dart';
 import '../Module/SalesManagment/RFQMain/SalesManagmentRFQDetail/View/sales_managment_rfq_detail_page.dart';
 import '../Module/SalesManagment/RFQMain/SendRfqResponse/View/send_rfq_response.dart';
+import '../Module/Service Management Module/Bid Management Service/BidResponseRecieve/View/bid_service_response_recieve_view.dart';
+import '../Module/Service Management Module/Bid Management Service/Detail/View/bid_management_service_detail_page.dart';
+import '../Module/Service Management Module/Bid Management Service/Main/View/bid_management_service_view.dart';
+import '../Module/Service Management Module/Client Management Service/Main/View/client_management_mainpage_service_screen.dart';
+import '../Module/Service Management Module/Contract Management Service/Main/View/contract_management_service_view.dart';
+import '../Module/Service Management Module/InvoiceManagement Service/Detail/View/invoice_management_detail_service_page.dart';
+import '../Module/Service Management Module/InvoiceManagement Service/Main/View/invoice_management_service_view.dart';
+import '../Module/Service Management Module/ServicesCatalouge/Detail/View/service_catalouge_detail_page.dart';
+import '../Module/Service Management Module/ServicesCatalouge/Services/View/services_catalouge_screen.dart';
 import '../Module/ServiceManagment/RFIMain/RFI/View/service_managment_rfi_screen.dart';
 import '../Module/ServiceManagment/RFIMain/ServiceManagmentRFIDetail/View/service_managment_rfi_detail_page.dart';
 import '../Module/ServiceManagment/RFPMain/RFP/View/service_managment_rfp_screen.dart';
@@ -349,6 +375,7 @@ final router = GoRouter(
             child: page);
       },
     ),
+
     GoRoute(
       name: bussinesForSale,
       path: '/BussinesForSale',
@@ -1514,6 +1541,405 @@ final router = GoRouter(
       path: '/ContractManagementProcurementView',
       pageBuilder: (context, state) {
         final page = ContractManagementProcurementView();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+
+    GoRoute(
+      name: orderManagementDetailPage,
+      path: '/OrderManagementDetailPage/:id',
+      pageBuilder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider.overrideWithValue({'invoiceId': id}),
+          ],
+          child: const OrderManagementDetailPage(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: invoiceManagementProcurementView,
+      path: '/InvoiceManagementProcurementView',
+      pageBuilder: (context, state) {
+        final page = InvoiceManagementProcurementView();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: invoiceManagementDetailProcurementPage,
+      path: '/InvoiceManagementDetailProcurementPage/:id',
+      pageBuilder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider.overrideWithValue({'invoiceId': id}),
+          ],
+          child: const InvoiceManagementDetailProcurementPage(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+
+    GoRoute(
+      name: bidManagementSalesView,
+      path: '/BidManagementSalesView',
+      pageBuilder: (context, state) {
+        final page = BidManagementSalesView();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: bidManagementSalesDetailPage,
+      path: '/BidManagementSalesDetailPage/:id',
+      pageBuilder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider.overrideWithValue({'invoiceId': id}),
+          ],
+          child: const BidManagementSalesDetailPage(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: bidSalesResponseRecieveView,
+      path: '/BidSalesResponseRecieveView/:id',
+      pageBuilder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider.overrideWithValue({'invoiceId': id}),
+          ],
+          child: BidSalesResponseRecieveView(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+
+    GoRoute(
+      name: orderManagementSalesView,
+      path: '/OrderManagementSalesView',
+      pageBuilder: (context, state) {
+        final page = OrderManagementSalesView();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+
+    GoRoute(
+      name: orderManagementDetailSalesPage,
+      path: '/OrderManagementDetailSalesPage/:id',
+      pageBuilder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider.overrideWithValue({'invoiceId': id}),
+          ],
+          child: OrderManagementDetailSalesPage(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: inventoryManagementSalesView,
+      path: '/InventoryManagementSalesView',
+      pageBuilder: (context, state) {
+        final page = InventoryManagementSalesView();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: invoiceManagementSalesView,
+      path: '/InvoiceManagementSalesView',
+      pageBuilder: (context, state) {
+        final page = InvoiceManagementSalesView();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+
+    GoRoute(
+      name: invoiceManagementDetailSalesPage,
+      path: '/InvoiceManagementDetailSalesPage/:id',
+      pageBuilder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider.overrideWithValue({'invoiceId': id}),
+          ],
+          child: const InvoiceManagementDetailSalesPage(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: bidManagementServiceView,
+      path: '/BidManagementServiceView',
+      pageBuilder: (context, state) {
+        final page = BidManagementServiceView();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: bidManagementServiceDetailPage,
+      path: '/BidManagementServiceDetailPage/:id',
+      pageBuilder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider.overrideWithValue({'invoiceId': id}),
+          ],
+          child: const BidManagementServiceDetailPage(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: bidServiceResponseRecieveView,
+      path: '/BidServiceResponseRecieveView/:id',
+      pageBuilder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider.overrideWithValue({'invoiceId': id}),
+          ],
+          child: BidServiceResponseRecieveView(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: contractManagementServiceView,
+      path: '/ContractManagementServiceView',
+      pageBuilder: (context, state) {
+        final page = ContractManagementServiceView();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: invoiceManagementServiceView,
+      path: '/InvoiceManagementServiceView',
+      pageBuilder: (context, state) {
+        final page = InvoiceManagementServiceView();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: invoiceManagementDetailServicePage,
+      path: '/InvoiceManagementDetailServicePage/:id',
+      pageBuilder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider.overrideWithValue({'invoiceId': id}),
+          ],
+          child: const InvoiceManagementDetailServicePage(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: supplierManagementTabPage,
+      path: '/ClientManagementMainTabPage',
+      pageBuilder: (context, state) {
+        const page = ClientManagementMainTabPage();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: productCatalougeSalesScreen,
+      path: '/ProductCatalougeSalesScreen',
+      pageBuilder: (context, state) {
+        const page = ProductCatalougeSalesScreen();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+
+    GoRoute(
+      name: productCatalougeDetailSalesPage,
+      path: '/ProductCatalougeDetailSalesPage/:id',
+      pageBuilder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider.overrideWithValue({'productId': id}),
+          ],
+          child: const ProductCatalougeDetailSalesPage(),
+        );
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: clientManagementServiceMainTabPage,
+      path: '/ClientManagementServiceMainTabPage',
+      pageBuilder: (context, state) {
+        const page = ClientManagementServiceMainTabPage();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: serviceCatalougeView,
+      path: '/serviceCatalougeView',
+      pageBuilder: (context, state) {
+        const page = ServiceCatalougeView();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+
+    GoRoute(
+      name: serviceCatalougeDetailPage,
+      path: '/ServiceCatalougeDetailPage/:id',
+      pageBuilder: (context, state) {
+        final id = int.parse(state.pathParameters['id']!);
+
+        final page = ProviderScope(
+          overrides: [
+            routeArgsProvider.overrideWithValue({'serviceId': id}),
+          ],
+          child: const ServiceCatalougeDetailPage(),
+        );
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: spendAnalyticsProcurementPage,
+      path: '/SpendAnalyticsProcurementPage',
+      pageBuilder: (context, state) {
+        const page = SpendAnalyticsProcurementPage();
+
+        return buildPageWithFadeTransition(
+            fullscreenDialog: false,
+            context: context,
+            state: state,
+            child: page);
+      },
+    ),
+    GoRoute(
+      name: manageSalaryMainHrView,
+      path: '/ManageSalaryMainHrView',
+      pageBuilder: (context, state) {
+        final page = ManageSalaryMainHrView();
 
         return buildPageWithFadeTransition(
             fullscreenDialog: false,

@@ -33,7 +33,7 @@ class EmployeeInformationView extends ConsumerWidget {
     return Scaffold(
       appBar: MyAppBar(
         showFilter: false,
-        title: "General Information",
+        title: "Employee Mangement",
         bellOnTap: () {
           GoRouter.of(context).pushNamed(notificationsScreen);
         },

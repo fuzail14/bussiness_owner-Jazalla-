@@ -73,8 +73,7 @@ class ProcurementManagerModuleScreen extends StatelessWidget {
             subHeadingText:
                 'It serves as a comprehensive directory, showcasing company profiles.mon',
             onTap: () {
-              // GoRouter.of(context)
-              //     .pushNamed(investMentOpportunityView, extra: person);
+              GoRouter.of(context).pushNamed(invoiceManagementProcurementView);
             },
           ),
           15.ph,
@@ -95,8 +94,7 @@ class ProcurementManagerModuleScreen extends StatelessWidget {
             subHeadingText:
                 'It serves as a comprehensive directory, showcasing company profiles.mon',
             onTap: () {
-              // GoRouter.of(context)
-              //     .pushNamed(investMentOpportunityView, extra: person);
+              GoRouter.of(context).pushNamed(spendAnalyticsProcurementPage);
             },
           ),
         ],

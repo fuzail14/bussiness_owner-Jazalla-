@@ -17,18 +17,6 @@ class PersonController extends StateNotifier<Person?> {
   // }
 
   void clearPerson() {
-    //state?.data = null;
-    // state?.data = null;
-    // state?.Bearer = null;
-    // state?.employee = null;
-
-    // print('check the person model in memory null or not ');
-    // print ( 'success object  ${state?.success = null);
-    // print(state?.data = null);
-    // print(state?.Bearer = null);
-    // print(state?.employee = null);
-    //print('check the person model in memory null or not ');
-
     state = null;
     print('clear person state $state');
   }

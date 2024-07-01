@@ -71,12 +71,12 @@ class OrderManagementProcurementView extends ConsumerWidget {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          // GoRouter.of(context).pushNamed(
-                          //   bidManagementProcurementDetailPage,
-                          //   pathParameters: {
-                          //     'id': '${state.invoices[index].id}'
-                          //   },
-                          // );
+                          GoRouter.of(context).pushNamed(
+                            orderManagementDetailPage,
+                            pathParameters: {
+                              'id': '${state.invoices[index].id}'
+                            },
+                          );
                         },
                         child: Container(
                           //width: 360.w,
